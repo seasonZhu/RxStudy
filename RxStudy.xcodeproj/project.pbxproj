@@ -13,6 +13,7 @@
 		612DBF61220022BA007F73CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612DBF5F220022BA007F73CC /* Main.storyboard */; };
 		612DBF63220022BE007F73CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 612DBF62220022BE007F73CC /* Assets.xcassets */; };
 		612DBF66220022BE007F73CC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612DBF64220022BE007F73CC /* LaunchScreen.storyboard */; };
+		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		612DBF62220022BE007F73CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		612DBF65220022BE007F73CC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		612DBF67220022BE007F73CC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -33,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				617082682205895D00891B79 /* MapKit.framework in Frameworks */,
 				55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -74,6 +77,7 @@
 		D9D210AFC05CCD440E64E647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				617082672205895D00891B79 /* MapKit.framework */,
 				D76530C2026EEA5366404510 /* Pods_RxStudy.framework */,
 			);
 			name = Frameworks;
@@ -85,7 +89,6 @@
 				5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */,
 				79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -123,6 +126,14 @@
 				TargetAttributes = {
 					612DBF57220022BA007F73CC = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
