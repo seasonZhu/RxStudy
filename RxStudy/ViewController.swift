@@ -54,6 +54,10 @@ class ViewController: UIViewController {
                 self.labelBind()
             case let x where x == 1:
                 self.buttonIsEnableBind()
+            case let x where x == 2:
+                self.buttonRxUse()
+            case let x where x == 3:
+                self.textViewRxUse()
             default:
                 print("按的位置")
             }
@@ -134,6 +138,50 @@ class ViewController: UIViewController {
             .bind(to: button.rx.isEnabled)
             .disposed(by: disposeBag)
     }
+    
+    func buttonRxUse() {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 44))
+        button.center = view.center
+        button.titleLabel?.textAlignment = .center
+        button.setTitle("按钮的点击事件", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        view.addSubview(button)
+        
+        button.rx.tap
+            .subscribe(onNext: { (_) in
+                print("点击了按钮")
+            }, onError: { (error) in
+                
+            }, onCompleted: {
+                
+            }).disposed(by: disposeBag)
+    }
+    
+    func textViewRxUse() {
+        let textView = UITextView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 200))
+        textView.center = view.center
+        textView.layer.borderWidth = 1
+        textView.layer.borderColor = UIColor.black.cgColor
+        view.addSubview(textView)
+        
+        textView.rx.text
+            .map { (text) -> Bool in
+                guard let string = text else {
+                    return false
+                }
+                
+                return string.count > 0
+            }.subscribe(onNext: { (isTrue) in
+                print("输入变化了")
+            }, onError: { (error) in
+                
+            }, onCompleted: {
+                print("输入结束") // 这个好像没有什么用呀
+            }, onDisposed: {
+                
+            }).disposed(by: disposeBag)
+    
+    }
 
     func tableViewHidden() {
         tableView.isHidden = true
@@ -144,13 +192,17 @@ class ViewController: UIViewController {
         view.subviews.filter { $0 != self.tableView }.forEach { $0.removeFromSuperview() }
         tableView.isHidden = false
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
 }
 
 struct ExampleListViewModel {
     let data = Observable.just([([0: "labelBind"]),
                                 ([1: "buttonIsEnableBind"]),
-                                ([2: "第三个任务"]),
-                                ([4: "第四个任务"]),
+                                ([2: "buttonRxUse"]),
+                                ([3: "textViewRxUse"]),
                                 ])
 }
 
