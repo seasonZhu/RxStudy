@@ -66,5 +66,10 @@
     <string>允许使用蓝牙</string>
     <key>NSMotionUsageDescription</key>
     <string>允许使用Core Motion</string>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+        <key>NSAllowsArbitraryLoads</key>
+        <true/>
+    </dict>
 </dict>
 </plist>

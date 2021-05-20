@@ -1,51 +1,52 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '12.1'
 
 target 'RxStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
+  
+  pod 'RxSwift'
+  pod 'RxCocoa'
 
   # Networking
-  pod 'Moya/RxSwift'  # https://github.com/Moya/Moya
+  pod 'Moya/RxSwift'
 
   # Rx Extensions
-  pod 'RxDataSources', '~> 4.0'  # https://github.com/RxSwiftCommunity/RxDataSources
-  pod 'RxSwiftExt', '~> 5.0'  # https://github.com/RxSwiftCommunity/RxSwiftExt
-  pod 'NSObject+Rx', '~> 5.0'  # https://github.com/RxSwiftCommunity/NSObject-Rx
-  pod 'RxViewController', '~> 1.0'  # https://github.com/devxoul/RxViewController
-  pod 'RxGesture', '~> 3.0'  # https://github.com/RxSwiftCommunity/RxGesture
-  pod 'RxOptional', '~> 4.0'  # https://github.com/RxSwiftCommunity/RxOptional
-  pod 'RxTheme', '~> 4.0'  # https://github.com/RxSwiftCommunity/RxTheme
+  pod 'RxDataSources'
+  pod 'RxSwiftExt'
+  pod 'RxViewController'
+  pod 'RxGesture'
+  pod 'RxOptional'
+  pod 'RxTheme'
+  pod 'RxBlocking'
+  pod 'NSObject+Rx'
 
 
   # Image
-  pod 'Kingfisher'  # https://github.com/onevcat/Kingfisher
-
+  pod 'Kingfisher'
   # Date
-  pod 'SwiftDate', '~> 6.0'  # https://github.com/malcommac/SwiftDate
+  pod 'SwiftDate'
 
   # Tools
-  pod 'R.swift', '~> 5.0'  # https://github.com/mac-cain13/R.swift
+  pod 'R.swift'
 
   # Keychain
-  pod 'KeychainAccess', '~> 4.0'  # https://github.com/kishikawakatsumi/KeychainAccess
+  pod 'KeychainAccess'
 
   # UI
-  pod 'NVActivityIndicatorView', '~> 4.0'  # https://github.com/ninjaprox/NVActivityIndicatorView
-  pod 'DZNEmptyDataSet', '~> 1.0'  # https://github.com/dzenbot/DZNEmptyDataSet
-  pod 'Hero', '~> 1.6'  # https://github.com/lkzhao/Hero
-  pod 'Localize-Swift', '~> 3.0'  # https://github.com/marmelroy/Localize-Swift
-  pod 'RAMAnimatedTabBarController', '~> 5.0'  # https://github.com/Ramotion/animated-tab-bar
-  pod 'AcknowList', '~> 2.0'  # https://github.com/vtourraine/AcknowList
-  pod 'KafkaRefresh', '~> 1.0'  # https://github.com/OpenFeyn/KafkaRefresh
-  pod 'Highlightr', '~> 2.0'  # https://github.com/raspu/Highlightr
-  pod 'DropDown', '~> 2.0'  # https://github.com/AssistoLab/DropDown
+  pod 'NVActivityIndicatorView'
+  pod 'DZNEmptyDataSet'
+  
+  pod 'RAMAnimatedTabBarController'
+  pod 'AcknowList'
+  pod 'MJRefresh'
+  pod 'Highlightr'
   
   # Keyboard
-  pod 'IQKeyboardManagerSwift', '~> 6.0'  # https://github.com/hackiftekhar/IQKeyboardManager
+  pod 'IQKeyboardManagerSwift'
 
   # Auto Layout
-  pod 'SnapKit', '~> 5.0'  # https://github.com/SnapKit/SnapKit
+  pod 'SnapKit'
 
 
 end

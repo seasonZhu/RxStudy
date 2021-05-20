@@ -7,9 +7,11 @@
 //
 
 import UIKit
+
 import RxSwift
 import RxCocoa
-import RxAtomic
+import RxBlocking
+import Moya
 
 class ViewController: UIViewController {
     
@@ -84,6 +86,20 @@ class ViewController: UIViewController {
             }, onDisposed: {
                 print("disposed")
             }).dispose()
+        
+        homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).subscribe { model in
+            print(model)
+        } onError: { error in
+            
+        }
+        
+        do{
+            let model = try homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).toBlocking().first()
+            print("toBlocking:\n\(model)")
+        }catch{
+            print(error)
+        }
+
     }
 
     //MARK:- Rx用例
