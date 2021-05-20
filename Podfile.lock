@@ -1,25 +1,190 @@
 PODS:
-  - RxAtomic (4.4.0)
-  - RxCocoa (4.4.0):
-    - RxSwift (~> 4.0)
-  - RxSwift (4.4.0):
-    - RxAtomic (~> 4.4)
+  - AcknowList (2.0.1)
+  - Alamofire (5.4.3)
+  - Differentiator (4.0.1)
+  - DropDown (2.3.13)
+  - DZNEmptyDataSet (1.8.1)
+  - Hero (1.6.1)
+  - Highlightr (2.1.0)
+  - IQKeyboardManagerSwift (6.5.6)
+  - KafkaRefresh (1.5.0):
+    - KafkaRefresh/Category (= 1.5.0)
+    - KafkaRefresh/Configuration (= 1.5.0)
+    - KafkaRefresh/Core (= 1.5.0)
+    - KafkaRefresh/Default (= 1.5.0)
+    - KafkaRefresh/Style (= 1.5.0)
+    - KafkaRefresh/UIKit (= 1.5.0)
+  - KafkaRefresh/Category (1.5.0)
+  - KafkaRefresh/Configuration (1.5.0):
+    - KafkaRefresh/UIKit/FootKit
+    - KafkaRefresh/UIKit/HeadKit
+  - KafkaRefresh/Core (1.5.0):
+    - KafkaRefresh/Category
+  - KafkaRefresh/Default (1.5.0):
+    - KafkaRefresh/Style
+  - KafkaRefresh/Style (1.5.0)
+  - KafkaRefresh/UIKit (1.5.0):
+    - KafkaRefresh/UIKit/FootKit (= 1.5.0)
+    - KafkaRefresh/UIKit/HeadKit (= 1.5.0)
+    - KafkaRefresh/UIKit/LayerKit (= 1.5.0)
+  - KafkaRefresh/UIKit/FootKit (1.5.0):
+    - KafkaRefresh/Category
+    - KafkaRefresh/Core
+    - KafkaRefresh/Default
+    - KafkaRefresh/Style
+    - KafkaRefresh/UIKit/LayerKit
+  - KafkaRefresh/UIKit/HeadKit (1.5.0):
+    - KafkaRefresh/Category
+    - KafkaRefresh/Core
+    - KafkaRefresh/Default
+    - KafkaRefresh/Style
+    - KafkaRefresh/UIKit/LayerKit
+  - KafkaRefresh/UIKit/LayerKit (1.5.0):
+    - KafkaRefresh/Category
+    - KafkaRefresh/Default
+  - KeychainAccess (4.2.2)
+  - Kingfisher (6.3.0)
+  - Localize-Swift (3.2.0):
+    - Localize-Swift/LocalizeSwiftCore (= 3.2.0)
+    - Localize-Swift/UIKit (= 3.2.0)
+  - Localize-Swift/LocalizeSwiftCore (3.2.0)
+  - Localize-Swift/UIKit (3.2.0):
+    - Localize-Swift/LocalizeSwiftCore
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (14.0.0):
+    - Moya/Core
+    - RxSwift (~> 5.0)
+  - "NSObject+Rx (5.1.0)":
+    - RxSwift (~> 5.1)
+  - NVActivityIndicatorView (4.8.0):
+    - NVActivityIndicatorView/Presenter (= 4.8.0)
+  - NVActivityIndicatorView/Presenter (4.8.0)
+  - R.swift (5.4.0):
+    - R.swift.Library (~> 5.3.0)
+  - R.swift.Library (5.3.0)
+  - RAMAnimatedTabBarController (5.2.0)
+  - RxCocoa (5.1.1):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxDataSources (4.0.1):
+    - Differentiator (~> 4.0)
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxGesture (3.0.2):
+    - RxCocoa (~> 5.1)
+    - RxSwift (~> 5.1)
+  - RxOptional (4.1.0):
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxRelay (5.1.1):
+    - RxSwift (~> 5)
+  - RxSwift (5.1.2)
+  - RxSwiftExt (5.2.0):
+    - RxSwiftExt/Core (= 5.2.0)
+    - RxSwiftExt/RxCocoa (= 5.2.0)
+  - RxSwiftExt/Core (5.2.0):
+    - RxSwift (~> 5.0)
+  - RxSwiftExt/RxCocoa (5.2.0):
+    - RxCocoa (~> 5.0)
+    - RxSwiftExt/Core
+  - RxTheme (4.1.1):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxViewController (1.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - SnapKit (5.0.1)
+  - SwiftDate (6.3.1)
 
 DEPENDENCIES:
-  - RxCocoa
-  - RxSwift
+  - AcknowList (~> 2.0)
+  - DropDown (~> 2.0)
+  - DZNEmptyDataSet (~> 1.0)
+  - Hero (~> 1.6)
+  - Highlightr (~> 2.0)
+  - IQKeyboardManagerSwift (~> 6.0)
+  - KafkaRefresh (~> 1.0)
+  - KeychainAccess (~> 4.0)
+  - Kingfisher
+  - Localize-Swift (~> 3.0)
+  - Moya/RxSwift
+  - "NSObject+Rx (~> 5.0)"
+  - NVActivityIndicatorView (~> 4.0)
+  - R.swift (~> 5.0)
+  - RAMAnimatedTabBarController (~> 5.0)
+  - RxDataSources (~> 4.0)
+  - RxGesture (~> 3.0)
+  - RxOptional (~> 4.0)
+  - RxSwiftExt (~> 5.0)
+  - RxTheme (~> 4.0)
+  - RxViewController (~> 1.0)
+  - SnapKit (~> 5.0)
+  - SwiftDate (~> 6.0)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
-    - RxAtomic
+  trunk:
+    - AcknowList
+    - Alamofire
+    - Differentiator
+    - DropDown
+    - DZNEmptyDataSet
+    - Hero
+    - Highlightr
+    - IQKeyboardManagerSwift
+    - KafkaRefresh
+    - KeychainAccess
+    - Kingfisher
+    - Localize-Swift
+    - Moya
+    - "NSObject+Rx"
+    - NVActivityIndicatorView
+    - R.swift
+    - R.swift.Library
+    - RAMAnimatedTabBarController
     - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxOptional
+    - RxRelay
     - RxSwift
+    - RxSwiftExt
+    - RxTheme
+    - RxViewController
+    - SnapKit
+    - SwiftDate
 
 SPEC CHECKSUMS:
-  RxAtomic: eacf60db868c96bfd63320e28619fe29c179656f
-  RxCocoa: df63ebf7b9a70d6b4eeea407ed5dd4efc8979749
-  RxSwift: 5976ecd04fc2fefd648827c23de5e11157faa973
+  AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  Differentiator: 886080237d9f87f322641dedbc5be257061b0602
+  DropDown: 8a2116376c1981888557f72ec2ffc9a5e0e456ec
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  Hero: 215865ba3ae41dd9bb08cd6c60a645529c6fc94b
+  Highlightr: 595f3e100737c8de41113385da8bd0b5b65212c6
+  IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
+  KafkaRefresh: 01645b1509b8647809f6bb666629c80855bd3fdd
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  Localize-Swift: 6f4475136bdb0d7b2882ea3d4ea919d70142b232
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
+  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
+  R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
+  R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
+  RAMAnimatedTabBarController: 6863a386e7ae2ab227cd60aa73ab8ff56cdacfdd
+  RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
+  RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
+  RxGesture: d6bd7447ca3a596c7a9702a6a2b6a2bb5d8bae54
+  RxOptional: b1fcd60856807a564c0215c2184b8d33e7826dc2
+  RxRelay: d77f7d771495f43c556cbc43eebd1bb54d01e8e9
+  RxSwift: 1e2e1f9570186967f617e49128ed26ccf1bafc8e
+  RxSwiftExt: 4ca80336f43c28f11a2825cdd2fc61dd6c044697
+  RxTheme: 7cda2f036363a0b620cf07b3480cbbbbb00c1d25
+  RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
 
-PODFILE CHECKSUM: 99f22c72a3af4759e083d18f075d2cc161cb8bc0
+PODFILE CHECKSUM: 9e2230ac3c863c682e72fc8181b79e8d2d9becd1
 
-COCOAPODS: 1.6.0.beta.2
+COCOAPODS: 1.10.1

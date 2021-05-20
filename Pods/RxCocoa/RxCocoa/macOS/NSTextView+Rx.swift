@@ -16,8 +16,17 @@ import RxSwift
 /// For more information take a look at `DelegateProxyType`.
 open class RxTextViewDelegateProxy: DelegateProxy<NSTextView, NSTextViewDelegate>, DelegateProxyType, NSTextViewDelegate {
 
+    #if compiler(>=5.2)
+    /// Typed parent object.
+    /// 
+    /// - note: Since Swift 5.2 and Xcode 11.4, Apple have suddenly
+    ///         disallowed using `weak` for NSTextView. For more details
+    ///         see this GitHub Issue: https://git.io/JvSRn
+    public private(set) var textView: NSTextView?
+    #else
     /// Typed parent object.
     public weak private(set) var textView: NSTextView?
+    #endif
 
     /// Initializes `RxTextViewDelegateProxy`
     ///
@@ -39,7 +48,7 @@ open class RxTextViewDelegateProxy: DelegateProxy<NSTextView, NSTextViewDelegate
         let textView: NSTextView = castOrFatalError(notification.object)
         let nextValue = textView.string
         self.textSubject.on(.next(nextValue))
-        _forwardToDelegate?.textDidChange?(notification)
+        self._forwardToDelegate?.textDidChange?(notification)
     }
 
     // MARK: Delegate proxy methods
@@ -62,18 +71,18 @@ extension Reactive where Base: NSTextView {
     ///
     /// For more information take a look at `DelegateProxyType` protocol documentation.
     public var delegate: DelegateProxy<NSTextView, NSTextViewDelegate> {
-        return RxTextViewDelegateProxy.proxy(for: base)
+        return RxTextViewDelegateProxy.proxy(for: self.base)
     }
 
     /// Reactive wrapper for `string` property.
     public var string: ControlProperty<String> {
-        let delegate = RxTextViewDelegateProxy.proxy(for: base)
+        let delegate = RxTextViewDelegateProxy.proxy(for: self.base)
 
         let source = Observable.deferred { [weak textView = self.base] in
             delegate.textSubject.startWith(textView?.string ?? "")
-        }.takeUntil(deallocated)
+        }.takeUntil(self.deallocated)
 
-        let observer = Binder(base) { (control, value) in
+        let observer = Binder(self.base) { control, value in
             control.string = value
         }
 
