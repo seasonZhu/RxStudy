@@ -87,16 +87,19 @@ class ViewController: UIViewController {
                 print("disposed")
             }).dispose()
         
-        homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).subscribe { model in
+        homeProvider.rx.request(HomeService.banner)
+            .map(BaseModel<[Banner]>.self)
+            .map { $0.data }
+            .subscribe { model in
             print(model)
         } onError: { error in
             
         }
         
-        do{
+        do {
             let model = try homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).toBlocking().first()
             print("toBlocking:\n\(model)")
-        }catch{
+        } catch {
             print(error)
         }
 
