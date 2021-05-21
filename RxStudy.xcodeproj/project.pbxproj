@@ -23,6 +23,8 @@
 		61336C812656667900FDEB2A /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C802656667900FDEB2A /* Info.swift */; };
 		61336C8326574C4D00FDEB2A /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8226574C4D00FDEB2A /* MyService.swift */; };
 		61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8426574E0500FDEB2A /* CoinRank.swift */; };
+		61336C882657537100FDEB2A /* CoinRankListControlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C872657537100FDEB2A /* CoinRankListControlle.swift */; };
+		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
 		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,8 @@
 		61336C802656667900FDEB2A /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
 		61336C8226574C4D00FDEB2A /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
 		61336C8426574E0500FDEB2A /* CoinRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRank.swift; sourceTree = "<group>"; };
+		61336C872657537100FDEB2A /* CoinRankListControlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListControlle.swift; sourceTree = "<group>"; };
+		61336C8A2657581100FDEB2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +88,8 @@
 		612DBF5A220022BA007F73CC /* RxStudy */ = {
 			isa = PBXGroup;
 			children = (
+				61336C89265757F500FDEB2A /* Base */,
+				61336C86265752FB00FDEB2A /* My */,
 				61336C792656493700FDEB2A /* Extension */,
 				61336C6D265640D100FDEB2A /* HttpRequest */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
@@ -134,6 +140,22 @@
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		61336C86265752FB00FDEB2A /* My */ = {
+			isa = PBXGroup;
+			children = (
+				61336C872657537100FDEB2A /* CoinRankListControlle.swift */,
+			);
+			path = My;
+			sourceTree = "<group>";
+		};
+		61336C89265757F500FDEB2A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				61336C8A2657581100FDEB2A /* BaseViewController.swift */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 		D9D210AFC05CCD440E64E647 /* Frameworks */ = {
@@ -282,10 +304,12 @@
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
 				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
+				61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */,
 				61336C812656667900FDEB2A /* Info.swift in Sources */,
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
+				61336C882657537100FDEB2A /* CoinRankListControlle.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,

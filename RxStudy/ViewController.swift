@@ -13,12 +13,25 @@ import RxCocoa
 import RxBlocking
 import Moya
 
-class ViewController: UIViewController {
+class ViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "RxSwift"
+        
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
+        button.setTitle("去积分排名页面", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.center = view.center
+        view.addSubview(button)
+        
+        
+        button.rx.tap.subscribe { [weak self] _ in
+            self?.navigationController?.pushViewController(CoinRankListController(), animated: true)
+        }.disposed(by: disposeBag)
+
         
         requestTest()
     }
@@ -48,7 +61,7 @@ class ViewController: UIViewController {
             print(model)
         }, onError: { error in
             print(error)
-        })
+        }).disposed(by: disposeBag)
         
     }
 }
