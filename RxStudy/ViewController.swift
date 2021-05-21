@@ -97,8 +97,15 @@ class ViewController: UIViewController {
         }
         
         do {
-            let model = try homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).toBlocking().first()
-            print("toBlocking:\n\(model)")
+            let model1 = try homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).toBlocking().first()
+            let model2 = try homeProvider.rx.request(HomeService.topArticle).map(BaseModel<[InfoModel]>.self).toBlocking().first()
+            let model3 = try homeProvider.rx.request(HomeService.normalArticle(0)).map(BaseModel<PageModel<InfoModel>>.self).toBlocking().first()
+            print("toBlocking")
+            print(model1)
+            print("----------------")
+            print(model2)
+            print("----------------")
+            print(model3)
         } catch {
             print(error)
         }

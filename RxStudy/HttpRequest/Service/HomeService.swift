@@ -8,7 +8,6 @@
 
 import Foundation
 
-import Alamofire
 import Moya
 
 let homeProvider: MoyaProvider<HomeService> = {
