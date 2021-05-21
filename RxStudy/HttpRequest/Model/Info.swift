@@ -1,5 +1,5 @@
 //
-//  InfoModel.swift
+//  Info.swift
 //  RxStudy
 //
 //  Created by season on 2021/5/20.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// 单个信息模型,用于首页,项目,公众号,搜索关键词,体系,收藏夹
-struct InfoModel : Codable {
+struct Info : Codable {
     
     let apkLink : String?
     let audit : Int?

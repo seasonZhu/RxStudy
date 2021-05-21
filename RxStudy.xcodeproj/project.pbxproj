@@ -19,8 +19,10 @@
 		61336C78265644DC00FDEB2A /* HomeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C77265644DC00FDEB2A /* HomeService.swift */; };
 		61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C7A2656494900FDEB2A /* Int+Extension.swift */; };
 		61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */; };
-		61336C7F2656642700FDEB2A /* PageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C7E2656642700FDEB2A /* PageModel.swift */; };
-		61336C812656667900FDEB2A /* InfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C802656667900FDEB2A /* InfoModel.swift */; };
+		61336C7F2656642700FDEB2A /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C7E2656642700FDEB2A /* Page.swift */; };
+		61336C812656667900FDEB2A /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C802656667900FDEB2A /* Info.swift */; };
+		61336C8326574C4D00FDEB2A /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8226574C4D00FDEB2A /* MyService.swift */; };
+		61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8426574E0500FDEB2A /* CoinRank.swift */; };
 		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,8 +41,10 @@
 		61336C77265644DC00FDEB2A /* HomeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
 		61336C7A2656494900FDEB2A /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		61336C7E2656642700FDEB2A /* PageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageModel.swift; sourceTree = "<group>"; };
-		61336C802656667900FDEB2A /* InfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoModel.swift; sourceTree = "<group>"; };
+		61336C7E2656642700FDEB2A /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		61336C802656667900FDEB2A /* Info.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		61336C8226574C4D00FDEB2A /* MyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
+		61336C8426574E0500FDEB2A /* CoinRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRank.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,9 +110,10 @@
 			isa = PBXGroup;
 			children = (
 				61336C722656433000FDEB2A /* BaseModel.swift */,
+				61336C7E2656642700FDEB2A /* Page.swift */,
 				61336C742656443A00FDEB2A /* Banner.swift */,
-				61336C7E2656642700FDEB2A /* PageModel.swift */,
-				61336C802656667900FDEB2A /* InfoModel.swift */,
+				61336C802656667900FDEB2A /* Info.swift */,
+				61336C8426574E0500FDEB2A /* CoinRank.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				61336C77265644DC00FDEB2A /* HomeService.swift */,
+				61336C8226574C4D00FDEB2A /* MyService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -275,11 +281,13 @@
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
-				61336C7F2656642700FDEB2A /* PageModel.swift in Sources */,
-				61336C812656667900FDEB2A /* InfoModel.swift in Sources */,
+				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
+				61336C812656667900FDEB2A /* Info.swift in Sources */,
+				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
+				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

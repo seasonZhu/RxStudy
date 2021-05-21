@@ -49,17 +49,19 @@ struct Api {
 
 
     /// 我的
-    let postCollectArticle = "lg/collect/"
+    enum My {
+        static let postCollectArticle = "lg/collect/"
 
-    let postUnCollectArticle = "lg/uncollect_originId/"
+        static let postUnCollectArticle = "lg/uncollect_originId/"
 
-    let getCollectArticleList = "lg/collect/list/"
+        static let getCollectArticleList = "lg/collect/list/"
 
-    let getCoinList = "lg/coin/list/"
+        static let getCoinList = "lg/coin/list/"
 
-    let getUserCoinInfo = "lg/coin/userinfo/json"
+        static let getUserCoinInfo = "lg/coin/userinfo/json"
 
-    let getRankingList = "coin/rank/"
+        static let coinRank = "coin/rank/"
+    }
 
     /// 体系
     let getTree = "tree/json"

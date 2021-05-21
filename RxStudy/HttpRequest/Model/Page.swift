@@ -1,5 +1,5 @@
 //
-//  PageModel.swift
+//  Page.swift
 //  RxStudy
 //
 //  Created by season on 2021/5/20.
@@ -9,7 +9,7 @@
 import Foundation
 
 /// 有分页的基础模型
-struct PageModel<Content: Codable> : Codable {
+struct Page<Content: Codable> : Codable {
     let curPage : Int?
     let datas : [Content]?
     let offset : Int?
