@@ -25,6 +25,8 @@
 		61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8426574E0500FDEB2A /* CoinRank.swift */; };
 		61336C882657537100FDEB2A /* CoinRankListControlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C872657537100FDEB2A /* CoinRankListControlle.swift */; };
 		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
+		61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */; };
+		61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */; };
 		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,9 @@
 		61336C8426574E0500FDEB2A /* CoinRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRank.swift; sourceTree = "<group>"; };
 		61336C872657537100FDEB2A /* CoinRankListControlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListControlle.swift; sourceTree = "<group>"; };
 		61336C8A2657581100FDEB2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
+		61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
+		61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -98,6 +103,7 @@
 				612DBF62220022BE007F73CC /* Assets.xcassets */,
 				612DBF64220022BE007F73CC /* LaunchScreen.storyboard */,
 				612DBF67220022BE007F73CC /* Info.plist */,
+				61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */,
 			);
 			path = RxStudy;
 			sourceTree = "<group>";
@@ -138,6 +144,7 @@
 			children = (
 				61336C7A2656494900FDEB2A /* Int+Extension.swift */,
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
+				61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -145,6 +152,8 @@
 		61336C86265752FB00FDEB2A /* My */ = {
 			isa = PBXGroup;
 			children = (
+				61336C932657AD1600FDEB2A /* View */,
+				61336C922657AD0E00FDEB2A /* ViewModel */,
 				61336C872657537100FDEB2A /* CoinRankListControlle.swift */,
 			);
 			path = My;
@@ -156,6 +165,21 @@
 				61336C8A2657581100FDEB2A /* BaseViewController.swift */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		61336C922657AD0E00FDEB2A /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		61336C932657AD1600FDEB2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		D9D210AFC05CCD440E64E647 /* Frameworks */ = {
@@ -210,6 +234,7 @@
 				TargetAttributes = {
 					612DBF57220022BA007F73CC = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1250;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -302,10 +327,12 @@
 				61336C78265644DC00FDEB2A /* HomeService.swift in Sources */,
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
+				61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
 				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
 				61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */,
 				61336C812656667900FDEB2A /* Info.swift in Sources */,
+				61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */,
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
@@ -459,6 +486,7 @@
 			baseConfigurationReference = 5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6Q5RKSB5N;
 				INFOPLIST_FILE = RxStudy/Info.plist;
@@ -468,6 +496,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lostsakura.www.RxStudy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RxStudy/RxStudy-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -478,6 +508,7 @@
 			baseConfigurationReference = 79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B6Q5RKSB5N;
 				INFOPLIST_FILE = RxStudy/Info.plist;
@@ -487,6 +518,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lostsakura.www.RxStudy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "RxStudy/RxStudy-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
