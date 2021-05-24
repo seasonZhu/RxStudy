@@ -93,3 +93,40 @@ enum RefreshStatus {
         case hiddenFooter, showFooter, endFooterRefresh, endFooterRefreshWithNoData
     }
 }
+
+
+protocol Refreshable {
+  var refreshStauts: BehaviorRelay<RefreshStatus> { get }
+}
+
+extension Refreshable {
+  func refreshStatusBind(to scrollView: UIScrollView) -> Disposable {
+    return refreshStauts.subscribe(onNext: { status in
+        switch status {
+        case .header(let headerStatus):
+            switch headerStatus {
+            case .none:
+                scrollView.mj_header?.endRefreshing()
+            case .begainHeaderRefresh:
+                scrollView.mj_header?.beginRefreshing()
+            case .endHeaderRefresh:
+                scrollView.mj_header?.endRefreshing()
+            }
+        case .footer(let footerStatus):
+            switch footerStatus {
+            case .hiddenFooter:
+                scrollView.mj_footer?.isHidden = true
+                scrollView.mj_footer?.endRefreshing()
+            case .showFooter:
+                scrollView.mj_footer?.isHidden = false
+                scrollView.mj_footer?.endRefreshing()
+            case .endFooterRefresh:
+                scrollView.mj_footer?.endRefreshing()
+            case .endFooterRefreshWithNoData:
+                scrollView.mj_header?.endRefreshing()
+                scrollView.mj_footer?.endRefreshingWithNoMoreData()
+            }
+        }
+    })
+  }
+}

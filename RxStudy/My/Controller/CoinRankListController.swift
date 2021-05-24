@@ -74,9 +74,54 @@ extension CoinRankListController {
         self.tableView.mj_header = MJRefreshNormalHeader()
         /// 设置尾部刷新控件
         self.tableView.mj_footer = MJRefreshBackNormalFooter()
-        
-        coinRankListViewModelBinding()
+                
+        attrackViewModelBinding()
     }
+}
+
+extension CoinRankListController {
+    private func attrackViewModelBinding() {
+        viewModel = AttractViewModel(disposeBag: rx.disposeBag)
+
+        tableView.mj_header?.rx.headerRefreshing
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.viewModel.inputs.loadData(true)
+                
+            })
+            .disposed(by: disposeBag)
+
+        tableView.mj_footer?.rx.footerRefreshing(0)
+            .asDriver()
+            .drive(onNext: { [weak self] _ in
+                self?.viewModel.inputs.loadData(false)
+                
+            })
+            .disposed(by: disposeBag)
+
+        // 绑定数据
+        viewModel.outputs.dataSource
+            .asDriver()
+            .drive(tableView.rx.items) { (tableView, row, coinRank) in
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+                    cell.textLabel?.text = coinRank.username
+                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
+                    return cell
+                }else {
+                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    cell.textLabel?.text = coinRank.username
+                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
+                    return cell
+                }
+            }
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.refreshStatusBind(to: tableView)
+            .disposed(by: disposeBag)
+
+        tableView.mj_header?.beginRefreshing()
+    }
+    
 }
 
 extension CoinRankListController {
@@ -125,67 +170,6 @@ extension CoinRankListController {
             .drive(self.tableView.mj_footer!.rx.refreshValue)
             .disposed(by: rx.disposeBag)
     }
-}
-
-extension CoinRankListController {
-    private func attrackViewModelBinding() {
-        viewModel = AttractViewModel(disposeBag: rx.disposeBag)
-
-        // 绑定数据
-        tableView.mj_header?.rx.headerRefreshing
-          .asDriver()
-          .drive(onNext: { [weak self] in
-                self?.viewModel.loadData(true)
-          })
-          .disposed(by: disposeBag)
-
-        tableView.mj_footer?.rx.footerRefreshing(0)
-          .asDriver()
-            .drive(onNext: { [weak self] _ in
-                self?.viewModel.loadData(false)
-          })
-          .disposed(by: disposeBag)
-
-
-        viewModel.outputs.dataSource
-            .asDriver()
-            .drive(tableView.rx.items) { (tableView, row, coinRank) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-                    cell.textLabel?.text = coinRank.username
-                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
-                    return cell
-                }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-                    cell.textLabel?.text = coinRank.username
-                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
-                    return cell
-                }
-            }
-            .disposed(by: rx.disposeBag)
-        
-        
-        /// 下拉刷新状态的绑定 需要对header与footer都做绑定
-        viewModel.headerRefreshStatus
-            .drive(self.tableView.mj_header!.rx.refreshValue)
-            .disposed(by: rx.disposeBag)
-        
-        viewModel.headerRefreshStatus
-            .drive(self.tableView.mj_footer!.rx.refreshValue)
-            .disposed(by: rx.disposeBag)
-         
-        /// 上拉刷新状态的绑定 需要对header与footer都做绑定
-        viewModel.footerRefreshStatus
-            .drive(self.tableView.mj_header!.rx.refreshValue)
-            .disposed(by: rx.disposeBag)
-        
-
-        viewModel.footerRefreshStatus
-            .drive(self.tableView.mj_footer!.rx.refreshValue)
-            .disposed(by: rx.disposeBag)
-        
-        tableView.mj_header?.beginRefreshing()
-    }
-    
 }
 
 extension CoinRankListController: UITableViewDelegate {}

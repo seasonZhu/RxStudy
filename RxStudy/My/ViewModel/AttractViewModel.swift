@@ -22,12 +22,6 @@ protocol ViemModelOutPuts {
         
     /// 数据源数组
     var dataSource: BehaviorRelay<[CoinRank]> { get }
-    
-    /// 头部刷新状态
-    var headerRefreshStatus: Driver<RefreshStatus> { set get }
-
-    /// 尾部刷新状态
-    var footerRefreshStatus: Driver<RefreshStatus> { set get }
 }
 
 protocol ViemModelType {
@@ -36,7 +30,11 @@ protocol ViemModelType {
     var outputs: ViemModelOutPuts { get }
 }
 
-class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts {
+class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts, Refreshable {
+    
+    var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
+    
+    var pageNum: Int
     
     /// 协议
     var inputs: ViemModelInputs { return self }
@@ -46,18 +44,11 @@ class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts {
     /// outputs
     var dataSource = BehaviorRelay<[CoinRank]>(value: [])
     
-    var headerRefreshStatus: Driver<RefreshStatus>
-    
-    var footerRefreshStatus: Driver<RefreshStatus>
-        
-    var pageNum = 1
-    
     let disposeBag: DisposeBag
     
-    init(disposeBag: DisposeBag) {
+    init(pageNum: Int = 1, disposeBag: DisposeBag) {
+        self.pageNum = pageNum
         self.disposeBag = disposeBag
-        self.headerRefreshStatus = Driver.just(.header(.begainHeaderRefresh))
-        self.footerRefreshStatus = Driver.just(.footer(.showFooter))
     }
     
     // inputs
@@ -72,7 +63,7 @@ class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts {
                 let status: RefreshStatus
                 guard let curPage = baseModel.data?.curPage, let totalPage = baseModel.data?.total else {
                     status = .header(.endHeaderRefresh)
-                    self.headerRefreshStatus = Driver.just(status)
+                    self.refreshStauts.accept(status)
                     return
                 }
                 
@@ -84,16 +75,7 @@ class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts {
                     status = .header(.endHeaderRefresh)
                 }
                 
-                self.headerRefreshStatus = Driver.just(status)
-            }, onCompleted: {
-                
-            }, afterCompleted: {
-                
-            }, onSubscribe: {
-                
-            }, onSubscribed: {
-                
-            }, onDispose: {
+                self.refreshStauts.accept(status)
                 
             }).map{ $0.data?.datas?.map{ $0 }}
                 /// 去掉其中为nil的值
@@ -102,45 +84,39 @@ class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts {
                     self.outputs.dataSource.accept(items)
                 })
                 .disposed(by: disposeBag)
+        }else {
+            pageNum = pageNum + 1
             
-            headerRefreshStatus = headerRefreshData.map{ $0.data }.compactMap{ $0 }.map({ page in
-                guard let curPage = page.curPage, let totalPage = page.total else {
-                    return .header(.endHeaderRefresh)
+            let footerRefreshData = queryNewData(page: pageNum)
+            
+            footerRefreshData.do(onNext: { baseModel in
+                
+            }, afterNext: { baseModel in
+                
+                let status: RefreshStatus
+                guard let curPage = baseModel.data?.curPage, let totalPage = baseModel.data?.total else {
+                    status = .footer(.endFooterRefresh)
+                    self.refreshStauts.accept(status)
+                    return
                 }
                 
                 if curPage < totalPage {
-                    return .header(.endHeaderRefresh)
+                    status = .footer(.showFooter)
                 }else if curPage == totalPage {
-                    return .footer(.endFooterRefreshWithNoData)
+                    status = .footer(.endFooterRefreshWithNoData)
                 }else {
-                    return .header(.endHeaderRefresh)
+                    status = .footer(.hiddenFooter)
                 }
+                
+                self.refreshStauts.accept(status)
+                
             })
-        }else {
-            pageNum = pageNum + 1
-            let footerRefreshData = queryNewData(page: pageNum)
-            
-            footerRefreshData
                 .map{ $0.data?.datas?.map{ $0 }}
                 .compactMap{ $0 }
                 .drive(onNext: { items in
                     self.outputs.dataSource.accept(self.self.outputs.dataSource.value + items )
                 })
                 .disposed(by: disposeBag)
-            
-            footerRefreshStatus = footerRefreshData.map{ $0.data }.compactMap{ $0 }.map({ page in
-                guard let curPage = page.curPage, let totalPage = page.total else {
-                    return .footer(.endFooterRefresh)
-                }
-                
-                if curPage < totalPage {
-                    return .footer(.showFooter)
-                }else if curPage == totalPage {
-                    return .footer(.endFooterRefreshWithNoData)
-                }else {
-                    return .footer(.hiddenFooter)
-                }
-            })
         }
         
     }
