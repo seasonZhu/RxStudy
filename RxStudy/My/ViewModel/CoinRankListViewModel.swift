@@ -31,20 +31,22 @@ class CoinRankListViewModel: Refreshable {
         let headerRefreshData = input.headerRefresh
             .startWith(()) //初始化时会先自动加载一次数据
             .flatMapLatest { _ in  //也可考虑使用flatMapFirst
-                return myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self)
-                /// 将BaseModel<Page<CoinRank>转为[CoinRank]
-                .map{ $0.data?.datas?.map{ $0 }}
-                /// 去掉其中为nil的值
-                .compactMap{ $0 }
-                /// 转为Observable
-                .asDriver(onErrorDriveWith: Driver.empty())
+                return myProvider.rx.request(MyService.coinRank(1))
+                    .map(BaseModel<Page<CoinRank>>.self)
+                    /// 将BaseModel<Page<CoinRank>转为[CoinRank]
+                    .map{ $0.data?.datas?.map{ $0 }}
+                    /// 去掉其中为nil的值
+                    .compactMap{ $0 }
+                    /// 转为Observable
+                    .asDriver(onErrorDriveWith: Driver.empty())
 
             }
         
         //上拉结果序列
         let footerRefreshData = input.footerRefresh
             .flatMapLatest { _ in  //也可考虑使用flatMapFirst
-                return myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self)
+                return myProvider.rx.request(MyService.coinRank(1))
+                    .map(BaseModel<Page<CoinRank>>.self)
                     /// 将BaseModel<Page<CoinRank>转为[CoinRank]
                     .map{ $0.data?.datas?.map{ $0 }}
                     /// 去掉其中为nil的值

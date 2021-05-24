@@ -31,7 +31,12 @@ class CoinRankListController: BaseViewController {
 
 extension CoinRankListController {
     private func setupUI() {
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        /*
+         由于viewDidLoad()中调用了registerClass: forCellReuseIdentifier: 。
+
+         所以，tableView: cellForRowAtIndexPath中的[tableView dequeueReusableCellWithIdentifier:］返回的都不是nil。并且，cell的style一直是UITableViewCellStyleDefault，所以detailTextLabel无法显示。
+         */
+        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -85,6 +90,8 @@ extension CoinRankListController {
         }
         .disposed(by: rx.disposeBag)
         */
+        
+        
         //设置头部刷新控件
         self.tableView.mj_header = MJRefreshNormalHeader()
         //设置尾部刷新控件
@@ -103,10 +110,16 @@ extension CoinRankListController {
         viewModel.tableData
             .asDriver()
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
-                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
-                cell.textLabel?.text = coinRank.username
-                cell.detailTextLabel?.text = coinRank.coinCount?.toString
-                return cell
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+                    cell.textLabel?.text = coinRank.username
+                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
+                    return cell
+                }else {
+                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    cell.textLabel?.text = coinRank.username
+                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
+                    return cell
+                }
         }
         .disposed(by: rx.disposeBag)
         
