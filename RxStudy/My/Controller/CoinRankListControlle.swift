@@ -18,6 +18,8 @@ class CoinRankListController: BaseViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     
+    var pageNum = 1
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "积分排名"
@@ -74,8 +76,8 @@ extension CoinRankListController {
         /// 初始化ViewModel
         let viewModel = CoinRankListViewModel(
             input: (
-                headerRefresh: self.tableView.mj_header!.rx.refreshing.asDriver(),
-                footerRefresh: self.tableView.mj_footer!.rx.refreshing.asDriver()
+                headerRefresh: self.tableView.mj_header!.rx.headerRefreshing.asDriver(),
+                footerRefresh: self.tableView.mj_footer!.rx.footerRefreshing(self.pageNum).asDriver()
                 ),
             disposeBag: rx.disposeBag)
         
@@ -96,12 +98,21 @@ extension CoinRankListController {
         }
         .disposed(by: rx.disposeBag)
         
-        /// 下拉刷新状态的绑定
+        /// 下拉刷新状态的绑定 需要对header与footer都做绑定
         viewModel.headerRefreshStatus
             .drive(self.tableView.mj_header!.rx.refreshValue)
             .disposed(by: rx.disposeBag)
+        
+        viewModel.headerRefreshStatus
+            .drive(self.tableView.mj_footer!.rx.refreshValue)
+            .disposed(by: rx.disposeBag)
          
-        /// 上拉刷新状态的绑定
+        /// 上拉刷新状态的绑定 需要对header与footer都做绑定
+        viewModel.footerRefreshStatus
+            .drive(self.tableView.mj_header!.rx.refreshValue)
+            .disposed(by: rx.disposeBag)
+        
+
         viewModel.footerRefreshStatus
             .drive(self.tableView.mj_footer!.rx.refreshValue)
             .disposed(by: rx.disposeBag)

@@ -23,7 +23,7 @@ class CoinRankListViewModel {
     let footerRefreshStatus: Driver<RefreshStatus>
 
     /// ViewModel初始化（根据输入实现对应的输出）
-    init(input: (headerRefresh: Driver<Void>, footerRefresh: Driver<Void>), disposeBag: DisposeBag) {
+    init(input: (headerRefresh: Driver<Void>, footerRefresh: Driver<Int>), disposeBag: DisposeBag) {
         
         /// 下拉结果序列
         let headerRefreshData = input.headerRefresh
@@ -40,8 +40,8 @@ class CoinRankListViewModel {
         
         /// 上拉结果序列
         let footerRefreshData = input.footerRefresh
-            .flatMapLatest { _ in
-                return myProvider.rx.request(MyService.coinRank(1))
+            .flatMapLatest { pageNum in
+                return myProvider.rx.request(MyService.coinRank(pageNum))
                     .map(BaseModel<Page<CoinRank>>.self)
                     /// 转为Observable
                     .asDriver(onErrorDriveWith: Driver.empty())

@@ -15,8 +15,8 @@ import RxCocoa
 /// 对MJRefreshComponent增加rx扩展
 extension Reactive where Base: MJRefreshComponent {
 
-    //正在刷新事件
-    var refreshing: ControlEvent<Void> {
+    /// header的刷新事件
+    var headerRefreshing: ControlEvent<Void> {
         let source: Observable<Void> = Observable.create {
             [weak control = self.base] observer  in
             if let control = control {
@@ -28,8 +28,24 @@ extension Reactive where Base: MJRefreshComponent {
         }
         return ControlEvent(events: source)
     }
+    
+    /// footer的刷新事件
+    var footerRefreshing: (Int) -> ControlEvent<Int> {
+        return { page in
+            let source: Observable<Int> = Observable.create {
+                [weak control = self.base] observer  in
+                if let control = control {
+                    control.refreshingBlock = {
+                        observer.on(.next(page))
+                    }
+                }
+                return Disposables.create()
+            }
+            return ControlEvent(events: source)
+        }
+    }
 
-    //停止刷新
+    /// 刷新值
     var refreshValue: Binder<RefreshStatus> {
         return Binder(base) { refresh, status in
             switch status {
@@ -44,6 +60,7 @@ extension Reactive where Base: MJRefreshComponent {
                     header?.endRefreshing()
                 }
             case .footer(let footerStatus):
+                let header = refresh as? MJRefreshHeader
                 let footer = refresh as? MJRefreshFooter
                 switch footerStatus {
                 case .hiddenFooter:
@@ -55,6 +72,7 @@ extension Reactive where Base: MJRefreshComponent {
                 case .endFooterRefresh:
                     footer?.endRefreshing()
                 case .endFooterRefreshWithNoData:
+                    header?.endRefreshing()
                     footer?.endRefreshingWithNoMoreData()
                 }
             }
