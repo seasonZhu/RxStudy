@@ -14,13 +14,10 @@ import NSObject_Rx
 import SnapKit
 import MJRefresh
 
-
 class CoinRankListController: BaseViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     
-    var dataSource: Observable<[CoinRank]>!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "积分排名"
@@ -37,7 +34,11 @@ extension CoinRankListController {
          所以，tableView: cellForRowAtIndexPath中的[tableView dequeueReusableCellWithIdentifier:］返回的都不是nil。并且，cell的style一直是UITableViewCellStyleDefault，所以detailTextLabel无法显示。
          */
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        
+        /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
+        /// 简单布局
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
@@ -65,48 +66,20 @@ extension CoinRankListController {
             }
             .disposed(by: rx.disposeBag)
 
-    
-        /*
-        dataSource = myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self)
-            /// 将BaseModel<Page<CoinRank>转为[CoinRank]
-            .map{ $0.data?.datas?.map{ $0 }}
-            /// 去掉其中为nil的值
-            .compactMap{ $0 }
-            /// 转为Observable
-            .asObservable()
-            .subscribe(onNext: { list in
-                self.list = list
-            }, onError: { error in
-
-            }, onCompleted: {
-
-            }, onDisposed: {
-
-            }) as? Observable<[CoinRank]>
-            
-        /// 绑定关系
-        dataSource.bind(to: self.tableView.rx.items(cellIdentifier: "Cell", cellType: UITableViewCell.self)) { (row, coinRank, cell) in
-            cell.textLabel?.text = coinRank.username
-        }
-        .disposed(by: rx.disposeBag)
-        */
-        
-        
-        //设置头部刷新控件
+        /// 设置头部刷新控件
         self.tableView.mj_header = MJRefreshNormalHeader()
-        //设置尾部刷新控件
+        /// 设置尾部刷新控件
         self.tableView.mj_footer = MJRefreshBackNormalFooter()
 
-        //初始化ViewModel
+        /// 初始化ViewModel
         let viewModel = CoinRankListViewModel(
             input: (
                 headerRefresh: self.tableView.mj_header!.rx.refreshing.asDriver(),
-                footerRefresh: self.tableView.mj_footer!.rx.refreshing.asDriver(),
-                scrollView: tableView
+                footerRefresh: self.tableView.mj_footer!.rx.refreshing.asDriver()
                 ),
             disposeBag: rx.disposeBag)
         
-        //单元格数据的绑定
+        /// 单元格数据的绑定
         viewModel.tableData
             .asDriver()
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
@@ -123,14 +96,14 @@ extension CoinRankListController {
         }
         .disposed(by: rx.disposeBag)
         
-        //下拉刷新状态结束的绑定
-        viewModel.endHeaderRefreshing
-            .drive(self.tableView.mj_header!.rx.endRefreshing)
+        /// 下拉刷新状态的绑定
+        viewModel.headerRefreshStatus
+            .drive(self.tableView.mj_header!.rx.refreshValue)
             .disposed(by: rx.disposeBag)
          
-        //上拉刷新状态结束的绑定
-        viewModel.endFooterRefreshing
-            .drive(self.tableView.mj_footer!.rx.endRefreshing)
+        /// 上拉刷新状态的绑定
+        viewModel.footerRefreshStatus
+            .drive(self.tableView.mj_footer!.rx.refreshValue)
             .disposed(by: rx.disposeBag)
     }
 }
