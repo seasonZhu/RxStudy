@@ -20,18 +20,12 @@ class CoinRankListController: BaseViewController {
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     
     var dataSource: Observable<[CoinRank]>!
-    
-    var list: [CoinRank] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "积分排名"
         view.backgroundColor = .white
         setupUI()
-    }
-
-    deinit {
-        print("被销毁了")
     }
 }
 
@@ -43,12 +37,29 @@ extension CoinRankListController {
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(self.view)
         }
-            
+        
+        /// 获取indexPath
         tableView.rx.itemSelected
             .bind { (indexPath) in
                 print(indexPath)
             }
             .disposed(by: rx.disposeBag)
+        
+        
+        /// 获取cell中的模型
+        tableView.rx.modelSelected(CoinRank.self)
+            .subscribe { model in
+            print("模型为:\(model)")
+            }
+            .disposed(by: rx.disposeBag)
+        
+        /// 同时获取indexPath和模型
+        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(CoinRank.self))
+            .bind { indexPath, model in
+                
+            }
+            .disposed(by: rx.disposeBag)
+
     
         /*
         dataSource = myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self)
@@ -94,19 +105,20 @@ extension CoinRankListController {
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
                 let cell = tableView.dequeueReusableCell(withIdentifier: "Cell")!
                 cell.textLabel?.text = coinRank.username
+                cell.detailTextLabel?.text = coinRank.coinCount?.toString
                 return cell
         }
-        .disposed(by: disposeBag)
-
+        .disposed(by: rx.disposeBag)
+        
         //下拉刷新状态结束的绑定
         viewModel.endHeaderRefreshing
             .drive(self.tableView.mj_header!.rx.endRefreshing)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
          
         //上拉刷新状态结束的绑定
         viewModel.endFooterRefreshing
             .drive(self.tableView.mj_footer!.rx.endRefreshing)
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
     }
 }
 

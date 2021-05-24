@@ -13,5 +13,9 @@ import RxSwift
 class BaseViewController: UIViewController {
 
     let disposeBag = DisposeBag()
+    
+    deinit {
+        print("\(className)被销毁了")
+    }
 
 }

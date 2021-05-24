@@ -28,6 +28,7 @@
 		61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */; };
 		61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */; };
 		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
+		61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833C265B41E50063EE4E /* NSObject+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +56,7 @@
 		61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
 		61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		61BF833C265B41E50063EE4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				61336C7A2656494900FDEB2A /* Int+Extension.swift */,
+				61BF833C265B41E50063EE4E /* NSObject+Extension.swift */,
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
 				61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */,
 			);
@@ -154,7 +157,7 @@
 			children = (
 				61336C932657AD1600FDEB2A /* View */,
 				61336C922657AD0E00FDEB2A /* ViewModel */,
-				61336C872657537100FDEB2A /* CoinRankListControlle.swift */,
+				61BF833E265B421B0063EE4E /* Controller */,
 			);
 			path = My;
 			sourceTree = "<group>";
@@ -180,6 +183,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		61BF833E265B421B0063EE4E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				61336C872657537100FDEB2A /* CoinRankListControlle.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		D9D210AFC05CCD440E64E647 /* Frameworks */ = {
@@ -337,6 +348,7 @@
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListControlle.swift in Sources */,
+				61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
