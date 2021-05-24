@@ -18,7 +18,7 @@ class CoinRankListController: BaseViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     
-    var pageNum = 1
+    var pageNum = 2
     
     override func viewDidLoad() {
         super.viewDidLoad()
