@@ -8,6 +8,12 @@
 
 import Foundation
 
+/// 页面的下拉刷新和上拉加载更多行为
+enum ScrollViewActionType {
+    case refresh
+    case loadMore
+}
+
 /// 刷新状态
 enum RefreshStatus {
     

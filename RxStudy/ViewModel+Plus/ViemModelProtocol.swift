@@ -9,13 +9,6 @@
 import Foundation
 
 import RxCocoa
-import NSObject_Rx
-
-/// 页面的下拉刷新和上拉加载更多行为
-enum ScrollViewActionType {
-    case refresh
-    case loadMore
-}
 
 /// vm接受页面输入行为
 protocol ViemModelInputs {
@@ -32,17 +25,3 @@ protocol ViemModelOutputs: Refreshable {
     /// 数据源数组
     var dataSource: BehaviorRelay<[T]> { get }
 }
-
-
-class BaseViewModel {
-    /// 修饰前缀
-    var inputs: Self { return self }
-
-    var outputs: Self { return self }
-    
-    deinit {
-        print("\(type(of: self))被销毁了")
-    }
-}
-
-extension BaseViewModel: HasDisposeBag {}
