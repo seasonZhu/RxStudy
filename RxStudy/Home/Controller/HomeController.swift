@@ -15,6 +15,7 @@ import SnapKit
 import MJRefresh
 import Kingfisher
 
+/// 需要非常小心循环引用
 class HomeController: BaseViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)

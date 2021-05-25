@@ -9,6 +9,7 @@
 import Foundation
 
 import RxCocoa
+import NSObject_Rx
 
 /// 页面的下拉刷新和上拉加载更多行为
 enum ScrollViewActionType {
@@ -38,4 +39,10 @@ class BaseViewModel {
     var inputs: Self { return self }
 
     var outputs: Self { return self }
+    
+    deinit {
+        print("\(type(of: self))被销毁了")
+    }
 }
+
+extension BaseViewModel: HasDisposeBag {}
