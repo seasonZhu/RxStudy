@@ -10,6 +10,7 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import MJRefresh
 
 class CoinRankListViewModel {
         
@@ -95,5 +96,38 @@ class CoinRankListViewModel {
             })
             .disposed(by: disposeBag)
         
+    }
+}
+
+/// 这个是针对CoinRankListViewModel写的
+extension Reactive where Base: MJRefreshComponent {
+    /// header的刷新事件
+    var headerRefreshing: ControlEvent<Void> {
+        let source: Observable<Void> = Observable.create {
+            [weak control = self.base] observer  in
+            if let control = control {
+                control.refreshingBlock = {
+                    observer.on(.next(()))
+                }
+            }
+            return Disposables.create()
+        }
+        return ControlEvent(events: source)
+    }
+    
+    /// footer的刷新事件
+    var footerRefreshing: (Int) -> ControlEvent<Int> {
+        return { page in
+            let source: Observable<Int> = Observable.create {
+                [weak control = self.base] observer  in
+                if let control = control {
+                    control.refreshingBlock = {
+                        observer.on(.next(page))
+                    }
+                }
+                return Disposables.create()
+            }
+            return ControlEvent(events: source)
+        }
     }
 }

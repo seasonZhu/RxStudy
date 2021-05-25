@@ -20,8 +20,6 @@ class CoinRankListController: BaseViewController {
     
     var pageNum = 2
     
-    var viewModel: AttractViewModel!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "积分排名"
@@ -71,30 +69,24 @@ extension CoinRankListController {
             .disposed(by: rx.disposeBag)
 
         /// 设置头部刷新控件
-        self.tableView.mj_header = MJRefreshNormalHeader()
+        tableView.mj_header = MJRefreshNormalHeader()
         /// 设置尾部刷新控件
-        self.tableView.mj_footer = MJRefreshBackNormalFooter()
+        tableView.mj_footer = MJRefreshBackNormalFooter()
                 
-        attrackViewModelBinding()
-    }
-}
-
-extension CoinRankListController {
-    private func attrackViewModelBinding() {
-        viewModel = AttractViewModel(disposeBag: rx.disposeBag)
+        let viewModel = AttractViewModel(disposeBag: rx.disposeBag)
 
         tableView.mj_header?.rx.refreshAction
             .asDriver()
-            .drive(onNext: { [weak self] in
-                self?.viewModel.inputs.loadData(actionType: .refresh)
+            .drive(onNext: {
+                viewModel.inputs.loadData(actionType: .refresh)
                 
             })
             .disposed(by: disposeBag)
 
         tableView.mj_footer?.rx.refreshAction
             .asDriver()
-            .drive(onNext: { [weak self] in
-                self?.viewModel.inputs.loadData(actionType: .loadMore)
+            .drive(onNext: {
+                viewModel.inputs.loadData(actionType: .loadMore)
                 
             })
             .disposed(by: disposeBag)
@@ -116,12 +108,12 @@ extension CoinRankListController {
             }
             .disposed(by: rx.disposeBag)
         
-        viewModel.refreshStatusBind(to: tableView)
+        
+        viewModel.outputs.refreshStatusBind(to: tableView)?
             .disposed(by: disposeBag)
 
         tableView.mj_header?.beginRefreshing()
     }
-    
 }
 
 extension CoinRankListController {
