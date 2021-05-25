@@ -35,7 +35,7 @@ class AttractViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     /// outputs
     var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
     
-    var dataSource = BehaviorRelay<[CoinRank]>(value: [])
+    let dataSource = BehaviorRelay<[CoinRank]>(value: [])
     
     // inputs
     func loadData(actionType: ScrollViewActionType) {

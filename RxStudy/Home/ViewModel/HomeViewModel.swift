@@ -20,7 +20,7 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     private let disposeBag: DisposeBag
     
     private let provider: MoyaProvider<HomeService>
-    
+        
     init(pageNum: Int = 1, disposeBag: DisposeBag) {
         self.pageNum = pageNum
         self.disposeBag = disposeBag
@@ -35,7 +35,7 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     /// outputs
     var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
     
-    var dataSource = BehaviorRelay<[Info]>(value: [])
+    let dataSource = BehaviorRelay<[Info]>(value: [])
     
     // inputs
     func loadData(actionType: ScrollViewActionType) {
