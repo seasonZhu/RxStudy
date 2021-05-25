@@ -30,6 +30,8 @@
 		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
 		61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED07265C954900E3CA9D /* Refreshable.swift */; };
 		61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */; };
+		61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */; };
+		61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */; };
 		61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833C265B41E50063EE4E /* NSObject+Extension.swift */; };
 		61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */; };
 		61BF8343265C8FCA0063EE4E /* RefreshStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */; };
@@ -62,6 +64,8 @@
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		61A6ED07265C954900E3CA9D /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViemModelProtocol.swift; sourceTree = "<group>"; };
+		61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		61BF833C265B41E50063EE4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractViewModel.swift; sourceTree = "<group>"; };
 		61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshStatus.swift; sourceTree = "<group>"; };
@@ -105,6 +109,7 @@
 			children = (
 				61BF8341265C8F190063EE4E /* ViewModel+Plus */,
 				61336C89265757F500FDEB2A /* Base */,
+				61A6ED0B265C9BEC00E3CA9D /* Home */,
 				61336C86265752FB00FDEB2A /* My */,
 				61336C792656493700FDEB2A /* Extension */,
 				61336C6D265640D100FDEB2A /* HttpRequest */,
@@ -189,6 +194,39 @@
 			sourceTree = "<group>";
 		};
 		61336C932657AD1600FDEB2A /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		61A6ED0B265C9BEC00E3CA9D /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				61A6ED0E265C9C2200E3CA9D /* View */,
+				61A6ED0D265C9C1C00E3CA9D /* ViewModel */,
+				61A6ED0C265C9C1200E3CA9D /* Controller */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		61A6ED0C265C9C1200E3CA9D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		61A6ED0D265C9C1C00E3CA9D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		61A6ED0E265C9C2200E3CA9D /* View */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -357,8 +395,10 @@
 			files = (
 				61336C78265644DC00FDEB2A /* HomeService.swift in Sources */,
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
+				61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */,
+				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
 				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
 				61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */,

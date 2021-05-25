@@ -29,7 +29,7 @@ class ViewController: BaseViewController {
         
         
         button.rx.tap.subscribe { [weak self] _ in
-            self?.navigationController?.pushViewController(CoinRankListController(), animated: true)
+            self?.navigationController?.pushViewController(HomeController(), animated: true)
         }.disposed(by: disposeBag)
 
         
@@ -57,11 +57,11 @@ class ViewController: BaseViewController {
 //        print(model3)
 //        print("----------------")
         
-        myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self).subscribe(onSuccess: { model in
-            print(model)
-        }, onError: { error in
-            print(error)
-        }).disposed(by: disposeBag)
+//        myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self).subscribe(onSuccess: { model in
+//            print(model)
+//        }, onError: { error in
+//            print(error)
+//        }).disposed(by: disposeBag)
         
     }
 }
