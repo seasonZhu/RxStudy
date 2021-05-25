@@ -7,6 +7,7 @@ PODS:
   - IQKeyboardManagerSwift (6.5.6)
   - KeychainAccess (4.2.2)
   - Kingfisher (6.3.0)
+  - MBProgressHUD (1.2.0)
   - MJRefresh (3.6.1)
   - Moya/Core (14.0.0):
     - Alamofire (~> 5.0)
@@ -64,6 +65,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - KeychainAccess
   - Kingfisher
+  - MBProgressHUD
   - MJRefresh
   - Moya/RxSwift
   - "NSObject+Rx"
@@ -92,6 +94,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - KeychainAccess
     - Kingfisher
+    - MBProgressHUD
     - MJRefresh
     - Moya
     - "NSObject+Rx"
@@ -121,6 +124,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
@@ -141,6 +145,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
 
-PODFILE CHECKSUM: 19520d9d3fea3050bcb1ff5fd3e8569559b2287b
+PODFILE CHECKSUM: de4d09561762a6935d8dfcc03001d4efaa1962ee
 
 COCOAPODS: 1.10.1

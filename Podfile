@@ -36,7 +36,7 @@ target 'RxStudy' do
   # UI
   pod 'NVActivityIndicatorView'
   pod 'DZNEmptyDataSet'
-  
+  pod 'MBProgressHUD'
   pod 'RAMAnimatedTabBarController'
   pod 'AcknowList'
   pod 'MJRefresh'

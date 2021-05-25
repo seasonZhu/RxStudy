@@ -28,6 +28,7 @@
 		61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */; };
 		61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */; };
 		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
+		617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA38265CAD820029A83F /* Moya+Plugin.swift */; };
 		61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED07265C954900E3CA9D /* Refreshable.swift */; };
 		61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */; };
 		61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */; };
@@ -62,6 +63,7 @@
 		61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
 		61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		617AAA38265CAD820029A83F /* Moya+Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Plugin.swift"; sourceTree = "<group>"; };
 		61A6ED07265C954900E3CA9D /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViemModelProtocol.swift; sourceTree = "<group>"; };
 		61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				61BF833C265B41E50063EE4E /* NSObject+Extension.swift */,
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
 				61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */,
+				617AAA38265CAD820029A83F /* Moya+Plugin.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
+				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
 				61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
