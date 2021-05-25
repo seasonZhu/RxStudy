@@ -14,7 +14,23 @@ import RxCocoa
  
 /// 对MJRefreshComponent增加rx扩展
 extension Reactive where Base: MJRefreshComponent {
+    /// 下拉或者上拉刷新操作
+    var refreshAction: ControlEvent<Void> {
+        let source: Observable<Void> = Observable.create {
+            [weak control = self.base] observer  in
+            if let control = control {
+                control.refreshingBlock = {
+                    observer.on(.next(()))
+                }
+            }
+            return Disposables.create()
+        }
+        return ControlEvent(events: source)
+    }
+}
 
+/// 这个是针对CoinRankListViewModel写的
+extension Reactive where Base: MJRefreshComponent {
     /// header的刷新事件
     var headerRefreshing: ControlEvent<Void> {
         let source: Observable<Void> = Observable.create {
@@ -96,37 +112,37 @@ enum RefreshStatus {
 
 
 protocol Refreshable {
-  var refreshStauts: BehaviorRelay<RefreshStatus> { get }
+    var refreshStauts: BehaviorRelay<RefreshStatus> { set get }
 }
 
 extension Refreshable {
-  func refreshStatusBind(to scrollView: UIScrollView) -> Disposable {
-    return refreshStauts.subscribe(onNext: { status in
-        switch status {
-        case .header(let headerStatus):
-            switch headerStatus {
-            case .none:
-                scrollView.mj_header?.endRefreshing()
-            case .begainHeaderRefresh:
-                scrollView.mj_header?.beginRefreshing()
-            case .endHeaderRefresh:
-                scrollView.mj_header?.endRefreshing()
+      func refreshStatusBind(to scrollView: UIScrollView) -> Disposable {
+        return refreshStauts.subscribe(onNext: { status in
+            switch status {
+            case .header(let headerStatus):
+                switch headerStatus {
+                case .none:
+                    scrollView.mj_header?.endRefreshing()
+                case .begainHeaderRefresh:
+                    scrollView.mj_header?.beginRefreshing()
+                case .endHeaderRefresh:
+                    scrollView.mj_header?.endRefreshing()
+                }
+            case .footer(let footerStatus):
+                switch footerStatus {
+                case .hiddenFooter:
+                    scrollView.mj_footer?.isHidden = true
+                    scrollView.mj_footer?.endRefreshing()
+                case .showFooter:
+                    scrollView.mj_footer?.isHidden = false
+                    scrollView.mj_footer?.endRefreshing()
+                case .endFooterRefresh:
+                    scrollView.mj_footer?.endRefreshing()
+                case .endFooterRefreshWithNoData:
+                    scrollView.mj_header?.endRefreshing()
+                    scrollView.mj_footer?.endRefreshingWithNoMoreData()
+                }
             }
-        case .footer(let footerStatus):
-            switch footerStatus {
-            case .hiddenFooter:
-                scrollView.mj_footer?.isHidden = true
-                scrollView.mj_footer?.endRefreshing()
-            case .showFooter:
-                scrollView.mj_footer?.isHidden = false
-                scrollView.mj_footer?.endRefreshing()
-            case .endFooterRefresh:
-                scrollView.mj_footer?.endRefreshing()
-            case .endFooterRefreshWithNoData:
-                scrollView.mj_header?.endRefreshing()
-                scrollView.mj_footer?.endRefreshingWithNoMoreData()
-            }
-        }
-    })
-  }
+        })
+      }
 }

@@ -11,50 +11,50 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol ViemModelInputs {
-
-    /// 加载数据
-    /// - Parameter isRefreshing: 是否为刷新,**true**就加入到头部,**false**加入尾部
-    func loadData(_ isRefreshing: Bool)
+enum ScrollViewActionType {
+    case refresh
+    case loadMore
 }
 
-protocol ViemModelOutPuts {
+protocol ViemModelInputs {
+    /// 加载数据
+    /// - Parameter actionType: 操作行为
+    func loadData(actionType: ScrollViewActionType)
+}
+
+protocol ViemModelOutputs {
         
     /// 数据源数组
     var dataSource: BehaviorRelay<[CoinRank]> { get }
 }
 
-protocol ViemModelType {
+protocol ViemModelType: ViemModelInputs {
+    
     var inputs: ViemModelInputs { get }
     
-    var outputs: ViemModelOutPuts { get }
+    var outputs: ViemModelOutputs { get }
 }
 
-class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts, Refreshable {
-    
+class AttractViewModel: ViemModelInputs, ViemModelOutputs, Refreshable {
+
     var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
     
-    var pageNum: Int
+    private var pageNum: Int
     
-    /// 协议
-    var inputs: ViemModelInputs { return self }
-    
-    var outputs: ViemModelOutPuts { return self }
-    
-    /// outputs
-    var dataSource = BehaviorRelay<[CoinRank]>(value: [])
-    
-    let disposeBag: DisposeBag
+    private let disposeBag: DisposeBag
     
     init(pageNum: Int = 1, disposeBag: DisposeBag) {
         self.pageNum = pageNum
         self.disposeBag = disposeBag
     }
     
+    /// outputs
+    var dataSource = BehaviorRelay<[CoinRank]>(value: [])
+    
     // inputs
-    func loadData(_ isRefreshing: Bool) {
-        if isRefreshing {
-            let headerRefreshData = queryNewData()
+    func loadData(actionType: ScrollViewActionType) {
+        if actionType == .refresh {
+            let headerRefreshData = refresh()
                         
             headerRefreshData.do(onNext: { baseModel in
                 
@@ -85,9 +85,7 @@ class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts, Refres
                 })
                 .disposed(by: disposeBag)
         }else {
-            pageNum = pageNum + 1
-            
-            let footerRefreshData = queryNewData(page: pageNum)
+            let footerRefreshData = loadMore()
             
             footerRefreshData.do(onNext: { baseModel in
                 
@@ -114,7 +112,7 @@ class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts, Refres
                 .map{ $0.data?.datas?.map{ $0 }}
                 .compactMap{ $0 }
                 .drive(onNext: { items in
-                    self.outputs.dataSource.accept(self.self.outputs.dataSource.value + items )
+                    self.outputs.dataSource.accept(self.outputs.dataSource.value + items )
                 })
                 .disposed(by: disposeBag)
         }
@@ -126,17 +124,18 @@ class AttractViewModel: ViemModelType, ViemModelInputs, ViemModelOutPuts, Refres
 
 // MARK: 真实网路请求
 private extension AttractViewModel {
-    func queryNewData() -> Driver<BaseModel<Page<CoinRank>>> {
-        let result = myProvider.rx.request(MyService.coinRank(1))
-            .map(BaseModel<Page<CoinRank>>.self)
-            /// 转为Observable
-            .asDriver(onErrorDriveWith: Driver.empty())
-        
-        return result
+    func refresh() -> Driver<BaseModel<Page<CoinRank>>> {
+        pageNum = 0
+        return requestData(page: pageNum)
     }
   
     
-    func queryNewData(page: Int) -> Driver<BaseModel<Page<CoinRank>>> {
+    func loadMore() -> Driver<BaseModel<Page<CoinRank>>> {
+        pageNum = pageNum + 1
+        return requestData(page: pageNum)
+    }
+    
+    func requestData(page: Int) -> Driver<BaseModel<Page<CoinRank>>> {
         let result = myProvider.rx.request(MyService.coinRank(page))
             .map(BaseModel<Page<CoinRank>>.self)
             /// 转为Observable
@@ -144,4 +143,11 @@ private extension AttractViewModel {
         
         return result
     }
+}
+
+extension AttractViewModel: ViemModelType {
+    /// 协议
+    var inputs: ViemModelInputs { return self }
+
+    var outputs: ViemModelOutputs { return self }
 }

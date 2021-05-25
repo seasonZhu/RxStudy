@@ -83,18 +83,18 @@ extension CoinRankListController {
     private func attrackViewModelBinding() {
         viewModel = AttractViewModel(disposeBag: rx.disposeBag)
 
-        tableView.mj_header?.rx.headerRefreshing
+        tableView.mj_header?.rx.refreshAction
             .asDriver()
             .drive(onNext: { [weak self] in
-                self?.viewModel.inputs.loadData(true)
+                self?.viewModel.inputs.loadData(actionType: .refresh)
                 
             })
             .disposed(by: disposeBag)
 
-        tableView.mj_footer?.rx.footerRefreshing(0)
+        tableView.mj_footer?.rx.refreshAction
             .asDriver()
-            .drive(onNext: { [weak self] _ in
-                self?.viewModel.inputs.loadData(false)
+            .drive(onNext: { [weak self] in
+                self?.viewModel.inputs.loadData(actionType: .loadMore)
                 
             })
             .disposed(by: disposeBag)
