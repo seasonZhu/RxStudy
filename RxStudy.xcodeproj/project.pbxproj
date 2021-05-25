@@ -37,6 +37,7 @@
 		61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833C265B41E50063EE4E /* NSObject+Extension.swift */; };
 		61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */; };
 		61BF8343265C8FCA0063EE4E /* RefreshStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */; };
+		61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		61BF833C265B41E50063EE4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractViewModel.swift; sourceTree = "<group>"; };
 		61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshStatus.swift; sourceTree = "<group>"; };
+		61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */,
+				61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
 				61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
+				61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */,
 				61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */,

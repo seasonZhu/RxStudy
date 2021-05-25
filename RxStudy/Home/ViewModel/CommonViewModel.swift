@@ -1,5 +1,5 @@
 //
-//  HomeViewModel.swift
+//  CommonViewModel.swift
 //  RxStudy
 //
 //  Created by season on 2021/5/25.
@@ -12,33 +12,33 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class CommonViewModel<M: Codable, S: TargetType>: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 
     private var pageNum: Int
     
     private let disposeBag: DisposeBag
     
-    private let provider: MoyaProvider<HomeService>
+    private let provider: MoyaProvider<S>
         
     init(pageNum: Int = 1, disposeBag: DisposeBag) {
         self.pageNum = pageNum
         self.disposeBag = disposeBag
         provider = {
-                let stubClosure = { (target: HomeService) -> StubBehavior in
+                let stubClosure = { (target: S) -> StubBehavior in
                     return .never
                 }
-                return MoyaProvider<HomeService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
+                return MoyaProvider<S>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
         }()
     }
     
     /// outputs
     var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
     
-    let dataSource = BehaviorRelay<[Info]>(value: [])
+    let dataSource = BehaviorRelay<[M]>(value: [])
     
     // inputs
     func loadData(actionType: ScrollViewActionType) {
-        let refreshData: Driver<BaseModel<Page<Info>>>
+        let refreshData: Driver<BaseModel<Page<M>>>
         switch actionType {
         case .refresh:
             refreshData = refresh()
@@ -57,10 +57,8 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
         .disposed(by: disposeBag)
     }
 
-}
 
-private extension HomeViewModel {
-    func outputsRefreshStauts(actionType: ScrollViewActionType, baseModel: BaseModel<Page<Info>>) {
+    func outputsRefreshStauts(actionType: ScrollViewActionType, baseModel: BaseModel<Page<M>>) {
         let status: RefreshStatus
         guard let curPage = baseModel.data?.curPage, let totalPage = baseModel.data?.total else {
             status = .footer(.endFooterRefresh)
@@ -90,7 +88,7 @@ private extension HomeViewModel {
     }
     
     
-    func outputsDataSourceMerge(actionType: ScrollViewActionType, items: [Info]) {
+    func outputsDataSourceMerge(actionType: ScrollViewActionType, items: [M]) {
         switch actionType {
         case .refresh:
             self.outputs.dataSource.accept(items)
@@ -98,28 +96,26 @@ private extension HomeViewModel {
             self.outputs.dataSource.accept(self.outputs.dataSource.value + items)
         }
     }
-}
-
-//MARK:- 网络请求
-private extension HomeViewModel {
     
-    func refresh() -> Driver<BaseModel<Page<Info>>> {
+    func refresh() -> Driver<BaseModel<Page<M>>> {
         pageNum = 0
         return requestData(page: pageNum)
     }
   
     
-    func loadMore() -> Driver<BaseModel<Page<Info>>> {
+    func loadMore() -> Driver<BaseModel<Page<M>>> {
         pageNum = pageNum + 1
         return requestData(page: pageNum)
     }
     
-    func requestData(page: Int) -> Driver<BaseModel<Page<Info>>> {
-        let result = provider.rx.request(HomeService.normalArticle(page))
-            .map(BaseModel<Page<Info>>.self)
+    func requestData(page: Int) -> Driver<BaseModel<Page<M>>> {        
+        #warning("这里地方理论上是一个调用S的一个协议Api,但是S是个枚举,所以就跪了,这里需要换个思路,不使用enum?")
+        let result = provider.rx.request(HomeService.normalArticle(page) as! S)
+            .map(BaseModel<Page<M>>.self)
             /// 转为Observable
             .asDriver(onErrorDriveWith: Driver.empty())
         
         return result
     }
 }
+
