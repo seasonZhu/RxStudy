@@ -37,6 +37,9 @@
 		61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833C265B41E50063EE4E /* NSObject+Extension.swift */; };
 		61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */; };
 		61BF8343265C8FCA0063EE4E /* RefreshStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */; };
+		61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C9792E265E282C00E7A1BC /* ProjectService.swift */; };
+		61C97936265E2AB400E7A1BC /* TagType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C97935265E2AB400E7A1BC /* TagType.swift */; };
+		61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C97937265E2B0400E7A1BC /* TabsController.swift */; };
 		61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +77,9 @@
 		61BF833C265B41E50063EE4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractViewModel.swift; sourceTree = "<group>"; };
 		61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshStatus.swift; sourceTree = "<group>"; };
+		61C9792E265E282C00E7A1BC /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
+		61C97935265E2AB400E7A1BC /* TagType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagType.swift; sourceTree = "<group>"; };
+		61C97937265E2B0400E7A1BC /* TabsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsController.swift; sourceTree = "<group>"; };
 		61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,6 +119,7 @@
 		612DBF5A220022BA007F73CC /* RxStudy */ = {
 			isa = PBXGroup;
 			children = (
+				61C97930265E2A4300E7A1BC /* Tabs */,
 				61BF8341265C8F190063EE4E /* ViewModel+Plus */,
 				61336C89265757F500FDEB2A /* Base */,
 				61A6ED0B265C9BEC00E3CA9D /* Home */,
@@ -157,6 +164,7 @@
 			children = (
 				61336C77265644DC00FDEB2A /* HomeService.swift */,
 				61336C8226574C4D00FDEB2A /* MyService.swift */,
+				61C9792E265E282C00E7A1BC /* ProjectService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -258,6 +266,47 @@
 				61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */,
 			);
 			path = "ViewModel+Plus";
+			sourceTree = "<group>";
+		};
+		61C97930265E2A4300E7A1BC /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				61C97934265E2A6C00E7A1BC /* Enum */,
+				61C97933265E2A6000E7A1BC /* View */,
+				61C97932265E2A5700E7A1BC /* ViewModel */,
+				61C97931265E2A5000E7A1BC /* Controller */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		61C97931265E2A5000E7A1BC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				61C97937265E2B0400E7A1BC /* TabsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		61C97932265E2A5700E7A1BC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		61C97933265E2A6000E7A1BC /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		61C97934265E2A6C00E7A1BC /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				61C97935265E2AB400E7A1BC /* TagType.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		D9D210AFC05CCD440E64E647 /* Frameworks */ = {
@@ -408,6 +457,8 @@
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
 				61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */,
+				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
+				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
@@ -419,6 +470,7 @@
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
+				61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */,
 				61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
 				61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */,

@@ -42,6 +42,7 @@ target 'RxStudy' do
   pod 'MJRefresh'
   pod 'Highlightr'
   pod 'FSPagerView'
+  pod 'JXSegmentedView'
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'
