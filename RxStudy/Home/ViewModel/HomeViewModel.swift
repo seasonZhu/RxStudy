@@ -37,36 +37,33 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     let dataSource = BehaviorRelay<[Info]>(value: [])
     
     // inputs
-    func loadData(actionType: ScrollViewActionType) {
-        if actionType == .refresh {
-            self.outputs.dataSource.accept([])
-            topArticleData()
-                .map{ $0.data }
-                .compactMap{ $0 }
-                .drive(onNext: { topItems in
-                    self.outputs.dataSource.accept(topItems)
+    func loadData(actionType: ScrollViewActionType) {        
+        switch actionType {
+        case .refresh:
+            /// 合并请求
+            Driver.zip(topArticleData(), refresh()).do { _, normalPage in
+                self.outputsRefreshStauts(actionType: actionType, baseModel: normalPage)
+            }.map { top, normalPage -> [Info]? in
+                guard let topInfos = top.data, let normalInfos = normalPage.data?.datas else {
+                    return nil
+                }
+                return topInfos + normalInfos
+            }.compactMap{ $0 }
+            .drive(onNext: { items in
+                self.outputsDataSourceMerge(actionType: actionType, items: items)
+            })
+            .disposed(by: disposeBag)
+        case .loadMore:
+            loadMore().do { baseModel in
+                self.outputsRefreshStauts(actionType: actionType, baseModel: baseModel)
+            }.map{ $0.data?.datas?.map{ $0 }}
+            /// 去掉其中为nil的值
+            .compactMap{ $0 }
+            .drive(onNext: { items in
+                self.outputsDataSourceMerge(actionType: actionType, items: items)
             })
             .disposed(by: disposeBag)
         }
-        
-        
-        let refreshData: Driver<BaseModel<Page<Info>>>
-        switch actionType {
-        case .refresh:
-            refreshData = refresh()
-        case .loadMore:
-            refreshData = loadMore()
-        }
-
-        refreshData.do { baseModel in
-            self.outputsRefreshStauts(actionType: actionType, baseModel: baseModel)
-        }.map{ $0.data?.datas?.map{ $0 }}
-        /// 去掉其中为nil的值
-        .compactMap{ $0 }
-        .drive(onNext: { items in
-            self.outputsDataSourceMerge(actionType: actionType, items: items)
-        })
-        .disposed(by: disposeBag)
     }
 
 }
@@ -105,8 +102,7 @@ private extension HomeViewModel {
     func outputsDataSourceMerge(actionType: ScrollViewActionType, items: [Info]) {
         switch actionType {
         case .refresh:
-//            self.outputs.dataSource.accept(items)
-            self.outputs.dataSource.accept(self.outputs.dataSource.value + items)
+            self.outputs.dataSource.accept(items)
         case .loadMore:
             self.outputs.dataSource.accept(self.outputs.dataSource.value + items)
         }
