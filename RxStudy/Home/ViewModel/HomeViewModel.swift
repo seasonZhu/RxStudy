@@ -38,6 +38,18 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     
     // inputs
     func loadData(actionType: ScrollViewActionType) {
+        if actionType == .refresh {
+            self.outputs.dataSource.accept([])
+            topArticleData()
+                .map{ $0.data }
+                .compactMap{ $0 }
+                .drive(onNext: { topItems in
+                    self.outputs.dataSource.accept(topItems)
+            })
+            .disposed(by: disposeBag)
+        }
+        
+        
         let refreshData: Driver<BaseModel<Page<Info>>>
         switch actionType {
         case .refresh:
@@ -45,7 +57,7 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
         case .loadMore:
             refreshData = loadMore()
         }
-        
+
         refreshData.do { baseModel in
             self.outputsRefreshStauts(actionType: actionType, baseModel: baseModel)
         }.map{ $0.data?.datas?.map{ $0 }}
@@ -93,14 +105,15 @@ private extension HomeViewModel {
     func outputsDataSourceMerge(actionType: ScrollViewActionType, items: [Info]) {
         switch actionType {
         case .refresh:
-            self.outputs.dataSource.accept(items)
+//            self.outputs.dataSource.accept(items)
+            self.outputs.dataSource.accept(self.outputs.dataSource.value + items)
         case .loadMore:
             self.outputs.dataSource.accept(self.outputs.dataSource.value + items)
         }
     }
 }
 
-//MARK:- 网络请求
+//MARK:- 网络请求,普通列表数据
 private extension HomeViewModel {
     
     func refresh() -> Driver<BaseModel<Page<Info>>> {
@@ -117,6 +130,18 @@ private extension HomeViewModel {
     func requestData(page: Int) -> Driver<BaseModel<Page<Info>>> {
         let result = provider.rx.request(HomeService.normalArticle(page))
             .map(BaseModel<Page<Info>>.self)
+            /// 转为Observable
+            .asDriver(onErrorDriveWith: Driver.empty())
+        
+        return result
+    }
+}
+
+//MARK:- 网络请求,top列表数据
+extension HomeViewModel {
+    func topArticleData() -> Driver<BaseModel<[Info]>> {
+        let result = provider.rx.request(HomeService.topArticle)
+            .map(BaseModel<[Info]>.self)
             /// 转为Observable
             .asDriver(onErrorDriveWith: Driver.empty())
         
