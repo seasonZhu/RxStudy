@@ -36,6 +36,8 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     
     let dataSource = BehaviorRelay<[Info]>(value: [])
     
+    let banners = BehaviorRelay<[Banner]>(value: [])
+    
     // inputs
     func loadData(actionType: ScrollViewActionType) {        
         switch actionType {
@@ -53,6 +55,17 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
                 self.outputsDataSourceMerge(actionType: actionType, items: items)
             })
             .disposed(by: disposeBag)
+            
+            /// 轮播图数据请求
+            bannerData()
+                .map{ $0.data }
+                .compactMap{ $0 }
+                .drive { items in
+                    print("轮播图数据:\(items)")
+                    self.banners.accept(items)
+            }.disposed(by: disposeBag)
+
+            
         case .loadMore:
             loadMore().do { baseModel in
                 self.outputsRefreshStauts(actionType: actionType, baseModel: baseModel)
@@ -138,6 +151,16 @@ extension HomeViewModel {
     func topArticleData() -> Driver<BaseModel<[Info]>> {
         let result = provider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
+            /// 转为Observable
+            .asDriver(onErrorDriveWith: Driver.empty())
+        
+        return result
+    }
+    
+    
+    func bannerData() -> Driver<BaseModel<[Banner]>> {
+        let result = provider.rx.request(HomeService.banner)
+            .map(BaseModel<[Banner]>.self)
             /// 转为Observable
             .asDriver(onErrorDriveWith: Driver.empty())
         
