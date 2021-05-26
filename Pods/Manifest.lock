@@ -3,6 +3,7 @@ PODS:
   - Alamofire (5.4.3)
   - Differentiator (4.0.1)
   - DZNEmptyDataSet (1.8.1)
+  - FSPagerView (0.8.3)
   - Highlightr (2.1.0)
   - IQKeyboardManagerSwift (6.5.6)
   - KeychainAccess (4.2.2)
@@ -61,6 +62,7 @@ PODS:
 DEPENDENCIES:
   - AcknowList
   - DZNEmptyDataSet
+  - FSPagerView
   - Highlightr
   - IQKeyboardManagerSwift
   - KeychainAccess
@@ -90,6 +92,7 @@ SPEC REPOS:
     - Alamofire
     - Differentiator
     - DZNEmptyDataSet
+    - FSPagerView
     - Highlightr
     - IQKeyboardManagerSwift
     - KeychainAccess
@@ -120,6 +123,7 @@ SPEC CHECKSUMS:
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   Highlightr: 595f3e100737c8de41113385da8bd0b5b65212c6
   IQKeyboardManagerSwift: c7df9d2deb356c04522f5c4b7b6e4ce4d8ed94fe
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
@@ -145,6 +149,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
 
-PODFILE CHECKSUM: de4d09561762a6935d8dfcc03001d4efaa1962ee
+PODFILE CHECKSUM: 83f74eab9789be5e885047c3e1ef8007959b6701
 
 COCOAPODS: 1.10.1

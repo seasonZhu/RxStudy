@@ -14,11 +14,14 @@ import NSObject_Rx
 import SnapKit
 import MJRefresh
 import Kingfisher
+import FSPagerView
 
 /// 需要非常小心循环引用
 class HomeController: BaseViewController {
     
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
+    
+    var itmes: [Banner] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +33,9 @@ class HomeController: BaseViewController {
 
 extension HomeController {
     private func setupUI() {
+        
+        //MARK:- tableView的设置
+        
         /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         tableView.estimatedRowHeight = 88
@@ -104,6 +110,34 @@ extension HomeController {
         
         viewModel.outputs.refreshStatusBind(to: tableView)?
             .disposed(by: disposeBag)
+        
+        //MARK:- 轮播图的设置,这一段基本上就典型的Cocoa代码了
+        
+        let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 16.0 * 9))
+        pagerView.dataSource = self
+        pagerView.delegate = self
+        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+        pagerView.automaticSlidingInterval = 3.0
+        pagerView.isInfinite = true
+        tableView.tableHeaderView = pagerView
+        
+        let pageControl = FSPageControl(frame: CGRect.zero)
+        pageControl.numberOfPages = itmes.count
+        pageControl.currentPage = 0
+        pageControl.hidesForSinglePage = true
+        pagerView.addSubview(pageControl)
+        pagerView.bringSubviewToFront(pageControl)
+        pageControl.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(pagerView)
+            make.height.equalTo(40)
+        }
+        
+        viewModel.outputs.banners.asDriver().drive { [weak self] models in
+            self?.itmes = models
+            pageControl.numberOfPages = models.count
+            pagerView.reloadData()
+        }.disposed(by: rx.disposeBag)
+
 
         tableView.mj_header?.beginRefreshing()
     }
@@ -116,6 +150,35 @@ extension HomeController {
 //        if let imageString = info.envelopePic, let url = URL(string: imageString) {
 //            cell.imageView?.kf.setImage(with: url)
 //        }
+    }
+}
+
+extension HomeController: FSPagerViewDataSource {
+    func numberOfItems(in pagerView: FSPagerView) -> Int {
+        return itmes.count
+    }
+    
+    func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        if let imagePath = itmes[index].imagePath, let url = URL(string: imagePath) {
+            cell.imageView?.kf.setImage(with: url)
+        }
+        return cell
+    }
+}
+
+extension HomeController: FSPagerViewDelegate {
+    func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
+        pagerView.deselectItem(at: index, animated: false)
+        let item = itmes[index]
+        print("点击了轮播图的\(item)")
+    }
+    
+    func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
+        guard let pageControl = pagerView.subviews.last as? FSPageControl else {
+            return
+        }
+        pageControl.currentPage = index
     }
 }
 

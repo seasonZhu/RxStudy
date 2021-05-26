@@ -41,6 +41,7 @@ target 'RxStudy' do
   pod 'AcknowList'
   pod 'MJRefresh'
   pod 'Highlightr'
+  pod 'FSPagerView'
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'

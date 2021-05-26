@@ -61,7 +61,6 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
                 .map{ $0.data }
                 .compactMap{ $0 }
                 .drive { items in
-                    print("轮播图数据:\(items)")
                     self.banners.accept(items)
             }.disposed(by: disposeBag)
 
