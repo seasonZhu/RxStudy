@@ -14,8 +14,9 @@ struct Api {
     
     private init() {}
 
+    /// 首页 均是get请求
     enum Home {
-        /// 首页
+        
         static let banner = "banner/json"
 
         static let topArticle = "article/top/json"
@@ -27,18 +28,27 @@ struct Api {
         static let queryKey = "article/query/"
     }
 
+    /// 项目 均是get请求
+    enum Project {
+        static let tags = "project/tree/json"
+        
+        static let tagList = "project/list/"
+    }
 
-    /// 项目
-    let getProjectClassify = "project/tree/json"
+    /// 公众号 均是get请求
+    enum PublicNumber {
+        static let tags = "wxarticle/chapters/json"
 
-    let getProjectClassifyList = "project/list/"
+        static let tagList = "wxarticle/list/"
+    }
+    
+    /// 体系 均是get请求
+    enum Tree {
+        
+        static let tags = "tree/json"
 
-
-    /// 公众号
-    let getPubilicNumber = "wxarticle/chapters/json"
-
-    let getPubilicNumberList = "wxarticle/list/"
-
+        static let tagList = "article/list/"
+    }
 
     /// 用户登录注册登出
     let postLogin = "user/login"
@@ -62,9 +72,4 @@ struct Api {
 
         static let coinRank = "coin/rank/"
     }
-
-    /// 体系
-    let getTree = "tree/json"
-
-    let getTreeDetailList = "article/list/"
 }
