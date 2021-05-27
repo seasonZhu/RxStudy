@@ -34,9 +34,8 @@ class WebViewController: UIViewController {
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
         
-        let webView = WKWebView(frame: view.frame, configuration: config)
+        let webView = WKWebView(frame: CGRect.zero, configuration: config)
         webView.allowsBackForwardNavigationGestures = true
-        webView.navigationDelegate = self
         webView.scrollView.isScrollEnabled = true
         return webView
     }()
@@ -46,6 +45,10 @@ class WebViewController: UIViewController {
         title = webLoadInfo.title
         view.backgroundColor = .white
         view.addSubview(webView)
+        webView.navigationDelegate = self
+        webView.snp.makeConstraints { make in
+            make.edges.equalTo(view)
+        }
         guard let link = webLoadInfo.link, let url = URL(string: link) else {
             return
         }

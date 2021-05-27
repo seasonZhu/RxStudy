@@ -22,9 +22,12 @@ class SingleTabListController: BaseViewController {
     
     private let tab: Tab
     
-    init(type: TagType, tab: Tab) {
+    var cellSelected: ((WebLoadInfo) -> Void)?
+    
+    init(type: TagType, tab: Tab, cellSelected: ((WebLoadInfo) -> Void)? = nil) {
         self.type = type
         self.tab = tab
+        self.cellSelected = cellSelected
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -67,7 +70,13 @@ extension SingleTabListController {
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
             .subscribe(onNext: { [weak self] model in
-                self?.pushToWebViewController(webLoadInfo: model)
+                guard let self = self else { return }
+                if self.type == .tree {
+                    self.pushToWebViewController(webLoadInfo: model)
+                }else {
+                    print("嵌套页面无法push,回调到主控制器再push")
+                    self.cellSelected?(model)
+                }
                 print("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
