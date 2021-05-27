@@ -22,8 +22,8 @@ class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     
     private let tab: Tab
     
-    init(pageNum: Int = 1, type: TagType, tab: Tab, disposeBag: DisposeBag) {
-        self.pageNum = pageNum
+    init(type: TagType, tab: Tab, disposeBag: DisposeBag) {
+        self.pageNum = type.pageNum
         self.type = type
         self.tab = tab
         self.disposeBag = disposeBag
@@ -102,7 +102,7 @@ private extension SingleTabListViewModel {
 private extension SingleTabListViewModel {
     
     func refresh() -> Driver<BaseModel<Page<Info>>> {
-        pageNum = 1
+        pageNum = type.pageNum
         return requestData(page: pageNum)
     }
   

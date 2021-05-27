@@ -29,7 +29,7 @@ class ViewController: BaseViewController {
         
         
         button.rx.tap.subscribe { [weak self] _ in
-            self?.navigationController?.pushViewController(TabsController(type: .project), animated: true)
+            self?.navigationController?.pushViewController(TreeController(type: .tree), animated: true)
         }.disposed(by: disposeBag)
     }
     

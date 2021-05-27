@@ -27,4 +27,15 @@ extension TagType {
             return "体系"
         }
     }
+    
+    var pageNum: Int {
+        switch self {
+        case .project:
+            return 1
+        case .publicNumber:
+            return 1
+        case .tree:
+            return 0
+        }
+    }
 }
