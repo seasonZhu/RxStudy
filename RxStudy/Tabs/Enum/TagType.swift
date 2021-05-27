@@ -8,8 +8,23 @@
 
 import Foundation
 
+import Moya
+
 enum TagType {
     case project
     case publicNumber
     case tree
+}
+
+extension TagType {
+    var title: String {
+        switch self {
+        case .project:
+            return "项目"
+        case .publicNumber:
+            return "公众号"
+        case .tree:
+            return "体系"
+        }
+    }
 }

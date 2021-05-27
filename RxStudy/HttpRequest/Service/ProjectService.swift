@@ -10,9 +10,16 @@ import Foundation
 
 import Moya
 
+let projectProvider: MoyaProvider<ProjectService> = {
+        let stubClosure = { (target: ProjectService) -> StubBehavior in
+            return .never
+        }
+        return MoyaProvider<ProjectService>(stubClosure: stubClosure)
+}()
+
 enum ProjectService {
     case tags
-    case tagList(_ id: Int, page: Int)
+    case tagList(_ id: Int, _ page: Int)
 }
 
 extension ProjectService: TargetType {

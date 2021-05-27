@@ -30,6 +30,8 @@
 		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
 		617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA38265CAD820029A83F /* Moya+Plugin.swift */; };
 		617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */; };
+		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
+		61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */; };
 		61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED07265C954900E3CA9D /* Refreshable.swift */; };
 		61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */; };
 		61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */; };
@@ -40,6 +42,8 @@
 		61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C9792E265E282C00E7A1BC /* ProjectService.swift */; };
 		61C97936265E2AB400E7A1BC /* TagType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C97935265E2AB400E7A1BC /* TagType.swift */; };
 		61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C97937265E2B0400E7A1BC /* TabsController.swift */; };
+		61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CE1D96265E51BC0039E288 /* TabsViewModel.swift */; };
+		61CE1D99265E53EE0039E288 /* Tab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CE1D98265E53EE0039E288 /* Tab.swift */; };
 		61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +74,8 @@
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		617AAA38265CAD820029A83F /* Moya+Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Plugin.swift"; sourceTree = "<group>"; };
 		617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
+		61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
 		61A6ED07265C954900E3CA9D /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViemModelProtocol.swift; sourceTree = "<group>"; };
 		61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -80,6 +86,8 @@
 		61C9792E265E282C00E7A1BC /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
 		61C97935265E2AB400E7A1BC /* TagType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagType.swift; sourceTree = "<group>"; };
 		61C97937265E2B0400E7A1BC /* TabsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsController.swift; sourceTree = "<group>"; };
+		61CE1D96265E51BC0039E288 /* TabsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsViewModel.swift; sourceTree = "<group>"; };
+		61CE1D98265E53EE0039E288 /* Tab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tab.swift; sourceTree = "<group>"; };
 		61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,10 +127,10 @@
 		612DBF5A220022BA007F73CC /* RxStudy */ = {
 			isa = PBXGroup;
 			children = (
-				61C97930265E2A4300E7A1BC /* Tabs */,
 				61BF8341265C8F190063EE4E /* ViewModel+Plus */,
 				61336C89265757F500FDEB2A /* Base */,
 				61A6ED0B265C9BEC00E3CA9D /* Home */,
+				61C97930265E2A4300E7A1BC /* Tabs */,
 				61336C86265752FB00FDEB2A /* My */,
 				61336C792656493700FDEB2A /* Extension */,
 				61336C6D265640D100FDEB2A /* HttpRequest */,
@@ -155,6 +163,7 @@
 				61336C742656443A00FDEB2A /* Banner.swift */,
 				61336C802656667900FDEB2A /* Info.swift */,
 				61336C8426574E0500FDEB2A /* CoinRank.swift */,
+				61CE1D98265E53EE0039E288 /* Tab.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				61C97937265E2B0400E7A1BC /* TabsController.swift */,
+				6199033F265F2DBB002C8A1A /* SingleTabListController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -290,6 +300,8 @@
 		61C97932265E2A5700E7A1BC /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				61CE1D96265E51BC0039E288 /* TabsViewModel.swift */,
+				61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -455,6 +467,8 @@
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
+				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
+				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
 				61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
@@ -467,6 +481,7 @@
 				61336C812656667900FDEB2A /* Info.swift in Sources */,
 				61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */,
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
+				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
@@ -474,6 +489,7 @@
 				61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
 				61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */,
+				61CE1D99265E53EE0039E288 /* Tab.swift in Sources */,
 				61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */,

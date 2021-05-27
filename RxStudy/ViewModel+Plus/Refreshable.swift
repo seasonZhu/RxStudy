@@ -51,6 +51,7 @@ extension Refreshable {
                     scrollView.mj_header?.endRefreshing()
                 }
             case .footer(let footerStatus):
+                scrollView.mj_header?.endRefreshing()
                 switch footerStatus {
                 case .hiddenFooter:
                     scrollView.mj_footer?.isHidden = true
@@ -61,7 +62,6 @@ extension Refreshable {
                 case .endFooterRefresh:
                     scrollView.mj_footer?.endRefreshing()
                 case .endFooterRefreshWithNoData:
-                    scrollView.mj_header?.endRefreshing()
                     scrollView.mj_footer?.endRefreshingWithNoMoreData()
                 }
             }
