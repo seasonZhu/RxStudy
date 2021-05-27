@@ -50,6 +50,7 @@
 		61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28246265F84F8009E16C9 /* WebLoadInfo.swift */; };
 		61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28249265F8996009E16C9 /* WebViewController.swift */; };
 		61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */; };
+		61F2824E265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F2824D265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist */; };
 		61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -100,6 +101,7 @@
 		61F28246265F84F8009E16C9 /* WebLoadInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLoadInfo.swift; sourceTree = "<group>"; };
 		61F28249265F8996009E16C9 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakScriptMessageDelegate.swift; sourceTree = "<group>"; };
+		61F2824D265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-RxStudy-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-RxStudy/Pods-RxStudy-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -154,6 +156,7 @@
 				612DBF64220022BE007F73CC /* LaunchScreen.storyboard */,
 				612DBF67220022BE007F73CC /* Info.plist */,
 				61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */,
+				61F2824D265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist */,
 			);
 			path = RxStudy;
 			sourceTree = "<group>";
@@ -437,6 +440,7 @@
 				612DBF66220022BE007F73CC /* LaunchScreen.storyboard in Resources */,
 				612DBF63220022BE007F73CC /* Assets.xcassets in Resources */,
 				612DBF61220022BA007F73CC /* Main.storyboard in Resources */,
+				61F2824E265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

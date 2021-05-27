@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import RxBlocking
 import Moya
+import AcknowList
 
 class ViewController: UITabBarController {
     
@@ -26,8 +27,9 @@ class ViewController: UITabBarController {
         title = viewControllers?.first?.title
         navigationItem.rightBarButtonItem = searchButtonItem
         
-        navigationItem.rightBarButtonItem?.rx.tap.subscribe({ _ in
+        navigationItem.rightBarButtonItem?.rx.tap.subscribe({ [weak self] _ in
             print("点击事件")
+            self?.navigationController?.pushViewController(AcknowListViewController(), animated: true)
         }).disposed(by: rx.disposeBag)
     }
     
