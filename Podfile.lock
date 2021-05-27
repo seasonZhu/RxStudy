@@ -18,13 +18,9 @@ PODS:
     - RxSwift (~> 5.0)
   - "NSObject+Rx (5.1.0)":
     - RxSwift (~> 5.1)
-  - NVActivityIndicatorView (4.8.0):
-    - NVActivityIndicatorView/Presenter (= 4.8.0)
-  - NVActivityIndicatorView/Presenter (4.8.0)
   - R.swift (5.4.0):
     - R.swift.Library (~> 5.3.0)
   - R.swift.Library (5.3.0)
-  - RAMAnimatedTabBarController (5.2.0)
   - RxBlocking (5.1.1):
     - RxSwift (~> 5)
   - RxCocoa (5.1.1):
@@ -73,9 +69,7 @@ DEPENDENCIES:
   - MJRefresh
   - Moya/RxSwift
   - "NSObject+Rx"
-  - NVActivityIndicatorView
   - R.swift
-  - RAMAnimatedTabBarController
   - RxBlocking
   - RxCocoa
   - RxDataSources
@@ -104,10 +98,8 @@ SPEC REPOS:
     - MJRefresh
     - Moya
     - "NSObject+Rx"
-    - NVActivityIndicatorView
     - R.swift
     - R.swift.Library
-    - RAMAnimatedTabBarController
     - RxBlocking
     - RxCocoa
     - RxDataSources
@@ -136,10 +128,8 @@ SPEC CHECKSUMS:
   MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   "NSObject+Rx": fa6bbcc1ab1faa06b01466bc09b1e0692bbc5946
-  NVActivityIndicatorView: d24b7ebcf80af5dcd994adb650e2b6c93379270f
   R.swift: c533450b0f7dc494e0993f5f1a1db925d84c3006
   R.swift.Library: 0fc583cb55a99e28901299cc451614cad1161962
-  RAMAnimatedTabBarController: 6863a386e7ae2ab227cd60aa73ab8ff56cdacfdd
   RxBlocking: 5f700a78cad61ce253ebd37c9a39b5ccc76477b4
   RxCocoa: 32065309a38d29b5b0db858819b5bf9ef038b601
   RxDataSources: efee07fa4de48477eca0a4611e6d11e2da9c1114
@@ -153,6 +143,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
 
-PODFILE CHECKSUM: 055f492f1f8b64e3aa08ac2b8b7bde9d3024f3fe
+PODFILE CHECKSUM: faee0c948fd5dc92515ce8f2655c67fec07fd750
 
 COCOAPODS: 1.10.1

@@ -44,12 +44,14 @@ extension TabsController {
         
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedDataSource.isTitleColorGradientEnabled = true
+        segmentedDataSource.titleSelectedColor = .systemBlue
         segmentedView.dataSource = segmentedDataSource
 
         //3、配置指示器
         let indicator = JXSegmentedIndicatorLineView()
         indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
         indicator.lineStyle = .lengthen
+        indicator.indicatorColor = .systemBlue
         segmentedView.indicators = [indicator]
 
         //4、配置JXSegmentedView的属性

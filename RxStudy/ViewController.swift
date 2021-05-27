@@ -15,6 +15,8 @@ import Moya
 
 class ViewController: UITabBarController {
     
+    lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+    
     //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,11 @@ class ViewController: UITabBarController {
         self.delegate = self
         addChildControllers()
         title = viewControllers?.first?.title
+        navigationItem.rightBarButtonItem = searchButtonItem
+        
+        navigationItem.rightBarButtonItem?.rx.tap.subscribe({ _ in
+            print("点击事件")
+        }).disposed(by: rx.disposeBag)
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -66,6 +73,9 @@ extension ViewController: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         print("didSelect--当前显示的控制器--\(viewController.className)")
         tabBarController.title = viewController.title
+        let isHome = tabBarController.selectedIndex == 0
+        navigationItem.rightBarButtonItem = isHome ? searchButtonItem : nil
+//        Observable.of(isHome).bind(to: navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: rx.disposeBag)
     }
 }
 

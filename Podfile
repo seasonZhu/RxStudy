@@ -5,6 +5,7 @@ target 'RxStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   
+  # Rx Core
   pod 'RxSwift'
   pod 'RxCocoa'
 
@@ -33,11 +34,9 @@ target 'RxStudy' do
   # Keychain
   pod 'KeychainAccess'
 
-  # UI
-  pod 'NVActivityIndicatorView'
+  # UI'
   pod 'DZNEmptyDataSet'
   pod 'MBProgressHUD'
-  pod 'RAMAnimatedTabBarController'
   pod 'AcknowList'
   pod 'MJRefresh'
   pod 'Highlightr'
