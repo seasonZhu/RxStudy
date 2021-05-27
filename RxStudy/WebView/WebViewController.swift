@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 
 import MBProgressHUD
+import MarqueeLabel
 
 class WebViewController: UIViewController {
 
@@ -42,13 +43,22 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = webLoadInfo.title
+        setupUI()
+    }
+    
+    private func setupUI(){
+        let lengthyLabel = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 100, height: 44), duration: 8.0, fadeLength: 10.0)
+        lengthyLabel.text = webLoadInfo.title
+        navigationItem.titleView = lengthyLabel
+        
         view.backgroundColor = .white
+        
         view.addSubview(webView)
         webView.navigationDelegate = self
         webView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
+        
         guard let link = webLoadInfo.link, let url = URL(string: link) else {
             return
         }

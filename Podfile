@@ -36,12 +36,13 @@ target 'RxStudy' do
 
   # UI'
   pod 'DZNEmptyDataSet'
-  pod 'MBProgressHUD'
-  pod 'AcknowList'
-  pod 'MJRefresh'
   pod 'Highlightr'
+  pod 'AcknowList'
+  pod 'MBProgressHUD'
+  pod 'MJRefresh'
   pod 'FSPagerView'
   pod 'JXSegmentedView'
+  pod 'MarqueeLabel'
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'
