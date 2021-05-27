@@ -48,7 +48,8 @@ extension CoinRankListController {
         
         /// 获取indexPath
         tableView.rx.itemSelected
-            .bind { (indexPath) in
+            .bind { [weak self] (indexPath) in
+                self?.tableView.deselectRow(at: indexPath, animated: false)
                 print(indexPath)
             }
             .disposed(by: rx.disposeBag)

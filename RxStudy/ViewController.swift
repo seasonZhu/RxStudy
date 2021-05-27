@@ -13,26 +13,64 @@ import RxCocoa
 import RxBlocking
 import Moya
 
-class ViewController: BaseViewController {
+class ViewController: UITabBarController {
     
+    //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        title = "RxSwift"
-        
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(x: 0, y: 0, width: 200, height: 44)
-        button.setTitle("去积分排名页面", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.center = view.center
-        view.addSubview(button)
-        
-        
-        button.rx.tap.subscribe { [weak self] _ in
-            self?.navigationController?.pushViewController(TreeController(type: .tree), animated: true)
-        }.disposed(by: disposeBag)
+        view.backgroundColor = .white
+        self.delegate = self
+        addChildControllers()
+        title = viewControllers?.first?.title
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    //MARK:- 添加子控制器
+    private func addSubviewController(subViewController: UIViewController, title: String, imageName: String, selectImageName: String) {
+        subViewController.tabBarItem.title = title
+        subViewController.title = title
+        addChild(subViewController)
+        
+    }
+
+    //MARK:- 添加所有子控制器
+    private func addChildControllers() {
+
+        let homeVC = HomeController()
+        addSubviewController(subViewController: homeVC, title: "首页", imageName: "", selectImageName: "")
+
+
+        let projectVC = TabsController(type: .project)
+        addSubviewController(subViewController: projectVC, title: "项目", imageName: "", selectImageName: "")
+
+
+        let publicNumberVC = TabsController(type: .publicNumber)
+        addSubviewController(subViewController: publicNumberVC, title: "公众号", imageName: "", selectImageName: "")
+
+        let treeVC = TreeController(type: .tree)
+        addSubviewController(subViewController: treeVC, title: "体系", imageName: "", selectImageName: "")
+    }
+}
+
+
+
+extension ViewController: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+        print("shouldSelect--即将显示的控制器--\(viewController.className)")
+        return true
+    }
+    
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        print("didSelect--当前显示的控制器--\(viewController.className)")
+        tabBarController.title = viewController.title
+    }
+}
+
+
+extension ViewController {
     private func requestTest() {
         homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
@@ -58,8 +96,7 @@ class ViewController: BaseViewController {
             print(model)
         }, onError: { error in
             print(error)
-        }).disposed(by: disposeBag)
-        
+        }).disposed(by: rx.disposeBag)
     }
 }
 

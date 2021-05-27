@@ -25,7 +25,7 @@ class HomeController: BaseViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "积分排名"
+        title = "首页"
         view.backgroundColor = .white
         setupUI()
     }
