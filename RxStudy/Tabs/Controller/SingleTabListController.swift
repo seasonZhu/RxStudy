@@ -46,6 +46,8 @@ class SingleTabListController: BaseViewController {
 
 extension SingleTabListController {
     private func setupUI() {
+        tableView.tableFooterView = UIView()
+        
         /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
