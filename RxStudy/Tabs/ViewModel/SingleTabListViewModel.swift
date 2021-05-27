@@ -124,12 +124,12 @@ private extension SingleTabListViewModel {
                 /// 转为Observable
                 .asDriver(onErrorDriveWith: Driver.empty())
         case .publicNumber:
-            result = projectProvider.rx.request(ProjectService.tagList(id, page))
+            result = publicNumberProvider.rx.request(PublicNumberService.tagList(id, page))
                 .map(BaseModel<Page<Info>>.self)
                 /// 转为Observable
                 .asDriver(onErrorDriveWith: Driver.empty())
         case .tree:
-            result = projectProvider.rx.request(ProjectService.tagList(id, page))
+            result = treeProvider.rx.request(TreeService.tagList(id, page))
                 .map(BaseModel<Page<Info>>.self)
                 /// 转为Observable
                 .asDriver(onErrorDriveWith: Driver.empty())

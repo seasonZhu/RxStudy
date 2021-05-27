@@ -52,12 +52,12 @@ private extension TabsViewModel {
                 /// 转为Observable
                 .asDriver(onErrorDriveWith: Driver.empty())
         case .publicNumber:
-            result = projectProvider.rx.request(ProjectService.tags)
+            result = publicNumberProvider.rx.request(PublicNumberService.tags)
                 .map(BaseModel<[Tab]>.self)
                 /// 转为Observable
                 .asDriver(onErrorDriveWith: Driver.empty())
         case .tree:
-            result = projectProvider.rx.request(ProjectService.tags)
+            result = treeProvider.rx.request(TreeService.tags)
                 .map(BaseModel<[Tab]>.self)
                 /// 转为Observable
                 .asDriver(onErrorDriveWith: Driver.empty())
