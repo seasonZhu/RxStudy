@@ -9,7 +9,6 @@
 import Foundation
 
 protocol WebLoadInfo {
-    var isShowRightButtonItem: Bool { set get }
     var id: Int? { set get }
     var title: String? { set get }
     var link: String? { get }

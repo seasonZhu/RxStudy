@@ -48,6 +48,8 @@
 		61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2823D265F3FAD009E16C9 /* TreeService.swift */; };
 		61F28245265F4A23009E16C9 /* TreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28244265F4A23009E16C9 /* TreeController.swift */; };
 		61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28246265F84F8009E16C9 /* WebLoadInfo.swift */; };
+		61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28249265F8996009E16C9 /* WebViewController.swift */; };
+		61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */; };
 		61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +98,8 @@
 		61F2823D265F3FAD009E16C9 /* TreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeService.swift; sourceTree = "<group>"; };
 		61F28244265F4A23009E16C9 /* TreeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeController.swift; sourceTree = "<group>"; };
 		61F28246265F84F8009E16C9 /* WebLoadInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLoadInfo.swift; sourceTree = "<group>"; };
+		61F28249265F8996009E16C9 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakScriptMessageDelegate.swift; sourceTree = "<group>"; };
 		61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +144,7 @@
 				61A6ED0B265C9BEC00E3CA9D /* Home */,
 				61C97930265E2A4300E7A1BC /* Tabs */,
 				61336C86265752FB00FDEB2A /* My */,
+				61F28248265F895E009E16C9 /* WebView */,
 				61336C792656493700FDEB2A /* Extension */,
 				61336C6D265640D100FDEB2A /* HttpRequest */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
@@ -333,6 +338,15 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		61F28248265F895E009E16C9 /* WebView */ = {
+			isa = PBXGroup;
+			children = (
+				61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */,
+				61F28249265F8996009E16C9 /* WebViewController.swift */,
+			);
+			path = WebView;
+			sourceTree = "<group>";
+		};
 		D9D210AFC05CCD440E64E647 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -485,6 +499,7 @@
 				61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
+				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
 				617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
@@ -494,6 +509,7 @@
 				61336C812656667900FDEB2A /* Info.swift in Sources */,
 				61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */,
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
+				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,

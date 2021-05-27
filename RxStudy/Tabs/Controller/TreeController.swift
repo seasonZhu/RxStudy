@@ -67,13 +67,6 @@ extension TreeController {
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: rx.disposeBag)
-        
-        /// 同时获取indexPath和模型
-        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Tab.self))
-            .bind { indexPath, model in
-                
-            }
-            .disposed(by: rx.disposeBag)
                 
         let viewModel = TreeViewModel(type: type, disposeBag: rx.disposeBag)
 

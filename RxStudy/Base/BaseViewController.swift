@@ -19,3 +19,10 @@ class BaseViewController: UIViewController {
     }
 
 }
+
+extension BaseViewController {
+    func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) {
+        let vc = WebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+}

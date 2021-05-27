@@ -15,8 +15,6 @@ struct Banner : Codable {
     var id : Int?
     
     var link: String? { url }
-    
-    var isShowRightButtonItem: Bool = false
         
     let desc : String?
     

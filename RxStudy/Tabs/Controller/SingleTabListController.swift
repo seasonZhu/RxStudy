@@ -66,18 +66,12 @@ extension SingleTabListController {
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
-            .subscribe { model in
-            print("模型为:\(model)")
-            }
+            .subscribe(onNext: { [weak self] model in
+                self?.pushToWebViewController(webLoadInfo: model)
+                print("模型为:\(model)")
+            })
             .disposed(by: rx.disposeBag)
         
-        /// 同时获取indexPath和模型
-        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Info.self))
-            .bind { indexPath, model in
-                
-            }
-            .disposed(by: rx.disposeBag)
-
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
         /// 设置尾部刷新控件

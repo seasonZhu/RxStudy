@@ -17,8 +17,6 @@ struct Info : Codable {
     
     var link: String?
     
-    var isShowRightButtonItem: Bool = true
-    
     let apkLink : String?
     let audit : Int?
     let author : String?
