@@ -47,6 +47,7 @@
 		61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2823B265F3D44009E16C9 /* PublicNumberService.swift */; };
 		61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2823D265F3FAD009E16C9 /* TreeService.swift */; };
 		61F28245265F4A23009E16C9 /* TreeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28244265F4A23009E16C9 /* TreeController.swift */; };
+		61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28246265F84F8009E16C9 /* WebLoadInfo.swift */; };
 		61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -94,6 +95,7 @@
 		61F2823B265F3D44009E16C9 /* PublicNumberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNumberService.swift; sourceTree = "<group>"; };
 		61F2823D265F3FAD009E16C9 /* TreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeService.swift; sourceTree = "<group>"; };
 		61F28244265F4A23009E16C9 /* TreeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeController.swift; sourceTree = "<group>"; };
+		61F28246265F84F8009E16C9 /* WebLoadInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLoadInfo.swift; sourceTree = "<group>"; };
 		61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -166,6 +168,7 @@
 			children = (
 				61336C722656433000FDEB2A /* BaseModel.swift */,
 				61336C7E2656642700FDEB2A /* Page.swift */,
+				61F28246265F84F8009E16C9 /* WebLoadInfo.swift */,
 				61336C742656443A00FDEB2A /* Banner.swift */,
 				61336C802656667900FDEB2A /* Info.swift */,
 				61336C8426574E0500FDEB2A /* CoinRank.swift */,
@@ -493,6 +496,7 @@
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
+				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
 				61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */,

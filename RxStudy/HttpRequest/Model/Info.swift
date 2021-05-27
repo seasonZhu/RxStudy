@@ -11,6 +11,14 @@ import Foundation
 /// 单个信息模型,用于首页,项目,公众号,搜索关键词,体系,收藏夹
 struct Info : Codable {
     
+    var title : String?
+    
+    var id : Int?
+    
+    var link: String?
+    
+    var isShowRightButtonItem: Bool = true
+    
     let apkLink : String?
     let audit : Int?
     let author : String?
@@ -23,8 +31,8 @@ struct Info : Codable {
     let descMd : String?
     let envelopePic : String?
     let fresh : Bool?
-    let id : Int?
-    let link : String?
+
+    
     let niceDate : String?
     let niceShareDate : String?
     let origin : String?
@@ -37,12 +45,14 @@ struct Info : Codable {
     let superChapterId : Int?
     let superChapterName : String?
     let tags : [Tag]?
-    let title : String?
+
     let type : Int?
     let userId : Int?
     let visible : Int?
     let zan : Int?
 }
+
+extension Info: WebLoadInfo {}
 
 struct Tag : Codable {
 
