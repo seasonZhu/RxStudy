@@ -74,7 +74,7 @@ extension TreeController {
             }
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = TabsViewModel(type: type, disposeBag: rx.disposeBag)
+        let viewModel = TreeViewModel(type: type, disposeBag: rx.disposeBag)
 
         viewModel.inputs.loadData()
 
@@ -101,10 +101,12 @@ extension TreeController {
             
             if let cell = tv.dequeueReusableCell(withIdentifier: "Cell") {
                 cell.textLabel?.text = ds.sectionModels[indexPath.section].model.children?[indexPath.row].name
+                cell.accessoryType = .disclosureIndicator
                 return cell
             }else {
                 let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
                 cell.textLabel?.text = ds.sectionModels[indexPath.section].model.children?[indexPath.row].name
+                cell.accessoryType = .disclosureIndicator
                 return cell
             }
             
@@ -118,9 +120,5 @@ extension TreeController {
         //绑定单元格数据
         items.bind(to: self.tableView.rx.items(dataSource: dataSource))
             .disposed(by: self.rx.disposeBag)
-    }
-    
-    private func cellSetting(cell: UITableViewCell, tab: Tab) {
-        cell.textLabel?.text = tab.name
     }
 }

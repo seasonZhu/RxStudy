@@ -31,8 +31,8 @@ extension TreeService: TargetType {
         switch self {
         case .tags:
             return Api.Tree.tags
-        case .tagList(let id, let page):
-            return Api.Tree.tagList + page.toString + "/json" + "?cid=" + id.toString
+        case .tagList(_, let page):
+            return Api.Tree.tagList + page.toString + "/json"
         }
     }
     
@@ -45,7 +45,12 @@ extension TreeService: TargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+        switch self {
+        case .tags:
+            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+        case .tagList(let id, _):
+            return .requestParameters(parameters: ["cid": id.toString], encoding: URLEncoding.default)
+        }
         
     }
     

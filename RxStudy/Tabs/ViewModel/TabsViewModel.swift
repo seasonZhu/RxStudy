@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 import Moya
 
+typealias TreeViewModel = TabsViewModel
+
 class TabsViewModel: BaseViewModel {
     
     private let type: TagType
@@ -23,9 +25,7 @@ class TabsViewModel: BaseViewModel {
         self.disposeBag = disposeBag
     }
     
-    /// outputs
-    var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
-    
+    /// outputs    
     let dataSource = BehaviorRelay<[Tab]>(value: [])
     
     // inputs
