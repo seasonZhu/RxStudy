@@ -40,6 +40,7 @@
 		617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
 		61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */; };
+		619EDB312660B7E30056A3D9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB302660B7E30056A3D9 /* R.generated.swift */; };
 		61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED07265C954900E3CA9D /* Refreshable.swift */; };
 		61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */; };
 		61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */; };
@@ -99,6 +100,7 @@
 		617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
 		61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
+		619EDB302660B7E30056A3D9 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		61A6ED07265C954900E3CA9D /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
 		61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViemModelProtocol.swift; sourceTree = "<group>"; };
 		61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 				61336C6D265640D100FDEB2A /* HttpRequest */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
+				619EDB302660B7E30056A3D9 /* R.generated.swift */,
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
 				612DBF62220022BE007F73CC /* Assets.xcassets */,
 				612DBF64220022BE007F73CC /* LaunchScreen.storyboard */,
@@ -408,6 +411,7 @@
 			buildConfigurationList = 612DBF6A220022BE007F73CC /* Build configuration list for PBXNativeTarget "RxStudy" */;
 			buildPhases = (
 				EF46B8D0F950D7802A4E4FE4 /* [CP] Check Pods Manifest.lock */,
+				619EDB2F2660B7090056A3D9 /* R func script */,
 				612DBF54220022BA007F73CC /* Sources */,
 				612DBF55220022BA007F73CC /* Frameworks */,
 				612DBF56220022BA007F73CC /* Resources */,
@@ -496,6 +500,26 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		619EDB2F2660B7090056A3D9 /* R func script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "R func script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
 		EF46B8D0F950D7802A4E4FE4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -536,6 +560,7 @@
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
+				619EDB312660B7E30056A3D9 /* R.generated.swift in Sources */,
 				617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
