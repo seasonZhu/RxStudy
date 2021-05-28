@@ -26,7 +26,7 @@ target 'RxStudy' do
   # Image
   pod 'Kingfisher'
   # Date
-  pod 'SwiftDate'
+  pod 'SwiftDate' # 暂时没有使用
 
   # Tools
   pod 'R.swift'
@@ -35,8 +35,8 @@ target 'RxStudy' do
   pod 'KeychainAccess'
 
   # UI'
-  pod 'DZNEmptyDataSet'
-  pod 'Highlightr'
+  pod 'DZNEmptyDataSet' # 暂时没有使用
+  pod 'Highlightr' # 暂时没有使用
   pod 'AcknowList'
   pod 'MBProgressHUD'
   pod 'MJRefresh'
@@ -45,7 +45,7 @@ target 'RxStudy' do
   pod 'MarqueeLabel'
   
   # Keyboard
-  pod 'IQKeyboardManagerSwift'
+  pod 'IQKeyboardManagerSwift' # 暂时没有使用
 
   # Auto Layout
   pod 'SnapKit'

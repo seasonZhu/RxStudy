@@ -14,7 +14,7 @@ struct Api {
     
     private init() {}
 
-    /// 首页 均是get请求
+    /// 首页 queryKeyword是post请求 其他的是get请求
     enum Home {
         
         static let banner = "banner/json"
@@ -51,25 +51,25 @@ struct Api {
     }
 
     /// 用户登录注册登出
-    let postLogin = "user/login"
+    static let postLogin = "user/login"
 
-    let postRegister = "user/register"
+    static let postRegister = "user/register"
 
-    let getLogout = "user/logout/json"
+    static let getLogout = "user/logout/json"
 
+    
+    static let postCollectArticle = "lg/collect/"
 
+    static let postUnCollectArticle = "lg/uncollect_originId/"
+
+    static let getCollectArticleList = "lg/collect/list/"
+
+    static let getCoinList = "lg/coin/list/"
+
+    static let getUserCoinInfo = "lg/coin/userinfo/json"
+    
     /// 我的
     enum My {
-        static let postCollectArticle = "lg/collect/"
-
-        static let postUnCollectArticle = "lg/uncollect_originId/"
-
-        static let getCollectArticleList = "lg/collect/list/"
-
-        static let getCoinList = "lg/coin/list/"
-
-        static let getUserCoinInfo = "lg/coin/userinfo/json"
-
         static let coinRank = "coin/rank/"
     }
 }
