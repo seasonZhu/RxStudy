@@ -45,13 +45,18 @@ extension HomeService: TargetType {
             return Api.Home.normalArticle + page.toString + "/json"
         case .hotKey:
             return Api.Home.hotKey
-        case .queryKeyword(let keyword, let page):
-            return Api.Home.queryKeyword + page.toString + "/json" + "?k=" + keyword
+        case .queryKeyword(_, let page):
+            return Api.Home.queryKeyword + page.toString + "/json"
         }
     }
     
     var method: Moya.Method {
-        return .get
+        switch self {
+        case .queryKeyword:
+            return .post
+        default:
+            return .get
+        }
     }
     
     var sampleData: Data {
@@ -68,8 +73,8 @@ extension HomeService: TargetType {
             return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
         case .hotKey:
             return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
-        case .queryKeyword(_, _):
-            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+        case .queryKeyword(let keyword, _):
+            return .requestParameters(parameters: ["k": keyword], encoding: URLEncoding.default)
         }
     }
     

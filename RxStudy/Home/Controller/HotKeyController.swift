@@ -105,6 +105,7 @@ class HotKeyController: BaseViewController {
     }
     
     private func pushToSearchResultController(keyword: String) {
-        
+        let vc = SearcResultController(keyword: keyword)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

@@ -48,7 +48,8 @@ class WebViewController: UIViewController {
     
     private func setupUI(){
         let lengthyLabel = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 100, height: 44), duration: 8.0, fadeLength: 10.0)
-        lengthyLabel.text = webLoadInfo.title
+        var title = webLoadInfo.title
+        lengthyLabel.text = title?.filterHTML()
         navigationItem.titleView = lengthyLabel
         
         view.backgroundColor = .white

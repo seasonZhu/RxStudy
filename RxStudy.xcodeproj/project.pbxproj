@@ -13,6 +13,9 @@
 		611E2E0626607869001585AE /* HotKeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0526607869001585AE /* HotKeyController.swift */; };
 		611E2E0826607929001585AE /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0726607929001585AE /* HotKey.swift */; };
 		611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E092660797C001585AE /* HotKeyViewModel.swift */; };
+		611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0B26608E00001585AE /* SearcResultController.swift */; };
+		611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0D266090C0001585AE /* SearchResultViewModel.swift */; };
+		611E2E10266096EA001585AE /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0F266096E9001585AE /* String+Extension.swift */; };
 		612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DBF5B220022BA007F73CC /* AppDelegate.swift */; };
 		612DBF5E220022BA007F73CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DBF5D220022BA007F73CC /* ViewController.swift */; };
 		612DBF61220022BA007F73CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612DBF5F220022BA007F73CC /* Main.storyboard */; };
@@ -66,6 +69,9 @@
 		611E2E0526607869001585AE /* HotKeyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyController.swift; sourceTree = "<group>"; };
 		611E2E0726607929001585AE /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
 		611E2E092660797C001585AE /* HotKeyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyViewModel.swift; sourceTree = "<group>"; };
+		611E2E0B26608E00001585AE /* SearcResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearcResultController.swift; sourceTree = "<group>"; };
+		611E2E0D266090C0001585AE /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		611E2E0F266096E9001585AE /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		612DBF58220022BA007F73CC /* RxStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		612DBF5B220022BA007F73CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		612DBF5D220022BA007F73CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +232,7 @@
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
 				61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */,
 				617AAA38265CAD820029A83F /* Moya+Plugin.swift */,
+				611E2E0F266096E9001585AE /* String+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -280,6 +287,7 @@
 			children = (
 				61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */,
 				611E2E0526607869001585AE /* HotKeyController.swift */,
+				611E2E0B26608E00001585AE /* SearcResultController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -290,6 +298,7 @@
 				61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */,
 				61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */,
 				611E2E092660797C001585AE /* HotKeyViewModel.swift */,
+				611E2E0D266090C0001585AE /* SearchResultViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -550,9 +559,12 @@
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
 				61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */,
 				61CE1D99265E53EE0039E288 /* Tab.swift in Sources */,
+				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
+				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
 				61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */,
 				611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */,
+				611E2E10266096EA001585AE /* String+Extension.swift in Sources */,
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */,
