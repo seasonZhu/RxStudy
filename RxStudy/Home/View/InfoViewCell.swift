@@ -24,27 +24,27 @@ class InfoViewCell: UITableViewCell {
                 contentLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(picView.snp.trailing).offset(16)
                     make.trailing.equalTo(contentView).offset(-16)
-                    make.top.equalTo(bgView).offset(10)
+                    make.top.equalTo(contentView).offset(10)
                 }
                 
                 authorLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(contentLabel)
                     make.top.equalTo(contentLabel.snp.bottom).offset(10)
-                    make.bottom.equalTo(bgView.snp.bottom).offset(-10)
+                    make.bottom.equalTo(contentView.snp.bottom).offset(-10)
                 }
                 
             }else {
                 picView.isHidden = true
                 contentLabel.snp.remakeConstraints { make in
-                    make.leading.equalTo(bgView).offset(16)
+                    make.leading.equalTo(contentView).offset(16)
                     make.trailing.equalTo(contentView).offset(-16)
-                    make.top.equalTo(bgView).offset(10)
+                    make.top.equalTo(contentView).offset(10)
                 }
                 
                 authorLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(contentLabel)
                     make.top.equalTo(contentLabel.snp.bottom).offset(10)
-                    make.bottom.equalTo(bgView.snp.bottom).offset(-10)
+                    make.bottom.equalTo(contentView.snp.bottom).offset(-10)
                 }
             }
         } get {
@@ -53,8 +53,6 @@ class InfoViewCell: UITableViewCell {
     }
     
     private var _info: Info!
-    
-    private lazy var bgView = UIView()
     
     private lazy var picView: UIImageView = {
         let imageView = UIImageView()
@@ -86,39 +84,28 @@ class InfoViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupUI() {
-        textLabel?.numberOfLines = 0
-        textLabel?.font = UIFont.systemFont(ofSize: 15)
-        
-        detailTextLabel?.font = UIFont.systemFont(ofSize: 11)
-        detailTextLabel?.textColor = .gray
-        
+    private func setupUI() {        
         accessoryType = .disclosureIndicator
         
-        contentView.addSubview(bgView)
-        bgView.snp.makeConstraints { make in
-            make.edges.equalTo(contentView)
-        }
-        
-        bgView.addSubview(picView)
+        contentView.addSubview(picView)
         picView.snp.makeConstraints { make in
-            make.leading.equalTo(bgView).offset(16)
-            make.centerY.equalTo(bgView)
+            make.leading.equalTo(contentView).offset(16)
+            make.centerY.equalTo(contentView)
             make.width.height.equalTo(44)
         }
         
-        bgView.addSubview(contentLabel)
+        contentView.addSubview(contentLabel)
         contentLabel.snp.makeConstraints { make in
             make.leading.equalTo(picView.snp.trailing).offset(16)
             make.trailing.equalTo(contentView).offset(-16)
-            make.top.equalTo(bgView).offset(10)
+            make.top.equalTo(contentView).offset(10)
         }
         
-        bgView.addSubview(authorLabel)
+        contentView.addSubview(authorLabel)
         authorLabel.snp.makeConstraints { make in
             make.leading.equalTo(contentLabel)
             make.top.equalTo(contentLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(bgView.snp.bottom).offset(-10)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
     }
 }
