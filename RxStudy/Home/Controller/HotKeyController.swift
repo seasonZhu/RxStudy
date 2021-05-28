@@ -16,8 +16,36 @@ class HotKeyController: BaseViewController {
     }
     
     private func setupUI() {
-        self.view.backgroundColor = .white
-        self.title = "热词"
+        view.backgroundColor = .white
+        let textField = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width - 40, height: 34))
+        textField.layer.cornerRadius = 10
+        textField.layer.masksToBounds = true
+        textField.backgroundColor = .white
+        textField.returnKeyType = .search
+        textField.rx.controlEvent([.editingDidEndOnExit]) //状态可以组合
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                self?.pushToSearchResultController(keyword: textField.text!)
+            }).disposed(by: disposeBag)
+        navigationItem.titleView = textField
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+        navigationItem.rightBarButtonItem?.rx.tap.subscribe({ [weak self] _ in
+            self?.pushToSearchResultController(keyword: textField.text!)
+        }).disposed(by: rx.disposeBag)
+        
+        let searchValid = textField.rx.text.orEmpty
+                .map { $0.count > 0 }
+                .share(replay: 1)
+        
+        searchValid.bind(to: navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: rx.disposeBag)
+        
+        let tap = UITapGestureRecognizer()
+        view.addGestureRecognizer(tap)
+        tap.rx.event.bind(onNext: { _ in
+            textField.resignFirstResponder()
+        })
+        .disposed(by: disposeBag)
         
         let viewModel = HotKeyViewModel(disposeBag: rx.disposeBag)
         
@@ -41,8 +69,8 @@ class HotKeyController: BaseViewController {
             button.layer.cornerRadius = 4
             button.layer.masksToBounds = true
             
-            button.rx.tap.subscribe { _ in
-                print(title)
+            button.rx.tap.subscribe { [weak self] _ in
+                self?.pushToSearchResultController(keyword: title)
             }.disposed(by: rx.disposeBag)
 
             
@@ -74,5 +102,9 @@ class HotKeyController: BaseViewController {
                                                                           left: 16,
                                                                           bottom: 0,
                                                                           right: 16))
+    }
+    
+    private func pushToSearchResultController(keyword: String) {
+        
     }
 }
