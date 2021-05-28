@@ -96,13 +96,13 @@ extension HomeController {
         // 绑定数据
         viewModel.outputs.dataSource
             .asDriver()
-            .drive(tableView.rx.items) { [weak self] (tableView, row, info) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
-                    self?.cellSetting(cell: cell, info: info)
+            .drive(tableView.rx.items) { (tableView, row, info) in
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? InfoViewCell {
+                    cell.info = info
                     return cell
                 }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
-                    self?.cellSetting(cell: cell, info: info)
+                    let cell = InfoViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    cell.info = info
                     return cell
                 }
             }
@@ -141,16 +141,6 @@ extension HomeController {
 
 
         tableView.mj_header?.beginRefreshing()
-    }
-    
-    private func cellSetting(cell: UITableViewCell, info: Info) {
-        cell.textLabel?.text = info.title
-        cell.textLabel?.numberOfLines = 0
-        cell.detailTextLabel?.text = info.author
-        cell.detailTextLabel?.textColor = .gray
-//        if let imageString = info.envelopePic, let url = URL(string: imageString) {
-//            cell.imageView?.kf.setImage(with: url)
-//        }
     }
 }
 
