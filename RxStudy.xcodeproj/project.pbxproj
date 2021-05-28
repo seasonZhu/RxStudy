@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
+		611E2E032660782C001585AE /* ConstraintArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E012660782B001585AE /* ConstraintArray+Extensions.swift */; };
+		611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E022660782B001585AE /* ConstraintArrayDSL.swift */; };
+		611E2E0626607869001585AE /* HotKeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0526607869001585AE /* HotKeyController.swift */; };
+		611E2E0826607929001585AE /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0726607929001585AE /* HotKey.swift */; };
+		611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E092660797C001585AE /* HotKeyViewModel.swift */; };
 		612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DBF5B220022BA007F73CC /* AppDelegate.swift */; };
 		612DBF5E220022BA007F73CC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612DBF5D220022BA007F73CC /* ViewController.swift */; };
 		612DBF61220022BA007F73CC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 612DBF5F220022BA007F73CC /* Main.storyboard */; };
@@ -56,6 +61,11 @@
 
 /* Begin PBXFileReference section */
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		611E2E012660782B001585AE /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
+		611E2E022660782B001585AE /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
+		611E2E0526607869001585AE /* HotKeyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyController.swift; sourceTree = "<group>"; };
+		611E2E0726607929001585AE /* HotKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
+		611E2E092660797C001585AE /* HotKeyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyViewModel.swift; sourceTree = "<group>"; };
 		612DBF58220022BA007F73CC /* RxStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		612DBF5B220022BA007F73CC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		612DBF5D220022BA007F73CC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +130,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		611E2E002660782B001585AE /* SnapKitExtension */ = {
+			isa = PBXGroup;
+			children = (
+				611E2E012660782B001585AE /* ConstraintArray+Extensions.swift */,
+				611E2E022660782B001585AE /* ConstraintArrayDSL.swift */,
+			);
+			path = SnapKitExtension;
+			sourceTree = "<group>";
+		};
 		612DBF4F220022BA007F73CC = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +200,7 @@
 				61336C802656667900FDEB2A /* Info.swift */,
 				61336C8426574E0500FDEB2A /* CoinRank.swift */,
 				61CE1D98265E53EE0039E288 /* Tab.swift */,
+				611E2E0726607929001585AE /* HotKey.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -200,6 +220,7 @@
 		61336C792656493700FDEB2A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				611E2E002660782B001585AE /* SnapKitExtension */,
 				61336C7A2656494900FDEB2A /* Int+Extension.swift */,
 				61BF833C265B41E50063EE4E /* NSObject+Extension.swift */,
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
@@ -258,6 +279,7 @@
 			isa = PBXGroup;
 			children = (
 				61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */,
+				611E2E0526607869001585AE /* HotKeyController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -267,6 +289,7 @@
 			children = (
 				61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */,
 				61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */,
+				611E2E092660797C001585AE /* HotKeyViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -514,6 +537,7 @@
 				61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */,
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
+				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
@@ -521,15 +545,19 @@
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
 				61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */,
 				61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */,
+				611E2E032660782C001585AE /* ConstraintArray+Extensions.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
 				61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */,
 				61CE1D99265E53EE0039E288 /* Tab.swift in Sources */,
+				611E2E0826607929001585AE /* HotKey.swift in Sources */,
 				61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */,
+				611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */,
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */,
 				61BF8343265C8FCA0063EE4E /* RefreshStatus.swift in Sources */,
+				611E2E0626607869001585AE /* HotKeyController.swift in Sources */,
 				61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
 			);

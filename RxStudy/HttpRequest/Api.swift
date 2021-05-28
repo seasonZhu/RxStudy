@@ -23,9 +23,9 @@ struct Api {
 
         static let normalArticle = "article/list/"
 
-        static let searchHotKey = "hotkey/json"
+        static let hotKey = "hotkey/json"
 
-        static let queryKey = "article/query/"
+        static let queryKeyword = "article/query/"
     }
 
     /// 项目 均是get请求

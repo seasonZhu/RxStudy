@@ -23,10 +23,10 @@ enum HomeService {
     case topArticle
 
     case normalArticle(_ page: Int)
+    
+    case hotKey
 
-    case searchHotKey(_ keyword: String, _ page: Int)
-
-    case queryKey(_ page: Int)
+    case queryKeyword(_ keyword: String, _ page: Int)
 }
 
 
@@ -43,10 +43,10 @@ extension HomeService: TargetType {
             return Api.Home.topArticle
         case .normalArticle(let page):
             return Api.Home.normalArticle + page.toString + "/json"
-        case .searchHotKey(let keyword, let page):
-            return Api.Home.searchHotKey + page.toString + "/json" + "?k=" + keyword
-        case .queryKey(let page):
-            return Api.Home.queryKey + page.toString + "/json"
+        case .hotKey:
+            return Api.Home.hotKey
+        case .queryKeyword(let keyword, let page):
+            return Api.Home.queryKeyword + page.toString + "/json" + "?k=" + keyword
         }
     }
     
@@ -66,9 +66,9 @@ extension HomeService: TargetType {
             return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
         case .normalArticle(_):
             return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
-        case .searchHotKey(_, _):
+        case .hotKey:
             return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
-        case .queryKey(_):
+        case .queryKeyword(_, _):
             return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
         }
     }
