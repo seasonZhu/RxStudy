@@ -30,7 +30,7 @@ class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     }
     
     /// outputs
-    var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
+    var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.none))
     
     let dataSource = BehaviorRelay<[Info]>(value: [])
     
@@ -119,6 +119,7 @@ private extension SingleTabListViewModel {
         let result: Driver<BaseModel<Page<Info>>>
         switch type {
         case .project:
+            print("请求:\(id)")
             result = projectProvider.rx.request(ProjectService.tagList(id, page))
                 .map(BaseModel<Page<Info>>.self)
                 /// 转为Observable

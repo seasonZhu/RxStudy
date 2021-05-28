@@ -42,6 +42,7 @@ class RequestLoadingPlugin: PluginType {
             }else {
                 DispatchQueue.main.async {
                     // 进行统一弹窗
+                    MBProgressHUD.showText("statusCode not 200")
                 }
             }
             

@@ -18,6 +18,9 @@ class TabsController: BaseViewController {
     
     private lazy var segmentedView: JXSegmentedView = JXSegmentedView()
     
+    /// 存储点击tag导致的刷新
+    private var tagSelectRefreshIndexs: Set<Int> = []
+    
     var contentScrollView: UIScrollView!
     
     var listVCArray = [SingleTabListController]()
@@ -79,9 +82,12 @@ extension TabsController {
             make.height.equalTo(44)
         }
         
+        let safeAreaBottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+        let offset = safeAreaBottom + 49
         contentScrollView.snp.makeConstraints { make in
             make.top.equalTo(segmentedView.snp.bottom)
-            make.leading.trailing.bottom.equalTo(view)
+            make.leading.trailing.equalTo(view)
+            make.bottom.equalTo(view).offset(-offset)
         }
 
         requestData()
@@ -130,12 +136,20 @@ extension TabsController {
                                    height: contentScrollView.bounds.size.height)
         }
         
+        if let firstVC = listVCArray.first {
+            firstVC.requestData(isFirstVC: true)
+            tagSelectRefreshIndexs.insert(0)
+        }
         view.setNeedsLayout()
     }
 }
 
 extension TabsController: JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
-
+        if tagSelectRefreshIndexs.contains(index) {
+            return
+        }
+        listVCArray[index].requestData()
+        tagSelectRefreshIndexs.insert(index)
     }
 }

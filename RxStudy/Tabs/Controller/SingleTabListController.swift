@@ -42,7 +42,10 @@ class SingleTabListController: BaseViewController {
         setupUI()
     }
     
-    func requestData() {
+    func requestData(isFirstVC: Bool = false) {
+        if isFirstVC {
+            tableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0)
+        }
         tableView.mj_header?.beginRefreshing()
     }
 }
@@ -122,8 +125,6 @@ extension SingleTabListController {
         
         viewModel.outputs.refreshStatusBind(to: tableView)?
             .disposed(by: disposeBag)
-        
-        tableView.mj_header?.beginRefreshing()
     }
 }
 
