@@ -55,22 +55,3 @@ class RequestLoadingPlugin: PluginType {
         return result
     }
 }
-
-extension MBProgressHUD {
-    static var keyWindow: UIWindow {
-        return UIApplication.shared.keyWindow!
-    }
-    
-    /// 为啥不用start,因为容易混淆
-    static func beginLoading() {
-        MBProgressHUD.showAdded(to:keyWindow , animated: true)
-    }
-    
-    static func stopLoading() {
-        MBProgressHUD.hide(for: keyWindow, animated: true)
-    }
-    
-    static func showText(_ text: String) {
-        
-    }
-}
