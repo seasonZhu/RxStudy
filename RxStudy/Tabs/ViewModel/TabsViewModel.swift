@@ -32,35 +32,37 @@ class TabsViewModel: BaseViewModel {
     func loadData() {
         requestData()
             .map{ $0.data }
-        /// 去掉其中为nil的值
+            /// 去掉其中为nil的值
             .compactMap{ $0 }
-        .drive(onNext: { items in
-            self.dataSource.accept(items)
-        })
+            .subscribe(onSuccess: { items in
+                self.dataSource.accept(items)
+            }, onError: { error in
+                
+            })
         .disposed(by: disposeBag)
     }
 }
 
 //MARK:- 网络请求
 private extension TabsViewModel {
-    func requestData() -> Driver<BaseModel<[Tab]>> {
-        let result: Driver<BaseModel<[Tab]>>
+    func requestData() -> Single<BaseModel<[Tab]>> {
+        let result: Single<BaseModel<[Tab]>>
         switch type {
         case .project:
             result = projectProvider.rx.request(ProjectService.tags)
                 .map(BaseModel<[Tab]>.self)
                 /// 转为Observable
-                .asDriver(onErrorDriveWith: Driver.empty())
+                .asObservable().asSingle()
         case .publicNumber:
             result = publicNumberProvider.rx.request(PublicNumberService.tags)
                 .map(BaseModel<[Tab]>.self)
                 /// 转为Observable
-                .asDriver(onErrorDriveWith: Driver.empty())
+                .asObservable().asSingle()
         case .tree:
             result = treeProvider.rx.request(TreeService.tags)
                 .map(BaseModel<[Tab]>.self)
                 /// 转为Observable
-                .asDriver(onErrorDriveWith: Driver.empty())
+                .asObservable().asSingle()
         }
         
         return result

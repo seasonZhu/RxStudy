@@ -43,16 +43,20 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
         switch actionType {
         case .refresh:
             /// 合并请求
-            Driver.zip(topArticleData(), refresh()).do { _, normalPage in
+            Single.zip(topArticleData(), refresh()).do(onSuccess: { _, normalPage in
                 self.outputsRefreshStauts(actionType: actionType, baseModel: normalPage)
-            }.map { top, normalPage -> [Info]? in
+            }, onError: { error in
+                self.refreshStauts.accept(.footer(.endFooterRefresh))
+            }).map { top, normalPage -> [Info]? in
                 guard let topInfos = top.data, let normalInfos = normalPage.data?.datas else {
                     return nil
                 }
                 return topInfos + normalInfos
             }.compactMap{ $0 }
-            .drive(onNext: { items in
+            .subscribe(onSuccess: { items in
                 self.outputsDataSourceMerge(actionType: actionType, items: items)
+            }, onError: { error in
+                
             })
             .disposed(by: disposeBag)
             
@@ -60,19 +64,26 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
             bannerData()
                 .map{ $0.data }
                 .compactMap{ $0 }
-                .drive { items in
+                .subscribe(onSuccess: { items in
                     self.banners.accept(items)
-            }.disposed(by: disposeBag)
+                }, onError: { error in
+                    
+                })
+                .disposed(by: disposeBag)
 
             
         case .loadMore:
-            loadMore().do { baseModel in
+            loadMore().do(onSuccess: { baseModel in
                 self.outputsRefreshStauts(actionType: actionType, baseModel: baseModel)
-            }.map{ $0.data?.datas?.map{ $0 }}
+            }, onError: { error in
+                self.refreshStauts.accept(.footer(.endFooterRefresh))
+            }).map{ $0.data?.datas?.map{ $0 }}
             /// 去掉其中为nil的值
             .compactMap{ $0 }
-            .drive(onNext: { items in
+            .subscribe(onSuccess: { items in
                 self.outputsDataSourceMerge(actionType: actionType, items: items)
+            }, onError: { error in
+                
             })
             .disposed(by: disposeBag)
         }
@@ -124,22 +135,22 @@ private extension HomeViewModel {
 //MARK:- 网络请求,普通列表数据
 private extension HomeViewModel {
     
-    func refresh() -> Driver<BaseModel<Page<Info>>> {
+    func refresh() -> Single<BaseModel<Page<Info>>> {
         pageNum = 0
         return requestData(page: pageNum)
     }
   
     
-    func loadMore() -> Driver<BaseModel<Page<Info>>> {
+    func loadMore() -> Single<BaseModel<Page<Info>>> {
         pageNum = pageNum + 1
         return requestData(page: pageNum)
     }
     
-    func requestData(page: Int) -> Driver<BaseModel<Page<Info>>> {
+    func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
         let result = provider.rx.request(HomeService.normalArticle(page))
             .map(BaseModel<Page<Info>>.self)
             /// 转为Observable
-            .asDriver(onErrorDriveWith: Driver.empty())
+            .asObservable().asSingle()
         
         return result
     }
@@ -147,21 +158,21 @@ private extension HomeViewModel {
 
 //MARK:- 网络请求,top列表数据
 extension HomeViewModel {
-    func topArticleData() -> Driver<BaseModel<[Info]>> {
+    func topArticleData() -> Single<BaseModel<[Info]>> {
         let result = provider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
             /// 转为Observable
-            .asDriver(onErrorDriveWith: Driver.empty())
+            .asObservable().asSingle()
         
         return result
     }
     
     
-    func bannerData() -> Driver<BaseModel<[Banner]>> {
+    func bannerData() -> Single<BaseModel<[Banner]>> {
         let result = provider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
             /// 转为Observable
-            .asDriver(onErrorDriveWith: Driver.empty())
+            .asObservable().asSingle()
         
         return result
     }

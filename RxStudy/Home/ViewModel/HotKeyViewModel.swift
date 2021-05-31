@@ -25,22 +25,24 @@ class HotKeyViewModel: BaseViewModel {
     func loadData() {
         requestData()
             .map{ $0.data }
-        /// 去掉其中为nil的值
+            /// 去掉其中为nil的值
             .compactMap{ $0 }
-        .drive(onNext: { items in
-            self.dataSource.accept(items)
-        })
-        .disposed(by: disposeBag)
+            .subscribe(onSuccess: { items in
+                self.dataSource.accept(items)
+            }, onError: { error in
+                
+            })
+            .disposed(by: disposeBag)
     }
 }
 
 //MARK:- 网络请求
 private extension HotKeyViewModel {
-    func requestData() -> Driver<BaseModel<[HotKey]>> {
+    func requestData() -> Single<BaseModel<[HotKey]>> {
         let result = homeProvider.rx.request(HomeService.hotKey)
             .map(BaseModel<[HotKey]>.self)
             /// 转为Observable
-            .asDriver(onErrorDriveWith: Driver.empty())
+            .asObservable().asSingle()
         
         return result
     }
