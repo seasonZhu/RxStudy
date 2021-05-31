@@ -9,8 +9,15 @@
 import UIKit
 
 import RxSwift
+import RxCocoa
 
 class BaseViewController: UIViewController {
+    
+    private lazy var errorImage: UIImageView = {
+        let imageView = UIImageView(image: R.image.saber())
+        imageView.contentMode = .scaleAspectFit
+        return imageView
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +53,25 @@ class BaseViewController: UIViewController {
         
         view.backgroundColor = .white
         
+        setupErrorImage()
+    }
+    
+    private func setupErrorImage() {
+        view.addSubview(errorImage)
+        errorImage.snp.makeConstraints { make in
+            make.edges.equalTo(view)
+        }
+        errorImage.isHidden = true
+    }
+    
+    func showErrorImage() {
+        errorImage.isHidden = false
+        view.bringSubviewToFront(errorImage)
+    }
+    
+    func hiddenErrorImage() {
+        errorImage.isHidden = true
+        view.sendSubviewToBack(errorImage)
     }
     
     @objc
@@ -63,5 +89,16 @@ extension BaseViewController {
     func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) {
         let vc = WebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+
+extension Reactive where Base: BaseViewController {
+    
+    /// 显示网络错误
+    var networkError: Binder<Void> {
+        return Binder(base) { vc, _ in
+            vc.showErrorImage()
+        }
     }
 }

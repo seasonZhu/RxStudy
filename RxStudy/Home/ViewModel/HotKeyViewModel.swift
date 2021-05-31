@@ -30,7 +30,8 @@ class HotKeyViewModel: BaseViewModel {
             .subscribe(onSuccess: { items in
                 self.dataSource.accept(items)
             }, onError: { error in
-                
+                guard let _ = error as? MoyaError else { return }
+                self.networkError.onNext(())
             })
             .disposed(by: disposeBag)
     }

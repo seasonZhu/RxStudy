@@ -70,8 +70,6 @@ extension TreeController {
             })
             .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
-        
         /// 重写
         emptyDataSetButtonTap.subscribe { _ in
             viewModel.inputs.loadData()
@@ -82,6 +80,11 @@ extension TreeController {
         guard tabs.count > 0 else {
             return
         }
+        
+        /// 这种带有section的tableView,不能通过一级菜单确定是否有数据,需要将二维数组进行降维打击
+        let children = tabs.map { $0.children }.compactMap { $0 }
+        let deepChildren = children.flatMap{ $0 }.map { $0.children }.compactMap { $0 }.flatMap { $0 }
+        Observable.just(deepChildren).map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
         
         let sectionModels = tabs.map { tab in
             return SectionModel(model: tab, items: tab.children ?? [])

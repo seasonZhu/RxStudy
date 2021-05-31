@@ -59,9 +59,11 @@ class HotKeyController: BaseViewController {
         
         viewModel.inputs.loadData()
         
-        viewModel.outputs.dataSource.asDriver().drive { [weak self] hotKeys in
+        viewModel.outputs.dataSource.subscribe(onNext: { [weak self ] hotKeys in
             self?.tagLayout(hotKeys: hotKeys)
-        }.disposed(by: rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
+        
+        viewModel.outputs.networkError.bind(to: self.rx.networkError).disposed(by: rx.disposeBag)
     }
     
     private func tagLayout(hotKeys: [HotKey]) {
