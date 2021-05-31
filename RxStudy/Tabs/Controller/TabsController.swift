@@ -43,7 +43,6 @@ class TabsController: BaseViewController {
 extension TabsController {
     private func setupUI() {
         title = type.title
-        view.backgroundColor = .white
         
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedDataSource.isTitleColorGradientEnabled = true

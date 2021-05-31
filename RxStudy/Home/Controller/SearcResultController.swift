@@ -14,9 +14,7 @@ import NSObject_Rx
 import SnapKit
 import MJRefresh
 
-class SearcResultController: BaseViewController {
-    
-    private lazy var tableView = UITableView(frame: .zero, style: .plain)
+class SearcResultController: BaseTableViewController {
     
     private let keyword: String
     
@@ -31,8 +29,6 @@ class SearcResultController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = keyword
-        view.backgroundColor = .white
         setupUI()
     }
     
@@ -43,16 +39,8 @@ class SearcResultController: BaseViewController {
 
 extension SearcResultController {
     private func setupUI() {
-        tableView.tableFooterView = UIView()
         
-        /// 设置代理
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
-        /// 简单布局
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
+        title = keyword
         
         /// 获取indexPath
         tableView.rx.itemSelected
@@ -69,11 +57,6 @@ extension SearcResultController {
                 print("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
-        
-        /// 设置头部刷新控件
-        tableView.mj_header = MJRefreshNormalHeader()
-        /// 设置尾部刷新控件
-        tableView.mj_footer = MJRefreshBackNormalFooter()
                 
         let viewModel = SearchResultViewModel(keyword: keyword, disposeBag: rx.disposeBag)
 
@@ -83,7 +66,7 @@ extension SearcResultController {
                 viewModel.inputs.loadData(actionType: .refresh)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         tableView.mj_footer?.rx.refreshAction
             .asDriver()
@@ -91,7 +74,7 @@ extension SearcResultController {
                 viewModel.inputs.loadData(actionType: .loadMore)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         // 绑定数据
         viewModel.outputs.dataSource
@@ -110,10 +93,8 @@ extension SearcResultController {
         
         
         viewModel.outputs.refreshStatusBind(to: tableView)?
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         tableView.mj_header?.beginRefreshing()
     }
 }
-
-extension SearcResultController: UITableViewDelegate {}

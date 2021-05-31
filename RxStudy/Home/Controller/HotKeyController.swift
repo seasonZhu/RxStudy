@@ -16,7 +16,6 @@ class HotKeyController: BaseViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width - 40, height: 34))
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.gray.cgColor
@@ -35,7 +34,7 @@ class HotKeyController: BaseViewController {
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.pushToSearchResultController(keyword: textField.text!)
-            }).disposed(by: disposeBag)
+            }).disposed(by: rx.disposeBag)
         navigationItem.titleView = textField
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
@@ -54,7 +53,7 @@ class HotKeyController: BaseViewController {
         tap.rx.event.bind(onNext: { _ in
             textField.resignFirstResponder()
         })
-        .disposed(by: disposeBag)
+        .disposed(by: rx.disposeBag)
         
         let viewModel = HotKeyViewModel(disposeBag: rx.disposeBag)
         

@@ -14,9 +14,7 @@ import NSObject_Rx
 import SnapKit
 import MJRefresh
 
-class SingleTabListController: BaseViewController {
-    
-    private lazy var tableView = UITableView(frame: .zero, style: .plain)
+class SingleTabListController: BaseTableViewController {
     
     private let type: TagType
     
@@ -37,8 +35,6 @@ class SingleTabListController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = tab.name
-        view.backgroundColor = .white
         setupUI()
     }
     
@@ -52,17 +48,9 @@ class SingleTabListController: BaseViewController {
 
 extension SingleTabListController {
     private func setupUI() {
-        tableView.tableFooterView = UIView()
         
-        /// 设置代理
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
-        /// 简单布局
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
-        
+        title = tab.name
+
         /// 获取indexPath
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in
@@ -83,11 +71,6 @@ extension SingleTabListController {
                 print("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
-        
-        /// 设置头部刷新控件
-        tableView.mj_header = MJRefreshNormalHeader()
-        /// 设置尾部刷新控件
-        tableView.mj_footer = MJRefreshBackNormalFooter()
                 
         let viewModel = SingleTabListViewModel(type: type, tab: tab, disposeBag: rx.disposeBag)
 
@@ -97,7 +80,7 @@ extension SingleTabListController {
                 viewModel.inputs.loadData(actionType: .refresh)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         tableView.mj_footer?.rx.refreshAction
             .asDriver()
@@ -105,7 +88,7 @@ extension SingleTabListController {
                 viewModel.inputs.loadData(actionType: .loadMore)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         // 绑定数据
         viewModel.outputs.dataSource
@@ -124,7 +107,7 @@ extension SingleTabListController {
         
         
         viewModel.outputs.refreshStatusBind(to: tableView)?
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         if type == .tree {
             tableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0)
@@ -132,6 +115,4 @@ extension SingleTabListController {
         }
     }
 }
-
-extension SingleTabListController: UITableViewDelegate {}
 

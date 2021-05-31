@@ -14,7 +14,7 @@ let projectProvider: MoyaProvider<ProjectService> = {
         let stubClosure = { (target: ProjectService) -> StubBehavior in
             return .never
         }
-        return MoyaProvider<ProjectService>(stubClosure: stubClosure)
+        return MoyaProvider<ProjectService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
 }()
 
 enum ProjectService {

@@ -14,7 +14,7 @@ let homeProvider: MoyaProvider<HomeService> = {
         let stubClosure = { (target: HomeService) -> StubBehavior in
             return .never
         }
-        return MoyaProvider<HomeService>(stubClosure: stubClosure)
+        return MoyaProvider<HomeService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
 }()
 
 enum HomeService {

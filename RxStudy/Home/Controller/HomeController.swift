@@ -17,16 +17,12 @@ import Kingfisher
 import FSPagerView
 
 /// 需要非常小心循环引用
-class HomeController: BaseViewController {
-    
-    private lazy var tableView = UITableView(frame: .zero, style: .plain)
-    
+class HomeController: BaseTableViewController {
+        
     var itmes: [Banner] = []
         
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "首页"
-        view.backgroundColor = .white
         setupUI()
     }
 }
@@ -34,17 +30,9 @@ class HomeController: BaseViewController {
 extension HomeController {
     private func setupUI() {
         
-        //MARK:- tableView的设置
+        title = "首页"
         
-        /// 设置代理
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         tableView.estimatedRowHeight = 88
-        
-        /// 简单布局
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
         
         /// 获取indexPath
         tableView.rx.itemSelected
@@ -69,11 +57,6 @@ extension HomeController {
                 
             }
             .disposed(by: rx.disposeBag)
-
-        /// 设置头部刷新控件
-        tableView.mj_header = MJRefreshNormalHeader()
-        /// 设置尾部刷新控件
-        tableView.mj_footer = MJRefreshBackNormalFooter()
                 
         let viewModel = HomeViewModel(disposeBag: rx.disposeBag)
 
@@ -83,7 +66,7 @@ extension HomeController {
                 viewModel.inputs.loadData(actionType: .refresh)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         tableView.mj_footer?.rx.refreshAction
             .asDriver()
@@ -91,7 +74,7 @@ extension HomeController {
                 viewModel.inputs.loadData(actionType: .loadMore)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         // 绑定数据
         viewModel.outputs.dataSource
@@ -110,7 +93,7 @@ extension HomeController {
         
         
         viewModel.outputs.refreshStatusBind(to: tableView)?
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
         
         //MARK:- 轮播图的设置,这一段基本上就典型的Cocoa代码了
         
@@ -173,5 +156,3 @@ extension HomeController: FSPagerViewDelegate {
         pageControl.currentPage = index
     }
 }
-
-extension HomeController: UITableViewDelegate {}

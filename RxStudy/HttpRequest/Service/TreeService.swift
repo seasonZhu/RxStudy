@@ -14,7 +14,7 @@ let treeProvider: MoyaProvider<TreeService> = {
         let stubClosure = { (target: TreeService) -> StubBehavior in
             return .never
         }
-        return MoyaProvider<TreeService>(stubClosure: stubClosure)
+        return MoyaProvider<TreeService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
 }()
 
 enum TreeService {

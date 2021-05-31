@@ -52,8 +52,6 @@ class WebViewController: BaseViewController {
         lengthyLabel.text = title?.filterHTML()
         navigationItem.titleView = lengthyLabel
         
-        view.backgroundColor = .white
-        
         view.addSubview(webView)
         webView.navigationDelegate = self
         webView.snp.makeConstraints { make in

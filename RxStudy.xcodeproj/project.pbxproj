@@ -35,6 +35,7 @@
 		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
 		61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */; };
 		61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */; };
+		6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18B2664B08C0065C34D /* BaseTableViewController.swift */; };
 		617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA38265CAD820029A83F /* Moya+Plugin.swift */; };
 		617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
@@ -97,6 +98,7 @@
 		61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
 		61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6171E18B2664B08C0065C34D /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		617AAA38265CAD820029A83F /* Moya+Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Plugin.swift"; sourceTree = "<group>"; };
 		617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 			isa = PBXGroup;
 			children = (
 				61336C8A2657581100FDEB2A /* BaseViewController.swift */,
+				6171E18B2664B08C0065C34D /* BaseTableViewController.swift */,
 				617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */,
 			);
 			path = Base;
@@ -590,6 +593,7 @@
 				61336C812656667900FDEB2A /* Info.swift in Sources */,
 				61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */,
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
+				6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,

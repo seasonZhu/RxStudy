@@ -19,17 +19,9 @@ class AttractViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     
     private let disposeBag: DisposeBag
     
-    private let provider: MoyaProvider<MyService>
-    
     init(pageNum: Int = 1, disposeBag: DisposeBag) {
         self.pageNum = pageNum
         self.disposeBag = disposeBag
-        provider = {
-                let stubClosure = { (target: MyService) -> StubBehavior in
-                    return .never
-                }
-                return MoyaProvider<MyService>(stubClosure: stubClosure)
-        }()
     }
     
     /// outputs
@@ -120,7 +112,7 @@ private extension AttractViewModel {
     }
     
     func requestData(page: Int) -> Single<BaseModel<Page<CoinRank>>> {
-        let result = provider.rx.request(MyService.coinRank(page))
+        let result = myProvider.rx.request(MyService.coinRank(page))
             .map(BaseModel<Page<CoinRank>>.self)
             /// 转为Observable
             .asObservable().asSingle()

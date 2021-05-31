@@ -17,18 +17,10 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     private var pageNum: Int
     
     private let disposeBag: DisposeBag
-    
-    private let provider: MoyaProvider<HomeService>
-        
+            
     init(pageNum: Int = 1, disposeBag: DisposeBag) {
         self.pageNum = pageNum
         self.disposeBag = disposeBag
-        provider = {
-                let stubClosure = { (target: HomeService) -> StubBehavior in
-                    return .never
-                }
-                return MoyaProvider<HomeService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-        }()
     }
     
     /// outputs
@@ -147,7 +139,7 @@ private extension HomeViewModel {
     }
     
     func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
-        let result = provider.rx.request(HomeService.normalArticle(page))
+        let result = homeProvider.rx.request(HomeService.normalArticle(page))
             .map(BaseModel<Page<Info>>.self)
             /// 转为Observable
             .asObservable().asSingle()
@@ -159,7 +151,7 @@ private extension HomeViewModel {
 //MARK:- 网络请求,top列表数据
 extension HomeViewModel {
     func topArticleData() -> Single<BaseModel<[Info]>> {
-        let result = provider.rx.request(HomeService.topArticle)
+        let result = homeProvider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
             /// 转为Observable
             .asObservable().asSingle()
@@ -169,7 +161,7 @@ extension HomeViewModel {
     
     
     func bannerData() -> Single<BaseModel<[Banner]>> {
-        let result = provider.rx.request(HomeService.banner)
+        let result = homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
             /// 转为Observable
             .asObservable().asSingle()

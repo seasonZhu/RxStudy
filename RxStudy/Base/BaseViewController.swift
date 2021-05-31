@@ -11,8 +11,6 @@ import UIKit
 import RxSwift
 
 class BaseViewController: UIViewController {
-
-    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +43,8 @@ class BaseViewController: UIViewController {
          self.navigationController.interactivePopGestureRecognizer.enabled = NO;(界面不具有相互交互手势)
          */
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
+        view.backgroundColor = .white
         
     }
     

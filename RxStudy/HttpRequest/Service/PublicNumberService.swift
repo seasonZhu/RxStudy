@@ -14,7 +14,7 @@ let publicNumberProvider: MoyaProvider<PublicNumberService> = {
         let stubClosure = { (target: PublicNumberService) -> StubBehavior in
             return .never
         }
-        return MoyaProvider<PublicNumberService>(stubClosure: stubClosure)
+        return MoyaProvider<PublicNumberService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
 }()
 
 enum PublicNumberService {

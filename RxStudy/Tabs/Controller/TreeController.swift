@@ -15,9 +15,7 @@ import RxDataSources
 import SnapKit
 
 /// 使用tableView配合section即可完成需求
-class TreeController: BaseViewController {
-    
-    private lazy var tableView = UITableView(frame: .zero, style: .plain)
+class TreeController: BaseTableViewController {
     
     private let type: TagType
     
@@ -32,24 +30,17 @@ class TreeController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
-        title = type.title
         setupUI()
-    }
-    
-    func requestData() {
-        tableView.mj_header?.beginRefreshing()
     }
 }
 
 extension TreeController {
     private func setupUI() {
-        /// 简单布局
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
+        title = type.title
         
+        tableView.mj_header = nil
+        tableView.mj_footer = nil
+                
         /// 获取indexPath
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in

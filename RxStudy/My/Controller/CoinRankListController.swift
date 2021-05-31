@@ -14,16 +14,10 @@ import NSObject_Rx
 import SnapKit
 import MJRefresh
 
-class CoinRankListController: BaseViewController {
-    
-    private lazy var tableView = UITableView(frame: .zero, style: .plain)
-    
-    var pageNum = 2
-    
+class CoinRankListController: BaseTableViewController {
+        
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "积分排名"
-        view.backgroundColor = .white
         setupUI()
     }
 }
@@ -37,15 +31,8 @@ extension CoinRankListController {
          */
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         
-        /// 设置代理
-        tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
-        /// 简单布局
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
-        
+        title = "积分排名"
+
         /// 获取indexPath
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in
@@ -61,11 +48,6 @@ extension CoinRankListController {
                 print("模型为:\(model)")
             }
             .disposed(by: rx.disposeBag)
-        
-        /// 设置头部刷新控件
-        tableView.mj_header = MJRefreshNormalHeader()
-        /// 设置尾部刷新控件
-        tableView.mj_footer = MJRefreshBackNormalFooter()
                 
         let viewModel = AttractViewModel(disposeBag: rx.disposeBag)
 
@@ -75,7 +57,7 @@ extension CoinRankListController {
                 viewModel.inputs.loadData(actionType: .refresh)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         tableView.mj_footer?.rx.refreshAction
             .asDriver()
@@ -83,7 +65,7 @@ extension CoinRankListController {
                 viewModel.inputs.loadData(actionType: .loadMore)
                 
             })
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         // 绑定数据
         viewModel.outputs.dataSource
@@ -104,7 +86,7 @@ extension CoinRankListController {
         
         
         viewModel.outputs.refreshStatusBind(to: tableView)?
-            .disposed(by: disposeBag)
+            .disposed(by: rx.disposeBag)
 
         tableView.mj_header?.beginRefreshing()
     }
@@ -116,7 +98,7 @@ extension CoinRankListController {
         let viewModel = CoinRankListViewModel(
             input: (
                 headerRefresh: self.tableView.mj_header!.rx.headerRefreshing.asDriver(),
-                footerRefresh: self.tableView.mj_footer!.rx.footerRefreshing(self.pageNum).asDriver()
+                footerRefresh: self.tableView.mj_footer!.rx.footerRefreshing(2).asDriver()
                 ),
             disposeBag: rx.disposeBag)
         
@@ -157,5 +139,3 @@ extension CoinRankListController {
             .disposed(by: rx.disposeBag)
     }
 }
-
-extension CoinRankListController: UITableViewDelegate {}
