@@ -122,8 +122,7 @@ class InfoViewCell: UITableViewCell {
         contentView.addSubview(authorLabel)
         authorLabel.snp.makeConstraints { make in
             make.leading.equalTo(contentLabel)
-            make.top.equalTo(contentLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-10)
+            make.top.bottom.equalTo(praiseLabel)
         }
     }
 }
