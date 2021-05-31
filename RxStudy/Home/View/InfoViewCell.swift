@@ -17,6 +17,10 @@ class InfoViewCell: UITableViewCell {
             contentLabel.text = title?.filterHTML()
             authorLabel.text = newValue.author
             
+            if let zan = newValue.zan, zan > 0 {
+                praiseLabel.text = "赞: \(zan)"
+            }
+            
             if let imageString = info.envelopePic, let url = URL(string: imageString) {
                 picView.isHidden = false
                 picView.kf.setImage(with: url, placeholder: R.image.saber())
@@ -75,6 +79,13 @@ class InfoViewCell: UITableViewCell {
         return label
     }()
     
+    private lazy var praiseLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 11)
+        label.textColor = .gray
+        return label
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
@@ -99,6 +110,13 @@ class InfoViewCell: UITableViewCell {
             make.leading.equalTo(picView.snp.trailing).offset(16)
             make.trailing.equalTo(contentView).offset(-16)
             make.top.equalTo(contentView).offset(10)
+        }
+        
+        contentView.addSubview(praiseLabel)
+        praiseLabel.snp.makeConstraints { make in
+            make.trailing.equalTo(contentLabel)
+            make.top.equalTo(contentLabel.snp.bottom).offset(10)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-10)
         }
         
         contentView.addSubview(authorLabel)
