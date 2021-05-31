@@ -128,10 +128,28 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 1 images.
+  /// This `R.image` struct is generated, and contains static references to 3 images.
   struct image {
+    /// Image `LaunchImagePlayAndroid`.
+    static let launchImagePlayAndroid = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImagePlayAndroid")
+    /// Image `back`.
+    static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
     /// Image `saber`.
     static let saber = Rswift.ImageResource(bundle: R.hostingBundle, name: "saber")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "LaunchImagePlayAndroid", bundle: ..., traitCollection: ...)`
+    static func launchImagePlayAndroid(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.launchImagePlayAndroid, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "back", bundle: ..., traitCollection: ...)`
+    static func back(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.back, compatibleWith: traitCollection)
+    }
+    #endif
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "saber", bundle: ..., traitCollection: ...)`
@@ -182,6 +200,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
 
       static func validate() throws {
+        if UIKit.UIImage(named: "LaunchImagePlayAndroid", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'LaunchImagePlayAndroid' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, tvOS 11.0, *) {
         }
       }

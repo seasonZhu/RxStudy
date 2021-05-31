@@ -12,7 +12,7 @@ import WebKit
 import MBProgressHUD
 import MarqueeLabel
 
-class WebViewController: UIViewController {
+class WebViewController: BaseViewController {
 
     let webLoadInfo: WebLoadInfo
     let isFromBanner: Bool

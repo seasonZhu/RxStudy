@@ -36,9 +36,12 @@ class RequestLoadingPlugin: PluginType {
         
         switch result {
         case .success(let response):
-            let json = try? response.mapJSON(failsOnEmptyData: false)
             if response.statusCode == 200 {
-                print(json)
+                if let json = try? JSONSerialization.jsonObject(with: response.data, options: .mutableContainers),
+                   let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
+                   let _ = try? String(data: data, encoding: .utf8) {
+                    print(json)
+                }
             }else {
                 DispatchQueue.main.async {
                     // 进行统一弹窗

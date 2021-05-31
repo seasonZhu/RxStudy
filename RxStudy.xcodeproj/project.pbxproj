@@ -35,7 +35,6 @@
 		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
 		61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */; };
 		61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */; };
-		617082682205895D00891B79 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 617082672205895D00891B79 /* MapKit.framework */; };
 		617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA38265CAD820029A83F /* Moya+Plugin.swift */; };
 		617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
@@ -134,7 +133,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				617082682205895D00891B79 /* MapKit.framework in Frameworks */,
 				55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
