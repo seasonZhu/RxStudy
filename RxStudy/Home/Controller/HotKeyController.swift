@@ -18,10 +18,19 @@ class HotKeyController: BaseViewController {
     private func setupUI() {
         view.backgroundColor = .white
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width - 40, height: 34))
-        textField.layer.cornerRadius = 10
+        textField.layer.borderWidth = 0.5
+        textField.layer.borderColor = UIColor.gray.cgColor
+        textField.layer.cornerRadius = 17
         textField.layer.masksToBounds = true
         textField.backgroundColor = .white
         textField.returnKeyType = .search
+        textField.font = UIFont.systemFont(ofSize: 15)
+        
+        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+        textField.leftView = emptyView
+        textField.rightView = emptyView
+        textField.leftViewMode = .always
+        textField.rightViewMode = .always
         textField.rx.controlEvent([.editingDidEndOnExit]) //状态可以组合
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
