@@ -76,7 +76,7 @@ extension SearcResultController {
             })
             .disposed(by: rx.disposeBag)
 
-        // 绑定数据
+        /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver()
             .drive(tableView.rx.items) { (tableView, row, info) in
@@ -91,6 +91,7 @@ extension SearcResultController {
             }
             .disposed(by: rx.disposeBag)
         
+        viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
         
         viewModel.outputs.refreshStatusBind(to: tableView)?
             .disposed(by: rx.disposeBag)

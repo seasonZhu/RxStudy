@@ -63,12 +63,19 @@ extension TreeController {
 
         viewModel.inputs.loadData()
 
-        // 绑定数据
+        /// 绑定数据
         viewModel.outputs.dataSource
             .subscribe(onNext: { [weak self] tabs in
                 self?.tableViewSectionAndCellConfig(tabs: tabs)
             })
             .disposed(by: rx.disposeBag)
+        
+        viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
+        
+        /// 重写
+        emptyDataSetButtonTap.subscribe { _ in
+            viewModel.inputs.loadData()
+        }.disposed(by: rx.disposeBag)
     }
     
     private func tableViewSectionAndCellConfig(tabs: [Tab]) {
