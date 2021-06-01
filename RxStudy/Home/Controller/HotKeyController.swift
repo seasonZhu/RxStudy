@@ -109,7 +109,7 @@ class HotKeyController: BaseViewController {
                                                   horizontalSpacing: 10,
                                                   maxWidth: view.bounds.size.width - 40,
                                                   determineWidths: textWidths, itemHeight: 30,
-                                                  edgeInset: UIEdgeInsets(top: 20 + UIApplication.shared.statusBarFrame.height + 44,
+                                                  edgeInset: UIEdgeInsets(top: 20 + kTopMargin,
                                                                           left: 16,
                                                                           bottom: 0,
                                                                           right: 16))

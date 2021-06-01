@@ -21,8 +21,16 @@ class ViewController: UITabBarController {
     //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupUI()
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
+    private func setupUI() {
         view.backgroundColor = .white
-        self.delegate = self
+        delegate = self
         addChildControllers()
         title = viewControllers?.first?.title
         navigationItem.rightBarButtonItem = searchButtonItem
@@ -31,10 +39,6 @@ class ViewController: UITabBarController {
             print("点击事件")
             self?.navigationController?.pushViewController(HotKeyController(), animated: true)
         }).disposed(by: rx.disposeBag)
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     //MARK:- 添加子控制器

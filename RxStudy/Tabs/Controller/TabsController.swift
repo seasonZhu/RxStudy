@@ -76,17 +76,15 @@ extension TabsController {
         segmentedView.contentScrollView = contentScrollView
         
         segmentedView.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(UIApplication.shared.statusBarFrame.height + 44)
+            make.top.equalTo(view).offset(kTopMargin)
             make.leading.trailing.equalTo(view)
             make.height.equalTo(44)
         }
         
-        let safeAreaBottom = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
-        let offset = safeAreaBottom + 49
         contentScrollView.snp.makeConstraints { make in
             make.top.equalTo(segmentedView.snp.bottom)
             make.leading.trailing.equalTo(view)
-            make.bottom.equalTo(view).offset(-offset)
+            make.bottom.equalTo(view).offset(-kBottomMargin)
         }
 
         requestData()

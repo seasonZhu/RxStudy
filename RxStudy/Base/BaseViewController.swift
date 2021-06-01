@@ -51,7 +51,11 @@ class BaseViewController: UIViewController {
          */
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
-        navigationController?.navigationBar.isTranslucent = true
+        /// 第一种: 将导航栏改成不透明即可, 可行
+        //navigationController?.navigationBar.isTranslucent = false
+        
+        /// 第二种:导航栏透明的情况下,frame从导航栏下面开始,并没有达到预期的效果
+        //edgesForExtendedLayout = UIRectEdge([])
         
         view.backgroundColor = .white
         
