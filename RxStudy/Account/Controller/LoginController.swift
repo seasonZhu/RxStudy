@@ -10,6 +10,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import MBProgressHUD
 
 class LoginController: BaseViewController {
     
@@ -146,20 +147,34 @@ class LoginController: BaseViewController {
         everythingValid.map { $0 ? UIColor.systemBlue : UIColor.systemBlue.withAlphaComponent(0.5) }
             .bind(to: loginButton.rx.backgroundColor)
             .disposed(by: rx.disposeBag)
-        
-//        usernameFiled.rx.text.orEmpty.changed
-//            .subscribe(onNext: { [weak self] text in
-//                if text.count > 11 {
-//                    print("超出了,进行截取")
-//                    self?.usernameFiled.text = String(text.prefix(11))
-//                }
-//            })
-//            .disposed(by: rx.disposeBag)
 
         loginButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
-                print("按钮的点击事件")
+                guard let username = self?.usernameFiled.text,
+                      let password = self?.passwordField.text else {
+                    return
+                }
+                self?.login(username: username, password: password)
             })
             .disposed(by: rx.disposeBag)
+    }
+}
+
+/// 考虑登录的逻辑比较简单,所以并没考虑写ViewModel层
+extension LoginController {
+    func login(username: String, password: String) {
+        accountProvider.rx.request(AccountService.login(username, password))
+            .map(BaseModel<AccountInfo>.self)
+            /// 转为Observable
+            .asObservable().asSingle().subscribe { baseModel in
+                if baseModel.errorCode == 0 {
+                    DispatchQueue.main.async {
+                        MBProgressHUD.showText("登录成功")
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                }
+            } onError: { _ in
+                
+            }.disposed(by: rx.disposeBag)
     }
 }

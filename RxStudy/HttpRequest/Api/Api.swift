@@ -50,13 +50,14 @@ struct Api {
         static let tagList = "article/list/"
     }
 
-    /// 用户登录注册登出
-    static let postLogin = "user/login"
+    /// 用户登录注册登出 登录注册为post 登出为get
+    enum Account {
+        static let login = "user/login"
 
-    static let postRegister = "user/register"
+        static let register = "user/register"
 
-    static let getLogout = "user/logout/json"
-
+        static let logout = "user/logout/json"
+    }
     
     static let postCollectArticle = "lg/collect/"
 
