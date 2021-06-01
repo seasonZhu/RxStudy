@@ -89,8 +89,7 @@ extension AccountBaseController {
             /// 转为Observable
             .asObservable().asSingle().subscribe { baseModel in
                 if baseModel.errorCode == 0 {
-                    AccountManager.shared.accountInfo = baseModel.data
-                    AccountManager.shared.isLogin.accept(true)
+                    AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {
                         MBProgressHUD.showText("登录成功")
                     }

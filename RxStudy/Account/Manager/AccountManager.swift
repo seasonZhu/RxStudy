@@ -15,7 +15,7 @@ final class AccountManager {
     
     let isLogin = BehaviorRelay(value: false)
     
-    var accountInfo: AccountInfo?
+    private(set) accountInfo: AccountInfo?
     
     var cookieHeaderValue: String {
         if let username = accountInfo?.username, let password = accountInfo?.password {
@@ -27,9 +27,9 @@ final class AccountManager {
     
     private init() {}
     
-    func saveLoginUsernameAndPassword(username: String, password: String) {
+    func saveLoginUsernameAndPassword(info: AccountInfo?, username: String, password: String) {
         isLogin.accept(true)
-        
+        accountInfo = info
         accountInfo?.username = username
         accountInfo?.password = password
         
