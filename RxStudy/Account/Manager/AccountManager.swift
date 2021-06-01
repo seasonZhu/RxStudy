@@ -8,13 +8,18 @@
 
 import Foundation
 
+import RxSwift
 import RxCocoa
+import NSObject_Rx
+import MBProgressHUD
 
 final class AccountManager {
     static let shared = AccountManager()
     
-    let isLogin = BehaviorRelay(value: false)
+    private(set) var isLogin = BehaviorRelay(value: false)
     
+    private let disposeBag = DisposeBag()
+        
     private(set) var accountInfo: AccountInfo?
     
     var cookieHeaderValue: String {
@@ -49,4 +54,31 @@ final class AccountManager {
     func getPassword() -> String? {
         return UserDefaults.standard.value(forKey: kPassword) as? String
     }
+    
+    func autoLogin() {
+        if !isLogin.value {
+            guard let username = getUsername(), let password = getPassword() else {
+                return
+            }
+            login(username: username, password: password)
+        }
+    }
+    
+    func login(username: String, password: String) {
+        accountProvider.rx.request(AccountService.login(username, password))
+            .map(BaseModel<AccountInfo>.self)
+            /// 转为Observable
+            .asObservable().asSingle().subscribe { baseModel in
+                if baseModel.errorCode == 0 {
+                    AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
+                    DispatchQueue.main.async {
+                        MBProgressHUD.showText("登录成功")
+                    }
+                }
+            } onError: { _ in
+                
+            }.disposed(by: disposeBag)
+    }
 }
+
+extension AccountManager: HasDisposeBag {}
