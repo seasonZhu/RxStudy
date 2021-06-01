@@ -12,6 +12,8 @@ import WebKit
 import MBProgressHUD
 import MarqueeLabel
 
+private let JSCallback = "JSCallback"
+
 class WebViewController: BaseViewController {
 
     let webLoadInfo: WebLoadInfo
@@ -30,7 +32,7 @@ class WebViewController: BaseViewController {
     
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
-        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: "CUSCcallback")
+        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
@@ -49,6 +51,8 @@ class WebViewController: BaseViewController {
     private func setupUI(){
         let lengthyLabel = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 100, height: 44), duration: 8.0, fadeLength: 10.0)
         var title = webLoadInfo.title
+        lengthyLabel.textAlignment = .center
+        lengthyLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         lengthyLabel.text = title?.filterHTML()
         navigationItem.titleView = lengthyLabel
         
@@ -65,16 +69,24 @@ class WebViewController: BaseViewController {
         let request = URLRequest(url: url)
         webView.load(request)
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
-        navigationItem.rightBarButtonItem?.rx.tap.subscribe { _ in
+        let toSafari = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+        
+        toSafari.rx.tap.subscribe { _ in
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:])
             }
         }.disposed(by: rx.disposeBag)
+        
+        let refreshWeb = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
+        refreshWeb.rx.tap.subscribe { _ in
+            self.webView.reload()
+        }.disposed(by: rx.disposeBag)
+        
+        navigationItem.rightBarButtonItems = [refreshWeb, toSafari]
     }
     
     deinit {
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: "CUSCcallback")
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
     }
     
 }
@@ -102,20 +114,7 @@ extension WebViewController: WKScriptMessageHandler {
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
         print("decidePolicyForUrl == \(navigationAction.request.url?.absoluteString ?? "unkown")")
-        if navigationAction.request.url?.scheme == "alipay"
-            || navigationAction.request.url?.scheme == "weixin"
-            || navigationAction.request.url?.scheme == "alipays" {
-            if #available(iOS 10.0, *){
-                UIApplication.shared.open(navigationAction.request.url!, options: [UIApplication.OpenExternalURLOptionsKey.universalLinksOnly : false]) { (isfinish) in
-                }
-            }else{
-                UIApplication.shared.openURL(navigationAction.request.url!);
-            }
-            decisionHandler(WKNavigationActionPolicy.allow)
-        }
-        else{
-            decisionHandler(WKNavigationActionPolicy.allow)
-        }
+        decisionHandler(WKNavigationActionPolicy.allow)
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {

@@ -48,12 +48,13 @@ class HotKeyController: BaseViewController {
         
         searchValid.bind(to: navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: rx.disposeBag)
         
-        let tap = UITapGestureRecognizer()
-        view.addGestureRecognizer(tap)
-        tap.rx.event.bind(onNext: { _ in
-            textField.resignFirstResponder()
-        })
-        .disposed(by: rx.disposeBag)
+        /// 使用了IQ,不用这个了
+//        let tap = UITapGestureRecognizer()
+//        view.addGestureRecognizer(tap)
+//        tap.rx.event.bind(onNext: { _ in
+//            textField.resignFirstResponder()
+//        })
+//        .disposed(by: rx.disposeBag)
         
         let viewModel = HotKeyViewModel(disposeBag: rx.disposeBag)
         

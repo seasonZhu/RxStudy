@@ -15,11 +15,11 @@ target 'RxStudy' do
   # Rx Extensions
   pod 'RxDataSources'
   pod 'RxSwiftExt'
-  pod 'RxViewController'
-  pod 'RxGesture'
-  pod 'RxOptional'
-  pod 'RxTheme'
-  pod 'RxBlocking'
+  pod 'RxViewController' # 暂时没有使用
+  pod 'RxGesture' # 暂时没有使用
+  pod 'RxOptional' # 暂时没有使用
+  pod 'RxTheme' # 暂时没有使用
+  pod 'RxBlocking' # 暂时没有使用
   pod 'NSObject+Rx'
 
 
@@ -35,8 +35,7 @@ target 'RxStudy' do
   pod 'KeychainAccess'
 
   # UI'
-  pod 'DZNEmptyDataSet' # 暂时没有使用
-  pod 'Highlightr' # 暂时没有使用
+  pod 'DZNEmptyDataSet'
   pod 'AcknowList'
   pod 'MBProgressHUD'
   pod 'MJRefresh'
@@ -45,7 +44,7 @@ target 'RxStudy' do
   pod 'MarqueeLabel'
   
   # Keyboard
-  pod 'IQKeyboardManagerSwift' # 暂时没有使用
+  pod 'IQKeyboardManagerSwift'
 
   # Auto Layout
   pod 'SnapKit'

@@ -134,7 +134,7 @@ extension HomeController: FSPagerViewDataSource {
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "cell", at: index)
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "FSPagerViewCell", at: index)
         if let imagePath = itmes[index].imagePath, let url = URL(string: imagePath) {
             cell.imageView?.kf.setImage(with: url)
         }
