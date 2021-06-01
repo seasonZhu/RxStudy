@@ -15,7 +15,7 @@ final class AccountManager {
     
     let isLogin = BehaviorRelay(value: false)
     
-    private(set) accountInfo: AccountInfo?
+    private(set) var accountInfo: AccountInfo?
     
     var cookieHeaderValue: String {
         if let username = accountInfo?.username, let password = accountInfo?.password {
