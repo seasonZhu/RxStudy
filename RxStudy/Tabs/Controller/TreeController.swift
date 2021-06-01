@@ -115,7 +115,7 @@ extension TreeController {
         }
 
         //绑定单元格数据
-        items.bind(to: self.tableView.rx.items(dataSource: dataSource))
-            .disposed(by: self.rx.disposeBag)
+        items.bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
     }
 }

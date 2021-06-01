@@ -78,7 +78,7 @@ extension SearcResultController {
 
         /// 绑定数据
         viewModel.outputs.dataSource
-            .asDriver()
+            .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? InfoViewCell {
                     cell.info = info

@@ -69,7 +69,7 @@ extension CoinRankListController {
 
         /// 绑定数据
         viewModel.outputs.dataSource
-            .asDriver()
+            .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
                     cell.textLabel?.text = coinRank.username

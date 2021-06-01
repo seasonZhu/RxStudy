@@ -8,8 +8,6 @@
 
 import Foundation
 
-import Moya
-
 enum TagType {
     case project
     case publicNumber

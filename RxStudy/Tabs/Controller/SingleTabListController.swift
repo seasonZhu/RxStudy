@@ -65,7 +65,7 @@ extension SingleTabListController {
                 if self.type == .tree {
                     self.pushToWebViewController(webLoadInfo: model)
                 }else {
-                    print("嵌套页面无法push,回调到主控制器再push")
+                    /// 嵌套页面无法push,回调到主控制器再push
                     self.cellSelected?(model)
                 }
                 print("模型为:\(model)")
@@ -92,7 +92,7 @@ extension SingleTabListController {
 
         /// 绑定数据
         viewModel.outputs.dataSource
-            .asDriver()
+            .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? InfoViewCell {
                     cell.info = info

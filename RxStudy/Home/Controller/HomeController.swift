@@ -78,7 +78,7 @@ extension HomeController {
 
         /// 绑定数据
         viewModel.outputs.dataSource
-            .asDriver()
+            .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? InfoViewCell {
                     cell.info = info
@@ -101,7 +101,7 @@ extension HomeController {
         let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 16.0 * 9))
         pagerView.dataSource = self
         pagerView.delegate = self
-        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
+        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "FSPagerViewCell")
         pagerView.automaticSlidingInterval = 3.0
         pagerView.isInfinite = true
         tableView.tableHeaderView = pagerView
@@ -117,7 +117,7 @@ extension HomeController {
             make.height.equalTo(40)
         }
         
-        viewModel.outputs.banners.asDriver().drive { [weak self] models in
+        viewModel.outputs.banners.asDriver(onErrorJustReturn: []).drive { [weak self] models in
             self?.itmes = models
             pageControl.numberOfPages = models.count
             pagerView.reloadData()
