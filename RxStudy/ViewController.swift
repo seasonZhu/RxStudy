@@ -61,6 +61,9 @@ class ViewController: UITabBarController {
 
         let treeVC = TreeController(type: .tree)
         addSubviewController(subViewController: treeVC, title: "体系", imageName: "", selectImageName: "")
+        
+        let myVC = LoginController()
+        addSubviewController(subViewController: myVC, title: "我的", imageName: "", selectImageName: "")
     }
 }
 

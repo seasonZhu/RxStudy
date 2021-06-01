@@ -51,6 +51,8 @@ class BaseViewController: UIViewController {
          */
         navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
+        navigationController?.navigationBar.isTranslucent = true
+        
         view.backgroundColor = .white
         
         setupErrorImage()

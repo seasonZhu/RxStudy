@@ -21,7 +21,7 @@ class HotKeyViewModel: BaseViewModel {
     /// outputs
     let dataSource = BehaviorRelay<[HotKey]>(value: [])
     
-    // inputs
+    /// inputs
     func loadData() {
         requestData()
             .map{ $0.data }

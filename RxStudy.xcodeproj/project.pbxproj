@@ -36,6 +36,8 @@
 		61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */; };
 		61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */; };
 		6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18B2664B08C0065C34D /* BaseTableViewController.swift */; };
+		6171E18F2665D4190065C34D /* MyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18E2665D4180065C34D /* MyController.swift */; };
+		6171E1912665D7640065C34D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E1902665D7640065C34D /* LoginController.swift */; };
 		617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA38265CAD820029A83F /* Moya+Plugin.swift */; };
 		617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
@@ -99,6 +101,8 @@
 		61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		6171E18B2664B08C0065C34D /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		6171E18E2665D4180065C34D /* MyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
+		6171E1902665D7640065C34D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		617AAA38265CAD820029A83F /* Moya+Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Plugin.swift"; sourceTree = "<group>"; };
 		617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
@@ -282,6 +286,35 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		6171E1922665DD680065C34D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6171E1902665D7640065C34D /* LoginController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6171E1932665DD720065C34D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		6171E1942665DD770065C34D /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6171E1952665DD7D0065C34D /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		619EDB322660B9C70056A3D9 /* Api */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +326,10 @@
 		619EDB332660BA160056A3D9 /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				6171E1952665DD7D0065C34D /* Manager */,
+				6171E1942665DD770065C34D /* View */,
+				6171E1932665DD720065C34D /* ViewModel */,
+				6171E1922665DD680065C34D /* Controller */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -339,6 +376,7 @@
 		61BF833E265B421B0063EE4E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6171E18E2665D4180065C34D /* MyController.swift */,
 				61336C872657537100FDEB2A /* CoinRankListController.swift */,
 			);
 			path = Controller;
@@ -595,6 +633,8 @@
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
+				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
+				6171E18F2665D4190065C34D /* MyController.swift in Sources */,
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
