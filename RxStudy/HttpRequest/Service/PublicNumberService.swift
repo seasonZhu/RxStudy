@@ -50,7 +50,7 @@ extension PublicNumberService: TargetType {
     }
     
     var headers: [String : String]? {
-        return nil
+        return loginHeader
     }
 }
 

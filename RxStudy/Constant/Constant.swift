@@ -25,3 +25,7 @@ let kTabbarHeight: CGFloat = 49
 
 /// 整体底部间距
 let kBottomMargin = kSafeBottomMargin + kTabbarHeight
+
+let kUsername = "kUsername"
+
+let kPassword = "kUsername"

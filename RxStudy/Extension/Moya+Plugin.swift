@@ -59,3 +59,9 @@ class RequestLoadingPlugin: PluginType {
         return result
     }
 }
+
+extension TargetType {
+    var loginHeader: [String : String]? {
+        return AccountManager.shared.isLogin.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil
+    }
+}

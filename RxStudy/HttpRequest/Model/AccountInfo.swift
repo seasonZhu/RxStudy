@@ -17,9 +17,9 @@ struct AccountInfo : Codable {
     let icon : String?
     let id : Int?
     let nickname : String?
-    let password : String?
+    var password : String?
     let publicName : String?
     let token : String?
     let type : Int?
-    let username : String?
+    var username : String?
 }
