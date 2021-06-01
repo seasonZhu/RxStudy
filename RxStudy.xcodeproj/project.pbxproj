@@ -41,6 +41,8 @@
 		6171E1982665FE570065C34D /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E1972665FE570065C34D /* Constant.swift */; };
 		6171E19B266611650065C34D /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E19A266611650065C34D /* AccountService.swift */; };
 		6171E19D266615850065C34D /* AccountInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E19C266615850065C34D /* AccountInfo.swift */; };
+		6171E19F26661AAA0065C34D /* AccountBaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E19E26661AA90065C34D /* AccountBaseController.swift */; };
+		6171E1A126661EC60065C34D /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E1A026661EC60065C34D /* RegisterController.swift */; };
 		617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA38265CAD820029A83F /* Moya+Plugin.swift */; };
 		617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
@@ -109,6 +111,8 @@
 		6171E1972665FE570065C34D /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		6171E19A266611650065C34D /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		6171E19C266615850065C34D /* AccountInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		6171E19E26661AA90065C34D /* AccountBaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountBaseController.swift; sourceTree = "<group>"; };
+		6171E1A026661EC60065C34D /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		617AAA38265CAD820029A83F /* Moya+Plugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Plugin.swift"; sourceTree = "<group>"; };
 		617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
@@ -298,7 +302,9 @@
 		6171E1922665DD680065C34D /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6171E19E26661AA90065C34D /* AccountBaseController.swift */,
 				6171E1902665D7640065C34D /* LoginController.swift */,
+				6171E1A026661EC60065C34D /* RegisterController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -627,6 +633,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6171E19F26661AAA0065C34D /* AccountBaseController.swift in Sources */,
 				61336C78265644DC00FDEB2A /* HomeService.swift in Sources */,
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */,
@@ -636,6 +643,7 @@
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
 				61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */,
 				6171E19B266611650065C34D /* AccountService.swift in Sources */,
+				6171E1A126661EC60065C34D /* RegisterController.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,

@@ -1,5 +1,5 @@
 //
-//  LoginController.swift
+//  RegisterController.swift
 //  RxStudy
 //
 //  Created by season on 2021/6/1.
@@ -10,15 +10,25 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import MBProgressHUD
 
-class LoginController: AccountBaseController {
+class RegisterController: AccountBaseController {
     
-    private lazy var toRegisterButton: UIButton = {
-        let button = UIButton(type: .custom)
-        let attString = NSAttributedString(string: "还没有注册?", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 15)])
-        button.setAttributedTitle(attString, for: .normal)
-        return button
+    private lazy var repasswordField: UITextField = {
+        let textField = UITextField()
+        textField.layer.borderWidth = 0.5
+        textField.layer.borderColor = UIColor.gray.cgColor
+        textField.backgroundColor = .white
+        textField.returnKeyType = .done
+        textField.font = UIFont.systemFont(ofSize: 15)
+        textField.isSecureTextEntry = true
+        textField.placeholder = "请再次输入密码"
+        
+        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+        textField.leftView = emptyView
+        textField.rightView = emptyView
+        textField.leftViewMode = .always
+        textField.rightViewMode = .always
+        return textField
     }()
 
     override func viewDidLoad() {
@@ -28,18 +38,20 @@ class LoginController: AccountBaseController {
     
     private func setupUI() {
         
-        title = "登录"
+        title = "注册"
         actionButton.setTitle(title, for: .normal)
         
-        view.addSubview(toRegisterButton)
-        toRegisterButton.snp.makeConstraints { make in
+        view.addSubview(repasswordField)
+        repasswordField.snp.makeConstraints { make in
             make.top.equalTo(passwordField.snp.bottom).offset(16)
-            make.trailing.equalTo(usernameFiled)
+            make.leading.trailing.height.equalTo(usernameFiled)
         }
+        repasswordField.layer.cornerRadius = 22
+        repasswordField.layer.masksToBounds = true
         
         view.addSubview(actionButton)
         actionButton.snp.makeConstraints { make in
-            make.top.equalTo(toRegisterButton.snp.bottom).offset(16)
+            make.top.equalTo(repasswordField.snp.bottom).offset(16)
             make.leading.trailing.height.equalTo(usernameFiled)
         }
         
@@ -58,8 +70,14 @@ class LoginController: AccountBaseController {
         let passwordValid = passwordField.rx.text.orEmpty
             .map { $0.count > 0 }
             .share(replay: 1)
+        
+        let repasswordValid = repasswordField.rx.text.orEmpty
+            .map { $0.count > 0 }
+            .share(replay: 1)
+        
+        let isSamePassword = Observable.combineLatest(passwordField.rx.text.orEmpty, repasswordField.rx.text.orEmpty) { $0 == $1 }.share(replay: 1)
 
-        let everythingValid = Observable.combineLatest(usernameValid, passwordValid) { $0 && $1 }
+        let everythingValid = Observable.combineLatest(usernameValid, passwordValid, repasswordValid, isSamePassword) { $0 && $1 && $2 && $3 }
             .share(replay: 1)
 
         usernameValid
@@ -69,6 +87,10 @@ class LoginController: AccountBaseController {
         usernameValid.map { $0 ? UIColor.white : UIColor.gray.withAlphaComponent(0.5) }
             .bind(to: passwordField.rx.backgroundColor)
             .disposed(by: rx.disposeBag)
+        
+        usernameValid.map { $0 ? UIColor.white : UIColor.gray.withAlphaComponent(0.5) }
+            .bind(to: repasswordField.rx.backgroundColor)
+            .disposed(by: rx.disposeBag)
 
         everythingValid
             .bind(to: actionButton.rx.isEnabled)
@@ -77,20 +99,17 @@ class LoginController: AccountBaseController {
         everythingValid.map { $0 ? UIColor.systemBlue : UIColor.systemBlue.withAlphaComponent(0.5) }
             .bind(to: actionButton.rx.backgroundColor)
             .disposed(by: rx.disposeBag)
-        
-        toRegisterButton.rx.tap
-            .subscribe { [weak self] _ in
-                self?.navigationController?.pushViewController(RegisterController(), animated: true)
-            }.disposed(by: rx.disposeBag)
 
         actionButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
                 guard let username = self?.usernameFiled.text,
-                      let password = self?.passwordField.text else {
+                      let password = self?.passwordField.text,
+                      let repassword = self?.repasswordField.text else {
                     return
                 }
-                self?.login(username: username, password: password)
+                self?.registerAndLogin(username: username, password: password, repassword: repassword)
             })
             .disposed(by: rx.disposeBag)
     }
+
 }
