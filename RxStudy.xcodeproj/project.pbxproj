@@ -55,6 +55,7 @@
 		61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */; };
 		61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */; };
 		61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */; };
+		61B539002678863A00EEFE1F /* My.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B538FF2678863A00EEFE1F /* My.swift */; };
 		61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833C265B41E50063EE4E /* NSObject+Extension.swift */; };
 		61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */; };
 		61BF8343265C8FCA0063EE4E /* RefreshStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */; };
@@ -126,6 +127,7 @@
 		61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViemModelProtocol.swift; sourceTree = "<group>"; };
 		61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		61B538FF2678863A00EEFE1F /* My.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My.swift; sourceTree = "<group>"; };
 		61BF833C265B41E50063EE4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractViewModel.swift; sourceTree = "<group>"; };
 		61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshStatus.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		61336C86265752FB00FDEB2A /* My */ = {
 			isa = PBXGroup;
 			children = (
+				61B538FE2678862300EEFE1F /* Enum */,
 				61336C932657AD1600FDEB2A /* View */,
 				61336C922657AD0E00FDEB2A /* ViewModel */,
 				61BF833E265B421B0063EE4E /* Controller */,
@@ -397,6 +400,14 @@
 				619EDB362660BF820056A3D9 /* InfoViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		61B538FE2678862300EEFE1F /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				61B538FF2678863A00EEFE1F /* My.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		61BF833E265B421B0063EE4E /* Controller */ = {
@@ -650,6 +661,7 @@
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
+				61B539002678863A00EEFE1F /* My.swift in Sources */,
 				619EDB312660B7E30056A3D9 /* R.generated.swift in Sources */,
 				6171E19D266615850065C34D /* AccountInfo.swift in Sources */,
 				617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */,
