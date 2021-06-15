@@ -11,6 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import AcknowList
+import MBProgressHUD
 
 class MyController: BaseTableViewController {
     
@@ -47,10 +48,17 @@ class MyController: BaseTableViewController {
         
         tableView.emptyDataSetSource = nil
         tableView.emptyDataSetDelegate = nil
-        
-        let isLogin = AccountManager.shared.isLogin.value
-        currentDataSource.accept(isLogin ? loginDataSource : logoutDataSource)
-            
+                
+        AccountManager.shared.isLogin.subscribe { [weak self] event in
+            switch event {
+            case .next(let isLogin):
+                guard let self = self else { return }
+                self.currentDataSource.accept(isLogin ? self.loginDataSource : self.logoutDataSource)
+            default:
+                break
+            }
+        }.disposed(by: rx.disposeBag)
+
         currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
@@ -73,7 +81,7 @@ class MyController: BaseTableViewController {
                 
                 switch strongMy {
                 case .logout:
-                    break
+                    self?.logoutAction()
                 case .openSource:
                     self?.navigationController?.pushViewController(AcknowListViewController(), animated: true)
                 default:
@@ -88,7 +96,7 @@ class MyController: BaseTableViewController {
 }
 
 extension MyController {
-    public func creatInstance<T: NSObject>(by className: String) -> T? {
+    private func creatInstance<T: NSObject>(by className: String) -> T? {
         guard let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String else {
             return nil
         }
@@ -97,5 +105,36 @@ extension MyController {
             return nil
         }
         return typeClass.init()
+    }
+    
+    private func logoutAction() {
+        let alertController = UIAlertController(title: "提示", message: "是否确定退出登录?", preferredStyle: .alert)
+        let actionCancel = UIAlertAction(title: "取消", style: .destructive) { (action) in
+            
+        }
+        let actionOK = UIAlertAction(title: "确定", style: .default) { (action) in
+            self.logout()
+        }
+        alertController.addAction(actionCancel)
+        alertController.addAction(actionOK)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func logout() {
+        accountProvider.rx.request(AccountService.logout)
+            .map(BaseModel<AccountInfo>.self)
+            /// 转为Observable
+            .asObservable().asSingle().subscribe { baseModel in
+                if baseModel.errorCode == 0 {
+                    AccountManager.shared.clearAccountInfo()
+                    DispatchQueue.main.async {
+                        MBProgressHUD.showText("退出登录成功")
+                    }
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+            } onError: { _ in
+                
+            }.disposed(by: rx.disposeBag)
     }
 }

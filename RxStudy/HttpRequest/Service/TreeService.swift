@@ -55,6 +55,6 @@ extension TreeService: TargetType {
     }
     
     var headers: [String : String]? {
-        return loginHeader
+        return nil
     }
 }
