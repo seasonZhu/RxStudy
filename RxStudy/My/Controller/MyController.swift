@@ -24,14 +24,18 @@ class MyController: BaseTableViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        AccountManager.shared.isLogin.subscribe(onNext: { isLogin in
+        AccountManager.shared.isLogin.subscribe(onNext: { [weak self] isLogin in
+            guard let self = self else { return }
+            
             print("\(self.className)收到了关于登录状态的值")
+            
             self.currentDataSource.accept(isLogin ? self.loginDataSource : self.logoutDataSource)
-            self.tableView.reloadData()
+            
+            if isLogin {
+                self.getMyCoin()
+            }
         }).disposed(by: rx.disposeBag)
     }
-    
-    
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -48,16 +52,6 @@ class MyController: BaseTableViewController {
         
         tableView.emptyDataSetSource = nil
         tableView.emptyDataSetDelegate = nil
-                
-        AccountManager.shared.isLogin.subscribe { [weak self] event in
-            switch event {
-            case .next(let isLogin):
-                guard let self = self else { return }
-                self.currentDataSource.accept(isLogin ? self.loginDataSource : self.logoutDataSource)
-            default:
-                break
-            }
-        }.disposed(by: rx.disposeBag)
 
         currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
@@ -133,6 +127,18 @@ extension MyController {
                     }
                     self.navigationController?.popToRootViewController(animated: true)
                 }
+            } onError: { _ in
+                
+            }.disposed(by: rx.disposeBag)
+    }
+    
+    /// 这个页面,过于简单,感觉不用使用ViewModel
+    private func getMyCoin() {
+        myProvider.rx.request(MyService.userCoinInfo)
+            .map(BaseModel<MyCoin>.self)
+            /// 转为Observable
+            .asObservable().asSingle().subscribe { baseModel in
+                print(baseModel)
             } onError: { _ in
                 
             }.disposed(by: rx.disposeBag)

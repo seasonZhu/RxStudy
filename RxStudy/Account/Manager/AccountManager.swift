@@ -33,13 +33,14 @@ final class AccountManager {
     private init() {}
     
     func saveLoginUsernameAndPassword(info: AccountInfo?, username: String, password: String) {
-        isLogin.accept(true)
         accountInfo = info
         accountInfo?.username = username
         accountInfo?.password = password
         
         UserDefaults.standard.setValue(username, forKey: kUsername)
         UserDefaults.standard.setValue(password, forKey: kPassword)
+        /// 需要注意赋值顺序,将info赋值给单例后,再改变isLogin的状态才能获取正确的请求头
+        isLogin.accept(true)
     }
     
     func clearAccountInfo() {

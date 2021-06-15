@@ -72,5 +72,7 @@ struct Api {
     /// 我的
     enum My {
         static let coinRank = "coin/rank/"
+        
+        static let userCoinInfo = "lg/coin/userinfo/json"
     }
 }
