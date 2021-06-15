@@ -69,12 +69,10 @@ class WebViewController: BaseViewController {
         let request = URLRequest(url: url)
         webView.load(request)
         
-        let toSafari = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
+        let toShare = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
         
-        toSafari.rx.tap.subscribe { _ in
-            if UIApplication.shared.canOpenURL(url) {
-                UIApplication.shared.open(url, options: [:])
-            }
+        toShare.rx.tap.subscribe { _ in
+            self.shareAction()
         }.disposed(by: rx.disposeBag)
         
         let refreshWeb = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
@@ -82,13 +80,46 @@ class WebViewController: BaseViewController {
             self.webView.reload()
         }.disposed(by: rx.disposeBag)
         
-        navigationItem.rightBarButtonItems = [refreshWeb, toSafari]
+        navigationItem.rightBarButtonItems = [refreshWeb, toShare]
     }
     
     deinit {
         webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
     }
     
+}
+
+extension WebViewController {
+    private func shareAction() {
+        guard let title = webLoadInfo.title, let url = webLoadInfo.link else {
+            MBProgressHUD.showText("无法获取分享信息")
+            return
+        }
+        
+        let activityItems = [title, url]
+        
+        let excludedActivityTypes: [UIActivity.ActivityType] = [.postToWeibo,
+                                                                .message,
+                                                                .airDrop,
+                                                                .addToReadingList,
+                                                                .copyToPasteboard,
+                                                                .mail,
+                                                                .assignToContact
+        ]
+        
+        let activityContrller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        activityContrller.excludedActivityTypes = excludedActivityTypes
+        activityContrller.completionWithItemsHandler = { [weak activityContrller] activityType, completed, returnedItems, activityError in
+            if completed {
+                MBProgressHUD.showText("分享成功!")
+            }else {
+                MBProgressHUD.showText("分享失败!")
+            }
+            
+            activityContrller?.dismiss(animated: true, completion: nil)
+        }
+        present(activityContrller, animated: true, completion: nil)
+    }
 }
 
 // MARK: - 协议类专门用来处理监听JavaScript方法从而调用原生方法，和WKUserContentController搭配使用

@@ -39,11 +39,6 @@ class ViewController: UITabBarController {
             print("点击事件")
             self?.navigationController?.pushViewController(HotKeyController(), animated: true)
         }).disposed(by: rx.disposeBag)
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
-        navigationItem.leftBarButtonItem?.rx.tap.subscribe({ [weak self] _ in
-            self?.navigationController?.pushViewController(LoginController(), animated: true)
-        }).disposed(by: rx.disposeBag)
     }
     
     //MARK:- 添加子控制器
