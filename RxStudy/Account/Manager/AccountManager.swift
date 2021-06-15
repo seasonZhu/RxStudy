@@ -17,8 +17,6 @@ final class AccountManager {
     static let shared = AccountManager()
     
     private(set) var isLogin = BehaviorRelay(value: false)
-    
-    private let disposeBag = DisposeBag()
         
     private(set) var accountInfo: AccountInfo?
     
