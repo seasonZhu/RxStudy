@@ -1,0 +1,52 @@
+{
+    "data": {
+        "curPage": 2,
+        "datas": [
+            {
+                "apkLink": "",
+                "audit": 1,
+                "author": "程序亦非猿",
+                "canEdit": false,
+                "chapterId": 428,
+                "chapterName": "程序亦非猿",
+                "collect": false,
+                "courseId": 13,
+                "desc": "",
+                "descMd": "",
+                "envelopePic": "",
+                "fresh": false,
+                "id": 12856,
+                "link": "https://mp.weixin.qq.com/s/FKHeZ1fFHdVcOaCWHpMj4A",
+                "niceDate": "2020-04-13 00:00",
+                "niceShareDate": "2天前",
+                "origin": "",
+                "prefix": "",
+                "projectLink": "",
+                "publishTime": 1586707200000,
+                "selfVisible": 0,
+                "shareDate": 1586745025000,
+                "shareUser": "",
+                "superChapterId": 408,
+                "superChapterName": "公众号",
+                "tags": [
+                    {
+                        "name": "公众号",
+                        "url": "/wxarticle/list/428/1"
+                    }
+                ],
+                "title": "借助 AIDL 理解 Android Binder 机制&mdash;&mdash;AIDL 的使用和原理分析",
+                "type": 0,
+                "userId": -1,
+                "visible": 1,
+                "zan": 0
+            }
+        ],
+        "offset": 20,
+        "over": false,
+        "pageCount": 415,
+        "size": 20,
+        "total": 8296
+    },
+    "errorCode": 0,
+    "errorMsg": ""
+}

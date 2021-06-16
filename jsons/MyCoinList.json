@@ -1,0 +1,24 @@
+{
+    "data": {
+      "curPage": 0,
+      "datas": [
+        {
+          "coinCount": 11,
+          "date": 1587302836000,
+          "desc": "2020-04-19 21:27:16 签到 , 积分：10 + 1",
+          "id": 191949,
+          "reason": "签到",
+          "type": 1,
+          "userId": 59171,
+          "userName": "13437156081"
+        }
+      ],
+      "offset": -20,
+      "over": false,
+      "pageCount": 1,
+      "size": 20,
+      "total": 2
+    },
+    "errorCode": 0,
+    "errorMsg": ""
+  }

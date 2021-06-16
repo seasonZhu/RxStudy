@@ -1,0 +1,30 @@
+{
+    "status": "1",
+    "info": "OK",
+    "infocode": "10000",
+    "count": "1",
+    "geocodes": [
+        {
+            "formatted_address": "北京市",
+            "country": "中国",
+            "province": "北京市",
+            "citycode": "010",
+            "city": "北京市",
+            "district": [],
+            "township": [],
+            "neighborhood": {
+                "name": [],
+                "type": []
+            },
+            "building": {
+                "name": [],
+                "type": []
+            },
+            "adcode": "110000",
+            "street": [],
+            "number": [],
+            "location": "116.407526,39.904030",
+            "level": "省"
+        }
+    ]
+}
