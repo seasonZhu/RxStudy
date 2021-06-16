@@ -25,6 +25,7 @@ class TabsViewModel: BaseViewModel, Refreshable {
     init(type: TagType, disposeBag: DisposeBag) {
         self.type = type
         self.disposeBag = disposeBag
+        super.init()
     }
     
     /// outputs    

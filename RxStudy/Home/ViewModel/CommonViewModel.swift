@@ -29,6 +29,7 @@ class CommonViewModel<M: Codable, S: TargetType>: BaseViewModel, ViemModelInputs
                 }
                 return MoyaProvider<S>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
         }()
+        super.init()
     }
     
     /// outputs

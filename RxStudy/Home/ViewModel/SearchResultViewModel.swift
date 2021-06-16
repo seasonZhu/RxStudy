@@ -24,6 +24,7 @@ class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
         self.pageNum = pageNum
         self.keyword = keyword
         self.disposeBag = disposeBag
+        super.init()
     }
     
     /// outputs

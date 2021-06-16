@@ -27,6 +27,7 @@ class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
         self.type = type
         self.tab = tab
         self.disposeBag = disposeBag
+        super.init()
     }
     
     /// outputs

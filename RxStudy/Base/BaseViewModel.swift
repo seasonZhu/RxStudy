@@ -20,8 +20,10 @@ class BaseViewModel {
     
     var networkError = PublishSubject<Void>()
     
+    var className: String { String(describing: self) }
+    
     deinit {
-        print("\(type(of: self))被销毁了")
+        print("\(className)被销毁了")
     }
 }
 

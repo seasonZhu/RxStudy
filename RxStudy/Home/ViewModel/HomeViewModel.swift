@@ -21,6 +21,7 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     init(pageNum: Int = 1, disposeBag: DisposeBag) {
         self.pageNum = pageNum
         self.disposeBag = disposeBag
+        super.init()
     }
     
     /// outputs

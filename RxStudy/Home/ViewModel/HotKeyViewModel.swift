@@ -16,6 +16,7 @@ class HotKeyViewModel: BaseViewModel {
     
     init(disposeBag: DisposeBag) {
         self.disposeBag = disposeBag
+        super.init()
     }
     
     /// outputs
