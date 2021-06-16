@@ -14,33 +14,7 @@ import AcknowList
 import MBProgressHUD
 
 class MyController: BaseTableViewController {
-    
-    let logoutDataSource: [My] = [.ranking, .openSource, .login]
-    
-    let loginDataSource: [My] = [.ranking, .openSource, .myCoin, .myCollect, .logout]
-    
-    var currentDataSource = BehaviorRelay<[My]>(value: [])
-    
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
         
-        AccountManager.shared.isLogin.subscribe(onNext: { [weak self] isLogin in
-            guard let self = self else { return }
-            
-            print("\(self.className)收到了关于登录状态的值")
-            
-            self.currentDataSource.accept(isLogin ? self.loginDataSource : self.logoutDataSource)
-            
-            if isLogin {
-                self.getMyCoin()
-            }
-        }).disposed(by: rx.disposeBag)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -52,8 +26,10 @@ class MyController: BaseTableViewController {
         
         tableView.emptyDataSetSource = nil
         tableView.emptyDataSetDelegate = nil
+        
+        let viewModel = MyViewModel(disposeBag: rx.disposeBag)
 
-        currentDataSource.asDriver()
+        viewModel.outputs.currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
                     cell.textLabel?.text = my.title
@@ -66,20 +42,22 @@ class MyController: BaseTableViewController {
             }
             .disposed(by: rx.disposeBag)
         
+        viewModel.outputs.myCoin.asDriver().drive { myCoin in
+            print(myCoin)
+        }.disposed(by: rx.disposeBag)
         
         tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
+            .bind { [weak self, weak viewModel] (indexPath) in
                 self?.tableView.deselectRow(at: indexPath, animated: false)
-                let my = self?.currentDataSource.value[indexPath.row]
-                guard let strongMy = my else { return }
-                
-                switch strongMy {
+                guard let viewModel = viewModel else { return }
+                let my = viewModel.outputs.currentDataSource.value[indexPath.row]
+                switch my {
                 case .logout:
-                    self?.logoutAction()
+                    self?.logoutAction(viewModel: viewModel)
                 case .openSource:
                     self?.navigationController?.pushViewController(AcknowListViewController(), animated: true)
                 default:
-                    guard let vc = self?.creatInstance(by: strongMy.path) as? UIViewController else {
+                    guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return
                     }
                     self?.navigationController?.pushViewController(vc, animated: true)
@@ -101,46 +79,26 @@ extension MyController {
         return typeClass.init()
     }
     
-    private func logoutAction() {
+    private func logoutAction(viewModel: MyViewModel) {
         let alertController = UIAlertController(title: "提示", message: "是否确定退出登录?", preferredStyle: .alert)
         let actionCancel = UIAlertAction(title: "取消", style: .destructive) { (action) in
             
         }
         let actionOK = UIAlertAction(title: "确定", style: .default) { (action) in
-            self.logout()
+            viewModel.inputs.logout()
+                .asDriver(onErrorJustReturn: BaseModel(data: nil, errorCode: nil, errorMsg: nil))
+                .drive { baseModel in
+                    if baseModel.errorCode == 0 {
+                        AccountManager.shared.clearAccountInfo()
+                        MBProgressHUD.showText("退出登录成功")
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
+                .disposed(by: self.rx.disposeBag)
         }
         alertController.addAction(actionCancel)
         alertController.addAction(actionOK)
         
         present(alertController, animated: true, completion: nil)
-    }
-    
-    private func logout() {
-        accountProvider.rx.request(AccountService.logout)
-            .map(BaseModel<AccountInfo>.self)
-            /// 转为Observable
-            .asObservable().asSingle().subscribe { baseModel in
-                if baseModel.errorCode == 0 {
-                    AccountManager.shared.clearAccountInfo()
-                    DispatchQueue.main.async {
-                        MBProgressHUD.showText("退出登录成功")
-                    }
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            } onError: { _ in
-                
-            }.disposed(by: rx.disposeBag)
-    }
-    
-    /// 这个页面,过于简单,感觉不用使用ViewModel
-    private func getMyCoin() {
-        myProvider.rx.request(MyService.userCoinInfo)
-            .map(BaseModel<MyCoin>.self)
-            /// 转为Observable
-            .asObservable().asSingle().subscribe { baseModel in
-                print(baseModel)
-            } onError: { _ in
-                
-            }.disposed(by: rx.disposeBag)
     }
 }
