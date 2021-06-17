@@ -55,7 +55,7 @@ extension My {
         case .login:
             string = "LoginController"
         case .logout:
-            string = "logout"
+            string = "Logout"
         }
         return string
     }

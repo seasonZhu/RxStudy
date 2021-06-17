@@ -130,18 +130,12 @@ private extension SingleTabListViewModel {
             print("请求:\(id)")
             result = projectProvider.rx.request(ProjectService.tagList(id, page))
                 .map(BaseModel<Page<Info>>.self)
-                /// 转为Observable
-                .asObservable().asSingle()
         case .publicNumber:
             result = publicNumberProvider.rx.request(PublicNumberService.tagList(id, page))
                 .map(BaseModel<Page<Info>>.self)
-                /// 转为Observable
-                .asObservable().asSingle()
         case .tree:
             result = treeProvider.rx.request(TreeService.tagList(id, page))
                 .map(BaseModel<Page<Info>>.self)
-                /// 转为Observable
-                .asObservable().asSingle()
         }
         
         return result

@@ -67,7 +67,7 @@ final class AccountManager {
         accountProvider.rx.request(AccountService.login(username, password))
             .map(BaseModel<AccountInfo>.self)
             /// 转为Observable
-            .asObservable().asSingle().subscribe { baseModel in
+            .subscribe { baseModel in
                 if baseModel.errorCode == 0 {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {

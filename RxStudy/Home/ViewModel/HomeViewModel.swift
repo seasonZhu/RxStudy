@@ -142,8 +142,6 @@ private extension HomeViewModel {
     func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
         let result = homeProvider.rx.request(HomeService.normalArticle(page))
             .map(BaseModel<Page<Info>>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
         
         return result
     }
@@ -154,8 +152,6 @@ extension HomeViewModel {
     func topArticleData() -> Single<BaseModel<[Info]>> {
         let result = homeProvider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
         
         return result
     }
@@ -164,8 +160,6 @@ extension HomeViewModel {
     func bannerData() -> Single<BaseModel<[Banner]>> {
         let result = homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
         
         return result
     }

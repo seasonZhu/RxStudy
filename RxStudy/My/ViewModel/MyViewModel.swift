@@ -37,6 +37,7 @@ class MyViewModel: BaseViewModel {
             if isLogin {
                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                    self.getMyCoin1()
                     let result = self.getMyCoin()
                     result.map{ $0.data }
                         /// 去掉其中为nil的值
@@ -60,14 +61,21 @@ extension MyViewModel {
     func getMyCoin() -> Single<BaseModel<MyCoin>> {
         return myProvider.rx.request(MyService.userCoinInfo)
             .map(BaseModel<MyCoin>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
+
+    }
+    
+    func getMyCoin1() {
+        myProvider.rx.request(MyService.userCoinInfo)
+            .map(BaseModel<MyCoin>.self)
+            .subscribe { baseModel in
+                print(baseModel)
+            } onError: { error in
+                print(error)
+            }.disposed(by: disposeBag)
     }
     
     func logout() -> Single<BaseModel<String>> {
         return accountProvider.rx.request(AccountService.logout)
             .map(BaseModel<String>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
     }
 }

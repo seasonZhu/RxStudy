@@ -54,18 +54,12 @@ private extension TabsViewModel {
         case .project:
             result = projectProvider.rx.request(ProjectService.tags)
                 .map(BaseModel<[Tab]>.self)
-                /// 转为Observable
-                .asObservable().asSingle()
         case .publicNumber:
             result = publicNumberProvider.rx.request(PublicNumberService.tags)
                 .map(BaseModel<[Tab]>.self)
-                /// 转为Observable
-                .asObservable().asSingle()
         case .tree:
             result = treeProvider.rx.request(TreeService.tags)
                 .map(BaseModel<[Tab]>.self)
-                /// 转为Observable
-                .asObservable().asSingle()
         }
         
         return result

@@ -43,8 +43,6 @@ private extension HotKeyViewModel {
     func requestData() -> Single<BaseModel<[HotKey]>> {
         let result = homeProvider.rx.request(HomeService.hotKey)
             .map(BaseModel<[HotKey]>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
         
         return result
     }

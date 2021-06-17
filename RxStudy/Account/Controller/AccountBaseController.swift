@@ -86,8 +86,7 @@ extension AccountBaseController {
     func login(username: String, password: String) {
         accountProvider.rx.request(AccountService.login(username, password))
             .map(BaseModel<AccountInfo>.self)
-            /// 转为Observable
-            .asObservable().asSingle().subscribe { baseModel in
+            .subscribe { baseModel in
                 if baseModel.errorCode == 0 {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {
@@ -103,8 +102,7 @@ extension AccountBaseController {
     func registerAndLogin(username: String, password: String, repassword: String) {
         accountProvider.rx.request(AccountService.register(username, password, repassword))
             .map(BaseModel<AccountInfo>.self)
-            /// 转为Observable
-            .asObservable().asSingle().subscribe { baseModel in
+            .subscribe { baseModel in
                 if baseModel.errorCode == 0 {
                     DispatchQueue.main.async {
                         MBProgressHUD.showText("注册成功")

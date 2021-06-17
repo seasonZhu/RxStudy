@@ -12,6 +12,8 @@
 		6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114ABF0267AD8450082BA67 /* R.generated.swift */; };
 		6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */; };
 		6114ABF5267ADF6E0082BA67 /* MyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114ABF4267ADF6E0082BA67 /* MyView.swift */; };
+		6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114ABF6267AECE20082BA67 /* MyCoinController.swift */; };
+		6114ABF9267AED660082BA67 /* MyCollectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114ABF8267AED660082BA67 /* MyCollectionController.swift */; };
 		611E2E032660782C001585AE /* ConstraintArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E012660782B001585AE /* ConstraintArray+Extensions.swift */; };
 		611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E022660782B001585AE /* ConstraintArrayDSL.swift */; };
 		611E2E0626607869001585AE /* HotKeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0526607869001585AE /* HotKeyController.swift */; };
@@ -39,6 +41,8 @@
 		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
 		61336C8D2657A1AA00FDEB2A /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8C2657A1AA00FDEB2A /* MJRefresh+Rx.swift */; };
 		61336C952657AD3700FDEB2A /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */; };
+		61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */; };
+		61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */; };
 		6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18B2664B08C0065C34D /* BaseTableViewController.swift */; };
 		6171E18F2665D4190065C34D /* MyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18E2665D4180065C34D /* MyController.swift */; };
 		6171E1912665D7640065C34D /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E1902665D7640065C34D /* LoginController.swift */; };
@@ -101,6 +105,8 @@
 		6114ABF0267AD8450082BA67 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-RxStudy-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-RxStudy/Pods-RxStudy-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		6114ABF4267ADF6E0082BA67 /* MyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
+		6114ABF6267AECE20082BA67 /* MyCoinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinController.swift; sourceTree = "<group>"; };
+		6114ABF8267AED660082BA67 /* MyCollectionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionController.swift; sourceTree = "<group>"; };
 		611E2E012660782B001585AE /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
 		611E2E022660782B001585AE /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
 		611E2E0526607869001585AE /* HotKeyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyController.swift; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 		61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
 		61336C942657AD3700FDEB2A /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCoinRankListController.swift; sourceTree = "<group>"; };
+		61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftCoinRankListController.swift; sourceTree = "<group>"; };
 		6171E18B2664B08C0065C34D /* BaseTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
 		6171E18E2665D4180065C34D /* MyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
 		6171E1902665D7640065C34D /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
@@ -232,6 +240,7 @@
 		612DBF5A220022BA007F73CC /* RxStudy */ = {
 			isa = PBXGroup;
 			children = (
+				61716A9D267B396C00F9DC25 /* ExampleController */,
 				6171E1962665FE2D0065C34D /* Constant */,
 				61BF8341265C8F190063EE4E /* ViewModel+Plus */,
 				61336C89265757F500FDEB2A /* Base */,
@@ -348,6 +357,15 @@
 				6114ABF4267ADF6E0082BA67 /* MyView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		61716A9D267B396C00F9DC25 /* ExampleController */ = {
+			isa = PBXGroup;
+			children = (
+				61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */,
+				61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */,
+			);
+			path = ExampleController;
 			sourceTree = "<group>";
 		};
 		6171E1922665DD680065C34D /* Controller */ = {
@@ -486,6 +504,8 @@
 			children = (
 				6171E18E2665D4180065C34D /* MyController.swift */,
 				61336C872657537100FDEB2A /* CoinRankListController.swift */,
+				6114ABF6267AECE20082BA67 /* MyCoinController.swift */,
+				6114ABF8267AED660082BA67 /* MyCollectionController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -756,6 +776,7 @@
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
 				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
+				61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */,
 				61F28245265F4A23009E16C9 /* TreeController.swift in Sources */,
 				6114ABF5267ADF6E0082BA67 /* MyView.swift in Sources */,
 				61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */,
@@ -772,6 +793,7 @@
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
+				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
 				61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */,
@@ -792,12 +814,14 @@
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				6171E1982665FE570065C34D /* Constant.swift in Sources */,
+				6114ABF9267AED660082BA67 /* MyCollectionController.swift in Sources */,
 				619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */,
 				61BF8343265C8FCA0063EE4E /* RefreshStatus.swift in Sources */,
 				611E2E0626607869001585AE /* HotKeyController.swift in Sources */,
 				61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
+				61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */,
 				6171E1A3266623D10065C34D /* AccountManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

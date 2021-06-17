@@ -117,8 +117,6 @@ private extension SearchResultViewModel {
     func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
         return homeProvider.rx.request(HomeService.queryKeyword(keyword, page))
             .map(BaseModel<Page<Info>>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
     }
 }
 

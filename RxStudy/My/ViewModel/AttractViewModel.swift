@@ -115,8 +115,6 @@ private extension AttractViewModel {
     func requestData(page: Int) -> Single<BaseModel<Page<CoinRank>>> {
         let result = myProvider.rx.request(MyService.coinRank(page))
             .map(BaseModel<Page<CoinRank>>.self)
-            /// 转为Observable
-            .asObservable().asSingle()
         
         return result
     }
