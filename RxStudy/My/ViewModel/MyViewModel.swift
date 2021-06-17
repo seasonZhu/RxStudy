@@ -49,6 +49,8 @@ class MyViewModel: BaseViewModel {
                         })
                         .disposed(by: disposeBag)
                 }
+            } else {
+                self.myCoin.accept(nil)
             }
         }).disposed(by: disposeBag)
     }

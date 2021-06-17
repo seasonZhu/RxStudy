@@ -93,12 +93,11 @@ extension MyController {
             viewModel.inputs.logout()
                 .asDriver(onErrorJustReturn: BaseModel(data: nil, errorCode: nil, errorMsg: nil))
                 .drive { baseModel in
-                    if baseModel.errorCode == 0 {
+                    if baseModel.isSuccess {
                         AccountManager.shared.clearAccountInfo()
                         DispatchQueue.main.async {
                             MBProgressHUD.showText("退出登录成功")
                         }
-                        self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
                 .disposed(by: self.rx.disposeBag)
