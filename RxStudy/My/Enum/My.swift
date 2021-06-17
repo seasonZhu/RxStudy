@@ -59,4 +59,13 @@ extension My {
         }
         return string
     }
+    
+    var accessoryType: UITableViewCell.AccessoryType {
+        switch self {
+        case .logout:
+            return .none
+        default:
+            return .disclosureIndicator
+        }
+    }
 }

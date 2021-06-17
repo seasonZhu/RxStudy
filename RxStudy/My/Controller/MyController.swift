@@ -27,27 +27,30 @@ class MyController: BaseTableViewController {
         tableView.emptyDataSetSource = nil
         tableView.emptyDataSetDelegate = nil
         
+        let myView = MyView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 16.0 * 9))
+        tableView.tableHeaderView = myView
+        
         let viewModel = MyViewModel(disposeBag: rx.disposeBag)
 
         viewModel.outputs.currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
                     cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
                     return cell
                 }else {
                     let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
                     cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
                     return cell
                 }
             }
             .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.myCoin.asDriver().drive { model in
-            guard let myCoin = model else {
-                return
-            }
-            print(myCoin)
-        }.disposed(by: rx.disposeBag)
+        viewModel.outputs.myCoin
+            .bind(to: myView.rx.myInfo)
+            .disposed(by: rx.disposeBag)
+        
         
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in

@@ -272,19 +272,30 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 3 images.
+  /// This `R.image` struct is generated, and contains static references to 5 images.
   struct image {
     /// Image `LaunchImagePlayAndroid`.
     static let launchImagePlayAndroid = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImagePlayAndroid")
+    /// Image `android`.
+    static let android = Rswift.ImageResource(bundle: R.hostingBundle, name: "android")
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
     /// Image `saber`.
     static let saber = Rswift.ImageResource(bundle: R.hostingBundle, name: "saber")
+    /// Image `user`.
+    static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "LaunchImagePlayAndroid", bundle: ..., traitCollection: ...)`
     static func launchImagePlayAndroid(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.launchImagePlayAndroid, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "android", bundle: ..., traitCollection: ...)`
+    static func android(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.android, compatibleWith: traitCollection)
     }
     #endif
 
@@ -299,6 +310,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "saber", bundle: ..., traitCollection: ...)`
     static func saber(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.saber, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "user", bundle: ..., traitCollection: ...)`
+    static func user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.user, compatibleWith: traitCollection)
     }
     #endif
 
