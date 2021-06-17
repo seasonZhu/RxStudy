@@ -9,9 +9,10 @@
 import Foundation
 
 struct MyCoin: Codable {
-    let coinCount: String?
-    let level: String?
-    let rank: String?
-    let userId: String?
-    let username: String?
+    let coinCount : Int?
+    let level : Int?
+    let nickname : String?
+    let rank : String?
+    let userId : Int?
+    let username : String?
 }

@@ -42,14 +42,16 @@ class MyController: BaseTableViewController {
             }
             .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.myCoin.asDriver().drive { myCoin in
+        viewModel.outputs.myCoin.asDriver().drive { model in
+            guard let myCoin = model else {
+                return
+            }
             print(myCoin)
         }.disposed(by: rx.disposeBag)
         
         tableView.rx.itemSelected
-            .bind { [weak self, weak viewModel] (indexPath) in
+            .bind { [weak self] (indexPath) in
                 self?.tableView.deselectRow(at: indexPath, animated: false)
-                guard let viewModel = viewModel else { return }
                 let my = viewModel.outputs.currentDataSource.value[indexPath.row]
                 switch my {
                 case .logout:

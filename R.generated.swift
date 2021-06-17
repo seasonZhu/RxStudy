@@ -114,14 +114,158 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.file` struct is generated, and contains static references to 1 files.
+  /// This `R.file` struct is generated, and contains static references to 19 files.
   struct file {
+    /// Resource file `AMapLocation.json`.
+    static let aMapLocationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "AMapLocation", pathExtension: "json")
+    /// Resource file `ArticleNormalList.json`.
+    static let articleNormalListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ArticleNormalList", pathExtension: "json")
+    /// Resource file `ArticleTopList.json`.
+    static let articleTopListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ArticleTopList", pathExtension: "json")
+    /// Resource file `Banner.json`.
+    static let bannerJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Banner", pathExtension: "json")
+    /// Resource file `CollectArticleAction.json`.
+    static let collectArticleActionJson = Rswift.FileResource(bundle: R.hostingBundle, name: "CollectArticleAction", pathExtension: "json")
+    /// Resource file `HotKey.json`.
+    static let hotKeyJson = Rswift.FileResource(bundle: R.hostingBundle, name: "HotKey", pathExtension: "json")
+    /// Resource file `LoginAndRegister.json`.
+    static let loginAndRegisterJson = Rswift.FileResource(bundle: R.hostingBundle, name: "LoginAndRegister", pathExtension: "json")
+    /// Resource file `Logout.json`.
+    static let logoutJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Logout", pathExtension: "json")
+    /// Resource file `MyCoin.json`.
+    static let myCoinJson = Rswift.FileResource(bundle: R.hostingBundle, name: "MyCoin", pathExtension: "json")
+    /// Resource file `MyCoinList.json`.
+    static let myCoinListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "MyCoinList", pathExtension: "json")
+    /// Resource file `MyCollectList.json`.
+    static let myCollectListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "MyCollectList", pathExtension: "json")
     /// Resource file `Pods-RxStudy-acknowledgements.plist`.
     static let podsRxStudyAcknowledgementsPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "Pods-RxStudy-acknowledgements", pathExtension: "plist")
+    /// Resource file `ProjectClassify.json`.
+    static let projectClassifyJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ProjectClassify", pathExtension: "json")
+    /// Resource file `ProjectClassifyList.json`.
+    static let projectClassifyListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ProjectClassifyList", pathExtension: "json")
+    /// Resource file `PublicNumber.json`.
+    static let publicNumberJson = Rswift.FileResource(bundle: R.hostingBundle, name: "PublicNumber", pathExtension: "json")
+    /// Resource file `PublicNumberList.json`.
+    static let publicNumberListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "PublicNumberList", pathExtension: "json")
+    /// Resource file `RankList.json`.
+    static let rankListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RankList", pathExtension: "json")
+    /// Resource file `SearchResult.json`.
+    static let searchResultJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SearchResult", pathExtension: "json")
+    /// Resource file `Tree.json`.
+    static let treeJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Tree", pathExtension: "json")
+
+    /// `bundle.url(forResource: "AMapLocation", withExtension: "json")`
+    static func aMapLocationJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.aMapLocationJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "ArticleNormalList", withExtension: "json")`
+    static func articleNormalListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.articleNormalListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "ArticleTopList", withExtension: "json")`
+    static func articleTopListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.articleTopListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Banner", withExtension: "json")`
+    static func bannerJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.bannerJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CollectArticleAction", withExtension: "json")`
+    static func collectArticleActionJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.collectArticleActionJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "HotKey", withExtension: "json")`
+    static func hotKeyJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.hotKeyJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "LoginAndRegister", withExtension: "json")`
+    static func loginAndRegisterJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.loginAndRegisterJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Logout", withExtension: "json")`
+    static func logoutJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.logoutJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "MyCoin", withExtension: "json")`
+    static func myCoinJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.myCoinJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "MyCoinList", withExtension: "json")`
+    static func myCoinListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.myCoinListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "MyCollectList", withExtension: "json")`
+    static func myCollectListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.myCollectListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "Pods-RxStudy-acknowledgements", withExtension: "plist")`
     static func podsRxStudyAcknowledgementsPlist(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.podsRxStudyAcknowledgementsPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "ProjectClassify", withExtension: "json")`
+    static func projectClassifyJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.projectClassifyJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "ProjectClassifyList", withExtension: "json")`
+    static func projectClassifyListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.projectClassifyListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "PublicNumber", withExtension: "json")`
+    static func publicNumberJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.publicNumberJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "PublicNumberList", withExtension: "json")`
+    static func publicNumberListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.publicNumberListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "RankList", withExtension: "json")`
+    static func rankListJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.rankListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "SearchResult", withExtension: "json")`
+    static func searchResultJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.searchResultJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "Tree", withExtension: "json")`
+    static func treeJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.treeJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 

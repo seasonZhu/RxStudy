@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
+		6114ABEF267AD6CD0082BA67 /* MyCoin.json in Resources */ = {isa = PBXBuildFile; fileRef = 6114ABEE267AD6CD0082BA67 /* MyCoin.json */; };
+		6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114ABF0267AD8450082BA67 /* R.generated.swift */; };
+		6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */; };
 		611E2E032660782C001585AE /* ConstraintArray+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E012660782B001585AE /* ConstraintArray+Extensions.swift */; };
 		611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E022660782B001585AE /* ConstraintArrayDSL.swift */; };
 		611E2E0626607869001585AE /* HotKeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611E2E0526607869001585AE /* HotKeyController.swift */; };
@@ -48,7 +51,6 @@
 		617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
 		61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */; };
-		619EDB312660B7E30056A3D9 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB302660B7E30056A3D9 /* R.generated.swift */; };
 		619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */; };
 		619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB362660BF820056A3D9 /* InfoViewCell.swift */; };
 		61A6ED08265C954900E3CA9D /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED07265C954900E3CA9D /* Refreshable.swift */; };
@@ -58,6 +60,23 @@
 		61B539002678863A00EEFE1F /* My.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B538FF2678863A00EEFE1F /* My.swift */; };
 		61B5390226789F4D00EEFE1F /* MyCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5390126789F4D00EEFE1F /* MyCoin.swift */; };
 		61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BB7C452679C4F800990636 /* MyViewModel.swift */; };
+		61BB7C59267A057700990636 /* Logout.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C48267A057700990636 /* Logout.json */; };
+		61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C49267A057700990636 /* LoginAndRegister.json */; };
+		61BB7C5B267A057700990636 /* ArticleNormalList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C4A267A057700990636 /* ArticleNormalList.json */; };
+		61BB7C5C267A057700990636 /* MyCollectList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C4B267A057700990636 /* MyCollectList.json */; };
+		61BB7C5D267A057700990636 /* RankList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C4C267A057700990636 /* RankList.json */; };
+		61BB7C5E267A057700990636 /* AMapLocation.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C4D267A057700990636 /* AMapLocation.json */; };
+		61BB7C5F267A057700990636 /* Banner.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C4E267A057700990636 /* Banner.json */; };
+		61BB7C60267A057700990636 /* CollectArticleAction.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C4F267A057700990636 /* CollectArticleAction.json */; };
+		61BB7C61267A057700990636 /* PublicNumber.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C50267A057700990636 /* PublicNumber.json */; };
+		61BB7C62267A057700990636 /* ArticleTopList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C51267A057700990636 /* ArticleTopList.json */; };
+		61BB7C63267A057700990636 /* PublicNumberList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C52267A057700990636 /* PublicNumberList.json */; };
+		61BB7C64267A057700990636 /* SearchResult.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C53267A057700990636 /* SearchResult.json */; };
+		61BB7C65267A057700990636 /* ProjectClassify.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C54267A057700990636 /* ProjectClassify.json */; };
+		61BB7C66267A057700990636 /* MyCoinList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C55267A057700990636 /* MyCoinList.json */; };
+		61BB7C67267A057700990636 /* HotKey.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C56267A057700990636 /* HotKey.json */; };
+		61BB7C68267A057700990636 /* ProjectClassifyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C57267A057700990636 /* ProjectClassifyList.json */; };
+		61BB7C69267A057700990636 /* Tree.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C58267A057700990636 /* Tree.json */; };
 		61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833C265B41E50063EE4E /* NSObject+Extension.swift */; };
 		61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */; };
 		61BF8343265C8FCA0063EE4E /* RefreshStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */; };
@@ -72,12 +91,14 @@
 		61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28246265F84F8009E16C9 /* WebLoadInfo.swift */; };
 		61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F28249265F8996009E16C9 /* WebViewController.swift */; };
 		61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */; };
-		61F2824E265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 61F2824D265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist */; };
 		61FAFBA0265CDE020099CA2E /* CommonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		6114ABEE267AD6CD0082BA67 /* MyCoin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MyCoin.json; sourceTree = "<group>"; };
+		6114ABF0267AD8450082BA67 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-RxStudy-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-RxStudy/Pods-RxStudy-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		611E2E012660782B001585AE /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
 		611E2E022660782B001585AE /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
 		611E2E0526607869001585AE /* HotKeyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyController.swift; sourceTree = "<group>"; };
@@ -122,7 +143,6 @@
 		617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
 		61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
-		619EDB302660B7E30056A3D9 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
 		619EDB362660BF820056A3D9 /* InfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewCell.swift; sourceTree = "<group>"; };
 		61A6ED07265C954900E3CA9D /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
@@ -132,6 +152,23 @@
 		61B538FF2678863A00EEFE1F /* My.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My.swift; sourceTree = "<group>"; };
 		61B5390126789F4D00EEFE1F /* MyCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoin.swift; sourceTree = "<group>"; };
 		61BB7C452679C4F800990636 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
+		61BB7C48267A057700990636 /* Logout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Logout.json; sourceTree = "<group>"; };
+		61BB7C49267A057700990636 /* LoginAndRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoginAndRegister.json; sourceTree = "<group>"; };
+		61BB7C4A267A057700990636 /* ArticleNormalList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ArticleNormalList.json; sourceTree = "<group>"; };
+		61BB7C4B267A057700990636 /* MyCollectList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MyCollectList.json; sourceTree = "<group>"; };
+		61BB7C4C267A057700990636 /* RankList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = RankList.json; sourceTree = "<group>"; };
+		61BB7C4D267A057700990636 /* AMapLocation.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = AMapLocation.json; sourceTree = "<group>"; };
+		61BB7C4E267A057700990636 /* Banner.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Banner.json; sourceTree = "<group>"; };
+		61BB7C4F267A057700990636 /* CollectArticleAction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = CollectArticleAction.json; sourceTree = "<group>"; };
+		61BB7C50267A057700990636 /* PublicNumber.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PublicNumber.json; sourceTree = "<group>"; };
+		61BB7C51267A057700990636 /* ArticleTopList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ArticleTopList.json; sourceTree = "<group>"; };
+		61BB7C52267A057700990636 /* PublicNumberList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = PublicNumberList.json; sourceTree = "<group>"; };
+		61BB7C53267A057700990636 /* SearchResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SearchResult.json; sourceTree = "<group>"; };
+		61BB7C54267A057700990636 /* ProjectClassify.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProjectClassify.json; sourceTree = "<group>"; };
+		61BB7C55267A057700990636 /* MyCoinList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MyCoinList.json; sourceTree = "<group>"; };
+		61BB7C56267A057700990636 /* HotKey.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = HotKey.json; sourceTree = "<group>"; };
+		61BB7C57267A057700990636 /* ProjectClassifyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProjectClassifyList.json; sourceTree = "<group>"; };
+		61BB7C58267A057700990636 /* Tree.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tree.json; sourceTree = "<group>"; };
 		61BF833C265B41E50063EE4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractViewModel.swift; sourceTree = "<group>"; };
 		61BF8342265C8FCA0063EE4E /* RefreshStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshStatus.swift; sourceTree = "<group>"; };
@@ -146,7 +183,6 @@
 		61F28246265F84F8009E16C9 /* WebLoadInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebLoadInfo.swift; sourceTree = "<group>"; };
 		61F28249265F8996009E16C9 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakScriptMessageDelegate.swift; sourceTree = "<group>"; };
-		61F2824D265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-RxStudy-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-RxStudy/Pods-RxStudy-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
 		61FAFB9F265CDE020099CA2E /* CommonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViewModel.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
 		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,15 +240,16 @@
 				61F28248265F895E009E16C9 /* WebView */,
 				61336C792656493700FDEB2A /* Extension */,
 				61336C6D265640D100FDEB2A /* HttpRequest */,
+				61BB7C47267A057700990636 /* jsons */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
-				619EDB302660B7E30056A3D9 /* R.generated.swift */,
+				6114ABF0267AD8450082BA67 /* R.generated.swift */,
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
-				612DBF62220022BE007F73CC /* Assets.xcassets */,
 				612DBF64220022BE007F73CC /* LaunchScreen.storyboard */,
 				612DBF67220022BE007F73CC /* Info.plist */,
 				61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */,
-				61F2824D265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist */,
+				6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */,
+				612DBF62220022BE007F73CC /* Assets.xcassets */,
 			);
 			path = RxStudy;
 			sourceTree = "<group>";
@@ -416,6 +453,31 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		61BB7C47267A057700990636 /* jsons */ = {
+			isa = PBXGroup;
+			children = (
+				61BB7C48267A057700990636 /* Logout.json */,
+				61BB7C49267A057700990636 /* LoginAndRegister.json */,
+				61BB7C4A267A057700990636 /* ArticleNormalList.json */,
+				61BB7C4B267A057700990636 /* MyCollectList.json */,
+				61BB7C4C267A057700990636 /* RankList.json */,
+				61BB7C4D267A057700990636 /* AMapLocation.json */,
+				61BB7C4E267A057700990636 /* Banner.json */,
+				61BB7C4F267A057700990636 /* CollectArticleAction.json */,
+				61BB7C50267A057700990636 /* PublicNumber.json */,
+				61BB7C51267A057700990636 /* ArticleTopList.json */,
+				61BB7C52267A057700990636 /* PublicNumberList.json */,
+				61BB7C53267A057700990636 /* SearchResult.json */,
+				61BB7C54267A057700990636 /* ProjectClassify.json */,
+				61BB7C55267A057700990636 /* MyCoinList.json */,
+				6114ABEE267AD6CD0082BA67 /* MyCoin.json */,
+				61BB7C56267A057700990636 /* HotKey.json */,
+				61BB7C57267A057700990636 /* ProjectClassifyList.json */,
+				61BB7C58267A057700990636 /* Tree.json */,
+			);
+			path = jsons;
+			sourceTree = SOURCE_ROOT;
+		};
 		61BF833E265B421B0063EE4E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,10 +639,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61BB7C63267A057700990636 /* PublicNumberList.json in Resources */,
 				612DBF66220022BE007F73CC /* LaunchScreen.storyboard in Resources */,
 				612DBF63220022BE007F73CC /* Assets.xcassets in Resources */,
+				6114ABEF267AD6CD0082BA67 /* MyCoin.json in Resources */,
+				61BB7C69267A057700990636 /* Tree.json in Resources */,
+				61BB7C5C267A057700990636 /* MyCollectList.json in Resources */,
+				61BB7C66267A057700990636 /* MyCoinList.json in Resources */,
+				6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */,
+				61BB7C61267A057700990636 /* PublicNumber.json in Resources */,
+				61BB7C5E267A057700990636 /* AMapLocation.json in Resources */,
+				61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */,
+				61BB7C62267A057700990636 /* ArticleTopList.json in Resources */,
+				61BB7C68267A057700990636 /* ProjectClassifyList.json in Resources */,
+				61BB7C65267A057700990636 /* ProjectClassify.json in Resources */,
+				61BB7C60267A057700990636 /* CollectArticleAction.json in Resources */,
+				61BB7C5B267A057700990636 /* ArticleNormalList.json in Resources */,
 				612DBF61220022BA007F73CC /* Main.storyboard in Resources */,
-				61F2824E265F9DA4009E16C9 /* Pods-RxStudy-acknowledgements.plist in Resources */,
+				61BB7C59267A057700990636 /* Logout.json in Resources */,
+				61BB7C67267A057700990636 /* HotKey.json in Resources */,
+				61BB7C5F267A057700990636 /* Banner.json in Resources */,
+				61BB7C64267A057700990636 /* SearchResult.json in Resources */,
+				61BB7C5D267A057700990636 /* RankList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -668,7 +748,6 @@
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
 				61B539002678863A00EEFE1F /* My.swift in Sources */,
-				619EDB312660B7E30056A3D9 /* R.generated.swift in Sources */,
 				6171E19D266615850065C34D /* AccountInfo.swift in Sources */,
 				617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
@@ -682,6 +761,7 @@
 				61B5390226789F4D00EEFE1F /* MyCoin.swift in Sources */,
 				6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
+				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
 				6171E18F2665D4190065C34D /* MyController.swift in Sources */,
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
