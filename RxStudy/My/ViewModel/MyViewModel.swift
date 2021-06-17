@@ -15,7 +15,7 @@ import Moya
 class MyViewModel: BaseViewModel {
     let logoutDataSource: [My] = [.ranking, .openSource, .login]
     
-    let loginDataSource: [My] = [.ranking, .openSource, .myCoin, .myCollect, .logout]
+    let loginDataSource: [My] = [.ranking, .myCoin, .myCollect, .openSource, .logout]
     
     let currentDataSource = BehaviorRelay<[My]>(value: [])
     

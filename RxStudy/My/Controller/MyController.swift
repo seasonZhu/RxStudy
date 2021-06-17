@@ -92,7 +92,9 @@ extension MyController {
                 .drive { baseModel in
                     if baseModel.errorCode == 0 {
                         AccountManager.shared.clearAccountInfo()
-                        MBProgressHUD.showText("退出登录成功")
+                        DispatchQueue.main.async {
+                            MBProgressHUD.showText("退出登录成功")
+                        }
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
