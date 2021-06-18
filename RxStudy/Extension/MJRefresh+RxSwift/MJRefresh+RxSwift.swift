@@ -14,24 +14,25 @@ import MJRefresh
 
 class Target: NSObject, Disposable {
     private var retainSelf: Target?
+    
     override init() {
         super.init()
         self.retainSelf = self
     }
+    
     func dispose() {
         self.retainSelf = nil
     }
 }
 
-private final
-class MJRefreshTarget<Component: MJRefreshComponent>: Target {
-    typealias CallBack = (MJRefreshState)->()
+private final class MJRefreshTarget<Component: MJRefreshComponent>: Target {
+    typealias CallBack = (MJRefreshState) -> Void
     /// 组件
     weak var component: Component?
     /// 回调
-    let callBack:CallBack
+    let callBack: CallBack
     
-    init(_ component: Component , callBack: @escaping CallBack) {
+    init(_ component: Component, callBack: @escaping CallBack) {
         self.callBack = callBack
         self.component = component
         super.init()
@@ -52,7 +53,7 @@ class MJRefreshTarget<Component: MJRefreshComponent>: Target {
     }
     
     deinit {
-        print("deinit")
+        print("\(className) deinit")
     }
 }
 
@@ -67,7 +68,7 @@ extension Reactive where Base: MJRefreshComponent {
     
     /// 刷新状态
     var state: ControlProperty<MJRefreshState> {
-        let source: Observable<MJRefreshState> = Observable.create { [weak component = self.base] observer  in
+        let source: Observable<MJRefreshState> = Observable.create { [weak component = base] observer  in
             MainScheduler.ensureExecutingOnScheduler()
             guard let component = component else {
                 observer.on(.completed)
@@ -80,7 +81,7 @@ extension Reactive where Base: MJRefreshComponent {
             return target
         }.takeUntil(deallocated)
         
-        let bindingObserver = Binder<MJRefreshState>(self.base) { (component, state) in
+        let bindingObserver = Binder<MJRefreshState>(base) { (component, state) in
             component.state = state
         }
         return ControlProperty(values: source, valueSink: bindingObserver)

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 import RxSwift
 import RxCocoa
 import MJRefresh
@@ -28,10 +29,10 @@ enum MJRefreshAction {
 }
 
 //MARK:- Refresh
-extension Reactive where Base:UIScrollView {
+extension Reactive where Base: UIScrollView {
     
     /// 执行的操作类型
-    var refreshAction:Binder<MJRefreshAction> {
+    var refreshAction: Binder<MJRefreshAction> {
         
         return Binder(base) { (target, action) in
             
@@ -60,9 +61,7 @@ extension Reactive where Base:UIScrollView {
                 if let footer =  target.mj_footer {
                     footer.resetNoMoreData()
                 }
-                break
             }
         }
     }
-    
 }
