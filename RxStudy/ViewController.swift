@@ -37,7 +37,7 @@ class ViewController: UITabBarController {
         
         navigationItem.rightBarButtonItem?.rx.tap.subscribe({ [weak self] _ in
             print("点击事件")
-            self?.navigationController?.pushViewController(HotKeyController(), animated: true)
+            self?.navigationController?.pushViewController(RxSwiftCoinRankListController(), animated: true)
         }).disposed(by: rx.disposeBag)
     }
     
@@ -66,7 +66,7 @@ class ViewController: UITabBarController {
         let treeVC = TreeController(type: .tree)
         addSubviewController(subViewController: treeVC, title: "体系", imageName: "", selectImageName: "")
         
-        let myVC = RxSwiftCoinRankListController()
+        let myVC = MyController()
         addSubviewController(subViewController: myVC, title: "我的", imageName: "", selectImageName: "")
     }
 }
