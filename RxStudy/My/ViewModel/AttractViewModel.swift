@@ -25,8 +25,6 @@ class AttractViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
         super.init()
     }
     
-    var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.none))
-    
     /// outputs
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
     var dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])

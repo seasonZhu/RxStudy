@@ -12,8 +12,8 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs, Refreshable {
-
+class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+    /// 搜索结果的首页是从0开始的
     private var pageNum: Int
     
     private let keyword: String
@@ -28,95 +28,85 @@ class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs, R
     }
     
     /// outputs
-    var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
-    
     let dataSource = BehaviorRelay<[Info]>(value: [])
+    
+    var refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
     
     // inputs
     func loadData(actionType: ScrollViewActionType) {
-        let refreshData: Single<BaseModel<Page<Info>>>
         switch actionType {
         case .refresh:
-            refreshData = refresh()
+            refresh()
         case .loadMore:
-            refreshData = loadMore()
+            loadMore()
         }
-        
-        refreshData.do(onSuccess: { baseModel in
-            self.outputsRefreshStauts(actionType: actionType, baseModel: baseModel)
-        }, onError: { error in
-            self.refreshStauts.accept(.footer(.endFooterRefresh))
-        }).map{ $0.data?.datas?.map{ $0 }}
-        /// 去掉其中为nil的值
-        .compactMap{ $0 }
-        .subscribe(onSuccess: { items in
-            self.outputsDataSourceMerge(actionType: actionType, items: items)
-        }, onError: { error in
-            
-        })
-        .disposed(by: disposeBag)
     }
 
-}
-
-private extension SearchResultViewModel {
-    func outputsRefreshStauts(actionType: ScrollViewActionType, baseModel: BaseModel<Page<Info>>) {
-        var status: RefreshStatus
-        guard let curPage = baseModel.data?.curPage, let totalPage = baseModel.data?.total else {
-            status = .footer(.endFooterRefresh)
-            self.refreshStauts.accept(status)
-            return
-        }
-        
-        switch actionType {
-        case .refresh:
-            if curPage < totalPage {
-                status = .header(.endHeaderRefresh)
-            }else if curPage == totalPage {
-                status = .footer(.endFooterRefreshWithNoData)
-            }else {
-                status = .header(.endHeaderRefresh)
-            }
-        case .loadMore:
-            if curPage < totalPage {
-                status = .footer(.showFooter)
-            }else if curPage == totalPage {
-                status = .footer(.endFooterRefreshWithNoData)
-            }else {
-                status = .footer(.hiddenFooter)
-            }
-        }
-        self.refreshStauts.accept(status)
-    }
-    
-    
-    func outputsDataSourceMerge(actionType: ScrollViewActionType, items: [Info]) {
-        switch actionType {
-        case .refresh:
-            self.outputs.dataSource.accept(items)
-        case .loadMore:
-            self.outputs.dataSource.accept(self.outputs.dataSource.value + items)
-        }
-    }
 }
 
 //MARK:- 网络请求,普通列表数据
 private extension SearchResultViewModel {
     
-    func refresh() -> Single<BaseModel<Page<Info>>> {
+    func refresh() {
         pageNum = 0
-        return requestData(page: pageNum)
+        requestData(page: pageNum)
     }
   
     
-    func loadMore() -> Single<BaseModel<Page<Info>>> {
+    func loadMore() {
         pageNum = pageNum + 1
-        return requestData(page: pageNum)
+        requestData(page: pageNum)
     }
     
-    func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
-        return homeProvider.rx.request(HomeService.queryKeyword(keyword, page))
+    func requestData(page: Int) {
+        homeProvider.rx.request(HomeService.queryKeyword(keyword, page))
             .map(BaseModel<Page<Info>>.self)
+            /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
+            .map{ $0.data }
+            /// 解包
+            .compactMap { $0 }
+            /// 转换操作
+            .asObservable()
+            .asSingle()
+            /// 订阅
+            .subscribe { event in
+                
+                /// 订阅事件
+                /// 通过page的值判断是下拉还是上拉(可以用枚举),不管成功还是失败都结束刷新状态
+                self.pageNum == 0 ? self.refreshSubject.onNext(.stopRefresh) : self.refreshSubject.onNext(.stopLoadmore)
+                
+                switch event {
+                case .success(let pageModel):
+                    /// 解包数据
+                    if let datas = pageModel.datas {
+                        /// 通过page的值判断是下拉还是上拉,做数据处理,这里为了方便写注释,没有使用三目运算符
+                        if self.pageNum == 0 {
+                            /// 下拉做赋值运算
+                            self.dataSource.accept(datas)
+                        }else {
+                            /// 上拉做合并运算
+                            self.dataSource.accept(self.dataSource.value + datas)
+                        }
+                    }
+                    
+                    /// 解包curPage与pageCount
+                    if let curPage = pageModel.curPage, let pageCount = pageModel.pageCount  {
+                        /// 如果发现它们相等,说明是最后一个,改变foot而状态
+                        if curPage == pageCount {
+                            self.refreshSubject.onNext(.showNomoreData)
+                        }
+                    }
+                case .error(_):
+                    /// error占时不做处理
+                    break
+                }
+            }.disposed(by: disposeBag)
     }
 }
 
+private extension SearchResultViewModel {
+    private func resetCurrentPageAndMjFooter() {
+        pageNum = 0
+        refreshSubject.onNext(.resetNomoreData)
+    }
+}

@@ -37,7 +37,7 @@ class ViewController: UITabBarController {
         
         navigationItem.rightBarButtonItem?.rx.tap.subscribe({ [weak self] _ in
             print("点击事件")
-            self?.navigationController?.pushViewController(RxSwiftCoinRankListController(), animated: true)
+            self?.navigationController?.pushViewController(HotKeyController(), animated: true)
         }).disposed(by: rx.disposeBag)
     }
     

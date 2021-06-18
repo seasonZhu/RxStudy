@@ -25,6 +25,15 @@ class HotKeyViewModel: BaseViewModel {
     /// inputs
     func loadData() {
         requestData()
+            
+    }
+}
+
+//MARK:- 网络请求
+private extension HotKeyViewModel {
+    func requestData() {
+        homeProvider.rx.request(HomeService.hotKey)
+            .map(BaseModel<[HotKey]>.self)
             .map{ $0.data }
             /// 去掉其中为nil的值
             .compactMap{ $0 }
@@ -35,16 +44,6 @@ class HotKeyViewModel: BaseViewModel {
                 self.networkError.onNext(())
             })
             .disposed(by: disposeBag)
-    }
-}
-
-//MARK:- 网络请求
-private extension HotKeyViewModel {
-    func requestData() -> Single<BaseModel<[HotKey]>> {
-        let result = homeProvider.rx.request(HomeService.hotKey)
-            .map(BaseModel<[HotKey]>.self)
-        
-        return result
     }
 }
 
