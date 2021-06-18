@@ -105,7 +105,7 @@ extension TabsController {
     }
     
     func settingSegmentedDataSource(tabs: [Tab]) {
-        segmentedDataSource.titles = tabs.map{ $0.name }.compactMap{ $0 }
+        segmentedDataSource.titles = tabs.map{ $0.name?.replaceHtmlElement }.compactMap{ $0 }
         segmentedView.defaultSelectedIndex = 0
         segmentedView.reloadData()
 
