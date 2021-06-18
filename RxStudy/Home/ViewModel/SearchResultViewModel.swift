@@ -30,7 +30,7 @@ class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     /// outputs
     let dataSource = BehaviorRelay<[Info]>(value: [])
     
-    var refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
     
     /// inputs
     func loadData(actionType: ScrollViewActionType) {

@@ -107,7 +107,9 @@ extension SingleTabListController {
         
         viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
         
-        viewModel.outputs.refreshStatusBind(to: tableView)?
+        /// 下拉与上拉状态绑定到tableView
+        viewModel.outputs.refreshSubject
+            .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
         if type == .tree {

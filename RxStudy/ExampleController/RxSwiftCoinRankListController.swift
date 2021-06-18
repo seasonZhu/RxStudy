@@ -24,10 +24,10 @@ class RxSwiftCoinRankListController: BaseViewController {
     private var page: Int = 1
     
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
-    private var dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])
+    private let dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])
     
     /// 既是可监听序列也是观察者的状态枚举
-    private var refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    private let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
     
     override func viewDidLoad() {
         super.viewDidLoad()

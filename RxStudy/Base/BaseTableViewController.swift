@@ -52,6 +52,18 @@ class BaseTableViewController: BaseViewController {
         emptyDataSetButtonTap.subscribe { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()
         }.disposed(by: rx.disposeBag)
+        
+        isEmpty.subscribe { event in
+            switch event {
+            case .next(let noContent):
+                if noContent {
+                    self.tableView.mj_footer?.endRefreshingWithNoMoreData()
+                }
+                break
+            default:
+                break
+            }
+        }.disposed(by: rx.disposeBag)
     }
 
 }
