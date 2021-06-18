@@ -35,7 +35,7 @@ class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs, 
     
     let dataSource = BehaviorRelay<[Info]>(value: [])
     
-    // inputs
+    /// inputs
     func loadData(actionType: ScrollViewActionType) {
         let refreshData: Single<BaseModel<Page<Info>>>
         switch actionType {

@@ -37,7 +37,7 @@ class CommonViewModel<M: Codable, S: TargetType>: BaseViewModel, ViemModelInputs
     
     let dataSource = BehaviorRelay<[M]>(value: [])
     
-    // inputs
+    /// inputs
     func loadData(actionType: ScrollViewActionType) {
         let refreshData: Driver<BaseModel<Page<M>>>
         switch actionType {

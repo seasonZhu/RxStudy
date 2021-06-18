@@ -31,7 +31,7 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs, Refreshab
     
     let banners = BehaviorRelay<[Banner]>(value: [])
     
-    // inputs
+    /// inputs
     func loadData(actionType: ScrollViewActionType) {        
         switch actionType {
         case .refresh:

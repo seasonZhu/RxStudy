@@ -32,7 +32,7 @@ class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     
     var refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
     
-    // inputs
+    /// inputs
     func loadData(actionType: ScrollViewActionType) {
         switch actionType {
         case .refresh:

@@ -14,13 +14,11 @@ import Moya
 
 typealias TreeViewModel = TabsViewModel
 
-class TabsViewModel: BaseViewModel, Refreshable {    
+class TabsViewModel: BaseViewModel {
     
     private let type: TagType
 
     private let disposeBag: DisposeBag
-    
-    var refreshStauts: BehaviorRelay<RefreshStatus> = BehaviorRelay(value: .header(.begainHeaderRefresh))
     
     init(type: TagType, disposeBag: DisposeBag) {
         self.type = type
@@ -33,22 +31,13 @@ class TabsViewModel: BaseViewModel, Refreshable {
     
     /// inputs
     func loadData() {
-        requestData().do(onDispose: {
-                self.refreshStauts.accept(.header(.endHeaderRefresh))
-            })
-            .map{ $0.data }
-            /// 去掉其中为nil的值
-            .compactMap{ $0 }
-            .subscribe(onSuccess: { items in
-                self.dataSource.accept(items)
-            })
-        .disposed(by: disposeBag)
+        requestData()
     }
 }
 
 //MARK:- 网络请求
 private extension TabsViewModel {
-    func requestData() -> Single<BaseModel<[Tab]>> {
+    func requestData() {
         let result: Single<BaseModel<[Tab]>>
         switch type {
         case .project:
@@ -62,6 +51,13 @@ private extension TabsViewModel {
                 .map(BaseModel<[Tab]>.self)
         }
         
-        return result
+        result
+            .map{ $0.data }
+            /// 去掉其中为nil的值
+            .compactMap{ $0 }
+            .subscribe(onSuccess: { items in
+                self.dataSource.accept(items)
+            })
+        .disposed(by: disposeBag)
     }
 }
