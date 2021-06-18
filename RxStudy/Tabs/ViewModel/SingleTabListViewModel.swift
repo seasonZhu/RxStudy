@@ -51,7 +51,7 @@ class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 private extension SingleTabListViewModel {
     
     func refresh() {
-        pageNum = type.pageNum
+        resetCurrentPageAndMjFooter()
         requestData(page: pageNum)
     }
   

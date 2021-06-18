@@ -48,7 +48,7 @@ class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 private extension SearchResultViewModel {
     
     func refresh() {
-        pageNum = 0
+        resetCurrentPageAndMjFooter()
         requestData(page: pageNum)
     }
   
