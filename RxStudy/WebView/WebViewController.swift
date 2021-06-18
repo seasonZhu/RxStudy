@@ -149,15 +149,15 @@ extension WebViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        MBProgressHUD.beginLoading()
+        //MBProgressHUD.beginLoading()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        MBProgressHUD.stopLoading()
+        //MBProgressHUD.stopLoading()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        MBProgressHUD.stopLoading()
+        //MBProgressHUD.stopLoading()
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {

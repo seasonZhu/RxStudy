@@ -42,11 +42,12 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
                     self.refreshSubject.onNext(.stopRefresh)
                     switch event {
                     case .success(let tuple):
-                        let topModel = tuple.0
+                        let topInfos = tuple.0
                         let noramlPageModel = tuple.1
-                        let bannerModel = tuple.2
+                        let items = tuple.2
                         
-                        if let topInfos = topModel.data, let normalInfos = noramlPageModel.data?.datas {
+                        /// 合并数组并赋值
+                        if let normalInfos = noramlPageModel.data?.datas {
                             self.dataSource.accept(topInfos + normalInfos)
                         }
 
@@ -57,9 +58,7 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
                             }
                         }
                         
-                        if let items = bannerModel.data {
-                            self.banners.accept(items)
-                        }
+                        self.banners.accept(items)
                     case .error(_):
                         break
                     }
@@ -117,6 +116,9 @@ private extension HomeViewModel {
         return requestData(page: pageNum)
     }
     
+    /// 普通列表数据
+    /// - Parameter page: 页码
+    /// - Returns: Single<BaseModel<Page<Info>>>
     func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
         let result = homeProvider.rx.request(HomeService.normalArticle(page))
             .map(BaseModel<Page<Info>>.self)
@@ -124,16 +126,29 @@ private extension HomeViewModel {
         return result
     }
     
-    func topArticleData() -> Single<BaseModel<[Info]>> {
+    
+    /// 置顶文章
+    /// - Returns: Single<[Info]>
+    func topArticleData() -> Single<[Info]> {
         let result = homeProvider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
+            .map{ $0.data }
+            .compactMap { $0 }
+            .asObservable()
+            .asSingle()
         
         return result
     }
     
-    func bannerData() -> Single<BaseModel<[Banner]>> {
+    /// 轮播图
+    /// - Returns: Single<BaseModel<[Banner]>>
+    func bannerData() -> Single<[Banner]> {
         let result = homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
+            .map{ $0.data }
+            .compactMap { $0 }
+            .asObservable()
+            .asSingle()
 
         return result
     }
