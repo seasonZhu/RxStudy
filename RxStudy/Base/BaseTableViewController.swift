@@ -57,7 +57,8 @@ class BaseTableViewController: BaseViewController {
             switch event {
             case .next(let noContent):
                 if noContent {
-                    self.tableView.mj_footer?.endRefreshingWithNoMoreData()
+                    /// 这个地方有问题
+//                    self.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
                 break
             default:

@@ -74,7 +74,7 @@ extension SingleTabListController {
                 
         let viewModel = SingleTabListViewModel(type: type, tab: tab, disposeBag: rx.disposeBag)
 
-        tableView.mj_header?.rx.refreshAction
+        tableView.mj_header?.rx.refresh
             .asDriver()
             .drive(onNext: {
                 viewModel.inputs.loadData(actionType: .refresh)
@@ -82,7 +82,7 @@ extension SingleTabListController {
             })
             .disposed(by: rx.disposeBag)
 
-        tableView.mj_footer?.rx.refreshAction
+        tableView.mj_footer?.rx.refresh
             .asDriver()
             .drive(onNext: {
                 viewModel.inputs.loadData(actionType: .loadMore)

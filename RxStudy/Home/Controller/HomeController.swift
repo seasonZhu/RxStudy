@@ -60,7 +60,7 @@ extension HomeController {
                 
         let viewModel = HomeViewModel(disposeBag: rx.disposeBag)
 
-        tableView.mj_header?.rx.refreshAction
+        tableView.mj_header?.rx.refresh
             .asDriver()
             .drive(onNext: {
                 viewModel.inputs.loadData(actionType: .refresh)
@@ -68,7 +68,7 @@ extension HomeController {
             })
             .disposed(by: rx.disposeBag)
 
-        tableView.mj_footer?.rx.refreshAction
+        tableView.mj_footer?.rx.refresh
             .asDriver()
             .drive(onNext: {
                 viewModel.inputs.loadData(actionType: .loadMore)
@@ -93,7 +93,9 @@ extension HomeController {
         
         viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
         
-        viewModel.outputs.refreshStatusBind(to: tableView)?
+        /// 下拉与上拉状态绑定到tableView
+        viewModel.outputs.refreshSubject
+            .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
         //MARK:- 轮播图的设置,这一段基本上就典型的Cocoa代码了

@@ -10,6 +10,11 @@ import Foundation
 
 import RxCocoa
 
+enum ScrollViewActionType {
+    case refresh
+    case loadMore
+}
+
 /// vm接受页面输入行为
 protocol ViemModelInputs {
     /// 加载数据
