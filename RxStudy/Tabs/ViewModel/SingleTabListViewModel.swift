@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs, Refreshable {
 
     private var pageNum: Int
     

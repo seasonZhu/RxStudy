@@ -131,3 +131,51 @@ extension Reactive where Base: MJRefreshComponent {
         }
     }
 }
+
+extension CoinRankListController {
+    func coinRankListViewModelBinding() {
+        /// 初始化ViewModel
+        let viewModel = CoinRankListViewModel(
+            input: (
+                headerRefresh: self.tableView.mj_header!.rx.headerRefreshing.asDriver(),
+                footerRefresh: self.tableView.mj_footer!.rx.footerRefreshing(2).asDriver()
+                ),
+            disposeBag: rx.disposeBag)
+        
+        /// 单元格数据的绑定
+        viewModel.tableData
+            .asDriver()
+            .drive(tableView.rx.items) { (tableView, row, coinRank) in
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+                    cell.textLabel?.text = coinRank.username
+                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
+                    return cell
+                }else {
+                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    cell.textLabel?.text = coinRank.username
+                    cell.detailTextLabel?.text = coinRank.coinCount?.toString
+                    return cell
+                }
+        }
+        .disposed(by: rx.disposeBag)
+        
+        /// 下拉刷新状态的绑定 需要对header与footer都做绑定
+        viewModel.headerRefreshStatus
+            .drive(self.tableView.mj_header!.rx.refreshValue)
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.headerRefreshStatus
+            .drive(self.tableView.mj_footer!.rx.refreshValue)
+            .disposed(by: rx.disposeBag)
+         
+        /// 上拉刷新状态的绑定 需要对header与footer都做绑定
+        viewModel.footerRefreshStatus
+            .drive(self.tableView.mj_header!.rx.refreshValue)
+            .disposed(by: rx.disposeBag)
+        
+
+        viewModel.footerRefreshStatus
+            .drive(self.tableView.mj_footer!.rx.refreshValue)
+            .disposed(by: rx.disposeBag)
+    }
+}

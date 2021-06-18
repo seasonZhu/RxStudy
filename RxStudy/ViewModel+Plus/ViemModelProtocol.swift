@@ -18,7 +18,7 @@ protocol ViemModelInputs {
 }
 
 /// vm输出数据行为
-protocol ViemModelOutputs: Refreshable {
+protocol ViemModelOutputs {
     
     associatedtype T
             

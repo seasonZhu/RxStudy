@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs, Refreshable {
 
     private var pageNum: Int
     

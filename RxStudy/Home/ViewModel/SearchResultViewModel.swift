@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs, Refreshable {
 
     private var pageNum: Int
     
