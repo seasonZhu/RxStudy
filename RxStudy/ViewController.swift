@@ -44,6 +44,8 @@ class ViewController: UITabBarController {
     //MARK:- 添加子控制器
     private func addSubviewController(subViewController: UIViewController, title: String, imageName: String, selectImageName: String) {
         subViewController.tabBarItem.title = title
+        subViewController.tabBarItem.image = UIImage(named: imageName)!
+        subViewController.tabBarItem.selectedImage = UIImage(named: selectImageName)!
         subViewController.title = title
         addChild(subViewController)
         
@@ -53,21 +55,36 @@ class ViewController: UITabBarController {
     private func addChildControllers() {
 
         let homeVC = HomeController()
-        addSubviewController(subViewController: homeVC, title: "首页", imageName: "", selectImageName: "")
+        addSubviewController(subViewController: homeVC,
+                             title: "首页",
+                             imageName: R.image.home.name,
+                             selectImageName: R.image.home_selected.name)
 
 
         let projectVC = TabsController(type: .project)
-        addSubviewController(subViewController: projectVC, title: "项目", imageName: "", selectImageName: "")
+        addSubviewController(subViewController: projectVC,
+                             title: "项目",
+                             imageName: R.image.project.name,
+                             selectImageName: R.image.project_selected.name)
 
 
         let publicNumberVC = TabsController(type: .publicNumber)
-        addSubviewController(subViewController: publicNumberVC, title: "公众号", imageName: "", selectImageName: "")
+        addSubviewController(subViewController: publicNumberVC,
+                             title: "公众号",
+                             imageName: R.image.publicNumber.name,
+                             selectImageName: R.image.publicNumber_selected.name)
 
         let treeVC = TreeController(type: .tree)
-        addSubviewController(subViewController: treeVC, title: "体系", imageName: "", selectImageName: "")
+        addSubviewController(subViewController: treeVC,
+                             title: "体系",
+                             imageName: R.image.tree.name,
+                             selectImageName: R.image.tree_selected.name)
         
         let myVC = MyController()
-        addSubviewController(subViewController: myVC, title: "我的", imageName: "", selectImageName: "")
+        addSubviewController(subViewController: myVC,
+                             title: "我的",
+                             imageName: R.image.my.name,
+                             selectImageName: R.image.my_selected.name)
     }
 }
 

@@ -272,7 +272,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 5 images.
+  /// This `R.image` struct is generated, and contains static references to 15 images.
   struct image {
     /// Image `LaunchImagePlayAndroid`.
     static let launchImagePlayAndroid = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImagePlayAndroid")
@@ -280,8 +280,28 @@ struct R: Rswift.Validatable {
     static let android = Rswift.ImageResource(bundle: R.hostingBundle, name: "android")
     /// Image `back`.
     static let back = Rswift.ImageResource(bundle: R.hostingBundle, name: "back")
+    /// Image `home_selected`.
+    static let home_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "home_selected")
+    /// Image `home`.
+    static let home = Rswift.ImageResource(bundle: R.hostingBundle, name: "home")
+    /// Image `my_selected`.
+    static let my_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "my_selected")
+    /// Image `my`.
+    static let my = Rswift.ImageResource(bundle: R.hostingBundle, name: "my")
+    /// Image `project_selected`.
+    static let project_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "project_selected")
+    /// Image `project`.
+    static let project = Rswift.ImageResource(bundle: R.hostingBundle, name: "project")
+    /// Image `publicNumber_selected`.
+    static let publicNumber_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "publicNumber_selected")
+    /// Image `publicNumber`.
+    static let publicNumber = Rswift.ImageResource(bundle: R.hostingBundle, name: "publicNumber")
     /// Image `saber`.
     static let saber = Rswift.ImageResource(bundle: R.hostingBundle, name: "saber")
+    /// Image `tree_selected`.
+    static let tree_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree_selected")
+    /// Image `tree`.
+    static let tree = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree")
     /// Image `user`.
     static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
 
@@ -307,9 +327,79 @@ struct R: Rswift.Validatable {
     #endif
 
     #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "home", bundle: ..., traitCollection: ...)`
+    static func home(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.home, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "home_selected", bundle: ..., traitCollection: ...)`
+    static func home_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.home_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "my", bundle: ..., traitCollection: ...)`
+    static func my(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.my, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "my_selected", bundle: ..., traitCollection: ...)`
+    static func my_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.my_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "project", bundle: ..., traitCollection: ...)`
+    static func project(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.project, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "project_selected", bundle: ..., traitCollection: ...)`
+    static func project_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.project_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "publicNumber", bundle: ..., traitCollection: ...)`
+    static func publicNumber(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.publicNumber, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "publicNumber_selected", bundle: ..., traitCollection: ...)`
+    static func publicNumber_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.publicNumber_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
     /// `UIImage(named: "saber", bundle: ..., traitCollection: ...)`
     static func saber(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.saber, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tree", bundle: ..., traitCollection: ...)`
+    static func tree(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tree, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "tree_selected", bundle: ..., traitCollection: ...)`
+    static func tree_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.tree_selected, compatibleWith: traitCollection)
     }
     #endif
 
