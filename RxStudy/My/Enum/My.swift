@@ -47,7 +47,7 @@ extension My {
         case .ranking:
             string = "CoinRankListController"
         case .openSource:
-            string = "AcknowListViewController"
+            string = "ThirdPartyController"
         case .myCoin:
             string = "MyCoinController"
         case .myCollect:

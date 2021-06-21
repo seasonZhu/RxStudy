@@ -10,7 +10,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import AcknowList
 import MBProgressHUD
 
 class MyController: BaseTableViewController {
@@ -59,8 +58,6 @@ class MyController: BaseTableViewController {
                 switch my {
                 case .logout:
                     self?.logoutAction(viewModel: viewModel)
-                case .openSource:
-                    self?.navigationController?.pushViewController(AcknowListViewController(), animated: true)
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return
