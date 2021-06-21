@@ -36,15 +36,15 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
         switch actionType {
         case .refresh:
             /// 合并请求
-            Single.zip(topArticleData(), refresh(), bannerData())
+            Single.zip(bannerData(), topArticleData(), refresh())
                 .subscribe { event in
                     /// 订阅事件
                     self.refreshSubject.onNext(.stopRefresh)
                     switch event {
                     case .success(let tuple):
-                        let topInfos = tuple.0
-                        let noramlPageModel = tuple.1
-                        let items = tuple.2
+                        let items = tuple.0
+                        let topInfos = tuple.1
+                        let noramlPageModel = tuple.2
                         
                         /// 合并数组并赋值
                         if let normalInfos = noramlPageModel.data?.datas {
@@ -102,15 +102,22 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 
 }
 
-//MARK:- 网络请求,普通列表数据
+//MARK:- 网络请求 
 private extension HomeViewModel {
     
+    /// 重置PageNum与上拉组件
+    private func resetCurrentPageAndMjFooter() {
+        pageNum = 0
+        refreshSubject.onNext(.resetNomoreData)
+    }
+    
+    /// 下拉刷新操作
     func refresh() -> Single<BaseModel<Page<Info>>> {
         resetCurrentPageAndMjFooter()
         return requestData(page: pageNum)
     }
   
-    
+    /// 上拉加载操作
     func loadMore() -> Single<BaseModel<Page<Info>>> {
         pageNum = pageNum + 1
         return requestData(page: pageNum)
@@ -151,12 +158,5 @@ private extension HomeViewModel {
             .asSingle()
 
         return result
-    }
-}
-
-private extension HomeViewModel {
-    private func resetCurrentPageAndMjFooter() {
-        pageNum = 0
-        refreshSubject.onNext(.resetNomoreData)
     }
 }

@@ -13,7 +13,9 @@ struct Api {
     static let baseUrl = "https://www.wanandroid.com/"
     
     private init() {}
+}
 
+extension Api {
     /// 首页 queryKeyword是post请求 其他的是get请求
     enum Home {
         
@@ -27,29 +29,27 @@ struct Api {
 
         static let queryKeyword = "article/query/"
     }
+}
 
+extension Api {
     /// 项目 均是get请求
     enum Project {
         static let tags = "project/tree/json"
         
         static let tagList = "project/list/"
     }
+}
 
+extension Api {
     /// 公众号 均是get请求
     enum PublicNumber {
         static let tags = "wxarticle/chapters/json"
 
         static let tagList = "wxarticle/list/"
     }
-    
-    /// 体系 均是get请求
-    enum Tree {
-        
-        static let tags = "tree/json"
+}
 
-        static let tagList = "article/list/"
-    }
-
+extension Api {
     /// 用户登录注册登出 登录注册为post 登出为get
     enum Account {
         static let login = "user/login"
@@ -58,7 +58,20 @@ struct Api {
 
         static let logout = "user/logout/json"
     }
-    
+}
+
+
+extension Api {
+    /// 体系 均是get请求
+    enum Tree {
+        
+        static let tags = "tree/json"
+
+        static let tagList = "article/list/"
+    }
+}
+
+extension Api {
     static let postCollectArticle = "lg/collect/"
 
     static let postUnCollectArticle = "lg/uncollect_originId/"

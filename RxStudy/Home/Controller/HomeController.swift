@@ -124,9 +124,6 @@ extension HomeController {
             pageControl.numberOfPages = models.count
             pagerView.reloadData()
         }.disposed(by: rx.disposeBag)
-
-
-        tableView.mj_header?.beginRefreshing()
     }
 }
 
