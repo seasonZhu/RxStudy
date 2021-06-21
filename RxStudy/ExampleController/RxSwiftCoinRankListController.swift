@@ -20,15 +20,6 @@ class RxSwiftCoinRankListController: BaseViewController {
     /// 懒加载tableView
     private lazy var tableView = UITableView(frame: .zero, style: .plain)
     
-    /// 初始化page为1
-    private var page: Int = 1
-    
-    /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
-    private let dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])
-    
-    /// 既是可监听序列也是观察者的状态枚举
-    private let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -42,20 +33,23 @@ class RxSwiftCoinRankListController: BaseViewController {
         /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
+        /// 创建vm
+        let vm = RxSwiftCoinRankListViewModel(disposeBag: rx.disposeBag)
+        
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
         
         tableView.mj_header?.rx.refresh
-            .subscribe { [weak self] _ in
-                self?.refreshAction()
+            .subscribe { _ in
+                vm.refreshAction()
         }.disposed(by: rx.disposeBag)
         
         /// 设置尾部刷新控件
         tableView.mj_footer = MJRefreshBackNormalFooter()
         
         tableView.mj_footer?.rx.refresh
-            .subscribe { [weak self] _ in
-                self?.loadMoreAction()
+            .subscribe { _ in
+                vm.loadMoreAction()
         }.disposed(by: rx.disposeBag)
         
         /// 简单布局
@@ -65,7 +59,7 @@ class RxSwiftCoinRankListController: BaseViewController {
         }
         
         /// 数据源驱动
-        dataSource
+        vm.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
             if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
@@ -82,22 +76,43 @@ class RxSwiftCoinRankListController: BaseViewController {
         .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView
-        refreshSubject
+        vm.refreshSubject
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
     }
 
 }
 
-extension RxSwiftCoinRankListController {
+extension RxSwiftCoinRankListController: UITableViewDelegate {}
+
+
+class RxSwiftCoinRankListViewModel {
+    /// 初始化page为1
+    private var page: Int = 1
+    
+    /// DisposeBag
+    private let disposeBag: DisposeBag
+    
+    /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
+    let dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])
+    
+    /// 既是可监听序列也是观察者的状态枚举
+    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    
+    /// 初始化方法
+    /// - Parameter disposeBag: 传入的disposeBag
+    init(disposeBag: DisposeBag) {
+        self.disposeBag = disposeBag
+    }
+    
     /// 下拉刷新行为
-    private func refreshAction() {
+    func refreshAction() {
         resetCurrentPageAndMjFooter()
         getCoinRank(page: page)
     }
     
     /// 上拉加载更多行为
-    private func loadMoreAction() {
+    func loadMoreAction() {
         page = page + 1
         getCoinRank(page: page)
     }
@@ -105,7 +120,6 @@ extension RxSwiftCoinRankListController {
     /// 下拉的参数与状态重置行为
     private func resetCurrentPageAndMjFooter() {
         page = 1
-        tableView.mj_footer?.isHidden = false
         refreshSubject.onNext(.resetNomoreData)
     }
     
@@ -153,8 +167,6 @@ extension RxSwiftCoinRankListController {
                     /// error占时不做处理
                     break
                 }
-            }.disposed(by: rx.disposeBag)
+            }.disposed(by: disposeBag)
     }
 }
-
-extension RxSwiftCoinRankListController: UITableViewDelegate {}
