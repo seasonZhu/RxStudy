@@ -67,6 +67,7 @@
 		61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */; };
 		61B79950268190F40025EADE /* MyCoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7994F268190F40025EADE /* MyCoinViewModel.swift */; };
 		61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B79951268193D00025EADE /* MyCollectionViewModel.swift */; };
+		61B799542681B5760025EADE /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B799532681B5760025EADE /* WebViewModel.swift */; };
 		61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BB7C452679C4F800990636 /* MyViewModel.swift */; };
 		61BB7C59267A057700990636 /* Logout.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C48267A057700990636 /* Logout.json */; };
 		61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C49267A057700990636 /* LoginAndRegister.json */; };
@@ -165,6 +166,7 @@
 		61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHistoryCoin.swift; sourceTree = "<group>"; };
 		61B7994F268190F40025EADE /* MyCoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
 		61B79951268193D00025EADE /* MyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewModel.swift; sourceTree = "<group>"; };
+		61B799532681B5760025EADE /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		61BB7C452679C4F800990636 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
 		61BB7C48267A057700990636 /* Logout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Logout.json; sourceTree = "<group>"; };
 		61BB7C49267A057700990636 /* LoginAndRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoginAndRegister.json; sourceTree = "<group>"; };
@@ -579,6 +581,7 @@
 		61F28248265F895E009E16C9 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				61B799532681B5760025EADE /* WebViewModel.swift */,
 				61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */,
 				61F28249265F8996009E16C9 /* WebViewController.swift */,
 			);
@@ -828,6 +831,7 @@
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				6171E1982665FE570065C34D /* Constant.swift in Sources */,
 				6114ABF9267AED660082BA67 /* MyCollectionController.swift in Sources */,
+				61B799542681B5760025EADE /* WebViewModel.swift in Sources */,
 				619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */,
 				611E2E0626607869001585AE /* HotKeyController.swift in Sources */,

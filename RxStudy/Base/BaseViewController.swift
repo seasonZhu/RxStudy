@@ -67,17 +67,18 @@ class BaseViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    /// 分类中的方法不能被重写必须写在class里面
+    @discardableResult
+    func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) -> WebViewController {
+        let vc = WebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
+        navigationController?.pushViewController(vc, animated: true)
+        return vc
+    }
+    
     deinit {
         print("\(className)被销毁了")
     }
 
-}
-
-extension BaseViewController {
-    func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) {
-        let vc = WebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
-        navigationController?.pushViewController(vc, animated: true)
-    }
 }
 
 //MARK:- 网络请求错误页面的配置项(待用)

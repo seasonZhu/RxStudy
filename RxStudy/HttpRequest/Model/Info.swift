@@ -13,10 +13,12 @@ struct Info : Codable {
     
     var title : String?
     
-    var collectId: Int? { originId }
-    
     var link: String?
-    let id : Int?
+    /// 我的收藏接口originId才是文章的标识符,id没有用,不要使用
+    var originId: Int?
+    /// 不是我的收藏接口,拿到的id就是文章的标识符,需要通过这个字段进行收藏与取消收藏的操作,此时originId为nil
+    var id : Int?
+    
     let apkLink : String?
     let audit : Int?
     let author : String?
@@ -34,7 +36,7 @@ struct Info : Codable {
     let niceDate : String?
     let niceShareDate : String?
     let origin : String?
-    let originId: Int
+
     let prefix : String?
     let projectLink : String?
     let publishTime : Int?

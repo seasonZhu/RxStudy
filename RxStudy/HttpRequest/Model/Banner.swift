@@ -10,14 +10,16 @@ import Foundation
 
 struct Banner : Codable {
     
+    var id : Int?
+    
     var title : String?
     
-    var collectId: Int? { id }
+    var originId: Int? = nil
     
     var link: String? { url }
         
     let desc : String?
-    let id : Int?
+    
     let imagePath : String?
     let isVisible : Int?
     let order : Int?

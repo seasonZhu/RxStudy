@@ -54,6 +54,10 @@ final class AccountManager {
         return UserDefaults.standard.value(forKey: kPassword) as? String
     }
     
+    func updateCollectIds(_ collectIds: [Int]) {
+        AccountManager.shared.accountInfo?.collectIds = collectIds
+    }
+    
     func autoLogin() {
         if !isLogin.value {
             guard let username = getUsername(), let password = getPassword() else {

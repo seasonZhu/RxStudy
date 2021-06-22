@@ -19,9 +19,11 @@ private let JSCallback = "JSCallback"
 
 class WebViewController: BaseViewController {
 
-    let webLoadInfo: WebLoadInfo
+    private let webLoadInfo: WebLoadInfo
     
-    let isFromBanner: Bool
+    private let isFromBanner: Bool
+    
+    let hasCollectAction = PublishSubject<Void>()
     
     init(webLoadInfo: WebLoadInfo, isFromBanner: Bool) {
         self.webLoadInfo = webLoadInfo
@@ -88,6 +90,9 @@ class WebViewController: BaseViewController {
             make.edges.equalTo(view)
         }
         
+        /// vm
+        let vm = WebViewModel(disposeBag: rx.disposeBag)
+        
         /// 加载url
         guard let link = webLoadInfo.link, let url = URL(string: link) else {
             return
@@ -105,11 +110,23 @@ class WebViewController: BaseViewController {
         
         /// 收藏与取消收藏
         collectionButton.rx.tap.subscribe { [weak self] _ in
+            
+            guard let collectId = self?.getRealCollectId() else {
+                return
+            }
+            
+            self?.hasCollectAction.onNext(())
+            
             if self?.isContains.value == true {
                 /// 在这里说明是已经收藏过,取消收藏
+                vm.inputs.unCollectAction(collectId: collectId)
             }else {
                 /// 在这里说明是没有收藏过,进行收藏
+                vm.inputs.collectAction(collectId: collectId)
             }
+            
+            
+            
         }.disposed(by: rx.disposeBag)
         
         var items: [UIBarButtonItem] = [toShare]
@@ -124,7 +141,7 @@ class WebViewController: BaseViewController {
                         items.append(collection)
                         
                         guard let collectIds = AccountManager.shared.accountInfo?.collectIds,
-                              let collectId = self.webLoadInfo.collectId else {
+                              let collectId = self.getRealCollectId() else {
                             return
                         }
                         
@@ -143,6 +160,28 @@ class WebViewController: BaseViewController {
             .disposed(by: rx.disposeBag)
         
         navigationItem.rightBarButtonItems = items.reversed()
+        
+        vm.outputs.collectSuccess.subscribe { event in
+            switch event {
+            case .next(let isSuccess):
+                if isSuccess {
+                    self.isContains.accept(isSuccess)
+                }
+            default:
+                break
+            }
+        }.disposed(by: rx.disposeBag)
+        
+        vm.outputs.unCollectSuccess.subscribe { event in
+            switch event {
+            case .next(let isSuccess):
+                if isSuccess {
+                    self.isContains.accept(!isSuccess)
+                }
+            default:
+                break
+            }
+        }.disposed(by: rx.disposeBag)
     }
     
     deinit {
@@ -152,6 +191,17 @@ class WebViewController: BaseViewController {
 }
 
 extension WebViewController {
+    private func getRealCollectId() -> Int? {
+        let id = webLoadInfo.id
+        let collectId = webLoadInfo.originId
+        
+        if collectId == nil && id != nil {
+            return id
+        }else {
+            return collectId
+        }
+    }
+    
     private func shareAction() {
         guard let title = webLoadInfo.title, let url = webLoadInfo.link else {
             MBProgressHUD.showText("无法获取分享信息")

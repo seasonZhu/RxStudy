@@ -23,6 +23,8 @@ enum MyService {
     case userCoinInfo
     case myCoinList(_ page: Int)
     case collectArticleList(_ page: Int)
+    case collectArticle(_ collectId: Int)
+    case unCollectArticle(_ collectId: Int)
 }
 
 extension MyService: TargetType {
@@ -40,6 +42,10 @@ extension MyService: TargetType {
             return Api.My.myCoinList + page.toString + "/json"
         case .collectArticleList(let page):
             return Api.My.collectArticleList + page.toString + "/json"
+        case .collectArticle(let collectId):
+            return Api.My.collectArticle + collectId.toString + "/json"
+        case .unCollectArticle(let collectId):
+            return Api.My.unCollectArticle + collectId.toString + "/json"
         }
     }
     
@@ -47,7 +53,8 @@ extension MyService: TargetType {
         switch self {
         case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList:
             return .get
-                            
+        case .collectArticle, .unCollectArticle:
+            return .post
         }
     }
     
@@ -56,10 +63,7 @@ extension MyService: TargetType {
     }
     
     var task: Task {
-        switch self {
-        case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList:
-            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
-        }
+        return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
     }
     
     var headers: [String : String]? {

@@ -12,7 +12,7 @@ struct AccountInfo : Codable {
 
     let admin : Bool?
     let chapterTops : [Int]?
-    let collectIds : [Int]?
+    var collectIds : [Int]?
     let email : String?
     let icon : String?
     let id : Int?
