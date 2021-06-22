@@ -22,7 +22,6 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        AccountManager.shared.autoLogin()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -45,8 +44,8 @@ class ViewController: UITabBarController {
     //MARK:- 添加子控制器
     private func addSubviewController(subViewController: UIViewController, title: String, imageName: String, selectImageName: String) {
         subViewController.tabBarItem.title = title
-        subViewController.tabBarItem.image = UIImage(named: imageName)!
-        subViewController.tabBarItem.selectedImage = UIImage(named: selectImageName)!
+        subViewController.tabBarItem.image = UIImage(named: imageName)
+        subViewController.tabBarItem.selectedImage = UIImage(named: selectImageName)
         subViewController.title = title
         addChild(subViewController)
         

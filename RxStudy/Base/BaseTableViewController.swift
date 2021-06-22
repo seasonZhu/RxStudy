@@ -70,6 +70,7 @@ class BaseTableViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
     }
 
+    @discardableResult
     override func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) -> WebViewController {
         let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
         vc.hasCollectAction.subscribe { [weak self] _ in

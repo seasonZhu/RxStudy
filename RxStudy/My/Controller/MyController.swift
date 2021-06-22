@@ -17,6 +17,7 @@ class MyController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        AccountManager.shared.autoLogin()
     }
     
     private func setupUI() {
