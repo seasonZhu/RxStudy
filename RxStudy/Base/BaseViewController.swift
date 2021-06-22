@@ -62,24 +62,6 @@ class BaseViewController: UIViewController {
         setupErrorImage()
     }
     
-    private func setupErrorImage() {
-        view.addSubview(errorImage)
-        errorImage.snp.makeConstraints { make in
-            make.edges.equalTo(view)
-        }
-        errorImage.isHidden = true
-    }
-    
-    func showErrorImage() {
-        errorImage.isHidden = false
-        view.bringSubviewToFront(errorImage)
-    }
-    
-    func hiddenErrorImage() {
-        errorImage.isHidden = true
-        view.sendSubviewToBack(errorImage)
-    }
-    
     @objc
     private func leftBarButtonItemAction(_ item: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
@@ -98,7 +80,28 @@ extension BaseViewController {
     }
 }
 
+//MARK:- 网络请求错误页面的配置项(待用)
+extension BaseViewController {
+    private func setupErrorImage() {
+        view.addSubview(errorImage)
+        errorImage.snp.makeConstraints { make in
+            make.edges.equalTo(view)
+        }
+        errorImage.isHidden = true
+    }
+    
+    func showErrorImage() {
+        errorImage.isHidden = false
+        view.bringSubviewToFront(errorImage)
+    }
+    
+    func hiddenErrorImage() {
+        errorImage.isHidden = true
+        view.sendSubviewToBack(errorImage)
+    }
+}
 
+//MARK:- 绑定
 extension Reactive where Base: BaseViewController {
     
     /// 显示网络错误

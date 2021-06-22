@@ -46,13 +46,16 @@ class BaseTableViewController: BaseViewController {
         /// 设置尾部刷新控件
         tableView.mj_footer = MJRefreshBackNormalFooter()
         
+        /// 设置DZNEmptyDataSet的数据源和代理
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
         
+        /// 订阅点击了数据为空，请重试的行为，里面没有用状态去绑定tableView是因为没有ViewModel
         emptyDataSetButtonTap.subscribe { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()
         }.disposed(by: rx.disposeBag)
         
+        /// 数据为空的订阅（待用）
         isEmpty.subscribe { event in
             switch event {
             case .next(let noContent):
@@ -69,8 +72,10 @@ class BaseTableViewController: BaseViewController {
 
 }
 
+//MARK:- UITableViewDelegate
 extension BaseTableViewController: UITableViewDelegate {}
 
+//MARK:- DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetSource {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -90,6 +95,7 @@ extension BaseTableViewController: DZNEmptyDataSetSource {
     }
 }
 
+//MARK:- DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetDelegate {
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
