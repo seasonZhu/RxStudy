@@ -66,6 +66,7 @@
 		61B539002678863A00EEFE1F /* My.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B538FF2678863A00EEFE1F /* My.swift */; };
 		61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */; };
 		61B79950268190F40025EADE /* MyCoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7994F268190F40025EADE /* MyCoinViewModel.swift */; };
+		61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B79951268193D00025EADE /* MyCollectionViewModel.swift */; };
 		61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BB7C452679C4F800990636 /* MyViewModel.swift */; };
 		61BB7C59267A057700990636 /* Logout.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C48267A057700990636 /* Logout.json */; };
 		61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C49267A057700990636 /* LoginAndRegister.json */; };
@@ -163,6 +164,7 @@
 		61B538FF2678863A00EEFE1F /* My.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My.swift; sourceTree = "<group>"; };
 		61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHistoryCoin.swift; sourceTree = "<group>"; };
 		61B7994F268190F40025EADE /* MyCoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
+		61B79951268193D00025EADE /* MyCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCollectionViewModel.swift; sourceTree = "<group>"; };
 		61BB7C452679C4F800990636 /* MyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
 		61BB7C48267A057700990636 /* Logout.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Logout.json; sourceTree = "<group>"; };
 		61BB7C49267A057700990636 /* LoginAndRegister.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LoginAndRegister.json; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */,
 				61BB7C452679C4F800990636 /* MyViewModel.swift */,
 				61B7994F268190F40025EADE /* MyCoinViewModel.swift */,
+				61B79951268193D00025EADE /* MyCollectionViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -804,6 +807,7 @@
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
+				61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */,
 				6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,

@@ -22,6 +22,7 @@ enum MyService {
     case coinRank(_ page: Int)
     case userCoinInfo
     case myCoinList(_ page: Int)
+    case collectArticleList(_ page: Int)
 }
 
 extension MyService: TargetType {
@@ -37,12 +38,14 @@ extension MyService: TargetType {
             return Api.My.userCoinInfo
         case .myCoinList(let page):
             return Api.My.myCoinList + page.toString + "/json"
+        case .collectArticleList(let page):
+            return Api.My.collectArticleList + page.toString + "/json"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .coinRank, .userCoinInfo, .myCoinList:
+        case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList:
             return .get
                             
         }
@@ -54,7 +57,7 @@ extension MyService: TargetType {
     
     var task: Task {
         switch self {
-        case .coinRank, .userCoinInfo, .myCoinList:
+        case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList:
             return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
         }
     }

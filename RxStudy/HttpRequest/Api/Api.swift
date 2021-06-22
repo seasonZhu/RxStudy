@@ -75,17 +75,15 @@ extension Api {
     static let postCollectArticle = "lg/collect/"
 
     static let postUnCollectArticle = "lg/uncollect_originId/"
-
-    static let getCollectArticleList = "lg/collect/list/"
-
-    static let getCoinList = "lg/coin/list/"
     
-    /// 我的
+    /// 我的 取消收藏和点击收藏操作为post,其他为get
     enum My {
         static let coinRank = "coin/rank/"
         
         static let userCoinInfo = "lg/coin/userinfo/json"
         
         static let myCoinList = "lg/coin/list/"
+        
+        static let collectArticleList = "lg/collect/list/"
     }
 }

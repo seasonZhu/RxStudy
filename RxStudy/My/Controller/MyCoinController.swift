@@ -8,6 +8,12 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+import NSObject_Rx
+import SnapKit
+import MJRefresh
+
 class MyCoinController: BaseTableViewController {
 
     override func viewDidLoad() {
