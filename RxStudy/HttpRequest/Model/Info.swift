@@ -13,10 +13,10 @@ struct Info : Codable {
     
     var title : String?
     
-    var id : Int?
+    var collectId: Int? { originId }
     
     var link: String?
-    
+    let id : Int?
     let apkLink : String?
     let audit : Int?
     let author : String?
@@ -34,6 +34,7 @@ struct Info : Codable {
     let niceDate : String?
     let niceShareDate : String?
     let origin : String?
+    let originId: Int
     let prefix : String?
     let projectLink : String?
     let publishTime : Int?

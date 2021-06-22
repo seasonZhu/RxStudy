@@ -12,12 +12,12 @@ struct Banner : Codable {
     
     var title : String?
     
-    var id : Int?
+    var collectId: Int? { id }
     
     var link: String? { url }
         
     let desc : String?
-    
+    let id : Int?
     let imagePath : String?
     let isVisible : Int?
     let order : Int?

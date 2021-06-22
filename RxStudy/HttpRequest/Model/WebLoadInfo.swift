@@ -9,7 +9,7 @@
 import Foundation
 
 protocol WebLoadInfo {
-    var id: Int? { set get }
+    var collectId: Int? { get }
     var title: String? { set get }
     var link: String? { get }
 }

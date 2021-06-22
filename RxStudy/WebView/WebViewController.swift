@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 
+import RxSwift
+import RxCocoa
 import MBProgressHUD
 import MarqueeLabel
 import MJRefresh
@@ -18,6 +20,7 @@ private let JSCallback = "JSCallback"
 class WebViewController: BaseViewController {
 
     let webLoadInfo: WebLoadInfo
+    
     let isFromBanner: Bool
     
     init(webLoadInfo: WebLoadInfo, isFromBanner: Bool) {
@@ -50,6 +53,16 @@ class WebViewController: BaseViewController {
         label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         return label
     }()
+    
+    
+    private lazy var collectionButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.setImage(R.image.collect(), for: .normal)
+        button.setImage(R.image.collect_selected(), for: .selected)
+        return button
+    }()
+    
+    let isContains = BehaviorRelay(value: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,18 +96,53 @@ class WebViewController: BaseViewController {
         let request = URLRequest(url: url)
         webView.load(request)
         
+        /// 分享
         let toShare = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
         
         toShare.rx.tap.subscribe { _ in
             self.shareAction()
         }.disposed(by: rx.disposeBag)
         
-//        let refreshWeb = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
-//        refreshWeb.rx.tap.subscribe { _ in
-//            self.webView.reload()
-//        }.disposed(by: rx.disposeBag)
+        /// 收藏与取消收藏
+        collectionButton.rx.tap.subscribe { [weak self] _ in
+            if self?.isContains.value == true {
+                /// 在这里说明是已经收藏过,取消收藏
+            }else {
+                /// 在这里说明是没有收藏过,进行收藏
+            }
+        }.disposed(by: rx.disposeBag)
         
-        navigationItem.rightBarButtonItems = [toShare]
+        var items: [UIBarButtonItem] = [toShare]
+        
+        /// 非轮播的页面跳转进来才通过判断登录状态来看是否显示收藏页面
+        if !isFromBanner {
+            AccountManager.shared.isLogin.subscribe { event in
+                switch event {
+                case .next(let isLogin):
+                    if isLogin {
+                        let collection = UIBarButtonItem(customView: self.collectionButton)
+                        items.append(collection)
+                        
+                        guard let collectIds = AccountManager.shared.accountInfo?.collectIds,
+                              let collectId = self.webLoadInfo.collectId else {
+                            return
+                        }
+                        
+                        let value = collectIds.contains(collectId)
+                        
+                        self.isContains.accept(value)
+                    }
+                default:
+                    break
+                }
+            }.disposed(by: rx.disposeBag)
+        }
+        
+        isContains
+            .bind(to: collectionButton.rx.isSelected)
+            .disposed(by: rx.disposeBag)
+        
+        navigationItem.rightBarButtonItems = items.reversed()
     }
     
     deinit {
