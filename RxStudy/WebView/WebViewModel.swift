@@ -27,9 +27,6 @@ class WebViewModel: BaseViewModel {
 }
 
 extension WebViewModel {
-    func rightButtoncollectionItemAction(isCollect: Bool = true) {
-        
-    }
     
     func collectAction(collectId: Int){
         myProvider.rx.request(MyService.collectArticle(collectId))

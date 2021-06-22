@@ -28,4 +28,4 @@ let kBottomMargin = kSafeBottomMargin + kTabbarHeight
 
 let kUsername = "kUsername"
 
-let kPassword = "kUsername"
+let kPassword = "kPassword"

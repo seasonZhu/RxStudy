@@ -22,6 +22,7 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        AccountManager.shared.autoLogin()
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
