@@ -79,13 +79,13 @@ extension Api {
     static let getCollectArticleList = "lg/collect/list/"
 
     static let getCoinList = "lg/coin/list/"
-
-    static let getUserCoinInfo = "lg/coin/userinfo/json"
     
     /// 我的
     enum My {
         static let coinRank = "coin/rank/"
         
         static let userCoinInfo = "lg/coin/userinfo/json"
+        
+        static let myCoinList = "lg/coin/list/"
     }
 }

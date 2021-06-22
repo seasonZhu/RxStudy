@@ -19,7 +19,7 @@ class MyViewModel: BaseViewModel {
     
     let currentDataSource = BehaviorRelay<[My]>(value: [])
     
-    let myCoin = BehaviorRelay<MyCoin?>(value: nil)
+    let myCoin = BehaviorRelay<CoinRank?>(value: nil)
     
     private let disposeBag: DisposeBag
     
@@ -58,15 +58,15 @@ class MyViewModel: BaseViewModel {
 }
 
 extension MyViewModel {
-    func getMyCoin() -> Single<BaseModel<MyCoin>> {
+    func getMyCoin() -> Single<BaseModel<CoinRank>> {
         return myProvider.rx.request(MyService.userCoinInfo)
-            .map(BaseModel<MyCoin>.self)
+            .map(BaseModel<CoinRank>.self)
 
     }
     
     func getMyCoin1() {
         myProvider.rx.request(MyService.userCoinInfo)
-            .map(BaseModel<MyCoin>.self)
+            .map(BaseModel<CoinRank>.self)
             .subscribe { baseModel in
                 print(baseModel)
             } onError: { error in

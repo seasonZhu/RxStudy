@@ -17,10 +17,10 @@ struct CoinRank : Codable {
     let userId : Int?
     let username : String?
     
-    var rankInfo: String {
-        guard let rank = self.rank, let userName = self.username, let level = self.level, let coinCount = self.coinCount else {
-            return ""
+    var myInfo: String {
+        guard let coinCount = self.coinCount, let level = self.level, let rank = self.rank else {
+            return "积分: --  等级: --  排名: --"
         }
-        return "排名:" + rank + " 用户名:" + userName + " 等级" + level.toString + " 积分:" + coinCount.toString
+        return "积分: \(coinCount)  等级: \(level)  排名: \(rank)"
     }
 }

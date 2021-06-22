@@ -24,7 +24,7 @@ class MyView: UIView {
     }()
     
     /// 其实一般的逻辑就是在请求到数据后,通过set方法进行赋值即可
-    var myCoin: MyCoin? {
+    var myCoin: CoinRank? {
         set {
             _myCoin = newValue
             if let text = newValue?.myInfo {
@@ -41,7 +41,7 @@ class MyView: UIView {
         }
     }
     
-    private var _myCoin: MyCoin?
+    private var _myCoin: CoinRank?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -76,7 +76,7 @@ class MyView: UIView {
 
 /// 由于我这次使用的Rx,所以是通过这种绑定方式进行,我想正是这种需要自己手写的绑定,所以才限制了iOS中MVVM的困难吧
 extension Reactive where Base: MyView {
-    var myInfo: Binder<MyCoin?> {
+    var myInfo: Binder<CoinRank?> {
         return Binder(base) { myView, model in
             myView.myCoin = model
         }
