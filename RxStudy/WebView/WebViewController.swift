@@ -11,6 +11,7 @@ import WebKit
 
 import MBProgressHUD
 import MarqueeLabel
+import MJRefresh
 
 private let JSCallback = "JSCallback"
 
@@ -42,26 +43,39 @@ class WebViewController: BaseViewController {
         webView.scrollView.isScrollEnabled = true
         return webView
     }()
+    
+    private lazy var lengthyLabel: MarqueeLabel = {
+        let label = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 100, height: 44), duration: 8.0, fadeLength: 10.0)
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 17, weight: .bold)
+        return label
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
     }
     
-    private func setupUI(){
-        let lengthyLabel = MarqueeLabel(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width - 100, height: 44), duration: 8.0, fadeLength: 10.0)
+    private func setupUI() {
+        /// 走马灯的Label
         var title = webLoadInfo.title
-        lengthyLabel.textAlignment = .center
-        lengthyLabel.font = UIFont.systemFont(ofSize: 17, weight: .bold)
         lengthyLabel.text = title?.filterHTML()
         navigationItem.titleView = lengthyLabel
         
+        /// 刷新页面
+        webView.scrollView.mj_header = MJRefreshNormalHeader()
+        webView.scrollView.mj_header?.rx.refresh.subscribe { [weak self] _ in
+            self?.webView.reload()
+        }.disposed(by: rx.disposeBag)
+        
+        /// 页面布局
         view.addSubview(webView)
         webView.navigationDelegate = self
         webView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
         
+        /// 加载url
         guard let link = webLoadInfo.link, let url = URL(string: link) else {
             return
         }
@@ -75,12 +89,12 @@ class WebViewController: BaseViewController {
             self.shareAction()
         }.disposed(by: rx.disposeBag)
         
-        let refreshWeb = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
-        refreshWeb.rx.tap.subscribe { _ in
-            self.webView.reload()
-        }.disposed(by: rx.disposeBag)
+//        let refreshWeb = UIBarButtonItem(barButtonSystemItem: .refresh, target: nil, action: nil)
+//        refreshWeb.rx.tap.subscribe { _ in
+//            self.webView.reload()
+//        }.disposed(by: rx.disposeBag)
         
-        navigationItem.rightBarButtonItems = [refreshWeb, toShare]
+        navigationItem.rightBarButtonItems = [toShare]
     }
     
     deinit {
@@ -150,17 +164,29 @@ extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
         //MBProgressHUD.beginLoading()
+        delayEndRefreshing()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         //MBProgressHUD.stopLoading()
+        delayEndRefreshing()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         //MBProgressHUD.stopLoading()
+        delayEndRefreshing()
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        MBProgressHUD.stopLoading()
+        //MBProgressHUD.stopLoading()
+        delayEndRefreshing()
+    }
+}
+
+extension WebViewController {
+    private func delayEndRefreshing() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.webView.scrollView.mj_header?.endRefreshing()
+        }
     }
 }
