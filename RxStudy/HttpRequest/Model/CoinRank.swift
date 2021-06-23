@@ -24,3 +24,17 @@ struct CoinRank : Codable {
         return "积分: \(coinCount)  等级: \(level)  排名: \(rank)"
     }
 }
+
+protocol MixinIntAndString: Codable {}
+
+extension MixinIntAndString where Self == Int {
+    
+}
+
+extension MixinIntAndString where Self == String {
+    
+}
+
+extension Int: MixinIntAndString {}
+
+extension String: MixinIntAndString {}
