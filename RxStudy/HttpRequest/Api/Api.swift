@@ -13,6 +13,14 @@ struct Api {
     static let baseUrl = "https://www.wanandroid.com/"
     
     private init() {}
+    
+    /// 以下Api是没有实现的
+    
+    /// 常用网站
+    static let friend = "friend/json"
+    
+    /// 导航
+    static let navi = "navi/json"
 }
 
 extension Api {
@@ -72,10 +80,6 @@ extension Api {
 }
 
 extension Api {
-    static let postCollectArticle = "lg/collect/"
-
-    static let postUnCollectArticle = "lg/uncollect_originId/"
-    
     /// 我的 取消收藏和点击收藏操作为post,其他为get
     enum My {
         static let coinRank = "coin/rank/"
