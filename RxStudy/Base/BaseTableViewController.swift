@@ -20,7 +20,9 @@ class BaseTableViewController: BaseViewController {
     
     let emptyDataSetButtonTap = PublishSubject<Void>()
     
-    let isEmpty = BehaviorRelay(value: false)
+    /// 作为一个可选类型的枚举,其实有个三个状态的nil true false
+    /// 订阅的时候为nil,说明根本就没有执行过accept()这个函数,或者执行了还是给的nil,没有意义,不给予理会即可
+    let isEmpty: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,13 +57,18 @@ class BaseTableViewController: BaseViewController {
             self?.tableView.mj_header?.beginRefreshing()
         }.disposed(by: rx.disposeBag)
         
-        /// 数据为空的订阅（待用）
+        /// 数据为空的订阅
         isEmpty.subscribe { event in
             switch event {
             case .next(let noContent):
-                if noContent {
+                guard let reallyNoContent = noContent else {
+                    return
+                }
+
+                if reallyNoContent {
+                    print("监听没有内容")
                     /// 这个地方有问题
-//                    self.tableView.mj_footer?.endRefreshingWithNoMoreData()
+                    self.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
                 break
             default:
@@ -107,7 +114,7 @@ extension BaseTableViewController: DZNEmptyDataSetSource {
 extension BaseTableViewController: DZNEmptyDataSetDelegate {
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
-        return isEmpty.value
+        return isEmpty.value ?? false
     }
 
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {

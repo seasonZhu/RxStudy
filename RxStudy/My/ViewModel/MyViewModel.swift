@@ -37,7 +37,6 @@ class MyViewModel: BaseViewModel {
             if isLogin {
                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                    self.getMyCoin1()
                     let result = self.getMyCoin()
                     result.map{ $0.data }
                         /// 去掉其中为nil的值

@@ -6,7 +6,7 @@
 //  Copyright © 2021 season. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 import Moya
 import MBProgressHUD
@@ -23,6 +23,7 @@ class RequestLoadingPlugin: PluginType {
     func willSend(_ request: RequestType, target: TargetType) {
         print("开始请求")
         DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
             MBProgressHUD.beginLoading()
         }
     }
@@ -31,6 +32,7 @@ class RequestLoadingPlugin: PluginType {
         print("结束请求")
         // 关闭loading
         DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
             MBProgressHUD.stopLoading()
         }
         
