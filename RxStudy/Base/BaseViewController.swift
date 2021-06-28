@@ -49,7 +49,7 @@ class BaseViewController: UIViewController {
 
          self.navigationController.interactivePopGestureRecognizer.enabled = NO;(界面不具有相互交互手势)
          */
-        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        ///navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
         /// 第一种: 将导航栏改成不透明即可, 可行
         //navigationController?.navigationBar.isTranslucent = false

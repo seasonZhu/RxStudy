@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="1076" y="133.5832083958021"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Base Navigation Controller-->
         <scene sceneID="dEd-eT-Mxw">
             <objects>
-                <navigationController id="p8O-ga-jPs" sceneMemberID="viewController">
+                <navigationController id="p8O-ga-jPs" customClass="BaseNavigationController" customModule="RxStudy" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bOC-hx-sxg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
