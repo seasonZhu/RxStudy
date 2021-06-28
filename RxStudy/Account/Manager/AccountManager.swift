@@ -72,7 +72,7 @@ final class AccountManager {
             .map(BaseModel<AccountInfo>.self)
             /// 转为Observable
             .subscribe { baseModel in
-                if baseModel.errorCode == 0 {
+                if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {
                         MBProgressHUD.showText("登录成功")

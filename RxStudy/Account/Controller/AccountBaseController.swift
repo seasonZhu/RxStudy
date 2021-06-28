@@ -87,7 +87,7 @@ extension AccountBaseController {
         accountProvider.rx.request(AccountService.login(username, password))
             .map(BaseModel<AccountInfo>.self)
             .subscribe { baseModel in
-                if baseModel.errorCode == 0 {
+                if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {
                         MBProgressHUD.showText("登录成功")
@@ -103,7 +103,7 @@ extension AccountBaseController {
         accountProvider.rx.request(AccountService.register(username, password, repassword))
             .map(BaseModel<AccountInfo>.self)
             .subscribe { baseModel in
-                if baseModel.errorCode == 0 {
+                if baseModel.isSuccess {
                     DispatchQueue.main.async {
                         MBProgressHUD.showText("注册成功")
                     }
