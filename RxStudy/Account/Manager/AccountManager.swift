@@ -14,22 +14,34 @@ import NSObject_Rx
 import MBProgressHUD
 
 final class AccountManager {
+    
+    /// 单例
     static let shared = AccountManager()
     
+    /// 对外只读是否登录属性
     private(set) var isLogin = BehaviorRelay(value: false)
         
+    /// 对外只读用户信息属性
     private(set) var accountInfo: AccountInfo?
     
+    /// 私有化初始化方法
+    private init() {}
+    
+}
+
+extension AccountManager {
+    /// 已登录请求头处理
     var cookieHeaderValue: String {
         if let username = accountInfo?.username, let password = accountInfo?.password {
           return "loginUserName=\(username);loginUserPassword=\(password)";
         } else {
           return ""
         }
-      }
-    
-    private init() {}
-    
+    }
+}
+
+extension AccountManager {
+    /// 登录成功,保存登录信息
     func saveLoginUsernameAndPassword(info: AccountInfo?, username: String, password: String) {
         accountInfo = info
         accountInfo?.username = username
@@ -41,23 +53,32 @@ final class AccountManager {
         isLogin.accept(true)
     }
     
+    /// 登出成功,清理登录信息
     func clearAccountInfo() {
         isLogin.accept(false)
         accountInfo = nil
     }
-    
+}
+
+extension AccountManager {
+    /// 更新收藏夹
+    func updateCollectIds(_ collectIds: [Int]) {
+        AccountManager.shared.accountInfo?.collectIds = collectIds
+    }
+}
+
+extension AccountManager {
+    /// 获取本地保存用户名
     func getUsername() -> String? {
         return UserDefaults.standard.value(forKey: kUsername) as? String
     }
     
+    /// 获取本地保存密码
     func getPassword() -> String? {
         return UserDefaults.standard.value(forKey: kPassword) as? String
     }
     
-    func updateCollectIds(_ collectIds: [Int]) {
-        AccountManager.shared.accountInfo?.collectIds = collectIds
-    }
-    
+    /// 自动登录
     func autoLogin() {
         if !isLogin.value {
             guard let username = getUsername(), let password = getPassword() else {
@@ -67,6 +88,7 @@ final class AccountManager {
         }
     }
     
+    /// 调用登录接口
     func login(username: String, password: String) {
         accountProvider.rx.request(AccountService.login(username, password))
             .map(BaseModel<AccountInfo>.self)
