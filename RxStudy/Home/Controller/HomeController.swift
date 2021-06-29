@@ -80,11 +80,11 @@ extension HomeController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? InfoViewCell {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? InfoCell {
                     cell.info = info
                     return cell
                 }else {
-                    let cell = InfoViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    let cell = InfoCell(style: .subtitle, reuseIdentifier: "Cell")
                     cell.info = info
                     return cell
                 }
