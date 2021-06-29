@@ -49,16 +49,32 @@ extension SwiftCoinRankListController {
         myProvider.request(MyService.coinRank(1)) { (result: Result<Response, MoyaError>)  in
             switch result {
                 case .success(let response):
+                    
+                    /// 最初的写法
                     let data = response.data
                     guard let baseModel = try? JSONDecoder().decode(BaseModel<Page<CoinRank>>.self, from: data), let array = baseModel.data?.datas else {
                         return
                     }
                     self.dataSource = array
                     self.tableView.reloadData()
+                    return
+                    
+                    /// Response扩展中已经有的写法
+                    guard let model = try? response.map(BaseModel<Page<CoinRank>>.self), let list = model.data?.datas else {
+                        return
+                    }
+                    self.dataSource = list
+                    self.tableView.reloadData()
                     
                 case .failure(let error):
                     print(error.errorDescription)
             }
+            
+            let newResult: Result<BaseModel<Page<CoinRank>>, MoyaError> = result.map()
+            print(newResult)
+            
+            let otherResult = result.map(BaseModel<Page<CoinRank>>.self)
+            print(otherResult)
         }
     }
 }
@@ -109,6 +125,41 @@ extension SwiftCoinRankListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == UITableViewCell.EditingStyle.delete {
 
+        }
+    }
+}
+
+/// 自己写的,对Result的扩展写法
+extension Result where Success == Moya.Response, Failure == MoyaError {
+    public func map<Model: Codable>() -> Result<Model, Failure> {
+        switch self {
+            case .success(let response):
+                do {
+                    let model = try JSONDecoder().decode(Model.self, from: response.data)
+                    return .success(model)
+                } catch  {
+                    let error = MoyaError.objectMapping(error, response)
+                    return .failure(error)
+                }
+                
+            case .failure(let error):
+                return .failure(error)
+        }
+    }
+    
+    public func map<D: Decodable>(_ type: D.Type) -> Result<D, MoyaError> {
+        switch self {
+            case .success(let response):
+                do {
+                    let model = try JSONDecoder().decode(D.self, from: response.data)
+                    return .success(model)
+                } catch  {
+                    let error = MoyaError.objectMapping(error, response)
+                    return .failure(error)
+                }
+                
+            case .failure(let error):
+                return .failure(error)
         }
     }
 }
