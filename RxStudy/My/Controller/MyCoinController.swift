@@ -33,7 +33,7 @@ class MyCoinController: BaseTableViewController {
             }
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = MyCoinViewModel(disposeBag: rx.disposeBag)
+        let viewModel = MyCoinViewModel()
 
         tableView.mj_header?.rx.refresh
             .asDriver()

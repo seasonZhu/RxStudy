@@ -58,7 +58,7 @@ extension HomeController {
             }
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = HomeViewModel(disposeBag: rx.disposeBag)
+        let viewModel = HomeViewModel()
 
         tableView.mj_header?.rx.refresh
             .asDriver()

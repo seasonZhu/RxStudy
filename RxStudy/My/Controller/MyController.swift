@@ -30,7 +30,7 @@ class MyController: BaseTableViewController {
         let myView = MyView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 16.0 * 9))
         tableView.tableHeaderView = myView
         
-        let viewModel = MyViewModel(disposeBag: rx.disposeBag)
+        let viewModel = MyViewModel()
 
         viewModel.outputs.currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in

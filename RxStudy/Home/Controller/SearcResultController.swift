@@ -57,9 +57,9 @@ extension SearcResultController {
                 print("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
-                
-        let viewModel = SearchResultViewModel(keyword: keyword, disposeBag: rx.disposeBag)
-
+        
+        let viewModel = SearchResultViewModel(keyword: keyword)
+        
         tableView.mj_header?.rx.refresh
             .asDriver()
             .drive(onNext: {

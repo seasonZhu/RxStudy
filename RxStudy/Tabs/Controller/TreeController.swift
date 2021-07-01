@@ -59,7 +59,7 @@ extension TreeController {
             })
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = TreeViewModel(type: type, disposeBag: rx.disposeBag)
+        let viewModel = TreeViewModel(type: type)
 
         viewModel.inputs.loadData()
 

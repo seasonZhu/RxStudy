@@ -8,16 +8,10 @@
 
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 import Moya
 
 class HotKeyViewModel: BaseViewModel {
-    
-    private let disposeBag: DisposeBag
-    
-    init(disposeBag: DisposeBag) {
-        self.disposeBag = disposeBag
-        super.init()
-    }
     
     /// outputs
     let dataSource = BehaviorRelay<[HotKey]>(value: [])
@@ -25,7 +19,6 @@ class HotKeyViewModel: BaseViewModel {
     /// inputs
     func loadData() {
         requestData()
-            
     }
 }
 

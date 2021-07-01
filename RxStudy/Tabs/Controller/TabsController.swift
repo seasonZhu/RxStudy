@@ -93,7 +93,7 @@ extension TabsController {
 
 extension TabsController {
     func requestData() {
-        let viewModel = TabsViewModel(type: type, disposeBag: rx.disposeBag)
+        let viewModel = TabsViewModel(type: type)
         
         viewModel.loadData()
         

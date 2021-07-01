@@ -17,11 +17,8 @@ class AttractViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 
     private var pageNum: Int
     
-    private let disposeBag: DisposeBag
-    
-    init(pageNum: Int = 1, disposeBag: DisposeBag) {
+    init(pageNum: Int = 1) {
         self.pageNum = pageNum
-        self.disposeBag = disposeBag
         super.init()
     }
     

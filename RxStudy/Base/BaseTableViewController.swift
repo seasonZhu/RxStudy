@@ -58,7 +58,7 @@ class BaseTableViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
         
         /// 数据为空的订阅
-        isEmpty.subscribe { event in
+        isEmpty.subscribe { [weak self] event in
             switch event {
             case .next(let noContent):
                 guard let reallyNoContent = noContent else {
@@ -68,7 +68,7 @@ class BaseTableViewController: BaseViewController {
                 if reallyNoContent {
                     print("监听没有内容")
                     /// 这个地方有问题
-                    self.tableView.mj_footer?.endRefreshingWithNoMoreData()
+                    self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
                 break
             default:

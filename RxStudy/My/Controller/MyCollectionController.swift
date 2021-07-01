@@ -40,7 +40,7 @@ class MyCollectionController: BaseTableViewController {
             })
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = MyCollectionViewModel(disposeBag: rx.disposeBag)
+        let viewModel = MyCollectionViewModel()
 
         tableView.mj_header?.rx.refresh
             .asDriver()

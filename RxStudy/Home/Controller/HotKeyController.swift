@@ -56,7 +56,7 @@ class HotKeyController: BaseViewController {
 //        })
 //        .disposed(by: rx.disposeBag)
         
-        let viewModel = HotKeyViewModel(disposeBag: rx.disposeBag)
+        let viewModel = HotKeyViewModel()
         
         viewModel.inputs.loadData()
         

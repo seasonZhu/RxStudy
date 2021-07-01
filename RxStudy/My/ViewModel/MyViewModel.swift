@@ -21,12 +21,8 @@ class MyViewModel: BaseViewModel {
     
     let myCoin = BehaviorRelay<CoinRank?>(value: nil)
     
-    private let disposeBag: DisposeBag
-    
-    init(disposeBag: DisposeBag) {
-        self.disposeBag = disposeBag
+    override init() {
         super.init()
-        
         AccountManager.shared.isLogin.subscribe(onNext: { [weak self] isLogin in
             guard let self = self else { return }
             
@@ -47,7 +43,7 @@ class MyViewModel: BaseViewModel {
                             guard let _ = error as? MoyaError else { return }
                             self.networkError.onNext(())
                         })
-                        .disposed(by: disposeBag)
+                        .disposed(by: self.disposeBag)
                 }
             } else {
                 self.myCoin.accept(nil)

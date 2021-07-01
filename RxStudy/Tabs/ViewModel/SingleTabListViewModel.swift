@@ -15,18 +15,15 @@ import Moya
 class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 
     private var pageNum: Int
-    
-    private let disposeBag: DisposeBag
         
     private let type: TagType
     
     private let tab: Tab
     
-    init(type: TagType, tab: Tab, disposeBag: DisposeBag) {
+    init(type: TagType, tab: Tab) {
         self.pageNum = type.pageNum
         self.type = type
         self.tab = tab
-        self.disposeBag = disposeBag
         super.init()
     }
     

@@ -18,12 +18,9 @@ class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
     
     private let keyword: String
     
-    private let disposeBag: DisposeBag
-    
-    init(pageNum: Int = 0, keyword: String, disposeBag: DisposeBag) {
+    init(pageNum: Int = 0, keyword: String) {
         self.pageNum = pageNum
         self.keyword = keyword
-        self.disposeBag = disposeBag
         super.init()
     }
     

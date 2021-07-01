@@ -72,7 +72,7 @@ extension SingleTabListController {
             })
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = SingleTabListViewModel(type: type, tab: tab, disposeBag: rx.disposeBag)
+        let viewModel = SingleTabListViewModel(type: type, tab: tab)
 
         tableView.mj_header?.rx.refresh
             .asDriver()

@@ -17,12 +17,9 @@ typealias TreeViewModel = TabsViewModel
 class TabsViewModel: BaseViewModel {
     
     private let type: TagType
-
-    private let disposeBag: DisposeBag
     
-    init(type: TagType, disposeBag: DisposeBag) {
+    init(type: TagType) {
         self.type = type
-        self.disposeBag = disposeBag
         super.init()
     }
     

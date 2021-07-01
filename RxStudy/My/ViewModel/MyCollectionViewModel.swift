@@ -15,12 +15,9 @@ import Moya
 class MyCollectionViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 
     private var pageNum: Int
-    
-    private let disposeBag: DisposeBag
-    
-    init(pageNum: Int = 0, disposeBag: DisposeBag) {
+
+    init(pageNum: Int = 0) {
         self.pageNum = pageNum
-        self.disposeBag = disposeBag
         super.init()
     }
     
