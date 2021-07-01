@@ -59,6 +59,8 @@ class BaseTableViewController: BaseViewController {
         
         /// 数据为空的订阅
         isEmpty.subscribe { [weak self] event in
+            ///有的时候你发现所有页面都循环引用了,而且就算继承的这个类写不写代码都循环引用,这个时候你要回头看看基类,是不是基类写的东西导致了循环引用
+            
             switch event {
             case .next(let noContent):
                 guard let reallyNoContent = noContent else {
