@@ -71,6 +71,16 @@ class WebViewController: BaseViewController {
         setupUI()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        webView.configuration.userContentController.add(self, name: JSCallback)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
+    }
+    
     private func setupUI() {
         /// 走马灯的Label
         var title = webLoadInfo.title

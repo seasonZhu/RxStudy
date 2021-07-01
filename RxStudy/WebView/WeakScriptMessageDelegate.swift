@@ -9,6 +9,7 @@
 import Foundation
 import WebKit
 
+/// 这个中间层,并不能化解add(_ scriptMessageHandler: WKScriptMessageHandler, name: String)导致的循环引用,和我印象中的不太一样了
 class WeakScriptMessageDelegate: NSObject {
 
     //MARK:- 属性设置
@@ -17,6 +18,7 @@ class WeakScriptMessageDelegate: NSObject {
     //MARK:- 初始化
     init(scriptDelegate: WKScriptMessageHandler) {
         self.scriptDelegate = scriptDelegate
+        super.init()
     }
 }
 
