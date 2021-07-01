@@ -17,4 +17,18 @@ struct Page<Content: Codable> : Codable {
     let pageCount : Int?
     let size : Int?
     let total : Int?
+    
+    /// 自定义属性来判断是否到底了,其实let over : Bool也是可以判断
+    var isNoMoreData: Bool {
+        /// 解包数据
+        if let curPage = self.curPage, let pageCount = self.pageCount {
+            /// 相等就是没有数据
+            if curPage == pageCount {
+                return true
+            }else {
+                return false
+            }
+        }
+        return false
+    }
 }

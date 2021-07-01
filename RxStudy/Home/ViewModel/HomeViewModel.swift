@@ -85,12 +85,8 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
                             self.dataSource.accept(self.dataSource.value + datas)
                         }
                         
-                        /// 解包curPage与pageCount
-                        if let curPage = pageModel.curPage, let pageCount = pageModel.pageCount  {
-                            /// 如果发现它们相等,说明是最后一个,改变foot而状态
-                            if curPage == pageCount {
-                                self.refreshSubject.onNext(.showNomoreData)
-                            }
+                        if pageModel.isNoMoreData {
+                            self.refreshSubject.onNext(.showNomoreData)
                         }
                     case .error(_):
                         /// error占时不做处理
