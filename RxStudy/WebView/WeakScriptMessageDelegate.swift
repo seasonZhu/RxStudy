@@ -9,21 +9,20 @@
 import Foundation
 import WebKit
 
-/// 这个中间层,并不能化解add(_ scriptMessageHandler: WKScriptMessageHandler, name: String)导致的循环引用,和我印象中的不太一样了
 class WeakScriptMessageDelegate: NSObject {
 
-    //MARK:- 属性设置
-    private var scriptDelegate: WKScriptMessageHandler
-    
+    //MARK:- 属性设置 之前这个属性没有用weak修饰,所以一直持有,无法释放
+    private weak var scriptDelegate: WKScriptMessageHandler!
+
     //MARK:- 初始化
-    init(scriptDelegate: WKScriptMessageHandler) {
+    convenience init(scriptDelegate: WKScriptMessageHandler) {
+        self.init()
         self.scriptDelegate = scriptDelegate
-        super.init()
     }
 }
 
 extension WeakScriptMessageDelegate: WKScriptMessageHandler {
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        self.scriptDelegate.userContentController(userContentController, didReceive: message)
+        scriptDelegate.userContentController(userContentController, didReceive: message)
     }
 }

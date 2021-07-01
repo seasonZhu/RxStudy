@@ -38,7 +38,7 @@ class WebViewController: BaseViewController {
     
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
-//        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
+        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
@@ -73,12 +73,12 @@ class WebViewController: BaseViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        webView.configuration.userContentController.add(self, name: JSCallback)
+//        webView.configuration.userContentController.add(self, name: JSCallback)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
+//        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
     }
     
     private func setupUI() {
@@ -206,7 +206,7 @@ class WebViewController: BaseViewController {
     }
     
     deinit {
-//        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
     }
     
 }
