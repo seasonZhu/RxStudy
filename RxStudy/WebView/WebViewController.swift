@@ -38,7 +38,7 @@ class WebViewController: BaseViewController {
     
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
-        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
+//        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
@@ -79,9 +79,11 @@ class WebViewController: BaseViewController {
         
         /// 刷新页面
         webView.scrollView.mj_header = MJRefreshNormalHeader()
-        webView.scrollView.mj_header?.rx.refresh.subscribe { [weak self] _ in
-            self?.webView.reload()
-        }.disposed(by: rx.disposeBag)
+        webView.scrollView.mj_header?.rx.refresh
+            .asDriver()
+            .drive(onNext: { [weak self] in
+                self?.webView.reload()
+            }).disposed(by: rx.disposeBag)
         
         /// 页面布局
         view.addSubview(webView)
@@ -91,7 +93,7 @@ class WebViewController: BaseViewController {
         }
         
         /// vm
-        let vm = WebViewModel(disposeBag: rx.disposeBag)
+        let vm = WebViewModel()
         
         /// 加载url
         guard let link = webLoadInfo.link, let url = URL(string: link) else {
@@ -103,20 +105,20 @@ class WebViewController: BaseViewController {
         
         /// 分享
         let toShare = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
-        
-        toShare.rx.tap.subscribe { _ in
-            self.shareAction()
+
+        toShare.rx.tap.subscribe { [weak self] _ in
+            self?.shareAction()
         }.disposed(by: rx.disposeBag)
-        
+
         /// 收藏与取消收藏
         collectionButton.rx.tap.subscribe { [weak self] _ in
-            
+
             guard let collectId = self?.getRealCollectId() else {
                 return
             }
-            
+
             self?.hasCollectAction.onNext(())
-            
+
             if self?.isContains.value == true {
                 /// 在这里说明是已经收藏过,取消收藏
                 vm.inputs.unCollectAction(collectId: collectId)
@@ -124,29 +126,30 @@ class WebViewController: BaseViewController {
                 /// 在这里说明是没有收藏过,进行收藏
                 vm.inputs.collectAction(collectId: collectId)
             }
-            
-            
-            
         }.disposed(by: rx.disposeBag)
-        
+
         var items: [UIBarButtonItem] = [toShare]
-        
+
         /// 非轮播的页面跳转进来才通过判断登录状态来看是否显示收藏页面
         if !isFromBanner {
-            AccountManager.shared.isLogin.subscribe { event in
+            AccountManager.shared.isLogin.subscribe { [weak self] event in
+                guard let self = self else {
+                    return
+                }
+
                 switch event {
                 case .next(let isLogin):
                     if isLogin {
                         let collection = UIBarButtonItem(customView: self.collectionButton)
                         items.append(collection)
-                        
+
                         guard let collectIds = AccountManager.shared.accountInfo?.collectIds,
                               let collectId = self.getRealCollectId() else {
                             return
                         }
-                        
+
                         let value = collectIds.contains(collectId)
-                        
+
                         self.isContains.accept(value)
                     }
                 default:
@@ -154,14 +157,18 @@ class WebViewController: BaseViewController {
                 }
             }.disposed(by: rx.disposeBag)
         }
-        
+
         isContains
             .bind(to: collectionButton.rx.isSelected)
             .disposed(by: rx.disposeBag)
-        
+
         navigationItem.rightBarButtonItems = items.reversed()
-        
-        vm.outputs.collectSuccess.subscribe { event in
+
+        vm.outputs.collectSuccess.subscribe { [weak self] event in
+            guard let self = self else {
+                return
+            }
+
             switch event {
             case .next(let isSuccess):
                 if isSuccess {
@@ -171,8 +178,12 @@ class WebViewController: BaseViewController {
                 break
             }
         }.disposed(by: rx.disposeBag)
-        
-        vm.outputs.unCollectSuccess.subscribe { event in
+
+        vm.outputs.unCollectSuccess.subscribe { [weak self] event in
+            guard let self = self else {
+               return
+            }
+            
             switch event {
             case .next(let isSuccess):
                 if isSuccess {
@@ -185,7 +196,7 @@ class WebViewController: BaseViewController {
     }
     
     deinit {
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
+//        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
     }
     
 }
@@ -261,22 +272,18 @@ extension WebViewController: WKNavigationDelegate {
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
-        //MBProgressHUD.beginLoading()
         delayEndRefreshing()
     }
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        //MBProgressHUD.stopLoading()
         delayEndRefreshing()
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
-        //MBProgressHUD.stopLoading()
         delayEndRefreshing()
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
-        //MBProgressHUD.stopLoading()
         delayEndRefreshing()
     }
 }

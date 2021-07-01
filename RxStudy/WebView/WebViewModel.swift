@@ -14,16 +14,10 @@ import Moya
 
 class WebViewModel: BaseViewModel {
     
-    private let disposeBag: DisposeBag
-    
     let collectSuccess = BehaviorRelay(value: false)
     
     let unCollectSuccess = BehaviorRelay(value: false)
     
-    init(disposeBag: DisposeBag) {
-        self.disposeBag = disposeBag
-        super.init()
-    }
 }
 
 extension WebViewModel {
