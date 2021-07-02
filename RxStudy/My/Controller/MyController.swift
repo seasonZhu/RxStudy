@@ -27,7 +27,7 @@ class MyController: BaseTableViewController {
         tableView.emptyDataSetSource = nil
         tableView.emptyDataSetDelegate = nil
         
-        let myView = MyView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 16.0 * 9))
+        let myView = MyView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
         tableView.tableHeaderView = myView
         
         let viewModel = MyViewModel()

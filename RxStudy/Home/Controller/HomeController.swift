@@ -106,7 +106,7 @@ extension HomeController {
         
         //MARK:- 轮播图的设置,这一段基本上就典型的Cocoa代码了
         
-        let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width / 16.0 * 9))
+        let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
         pagerView.dataSource = self
         pagerView.delegate = self
         pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "FSPagerViewCell")

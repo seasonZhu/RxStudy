@@ -23,9 +23,20 @@ let kSafeBottomMargin: CGFloat = UIApplication.shared.keyWindow?.safeAreaInsets.
 /// tabbar的高度
 let kTabbarHeight: CGFloat = 49
 
+/// 屏宽
+let kScreenWidth = UIScreen.main.bounds.width
+
+/// 屏宽的9/16
+let kScreenWidth_9_16 = UIScreen.main.bounds.width / 16.0 * 9
+
+/// 屏高
+let kScreenHeight = UIScreen.main.bounds.height
+
 /// 整体底部间距
 let kBottomMargin = kSafeBottomMargin + kTabbarHeight
 
+/// 保存用户名的key
 let kUsername = "kUsername"
 
+/// 保存密码的key
 let kPassword = "kPassword"
