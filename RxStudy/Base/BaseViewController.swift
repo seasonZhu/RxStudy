@@ -51,6 +51,8 @@ class BaseViewController: UIViewController {
 
          self.navigationController.interactivePopGestureRecognizer.enabled = NO;(界面不具有相互交互手势)
          */
+        
+        /// 下面这个代码看似没有什么问题,如果在根控制器进行侧滑操作,然后再尝试点击进行页面的push操作就会卡住,必须要配合BaseNavigationController进行操作才行
         ///navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
         /// 第一种: 将导航栏改成不透明即可, 可行

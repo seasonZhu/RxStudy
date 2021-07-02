@@ -1,5 +1,5 @@
 //
-//  AttractViewModel.swift
+//  CoinRankViewModel.swift
 //  RxStudy
 //
 //  Created by season on 2021/5/24.
@@ -13,7 +13,7 @@ import RxCocoa
 import Moya
 
 /// 进击的ViewModel
-class AttractViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class CoinRankViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 
     private var pageNum: Int
     
@@ -42,7 +42,7 @@ class AttractViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 }
 
 //MARK:- 网络请求
-private extension AttractViewModel {
+private extension CoinRankViewModel {
     
     func refresh() {
         resetCurrentPageAndMjFooter()
@@ -98,7 +98,7 @@ private extension AttractViewModel {
     }
 }
 
-private extension AttractViewModel {
+private extension CoinRankViewModel {
     private func resetCurrentPageAndMjFooter() {
         pageNum = 1
         refreshSubject.onNext(.resetNomoreData)

@@ -49,7 +49,7 @@ extension CoinRankListController {
             }
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = AttractViewModel()
+        let viewModel = CoinRankViewModel()
 
         tableView.mj_header?.rx.refresh
             .asDriver()

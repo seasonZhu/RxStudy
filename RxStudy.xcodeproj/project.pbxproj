@@ -88,7 +88,7 @@
 		61BB7C68267A057700990636 /* ProjectClassifyList.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C57267A057700990636 /* ProjectClassifyList.json */; };
 		61BB7C69267A057700990636 /* Tree.json in Resources */ = {isa = PBXBuildFile; fileRef = 61BB7C58267A057700990636 /* Tree.json */; };
 		61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833C265B41E50063EE4E /* NSObject+Extension.swift */; };
-		61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */; };
+		61BF8340265B8CCA0063EE4E /* CoinRankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BF833F265B8CCA0063EE4E /* CoinRankViewModel.swift */; };
 		61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C9792E265E282C00E7A1BC /* ProjectService.swift */; };
 		61C97936265E2AB400E7A1BC /* TagType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C97935265E2AB400E7A1BC /* TagType.swift */; };
 		61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C97937265E2B0400E7A1BC /* TabsController.swift */; };
@@ -188,7 +188,7 @@
 		61BB7C57267A057700990636 /* ProjectClassifyList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ProjectClassifyList.json; sourceTree = "<group>"; };
 		61BB7C58267A057700990636 /* Tree.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tree.json; sourceTree = "<group>"; };
 		61BF833C265B41E50063EE4E /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
-		61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttractViewModel.swift; sourceTree = "<group>"; };
+		61BF833F265B8CCA0063EE4E /* CoinRankViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankViewModel.swift; sourceTree = "<group>"; };
 		61C9792E265E282C00E7A1BC /* ProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
 		61C97935265E2AB400E7A1BC /* TagType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagType.swift; sourceTree = "<group>"; };
 		61C97937265E2B0400E7A1BC /* TabsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsController.swift; sourceTree = "<group>"; };
@@ -351,7 +351,7 @@
 		61336C922657AD0E00FDEB2A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				61BF833F265B8CCA0063EE4E /* AttractViewModel.swift */,
+				61BF833F265B8CCA0063EE4E /* CoinRankViewModel.swift */,
 				61BB7C452679C4F800990636 /* MyViewModel.swift */,
 				61B7994F268190F40025EADE /* MyCoinViewModel.swift */,
 				61B79951268193D00025EADE /* MyCollectionViewModel.swift */,
@@ -837,7 +837,7 @@
 				6114ABF9267AED660082BA67 /* MyCollectionController.swift in Sources */,
 				61B799542681B5760025EADE /* WebViewModel.swift in Sources */,
 				619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */,
-				61BF8340265B8CCA0063EE4E /* AttractViewModel.swift in Sources */,
+				61BF8340265B8CCA0063EE4E /* CoinRankViewModel.swift in Sources */,
 				611E2E0626607869001585AE /* HotKeyController.swift in Sources */,
 				61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,

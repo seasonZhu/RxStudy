@@ -9,24 +9,6 @@
 import UIKit
 
 class BaseNavigationController: UINavigationController {
-    
-    /**
-     - (void)viewDidLoad {
-         [super viewDidLoad];
-         self.interactivePopGestureRecognizer.delegate = self;
-         self.delegate = self;
-     }
-
-     #pragma mark - UINavigationControllerDelegate
-     // 当控制器显示完毕的时候调用
-     - (void)navigationController:(UINavigationController *)navigationController didShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
-         self.interactivePopGestureRecognizer.enabled = YES;
-         // 解决某些情况下push时的假死bug，防止把根控制器pop掉
-         if (navigationController.viewControllers.count == 1) {
-             self.interactivePopGestureRecognizer.enabled = NO;
-         }
-     }
-     */
 
     override func viewDidLoad() {
         super.viewDidLoad()
