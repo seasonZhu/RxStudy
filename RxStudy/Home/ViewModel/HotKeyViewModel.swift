@@ -31,10 +31,11 @@ private extension HotKeyViewModel {
             /// 去掉其中为nil的值
             .compactMap{ $0 }
             .subscribe(onSuccess: { items in
+                self.networkError.onNext(nil)
                 self.dataSource.accept(items)
             }, onError: { error in
-                guard let _ = error as? MoyaError else { return }
-                self.networkError.onNext(())
+                guard let moyarror = error as? MoyaError else { return }
+                self.networkError.onNext(moyarror)
             })
             .disposed(by: disposeBag)
     }

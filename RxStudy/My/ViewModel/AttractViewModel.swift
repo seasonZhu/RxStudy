@@ -74,6 +74,7 @@ private extension AttractViewModel {
                 
                 switch event {
                 case .success(let pageModel):
+                    self.networkError.onNext(nil)
                     /// 解包数据
                     if let datas = pageModel.datas {
                         /// 通过page的值判断是下拉还是上拉,做数据处理,这里为了方便写注释,没有使用三目运算符
@@ -89,9 +90,9 @@ private extension AttractViewModel {
                     if pageModel.isNoMoreData {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
-                case .error(_):
-                    /// error占时不做处理
-                    break
+                case .error(let error):
+                    guard let moyarror = error as? MoyaError else { return }
+                    self.networkError.onNext(moyarror)
                 }
             }.disposed(by: disposeBag)
     }

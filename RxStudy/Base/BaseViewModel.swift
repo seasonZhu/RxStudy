@@ -13,13 +13,16 @@ import NSObject_Rx
 import Moya
 
 class BaseViewModel {
-    /// 修饰前缀
+    /// inputs修饰前缀
     var inputs: Self { return self }
 
+    /// outputs修饰前缀
     var outputs: Self { return self }
     
-    var networkError = PublishSubject<Void>()
+    /// 错误请求
+    var networkError = PublishSubject<MoyaError?>()
     
+    /// 模型名称
     var className: String { String(describing: self) }
     
     deinit {

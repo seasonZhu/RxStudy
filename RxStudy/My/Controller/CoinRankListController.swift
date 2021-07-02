@@ -86,6 +86,8 @@ extension CoinRankListController {
         
         viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
         
+        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
+        
         /// 下拉与上拉状态绑定到tableView
         viewModel.outputs.refreshSubject
             .bind(to: tableView.rx.refreshAction)

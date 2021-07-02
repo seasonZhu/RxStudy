@@ -97,5 +97,7 @@ extension SearcResultController {
         viewModel.outputs.refreshSubject
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
+        
+        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
     }
 }

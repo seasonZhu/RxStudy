@@ -97,11 +97,13 @@ extension TabsController {
         
         viewModel.loadData()
         
-        viewModel.outputs.dataSource.asDriver().drive { [weak self] tabs in
+        viewModel.outputs.dataSource
+            .asDriver()
+            .drive { [weak self] tabs in
             self?.settingSegmentedDataSource(tabs: tabs)
         }.disposed(by: rx.disposeBag)
         
-        
+        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
     }
     
     func settingSegmentedDataSource(tabs: [Tab]) {

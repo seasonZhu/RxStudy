@@ -39,6 +39,7 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
                     self.refreshSubject.onNext(.stopRefresh)
                     switch event {
                     case .success(let tuple):
+                        self.networkError.onNext(nil)
                         let items = tuple.0
                         let topInfos = tuple.1
                         let noramlPageModel = tuple.2
@@ -56,8 +57,9 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
                         }
                         
                         self.banners.accept(items)
-                    case .error(_):
-                        break
+                    case .error(let error):
+                        guard let moyarror = error as? MoyaError else { return }
+                        self.networkError.onNext(moyarror)
                     }
                 }
                 .disposed(by: disposeBag)

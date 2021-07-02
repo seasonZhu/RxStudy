@@ -38,10 +38,11 @@ class MyViewModel: BaseViewModel {
                         /// 去掉其中为nil的值
                         .compactMap{ $0 }
                         .subscribe(onSuccess: { data in
+                            self.networkError.onNext(nil)
                             self.myCoin.accept(data)
                         }, onError: { error in
-                            guard let _ = error as? MoyaError else { return }
-                            self.networkError.onNext(())
+                            guard let moyarror = error as? MoyaError else { return }
+                            self.networkError.onNext(moyarror)
                         })
                         .disposed(by: self.disposeBag)
                 }
@@ -57,16 +58,6 @@ extension MyViewModel {
         return myProvider.rx.request(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
 
-    }
-    
-    func getMyCoin1() {
-        myProvider.rx.request(MyService.userCoinInfo)
-            .map(BaseModel<CoinRank>.self)
-            .subscribe { baseModel in
-                print(baseModel)
-            } onError: { error in
-                print(error)
-            }.disposed(by: disposeBag)
     }
     
     func logout() -> Single<BaseModel<String>> {

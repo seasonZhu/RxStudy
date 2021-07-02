@@ -11,6 +11,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import Moya
+
 class BaseViewController: UIViewController {
     
     private lazy var errorImage: UIImageView = {
@@ -106,9 +108,13 @@ extension BaseViewController {
 extension Reactive where Base: BaseViewController {
     
     /// 显示网络错误
-    var networkError: Binder<Void> {
-        return Binder(base) { vc, _ in
-            vc.showErrorImage()
+    var networkError: Binder<MoyaError?> {
+        return Binder(base) { vc, error in
+            if let _ = error {
+                vc.showErrorImage()
+            }else {
+                vc.hiddenErrorImage()
+            }
         }
     }
 }
