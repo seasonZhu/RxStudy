@@ -57,6 +57,10 @@ class HotKeyController: BaseViewController {
         }).disposed(by: rx.disposeBag)
         
         viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
+        
+        errorRetry.subscribe { _ in
+            viewModel.inputs.loadData()
+        }.disposed(by: rx.disposeBag)
     }
     
     private func tagLayout(hotKeys: [HotKey]) {

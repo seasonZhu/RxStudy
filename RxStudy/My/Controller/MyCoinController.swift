@@ -50,6 +50,10 @@ class MyCoinController: BaseTableViewController {
                 
             })
             .disposed(by: rx.disposeBag)
+        
+        errorRetry.subscribe { _ in
+            viewModel.inputs.loadData(actionType: .refresh)
+        }.disposed(by: rx.disposeBag)
 
         /// 绑定数据
         viewModel.outputs.dataSource

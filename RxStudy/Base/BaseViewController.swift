@@ -18,8 +18,13 @@ class BaseViewController: UIViewController {
     private lazy var errorImage: UIImageView = {
         let imageView = UIImageView(image: R.image.saber())
         imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = true
+        imageView.backgroundColor = .white
         return imageView
     }()
+    
+    /// 错误异常重试
+    let errorRetry = PublishSubject<Void>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +98,13 @@ extension BaseViewController {
             make.edges.equalTo(view)
         }
         errorImage.isHidden = true
+        
+        let tap = UITapGestureRecognizer()
+        errorImage.addGestureRecognizer(tap)
+        tap.rx.event
+            .subscribe { _ in
+                self.errorRetry.onNext(())
+        }.disposed(by: rx.disposeBag)
     }
     
     func showErrorImage() {
