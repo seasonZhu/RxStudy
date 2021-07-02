@@ -12,9 +12,9 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class MyCoinViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class MyCoinViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
-    private var pageNum: Int
+    var pageNum: Int
     
     init(pageNum: Int = 1) {
         self.pageNum = pageNum
@@ -97,8 +97,8 @@ private extension MyCoinViewModel {
     }
 }
 
-private extension MyCoinViewModel {
-    private func resetCurrentPageAndMjFooter() {
+extension MyCoinViewModel {
+    func resetCurrentPageAndMjFooter() {
         pageNum = 1
         refreshSubject.onNext(.resetNomoreData)
     }

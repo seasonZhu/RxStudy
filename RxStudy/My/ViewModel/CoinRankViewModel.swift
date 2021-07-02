@@ -13,9 +13,9 @@ import RxCocoa
 import Moya
 
 /// 进击的ViewModel
-class CoinRankViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class CoinRankViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
-    private var pageNum: Int
+    var pageNum: Int
     
     init(pageNum: Int = 1) {
         self.pageNum = pageNum
@@ -98,8 +98,8 @@ private extension CoinRankViewModel {
     }
 }
 
-private extension CoinRankViewModel {
-    private func resetCurrentPageAndMjFooter() {
+extension CoinRankViewModel {
+    func resetCurrentPageAndMjFooter() {
         pageNum = 1
         refreshSubject.onNext(.resetNomoreData)
     }

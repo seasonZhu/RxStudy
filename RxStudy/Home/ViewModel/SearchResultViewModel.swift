@@ -12,9 +12,9 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SearchResultViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     /// 搜索结果的首页是从0开始的
-    private var pageNum: Int
+    internal var pageNum: Int
     
     private let keyword: String
     
@@ -99,8 +99,8 @@ private extension SearchResultViewModel {
     }
 }
 
-private extension SearchResultViewModel {
-    private func resetCurrentPageAndMjFooter() {
+extension SearchResultViewModel {
+    func resetCurrentPageAndMjFooter() {
         pageNum = 0
         refreshSubject.onNext(.resetNomoreData)
     }

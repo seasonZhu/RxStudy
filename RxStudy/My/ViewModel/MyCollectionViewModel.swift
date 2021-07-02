@@ -12,9 +12,9 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class MyCollectionViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
-    private var pageNum: Int
+    var pageNum: Int
 
     init(pageNum: Int = 0) {
         self.pageNum = pageNum
@@ -97,8 +97,8 @@ private extension MyCollectionViewModel {
     }
 }
 
-private extension MyCollectionViewModel {
-    private func resetCurrentPageAndMjFooter() {
+extension MyCollectionViewModel {
+    func resetCurrentPageAndMjFooter() {
         pageNum = 0
         refreshSubject.onNext(.resetNomoreData)
     }

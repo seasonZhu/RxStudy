@@ -12,9 +12,9 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
-    private var pageNum: Int
+    var pageNum: Int
     
     init(pageNum: Int = 1) {
         self.pageNum = pageNum
@@ -100,12 +100,6 @@ class HomeViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
 //MARK:- 网络请求 
 private extension HomeViewModel {
     
-    /// 重置PageNum与上拉组件
-    private func resetCurrentPageAndMjFooter() {
-        pageNum = 0
-        refreshSubject.onNext(.resetNomoreData)
-    }
-    
     /// 下拉刷新操作
     func refresh() -> Single<BaseModel<Page<Info>>> {
         resetCurrentPageAndMjFooter()
@@ -153,5 +147,13 @@ private extension HomeViewModel {
             .asSingle()
 
         return result
+    }
+}
+
+extension HomeViewModel {
+    /// 重置PageNum与上拉组件
+    func resetCurrentPageAndMjFooter() {
+        pageNum = 0
+        refreshSubject.onNext(.resetNomoreData)
     }
 }

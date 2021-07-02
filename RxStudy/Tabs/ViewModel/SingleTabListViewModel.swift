@@ -12,9 +12,9 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SingleTabListViewModel: BaseViewModel, ViemModelInputs, ViemModelOutputs {
+class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
-    private var pageNum: Int
+    var pageNum: Int
         
     private let type: TagType
     
@@ -117,8 +117,8 @@ private extension SingleTabListViewModel {
     }
 }
 
-private extension SingleTabListViewModel {
-    private func resetCurrentPageAndMjFooter() {
+extension SingleTabListViewModel {
+    func resetCurrentPageAndMjFooter() {
         pageNum = type.pageNum
         refreshSubject.onNext(.resetNomoreData)
     }
