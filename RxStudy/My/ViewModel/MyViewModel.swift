@@ -13,9 +13,9 @@ import RxCocoa
 import Moya
 
 class MyViewModel: BaseViewModel {
-    let logoutDataSource: [My] = [.ranking, .openSource, .login]
+    let logoutDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .ranking, .login]
     
-    let loginDataSource: [My] = [.ranking, .myCoin, .myCollect, .openSource, .logout]
+    let loginDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .ranking, .myCoin, .myCollect, .logout]
     
     let currentDataSource = BehaviorRelay<[My]>(value: [])
     

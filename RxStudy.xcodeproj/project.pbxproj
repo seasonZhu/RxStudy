@@ -39,6 +39,7 @@
 		61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8426574E0500FDEB2A /* CoinRank.swift */; };
 		61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C872657537100FDEB2A /* CoinRankListController.swift */; };
 		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
+		6164F0FF268F053000CD43DF /* MyBaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */; };
 		61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */; };
 		61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */; };
 		6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18B2664B08C0065C34D /* BaseTableViewController.swift */; };
@@ -138,6 +139,7 @@
 		61336C872657537100FDEB2A /* CoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListController.swift; sourceTree = "<group>"; };
 		61336C8A2657581100FDEB2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		61336C8E2657A1C800FDEB2A /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
+		6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseWebViewController.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCoinRankListController.swift; sourceTree = "<group>"; };
 		61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftCoinRankListController.swift; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 				6114ABF8267AED660082BA67 /* MyCollectionController.swift */,
 				61B13D5F26808DC100665A08 /* ThirdPartyController.swift */,
 				61B13D612680915400665A08 /* ThirdPartyDetailController.swift */,
+				6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -805,6 +808,7 @@
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */,
 				6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */,
+				6164F0FF268F053000CD43DF /* MyBaseWebViewController.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,

@@ -11,6 +11,8 @@ import UIKit
 enum My {
     case ranking
     case openSource
+    case myGitHub
+    case myJueJin
     case myCoin
     case myCollect
     case login
@@ -25,6 +27,10 @@ extension My {
             string = "排名"
         case .openSource:
             string = "开源框架引用"
+        case .myGitHub:
+            string = "我的GitHub"
+        case .myJueJin:
+            string = "我的掘金"
         case .myCoin:
             string = "我的积分"
         case .myCollect:
@@ -48,6 +54,10 @@ extension My {
             string = "CoinRankListController"
         case .openSource:
             string = "ThirdPartyController"
+        case .myGitHub:
+            string = "MyGitHubController"
+        case .myJueJin:
+            string = "MyJueJinController"
         case .myCoin:
             string = "MyCoinController"
         case .myCollect:
