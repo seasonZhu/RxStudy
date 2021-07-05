@@ -42,7 +42,7 @@ class MyGitHubController: BaseViewController {
 
 extension MyGitHubController {
     func setupUI() {
-        title = "我的GitHub"
+        title = "作者的GitHub"
         view.backgroundColor = .white
         view.addSubview(webView)
         
@@ -88,7 +88,7 @@ class MyJueJinController: BaseViewController {
 
 extension MyJueJinController {
     func setupUI() {
-        title = "我的掘金"
+        title = "作者的掘金"
         view.backgroundColor = .white
         view.addSubview(webView)
         

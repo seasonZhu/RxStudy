@@ -18,12 +18,14 @@ struct CoinRank : Codable {
     let username : String?
     
     var myInfo: String {
-        guard let coinCount = self.coinCount, let level = self.level, let rank = self.rank else {
-            return "积分: --  等级: --  排名: --"
+        guard let rank = self.rank, let level = self.level, let coinCount = self.coinCount else {
+            return "排名: -- 等级: -- 积分: --"
         }
-        return "积分: \(coinCount)  等级: \(level)  排名: \(rank)"
+        return "排名: \(rank) 等级: \(level) 积分: \(coinCount)"
     }
 }
+
+/// 想要将Int和String展平为一种类型,然后来替换rank的类型,但是失败了
 
 protocol MixinIntAndString: Codable {}
 

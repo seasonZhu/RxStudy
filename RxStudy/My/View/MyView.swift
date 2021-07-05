@@ -32,7 +32,7 @@ class MyView: UIView {
                 infoLabel.text = text
             }else {
                 imageView.image = R.image.user()
-                infoLabel.text = "积分: --  等级: --  排名: --"
+                infoLabel.text = "排名: -- 等级: -- 积分: --"
             }
             
         }

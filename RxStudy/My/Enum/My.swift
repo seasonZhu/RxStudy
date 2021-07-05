@@ -28,9 +28,9 @@ extension My {
         case .openSource:
             string = "开源框架引用"
         case .myGitHub:
-            string = "我的GitHub"
+            string = "作者的GitHub"
         case .myJueJin:
-            string = "我的掘金"
+            string = "作者的掘金"
         case .myCoin:
             string = "我的积分"
         case .myCollect:
