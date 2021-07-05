@@ -26,3 +26,27 @@ extension WeakScriptMessageDelegate: WKScriptMessageHandler {
         scriptDelegate.userContentController(userContentController, didReceive: message)
     }
 }
+
+class WeakProxy: NSObject {
+    
+    weak var target: NSObjectProtocol?
+    
+    init(target: NSObjectProtocol) {
+        self.target = target
+        super.init()
+    }
+    
+    override func responds(to aSelector: Selector!) -> Bool {
+        return (target?.responds(to: aSelector) ?? false) || super.responds(to: aSelector)
+    }
+
+    override func forwardingTarget(for aSelector: Selector!) -> Any? {
+        return target
+    }
+}
+
+extension WeakProxy: WKScriptMessageHandler {
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        (target as? WKScriptMessageHandler)?.userContentController(userContentController, didReceive: message)
+    }
+}
