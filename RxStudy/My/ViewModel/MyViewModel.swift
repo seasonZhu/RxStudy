@@ -23,6 +23,7 @@ class MyViewModel: BaseViewModel {
     
     override init() {
         super.init()
+        //AccountManager.shared.myCoin.bind(to: myCoin).disposed(by: disposeBag)
         AccountManager.shared.isLogin.subscribe(onNext: { [weak self] isLogin in
             guard let self = self else { return }
             

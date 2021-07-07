@@ -27,6 +27,8 @@ final class AccountManager {
     /// 私有化初始化方法
     private init() {}
     
+    let myCoin = BehaviorRelay<CoinRank?>(value: nil)
+    
 }
 
 extension AccountManager {
@@ -113,10 +115,17 @@ extension AccountManager {
             .map(BaseModel<AccountInfo>.self)
             .asObservable()
             .flatMapLatest { (baseModel) -> Observable<CoinRank> in
+                if baseModel.isSuccess {
+                    AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
+                }
                 return myProvider.rx.request(MyService.userCoinInfo).map(BaseModel<CoinRank>.self).map{ $0.data}.compactMap{ $0}.asObservable()
-            }.subscribe { _ in
-                self.isLogin.accept(true)
+            }.asSingle().subscribe { myCoin in
+                self.myCoin.accept(myCoin)
+            } onError: { _ in
+                self.myCoin.accept(nil)
             }.disposed(by: disposeBag)
+
+
     }
 }
 
