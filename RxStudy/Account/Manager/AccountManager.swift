@@ -106,4 +106,18 @@ extension AccountManager {
     }
 }
 
+/// 尝试调用一个接口后再调用另外一个接口
+extension AccountManager {
+    func login1(username: String, password: String) {
+        accountProvider.rx.request(AccountService.login(username, password))
+            .map(BaseModel<AccountInfo>.self)
+            .asObservable()
+            .flatMapLatest { (baseModel) -> Observable<CoinRank> in
+                return myProvider.rx.request(MyService.userCoinInfo).map(BaseModel<CoinRank>.self).map{ $0.data}.compactMap{ $0}.asObservable()
+            }.subscribe { _ in
+                self.isLogin.accept(true)
+            }.disposed(by: disposeBag)
+    }
+}
+
 extension AccountManager: HasDisposeBag {}
