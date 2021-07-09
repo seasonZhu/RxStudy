@@ -16,10 +16,14 @@ class SwiftCoinRankListController: BaseViewController {
     
     private var dataSource: [CoinRank] = []
     
+    private var pageNum = 1
+    
+    private var isFinish = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        getCoinRank()
+        refresh()
     }
     
     private func setupTableView() {
@@ -44,9 +48,19 @@ class SwiftCoinRankListController: BaseViewController {
 }
 
 extension SwiftCoinRankListController {
-    private func getCoinRank() {
+    private func refresh() {
+        pageNum = 1
+        getCoinRank(pageNum: pageNum)
+    }
+    
+    private func loadMore() {
+        pageNum = pageNum + 1
+        getCoinRank(pageNum: pageNum)
+    }
+    
+    private func getCoinRank(pageNum: Int) {
         /// 这里只获取第一页的数据
-        myProvider.request(MyService.coinRank(1)) { (result: Result<Response, MoyaError>)  in
+        myProvider.request(MyService.coinRank(pageNum)) { (result: Result<Response, MoyaError>)  in
             switch result {
                 case .success(let response):
                     
@@ -55,8 +69,22 @@ extension SwiftCoinRankListController {
                     guard let baseModel = try? JSONDecoder().decode(BaseModel<Page<CoinRank>>.self, from: data), let array = baseModel.data?.datas else {
                         return
                     }
-                    self.dataSource = array
+                    pageNum == 1 ? self.dataSource = array : self.dataSource.append(contentsOf: array)
                     self.tableView.reloadData()
+                    
+                    if #available(iOS 11,*) {
+                        /*
+                         iOS11之后reloadData方法会执行
+                         - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath 方法，将当前所有的cell过一遍，而iOS11之前只是将展示的cell过一遍。故加此方法使其在过第一次的时候不执行加载更多数
+                         */
+                        
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            self.isFinish = true
+                        }
+                    }else {
+                        self.isFinish = true
+                    }
+                    
                     return
                     
                     /// Response扩展中已经有的写法
@@ -67,6 +95,7 @@ extension SwiftCoinRankListController {
                     self.tableView.reloadData()
                     
                 case .failure(let error):
+                    self.isFinish = false
                     print(error.errorDescription)
             }
             
@@ -109,6 +138,15 @@ extension SwiftCoinRankListController: UITableViewDataSource {
 
 /// RxSwift框架下,一般的Cocoa的侧滑删除不起作用,在这里正常
 extension SwiftCoinRankListController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        let distance = dataSource.count - 25
+        print("row: \(row), distance:\(distance)  ")
+        if row == distance {
+            loadMore()
+        }
+    }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
