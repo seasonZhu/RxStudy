@@ -115,7 +115,7 @@ extension ViewController {
             print(model)
         } onError: { error in
             
-        }
+        }.disposed(by: rx.disposeBag)
         
         let model1 = try? homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).toBlocking().first()
         let model2 = try? homeProvider.rx.request(HomeService.topArticle).map(BaseModel<[Info]>.self).toBlocking().first()
@@ -134,5 +134,49 @@ extension ViewController {
             print(error)
         }).disposed(by: rx.disposeBag)
     }
+    
+    private func createObservable() {
+            
+            let subject = PublishSubject<Void>()
+            
+            /// 使用flatMap转换为其他序列
+            let otherOb =  subject.asObservable()
+                .flatMapLatest({_ -> Observable<String> in
+                    print("flatMap")
+                    return self.netRequest()
+                })
+            
+            // 发出一次next, 由于没有订阅，所以没有效
+            subject.onNext(())
+            
+            // 订阅
+            subject.subscribe(onNext: { (_) in
+                print("发出一次事件")})
+                .disposed(by: rx.disposeBag)
+            // 又发出一次事件
+            subject.onNext(())
+            
+            // 订阅otherOb， 之后发出的事件都可以监听，除非序列发出Error事件
+            otherOb.subscribe(onNext: { (value) in
+                print("otherSub subscribe")
+                print(value)})
+                .disposed(by: rx.disposeBag)
+            
+            // subject 发出两次事件
+            subject.onNext(()) // [1]如果在netRequet方法中抛出Error, 就会引起序列终止，下面一个发出事件也就无效。
+            subject.onNext(())
+
+        }
+        
+        // 模拟网络请求
+        private func netRequest() -> Observable<String> {
+           return Observable<String>.create { (observer) -> Disposable in
+            observer.onError(NSError(domain: "www.baidu.com", code: 30, userInfo: [:]))
+    //            observer.onNext("你好")
+    //            observer.onCompleted()
+                return Disposables.create()
+            }
+        }
+
 }
 

@@ -98,7 +98,8 @@ extension TreeController {
 
         let items = Observable.just(sectionModels)
 
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<Tab, Tab>>(configureCell: { (ds, tv, indexPath, element) in
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<Tab, Tab>>(
+            configureCell: { (ds, tv, indexPath, element) in
             
             if let cell = tv.dequeueReusableCell(withIdentifier: "Cell") {
                 cell.textLabel?.text = ds.sectionModels[indexPath.section].model.children?[indexPath.row].name
@@ -113,12 +114,15 @@ extension TreeController {
                 return cell
             }
             
+        },
+            titleForHeaderInSection: { ds, index in
+                return ds.sectionModels[index].model.name
         })
 
-        //设置分区头标题
-        dataSource.titleForHeaderInSection = { ds, index in
-            return ds.sectionModels[index].model.name
-        }
+        //设置分区头标题,通过上面的方法简写了
+//        dataSource.titleForHeaderInSection = { ds, index in
+//            return ds.sectionModels[index].model.name
+//        }
 
         //绑定单元格数据
         items.bind(to: tableView.rx.items(dataSource: dataSource))

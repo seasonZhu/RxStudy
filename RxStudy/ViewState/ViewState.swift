@@ -19,30 +19,27 @@ enum ViewState {
     }
 }
 
-//extension ViewState {
-//    var view: Widget {
-//        switch self {
-//        case .loading:
-//            break
-//        case .error:
-//            break
-//        case .success(let success):
-//            switch success {
-//            case .empty:
-//                break
-//            case .hasContent(let widget):
-//                guard let w = widget else {
-//                    break
-//                }
-//                return w()
-//            default:
-//                break
-//            }
-//        default:
-//            return UIView()
-//        }
-//    }
-//}
+extension ViewState {
+    var view: Widget {
+        switch self {
+        case .loading:
+            return UIActivityIndicatorView(style: .whiteLarge)
+        case .error:
+            return UILabel()
+        case .success(let success):
+            switch success {
+            case .empty:
+                return UIView()
+            case .hasContent(let widget):
+                guard let w = widget else {
+                    return UIView()
+                }
+                return w()
+            }
+        }
+    }
+}
+
 
 protocol Widget {}
 

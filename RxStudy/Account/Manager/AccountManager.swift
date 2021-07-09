@@ -112,6 +112,7 @@ extension AccountManager {
 extension AccountManager {
     func login1(username: String, password: String) {
         accountProvider.rx.request(AccountService.login(username, password))
+            .retry(2)
             .map(BaseModel<AccountInfo>.self)
             .asObservable()
             .flatMapLatest { (baseModel) -> Observable<CoinRank> in
