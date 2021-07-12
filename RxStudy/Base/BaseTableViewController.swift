@@ -45,8 +45,11 @@ class BaseTableViewController: BaseViewController {
         
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
-        /// 设置尾部刷新控件
-        tableView.mj_footer = MJRefreshBackNormalFooter()
+        /// 设置尾部刷新控件,更新为无感知加载更多
+        let footer = MJRefreshAutoFooter()
+        /// 越负越早提前加载
+        footer.triggerAutomaticallyRefreshPercent = -2
+        tableView.mj_footer = footer
         
         /// 设置DZNEmptyDataSet的数据源和代理
         tableView.emptyDataSetSource = self

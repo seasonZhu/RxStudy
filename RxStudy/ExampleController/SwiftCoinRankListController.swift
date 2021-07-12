@@ -143,7 +143,7 @@ extension SwiftCoinRankListController: UITableViewDelegate {
         let row = indexPath.row
         let distance = dataSource.count - 25
         print("row: \(row), distance:\(distance)  ")
-        if row == distance {
+        if row == distance && isFinish {
             loadMore()
         }
     }
