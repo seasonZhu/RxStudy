@@ -56,7 +56,8 @@ extension TreeController {
 
         /// 绑定数据
         viewModel.outputs.dataSource
-            .subscribe(onNext: { [weak self] tabs in
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self] tabs in
                 self?.tableViewSectionAndCellConfig(tabs: tabs)
             })
             .disposed(by: rx.disposeBag)

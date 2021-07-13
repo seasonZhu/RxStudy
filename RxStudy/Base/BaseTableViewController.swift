@@ -20,9 +20,10 @@ class BaseTableViewController: BaseViewController {
     
     let emptyDataSetButtonTap = PublishSubject<Void>()
     
-    /// 作为一个可选类型的枚举,其实有个三个状态的nil true false
-    /// 订阅的时候为nil,说明根本就没有执行过accept()这个函数,或者执行了还是给的nil,没有意义,不给予理会即可
-    let isEmpty: BehaviorRelay<Bool?> = BehaviorRelay(value: nil)
+    /// BehaviorRelay 就是 BehaviorSubject 去掉终止事件 onError 或 onCompleted
+    /// 当观察者对 BehaviorSubject 进行订阅时，它会将源 Observable 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来。
+    /// 所以下面的代码对其订阅,首先会发出默认值false,表名一开始是有值的,所以被拦住,当变为true时,就走到if noContent的逻辑中
+    let isEmpty: BehaviorRelay<Bool> = BehaviorRelay(value: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,13 +75,10 @@ class BaseTableViewController: BaseViewController {
             
             switch event {
             case .next(let noContent):
-                guard let reallyNoContent = noContent else {
-                    return
-                }
-
-                if reallyNoContent {
+                
+                /// isEmpty中的value为true才调用下面的方法
+                if noContent {
                     print("监听没有内容")
-                    /// 这个地方有问题
                     self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
                 break
@@ -127,7 +125,7 @@ extension BaseTableViewController: DZNEmptyDataSetSource {
 extension BaseTableViewController: DZNEmptyDataSetDelegate {
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
-        return isEmpty.value ?? false
+        return isEmpty.value
     }
 
     func emptyDataSetShouldAllowScroll(_ scrollView: UIScrollView!) -> Bool {

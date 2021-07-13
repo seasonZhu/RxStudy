@@ -116,6 +116,7 @@ extension HomeController {
             make.height.equalTo(40)
         }
         
+        /// 轮播图数据驱动
         viewModel.outputs.banners.asDriver(onErrorJustReturn: []).drive { [weak self] models in
             self?.itmes = models
             pageControl.numberOfPages = models.count
@@ -124,6 +125,7 @@ extension HomeController {
     }
 }
 
+//MARK:- FSPagerViewDataSource
 extension HomeController: FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return itmes.count
@@ -138,6 +140,7 @@ extension HomeController: FSPagerViewDataSource {
     }
 }
 
+//MARK:- FSPagerViewDelegate
 extension HomeController: FSPagerViewDelegate {
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: false)

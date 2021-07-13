@@ -98,7 +98,7 @@ extension TabsController {
         viewModel.loadData()
         
         viewModel.outputs.dataSource
-            .asDriver()
+            .asDriver(onErrorJustReturn: [])
             .drive { [weak self] tabs in
             self?.settingSegmentedDataSource(tabs: tabs)
         }.disposed(by: rx.disposeBag)

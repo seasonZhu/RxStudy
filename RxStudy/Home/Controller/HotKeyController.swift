@@ -30,7 +30,7 @@ class HotKeyController: BaseViewController {
         textField.rightView = emptyView
         textField.leftViewMode = .always
         textField.rightViewMode = .always
-        textField.rx.controlEvent([.editingDidEndOnExit]) //状态可以组合
+        textField.rx.controlEvent([.editingDidEndOnExit]) /// 状态可以组合
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.pushToSearchResultController(keyword: textField.text!)
@@ -52,7 +52,9 @@ class HotKeyController: BaseViewController {
         
         viewModel.inputs.loadData()
         
-        viewModel.outputs.dataSource.subscribe(onNext: { [weak self ] hotKeys in
+        viewModel.outputs.dataSource
+            .asDriver(onErrorJustReturn: [])
+            .drive(onNext: { [weak self ] hotKeys in
             self?.tagLayout(hotKeys: hotKeys)
         }).disposed(by: rx.disposeBag)
         
