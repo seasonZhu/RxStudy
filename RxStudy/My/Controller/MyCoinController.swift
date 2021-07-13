@@ -24,14 +24,6 @@ class MyCoinController: BaseTableViewController {
 
     private func setupUI() {
         title = "我的积分"
-
-        /// 获取indexPath
-        tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
-                self?.tableView.deselectRow(at: indexPath, animated: false)
-                print(indexPath)
-            }
-            .disposed(by: rx.disposeBag)
                 
         let viewModel = MyCoinViewModel()
 

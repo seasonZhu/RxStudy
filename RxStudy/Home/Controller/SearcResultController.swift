@@ -42,13 +42,6 @@ extension SearcResultController {
         
         title = keyword
         
-        /// 获取indexPath
-        tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
-                self?.tableView.deselectRow(at: indexPath, animated: false)
-            }
-            .disposed(by: rx.disposeBag)
-        
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
             .subscribe(onNext: { [weak self] model in

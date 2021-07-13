@@ -37,6 +37,14 @@ class BaseTableViewController: BaseViewController {
         /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
+        /// 获取indexPath 基类中取消点击cell的动画效果
+        tableView.rx.itemSelected
+            .bind { [weak self] (indexPath) in
+                self?.tableView.deselectRow(at: indexPath, animated: false)
+                print(indexPath)
+            }
+            .disposed(by: rx.disposeBag)
+        
         /// 简单布局
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in

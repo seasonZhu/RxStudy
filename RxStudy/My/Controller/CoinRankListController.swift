@@ -32,15 +32,6 @@ extension CoinRankListController {
         //tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
         
         title = "积分排名"
-
-        /// 获取indexPath
-        tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
-                self?.tableView.deselectRow(at: indexPath, animated: false)
-                print(indexPath)
-            }
-            .disposed(by: rx.disposeBag)
-        
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(CoinRank.self)

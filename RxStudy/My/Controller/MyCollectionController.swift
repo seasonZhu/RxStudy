@@ -24,13 +24,6 @@ class MyCollectionController: BaseTableViewController {
     private func setupUI() {
         
         title = "我的收藏"
-
-        /// 获取indexPath
-        tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
-                self?.tableView.deselectRow(at: indexPath, animated: false)
-            }
-            .disposed(by: rx.disposeBag)
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)

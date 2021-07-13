@@ -40,16 +40,7 @@ extension TreeController {
         
         tableView.mj_header = nil
         tableView.mj_footer = nil
-                
-        /// 获取indexPath
-        tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
-                self?.tableView.deselectRow(at: indexPath, animated: false)
-                print(indexPath)
-            }
-            .disposed(by: rx.disposeBag)
-        
-        
+            
         /// 获取cell中的模型
         tableView.rx.modelSelected(Tab.self)
             .subscribe(onNext: { [weak self] tab in

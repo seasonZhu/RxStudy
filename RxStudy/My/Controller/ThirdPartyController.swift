@@ -35,15 +35,6 @@ class ThirdPartyController: BaseTableViewController {
         let list = AcknowParser(plistPath: defaultAcknowledgementsPlistPath()!).parseAcknowledgements()
         
         dataSource.accept(list)
-                
-        /// 获取indexPath
-        tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
-                self?.tableView.deselectRow(at: indexPath, animated: false)
-                print(indexPath)
-            }
-            .disposed(by: rx.disposeBag)
-        
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Acknow.self)
