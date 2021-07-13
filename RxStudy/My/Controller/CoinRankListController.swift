@@ -29,7 +29,7 @@ extension CoinRankListController {
 
          所以，tableView: cellForRowAtIndexPath中的[tableView dequeueReusableCellWithIdentifier:］返回的都不是nil。并且，cell的style一直是UITableViewCellStyleDefault，所以detailTextLabel无法显示。
          */
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
         
         title = "积分排名"
 
@@ -75,12 +75,12 @@ extension CoinRankListController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                     cell.textLabel?.text = coinRank.myInfo
                     cell.detailTextLabel?.text = coinRank.username
                     return cell
                 }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                     cell.textLabel?.text = coinRank.myInfo
                     cell.detailTextLabel?.text = coinRank.username
                     return cell

@@ -59,12 +59,12 @@ class MyCoinController: BaseTableViewController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, myHistoryCoin) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                     cell.textLabel?.text = myHistoryCoin.desc
                     cell.detailTextLabel?.text = myHistoryCoin.reason
                     return cell
                 }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                     cell.textLabel?.text = myHistoryCoin.desc
                     cell.detailTextLabel?.text = myHistoryCoin.reason
                     return cell

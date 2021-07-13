@@ -34,12 +34,12 @@ class MyController: BaseTableViewController {
 
         viewModel.outputs.currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                     cell.textLabel?.text = my.title
                     cell.accessoryType = my.accessoryType
                     return cell
                 }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                     cell.textLabel?.text = my.title
                     cell.accessoryType = my.accessoryType
                     return cell

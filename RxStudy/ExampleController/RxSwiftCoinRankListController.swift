@@ -62,12 +62,12 @@ class RxSwiftCoinRankListController: BaseViewController {
         vm.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                 cell.textLabel?.text = coinRank.username
                 cell.detailTextLabel?.text = coinRank.coinCount?.toString
                 return cell
             }else {
-                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                 cell.textLabel?.text = coinRank.username
                 cell.detailTextLabel?.text = coinRank.coinCount?.toString
                 return cell

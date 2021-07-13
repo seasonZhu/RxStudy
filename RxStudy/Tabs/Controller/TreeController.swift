@@ -101,13 +101,13 @@ extension TreeController {
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<Tab, Tab>>(
             configureCell: { (ds, tv, indexPath, element) in
             
-            if let cell = tv.dequeueReusableCell(withIdentifier: "Cell") {
+                if let cell = tv.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                 cell.textLabel?.text = ds.sectionModels[indexPath.section].model.children?[indexPath.row].name
                 cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
                 cell.accessoryType = .disclosureIndicator
                 return cell
             }else {
-                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                 cell.textLabel?.text = ds.sectionModels[indexPath.section].model.children?[indexPath.row].name
                 cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
                 cell.accessoryType = .disclosureIndicator

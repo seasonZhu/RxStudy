@@ -29,7 +29,7 @@ class SwiftCoinRankListController: BaseViewController {
     private func setupTableView() {
         
         /// 注册cell
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
         
         /// 设置tableFooterView
         tableView.tableFooterView = UIView()
@@ -123,12 +123,12 @@ extension SwiftCoinRankListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let coinRank = dataSource[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
             cell.textLabel?.text = coinRank.username
             cell.detailTextLabel?.text = coinRank.coinCount?.toString
             return cell
         }else {
-            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "Cell")
+            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
             cell.textLabel?.text = coinRank.username
             cell.detailTextLabel?.text = coinRank.coinCount?.toString
             return cell

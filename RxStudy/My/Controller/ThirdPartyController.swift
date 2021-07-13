@@ -56,11 +56,11 @@ class ThirdPartyController: BaseTableViewController {
         dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                     cell.textLabel?.text = info.title
                     return cell
                 }else {
-                    let cell = InfoViewCell(style: .subtitle, reuseIdentifier: "Cell")
+                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                     cell.textLabel?.text = info.title
                     return cell
                 }

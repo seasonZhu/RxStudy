@@ -84,11 +84,11 @@ extension HomeController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as? InfoCell {
+                if let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.className) as? InfoCell {
                     cell.info = info
                     return cell
                 }else {
-                    let cell = InfoCell(style: .subtitle, reuseIdentifier: "Cell")
+                    let cell = InfoCell(style: .subtitle, reuseIdentifier: InfoCell.className)
                     cell.info = info
                     return cell
                 }
@@ -109,7 +109,7 @@ extension HomeController {
         let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
         pagerView.dataSource = self
         pagerView.delegate = self
-        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "FSPagerViewCell")
+        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: FSPagerViewCell.className)
         pagerView.automaticSlidingInterval = 3.0
         pagerView.isInfinite = true
         tableView.tableHeaderView = pagerView
@@ -139,7 +139,7 @@ extension HomeController: FSPagerViewDataSource {
     }
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
-        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: "FSPagerViewCell", at: index)
+        let cell = pagerView.dequeueReusableCell(withReuseIdentifier: FSPagerViewCell.className, at: index)
         if let imagePath = itmes[index].imagePath, let url = URL(string: imagePath) {
             cell.imageView?.kf.setImage(with: url)
         }
