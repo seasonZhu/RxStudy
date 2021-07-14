@@ -90,7 +90,7 @@ class BaseViewController: UIViewController {
 
 }
 
-//MARK:- 网络请求错误页面的配置项(待用)
+//MARK:- 网络请求错误页面的配置
 extension BaseViewController {
     private func setupErrorImage() {
         view.addSubview(errorImage)

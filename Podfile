@@ -42,6 +42,7 @@ target 'RxStudy' do
   pod 'FSPagerView'
   pod 'JXSegmentedView'
   pod 'MarqueeLabel'
+  pod 'SVProgressHUD'
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'
