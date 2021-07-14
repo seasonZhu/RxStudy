@@ -8,7 +8,7 @@
 
 import MBProgressHUD
 
-extension MBProgressHUD {
+extension MBProgressHUD: HUD {
     static var keyWindow: UIWindow {
         return UIApplication.shared.keyWindow!
     }

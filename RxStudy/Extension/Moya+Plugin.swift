@@ -10,6 +10,7 @@ import UIKit
 
 import Moya
 import MBProgressHUD
+import SVProgressHUD
 
 class RequestLoadingPlugin: PluginType {
     
@@ -24,7 +25,7 @@ class RequestLoadingPlugin: PluginType {
         print("开始请求")
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            MBProgressHUD.beginLoading()
+            SVProgressHUD.beginLoading()
         }
     }
     
@@ -33,7 +34,7 @@ class RequestLoadingPlugin: PluginType {
         // 关闭loading
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            MBProgressHUD.stopLoading()
+            SVProgressHUD.stopLoading()
         }
         
         switch result {

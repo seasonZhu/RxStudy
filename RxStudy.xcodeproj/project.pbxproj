@@ -40,6 +40,8 @@
 		61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C872657537100FDEB2A /* CoinRankListController.swift */; };
 		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
 		6164F0FF268F053000CD43DF /* MyBaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */; };
+		616EC96E269E8154008FAFDF /* SVProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */; };
+		616EC970269E822E008FAFDF /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EC96F269E822E008FAFDF /* HUD.swift */; };
 		61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */; };
 		61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */; };
 		6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18B2664B08C0065C34D /* BaseTableViewController.swift */; };
@@ -140,6 +142,8 @@
 		61336C872657537100FDEB2A /* CoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListController.swift; sourceTree = "<group>"; };
 		61336C8A2657581100FDEB2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseWebViewController.swift; sourceTree = "<group>"; };
+		616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Extension.swift"; sourceTree = "<group>"; };
+		616EC96F269E822E008FAFDF /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCoinRankListController.swift; sourceTree = "<group>"; };
 		61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftCoinRankListController.swift; sourceTree = "<group>"; };
@@ -324,7 +328,9 @@
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
 				617AAA38265CAD820029A83F /* Moya+Plugin.swift */,
 				611E2E0F266096E9001585AE /* String+Extension.swift */,
+				616EC96F269E822E008FAFDF /* HUD.swift */,
 				619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */,
+				616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -828,6 +834,7 @@
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
+				616EC970269E822E008FAFDF /* HUD.swift in Sources */,
 				61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */,
 				6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
@@ -852,6 +859,7 @@
 				61B799542681B5760025EADE /* WebViewModel.swift in Sources */,
 				619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* CoinRankViewModel.swift in Sources */,
+				616EC96E269E8154008FAFDF /* SVProgressHUD+Extension.swift in Sources */,
 				611E2E0626607869001585AE /* HotKeyController.swift in Sources */,
 				61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
