@@ -25,7 +25,7 @@ class RequestLoadingPlugin: PluginType {
         print("开始请求")
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            SVProgressHUD.beginLoading()
+            MBProgressHUD.beginLoading()
         }
     }
     
@@ -34,7 +34,7 @@ class RequestLoadingPlugin: PluginType {
         // 关闭loading
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            SVProgressHUD.stopLoading()
+            MBProgressHUD.stopLoading()
         }
         
         switch result {
