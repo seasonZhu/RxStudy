@@ -20,6 +20,7 @@ extension SVProgressHUD: HUD {
     }
     
     static func showText(_ text: String) {
-        SVProgressHUD.showInfo(withStatus: text)
+        SVProgressHUD.show(UIImage(), status: text)
+        //SVProgressHUD.showInfo(withStatus: text)
     }
 }

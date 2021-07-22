@@ -12,6 +12,7 @@ import WebKit
 import RxSwift
 import RxCocoa
 import MBProgressHUD
+import SVProgressHUD
 import MarqueeLabel
 import MJRefresh
 
@@ -225,7 +226,7 @@ extension WebViewController {
     
     private func shareAction() {
         guard let title = webLoadInfo.title, let url = webLoadInfo.link else {
-            MBProgressHUD.showText("无法获取分享信息")
+            SVProgressHUD.showText("无法获取分享信息")
             return
         }
         
@@ -244,9 +245,9 @@ extension WebViewController {
         activityContrller.excludedActivityTypes = excludedActivityTypes
         activityContrller.completionWithItemsHandler = { [weak activityContrller] activityType, completed, returnedItems, activityError in
             if completed {
-                MBProgressHUD.showText("分享成功!")
+                SVProgressHUD.showText("分享成功!")
             }else {
-                MBProgressHUD.showText("分享失败!")
+                SVProgressHUD.showText("分享失败!")
             }
             
             activityContrller?.dismiss(animated: true, completion: nil)

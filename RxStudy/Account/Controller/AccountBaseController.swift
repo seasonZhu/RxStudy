@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import SVProgressHUD
 
 class AccountBaseController: BaseViewController {
     
@@ -90,7 +91,7 @@ extension AccountBaseController {
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {
-                        MBProgressHUD.showText("登录成功")
+                        SVProgressHUD.showText("登录成功")
                     }
                     self.navigationController?.popToRootViewController(animated: true)
                 }
@@ -105,7 +106,7 @@ extension AccountBaseController {
             .subscribe { baseModel in
                 if baseModel.isSuccess {
                     DispatchQueue.main.async {
-                        MBProgressHUD.showText("注册成功")
+                        SVProgressHUD.showText("注册成功")
                     }
                     self.login(username: username, password: password)
                 }
