@@ -59,6 +59,7 @@
 		617E44F3269574CF00DA9EA2 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E44F2269574CF00DA9EA2 /* ViewState.swift */; };
 		6186948D267C4DBC0086F051 /* MJRefresh+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186948B267C4DBB0086F051 /* MJRefresh+RxSwift.swift */; };
 		6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186948C267C4DBB0086F051 /* UIScrollView+RxSwift.swift */; };
+		6194601126B12D2200A66F77 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6194601026B12D2200A66F77 /* README.md */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
 		61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */; };
 		619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619BA35B26895DDF007C7135 /* BaseNavigationController.swift */; };
@@ -163,6 +164,7 @@
 		617E44F2269574CF00DA9EA2 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		6186948B267C4DBB0086F051 /* MJRefresh+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MJRefresh+RxSwift.swift"; sourceTree = "<group>"; };
 		6186948C267C4DBB0086F051 /* UIScrollView+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+RxSwift.swift"; sourceTree = "<group>"; };
+		6194601026B12D2200A66F77 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
 		61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
 		619BA35B26895DDF007C7135 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
@@ -274,6 +276,7 @@
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
 				612DBF64220022BE007F73CC /* LaunchScreen.storyboard */,
 				612DBF67220022BE007F73CC /* Info.plist */,
+				6194601026B12D2200A66F77 /* README.md */,
 				6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */,
 				612DBF62220022BE007F73CC /* Assets.xcassets */,
 			);
@@ -708,6 +711,7 @@
 				61BB7C5C267A057700990636 /* MyCollectList.json in Resources */,
 				61BB7C66267A057700990636 /* MyCoinList.json in Resources */,
 				6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */,
+				6194601126B12D2200A66F77 /* README.md in Resources */,
 				61BB7C61267A057700990636 /* PublicNumber.json in Resources */,
 				61BB7C5E267A057700990636 /* AMapLocation.json in Resources */,
 				61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */,
