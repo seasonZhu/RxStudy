@@ -19,7 +19,7 @@ class BaseViewController: UIViewController {
         let imageView = UIImageView(image: R.image.saber())
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
-        imageView.backgroundColor = .white
+        imageView.backgroundColor = .playAndroidBg
         return imageView
     }()
     

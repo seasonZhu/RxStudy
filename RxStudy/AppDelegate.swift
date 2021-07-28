@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         SVProgressHUDSetting()
-        window?.backgroundColor = .white
+        window?.backgroundColor = .playAndroidBg
         return true
     }
 
@@ -52,7 +52,8 @@ extension AppDelegate {
     func SVProgressHUDSetting() {
         /// 不显示图片,仅显示文字
         SVProgressHUD.setImageViewSize(CGSize.zero)
-        SVProgressHUD.setDefaultStyle(.dark)
+        UITraitCollection.isDark ? SVProgressHUD.setDefaultStyle(.dark) : SVProgressHUD.setDefaultStyle(.light)
         SVProgressHUD.setDefaultMaskType(.clear)
+        SVProgressHUD.setMinimumDismissTimeInterval(3)
     }
 }

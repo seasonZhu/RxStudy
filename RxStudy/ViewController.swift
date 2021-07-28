@@ -29,7 +29,7 @@ class ViewController: UITabBarController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
+        view.backgroundColor = .playAndroidBg
         delegate = self
         addChildControllers()
         title = viewControllers?.first?.title
