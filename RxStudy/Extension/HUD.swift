@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// 弹窗协议
 protocol HUD {
     static func beginLoading()
     

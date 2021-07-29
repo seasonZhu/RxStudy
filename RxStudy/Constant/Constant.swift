@@ -8,16 +8,16 @@
 
 import UIKit
 
-/// 状态栏的高度
+/// 状态栏的高度(竖屏限定)
 let kStatusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
 
-/// 导航栏的高度
+/// 导航栏的高度(竖屏限定)
 let kNavigationBarHeight: CGFloat = 44.0
 
-/// 整体顶部间距
+/// 整体顶部间距(竖屏限定)
 let kTopMargin = kStatusBarHeight + kNavigationBarHeight
 
-/// 底部安全区间距
+/// 底部安全区间距(竖屏限定)
 let kSafeBottomMargin: CGFloat = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
 
 /// tabbar的高度

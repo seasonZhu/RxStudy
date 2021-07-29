@@ -35,20 +35,18 @@ class TabsViewModel: BaseViewModel {
 //MARK:- 网络请求
 private extension TabsViewModel {
     func requestData() {
-        let result: Single<BaseModel<[Tab]>>
+        let result: Single<Response>
         switch type {
         case .project:
             result = projectProvider.rx.request(ProjectService.tags)
-                .map(BaseModel<[Tab]>.self)
         case .publicNumber:
             result = publicNumberProvider.rx.request(PublicNumberService.tags)
-                .map(BaseModel<[Tab]>.self)
         case .tree:
             result = treeProvider.rx.request(TreeService.tags)
-                .map(BaseModel<[Tab]>.self)
         }
         
         result
+            .map(BaseModel<[Tab]>.self)
             .map{ $0.data }
             /// 去掉其中为nil的值
             .compactMap{ $0 }

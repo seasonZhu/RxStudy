@@ -9,6 +9,7 @@
 import Foundation
 import WebKit
 
+/// 专用WKScriptMessageHandler的代理层
 class WeakScriptMessageDelegate: NSObject {
 
     //MARK:- 属性设置 之前这个属性没有用weak修饰,所以一直持有,无法释放
@@ -27,6 +28,7 @@ extension WeakScriptMessageDelegate: WKScriptMessageHandler {
     }
 }
 
+/// 更为通用的弱代理交换器
 class WeakProxy: NSObject {
     
     weak var target: NSObjectProtocol?

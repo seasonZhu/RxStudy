@@ -47,7 +47,7 @@ class RequestLoadingPlugin: PluginType {
                 }
             }else {
                 DispatchQueue.main.async {
-                    // 进行统一弹窗
+                    /// 进行统一弹窗
                     SVProgressHUD.showText("statusCode not 200")
                 }
             }

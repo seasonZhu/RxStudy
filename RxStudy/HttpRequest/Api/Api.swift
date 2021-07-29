@@ -8,11 +8,9 @@
 
 import Foundation
 
-struct Api {
+enum Api {
     /// baseUrl
     static let baseUrl = "https://www.wanandroid.com/"
-    
-    private init() {}
     
     /// 以下Api是没有实现的
     

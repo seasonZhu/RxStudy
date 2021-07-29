@@ -276,6 +276,7 @@ extension WebViewController: WKScriptMessageHandler {
     }
 }
 
+// MARK: - 其实在RxCocoa中有WebView+Rx的分类,专门来将WebView的代理进行rx的编写方式,就和UITablevDelegate差不多,这里只是没有使用
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
         print("decidePolicyForUrl == \(navigationAction.request.url?.absoluteString ?? "unkown")")

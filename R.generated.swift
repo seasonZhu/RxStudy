@@ -114,7 +114,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.file` struct is generated, and contains static references to 19 files.
+  /// This `R.file` struct is generated, and contains static references to 20 files.
   struct file {
     /// Resource file `AMapLocation.json`.
     static let aMapLocationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "AMapLocation", pathExtension: "json")
@@ -148,6 +148,8 @@ struct R: Rswift.Validatable {
     static let publicNumberJson = Rswift.FileResource(bundle: R.hostingBundle, name: "PublicNumber", pathExtension: "json")
     /// Resource file `PublicNumberList.json`.
     static let publicNumberListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "PublicNumberList", pathExtension: "json")
+    /// Resource file `README.md`.
+    static let readmeMd = Rswift.FileResource(bundle: R.hostingBundle, name: "README", pathExtension: "md")
     /// Resource file `RankList.json`.
     static let rankListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RankList", pathExtension: "json")
     /// Resource file `SearchResult.json`.
@@ -248,6 +250,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "PublicNumberList", withExtension: "json")`
     static func publicNumberListJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.publicNumberListJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "README", withExtension: "md")`
+    static func readmeMd(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.readmeMd
       return fileResource.bundle.url(forResource: fileResource)
     }
 

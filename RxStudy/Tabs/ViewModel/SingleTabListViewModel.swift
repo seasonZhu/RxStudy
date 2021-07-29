@@ -62,21 +62,20 @@ private extension SingleTabListViewModel {
         guard let id = tab.id else {
             return
         }
-        let result: Single<BaseModel<Page<Info>>>
+        let result: Single<Response>
         switch type {
         case .project:
             print("请求:\(id)")
             result = projectProvider.rx.request(ProjectService.tagList(id, page))
-                .map(BaseModel<Page<Info>>.self)
         case .publicNumber:
             result = publicNumberProvider.rx.request(PublicNumberService.tagList(id, page))
-                .map(BaseModel<Page<Info>>.self)
         case .tree:
             result = treeProvider.rx.request(TreeService.tagList(id, page))
-                .map(BaseModel<Page<Info>>.self)
         }
         
         result
+            /// Response转Model
+            .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .map{ $0.data }
             /// 解包

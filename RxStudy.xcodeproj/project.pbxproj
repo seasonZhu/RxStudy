@@ -110,6 +110,7 @@
 
 /* Begin PBXFileReference section */
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		611471CB26B106AC00E298F5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6114ABEE267AD6CD0082BA67 /* MyCoin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MyCoin.json; sourceTree = "<group>"; };
 		6114ABF0267AD8450082BA67 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
@@ -387,6 +388,7 @@
 			children = (
 				61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */,
 				61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */,
+				6109341026B2749C0079A597 /* RxSwiftStudy.playground */,
 			);
 			path = ExampleController;
 			sourceTree = "<group>";
