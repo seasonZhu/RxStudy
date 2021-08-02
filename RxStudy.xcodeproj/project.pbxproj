@@ -70,6 +70,7 @@
 		61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */; };
 		61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13D5F26808DC100665A08 /* ThirdPartyController.swift */; };
 		61B13D622680915400665A08 /* ThirdPartyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13D612680915400665A08 /* ThirdPartyDetailController.swift */; };
+		61B44A4126B79CA500791859 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B44A4026B79CA500791859 /* Transform.swift */; };
 		61B539002678863A00EEFE1F /* My.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B538FF2678863A00EEFE1F /* My.swift */; };
 		61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */; };
 		61B79950268190F40025EADE /* MyCoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7994F268190F40025EADE /* MyCoinViewModel.swift */; };
@@ -176,6 +177,7 @@
 		61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		61B13D5F26808DC100665A08 /* ThirdPartyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyController.swift; sourceTree = "<group>"; };
 		61B13D612680915400665A08 /* ThirdPartyDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyDetailController.swift; sourceTree = "<group>"; };
+		61B44A4026B79CA500791859 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		61B538FF2678863A00EEFE1F /* My.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My.swift; sourceTree = "<group>"; };
 		61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHistoryCoin.swift; sourceTree = "<group>"; };
 		61B7994F268190F40025EADE /* MyCoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
@@ -258,6 +260,7 @@
 		612DBF5A220022BA007F73CC /* RxStudy */ = {
 			isa = PBXGroup;
 			children = (
+				61B44A3C26B79A7500791859 /* Transform */,
 				617E44F1269574B800DA9EA2 /* ViewState */,
 				61716A9D267B396C00F9DC25 /* ExampleController */,
 				6171E1962665FE2D0065C34D /* Constant */,
@@ -505,6 +508,14 @@
 				619EDB362660BF820056A3D9 /* InfoViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		61B44A3C26B79A7500791859 /* Transform */ = {
+			isa = PBXGroup;
+			children = (
+				61B44A4026B79CA500791859 /* Transform.swift */,
+			);
+			path = Transform;
 			sourceTree = "<group>";
 		};
 		61B538FE2678862300EEFE1F /* Enum */ = {
@@ -810,6 +821,7 @@
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
+				61B44A4126B79CA500791859 /* Transform.swift in Sources */,
 				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
 				6171E19B266611650065C34D /* AccountService.swift in Sources */,
