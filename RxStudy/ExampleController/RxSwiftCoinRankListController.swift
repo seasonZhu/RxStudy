@@ -166,3 +166,35 @@ class RxSwiftCoinRankListViewModel {
             }.disposed(by: disposeBag)
     }
 }
+
+
+extension RxSwiftCoinRankListController {
+    func some() {
+        let array = [0, 1, 2, 3, 4, 5]
+        array.forEach { element in
+            print(element)
+        }
+        
+        let observable = Observable.just([0, 1, 2, 3, 4, 5])
+        
+        observable.subscribe { (event: Event<[Int]>) in
+            switch event {
+            case .next(let some):
+                some.forEach { element in
+                    print(element)
+                }
+            case .error(let error):
+                print(error)
+            case .completed:
+                print(event.debugDescription)
+            }
+        }
+        
+        
+        let observable1 = Observable.zip(Observable.just(0), Observable.just(1), Observable.just(2), Observable.just(3), Observable.just(4), Observable.just(5))
+        
+        observable1.subscribe { event in
+            print(event)
+        }
+    }
+}

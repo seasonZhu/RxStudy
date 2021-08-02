@@ -51,7 +51,7 @@ extension AppDelegate {
     /// 要想SVProgressHUD用的好,必须进行合适的配置
     func SVProgressHUDSetting() {
         /// 不显示图片,仅显示文字
-        SVProgressHUD.setImageViewSize(CGSize.zero)
+        SVProgressHUD.setImageViewSize(.zero)
         UITraitCollection.isDark ? SVProgressHUD.setDefaultStyle(.dark) : SVProgressHUD.setDefaultStyle(.light)
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setMinimumDismissTimeInterval(3)

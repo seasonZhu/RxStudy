@@ -17,7 +17,9 @@ struct Page<Content: Codable> : Codable {
     let pageCount : Int?
     let size : Int?
     let total : Int?
-    
+}
+
+extension Page {
     /// 自定义属性来判断是否到底了,其实let over : Bool也是可以判断
     var isNoMoreData: Bool {
         /// 解包数据

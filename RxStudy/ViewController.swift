@@ -12,7 +12,6 @@ import RxSwift
 import RxCocoa
 import RxBlocking
 import Moya
-import AcknowList
 
 class ViewController: UITabBarController {
     
@@ -22,10 +21,6 @@ class ViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-    }
-    
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
     }
     
     private func setupUI() {
@@ -105,7 +100,7 @@ extension ViewController: UITabBarControllerDelegate {
     }
 }
 
-
+//MARK:- 测试代码
 extension ViewController {
     private func requestTest() {
         homeProvider.rx.request(HomeService.banner)
@@ -168,15 +163,15 @@ extension ViewController {
 
         }
         
-        // 模拟网络请求
-        private func netRequest() -> Observable<String> {
-           return Observable<String>.create { (observer) -> Disposable in
-            observer.onError(NSError(domain: "www.baidu.com", code: 30, userInfo: [:]))
-    //            observer.onNext("你好")
-    //            observer.onCompleted()
-                return Disposables.create()
-            }
+    // 模拟网络请求
+    private func netRequest() -> Observable<String> {
+       return Observable<String>.create { (observer) -> Disposable in
+        observer.onError(NSError(domain: "www.baidu.com", code: 30, userInfo: [:]))
+//            observer.onNext("你好")
+//            observer.onCompleted()
+            return Disposables.create()
         }
+    }
 
 }
 
