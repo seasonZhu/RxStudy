@@ -103,7 +103,7 @@ extension BaseViewController {
         errorImage.addGestureRecognizer(tap)
         tap.rx.event
             .subscribe { [weak self] _ in
-                self?.errorRetry.onNext(())
+                self?.errorRetry.onNext(void)
         }.disposed(by: rx.disposeBag)
     }
     
