@@ -39,6 +39,16 @@ class ViewController: UITabBarController {
         title = viewControllers?.first?.title
         navigationItem.rightBarButtonItem = transform.searchButtonItem
         
+        /// 一般情况下状态序列我们会选用 Driver 这个类型，事件序列我们会选用 Signal 这个类型。
+        /// 虽然这个Signal我目前都没有使用过,但是这句话基本上就能理解其使用场景了
+        navigationItem.rightBarButtonItem?.rx.tap.asSignal().emit(onNext: { _ in
+            
+        }, onCompleted: {
+            
+        }, onDisposed: {
+            
+        }).disposed(by: rx.disposeBag)
+        
         navigationItem.rightBarButtonItem?.rx.tap.subscribe({ [weak self] _ in
             print("点击事件")
             self?.navigationController?.pushViewController(HotKeyController(), animated: true)
