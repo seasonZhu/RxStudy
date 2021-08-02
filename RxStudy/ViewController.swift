@@ -41,6 +41,7 @@ class ViewController: UITabBarController {
         
         /// 一般情况下状态序列我们会选用 Driver 这个类型，事件序列我们会选用 Signal 这个类型。
         /// 虽然这个Signal我目前都没有使用过,但是这句话基本上就能理解其使用场景了
+        /// 但是其实这里的tap是更为严格的ControlEvent,ControlEvent 专门用于描述 UI 控件所产生的事件
         navigationItem.rightBarButtonItem?.rx.tap.asSignal().emit(onNext: { _ in
             
         }, onCompleted: {
@@ -186,3 +187,50 @@ extension ViewController {
 
 }
 
+/// 我尝试进行手势切换,但是目前还没有想到特别好的方式方法
+extension ViewController {
+    private func addPan() {
+        let pan = UIPanGestureRecognizer()
+        view.addGestureRecognizer(pan)
+        pan.rx.event.subscribe { [weak self] _ in
+            self?.handlePan(pan)
+        }
+
+    }
+    
+    
+    private func handlePan(_ pan: UIPanGestureRecognizer) {
+        let translationX =  pan.translation(in: view).x
+        let _ = abs(translationX) / view.frame.size.width
+        
+        switch pan.state {
+        case .began:
+            let velocityX = pan.velocity(in: view).x
+            if velocityX < 0 {
+
+                if (self.selectedIndex < self.children.count - 1) {
+                    self.selectedIndex += 1;
+                    
+                    let next = selectedIndex + 1
+                    let pre = selectedIndex
+                    
+                    transform.selectedIndex = next
+                    transform.preIndex = pre
+                }
+            }
+            else {
+                if (self.selectedIndex > 0) {
+                    let next = selectedIndex - 1
+                    let pre = selectedIndex
+                    
+                    transform.selectedIndex = pre
+                    transform.preIndex = next
+                }
+            }
+        case .changed:
+            break
+        default:
+            break
+        }
+    }
+}

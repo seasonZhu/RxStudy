@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// TabbarController的动画转换器
+/// TabbarController的动画转换器,next=>iOS中UITabbarController左右滑动切换
 class Transform: NSObject {
     
     fileprivate let kPadding: CGFloat  = 10
