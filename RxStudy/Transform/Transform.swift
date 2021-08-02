@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// TabbarController的动画转换器
 class Transform: NSObject {
     
     fileprivate let kPadding: CGFloat  = 10
@@ -46,8 +47,8 @@ extension Transform: UITabBarControllerDelegate {
         print("didSelect--当前显示的控制器--\(viewController.className)")
         tabBarController.title = viewController.title
         let isHome = tabBarController.selectedIndex == 0
+        /// rightBarButtonItem => UIBarButtonItem => UIBarItem => NSObject,这货根本没有继承UIView,没有隐藏属性,而且我又是用的系统自带初始化,如果使用customView应该是可以的
         tabBarController.navigationItem.rightBarButtonItem = isHome ? searchButtonItem : nil
-//        Observable.of(isHome).bind(to: navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: rx.disposeBag)
     }
 }
 
@@ -71,7 +72,7 @@ extension Transform: UIViewControllerAnimatedTransitioning {
         
         containerView.addSubview(toViewController.view)
         
-        UIView.animate(withDuration: self.transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: kDamping, initialSpringVelocity: kVelocity, options: .curveEaseInOut) {
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: kDamping, initialSpringVelocity: kVelocity, options: .curveEaseInOut) {
             fromViewController.view.transform = cgAffineTransform
             toViewController.view.transform = .identity
         } completion: { _ in

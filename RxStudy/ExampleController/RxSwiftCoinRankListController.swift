@@ -14,7 +14,6 @@ import NSObject_Rx
 import Moya
 import MJRefresh
 
-
 class RxSwiftCoinRankListController: BaseViewController {
     
     /// 懒加载tableView
