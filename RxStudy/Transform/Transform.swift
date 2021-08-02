@@ -11,13 +11,15 @@ import UIKit
 /// TabbarController的动画转换器,next=>iOS中UITabbarController左右滑动切换
 class Transform: NSObject {
     
-    fileprivate let kPadding: CGFloat  = 10
-    fileprivate let kDamping: CGFloat  = 0.75
-    fileprivate let kVelocity: CGFloat = 2
+    private let kPadding: CGFloat  = 10
     
-    var preIndex: Int!
+    private let kDamping: CGFloat  = 0.75
     
-    var selectedIndex: Int!
+    private let kVelocity: CGFloat = 2
+    
+    var preIndex: Int
+    
+    var selectedIndex: Int
     
     lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
     
