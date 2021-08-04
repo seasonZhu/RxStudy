@@ -6,12 +6,24 @@
 //  Copyright © 2021 season. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension String {
-//    var html: NSAttributedString {
-//        return NSAttributedString(string: self, attributes: [.documentType: NSAttributedString.DocumentType.html])
-//    }
+    var html: NSAttributedString {
+        guard let data = data(using: .unicode) else {
+            return NSAttributedString(string: replaceHtmlElement, attributes: [NSAttributedString.Key.foregroundColor: UIColor.playAndroidTitle])
+        }
+        
+        guard let mutableAttributedString = try? NSMutableAttributedString(data: data,
+                                                             options: [NSAttributedString.DocumentReadingOptionKey.documentType: NSAttributedString.DocumentType.html],
+                                                             documentAttributes: nil) else {
+            return NSAttributedString(string: replaceHtmlElement, attributes: [NSAttributedString.Key.foregroundColor: UIColor.playAndroidTitle])
+        }
+
+        mutableAttributedString.addAttributes([NSAttributedString.Key.foregroundColor: UIColor.playAndroidTitle], range: (mutableAttributedString.string as NSString).range(of: mutableAttributedString.string))
+        
+        return NSAttributedString(attributedString: mutableAttributedString)
+    }
     
     mutating func filterHTML() -> String? {
         let scanner = Scanner(string: self)

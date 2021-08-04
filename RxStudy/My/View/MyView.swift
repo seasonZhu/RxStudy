@@ -18,7 +18,7 @@ class MyView: UIView {
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.textColor = .black
+        label.textColor = .playAndroidTitle
         label.font = UIFont.systemFont(ofSize: 15)
         return label
     }()

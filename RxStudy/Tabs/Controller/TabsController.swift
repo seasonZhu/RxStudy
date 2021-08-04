@@ -43,9 +43,11 @@ class TabsController: BaseViewController {
 extension TabsController {
     private func setupUI() {
         title = type.title
+        view.backgroundColor = .playAndroidBg
         
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedDataSource.isTitleColorGradientEnabled = true
+        segmentedDataSource.titleNormalColor = .playAndroidTitle
         segmentedDataSource.titleSelectedColor = .systemBlue
         segmentedView.dataSource = segmentedDataSource
 
@@ -58,6 +60,7 @@ extension TabsController {
 
         //4、配置JXSegmentedView的属性
         segmentedView.delegate = self
+        segmentedView.backgroundColor = .playAndroidBg
         view.addSubview(segmentedView)
 
         //5、初始化contentScrollView

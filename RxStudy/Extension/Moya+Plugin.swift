@@ -25,7 +25,7 @@ class RequestLoadingPlugin: PluginType {
         print("开始请求")
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-            MBProgressHUD.beginLoading()
+            SVProgressHUD.beginLoading()
         }
     }
     
@@ -34,7 +34,7 @@ class RequestLoadingPlugin: PluginType {
         // 关闭loading
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            MBProgressHUD.stopLoading()
+            SVProgressHUD.stopLoading()
         }
         
         switch result {
@@ -47,8 +47,8 @@ class RequestLoadingPlugin: PluginType {
                 }
             }else {
                 DispatchQueue.main.async {
-                    // 进行统一弹窗
-                    MBProgressHUD.showText("statusCode not 200")
+                    /// 进行统一弹窗
+                    SVProgressHUD.showText("statusCode not 200")
                 }
             }
             
@@ -63,6 +63,7 @@ class RequestLoadingPlugin: PluginType {
     }
 }
 
+/// 在wanandroid客户端中,针对登录后状态,在请求头中塞进cookie
 extension TargetType {
     var loginHeader: [String : String]? {
         return AccountManager.shared.isLogin.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil

@@ -24,7 +24,7 @@ extension My {
         let string: String
         switch self {
         case .ranking:
-            string = "排名"
+            string = "积分排名"
         case .openSource:
             string = "开源框架引用"
         case .myGitHub:

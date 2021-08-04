@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import SVProgressHUD
 
 class AccountBaseController: BaseViewController {
     
@@ -19,7 +20,8 @@ class AccountBaseController: BaseViewController {
         textField.keyboardType = .numberPad
         textField.returnKeyType = .done
         textField.font = UIFont.systemFont(ofSize: 15)
-        textField.placeholder = "请输入用户名"
+        textField.attributedPlaceholder = NSAttributedString(string: "请输入用户名", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        textField.textColor = .playAndroidBg
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = emptyView
@@ -37,7 +39,8 @@ class AccountBaseController: BaseViewController {
         textField.returnKeyType = .done
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.isSecureTextEntry = true
-        textField.placeholder = "请输入密码"
+        textField.attributedPlaceholder = NSAttributedString(string: "请输入密码", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        textField.textColor = .playAndroidBg
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = emptyView
@@ -62,6 +65,8 @@ class AccountBaseController: BaseViewController {
     }
     
     private func setupUI() {
+        view.backgroundColor = .playAndroidBg
+        
         view.addSubview(usernameFiled)
         usernameFiled.snp.makeConstraints { make in
             make.top.equalTo(view).offset(kTopMargin + 16)
@@ -90,7 +95,7 @@ extension AccountBaseController {
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {
-                        MBProgressHUD.showText("登录成功")
+                        SVProgressHUD.showText("登录成功")
                     }
                     self.navigationController?.popToRootViewController(animated: true)
                 }
@@ -105,7 +110,7 @@ extension AccountBaseController {
             .subscribe { baseModel in
                 if baseModel.isSuccess {
                     DispatchQueue.main.async {
-                        MBProgressHUD.showText("注册成功")
+                        SVProgressHUD.showText("注册成功")
                     }
                     self.login(username: username, password: password)
                 }

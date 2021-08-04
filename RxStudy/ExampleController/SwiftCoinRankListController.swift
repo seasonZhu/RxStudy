@@ -99,6 +99,7 @@ extension SwiftCoinRankListController {
                     print(error.errorDescription)
             }
             
+            /// 这种必须显示声明类型
             let newResult: Result<BaseModel<Page<CoinRank>>, MoyaError> = result.map()
             print(newResult)
             

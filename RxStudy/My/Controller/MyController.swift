@@ -11,6 +11,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 import MBProgressHUD
+import SVProgressHUD
 
 class MyController: BaseTableViewController {
         
@@ -95,7 +96,7 @@ extension MyController {
                         AccountManager.shared.clearAccountInfo()
                         //AccountManager.shared.myCoin.accept(nil)
                         DispatchQueue.main.async {
-                            MBProgressHUD.showText("退出登录成功")
+                            SVProgressHUD.showText("退出登录成功")
                         }
                     }
                 }

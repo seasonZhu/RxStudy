@@ -12,11 +12,10 @@ import RxSwift
 import RxCocoa
 import RxBlocking
 import Moya
-import AcknowList
 
 class ViewController: UITabBarController {
     
-    lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+    var transform: Transform!
     
     //MARK:- viewDidLoad
     override func viewDidLoad() {
@@ -24,21 +23,39 @@ class ViewController: UITabBarController {
         setupUI()
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        for (index, _) in children.enumerated() {
+            tabBar.items?[index].tag = index
+        }
     }
     
     private func setupUI() {
-        view.backgroundColor = .white
-        delegate = self
-        addChildControllers()
+        transform = Transform()
+        delegate = transform
+        
+        view.backgroundColor = .playAndroidBg
         title = viewControllers?.first?.title
-        navigationItem.rightBarButtonItem = searchButtonItem
+        navigationItem.rightBarButtonItem = transform.searchButtonItem
+        
+        /// 一般情况下状态序列我们会选用 Driver 这个类型，事件序列我们会选用 Signal 这个类型。
+        /// 虽然这个Signal我目前都没有使用过,但是这句话基本上就能理解其使用场景了
+        /// 但是其实这里的tap是更为严格的ControlEvent,ControlEvent 专门用于描述 UI 控件所产生的事件
+        navigationItem.rightBarButtonItem?.rx.tap.asSignal().emit(onNext: { _ in
+            
+        }, onCompleted: {
+            
+        }, onDisposed: {
+            
+        }).disposed(by: rx.disposeBag)
         
         navigationItem.rightBarButtonItem?.rx.tap.subscribe({ [weak self] _ in
             print("点击事件")
             self?.navigationController?.pushViewController(HotKeyController(), animated: true)
         }).disposed(by: rx.disposeBag)
+        
+        addChildControllers()
     }
     
     //MARK:- 添加子控制器
@@ -88,24 +105,14 @@ class ViewController: UITabBarController {
     }
 }
 
-
-
-extension ViewController: UITabBarControllerDelegate {
-    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        print("shouldSelect--即将显示的控制器--\(viewController.className)")
-        return true
-    }
-    
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("didSelect--当前显示的控制器--\(viewController.className)")
-        tabBarController.title = viewController.title
-        let isHome = tabBarController.selectedIndex == 0
-        navigationItem.rightBarButtonItem = isHome ? searchButtonItem : nil
-//        Observable.of(isHome).bind(to: navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: rx.disposeBag)
+extension ViewController {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        transform.selectedIndex = item.tag
+        transform.preIndex = selectedIndex
     }
 }
 
-
+//MARK:- 测试代码
 extension ViewController {
     private func requestTest() {
         homeProvider.rx.request(HomeService.banner)
@@ -168,15 +175,62 @@ extension ViewController {
 
         }
         
-        // 模拟网络请求
-        private func netRequest() -> Observable<String> {
-           return Observable<String>.create { (observer) -> Disposable in
-            observer.onError(NSError(domain: "www.baidu.com", code: 30, userInfo: [:]))
-    //            observer.onNext("你好")
-    //            observer.onCompleted()
-                return Disposables.create()
-            }
+    // 模拟网络请求
+    private func netRequest() -> Observable<String> {
+       return Observable<String>.create { (observer) -> Disposable in
+        observer.onError(NSError(domain: "www.baidu.com", code: 30, userInfo: [:]))
+//            observer.onNext("你好")
+//            observer.onCompleted()
+            return Disposables.create()
         }
+    }
 
 }
 
+/// 我尝试进行手势切换,但是目前还没有想到特别好的方式方法
+extension ViewController {
+    private func addPan() {
+        let pan = UIPanGestureRecognizer()
+        view.addGestureRecognizer(pan)
+        pan.rx.event.subscribe { [weak self] _ in
+            self?.handlePan(pan)
+        }
+
+    }
+    
+    
+    private func handlePan(_ pan: UIPanGestureRecognizer) {
+        let translationX =  pan.translation(in: view).x
+        let _ = abs(translationX) / view.frame.size.width
+        
+        switch pan.state {
+        case .began:
+            let velocityX = pan.velocity(in: view).x
+            if velocityX < 0 {
+
+                if (self.selectedIndex < self.children.count - 1) {
+                    self.selectedIndex += 1;
+                    
+                    let next = selectedIndex + 1
+                    let pre = selectedIndex
+                    
+                    transform.selectedIndex = next
+                    transform.preIndex = pre
+                }
+            }
+            else {
+                if (self.selectedIndex > 0) {
+                    let next = selectedIndex - 1
+                    let pre = selectedIndex
+                    
+                    transform.selectedIndex = pre
+                    transform.preIndex = next
+                }
+            }
+        case .changed:
+            break
+        default:
+            break
+        }
+    }
+}

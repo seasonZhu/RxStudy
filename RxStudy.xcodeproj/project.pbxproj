@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
+		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
 		6114ABEF267AD6CD0082BA67 /* MyCoin.json in Resources */ = {isa = PBXBuildFile; fileRef = 6114ABEE267AD6CD0082BA67 /* MyCoin.json */; };
 		6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6114ABF0267AD8450082BA67 /* R.generated.swift */; };
 		6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */; };
@@ -59,6 +60,7 @@
 		617E44F3269574CF00DA9EA2 /* ViewState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617E44F2269574CF00DA9EA2 /* ViewState.swift */; };
 		6186948D267C4DBC0086F051 /* MJRefresh+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186948B267C4DBB0086F051 /* MJRefresh+RxSwift.swift */; };
 		6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186948C267C4DBB0086F051 /* UIScrollView+RxSwift.swift */; };
+		6194601126B12D2200A66F77 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 6194601026B12D2200A66F77 /* README.md */; };
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
 		61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */; };
 		619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619BA35B26895DDF007C7135 /* BaseNavigationController.swift */; };
@@ -69,6 +71,7 @@
 		61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */; };
 		61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13D5F26808DC100665A08 /* ThirdPartyController.swift */; };
 		61B13D622680915400665A08 /* ThirdPartyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13D612680915400665A08 /* ThirdPartyDetailController.swift */; };
+		61B44A4126B79CA500791859 /* Transform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B44A4026B79CA500791859 /* Transform.swift */; };
 		61B539002678863A00EEFE1F /* My.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B538FF2678863A00EEFE1F /* My.swift */; };
 		61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */; };
 		61B79950268190F40025EADE /* MyCoinViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B7994F268190F40025EADE /* MyCoinViewModel.swift */; };
@@ -110,6 +113,8 @@
 /* Begin PBXFileReference section */
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		611471CB26B106AC00E298F5 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		6114ABEE267AD6CD0082BA67 /* MyCoin.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MyCoin.json; sourceTree = "<group>"; };
 		6114ABF0267AD8450082BA67 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = "Pods-RxStudy-acknowledgements.plist"; path = "Pods/Target Support Files/Pods-RxStudy/Pods-RxStudy-acknowledgements.plist"; sourceTree = SOURCE_ROOT; };
@@ -163,6 +168,7 @@
 		617E44F2269574CF00DA9EA2 /* ViewState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
 		6186948B267C4DBB0086F051 /* MJRefresh+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MJRefresh+RxSwift.swift"; sourceTree = "<group>"; };
 		6186948C267C4DBB0086F051 /* UIScrollView+RxSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+RxSwift.swift"; sourceTree = "<group>"; };
+		6194601026B12D2200A66F77 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
 		61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
 		619BA35B26895DDF007C7135 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
@@ -173,6 +179,7 @@
 		61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		61B13D5F26808DC100665A08 /* ThirdPartyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyController.swift; sourceTree = "<group>"; };
 		61B13D612680915400665A08 /* ThirdPartyDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyDetailController.swift; sourceTree = "<group>"; };
+		61B44A4026B79CA500791859 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		61B538FF2678863A00EEFE1F /* My.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My.swift; sourceTree = "<group>"; };
 		61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyHistoryCoin.swift; sourceTree = "<group>"; };
 		61B7994F268190F40025EADE /* MyCoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
@@ -255,6 +262,7 @@
 		612DBF5A220022BA007F73CC /* RxStudy */ = {
 			isa = PBXGroup;
 			children = (
+				61B44A3C26B79A7500791859 /* Transform */,
 				617E44F1269574B800DA9EA2 /* ViewState */,
 				61716A9D267B396C00F9DC25 /* ExampleController */,
 				6171E1962665FE2D0065C34D /* Constant */,
@@ -274,6 +282,7 @@
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
 				612DBF64220022BE007F73CC /* LaunchScreen.storyboard */,
 				612DBF67220022BE007F73CC /* Info.plist */,
+				6194601026B12D2200A66F77 /* README.md */,
 				6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */,
 				612DBF62220022BE007F73CC /* Assets.xcassets */,
 			);
@@ -330,6 +339,7 @@
 				61336C7C2656499100FDEB2A /* Dictionary+Extension.swift */,
 				617AAA38265CAD820029A83F /* Moya+Plugin.swift */,
 				611E2E0F266096E9001585AE /* String+Extension.swift */,
+				611471CB26B106AC00E298F5 /* UIColor+Extension.swift */,
 				616EC96F269E822E008FAFDF /* HUD.swift */,
 				619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */,
 				616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */,
@@ -384,6 +394,7 @@
 				61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */,
 				61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */,
 				007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */,
+				6109341026B2749C0079A597 /* RxSwiftStudy.playground */,
 			);
 			path = ExampleController;
 			sourceTree = "<group>";
@@ -500,6 +511,14 @@
 				619EDB362660BF820056A3D9 /* InfoViewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		61B44A3C26B79A7500791859 /* Transform */ = {
+			isa = PBXGroup;
+			children = (
+				61B44A4026B79CA500791859 /* Transform.swift */,
+			);
+			path = Transform;
 			sourceTree = "<group>";
 		};
 		61B538FE2678862300EEFE1F /* Enum */ = {
@@ -708,6 +727,7 @@
 				61BB7C5C267A057700990636 /* MyCollectList.json in Resources */,
 				61BB7C66267A057700990636 /* MyCoinList.json in Resources */,
 				6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */,
+				6194601126B12D2200A66F77 /* README.md in Resources */,
 				61BB7C61267A057700990636 /* PublicNumber.json in Resources */,
 				61BB7C5E267A057700990636 /* AMapLocation.json in Resources */,
 				61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */,
@@ -803,6 +823,8 @@
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
+				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
+				61B44A4126B79CA500791859 /* Transform.swift in Sources */,
 				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
 				6171E19B266611650065C34D /* AccountService.swift in Sources */,

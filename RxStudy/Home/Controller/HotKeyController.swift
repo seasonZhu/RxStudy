@@ -16,6 +16,8 @@ class HotKeyController: BaseViewController {
     }
     
     private func setupUI() {
+        view.backgroundColor = .playAndroidBg
+        
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width - 40, height: 34))
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.gray.cgColor
@@ -106,7 +108,8 @@ class HotKeyController: BaseViewController {
         buttons.snp.distributeDetermineWidthViews(verticalSpacing: 20,
                                                   horizontalSpacing: 10,
                                                   maxWidth: view.bounds.size.width - 40,
-                                                  determineWidths: textWidths, itemHeight: 30,
+                                                  determineWidths: textWidths,
+                                                  itemHeight: 30,
                                                   edgeInset: UIEdgeInsets(top: 20 + kTopMargin,
                                                                           left: 16,
                                                                           bottom: 0,

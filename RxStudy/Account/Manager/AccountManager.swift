@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import MBProgressHUD
+import SVProgressHUD
 
 final class AccountManager {
     
@@ -99,7 +100,7 @@ extension AccountManager {
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     DispatchQueue.main.async {
-                        MBProgressHUD.showText("登录成功")
+                        SVProgressHUD.showText("登录成功")
                     }
                 }
             } onError: { _ in

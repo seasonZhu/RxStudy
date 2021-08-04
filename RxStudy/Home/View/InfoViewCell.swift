@@ -68,7 +68,7 @@ class InfoViewCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .playAndroidTitle
         return label
     }()
     
@@ -175,7 +175,7 @@ class InfoCell: UITableViewCell {
         let label = UILabel()
         label.numberOfLines = 0
         label.font = UIFont.systemFont(ofSize: 15)
-        label.textColor = .black
+        label.textColor = .playAndroidTitle
         return label
     }()
     
