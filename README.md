@@ -25,6 +25,8 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，一�
 
 能用OC桥接过来的库，必然有它的独特性与通用性，MJRefresh与MB、SV真香。
 
+代码提交测试。
+
 ## 更新2021年7月28日
 MBProgressHUD全部替换为SVProgressHUD。
 
