@@ -174,26 +174,31 @@ extension RxSwiftCoinRankListController {
             print(element)
         }
         
-        let observable = Observable.just([0, 1, 2, 3, 4, 5])
+        let observable = Observable.from([0, 1, 2, 3, 4, 5])
         
-        observable.subscribe { (event: Event<[Int]>) in
+        observable.subscribe { (event: Event<Int>) in
             switch event {
             case .next(let some):
-                some.forEach { element in
-                    print(element)
-                }
+                print(some)
             case .error(let error):
                 print(error)
             case .completed:
                 print(event.debugDescription)
             }
-        }
+        }.disposed(by: rx.disposeBag)
         
         
         let observable1 = Observable.zip(Observable.just(0), Observable.just(1), Observable.just(2), Observable.just(3), Observable.just(4), Observable.just(5))
         
         observable1.subscribe { event in
             print(event)
-        }
+        }.disposed(by: rx.disposeBag)
     }
 }
+
+
+class CocaCola {
+    
+}
+
+let observable = Observable.just(CocaCola())
