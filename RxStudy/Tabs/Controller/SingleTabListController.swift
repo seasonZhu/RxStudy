@@ -114,10 +114,11 @@ extension SingleTabListController {
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
-        /// 这个地方对于体系列表的cell点击进来是该控制器做了优化,如果不写这句话,页面会有异常,说白了这里的异常其实和vm中的refreshSubject初始值有关系
+        /// 这个地方对于体系列表的cell点击进来是该控制器做了优化,如果不写这句话,页面会有异常,这里这么写和vm中的refreshSubject初始值有关系
         if type == .tree {
             tableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0)
             tableView.mj_header?.beginRefreshing()
+            //viewModel.inputs.refreshSubject.onNext(.begainRefresh)
         }
     }
 }
