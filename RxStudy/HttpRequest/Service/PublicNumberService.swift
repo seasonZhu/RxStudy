@@ -10,13 +10,6 @@ import Foundation
 
 import Moya
 
-let publicNumberProvider: MoyaProvider<PublicNumberService> = {
-        let stubClosure = { (target: PublicNumberService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<PublicNumberService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
-
 enum PublicNumberService {
     case tags
     case tagList(_ id: Int, _ page: Int)

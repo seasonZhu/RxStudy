@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// 弹窗协议
+/// 弹窗协议,抹平MB和SV的用法
 protocol HUD {
     static func beginLoading()
     

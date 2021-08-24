@@ -100,6 +100,7 @@ extension MyJueJinController {
     }
 }
 
+/// 在我的页面,我使用的通过字符串去创建控制器,我个人很想使用基类省去这么写的麻烦,但是在runtime的时候就报错了,所以不得不写了两个控制器
 class MyBaseWebViewController: BaseViewController {
 
     private var url: String

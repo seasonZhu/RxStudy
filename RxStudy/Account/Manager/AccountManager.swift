@@ -28,6 +28,7 @@ final class AccountManager {
     /// 私有化初始化方法
     private init() {}
     
+    /// 这个是尝试在一个接口调用另一个接口获取的模型
     let myCoin = BehaviorRelay<CoinRank?>(value: nil)
     
 }
@@ -104,7 +105,7 @@ extension AccountManager {
                     }
                 }
             } onError: { _ in
-                
+                SVProgressHUD.showText("登录失败")
             }.disposed(by: disposeBag)
     }
 }

@@ -50,6 +50,8 @@ private extension TabsViewModel {
             .map{ $0.data }
             /// 去掉其中为nil的值
             .compactMap{ $0 }
+            .asObservable()
+            .asSingle()
             .subscribe(onSuccess: { items in
                 self.networkError.onNext(nil)
                 self.dataSource.accept(items)

@@ -10,13 +10,6 @@ import Foundation
 
 import Moya
 
-let treeProvider: MoyaProvider<TreeService> = {
-        let stubClosure = { (target: TreeService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<TreeService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
-
 enum TreeService {
     case tags
     case tagList(_ id: Int, _ page: Int)

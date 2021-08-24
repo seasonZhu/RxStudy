@@ -96,6 +96,8 @@ class RxSwiftCoinRankListViewModel {
     let dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])
     
     /// 既是可监听序列也是观察者的状态枚举
+    /// 当观察者对 BehaviorSubject 进行订阅时，它会将源 Observable 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来
+    /// 所以这里最先发出来的是默认操作,下拉刷新
     let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
     
     /// 初始化方法
@@ -129,10 +131,11 @@ class RxSwiftCoinRankListViewModel {
             .map(BaseModel<Page<CoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .map{ $0.data }
-            /// 解包
+            /// 解包,这一步Single变成了Maybe
             .compactMap { $0 }
-            /// 转换操作
+            /// 转换操作, Maybe要先转成Observable
             .asObservable()
+            /// 才能再转成Single
             .asSingle()
             /// 订阅
             .subscribe { event in
@@ -165,40 +168,3 @@ class RxSwiftCoinRankListViewModel {
             }.disposed(by: disposeBag)
     }
 }
-
-
-extension RxSwiftCoinRankListController {
-    func some() {
-        let array = [0, 1, 2, 3, 4, 5]
-        array.forEach { element in
-            print(element)
-        }
-        
-        let observable = Observable.from([0, 1, 2, 3, 4, 5])
-        
-        observable.subscribe { (event: Event<Int>) in
-            switch event {
-            case .next(let some):
-                print(some)
-            case .error(let error):
-                print(error)
-            case .completed:
-                print(event.debugDescription)
-            }
-        }.disposed(by: rx.disposeBag)
-        
-        
-        let observable1 = Observable.zip(Observable.just(0), Observable.just(1), Observable.just(2), Observable.just(3), Observable.just(4), Observable.just(5))
-        
-        observable1.subscribe { event in
-            print(event)
-        }.disposed(by: rx.disposeBag)
-    }
-}
-
-
-class CocaCola {
-    
-}
-
-let observable = Observable.just(CocaCola())

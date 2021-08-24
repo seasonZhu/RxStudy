@@ -10,13 +10,6 @@ import Foundation
 
 import Moya
 
-let accountProvider: MoyaProvider<AccountService> = {
-        let stubClosure = { (target: AccountService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<AccountService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
-
 enum AccountService {
     case login(_ username: String, _ password: String)
     case register(_ username: String, _ password: String, _ repassword: String)

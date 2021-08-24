@@ -41,7 +41,7 @@ class ViewController: UITabBarController {
         
         /// 一般情况下状态序列我们会选用 Driver 这个类型，事件序列我们会选用 Signal 这个类型。
         /// 虽然这个Signal我目前都没有使用过,但是这句话基本上就能理解其使用场景了
-        /// 但是其实这里的tap是更为严格的ControlEvent,ControlEvent 专门用于描述 UI 控件所产生的事件
+        /// 但是其实这里的tap是更为严格的ControlEvent,ControlEvent 专门用于描述 UI 控件所产生的事件,这里这种写法并不好,只是尝试
         navigationItem.rightBarButtonItem?.rx.tap.asSignal().emit(onNext: { _ in
             
         }, onCompleted: {

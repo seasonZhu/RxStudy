@@ -55,17 +55,16 @@ class SnapKitLayoutController: BaseViewController {
             make.top.equalTo(redButton.snp.bottom).offset(20)
             make.leading.trailing.height.equalTo(redButton)
         }
+        
+        /**
+         view.addSubview(blueButton)
+         blueButton.snp.makeConstraints { (make) in
+             make.top.equalTo(view).offset(100)
+             make.leading.equalTo(view).offset(16)
+             make.trailing.equalTo(view).offset(-16)
+             make.height.equalTo(44)
+         }
+         */
     }
 
 }
-
-/**
- 
- view.addSubview(blueButton)
- blueButton.snp.makeConstraints { (make) in
-     make.top.equalTo(view).offset(100)
-     make.leading.equalTo(view).offset(16)
-     make.trailing.equalTo(view).offset(-16)
-     make.height.equalTo(44)
- }
- */

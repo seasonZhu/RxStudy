@@ -10,14 +10,6 @@ import Foundation
 
 import Moya
 
-let myProvider: MoyaProvider<MyService> = {
-        let stubClosure = { (target: MyService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<MyService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
-
-
 enum MyService {
     case coinRank(_ page: Int)
     case userCoinInfo

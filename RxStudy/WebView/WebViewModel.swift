@@ -54,7 +54,7 @@ extension WebViewModel {
                     return
                 }
                 
-                if collectIds.contains(collectId), let index = collectIds.index(of: collectId) {
+                if collectIds.contains(collectId), let index = collectIds.firstIndex(of: collectId) {
                     collectIds.remove(at: index)
                 }
                 

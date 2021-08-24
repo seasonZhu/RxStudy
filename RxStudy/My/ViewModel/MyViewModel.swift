@@ -38,6 +38,8 @@ class MyViewModel: BaseViewModel {
                     result.map{ $0.data }
                         /// 去掉其中为nil的值
                         .compactMap{ $0 }
+                        .asObservable()
+                        .asSingle()
                         .subscribe(onSuccess: { data in
                             self.networkError.onNext(nil)
                             self.myCoin.accept(data)

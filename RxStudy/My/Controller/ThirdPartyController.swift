@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import AcknowList
 
+/// 没有直接使用AcknowList自带的控制器,是因为其导航栏的风格和App的不同,所以自己写了
 class ThirdPartyController: BaseTableViewController {
     
     let dataSource: BehaviorRelay<[Acknow]> = BehaviorRelay(value: [])

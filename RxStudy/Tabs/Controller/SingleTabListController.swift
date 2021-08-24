@@ -38,6 +38,9 @@ class SingleTabListController: BaseTableViewController {
         setupUI()
     }
     
+    
+    /// 请求数据
+    /// - Parameter isFirstVC: 是否是第一个控制器,这里需要对第一个控制的内容边界做优化,不然它会显示不全,而其他页面不会有这个问题
     func requestData(isFirstVC: Bool = false) {
         if isFirstVC {
             tableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0)
@@ -111,6 +114,7 @@ extension SingleTabListController {
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
+        /// 这个地方对于体系列表的cell点击进来是该控制器做了优化,如果不写这句话,页面会有异常,说白了这里的异常其实和vm中的refreshSubject初始值有关系
         if type == .tree {
             tableView.contentInset = UIEdgeInsets(top: -54, left: 0, bottom: 0, right: 0)
             tableView.mj_header?.beginRefreshing()

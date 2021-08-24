@@ -15,7 +15,10 @@ class LoginController: AccountBaseController {
     
     private lazy var toRegisterButton: UIButton = {
         let button = UIButton(type: .custom)
-        let attString = NSAttributedString(string: "还没有注册?", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 15)])
+        let attString = NSAttributedString(string: "还没有注册?", attributes: [
+                                            .underlineStyle: NSUnderlineStyle.single.rawValue,
+                                            .foregroundColor: UIColor.systemBlue,
+                                            .font: UIFont.systemFont(ofSize: 15)])
         button.setAttributedTitle(attString, for: .normal)
         return button
     }()

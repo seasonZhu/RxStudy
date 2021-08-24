@@ -31,10 +31,6 @@ class SearcResultController: BaseTableViewController {
         super.viewDidLoad()
         setupUI()
     }
-    
-    func requestData() {
-        tableView.mj_header?.beginRefreshing()
-    }
 }
 
 extension SearcResultController {
