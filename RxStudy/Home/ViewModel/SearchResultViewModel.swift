@@ -27,7 +27,7 @@ class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     /// outputs
     let dataSource = BehaviorRelay<[Info]>(value: [])
     
-    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
     
     /// inputs
     func loadData(actionType: ScrollViewActionType) {

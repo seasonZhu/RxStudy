@@ -98,7 +98,7 @@ class RxSwiftCoinRankListViewModel {
     /// 既是可监听序列也是观察者的状态枚举
     /// 当观察者对 BehaviorSubject 进行订阅时，它会将源 Observable 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来
     /// 所以这里最先发出来的是默认操作,下拉刷新
-    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
     
     /// 初始化方法
     /// - Parameter disposeBag: 传入的disposeBag

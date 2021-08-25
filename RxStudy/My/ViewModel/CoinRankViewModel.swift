@@ -27,7 +27,7 @@ class CoinRankViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     let dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])
     
     /// 既是可监听序列也是观察者的状态枚举
-    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
     
     /// inputs
     func loadData(actionType: ScrollViewActionType) {

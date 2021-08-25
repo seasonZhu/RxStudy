@@ -26,7 +26,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     
     let banners = BehaviorRelay<[Banner]>(value: [])
     
-    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
     
     /// inputs
     func loadData(actionType: ScrollViewActionType) {        

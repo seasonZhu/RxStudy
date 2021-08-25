@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting {
 
     var pageNum: Int
         
@@ -33,7 +33,9 @@ class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting 
     /// 这里初始化的值为.stopRefresh的目的是为了节约流量,因为这不是一个单一页面,TabsController上面嵌套了多个SingleTabListController
     /// 如果初始状态是.begainRefresh,那么会在一开始就在初始化后的页面中请求数据,可能用户根本不会看那么多栏目,消耗流量,而且消耗内存
     /// 所以优化的方式是看到哪个专栏,刷新哪个专栏,这个地方把BehaviorSubject换成PublishSubject,可以有更简洁的优化
-    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .stopRefresh)
+//    let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
+    
+    let refreshSubject = PublishSubject<MJRefreshAction>()
     
     /// inputs
     func loadData(actionType: ScrollViewActionType) {
