@@ -302,8 +302,13 @@ extension WebViewController: WKNavigationDelegate {
 
 extension WebViewController {
     private func delayEndRefreshing() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        /// 其实使用Rx做这种延时操作还不如GCD简单明白
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+//            self.webView.scrollView.mj_header?.endRefreshing()
+//        }
+        
+        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe { _ in
             self.webView.scrollView.mj_header?.endRefreshing()
-        }
+        }.disposed(by: rx.disposeBag)
     }
 }
