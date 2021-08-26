@@ -52,3 +52,29 @@ observable1.subscribe { event in
 class CocaCola {}
 
 let obs = Observable.just(CocaCola())
+
+/// 定义一个继电器
+let subject = PublishSubject<Int>()
+
+/// 消费生产的序列
+subject.subscribe { (event: Event<Int>) in
+    switch event {
+    case .next(let some):
+        print(some + some)
+    case .error(let error):
+        print(error)
+    case .completed:
+        print(event.debugDescription)
+    }
+}.disposed(by: disposeBag)
+
+observable.bind(to: subject)
+
+/// 产生序列
+subject.onNext(6)
+subject.onNext(7)
+subject.onNext(8)
+subject.onNext(9)
+subject.onNext(10)
+
+
