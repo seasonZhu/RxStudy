@@ -68,5 +68,10 @@
 	</array>
 <!--    <key>UIUserInterfaceStyle</key>-->
 <!--    <string>Light</string>-->
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>csdn</string>
+        <string>xitujuejin</string>
+    </array>
 </dict>
 </plist>

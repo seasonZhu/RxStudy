@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000D937326DCAC190099A749 /* javascript.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* javascript.js */; };
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
@@ -112,6 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000D937226DCAC190099A749 /* javascript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = javascript.js; sourceTree = "<group>"; };
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -279,6 +281,7 @@
 				61336C6D265640D100FDEB2A /* HttpRequest */,
 				61BB7C47267A057700990636 /* jsons */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
+				000D937226DCAC190099A749 /* javascript.js */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
 				6114ABF0267AD8450082BA67 /* R.generated.swift */,
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
@@ -745,6 +748,7 @@
 				61BB7C5F267A057700990636 /* Banner.json in Resources */,
 				61BB7C64267A057700990636 /* SearchResult.json in Resources */,
 				61BB7C5D267A057700990636 /* RankList.json in Resources */,
+				000D937326DCAC190099A749 /* javascript.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

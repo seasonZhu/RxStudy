@@ -16,7 +16,8 @@ import SVProgressHUD
 import MarqueeLabel
 import MJRefresh
 
-private let JSCallback = "JSCallback"
+/// 更新自定义句柄,这个是我自己写的JS,并定义其句柄
+private let JSCallback = "wanAndroid"
 
 class WebViewController: BaseViewController {
 
@@ -40,6 +41,12 @@ class WebViewController: BaseViewController {
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
+        
+        /// 获取js,并添加到webView中
+        if let js = getJS() {
+            config.userContentController.addUserScript(js)
+        }
+        
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
@@ -257,8 +264,14 @@ extension WebViewController {
 }
 
 extension WebViewController {
-    private func isCanOpenApp(_ url: URL) -> Bool {
-        return UIApplication.shared.canOpenURL(url)
+    private func openApp() {
+        guard let link = webLoadInfo.link, let url = URL(string: link) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
     }
 }
 
@@ -276,8 +289,9 @@ extension WebViewController: WKScriptMessageHandler {
         
         guard let msg = message.body as? String else { return }
         
-        if msg.isEmpty {
-            navigationController?.popViewController(animated: true)
+        if msg == "goToApp" {
+            print("打开App操作")
+            openApp()
         }
     }
 }
@@ -285,24 +299,8 @@ extension WebViewController: WKScriptMessageHandler {
 // MARK: - 其实在RxCocoa中有WebView+Rx的分类,专门来将WebView的代理进行rx的编写方式,就和UITablevDelegate差不多,这里只是没有使用
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
-        
         decisionHandler(.allow)
         return
-        
-        guard let url = navigationAction.request.url else {
-            decisionHandler(.cancel)
-            return
-        }
-        
-        if isCanOpenApp(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            decisionHandler(.cancel)
-            return
-        }else {
-            SVProgressHUD.showText("打开App失败")
-            decisionHandler(.allow)
-            return
-        }
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -311,6 +309,11 @@ extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         delayEndRefreshing()
+        /// 加载完网页后,进行运行js,将在App端通过JS编写的点击事件与掘金网页的"APP内打开绑定"
+        webView.evaluateJavaScript("injectBegin('\(webView.url?.absoluteString)')") { any, error in
+            print(any)
+            print(error)
+        }
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -332,5 +335,28 @@ extension WebViewController {
         Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe { _ in
             self.webView.scrollView.mj_header?.endRefreshing()
         }.disposed(by: rx.disposeBag)
+    }
+}
+
+extension WebViewController {
+    /// 获取js方法,转成iOS的WKWebView可以识别的对象
+    private func getJS() -> WKUserScript? {
+        guard let url = Bundle.main.url(forResource: "javascript", withExtension: "js") else {
+            return nil
+        }
+        
+        guard let data = try? Data(contentsOf: url) else {
+            return nil
+        }
+        
+        guard let string = String(data: data, encoding: .utf8) else {
+            return nil
+        }
+        
+        let userScript = WKUserScript(source: string, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        print(string)
+        
+        return userScript
     }
 }

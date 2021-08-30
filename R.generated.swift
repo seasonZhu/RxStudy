@@ -114,7 +114,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.file` struct is generated, and contains static references to 20 files.
+  /// This `R.file` struct is generated, and contains static references to 21 files.
   struct file {
     /// Resource file `AMapLocation.json`.
     static let aMapLocationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "AMapLocation", pathExtension: "json")
@@ -156,6 +156,8 @@ struct R: Rswift.Validatable {
     static let searchResultJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SearchResult", pathExtension: "json")
     /// Resource file `Tree.json`.
     static let treeJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Tree", pathExtension: "json")
+    /// Resource file `javascript.js`.
+    static let javascriptJs = Rswift.FileResource(bundle: R.hostingBundle, name: "javascript", pathExtension: "js")
 
     /// `bundle.url(forResource: "AMapLocation", withExtension: "json")`
     static func aMapLocationJson(_: Void = ()) -> Foundation.URL? {
@@ -274,6 +276,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "Tree", withExtension: "json")`
     static func treeJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.treeJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "javascript", withExtension: "js")`
+    static func javascriptJs(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.javascriptJs
       return fileResource.bundle.url(forResource: fileResource)
     }
 
