@@ -256,6 +256,12 @@ extension WebViewController {
     }
 }
 
+extension WebViewController {
+    private func isCanOpenApp(_ url: URL) -> Bool {
+        return UIApplication.shared.canOpenURL(url)
+    }
+}
+
 // MARK: - 协议类专门用来处理监听JavaScript方法从而调用原生方法，和WKUserContentController搭配使用
 extension WebViewController: WKScriptMessageHandler {
     
@@ -279,8 +285,24 @@ extension WebViewController: WKScriptMessageHandler {
 // MARK: - 其实在RxCocoa中有WebView+Rx的分类,专门来将WebView的代理进行rx的编写方式,就和UITablevDelegate差不多,这里只是没有使用
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
-        print("decidePolicyForUrl == \(navigationAction.request.url?.absoluteString ?? "unkown")")
-        decisionHandler(WKNavigationActionPolicy.allow)
+        
+        decisionHandler(.allow)
+        return
+        
+        guard let url = navigationAction.request.url else {
+            decisionHandler(.cancel)
+            return
+        }
+        
+        if isCanOpenApp(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            decisionHandler(.cancel)
+            return
+        }else {
+            SVProgressHUD.showText("打开App失败")
+            decisionHandler(.allow)
+            return
+        }
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
