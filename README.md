@@ -37,3 +37,6 @@ MBProgressHUD全部替换为SVProgressHUD。
 ## uni-app版wanandroid客户端
 
 [项目地址](https://github.com/seasonZhu/UniAppPlayAndroid)
+
+## Xcode新版的代码块
+[代码块](https://www.jianshu.com/p/967efd9fb8d2)

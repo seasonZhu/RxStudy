@@ -79,16 +79,6 @@ class WebViewController: BaseViewController {
         setupUI()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        webView.configuration.userContentController.add(self, name: JSCallback)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
-    }
-    
     private func setupUI() {
         /// 走马灯的Label
         var title = webLoadInfo.title
@@ -146,7 +136,7 @@ class WebViewController: BaseViewController {
             }
         }.disposed(by: rx.disposeBag)
 
-        var items: [UIBarButtonItem] = [toShare]
+        var items = [toShare]
 
         /// 非轮播的页面跳转进来才通过判断登录状态来看是否显示收藏页面
         if !isFromBanner {
@@ -291,6 +281,7 @@ extension WebViewController: WKScriptMessageHandler {
         
         if msg == "goToApp" {
             print("打开App操作")
+            /// 这里其实只是针对掘金了,CSDN的可以其实可以直接跳转了
             openApp()
         }
     }
