@@ -336,11 +336,7 @@ extension WebViewController {
             return nil
         }
         
-        guard let data = try? Data(contentsOf: url) else {
-            return nil
-        }
-        
-        guard let string = String(data: data, encoding: .utf8) else {
+        guard let string = try? String(contentsOf: url, encoding: .utf8) else {
             return nil
         }
         

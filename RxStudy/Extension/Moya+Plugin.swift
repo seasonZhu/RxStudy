@@ -31,7 +31,7 @@ class RequestLoadingPlugin: PluginType {
     
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         print("结束请求")
-        // 关闭loading
+        /// 关闭loading
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             SVProgressHUD.stopLoading()

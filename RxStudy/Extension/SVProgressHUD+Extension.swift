@@ -10,7 +10,6 @@ import SVProgressHUD
 
 extension SVProgressHUD: HUD {
     
-    /// 为啥不用start,因为容易混淆
     static func beginLoading() {
         SVProgressHUD.show()
     }

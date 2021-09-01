@@ -4,12 +4,12 @@ function injectBegin(urlString) {
     /// 打印只能在浏览器里面能看见
     console.log(urlString);
     
-    /// 包含掘金就注入掘金的逻辑
+    /// 包含掘金字段,就通过掘金的div的class名字去找按钮,并注入点击事件
     if (urlString.includes('juejin')) {
         juejinAddOnClickOnButton();
     }
     
-    /// 包含CSDN就注入CSDN的逻辑
+    /// 包含CSDN字段,同掘金的逻辑,注入点击事件
     if (urlString.includes('csdn')) {
         csdnAddOnClickOnButton();
     }
