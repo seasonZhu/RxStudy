@@ -68,11 +68,12 @@ extension Moya.TargetType {
 
 /// 对Moya的Response做只读属性的扩展,打印漂亮的json
 extension Moya.Response {
+    /// json打印
     var prettyPrintJSON: String {
         if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
            let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
            let jsonString = String(data: jsonData, encoding: .utf8) {
-            print(jsonString)
+            return jsonString
         }
         return ""
     }
