@@ -169,3 +169,59 @@ private func netRequest() -> Observable<String> {
         return Disposables.create()
     }
 }
+
+let successObservable = Observable.just(())
+let errorObservable = Observable<S>.error(S())
+successObservable.materialize()
+struct S: Error {}
+
+
+func test() {
+    let numbers: Observable<Int> = Observable.create { observer -> Disposable in
+        print(Thread.current)
+        observer.onNext(0)
+        observer.onNext(1)
+        observer.onNext(2)
+        observer.onNext(3)
+        observer.onNext(4)
+        observer.onNext(5)
+        observer.onNext(6)
+        observer.onNext(7)
+        observer.onNext(8)
+        observer.onNext(9)
+        observer.onCompleted()
+
+        return Disposables.create()
+    }
+//        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+//        .observeOn(MainScheduler.instance)
+
+    numbers.subscribe { event in
+        print(Thread.current)
+        print(event)
+    }
+}
+
+func request() -> Single<Data> {
+    return Single<Data>.create { single in
+        print(Thread.current)
+        if let data = try? Data(contentsOf: URL(string: "https://www.wanandroid.com/banner/json")!) {
+            single(.success(data))
+        }else {
+            single(.error(Optional<Any>.wrappedError))
+        }
+        return Disposables.create()
+    }.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated)).observeOn(MainScheduler.instance)
+}
+
+func responseData() {
+    request().subscribe { data in
+        
+        let string = String(data: data, encoding: .utf8)
+        print(string)
+        print(Thread.current)
+        
+    } onError: { _ in
+        
+    }.disposed(by: disposeBag)
+}
