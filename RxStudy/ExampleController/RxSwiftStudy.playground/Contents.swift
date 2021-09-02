@@ -5,7 +5,7 @@ import NSObject_Rx
 let disposeBag = DisposeBag()
 
 let numbers: Observable<Int> = Observable.create { observer -> Disposable in
-
+    print(Thread.current)
     observer.onNext(0)
     observer.onNext(1)
     observer.onNext(2)
@@ -20,8 +20,11 @@ let numbers: Observable<Int> = Observable.create { observer -> Disposable in
 
     return Disposables.create()
 }
+.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+.observeOn(MainScheduler.instance)
 
 numbers.subscribe { event in
+    print(Thread.current)
     print(event)
 }
 

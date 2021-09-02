@@ -49,7 +49,7 @@ class BaseTableViewController: BaseViewController {
         /// 简单布局
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
+            make.edges.equalTo(view)
         }
         
         /// 设置头部刷新控件
