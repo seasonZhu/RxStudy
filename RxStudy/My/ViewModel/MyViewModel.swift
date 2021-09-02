@@ -40,13 +40,16 @@ class MyViewModel: BaseViewModel {
                         .compactMap{ $0 }
                         .asObservable()
                         .asSingle()
-                        .subscribe(onSuccess: { data in
-                            self.networkError.onNext(nil)
-                            self.myCoin.accept(data)
-                        }, onError: { error in
-                            guard let moyarror = error as? MoyaError else { return }
-                            self.networkError.onNext(moyarror)
-                        })
+                        .subscribe { event in
+                            switch event {
+                            case .success(let data):
+                                self.networkError.onNext(nil)
+                                self.myCoin.accept(data)
+                            case .error(let error):
+                                guard let moyarror = error as? MoyaError else { return }
+                                self.networkError.onNext(moyarror)
+                            }
+                        }
                         .disposed(by: self.disposeBag)
                 }
             } else {
