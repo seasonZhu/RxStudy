@@ -81,7 +81,6 @@ class BaseTableViewController: BaseViewController {
                     print("监听没有内容")
                     self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
-                break
             default:
                 break
             }

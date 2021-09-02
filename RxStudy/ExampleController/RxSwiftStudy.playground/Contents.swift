@@ -48,7 +48,13 @@ observable.subscribe { (event: Event<Int>) in
 }.disposed(by: disposeBag)
 
 
-let observable1 = Observable.zip(Observable.just(0), Observable.just(1), Observable.just(2), Observable.just(3), Observable.just(4), Observable.just(5))
+let observable1 = Observable.zip(Observable.just(0),
+                                 Observable.just(1),
+                                 Observable.just(2),
+                                 Observable.just(3),
+                                 Observable.just(4),
+                                 Observable.just(5)
+                                 )
 
 observable1.subscribe { event in
     print(event)
@@ -60,6 +66,11 @@ let obs = Observable.just(CocaCola())
 
 /// 定义一个继电器
 let subject = PublishSubject<Int>()
+
+/// 这里虽然是subscribeOn,但是实际上是生成序列的线程,命名是不是很奇葩
+subject.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+/// 这里虽然是observeOn,但是实际是订阅所在的线程,就是观察者实现的线程
+subject.observeOn(MainScheduler.instance)
 
 /// 消费生产的序列
 subject.subscribe { (event: Event<Int>) in
@@ -95,9 +106,9 @@ private func requestTest() {
         .subscribe { model in
         print(model)
     } onError: { error in
-        
+
     }.disposed(by: disposeBag)
-    
+
     let model1 = try? homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).toBlocking().first()
     let model2 = try? homeProvider.rx.request(HomeService.topArticle).map(BaseModel<[Info]>.self).toBlocking().first()
     let model3 = try? homeProvider.rx.request(HomeService.normalArticle(0)).map(BaseModel<Page<Info>>.self).toBlocking().first()
@@ -108,7 +119,7 @@ private func requestTest() {
     print("----------------")
     print(model3)
     print("----------------")
-    
+
     myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self).subscribe(onSuccess: { model in
         print(model)
     }, onError: { error in
@@ -117,38 +128,38 @@ private func requestTest() {
 }
 
 private func createObservable() {
-        
+
         let subject = PublishSubject<Void>()
-        
+
         /// 使用flatMap转换为其他序列
         let otherOb =  subject.asObservable()
             .flatMapLatest({_ -> Observable<String> in
                 print("flatMap")
                 return netRequest()
             })
-        
+
         // 发出一次next, 由于没有订阅，所以没有效
         subject.onNext(())
-        
+
         // 订阅
         subject.subscribe(onNext: { (_) in
             print("发出一次事件")})
             .disposed(by: disposeBag)
         // 又发出一次事件
         subject.onNext(())
-        
+
         // 订阅otherOb， 之后发出的事件都可以监听，除非序列发出Error事件
         otherOb.subscribe(onNext: { (value) in
             print("otherSub subscribe")
             print(value)})
             .disposed(by: disposeBag)
-        
+
         // subject 发出两次事件
         subject.onNext(()) // [1]如果在netRequet方法中抛出Error, 就会引起序列终止，下面一个发出事件也就无效。
         subject.onNext(())
 
     }
-    
+
 // 模拟网络请求
 private func netRequest() -> Observable<String> {
    return Observable<String>.create { (observer) -> Disposable in

@@ -40,3 +40,21 @@ MBProgressHUD全部替换为SVProgressHUD。
 
 ## Xcode新版的代码块
 [代码块](https://www.jianshu.com/p/967efd9fb8d2)
+
+## 最近的出现的bug
+
+```
+[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x14c864c00; frame = (-207 -368; 414 736); clipsToBounds = YES; gestureRecognizers = <NSArray: 0x28028cea0>; layer = <CALayer: 0x280cdf420>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 44, 0}; dataSource: <RxCocoa.RxTableViewDataSourceProxy: 0x2828e4060>>
+```
+我在Stack Overflow看了一下,大概意思就是我没有在主线程进行页面布局
+
+[Stack Overflow](https://stackoverflow.com/questions/64568183/warning-once-only-uitableview-was-told-to-layout-its-visible-cells-and-other-co)
+
+然后我把BaseTableViewController => viewDidLoad => setupTableView => 简单布局 
+
+```
+DispatchQueue.main.async {
+    
+}
+```
+我这个包裹就可以,我实在没明白为什么
