@@ -40,11 +40,7 @@ class RequestLoadingPlugin: PluginType {
         switch result {
         case .success(let response):
             if response.statusCode == 200 {
-                if let json = try? JSONSerialization.jsonObject(with: response.data, options: .mutableContainers),
-                   let data = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
-                   let _ = try? String(data: data, encoding: .utf8) {
-                    print(json)
-                }
+                print(response.prettyPrintJSON)
             }else {
                 DispatchQueue.main.async {
                     /// 进行统一弹窗
@@ -64,8 +60,20 @@ class RequestLoadingPlugin: PluginType {
 }
 
 /// 在wanandroid客户端中,针对登录后状态,在请求头中塞进cookie
-extension TargetType {
+extension Moya.TargetType {
     var loginHeader: [String : String]? {
         return AccountManager.shared.isLogin.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil
+    }
+}
+
+/// 对Moya的Response做只读属性的扩展,打印漂亮的json
+extension Moya.Response {
+    var prettyPrintJSON: String {
+        if let json = try? JSONSerialization.jsonObject(with: data, options: .mutableContainers),
+           let jsonData = try? JSONSerialization.data(withJSONObject: json, options: .prettyPrinted),
+           let jsonString = String(data: jsonData, encoding: .utf8) {
+            print(jsonString)
+        }
+        return ""
     }
 }
