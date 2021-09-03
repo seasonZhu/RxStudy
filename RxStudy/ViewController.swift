@@ -127,7 +127,7 @@ extension ViewController {
     
     
     private func handlePan(_ pan: UIPanGestureRecognizer) {
-        let panResult = pan.checkPanGestureAxis(in: view, responseLength: 100)
+        let panResult = pan.checkPanGestureAxis(in: view, responseLength: 150)
         
         if panResult.response {
             switch panResult.axis {
@@ -172,14 +172,22 @@ extension ViewController {
     func leftScroll() {
         if (selectedIndex > 0) {
             let next = selectedIndex - 1
+            let preIndex = selectedIndex
             selectedIndex = next
+            
+            transform.selectedIndex = next
+            transform.preIndex = preIndex
         }
     }
     
     func rightScroll() {
         if (selectedIndex < children.count - 1) {
             let next = selectedIndex + 1
+            let preIndex = selectedIndex
             selectedIndex = next
+            
+            transform.selectedIndex = next
+            transform.preIndex = preIndex
         }
     }
 }
