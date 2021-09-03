@@ -133,24 +133,53 @@ extension ViewController {
             switch panResult.axis {
             case UIPanGestureRecognizer.Axis.horizontal(_):
                 let velocityX = pan.velocity(in: view).x
-                if velocityX < 0 {
-
-                    if (selectedIndex < children.count - 1) {
-                        let next = selectedIndex + 1
-                        selectedIndex = next
-            
-                    }
-                }
-                else {
-                    if (selectedIndex > 0) {
-                        let next = selectedIndex - 1
-                        selectedIndex = next
-                    }
-                }
-                title = titles[selectedIndex]
+                Driver<Direction>.just(velocityX < 0 ? .toRight : .toLeft)
+                    .drive(rx.selectedIndexChange)
+                    .disposed(by: rx.disposeBag)
             default:
                 break
             }
+        }
+    }
+}
+
+extension ViewController {
+    enum Direction {
+        case toLeft
+        case toRight
+    }
+}
+
+extension Reactive where Base: ViewController {
+    var selectedIndexChange: Binder<ViewController.Direction> {
+        return Binder(base) { vc, direction in
+            vc.changeSelectedViewController(direction: direction)
+        }
+    }
+}
+
+extension ViewController {
+    func changeSelectedViewController(direction: Direction) {
+        switch direction {
+        case .toLeft:
+            leftScroll()
+        case .toRight:
+            rightScroll()
+        }
+        title = titles[selectedIndex]
+    }
+    
+    func leftScroll() {
+        if (selectedIndex > 0) {
+            let next = selectedIndex - 1
+            selectedIndex = next
+        }
+    }
+    
+    func rightScroll() {
+        if (selectedIndex < children.count - 1) {
+            let next = selectedIndex + 1
+            selectedIndex = next
         }
     }
 }

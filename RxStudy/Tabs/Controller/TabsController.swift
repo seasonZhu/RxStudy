@@ -8,6 +8,8 @@
 
 import UIKit
 
+import RxCocoa
+
 import JXSegmentedView
 
 class TabsController: BaseViewController {
@@ -163,5 +165,26 @@ extension TabsController: JXSegmentedViewDelegate {
 }
 
 extension TabsController: UIScrollViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var driver: Driver<ViewController.Direction>?
+        
+        /// 最左边
+        if scrollView.contentOffset.x < 0 {
+            debugLog("最左边了")
+            driver = Driver.just(.toLeft)
+        }
+        
+        /// 最右边
+        if scrollView.contentOffset.x + kScreenWidth > scrollView.contentSize.width {
+            debugLog("最右边了")
+            driver = Driver.just(.toRight)
+        }
+        
+        guard let d = driver, let vc = tabBarController as? ViewController else {
+            return
+        }
+        
+        d.drive(vc.rx.selectedIndexChange)
+            .disposed(by: rx.disposeBag)
+    }
 }
