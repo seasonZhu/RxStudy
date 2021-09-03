@@ -53,7 +53,7 @@ private final class MJRefreshTarget<Component: MJRefreshComponent>: Target {
     }
     
     deinit {
-        print("\(className) deinit")
+        debugLog("\(className) deinit")
     }
 }
 

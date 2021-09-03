@@ -15,14 +15,14 @@ import SVProgressHUD
 class RequestLoadingPlugin: PluginType {
     
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
-        print("prepare")
+        debugLog("prepare")
         var mRequest = request
         mRequest.timeoutInterval = 20
         return mRequest
     }
     
     func willSend(_ request: RequestType, target: TargetType) {
-        print("开始请求")
+        debugLog("开始请求")
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             SVProgressHUD.beginLoading()
@@ -30,7 +30,7 @@ class RequestLoadingPlugin: PluginType {
     }
     
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
-        print("结束请求")
+        debugLog("结束请求")
         /// 关闭loading
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -40,7 +40,7 @@ class RequestLoadingPlugin: PluginType {
         switch result {
         case .success(let response):
             if response.statusCode == 200 {
-                print(response.prettyPrintJSON)
+                debugLog(response.prettyPrintJSON)
             }else {
                 DispatchQueue.main.async {
                     /// 进行统一弹窗
@@ -50,7 +50,7 @@ class RequestLoadingPlugin: PluginType {
             
             
         case .failure(let error):
-            print(error.localizedDescription)
+            debugLog(error.localizedDescription)
         }
     }
     

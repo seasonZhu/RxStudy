@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import AudioToolbox
 
 /// 状态栏的高度(竖屏限定)
 let kStatusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
@@ -45,16 +44,12 @@ let kPassword = "kPassword"
 /// 必须这么显式的编写,才能表示其意义
 let void: Void = ()
 
-/// 播放短信声音
-func smsPlay() {
-    // 三全音
-    let path = "/System/Library/Audio/UISounds/sms-received1.caf"
-    if let soundUrl: CFURL = URL(fileURLWithPath: path) as CFURL? {
-        var soundID: SystemSoundID = 0
-        AudioServicesCreateSystemSoundID(soundUrl, &soundID)
-        AudioServicesPlaySystemSound(soundID)
-    }
-    // 震动
-    let fd = UIImpactFeedbackGenerator(style: .heavy)
-    fd.impactOccurred()
+
+import SwiftPrettyPrint
+
+/// 仅在Debug模式下打印,我小看了print,这个方法打印出来的效果和print打印出来的效果完全不一样
+func debugLog(_ items: Any..., label: String? = nil, separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+    Pretty.prettyPrintDebug(label: label, items, separator: separator)
+    #endif
 }

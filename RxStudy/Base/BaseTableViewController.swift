@@ -42,7 +42,7 @@ class BaseTableViewController: BaseViewController {
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in
                 self?.tableView.deselectRow(at: indexPath, animated: false)
-                print(indexPath)
+                debugLog(indexPath)
             }
             .disposed(by: rx.disposeBag)
         
@@ -78,7 +78,7 @@ class BaseTableViewController: BaseViewController {
                 
                 /// isEmpty中的value为true才调用下面的方法
                 if noContent {
-                    print("监听没有内容")
+                    debugLog("监听没有内容")
                     self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
             default:

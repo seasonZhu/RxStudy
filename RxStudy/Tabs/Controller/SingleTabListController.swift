@@ -64,7 +64,7 @@ extension SingleTabListController {
                     /// 嵌套页面无法push,回调到主控制器再push
                     self.cellSelected?(model)
                 }
-                print("模型为:\(model)")
+                debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
                 

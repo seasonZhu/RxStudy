@@ -41,12 +41,12 @@ extension Transform: UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        print("shouldSelect--即将显示的控制器--\(viewController.className)")
+        debugLog("shouldSelect--即将显示的控制器--\(viewController.className)")
         return true
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
-        print("didSelect--当前显示的控制器--\(viewController.className)")
+        debugLog("didSelect--当前显示的控制器--\(viewController.className)")
         tabBarController.title = viewController.title
         let isHome = tabBarController.selectedIndex == 0
         /// rightBarButtonItem => UIBarButtonItem => UIBarItem => NSObject,这货根本没有继承UIView,没有隐藏属性,而且我又是用的系统自带初始化,如果使用customView应该是可以的

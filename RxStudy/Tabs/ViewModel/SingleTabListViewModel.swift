@@ -70,7 +70,7 @@ private extension SingleTabListViewModel {
         let result: Single<Response>
         switch type {
         case .project:
-            print("请求:\(id)")
+            debugLog("请求:\(id)")
             result = projectProvider.rx.request(ProjectService.tagList(id, page))
         case .publicNumber:
             result = publicNumberProvider.rx.request(PublicNumberService.tagList(id, page))

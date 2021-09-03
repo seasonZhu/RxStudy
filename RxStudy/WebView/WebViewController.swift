@@ -274,13 +274,13 @@ extension WebViewController: WKScriptMessageHandler {
     ///   - userContentController: WKUserContentController
     ///   - message: WKScriptMessage 其中包含方法名称已经传递的参数,WKScriptMessage,其中body可以接收的类型是Allowed types are NSNumber, NSString, NSDate, NSArray, NSDictionary, and NSNull
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("方法名:\(message.name)")
-        print("参数:\(message.body)")
+        debugLog("方法名:\(message.name)")
+        debugLog("参数:\(message.body)")
         
         guard let msg = message.body as? String else { return }
         
         if msg == "goToApp" {
-            print("打开App操作")
+            debugLog("打开App操作")
             /// 这里其实只是针对掘金了,CSDN的可以其实可以直接跳转了
             openApp()
         }
@@ -302,8 +302,8 @@ extension WebViewController: WKNavigationDelegate {
         delayEndRefreshing()
         /// 加载完网页后,进行运行js,将在App端通过JS编写的点击事件与掘金网页的"APP内打开绑定"
         webView.evaluateJavaScript("injectBegin('\(webView.url?.absoluteString)')") { any, error in
-            print(any)
-            print(error)
+            debugLog(any)
+            debugLog(error)
         }
     }
     
@@ -342,7 +342,7 @@ extension WebViewController {
         
         let userScript = WKUserScript(source: string, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
         
-        print(string)
+        debugLog(string)
         
         return userScript
     }

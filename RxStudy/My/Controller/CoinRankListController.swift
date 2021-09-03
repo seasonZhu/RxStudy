@@ -36,7 +36,7 @@ extension CoinRankListController {
         /// 获取cell中的模型
         tableView.rx.modelSelected(CoinRank.self)
             .subscribe { model in
-                print("模型为:\(model)")
+                debugLog("模型为:\(model)")
             }
             .disposed(by: rx.disposeBag)
                 

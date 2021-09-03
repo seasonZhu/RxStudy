@@ -26,7 +26,7 @@ class BaseViewModel {
     var className: String { String(describing: self) }
     
     deinit {
-        print("\(className)被销毁了")
+        debugLog("\(className)被销毁了")
     }
 }
 

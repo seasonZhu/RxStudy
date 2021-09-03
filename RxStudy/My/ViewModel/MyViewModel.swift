@@ -27,7 +27,7 @@ class MyViewModel: BaseViewModel {
         AccountManager.shared.isLogin.subscribe(onNext: { [weak self] isLogin in
             guard let self = self else { return }
             
-            print("\(self.className)收到了关于登录状态的值")
+            debugLog("\(self.className)收到了关于登录状态的值")
             
             self.currentDataSource.accept(isLogin ? self.loginDataSource : self.logoutDataSource)
             
