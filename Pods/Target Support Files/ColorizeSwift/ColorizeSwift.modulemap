@@ -1,0 +1,6 @@
+framework module ColorizeSwift {
+  umbrella header "ColorizeSwift-umbrella.h"
+
+  export *
+  module * { export * }
+}

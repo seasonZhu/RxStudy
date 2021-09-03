@@ -1,6 +1,7 @@
 PODS:
   - AcknowList (2.0.1)
   - Alamofire (5.4.3)
+  - ColorizeSwift (1.2.0)
   - Differentiator (4.0.1)
   - DZNEmptyDataSet (1.8.1)
   - FSPagerView (0.8.3)
@@ -56,6 +57,8 @@ PODS:
   - SnapKit (5.0.1)
   - SVProgressHUD (2.2.5)
   - SwiftDate (6.3.1)
+  - SwiftPrettyPrint (1.2.0):
+    - ColorizeSwift
 
 DEPENDENCIES:
   - AcknowList
@@ -83,11 +86,13 @@ DEPENDENCIES:
   - SnapKit
   - SVProgressHUD
   - SwiftDate
+  - SwiftPrettyPrint (~> 1.2.0)
 
 SPEC REPOS:
   trunk:
     - AcknowList
     - Alamofire
+    - ColorizeSwift
     - Differentiator
     - DZNEmptyDataSet
     - FSPagerView
@@ -115,10 +120,12 @@ SPEC REPOS:
     - SnapKit
     - SVProgressHUD
     - SwiftDate
+    - SwiftPrettyPrint
 
 SPEC CHECKSUMS:
   AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  ColorizeSwift: 4eef354dce7335d7747a0ccacf78afe2b589a1be
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
@@ -146,7 +153,8 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
+  SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: 43d2d60d33c97b4371ff7a352b80701da75677dc
+PODFILE CHECKSUM: 49070263b70118cf3f96900d934fc996b44358c9
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.10.2

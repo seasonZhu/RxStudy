@@ -50,5 +50,6 @@ target 'RxStudy' do
   # Auto Layout
   pod 'SnapKit'
 
-
+  # 打印日志
+  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
 end

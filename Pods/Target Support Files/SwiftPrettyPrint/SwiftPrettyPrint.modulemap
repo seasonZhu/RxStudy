@@ -1,0 +1,6 @@
+framework module SwiftPrettyPrint {
+  umbrella header "SwiftPrettyPrint-umbrella.h"
+
+  export *
+  module * { export * }
+}
