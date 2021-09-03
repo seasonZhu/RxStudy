@@ -65,13 +65,15 @@ extension TabsController {
 
         //5、初始化contentScrollView
         contentScrollView = UIScrollView()
+        contentScrollView.delegate = self
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsVerticalScrollIndicator = false
         contentScrollView.showsHorizontalScrollIndicator = false
         contentScrollView.scrollsToTop = false
-        contentScrollView.bounces = false
+        contentScrollView.bounces = true
         //禁用automaticallyInset
         contentScrollView.contentInsetAdjustmentBehavior = .never
+        
         
         view.addSubview(contentScrollView)
 
@@ -158,4 +160,8 @@ extension TabsController: JXSegmentedViewDelegate {
         listVCArray[index].requestData()
         tagSelectRefreshIndexs.insert(index)
     }
+}
+
+extension TabsController: UIScrollViewDelegate {
+    
 }

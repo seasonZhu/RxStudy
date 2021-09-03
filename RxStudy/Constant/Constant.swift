@@ -43,13 +43,3 @@ let kPassword = "kPassword"
 
 /// 必须这么显式的编写,才能表示其意义
 let void: Void = ()
-
-
-import SwiftPrettyPrint
-
-/// 仅在Debug模式下打印,我小看了print,这个方法打印出来的效果和print打印出来的效果完全不一样
-func debugLog(_ items: Any..., label: String? = nil, separator: String = " ", terminator: String = "\n") {
-    #if DEBUG
-    Pretty.prettyPrintDebug(label: label, items, separator: separator)
-    #endif
-}

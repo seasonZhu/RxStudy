@@ -17,10 +17,13 @@ class ViewController: UITabBarController {
     
     var transform: Transform!
     
+    var titles: [String] = []
+    
     //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        addPan()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +68,7 @@ class ViewController: UITabBarController {
         subViewController.tabBarItem.selectedImage = UIImage(named: selectImageName)
         subViewController.title = title
         addChild(subViewController)
-        
+        titles.append(title)
     }
 
     //MARK:- 添加所有子控制器
@@ -119,43 +122,35 @@ extension ViewController {
         view.addGestureRecognizer(pan)
         pan.rx.event.subscribe { [weak self] _ in
             self?.handlePan(pan)
-        }
-
+        }.disposed(by: rx.disposeBag)
     }
     
     
     private func handlePan(_ pan: UIPanGestureRecognizer) {
-        let translationX =  pan.translation(in: view).x
-        let _ = abs(translationX) / view.frame.size.width
+        let panResult = pan.checkPanGestureAxis(in: view, responseLength: 100)
         
-        switch pan.state {
-        case .began:
-            let velocityX = pan.velocity(in: view).x
-            if velocityX < 0 {
+        if panResult.response {
+            switch panResult.axis {
+            case UIPanGestureRecognizer.Axis.horizontal(_):
+                let velocityX = pan.velocity(in: view).x
+                if velocityX < 0 {
 
-                if (self.selectedIndex < self.children.count - 1) {
-                    self.selectedIndex += 1;
-                    
-                    let next = selectedIndex + 1
-                    let pre = selectedIndex
-                    
-                    transform.selectedIndex = next
-                    transform.preIndex = pre
+                    if (selectedIndex < children.count - 1) {
+                        let next = selectedIndex + 1
+                        selectedIndex = next
+            
+                    }
                 }
-            }
-            else {
-                if (self.selectedIndex > 0) {
-                    let next = selectedIndex - 1
-                    let pre = selectedIndex
-                    
-                    transform.selectedIndex = pre
-                    transform.preIndex = next
+                else {
+                    if (selectedIndex > 0) {
+                        let next = selectedIndex - 1
+                        selectedIndex = next
+                    }
                 }
+                title = titles[selectedIndex]
+            default:
+                break
             }
-        case .changed:
-            break
-        default:
-            break
         }
     }
 }

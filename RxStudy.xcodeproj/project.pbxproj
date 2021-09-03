@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		000D937326DCAC190099A749 /* javascript.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* javascript.js */; };
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
+		0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* DebugLog.swift */; };
+		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
 		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
@@ -115,6 +117,8 @@
 /* Begin PBXFileReference section */
 		000D937226DCAC190099A749 /* javascript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = javascript.js; sourceTree = "<group>"; };
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
+		0082108C26E1FF3300525CE4 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
+		0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -349,6 +353,7 @@
 				616EC96F269E822E008FAFDF /* HUD.swift */,
 				619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */,
 				616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */,
+				0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -441,6 +446,7 @@
 			isa = PBXGroup;
 			children = (
 				6171E1972665FE570065C34D /* Constant.swift */,
+				0082108C26E1FF3300525CE4 /* DebugLog.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -850,6 +856,7 @@
 				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
 				61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */,
 				61F28245265F4A23009E16C9 /* TreeController.swift in Sources */,
+				0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */,
 				6114ABF5267ADF6E0082BA67 /* MyView.swift in Sources */,
 				61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */,
 				61336C812656667900FDEB2A /* Info.swift in Sources */,
@@ -897,6 +904,7 @@
 				007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */,
 				61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
+				0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */,
 				6171E1A3266623D10065C34D /* AccountManager.swift in Sources */,
 			);
