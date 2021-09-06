@@ -21,14 +21,6 @@ class ViewController: UITabBarController {
     
     private lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
     
-    override var selectedIndex: Int {
-        willSet {
-            let isHome = newValue == 0
-            /// rightBarButtonItem => UIBarButtonItem => UIBarItem => NSObject,这货根本没有继承UIView,没有隐藏属性,而且我又是用的系统自带初始化,如果使用customView应该是可以的
-            navigationItem.rightBarButtonItem = isHome ? searchButtonItem : nil
-        }
-    }
-    
     //MARK:- viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,10 +30,6 @@ class ViewController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        for (index, _) in children.enumerated() {
-            tabBar.items?[index].tag = index
-        }
     }
     
     private func setupUI() {
@@ -71,6 +59,10 @@ class ViewController: UITabBarController {
         addChildControllers()
         
         title = viewControllers?.first?.title
+        
+        for (index, _) in children.enumerated() {
+            tabBar.items?[index].tag = index
+        }
     }
     
     //MARK:- 添加子控制器

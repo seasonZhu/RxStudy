@@ -88,18 +88,23 @@ extension AccountManager {
             guard let username = getUsername(), let password = getPassword() else {
                 return
             }
-            login(username: username, password: password)
+            login(username: username, password: password, showLoading: false)
         }
     }
     
     /// 调用登录接口
-    func login(username: String, password: String) {
-        accountProvider.rx.request(AccountService.login(username, password))
+    func login(username: String, password: String, showLoading: Bool = true) {
+        accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .map(BaseModel<AccountInfo>.self)
             /// 转为Observable
             .subscribe { baseModel in
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
+                    
+                    guard showLoading else {
+                        return
+                    }
+                    
                     DispatchQueue.main.async {
                         SVProgressHUD.showText("登录成功")
                     }
@@ -112,8 +117,8 @@ extension AccountManager {
 
 /// 尝试调用一个接口后再调用另外一个接口
 extension AccountManager {
-    func login1(username: String, password: String) {
-        accountProvider.rx.request(AccountService.login(username, password))
+    func login1(username: String, password: String, showLoading: Bool = true) {
+        accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .retry(2)
             .map(BaseModel<AccountInfo>.self)
             .asObservable()
@@ -121,7 +126,10 @@ extension AccountManager {
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                 }
-                return myProvider.rx.request(MyService.userCoinInfo).map(BaseModel<CoinRank>.self).map{ $0.data}.compactMap{ $0}.asObservable()
+                return myProvider.rx.request(MyService.userCoinInfo)
+                    .map(BaseModel<CoinRank>.self)
+                    .map{ $0.data}
+                    .compactMap{ $0}.asObservable()
             }.asSingle().subscribe { myCoin in
                 self.myCoin.accept(myCoin)
             } onError: { _ in

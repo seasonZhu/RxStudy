@@ -23,6 +23,11 @@ class RequestLoadingPlugin: PluginType {
     
     func willSend(_ request: RequestType, target: TargetType) {
         debugLog("开始请求")
+        
+        if let showLoading = target.headers?["showLoading"], showLoading == "false"  {
+            return
+        }
+        
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             SVProgressHUD.beginLoading()

@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         SVProgressHUDSetting()
         window?.backgroundColor = .playAndroidBg
+        AccountManager.shared.autoLogin()
         return true
     }
 

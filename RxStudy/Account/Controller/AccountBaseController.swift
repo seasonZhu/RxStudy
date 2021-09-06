@@ -21,7 +21,7 @@ class AccountBaseController: BaseViewController {
         textField.returnKeyType = .done
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.attributedPlaceholder = NSAttributedString(string: "请输入用户名", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        textField.textColor = .playAndroidBg
+        textField.textColor = .black
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = emptyView
@@ -40,7 +40,7 @@ class AccountBaseController: BaseViewController {
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.isSecureTextEntry = true
         textField.attributedPlaceholder = NSAttributedString(string: "请输入密码", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        textField.textColor = .playAndroidBg
+        textField.textColor = .black
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = emptyView
@@ -88,8 +88,8 @@ class AccountBaseController: BaseViewController {
 }
 
 extension AccountBaseController {
-    func login(username: String, password: String) {
-        accountProvider.rx.request(AccountService.login(username, password))
+    func login(username: String, password: String, showLoading: Bool = true) {
+        accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .map(BaseModel<AccountInfo>.self)
             .subscribe { baseModel in
                 if baseModel.isSuccess {
