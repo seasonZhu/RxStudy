@@ -16,7 +16,7 @@ import Moya
 class BaseViewController: UIViewController {
     
     private lazy var errorImage: UIImageView = {
-        let imageView = UIImageView(image: R.image.saber())
+        let imageView = UIImageView(image: R.image.notFound())
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = .playAndroidBg

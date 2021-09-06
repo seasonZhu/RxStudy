@@ -58,6 +58,7 @@ class ViewController: UITabBarController {
         
         addChildControllers()
         
+        /// 我其实没有明白UIViewController中children与UITabBarViewController的viewControllers的区别
         title = viewControllers?.first?.title
         
         for (index, _) in children.enumerated() {
