@@ -17,7 +17,17 @@ class ViewController: UITabBarController {
     
     var transform: Transform!
     
-    var titles: [String] = []
+    private var titles: [String] = []
+    
+    private lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
+    
+    override var selectedIndex: Int {
+        willSet {
+            let isHome = newValue == 0
+            /// rightBarButtonItem => UIBarButtonItem => UIBarItem => NSObject,这货根本没有继承UIView,没有隐藏属性,而且我又是用的系统自带初始化,如果使用customView应该是可以的
+            navigationItem.rightBarButtonItem = isHome ? searchButtonItem : nil
+        }
+    }
     
     //MARK:- viewDidLoad
     override func viewDidLoad() {
@@ -39,8 +49,8 @@ class ViewController: UITabBarController {
         delegate = transform
         
         view.backgroundColor = .playAndroidBg
-        title = viewControllers?.first?.title
-        navigationItem.rightBarButtonItem = transform.searchButtonItem
+        
+        navigationItem.rightBarButtonItem = searchButtonItem
         
         /// 一般情况下状态序列我们会选用 Driver 这个类型，事件序列我们会选用 Signal 这个类型。
         /// 虽然这个Signal我目前都没有使用过,但是这句话基本上就能理解其使用场景了
@@ -59,6 +69,8 @@ class ViewController: UITabBarController {
         }).disposed(by: rx.disposeBag)
         
         addChildControllers()
+        
+        title = viewControllers?.first?.title
     }
     
     //MARK:- 添加子控制器
@@ -127,7 +139,7 @@ extension ViewController {
     
     
     private func handlePan(_ pan: UIPanGestureRecognizer) {
-        let panResult = pan.checkPanGestureAxis(in: view, responseLength: 150)
+        let panResult = pan.checkPanGestureAxis(in: view, responseLength: 100)
         
         if panResult.response {
             switch panResult.axis {

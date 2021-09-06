@@ -21,8 +21,6 @@ class Transform: NSObject {
     
     var selectedIndex: Int
     
-    lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
-    
     override init() {
         preIndex = 0
         selectedIndex = 0
@@ -48,9 +46,6 @@ extension Transform: UITabBarControllerDelegate {
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         debugLog("didSelect--当前显示的控制器--\(viewController.className)")
         tabBarController.title = viewController.title
-        let isHome = tabBarController.selectedIndex == 0
-        /// rightBarButtonItem => UIBarButtonItem => UIBarItem => NSObject,这货根本没有继承UIView,没有隐藏属性,而且我又是用的系统自带初始化,如果使用customView应该是可以的
-        tabBarController.navigationItem.rightBarButtonItem = isHome ? searchButtonItem : nil
     }
 }
 
