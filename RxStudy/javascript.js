@@ -14,6 +14,11 @@ function injectBegin(urlString) {
         csdnAddOnClickOnButton();
     }
     
+    /// 包含CSDN字段,同掘金的逻辑,注入点击事件
+    if (urlString.includes('jianshu')) {
+        jianshuAddOnClickOnButton();
+    }
+    
     return "injectBegin的回调URL:" + urlString
 }
 
@@ -31,6 +36,20 @@ function csdnAddOnClickOnButton() {
     var button = document.querySelector('.feed-Sign-span');
     console.log(button);
     button.onclick = function (e) {
+        window.webkit.messageHandlers.wanAndroid.postMessage('goToApp');
+    };
+}
+
+/// 简书网页的 打开App,看更多相似好文 这个按钮添加点击事件
+function jianshuAddOnClickOnButton() {
+    var button = document.querySelector('.call-app-btn');
+    console.log(button);
+    button.onclick = function (e) {
+        window.webkit.messageHandlers.wanAndroid.postMessage('goToApp');
+    };
+    
+    var open = document.querySelector('.wrap-item-btn');
+    open.onclick = function (e) {
         window.webkit.messageHandlers.wanAndroid.postMessage('goToApp');
     };
 }
