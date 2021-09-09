@@ -89,19 +89,9 @@ class AccountBaseController: BaseViewController {
 
 extension AccountBaseController {
     func login(username: String, password: String, showLoading: Bool = true) {
-        accountProvider.rx.request(AccountService.login(username, password, showLoading))
-            .map(BaseModel<AccountInfo>.self)
-            .subscribe { baseModel in
-                if baseModel.isSuccess {
-                    AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
-                    DispatchQueue.main.async {
-                        SVProgressHUD.showText("登录成功")
-                    }
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            } onError: { _ in
-                
-            }.disposed(by: rx.disposeBag)
+        AccountManager.shared.optimizeLogin(username: username, password: password, showLoading: showLoading) {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     func registerAndLogin(username: String, password: String, repassword: String) {

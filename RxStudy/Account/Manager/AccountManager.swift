@@ -61,6 +61,7 @@ extension AccountManager {
     func clearAccountInfo() {
         isLogin.accept(false)
         accountInfo = nil
+        myCoin.accept(nil)
     }
 }
 
@@ -88,7 +89,7 @@ extension AccountManager {
             guard let username = getUsername(), let password = getPassword() else {
                 return
             }
-            login(username: username, password: password, showLoading: false)
+            optimizeLogin(username: username, password: password, showLoading: false)
         }
     }
     
@@ -117,7 +118,14 @@ extension AccountManager {
 
 /// 尝试调用一个接口后再调用另外一个接口
 extension AccountManager {
-    func login1(username: String, password: String, showLoading: Bool = true) {
+    
+    /// 优化后的登录接口,将登录与获取个人积分的接口进行串行
+    /// - Parameters:
+    ///   - username: 用户名
+    ///   - password: 密码
+    ///   - showLoading: 是否使用SV
+    ///   - completion: 完成后的回调
+    func optimizeLogin(username: String, password: String, showLoading: Bool = true, completion: (() -> Void)? = nil) {
         accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .retry(2)
             .map(BaseModel<AccountInfo>.self)
@@ -132,8 +140,10 @@ extension AccountManager {
                     .compactMap{ $0}.asObservable()
             }.asSingle().subscribe { myCoin in
                 self.myCoin.accept(myCoin)
+                completion?()
             } onError: { _ in
                 self.myCoin.accept(nil)
+                completion?()
             }.disposed(by: disposeBag)
 
 
