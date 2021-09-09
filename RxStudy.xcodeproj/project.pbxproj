@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		000D937326DCAC190099A749 /* javascript.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* javascript.js */; };
+		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
 		0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* DebugLog.swift */; };
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
@@ -116,6 +117,7 @@
 
 /* Begin PBXFileReference section */
 		000D937226DCAC190099A749 /* javascript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = javascript.js; sourceTree = "<group>"; };
+		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		0082108C26E1FF3300525CE4 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 				619BA35B26895DDF007C7135 /* BaseNavigationController.swift */,
 				6171E18B2664B08C0065C34D /* BaseTableViewController.swift */,
 				617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */,
+				00634E8A26E9D4BD00B3350D /* Setter.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				6171E1A126661EC60065C34D /* RegisterController.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				617E44F3269574CF00DA9EA2 /* ViewState.swift in Sources */,
+				00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */,
 				61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
