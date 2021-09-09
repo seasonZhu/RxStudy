@@ -26,20 +26,23 @@ extension WebViewModel {
         myProvider.rx.request(MyService.collectArticle(collectId))
             .map(BaseModel<String>.self)
             .map { $0.isSuccess }
-            .subscribe { isSucces in
-                self.collectSuccess.accept(isSucces)
-                
-                guard var collectIds = AccountManager.shared.accountInfo?.collectIds else {
-                    return
+            .subscribe { event in
+                switch event {
+                case .success(let isSuccess):
+                    self.collectSuccess.accept(isSuccess)
+                    
+                    guard var collectIds = AccountManager.shared.accountInfo?.collectIds else {
+                        return
+                    }
+                    
+                    collectIds.append(collectId)
+                    
+                    AccountManager.shared.updateCollectIds(collectIds)
+                case .error(_):
+                    self.collectSuccess.accept(false)
                 }
-                
-                collectIds.append(collectId)
-                
-                AccountManager.shared.updateCollectIds(collectIds)
-                
-            } onError: { _ in
-                self.collectSuccess.accept(false)
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
 
     }
     
@@ -47,20 +50,24 @@ extension WebViewModel {
         myProvider.rx.request(MyService.unCollectArticle(collectId))
             .map(BaseModel<String>.self)
             .map { $0.isSuccess }
-            .subscribe { isSucces in
-                self.unCollectSuccess.accept(isSucces)
-                
-                guard var collectIds = AccountManager.shared.accountInfo?.collectIds else {
-                    return
+            .subscribe { event in
+                switch event {
+                case .success(let isSuccess):
+                    self.unCollectSuccess.accept(isSuccess)
+                    
+                    guard var collectIds = AccountManager.shared.accountInfo?.collectIds else {
+                        return
+                    }
+                    
+                    if collectIds.contains(collectId), let index = collectIds.firstIndex(of: collectId) {
+                        collectIds.remove(at: index)
+                    }
+                    
+                    AccountManager.shared.updateCollectIds(collectIds)
+                case .error(_):
+                    self.unCollectSuccess.accept(false)
                 }
-                
-                if collectIds.contains(collectId), let index = collectIds.firstIndex(of: collectId) {
-                    collectIds.remove(at: index)
-                }
-                
-                AccountManager.shared.updateCollectIds(collectIds)
-            } onError: { _ in
-                self.unCollectSuccess.accept(false)
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }

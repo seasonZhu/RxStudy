@@ -97,21 +97,26 @@ extension AccountManager {
     func login(username: String, password: String, showLoading: Bool = true) {
         accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .map(BaseModel<AccountInfo>.self)
-            /// 转为Observable
-            .subscribe { baseModel in
-                if baseModel.isSuccess {
-                    AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
-                    
-                    guard showLoading else {
-                        return
+            .subscribe { event in
+                let message: String
+                switch event {
+                case .success(let baseModel):
+                    if baseModel.isSuccess {
+                        AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     }
-                    
-                    DispatchQueue.main.async {
-                        SVProgressHUD.showText("登录成功")
-                    }
+                    message = "登录成功"
+                case .error(_):
+                    message = "登录失败"
                 }
-            } onError: { _ in
-                SVProgressHUD.showText("登录失败")
+                
+                guard showLoading else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    SVProgressHUD.showText(message)
+                }
+                
             }.disposed(by: disposeBag)
     }
 }
@@ -138,15 +143,16 @@ extension AccountManager {
                     .map(BaseModel<CoinRank>.self)
                     .map{ $0.data}
                     .compactMap{ $0}.asObservable()
-            }.asSingle().subscribe { myCoin in
-                self.myCoin.accept(myCoin)
-                completion?()
-            } onError: { _ in
-                self.myCoin.accept(nil)
+            }.asSingle()
+            .subscribe { event in
+                switch event {
+                case .success(let myCoin):
+                    self.myCoin.accept(myCoin)
+                case .error(_):
+                    self.myCoin.accept(nil)
+                }
                 completion?()
             }.disposed(by: disposeBag)
-
-
     }
 }
 

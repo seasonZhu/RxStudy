@@ -97,15 +97,18 @@ extension AccountBaseController {
     func registerAndLogin(username: String, password: String, repassword: String) {
         accountProvider.rx.request(AccountService.register(username, password, repassword))
             .map(BaseModel<AccountInfo>.self)
-            .subscribe { baseModel in
-                if baseModel.isSuccess {
-                    DispatchQueue.main.async {
-                        SVProgressHUD.showText("注册成功")
+            .subscribe { event in
+                switch event {
+                case .success(let baseModel):
+                    if baseModel.isSuccess {
+                        DispatchQueue.main.async {
+                            SVProgressHUD.showText("注册成功")
+                        }
+                        self.login(username: username, password: password)
                     }
-                    self.login(username: username, password: password)
+                case .error(_):
+                    break
                 }
-            } onError: { _ in
-                
             }.disposed(by: rx.disposeBag)
     }
 }
