@@ -66,7 +66,7 @@ class BaseViewController: UIViewController {
         /// 第二种:导航栏透明的情况下,frame从导航栏下面开始,并没有达到预期的效果
         //edgesForExtendedLayout = UIRectEdge([])
         
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         
         setupErrorImage()
     }

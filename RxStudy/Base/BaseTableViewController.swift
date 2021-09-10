@@ -47,10 +47,7 @@ class BaseTableViewController: BaseViewController {
             .disposed(by: rx.disposeBag)
         
         /// 简单布局
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
-        }
+        gcdMainAsyncLayout()
         
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
@@ -95,6 +92,22 @@ class BaseTableViewController: BaseViewController {
             self?.tableView.mj_header?.beginRefreshing()
         }.disposed(by: rx.disposeBag)
         return vc
+    }
+    
+    /// 会报错Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy
+    /// 用GCD就不会报错了,也不知道为什么
+    private func gcdMainAsyncLayout() {
+        DispatchQueue.main.async {
+            self.addTableViewAndLayout()
+        }
+    }
+    
+    /// 添加tableView并layout
+    private func addTableViewAndLayout() {
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalTo(view)
+        }
     }
 }
 
