@@ -13,6 +13,7 @@
 		0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* DebugLog.swift */; };
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
+		00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
 		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
@@ -123,6 +124,7 @@
 		0082108C26E1FF3300525CE4 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -358,6 +360,7 @@
 				619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */,
 				616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */,
 				0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */,
+				00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				61336C78265644DC00FDEB2A /* HomeService.swift in Sources */,
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */,
+				00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */,
 				61B79950268190F40025EADE /* MyCoinViewModel.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
