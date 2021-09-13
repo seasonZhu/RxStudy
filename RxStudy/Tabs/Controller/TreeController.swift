@@ -111,11 +111,6 @@ extension TreeController {
                 return ds.sectionModels[index].model.name
         })
 
-        //设置分区头标题,通过上面的方法简写了
-//        dataSource.titleForHeaderInSection = { ds, index in
-//            return ds.sectionModels[index].model.name
-//        }
-
         //绑定单元格数据
         items.bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
