@@ -98,6 +98,52 @@ private extension MyCollectionViewModel {
 }
 
 extension MyCollectionViewModel {
+    func unCollectAction(indexPath: IndexPath) {
+        let index = indexPath.row
+        var datas = dataSource.value
+        
+        guard datas.count >= index else {
+            return
+        }
+        
+        let model = datas[index]
+        
+        guard let collectId = model.originId else {
+            return
+        }
+        
+        myProvider.rx.request(MyService.unCollectArticle(collectId))
+            .map(BaseModel<String>.self)
+            .map { $0.isSuccess }
+            .subscribe { event in
+                switch event {
+                case .success(let isSuccess):
+                    
+                    guard isSuccess else {
+                        return
+                    }
+                    
+                    datas.remove(at: index)
+                    self.dataSource.accept(datas)
+                    
+                    guard var collectIds = AccountManager.shared.accountInfo?.collectIds else {
+                        return
+                    }
+                    
+                    if collectIds.contains(collectId), let index = collectIds.firstIndex(of: collectId) {
+                        collectIds.remove(at: index)
+                    }
+                    
+                    AccountManager.shared.updateCollectIds(collectIds)
+                case .error(_):
+                    break
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
+extension MyCollectionViewModel {
     func resetCurrentPageAndMjFooter() {
         pageNum = 0
         refreshSubject.onNext(.resetNomoreData)

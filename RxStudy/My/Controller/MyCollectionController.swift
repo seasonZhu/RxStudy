@@ -15,6 +15,12 @@ import SnapKit
 import MJRefresh
 
 class MyCollectionController: BaseTableViewController {
+    
+    private var isEdited = BehaviorRelay(value: false)
+    
+    private lazy var edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(rightBarButtonItemAction))
+    
+    private lazy var done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(rightBarButtonItemAction))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +30,10 @@ class MyCollectionController: BaseTableViewController {
     private func setupUI() {
         
         title = "我的收藏"
+        
+        navigationItem.rightBarButtonItem = edit
+        
+        isEdited.bind(to: tableView.rx.isShowEdit).disposed(by: rx.disposeBag)
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
@@ -50,6 +60,13 @@ class MyCollectionController: BaseTableViewController {
                 
             })
             .disposed(by: rx.disposeBag)
+        
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { indexPath in
+                viewModel.inputs.unCollectAction(indexPath: indexPath)
+            })
+            .disposed(by: rx.disposeBag)
+
         
         errorRetry.subscribe { _ in
             viewModel.inputs.loadData(actionType: .refresh)
@@ -80,4 +97,21 @@ class MyCollectionController: BaseTableViewController {
             .disposed(by: rx.disposeBag)
     }
 
+}
+
+extension MyCollectionController {
+    @objc
+    private func rightBarButtonItemAction() {
+        let value = !isEdited.value
+        isEdited.accept(value)
+        self.navigationItem.rightBarButtonItem = value ? done : edit
+    }
+}
+
+extension Reactive where Base: UITableView {
+    var isShowEdit: Binder<Bool> {
+        return Binder(base) { base, isEdit in
+            base.setEditing(isEdit, animated: true)
+        }
+    }
 }
