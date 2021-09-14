@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		000D937326DCAC190099A749 /* javascript.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* javascript.js */; };
+		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
+		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
 		0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* DebugLog.swift */; };
@@ -119,6 +121,8 @@
 
 /* Begin PBXFileReference section */
 		000D937226DCAC190099A749 /* javascript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = javascript.js; sourceTree = "<group>"; };
+		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
+		00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		0082108C26E1FF3300525CE4 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
@@ -246,6 +250,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */ = {
+			isa = PBXGroup;
+			children = (
+				00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */,
+				00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */,
+			);
+			path = "FSPagerView+RxSwift";
+			sourceTree = "<group>";
+		};
 		611E2E002660782B001585AE /* SnapKitExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -348,6 +361,7 @@
 		61336C792656493700FDEB2A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */,
 				6186948A267C4DBB0086F051 /* MJRefresh+RxSwift */,
 				611E2E002660782B001585AE /* SnapKitExtension */,
 				61336C7A2656494900FDEB2A /* Int+Extension.swift */,
@@ -857,6 +871,7 @@
 				00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */,
 				61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
+				00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
 				61B539002678863A00EEFE1F /* My.swift in Sources */,
 				6171E19D266615850065C34D /* AccountInfo.swift in Sources */,
@@ -886,6 +901,7 @@
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
+				00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */,
 				616EC970269E822E008FAFDF /* HUD.swift in Sources */,
 				61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */,
 				6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */,
