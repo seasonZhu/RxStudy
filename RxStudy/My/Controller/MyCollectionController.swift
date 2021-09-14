@@ -30,10 +30,23 @@ class MyCollectionController: BaseTableViewController {
     private func setupUI() {
         
         title = "我的收藏"
-        navigationItem.rightBarButtonItem = edit
+        //navigationItem.rightBarButtonItem = edit
         
         /// 是否在编辑与tableView的编辑状态绑定
         isEdited.bind(to: tableView.rx.isShowEdit).disposed(by: rx.disposeBag)
+        
+        MyCollectionController.done.rx.tap.subscribe { [weak self] _ in
+            self?.subscribeRightBarButtonItemAction()
+        }.disposed(by: rx.disposeBag)
+        
+        MyCollectionController.edit.rx.tap.subscribe { [weak self]  _ in
+            self?.subscribeRightBarButtonItemAction()
+        }.disposed(by: rx.disposeBag)
+        
+        isEdited
+            .map { $0 ? MyCollectionController.done : MyCollectionController.edit }
+            .bind(to: navigationItem.rx.rightBarButtonItem)
+            .disposed(by: rx.disposeBag)
         
         /// 点击cell,获取cell中的模型
         tableView.rx.modelSelected(Info.self)
@@ -106,7 +119,7 @@ class MyCollectionController: BaseTableViewController {
 
 extension MyCollectionController {
     
-    /// 右侧的点击事件
+    /// 传统的右侧的点击事件
     @objc
     private func rightBarButtonItemAction() {
         let value = !isEdited.value
@@ -115,10 +128,30 @@ extension MyCollectionController {
     }
 }
 
+extension MyCollectionController {
+    private static let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
+    
+    private static let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
+    
+    /// 定义右侧的点击事件
+    private func subscribeRightBarButtonItemAction() {
+        let value = !isEdited.value
+        isEdited.accept(value)
+    }
+}
+
 extension Reactive where Base: UITableView {
     var isShowEdit: Binder<Bool> {
         return Binder(base) { base, isEdit in
             base.setEditing(isEdit, animated: true)
+        }
+    }
+}
+
+extension Reactive where Base: UINavigationItem {
+    var rightBarButtonItem: Binder<UIBarButtonItem> {
+        return Binder(base) { base, item in
+            base.rightBarButtonItem = item
         }
     }
 }
