@@ -4,7 +4,7 @@
 //
 //  Created by dy on 2021/9/14.
 //  Copyright © 2021 season. All rights reserved.
-//  将FSPagerViewDelegate做Rx封装,这种封装真的是类啊,而且容易出错,吃力不讨好,我也不想在封装第二个了
+//  将FSPagerViewDelegate做Rx封装,这种封装真的是类啊,而且容易出错,吃力不讨好,我也不想在封装第二个了,我放弃治疗了
 
 import RxSwift
 import RxCocoa
