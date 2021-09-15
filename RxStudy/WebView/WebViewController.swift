@@ -25,6 +25,8 @@ class WebViewController: BaseViewController {
     
     private let isFromBanner: Bool
     
+    weak var delegate: WebViewControllerDelegate?
+    
     let hasCollectAction = PublishSubject<Void>()
     
     init(webLoadInfo: WebLoadInfo, isFromBanner: Bool) {
@@ -345,5 +347,77 @@ extension WebViewController {
         debugLog(string)
         
         return userScript
+    }
+}
+
+public protocol WebViewControllerDelegate: AnyObject {
+    func webViewControllerActionSuccess()
+}
+ 
+extension WebViewController: HasDelegate {
+    typealias Delegate = WebViewControllerDelegate
+}
+
+class RxWebViewControllerDelegateProxy
+    : DelegateProxy<WebViewController, WebViewControllerDelegate>
+    , DelegateProxyType
+    , WebViewControllerDelegate {
+    
+    init(webViewController: WebViewController) {
+        super.init(parentObject: webViewController,
+                   delegateProxy: RxWebViewControllerDelegateProxy.self)
+    }
+     
+    static func registerKnownImplementations() {
+        self.register { RxWebViewControllerDelegateProxy(webViewController: $0) }
+    }
+    
+    func webViewControllerActionSuccess() {
+        /// 这个地方死活点不出来啊
+        //_forwardToDelegate.webViewControllerActionSuccess()
+    }
+    
+    deinit {
+        
+    }
+}
+ 
+import CoreLocation
+ 
+extension CLLocationManager: HasDelegate {
+    public typealias Delegate = CLLocationManagerDelegate
+}
+ 
+public class RxCLLocationManagerDelegateProxy
+    : DelegateProxy<CLLocationManager, CLLocationManagerDelegate>
+    , DelegateProxyType , CLLocationManagerDelegate {
+     
+    public init(locationManager: CLLocationManager) {
+        super.init(parentObject: locationManager,
+                   delegateProxy: RxCLLocationManagerDelegateProxy.self)
+    }
+     
+    public static func registerKnownImplementations() {
+        self.register { RxCLLocationManagerDelegateProxy(locationManager: $0) }
+    }
+     
+    internal lazy var didUpdateLocationsSubject = PublishSubject<[CLLocation]>()
+    internal lazy var didFailWithErrorSubject = PublishSubject<Error>()
+     
+    public func locationManager(_ manager: CLLocationManager,
+                                didUpdateLocations locations: [CLLocation]) {
+        _forwardToDelegate?.locationManager?(manager, didUpdateLocations: locations)
+        didUpdateLocationsSubject.onNext(locations)
+    }
+     
+    public func locationManager(_ manager: CLLocationManager,
+                                didFailWithError error: Error) {
+        _forwardToDelegate?.locationManager?(manager, didFailWithError: error)
+        didFailWithErrorSubject.onNext(error)
+    }
+     
+    deinit {
+        self.didUpdateLocationsSubject.on(.completed)
+        self.didFailWithErrorSubject.on(.completed)
     }
 }
