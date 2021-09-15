@@ -157,3 +157,22 @@ extension HomeController: FSPagerViewDelegate {
         pageControl.currentPage = index
     }
 }
+
+/**
+ pagerView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+ pagerView.rx.didSelectItemAtIndex.subscribe { [weak self, weak pagerView] event in
+     guard let self = self, let pg = pagerView else {
+         return
+     }
+     
+     switch event {
+     case .next(let index):
+         pg.deselectItem(at: index, animated: false)
+         let item = self.itmes[index]
+         debugLog("点击了轮播图的\(item)")
+         self.pushToWebViewController(webLoadInfo: item, isFromBanner: true)
+     default:
+         break
+     }
+ }.disposed(by: rx.disposeBag)
+ */
