@@ -91,6 +91,11 @@ class BaseTableViewController: BaseViewController {
         vc.hasCollectAction.subscribe { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()
         }.disposed(by: rx.disposeBag)
+        
+        vc.delegate = self
+        vc.rx.actionSuccess.subscribe { _ in
+            print("操作成功了")
+        }.disposed(by: rx.disposeBag)
         return vc
     }
     
@@ -149,3 +154,5 @@ extension BaseTableViewController: DZNEmptyDataSetDelegate {
         emptyDataSetButtonTap.onNext(())
     }
 }
+
+extension BaseTableViewController: WebViewControllerDelegate {}

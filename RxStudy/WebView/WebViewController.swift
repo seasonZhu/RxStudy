@@ -79,6 +79,7 @@ class WebViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        
     }
     
     private func setupUI() {
@@ -352,10 +353,10 @@ extension WebViewController {
 
 // MARK: - 自己写的Rx的代理,其实既不好写,也不好理解,而且有不少坑,不如直接代理来的简单明了
 
-@objc /// 死活点不出来的原因找到了,因为需要在协议上面加上@objc
+@objc /// 死活点不出来的原因找到了,因为需要在协议上面加上@objc, 这里协议名称需要用objc修饰,同时optional也需要objc修复,太久没在swift中写这种协议,都忘记了
 public protocol WebViewControllerDelegate: AnyObject {
     
-    func webViewControllerActionSuccess()
+    @objc optional func webViewControllerActionSuccess()
 }
  
 extension WebViewController: HasDelegate {
@@ -367,7 +368,10 @@ class RxWebViewControllerDelegateProxy
     , DelegateProxyType
     , WebViewControllerDelegate {
     
+    public weak private(set) var webViewController: WebViewController?
+    
     init(webViewController: WebViewController) {
+        self.webViewController = webViewController
         super.init(parentObject: webViewController,
                    delegateProxy: RxWebViewControllerDelegateProxy.self)
     }
@@ -396,6 +400,14 @@ class RxWebViewControllerDelegateProxy
         
         /// 死活点不出来的原因找到了,因为需要在协议上面加上@objc
         _forwardToDelegate?.webViewControllerActionSuccess()
+    }
+    
+    public static func currentDelegate(for object: WebViewController) -> WebViewControllerDelegate? {
+        object.delegate
+    }
+    
+    public static func setCurrentDelegate(_ delegate: WebViewControllerDelegate?, to object: WebViewController) {
+        object.delegate = delegate
     }
     
     deinit {
