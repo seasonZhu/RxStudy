@@ -350,7 +350,11 @@ extension WebViewController {
     }
 }
 
+// MARK: - 自己写的Rx的代理,其实既不好写,也不好理解,而且有不少坑,不如直接代理来的简单明了
+
+@objc /// 死活点不出来的原因找到了,因为需要在协议上面加上@objc
 public protocol WebViewControllerDelegate: AnyObject {
+    
     func webViewControllerActionSuccess()
 }
  
@@ -372,52 +376,53 @@ class RxWebViewControllerDelegateProxy
         self.register { RxWebViewControllerDelegateProxy(webViewController: $0) }
     }
     
+    private var _actionSuccessPublishSubject: PublishSubject<()>?
+    
+    var actionSuccessPublishSubject: PublishSubject<()>{
+        if let subject = _actionSuccessPublishSubject {
+            return subject
+        }
+
+        let subject = PublishSubject<()>()
+        _actionSuccessPublishSubject = subject
+
+        return subject
+    }
+    
     func webViewControllerActionSuccess() {
-        /// 这个地方死活点不出来啊
-        //_forwardToDelegate.webViewControllerActionSuccess()
+        if let subject = _actionSuccessPublishSubject {
+            subject.on(.next(()))
+        }
+        
+        /// 死活点不出来的原因找到了,因为需要在协议上面加上@objc
+        _forwardToDelegate?.webViewControllerActionSuccess()
     }
     
     deinit {
-        
+        if let subject = _actionSuccessPublishSubject {
+            subject.on(.completed)
+        }
     }
 }
- 
-import CoreLocation
- 
-extension CLLocationManager: HasDelegate {
-    public typealias Delegate = CLLocationManagerDelegate
-}
- 
-public class RxCLLocationManagerDelegateProxy
-    : DelegateProxy<CLLocationManager, CLLocationManagerDelegate>
-    , DelegateProxyType , CLLocationManagerDelegate {
+
+extension Reactive where Base: WebViewController {
      
-    public init(locationManager: CLLocationManager) {
-        super.init(parentObject: locationManager,
-                   delegateProxy: RxCLLocationManagerDelegateProxy.self)
+    /// 代理委托
+    var delegate: DelegateProxy<WebViewController, WebViewControllerDelegate> {
+        return RxWebViewControllerDelegateProxy.proxy(for: base)
     }
-     
-    public static func registerKnownImplementations() {
-        self.register { RxCLLocationManagerDelegateProxy(locationManager: $0) }
+    
+    var actionSuccess: Observable<Void> {
+        return delegate
+            .sentMessage(#selector(WebViewControllerDelegate
+                            .webViewControllerActionSuccess))
+            .map({ (a) in
+                return ()
+            })
     }
-     
-    internal lazy var didUpdateLocationsSubject = PublishSubject<[CLLocation]>()
-    internal lazy var didFailWithErrorSubject = PublishSubject<Error>()
-     
-    public func locationManager(_ manager: CLLocationManager,
-                                didUpdateLocations locations: [CLLocation]) {
-        _forwardToDelegate?.locationManager?(manager, didUpdateLocations: locations)
-        didUpdateLocationsSubject.onNext(locations)
-    }
-     
-    public func locationManager(_ manager: CLLocationManager,
-                                didFailWithError error: Error) {
-        _forwardToDelegate?.locationManager?(manager, didFailWithError: error)
-        didFailWithErrorSubject.onNext(error)
-    }
-     
-    deinit {
-        self.didUpdateLocationsSubject.on(.completed)
-        self.didFailWithErrorSubject.on(.completed)
+    
+    func setDelegate(_ delegate: WebViewControllerDelegate)
+        -> Disposable {
+        return RxWebViewControllerDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
     }
 }
