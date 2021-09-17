@@ -92,6 +92,7 @@ class BaseTableViewController: BaseViewController {
             self?.tableView.mj_header?.beginRefreshing()
         }.disposed(by: rx.disposeBag)
         
+        /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
         vc.delegate = self
         vc.rx.actionSuccess.subscribe { _ in
             print("操作成功了")
