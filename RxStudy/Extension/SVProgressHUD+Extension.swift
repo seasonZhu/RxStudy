@@ -24,3 +24,14 @@ extension SVProgressHUD: HUD {
         //SVProgressHUD.showInfo(withStatus: text)
     }
 }
+
+extension SVProgressHUD {
+    /// 要想SVProgressHUD用的好,必须进行合适的配置
+    static func setting() {
+        /// 不显示图片,仅显示文字
+        SVProgressHUD.setImageViewSize(.zero)
+        UITraitCollection.isDark ? SVProgressHUD.setDefaultStyle(.dark) : SVProgressHUD.setDefaultStyle(.light)
+        SVProgressHUD.setDefaultMaskType(.clear)
+        SVProgressHUD.setMinimumDismissTimeInterval(3)
+    }
+}

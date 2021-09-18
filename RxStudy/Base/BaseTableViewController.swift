@@ -93,7 +93,8 @@ class BaseTableViewController: BaseViewController {
         }.disposed(by: rx.disposeBag)
         
         /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
-        vc.delegate = self
+        //vc.delegate = self
+        vc.rx.setDelegate(self).disposed(by: rx.disposeBag)
         vc.rx.actionSuccess.subscribe { _ in
             print("操作成功了")
         }.disposed(by: rx.disposeBag)

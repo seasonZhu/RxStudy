@@ -1,14 +1,14 @@
 //
-//  InfoViewCell.swift
+//  InfoCell.swift
 //  RxStudy
 //
-//  Created by season on 2021/5/28.
+//  Created by dy on 2021/9/18.
 //  Copyright © 2021 season. All rights reserved.
 //
 
 import UIKit
 
-class InfoViewCell: UITableViewCell {
+class InfoCell: UITableViewCell {
 
     var info: Info! {
         set {
@@ -25,30 +25,18 @@ class InfoViewCell: UITableViewCell {
                 picView.isHidden = false
                 picView.kf.setImage(with: url, placeholder: R.image.saber())
                 
-                contentLabel.snp.remakeConstraints { make in
-                    make.leading.equalTo(picView.snp.trailing).offset(16)
-                    make.trailing.equalTo(contentView).offset(-16)
-                    make.top.equalTo(contentView).offset(10)
-                }
-                
-                authorLabel.snp.remakeConstraints { make in
-                    make.leading.equalTo(contentLabel)
-                    make.top.equalTo(contentLabel.snp.bottom).offset(10)
-                    make.bottom.equalTo(contentView.snp.bottom).offset(-10)
+                /// 这个地方显示了remake与update区别
+                /// remake是重新定义该控件相对其他控件的依赖,其他控件是可以更换的
+                /// update对于其他控件的依赖是不能变更,只能改变offset的数值
+                /// 以上结论是掘金大佬给我的提示
+                contentLabel.snp.updateConstraints { make in
+                    make.leading.equalTo(contentView).offset(76)
                 }
                 
             }else {
                 picView.isHidden = true
-                contentLabel.snp.remakeConstraints { make in
+                contentLabel.snp.updateConstraints { make in
                     make.leading.equalTo(contentView).offset(16)
-                    make.trailing.equalTo(contentView).offset(-16)
-                    make.top.equalTo(contentView).offset(10)
-                }
-                
-                authorLabel.snp.remakeConstraints { make in
-                    make.leading.equalTo(contentLabel)
-                    make.top.equalTo(contentLabel.snp.bottom).offset(10)
-                    make.bottom.equalTo(contentView.snp.bottom).offset(-10)
                 }
             }
         } get {
@@ -95,7 +83,7 @@ class InfoViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setupUI() {        
+    private func setupUI() {
         accessoryType = .disclosureIndicator
         
         contentView.addSubview(picView)
@@ -107,7 +95,7 @@ class InfoViewCell: UITableViewCell {
         
         contentView.addSubview(contentLabel)
         contentLabel.snp.makeConstraints { make in
-            make.leading.equalTo(picView.snp.trailing).offset(16)
+            make.leading.equalTo(contentView).offset(76)
             make.trailing.equalTo(contentView).offset(-16)
             make.top.equalTo(contentView).offset(10)
         }
@@ -126,3 +114,4 @@ class InfoViewCell: UITableViewCell {
         }
     }
 }
+

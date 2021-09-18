@@ -38,11 +38,13 @@ class MyController: BaseTableViewController {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                     cell.textLabel?.text = my.title
                     cell.accessoryType = my.accessoryType
+                    my.layout(cell)
                     return cell
                 }else {
                     let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                     cell.textLabel?.text = my.title
                     cell.accessoryType = my.accessoryType
+                    my.layout(cell)
                     return cell
                 }
             }

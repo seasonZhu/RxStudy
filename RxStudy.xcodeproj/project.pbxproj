@@ -10,6 +10,7 @@
 		000D937326DCAC190099A749 /* javascript.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* javascript.js */; };
 		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
 		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
+		0038326826F5821E0071EE7E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038326726F5821E0071EE7E /* InfoCell.swift */; };
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
 		006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */; };
@@ -125,6 +126,7 @@
 		000D937226DCAC190099A749 /* javascript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = javascript.js; sourceTree = "<group>"; };
 		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
 		00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
+		0038326726F5821E0071EE7E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 			isa = PBXGroup;
 			children = (
 				619EDB362660BF820056A3D9 /* InfoViewCell.swift */,
+				0038326726F5821E0071EE7E /* InfoCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -877,6 +880,7 @@
 				00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */,
 				61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
+				0038326826F5821E0071EE7E /* InfoCell.swift in Sources */,
 				00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
 				61B539002678863A00EEFE1F /* My.swift in Sources */,

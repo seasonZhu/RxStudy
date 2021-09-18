@@ -76,7 +76,7 @@ class BaseViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    /// 分类中的方法不能被重写必须写在class里面
+    /// 写在extension分类中的方法不能被重写必须写在class里面
     @discardableResult
     func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) -> WebViewController {
         let vc = WebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)

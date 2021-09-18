@@ -94,7 +94,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                             self.refreshSubject.onNext(.showNomoreData)
                         }
                     case .error(_):
-                        /// error占时不做处理
+                        /// error暂时不做处理
                         break
                     }
                 }.disposed(by: disposeBag)
