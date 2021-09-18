@@ -13,7 +13,6 @@ extension MBProgressHUD: HUD {
         return UIApplication.shared.keyWindow!
     }
     
-    /// 为啥不用start,因为容易混淆
     static func beginLoading() {
         MBProgressHUD.showAdded(to:keyWindow , animated: true)
     }

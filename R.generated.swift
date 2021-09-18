@@ -114,7 +114,7 @@ struct R: Rswift.Validatable {
   }
   #endif
 
-  /// This `R.file` struct is generated, and contains static references to 19 files.
+  /// This `R.file` struct is generated, and contains static references to 21 files.
   struct file {
     /// Resource file `AMapLocation.json`.
     static let aMapLocationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "AMapLocation", pathExtension: "json")
@@ -148,12 +148,16 @@ struct R: Rswift.Validatable {
     static let publicNumberJson = Rswift.FileResource(bundle: R.hostingBundle, name: "PublicNumber", pathExtension: "json")
     /// Resource file `PublicNumberList.json`.
     static let publicNumberListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "PublicNumberList", pathExtension: "json")
+    /// Resource file `README.md`.
+    static let readmeMd = Rswift.FileResource(bundle: R.hostingBundle, name: "README", pathExtension: "md")
     /// Resource file `RankList.json`.
     static let rankListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RankList", pathExtension: "json")
     /// Resource file `SearchResult.json`.
     static let searchResultJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SearchResult", pathExtension: "json")
     /// Resource file `Tree.json`.
     static let treeJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Tree", pathExtension: "json")
+    /// Resource file `javascript.js`.
+    static let javascriptJs = Rswift.FileResource(bundle: R.hostingBundle, name: "javascript", pathExtension: "js")
 
     /// `bundle.url(forResource: "AMapLocation", withExtension: "json")`
     static func aMapLocationJson(_: Void = ()) -> Foundation.URL? {
@@ -251,6 +255,12 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "README", withExtension: "md")`
+    static func readmeMd(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.readmeMd
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     /// `bundle.url(forResource: "RankList", withExtension: "json")`
     static func rankListJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.rankListJson
@@ -269,10 +279,16 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "javascript", withExtension: "js")`
+    static func javascriptJs(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.javascriptJs
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 17 images.
+  /// This `R.image` struct is generated, and contains static references to 18 images.
   struct image {
     /// Image `LaunchImagePlayAndroid`.
     static let launchImagePlayAndroid = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImagePlayAndroid")
@@ -292,6 +308,8 @@ struct R: Rswift.Validatable {
     static let my_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "my_selected")
     /// Image `my`.
     static let my = Rswift.ImageResource(bundle: R.hostingBundle, name: "my")
+    /// Image `notFound`.
+    static let notFound = Rswift.ImageResource(bundle: R.hostingBundle, name: "notFound")
     /// Image `project_selected`.
     static let project_selected = Rswift.ImageResource(bundle: R.hostingBundle, name: "project_selected")
     /// Image `project`.
@@ -369,6 +387,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "my_selected", bundle: ..., traitCollection: ...)`
     static func my_selected(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.my_selected, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "notFound", bundle: ..., traitCollection: ...)`
+    static func notFound(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.notFound, compatibleWith: traitCollection)
     }
     #endif
 

@@ -10,15 +10,8 @@ import Foundation
 
 import Moya
 
-let accountProvider: MoyaProvider<AccountService> = {
-        let stubClosure = { (target: AccountService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<AccountService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
-
 enum AccountService {
-    case login(_ username: String, _ password: String)
+    case login(_ username: String, _ password: String, _ showLoading: Bool)
     case register(_ username: String, _ password: String, _ repassword: String)
     case logout
 }
@@ -55,7 +48,7 @@ extension AccountService: TargetType {
     
     var task: Task {
         switch self {
-        case .login(let username, let password):
+        case .login(let username, let password, _):
             return .requestParameters(parameters: ["username": username, "password": password], encoding: URLEncoding.default)
         case .register(let username, let password, let repassword):
             return .requestParameters(parameters: ["username": username, "password": password, "repassword": repassword], encoding: URLEncoding.default)
@@ -67,6 +60,12 @@ extension AccountService: TargetType {
     }
     
     var headers: [String : String]? {
-        return nil
+        switch self {
+        case .login(_, _, let showLoading):
+            return ["showLoading": "\(showLoading)"]
+        default:
+            return nil
+        }
+        
     }
 }

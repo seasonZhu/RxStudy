@@ -14,7 +14,7 @@ import Moya
 
 class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     /// 搜索结果的首页是从0开始的
-    internal var pageNum: Int
+    var pageNum: Int
     
     private let keyword: String
     
@@ -27,7 +27,7 @@ class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     /// outputs
     let dataSource = BehaviorRelay<[Info]>(value: [])
     
-    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
     
     /// inputs
     func loadData(actionType: ScrollViewActionType) {

@@ -28,6 +28,7 @@ final class AccountManager {
     /// 私有化初始化方法
     private init() {}
     
+    /// 这个是尝试在一个接口调用另一个接口获取的模型
     let myCoin = BehaviorRelay<CoinRank?>(value: nil)
     
 }
@@ -60,6 +61,7 @@ extension AccountManager {
     func clearAccountInfo() {
         isLogin.accept(false)
         accountInfo = nil
+        myCoin.accept(nil)
     }
 }
 
@@ -87,23 +89,33 @@ extension AccountManager {
             guard let username = getUsername(), let password = getPassword() else {
                 return
             }
-            login(username: username, password: password)
+            optimizeLogin(username: username, password: password, showLoading: false)
         }
     }
     
     /// 调用登录接口
-    func login(username: String, password: String) {
-        accountProvider.rx.request(AccountService.login(username, password))
+    func login(username: String, password: String, showLoading: Bool = true) {
+        accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .map(BaseModel<AccountInfo>.self)
-            /// 转为Observable
-            .subscribe { baseModel in
-                if baseModel.isSuccess {
-                    AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
-                    DispatchQueue.main.async {
-                        SVProgressHUD.showText("登录成功")
+            .subscribe { event in
+                let message: String
+                switch event {
+                case .success(let baseModel):
+                    if baseModel.isSuccess {
+                        AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     }
+                    message = "登录成功"
+                case .error(_):
+                    message = "登录失败"
                 }
-            } onError: { _ in
+                
+                guard showLoading else {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    SVProgressHUD.showText(message)
+                }
                 
             }.disposed(by: disposeBag)
     }
@@ -111,8 +123,15 @@ extension AccountManager {
 
 /// 尝试调用一个接口后再调用另外一个接口
 extension AccountManager {
-    func login1(username: String, password: String) {
-        accountProvider.rx.request(AccountService.login(username, password))
+    
+    /// 优化后的登录接口,将登录与获取个人积分的接口进行串行
+    /// - Parameters:
+    ///   - username: 用户名
+    ///   - password: 密码
+    ///   - showLoading: 是否使用SV
+    ///   - completion: 完成后的回调
+    func optimizeLogin(username: String, password: String, showLoading: Bool = true, completion: (() -> Void)? = nil) {
+        accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .retry(2)
             .map(BaseModel<AccountInfo>.self)
             .asObservable()
@@ -120,14 +139,20 @@ extension AccountManager {
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                 }
-                return myProvider.rx.request(MyService.userCoinInfo).map(BaseModel<CoinRank>.self).map{ $0.data}.compactMap{ $0}.asObservable()
-            }.asSingle().subscribe { myCoin in
-                self.myCoin.accept(myCoin)
-            } onError: { _ in
-                self.myCoin.accept(nil)
+                return myProvider.rx.request(MyService.userCoinInfo)
+                    .map(BaseModel<CoinRank>.self)
+                    .map{ $0.data}
+                    .compactMap{ $0}.asObservable()
+            }.asSingle()
+            .subscribe { event in
+                switch event {
+                case .success(let myCoin):
+                    self.myCoin.accept(myCoin)
+                case .error(_):
+                    self.myCoin.accept(nil)
+                }
+                completion?()
             }.disposed(by: disposeBag)
-
-
     }
 }
 

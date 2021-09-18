@@ -9,5 +9,6 @@
 import Foundation
 
 extension Dictionary {
+    /// 空字典
     static var empty: Dictionary { [:] }
 }

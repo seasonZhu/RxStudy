@@ -22,7 +22,7 @@ class RegisterController: AccountBaseController {
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.isSecureTextEntry = true
         textField.attributedPlaceholder = NSAttributedString(string: "请再次输入密码", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        textField.textColor = .playAndroidBg
+        textField.textColor = .black
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = emptyView
@@ -59,7 +59,7 @@ class RegisterController: AccountBaseController {
         let usernameValid = usernameFiled.rx.text.orEmpty
             .map { [weak self] text -> Bool in
                 if text.count >= 11 {
-                    print("超出了,进行截取")
+                    debugLog("超出了,进行截取")
                     self?.usernameFiled.text = String(text.prefix(11))
                     return true
                 }else {

@@ -38,7 +38,7 @@ extension HomeController {
         tableView.rx.modelSelected(Info.self)
             .subscribe(onNext: { [weak self] model in
                 self?.pushToWebViewController(webLoadInfo: model)
-                print("模型为:\(model)")
+                debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
         
@@ -146,7 +146,7 @@ extension HomeController: FSPagerViewDelegate {
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: false)
         let item = itmes[index]
-        print("点击了轮播图的\(item)")
+        debugLog("点击了轮播图的\(item)")
         pushToWebViewController(webLoadInfo: item, isFromBanner: true)
     }
     
@@ -157,3 +157,22 @@ extension HomeController: FSPagerViewDelegate {
         pageControl.currentPage = index
     }
 }
+
+/**
+ pagerView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+ pagerView.rx.didSelectItemAtIndex.subscribe { [weak self, weak pagerView] event in
+     guard let self = self, let pg = pagerView else {
+         return
+     }
+     
+     switch event {
+     case .next(let index):
+         pg.deselectItem(at: index, animated: false)
+         let item = self.itmes[index]
+         debugLog("点击了轮播图的\(item)")
+         self.pushToWebViewController(webLoadInfo: item, isFromBanner: true)
+     default:
+         break
+     }
+ }.disposed(by: rx.disposeBag)
+ */

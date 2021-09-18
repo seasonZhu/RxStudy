@@ -19,14 +19,14 @@ class BaseViewModel {
     /// outputs修饰前缀
     var outputs: Self { return self }
     
-    /// 错误请求
-    var networkError = PublishSubject<MoyaError?>()
+    /// 网络请求的Moya错误,为空说明走到success里面了,有值的话,并不在乎值是什么,直接显示error画面
+    let networkError = PublishSubject<MoyaError?>()
     
     /// 模型名称
     var className: String { String(describing: self) }
     
     deinit {
-        print("\(className)被销毁了")
+        debugLog("\(className)被销毁了")
     }
 }
 

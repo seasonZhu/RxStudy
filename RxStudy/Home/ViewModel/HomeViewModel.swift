@@ -26,7 +26,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     
     let banners = BehaviorRelay<[Banner]>(value: [])
     
-    let refreshSubject: BehaviorSubject<MJRefreshAction> = BehaviorSubject(value: .begainRefresh)
+    let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
     
     /// inputs
     func loadData(actionType: ScrollViewActionType) {        
@@ -39,6 +39,12 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                     self.refreshSubject.onNext(.stopRefresh)
                     switch event {
                     case .success(let tuple):
+                        /// 这里networkError我选用的是PublishSubject
+                        /// 先说PublishSubject的功能,将对观察者发送订阅后产生的元素，而在订阅前发出的元素将不会发送给观察者。
+                        /// 其实我的时候在想使用AsyncSubject是不是会更好一点
+                        /// 为什么不管成功或者失败的时候都要对networkError进行onNext操作
+                        /// 因为errorImage是和networkError进行绑定,比如先网络错误,然后网络好了,没有下面这句话,errorImage依旧盖在最上层,数据和列表虽然都好了,但是看不见
+                        /// 这是我目前的处理方式,欢迎考虑是不是有更好的方式,其实通知当然是可以的
                         self.networkError.onNext(nil)
                         let items = tuple.0
                         let topInfos = tuple.1
@@ -88,7 +94,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                             self.refreshSubject.onNext(.showNomoreData)
                         }
                     case .error(_):
-                        /// error占时不做处理
+                        /// error暂时不做处理
                         break
                     }
                 }.disposed(by: disposeBag)

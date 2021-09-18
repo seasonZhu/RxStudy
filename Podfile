@@ -14,11 +14,11 @@ target 'RxStudy' do
 
   # Rx Extensions
   pod 'RxDataSources'
-  pod 'RxSwiftExt'
+  pod 'RxSwiftExt' #暂时没有使用,更多的是对序列的运算符优化
   pod 'RxViewController' # 暂时没有使用
   pod 'RxGesture' # 暂时没有使用
   pod 'RxOptional' # 暂时没有使用
-  pod 'RxTheme' # 暂时没有使用
+  pod 'RxTheme' # 暂时没有使用,可以做主题优化,但是现在基本上适配黑暗模式即可
   pod 'RxBlocking' # 暂时没有使用
   pod 'NSObject+Rx'
 
@@ -32,12 +32,12 @@ target 'RxStudy' do
   pod 'R.swift'
 
   # Keychain
-  pod 'KeychainAccess'
+  pod 'KeychainAccess' # 暂时没有使用
 
   # UI'
   pod 'DZNEmptyDataSet'
   pod 'AcknowList'
-  pod 'MBProgressHUD'
+  pod 'MBProgressHUD' # 被SVProgressHUD替代了
   pod 'MJRefresh'
   pod 'FSPagerView'
   pod 'JXSegmentedView'
@@ -50,5 +50,10 @@ target 'RxStudy' do
   # Auto Layout
   pod 'SnapKit'
 
+  # 打印日志
+  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
+    
+  # SFSymbols的安全引用
+  pod 'SFSafeSymbols', '~> 2.1.3' #暂时没有使用
 
 end

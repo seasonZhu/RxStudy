@@ -96,14 +96,15 @@ extension SwiftCoinRankListController {
                     
                 case .failure(let error):
                     self.isFinish = false
-                    print(error.errorDescription)
+                    debugLog(error.errorDescription)
             }
             
+            /// 这种必须显示声明类型
             let newResult: Result<BaseModel<Page<CoinRank>>, MoyaError> = result.map()
-            print(newResult)
+            debugLog(newResult)
             
             let otherResult = result.map(BaseModel<Page<CoinRank>>.self)
-            print(otherResult)
+            debugLog(otherResult)
         }
     }
 }
@@ -142,7 +143,7 @@ extension SwiftCoinRankListController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let row = indexPath.row
         let distance = dataSource.count - 25
-        print("row: \(row), distance:\(distance)  ")
+        debugLog("row: \(row), distance:\(distance)  ")
         if row == distance && isFinish {
             loadMore()
         }

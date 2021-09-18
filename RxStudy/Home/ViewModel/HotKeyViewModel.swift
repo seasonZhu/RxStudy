@@ -30,13 +30,18 @@ private extension HotKeyViewModel {
             .map{ $0.data }
             /// 去掉其中为nil的值
             .compactMap{ $0 }
-            .subscribe(onSuccess: { items in
-                self.networkError.onNext(nil)
-                self.dataSource.accept(items)
-            }, onError: { error in
-                guard let moyarror = error as? MoyaError else { return }
-                self.networkError.onNext(moyarror)
-            })
+            .asObservable()
+            .asSingle()
+            .subscribe { event in
+                switch event {
+                case .success(let items):
+                    self.networkError.onNext(nil)
+                    self.dataSource.accept(items)
+                case .error(let error):
+                    guard let moyarror = error as? MoyaError else { return }
+                    self.networkError.onNext(moyarror)
+                }
+            }
             .disposed(by: disposeBag)
     }
 }

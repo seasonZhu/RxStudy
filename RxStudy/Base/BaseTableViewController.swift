@@ -42,15 +42,12 @@ class BaseTableViewController: BaseViewController {
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in
                 self?.tableView.deselectRow(at: indexPath, animated: false)
-                print(indexPath)
+                debugLog(indexPath)
             }
             .disposed(by: rx.disposeBag)
         
         /// 简单布局
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
-        }
+        gcdMainAsyncLayout()
         
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
@@ -78,10 +75,9 @@ class BaseTableViewController: BaseViewController {
                 
                 /// isEmpty中的value为true才调用下面的方法
                 if noContent {
-                    print("监听没有内容")
+                    debugLog("监听没有内容")
                     self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
-                break
             default:
                 break
             }
@@ -91,10 +87,34 @@ class BaseTableViewController: BaseViewController {
     @discardableResult
     override func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) -> WebViewController {
         let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
+        /// 其实这个地方使用callback或者是用Rx的subscribe感觉差不了太多,都是作为回调来看待
         vc.hasCollectAction.subscribe { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()
         }.disposed(by: rx.disposeBag)
+        
+        /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
+        //vc.delegate = self
+        vc.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        vc.rx.actionSuccess.subscribe { _ in
+            print("操作成功了")
+        }.disposed(by: rx.disposeBag)
         return vc
+    }
+    
+    /// 会报错Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy
+    /// 用GCD就不会报错了,也不知道为什么
+    private func gcdMainAsyncLayout() {
+        DispatchQueue.main.async {
+            self.addTableViewAndLayout()
+        }
+    }
+    
+    /// 添加tableView并layout
+    private func addTableViewAndLayout() {
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalTo(view)
+        }
     }
 }
 
@@ -136,3 +156,5 @@ extension BaseTableViewController: DZNEmptyDataSetDelegate {
         emptyDataSetButtonTap.onNext(())
     }
 }
+
+extension BaseTableViewController: WebViewControllerDelegate {}

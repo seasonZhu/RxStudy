@@ -21,7 +21,7 @@ class AccountBaseController: BaseViewController {
         textField.returnKeyType = .done
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.attributedPlaceholder = NSAttributedString(string: "请输入用户名", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        textField.textColor = .playAndroidBg
+        textField.textColor = .black
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = emptyView
@@ -40,7 +40,7 @@ class AccountBaseController: BaseViewController {
         textField.font = UIFont.systemFont(ofSize: 15)
         textField.isSecureTextEntry = true
         textField.attributedPlaceholder = NSAttributedString(string: "请输入密码", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
-        textField.textColor = .playAndroidBg
+        textField.textColor = .black
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
         textField.leftView = emptyView
@@ -88,34 +88,27 @@ class AccountBaseController: BaseViewController {
 }
 
 extension AccountBaseController {
-    func login(username: String, password: String) {
-        accountProvider.rx.request(AccountService.login(username, password))
-            .map(BaseModel<AccountInfo>.self)
-            .subscribe { baseModel in
-                if baseModel.isSuccess {
-                    AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
-                    DispatchQueue.main.async {
-                        SVProgressHUD.showText("登录成功")
-                    }
-                    self.navigationController?.popToRootViewController(animated: true)
-                }
-            } onError: { _ in
-                
-            }.disposed(by: rx.disposeBag)
+    func login(username: String, password: String, showLoading: Bool = true) {
+        AccountManager.shared.optimizeLogin(username: username, password: password, showLoading: showLoading) {
+            self.navigationController?.popToRootViewController(animated: true)
+        }
     }
     
     func registerAndLogin(username: String, password: String, repassword: String) {
         accountProvider.rx.request(AccountService.register(username, password, repassword))
             .map(BaseModel<AccountInfo>.self)
-            .subscribe { baseModel in
-                if baseModel.isSuccess {
-                    DispatchQueue.main.async {
-                        SVProgressHUD.showText("注册成功")
+            .subscribe { event in
+                switch event {
+                case .success(let baseModel):
+                    if baseModel.isSuccess {
+                        DispatchQueue.main.async {
+                            SVProgressHUD.showText("注册成功")
+                        }
+                        self.login(username: username, password: password)
                     }
-                    self.login(username: username, password: password)
+                case .error(_):
+                    break
                 }
-            } onError: { _ in
-                
             }.disposed(by: rx.disposeBag)
     }
 }

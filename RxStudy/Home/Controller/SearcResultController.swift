@@ -31,10 +31,6 @@ class SearcResultController: BaseTableViewController {
         super.viewDidLoad()
         setupUI()
     }
-    
-    func requestData() {
-        tableView.mj_header?.beginRefreshing()
-    }
 }
 
 extension SearcResultController {
@@ -47,7 +43,7 @@ extension SearcResultController {
             .subscribe(onNext: { [weak self] model in
                 guard let self = self else { return }
                 self.pushToWebViewController(webLoadInfo: model)
-                print("模型为:\(model)")
+                debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
         

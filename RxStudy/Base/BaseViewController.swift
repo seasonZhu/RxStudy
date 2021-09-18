@@ -16,7 +16,7 @@ import Moya
 class BaseViewController: UIViewController {
     
     private lazy var errorImage: UIImageView = {
-        let imageView = UIImageView(image: R.image.saber())
+        let imageView = UIImageView(image: R.image.notFound())
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = .playAndroidBg
@@ -66,7 +66,7 @@ class BaseViewController: UIViewController {
         /// 第二种:导航栏透明的情况下,frame从导航栏下面开始,并没有达到预期的效果
         //edgesForExtendedLayout = UIRectEdge([])
         
-        view.backgroundColor = .white
+        view.backgroundColor = .clear
         
         setupErrorImage()
     }
@@ -76,7 +76,7 @@ class BaseViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
-    /// 分类中的方法不能被重写必须写在class里面
+    /// 写在extension分类中的方法不能被重写必须写在class里面
     @discardableResult
     func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) -> WebViewController {
         let vc = WebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
@@ -85,7 +85,7 @@ class BaseViewController: UIViewController {
     }
     
     deinit {
-        print("\(className)被销毁了")
+        debugLog("\(className)被销毁了")
     }
 
 }
@@ -103,7 +103,7 @@ extension BaseViewController {
         errorImage.addGestureRecognizer(tap)
         tap.rx.event
             .subscribe { [weak self] _ in
-                self?.errorRetry.onNext(())
+                self?.errorRetry.onNext(void)
         }.disposed(by: rx.disposeBag)
     }
     

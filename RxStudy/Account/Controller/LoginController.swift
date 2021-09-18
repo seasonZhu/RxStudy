@@ -15,7 +15,10 @@ class LoginController: AccountBaseController {
     
     private lazy var toRegisterButton: UIButton = {
         let button = UIButton(type: .custom)
-        let attString = NSAttributedString(string: "还没有注册?", attributes: [.underlineStyle: NSUnderlineStyle.single.rawValue, .foregroundColor: UIColor.systemBlue, .font: UIFont.systemFont(ofSize: 15)])
+        let attString = NSAttributedString(string: "还没有注册?", attributes: [
+                                            .underlineStyle: NSUnderlineStyle.single.rawValue,
+                                            .foregroundColor: UIColor.systemBlue,
+                                            .font: UIFont.systemFont(ofSize: 15)])
         button.setAttributedTitle(attString, for: .normal)
         return button
     }()
@@ -45,7 +48,7 @@ class LoginController: AccountBaseController {
         let usernameValid = usernameFiled.rx.text.orEmpty
             .map { [weak self] text -> Bool in
                 if text.count >= 11 {
-                    print("超出了,进行截取")
+                    debugLog("超出了,进行截取")
                     self?.usernameFiled.text = String(text.prefix(11))
                     return true
                 }else {

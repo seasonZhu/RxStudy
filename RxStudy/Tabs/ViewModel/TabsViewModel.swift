@@ -35,30 +35,33 @@ class TabsViewModel: BaseViewModel {
 //MARK:- 网络请求
 private extension TabsViewModel {
     func requestData() {
-        let result: Single<BaseModel<[Tab]>>
+        let result: Single<Response>
         switch type {
         case .project:
             result = projectProvider.rx.request(ProjectService.tags)
-                .map(BaseModel<[Tab]>.self)
         case .publicNumber:
             result = publicNumberProvider.rx.request(PublicNumberService.tags)
-                .map(BaseModel<[Tab]>.self)
         case .tree:
             result = treeProvider.rx.request(TreeService.tags)
-                .map(BaseModel<[Tab]>.self)
         }
         
         result
+            .map(BaseModel<[Tab]>.self)
             .map{ $0.data }
             /// 去掉其中为nil的值
             .compactMap{ $0 }
-            .subscribe(onSuccess: { items in
-                self.networkError.onNext(nil)
-                self.dataSource.accept(items)
-            }, onError: { error in
-                guard let moyarror = error as? MoyaError else { return }
-                self.networkError.onNext(moyarror)
-            })
-        .disposed(by: disposeBag)
+            .asObservable()
+            .asSingle()
+            .subscribe { event in
+                switch event {
+                case .success(let items):
+                    self.networkError.onNext(nil)
+                    self.dataSource.accept(items)
+                case .error(let error):
+                    guard let moyarror = error as? MoyaError else { return }
+                    self.networkError.onNext(moyarror)
+                }
+            }
+            .disposed(by: disposeBag)
     }
 }

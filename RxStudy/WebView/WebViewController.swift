@@ -16,13 +16,16 @@ import SVProgressHUD
 import MarqueeLabel
 import MJRefresh
 
-private let JSCallback = "JSCallback"
+/// 更新自定义句柄,这个是我自己写的JS,并定义其句柄
+private let JSCallback = "wanAndroid"
 
 class WebViewController: BaseViewController {
 
     private let webLoadInfo: WebLoadInfo
     
     private let isFromBanner: Bool
+    
+    weak var delegate: WebViewControllerDelegate?
     
     let hasCollectAction = PublishSubject<Void>()
     
@@ -40,6 +43,12 @@ class WebViewController: BaseViewController {
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
+        
+        /// 获取js,并添加到webView中
+        if let js = getJS() {
+            config.userContentController.addUserScript(js)
+        }
+        
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
@@ -70,16 +79,7 @@ class WebViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        webView.configuration.userContentController.add(self, name: JSCallback)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
+        
     }
     
     private func setupUI() {
@@ -139,7 +139,7 @@ class WebViewController: BaseViewController {
             }
         }.disposed(by: rx.disposeBag)
 
-        var items: [UIBarButtonItem] = [toShare]
+        var items = [toShare]
 
         /// 非轮播的页面跳转进来才通过判断登录状态来看是否显示收藏页面
         if !isFromBanner {
@@ -256,6 +256,18 @@ extension WebViewController {
     }
 }
 
+extension WebViewController {
+    private func openApp() {
+        guard let link = webLoadInfo.link, let url = URL(string: link) else {
+            return
+        }
+        
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+}
+
 // MARK: - 协议类专门用来处理监听JavaScript方法从而调用原生方法，和WKUserContentController搭配使用
 extension WebViewController: WKScriptMessageHandler {
     
@@ -265,21 +277,24 @@ extension WebViewController: WKScriptMessageHandler {
     ///   - userContentController: WKUserContentController
     ///   - message: WKScriptMessage 其中包含方法名称已经传递的参数,WKScriptMessage,其中body可以接收的类型是Allowed types are NSNumber, NSString, NSDate, NSArray, NSDictionary, and NSNull
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("方法名:\(message.name)")
-        print("参数:\(message.body)")
+        debugLog("方法名:\(message.name)")
+        debugLog("参数:\(message.body)")
         
         guard let msg = message.body as? String else { return }
         
-        if msg.isEmpty {
-            navigationController?.popViewController(animated: true)
+        if msg == "goToApp" {
+            debugLog("打开App操作")
+            /// 这里其实只是针对掘金了,CSDN的可以其实可以直接跳转了
+            openApp()
         }
     }
 }
 
+// MARK: - 其实在RxCocoa中有WebView+Rx的分类,专门来将WebView的代理进行rx的编写方式,就和UITablevDelegate差不多,这里只是没有使用
 extension WebViewController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
-        print("decidePolicyForUrl == \(navigationAction.request.url?.absoluteString ?? "unkown")")
-        decisionHandler(WKNavigationActionPolicy.allow)
+        decisionHandler(.allow)
+        return
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -288,6 +303,11 @@ extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         delayEndRefreshing()
+        /// 加载完网页后,进行运行js,将在App端通过JS编写的点击事件与掘金网页的"APP内打开绑定"
+        webView.evaluateJavaScript("injectBegin('\(webView.url?.absoluteString)')") { any, error in
+            debugLog(any)
+            debugLog(error)
+        }
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -301,8 +321,44 @@ extension WebViewController: WKNavigationDelegate {
 
 extension WebViewController {
     private func delayEndRefreshing() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        /// 其实使用Rx做这种延时操作还不如GCD简单明白
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+//            self.webView.scrollView.mj_header?.endRefreshing()
+//        }
+        
+        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe { _ in
             self.webView.scrollView.mj_header?.endRefreshing()
-        }
+        }.disposed(by: rx.disposeBag)
     }
+}
+
+extension WebViewController {
+    /// 获取js方法,转成iOS的WKWebView可以识别的对象
+    private func getJS() -> WKUserScript? {
+        guard let url = Bundle.main.url(forResource: "javascript", withExtension: "js") else {
+            return nil
+        }
+        
+        guard let string = try? String(contentsOf: url, encoding: .utf8) else {
+            return nil
+        }
+        
+        let userScript = WKUserScript(source: string, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        debugLog(string)
+        
+        return userScript
+    }
+}
+
+// MARK: - 自己写的Rx的代理,其实既不好写,也不好理解,而且有不少坑,不如直接代理来的简单明了
+
+@objc /// 死活点不出来的原因找到了,因为需要在协议上面加上@objc, 这里协议名称需要用objc修饰,同时optional也需要objc修复,太久没在swift中写这种协议,都忘记了
+public protocol WebViewControllerDelegate: AnyObject {
+    
+    @objc optional func webViewControllerActionSuccess()
+}
+ 
+extension WebViewController: HasDelegate {
+    typealias Delegate = WebViewControllerDelegate
 }
