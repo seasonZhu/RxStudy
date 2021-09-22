@@ -128,6 +128,8 @@ extension BaseViewController {
 
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
             
+            navigationController?.navigationBar.standardAppearance = navBarAppearance
+            
             let tabBarAppearance = UITabBarAppearance()
             
             tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
