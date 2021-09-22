@@ -127,7 +127,3 @@ extension SingleTabListViewModel {
         refreshSubject.onNext(.resetNomoreData)
     }
 }
-
-extension Optional: Error {
-    static var wrappedError: String?  { return nil }
-}
