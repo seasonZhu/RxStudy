@@ -49,6 +49,10 @@ class BaseTableViewController: BaseViewController {
         /// 简单布局
         gcdMainAsyncLayout()
         
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
         /// 设置尾部刷新控件,更新为无感知加载更多
