@@ -123,6 +123,10 @@ extension ViewController {
 /// 我尝试进行手势切换,但是目前还没有想到特别好的方式方法
 extension ViewController {
     private func addPan() {
+        if #available(iOS 15.0, *) {
+            /// 目前测试来看,iOS15的手势滑动有些异常,在iOS15的时候先禁用了
+            return
+        }
         let pan = UIPanGestureRecognizer()
         view.addGestureRecognizer(pan)
         pan.rx.event.subscribe { [weak self] _ in
