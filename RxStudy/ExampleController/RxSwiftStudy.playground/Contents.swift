@@ -184,7 +184,7 @@ let newArray = array.map { "\($0)" }
 
 let newObservable = observable.map { "\($0)" }
 
-//MARK:- 测试代码
+//MARK: 测试代码
 private func requestTest() {
     homeProvider.rx.request(HomeService.banner)
         .map(BaseModel<[Banner]>.self)

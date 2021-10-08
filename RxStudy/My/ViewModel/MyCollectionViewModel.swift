@@ -40,7 +40,7 @@ class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
 }
 
-//MARK:- 网络请求
+//MARK: 网络请求
 private extension MyCollectionViewModel {
     
     func refresh() {

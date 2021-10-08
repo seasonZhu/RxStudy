@@ -40,7 +40,7 @@ class MyCoinViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
 }
 
-//MARK:- 网络请求
+//MARK: 网络请求
 private extension MyCoinViewModel {
     
     func refresh() {

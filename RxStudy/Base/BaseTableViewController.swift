@@ -122,10 +122,10 @@ class BaseTableViewController: BaseViewController {
     }
 }
 
-//MARK:- UITableViewDelegate
+//MARK: UITableViewDelegate
 extension BaseTableViewController: UITableViewDelegate {}
 
-//MARK:- DZNEmptyDataSetSource
+//MARK: DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetSource {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -145,7 +145,7 @@ extension BaseTableViewController: DZNEmptyDataSetSource {
     }
 }
 
-//MARK:- DZNEmptyDataSetSource
+//MARK: DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetDelegate {
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
