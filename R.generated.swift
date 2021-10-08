@@ -114,6 +114,31 @@ struct R: Rswift.Validatable {
   }
   #endif
 
+  /// This `R.color` struct is generated, and contains static references to 1 colors.
+  struct color {
+    /// Color `mainTheme`.
+    static let mainTheme = Rswift.ColorResource(bundle: R.hostingBundle, name: "mainTheme")
+
+    #if os(iOS) || os(tvOS)
+    /// `UIColor(named: "mainTheme", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func mainTheme(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.mainTheme, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(watchOS)
+    /// `UIColor(named: "mainTheme", bundle: ..., traitCollection: ...)`
+    @available(watchOSApplicationExtension 4.0, *)
+    static func mainTheme(_: Void = ()) -> UIKit.UIColor? {
+      return UIKit.UIColor(named: R.color.mainTheme.name)
+    }
+    #endif
+
+    fileprivate init() {}
+  }
+
   /// This `R.file` struct is generated, and contains static references to 21 files.
   struct file {
     /// Resource file `AMapLocation.json`.

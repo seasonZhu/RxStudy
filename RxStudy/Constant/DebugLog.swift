@@ -16,3 +16,10 @@ public func debugLog(_ items: Any..., label: String? = nil, separator: String = 
     Pretty.prettyPrintDebug(label: label, items, separator: separator)
     #endif
 }
+
+/// 这种写法达不到理想效果
+public func swiftPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+        print(items, separator: separator, terminator: terminator)
+    #endif
+}
