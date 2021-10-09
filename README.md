@@ -20,9 +20,9 @@
 
 ### 项目截图
  
-| ![](ScreenShots/1.png) | ![](ScreenShots/2.png) | ![](ScreenShots/3.png) | ![](ScreenShots/4.png) |
+| ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/1.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/2.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/3.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/4.PNG) |
 | --- | --- | --- | --- |
-| ![](ScreenShots/5.png) | ![](ScreenShots/6.png) | ![](ScreenShots/7.png) | ![](ScreenShots/8.png) |  
+| ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/5.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/6.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/7.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/8.PNG) |  
 
 ### 功能说明
 
@@ -40,14 +40,7 @@
 * 常用扩展封装
 * 详细的注释与思考过程
 
-<<<<<<< HEAD
-代码提交测试。
-
-## 更新2021年7月28日
-MBProgressHUD全部替换为SVProgressHUD。
-=======
 ### 引入的第三库
->>>>>>> play_android
 
 ```
 # Rx Core
