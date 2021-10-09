@@ -20,9 +20,9 @@
 
 ### 项目截图
  
-| ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/1.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/2.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/3.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/4.PNG) |
+| ![](ScreenShots/1.PNG) | ![](ScreenShots/2.PNG) | ![](ScreenShots/3.PNG) | ![](ScreenShots/4.PNG) |
 | --- | --- | --- | --- |
-| ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/5.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/6.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/7.PNG) | ![](https://github.com/seasonZhu/RxStudy/blob/master/ScreenShots/8.PNG) |  
+| ![](ScreenShots/5.PNG) | ![](ScreenShots/6.PNG) | ![](ScreenShots/7.PNG) | ![](ScreenShots/8.PNG) |  
 
 ### 功能说明
 
