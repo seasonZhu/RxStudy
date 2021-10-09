@@ -49,7 +49,7 @@ class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting
 
 }
 
-//MARK:- 网络请求,普通列表数据
+//MARK: 网络请求,普通列表数据
 private extension SingleTabListViewModel {
     
     func refresh() {
@@ -126,8 +126,4 @@ extension SingleTabListViewModel {
         pageNum = type.pageNum
         refreshSubject.onNext(.resetNomoreData)
     }
-}
-
-extension Optional: Error {
-    static var wrappedError: String?  { return nil }
 }

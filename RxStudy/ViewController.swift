@@ -21,7 +21,7 @@ class ViewController: UITabBarController {
     
     private lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
     
-    //MARK:- viewDidLoad
+    //MARK: viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -66,7 +66,7 @@ class ViewController: UITabBarController {
         }
     }
     
-    //MARK:- 添加子控制器
+    //MARK: 添加子控制器
     private func addSubviewController(subViewController: UIViewController, title: String, imageName: String, selectImageName: String) {
         subViewController.tabBarItem.title = title
         subViewController.tabBarItem.image = UIImage(named: imageName)
@@ -76,7 +76,7 @@ class ViewController: UITabBarController {
         titles.append(title)
     }
 
-    //MARK:- 添加所有子控制器
+    //MARK: 添加所有子控制器
     private func addChildControllers() {
 
         let homeVC = HomeController()
@@ -123,6 +123,10 @@ extension ViewController {
 /// 我尝试进行手势切换,但是目前还没有想到特别好的方式方法
 extension ViewController {
     private func addPan() {
+        if #available(iOS 15.0, *) {
+            /// 目前测试来看,iOS15的手势滑动有些异常,在iOS15的时候先禁用了
+            return
+        }
         let pan = UIPanGestureRecognizer()
         view.addGestureRecognizer(pan)
         pan.rx.event.subscribe { [weak self] _ in

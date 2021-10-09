@@ -2,6 +2,92 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 
+import SwiftUI
+
+let callback: (() -> Void) = {
+    
+}
+
+func aFunction(arg: Any) {
+    
+}
+
+aFunction(arg: callback)
+
+var tuple: (Int, String) = (10, "season")
+print(tuple)
+print(tuple.0)
+print(tuple.1)
+
+tuple.0 = 20
+tuple.1 = "soso"
+
+print(tuple)
+print(tuple.0)
+print(tuple.1)
+
+tuple = (30, "sola")
+print(tuple)
+print(tuple.0)
+print(tuple.1)
+
+var tuple1: (age: Int, name: String) = (10, "season")
+print(tuple1.age)
+print(tuple1.name)
+
+typealias PersonInfo = (age: Int, name: String)
+var tuple2: PersonInfo = (10, "season")
+print(tuple2.age)
+print(tuple2.name)
+
+protocol Animal {
+    
+}
+
+struct Person: Animal {
+    let age: Int
+    let name: String
+}
+
+extension Array where Element == Person {
+    func printName() {
+        map {
+            print($0.name)
+        }
+    }
+}
+
+let p1 = Person(age: 10, name: "season")
+let p2 = Person(age: 20, name: "soso")
+let p3 = Person(age: 30, name: "sola")
+
+[p1, p2, p3].printName()
+
+[p1, p2, p3].map { $0.name }
+
+let array2 = [p1, p2, p3]
+
+for person in array2 where person.age == 20 {
+    /// 做逻辑业务
+}
+
+let p = Person(age: 10, name: "season")
+print(p.age)
+print(p.name)
+
+func example(num: NSNumber, nickName: String) -> Person {
+    let person = Person(age: num.intValue, name: nickName)
+    return person
+}
+
+func example1(num: NSNumber, nickName: String) -> PersonInfo {
+    return (num.intValue, nickName)
+}
+
+func example2(num: NSNumber, nickName: String) -> PersonInfo {
+    return (num.intValue, nickName)
+}
+
 let disposeBag = DisposeBag()
 
 let numbers: Observable<Int> = Observable.create { observer -> Disposable in
@@ -98,7 +184,7 @@ let newArray = array.map { "\($0)" }
 
 let newObservable = observable.map { "\($0)" }
 
-//MARK:- 测试代码
+//MARK: 测试代码
 private func requestTest() {
     homeProvider.rx.request(HomeService.banner)
         .map(BaseModel<[Banner]>.self)
@@ -205,10 +291,11 @@ func test() {
 func request() -> Single<Data> {
     return Single<Data>.create { single in
         print(Thread.current)
-        if let data = try? Data(contentsOf: URL(string: "https://www.wanandroid.com/banner/json")!) {
+        do {
+            let data = try Data(contentsOf: URL(string: "https://www.wanandroid.com/banner/json")!)
             single(.success(data))
-        }else {
-            single(.error(Optional<Any>.wrappedError))
+        }catch {
+            single(.error(error))
         }
         return Disposables.create()
     }.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated)).observeOn(MainScheduler.instance)

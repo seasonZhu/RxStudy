@@ -49,6 +49,10 @@ class BaseTableViewController: BaseViewController {
         /// 简单布局
         gcdMainAsyncLayout()
         
+        if #available(iOS 15.0, *) {
+            tableView.sectionHeaderTopPadding = 0
+        }
+        
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
         /// 设置尾部刷新控件,更新为无感知加载更多
@@ -118,10 +122,10 @@ class BaseTableViewController: BaseViewController {
     }
 }
 
-//MARK:- UITableViewDelegate
+//MARK: UITableViewDelegate
 extension BaseTableViewController: UITableViewDelegate {}
 
-//MARK:- DZNEmptyDataSetSource
+//MARK: DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetSource {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -141,7 +145,7 @@ extension BaseTableViewController: DZNEmptyDataSetSource {
     }
 }
 
-//MARK:- DZNEmptyDataSetSource
+//MARK: DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetDelegate {
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {

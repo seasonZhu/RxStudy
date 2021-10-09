@@ -1,36 +1,122 @@
-# RxStudy
-RxSwift/RxCocoa框架的学习
+# 使用RxSwift编写iOS的wanandroid客户端
 
-## 更新2021年5月25日
+## 前言
 
-这个项目建立的时间我查看了一下git的提交记录，2019年1月29日。
+尝试学习RxSwift已经是很久之前的事情了，今年通过掘金的活动才基本落地。
 
-过了2年了才重新开始RxSwift的学习，我不得不说对我而言Rx还是很难，可能是我没有理解。
+之前版本的README写的乱七八糟的，一直想找个机会重新整理一下。
 
-跑去学了Flutter和简单的Vue入门，说实话Vue的学习成本是最低的，因为它的MVVM框架基本上已经好了，你不需要做太多的操作，开箱即用。
+拖拖拉拉的一直推迟到现在，真是不好意思。
 
-Flutter的学习曲线稍微难一点，但是学会了Provider之后，基本也算是在MVVM上路。
+## 关于这个项目
 
-反观Rx的学习曲线真的是陡峭啊，虽然我理解Oberveral其实就是异步的stream，但是使用起来的时候还是一脸懵逼，因为它不过智能简单，需要理解大量非原生的API。
+这是我第一个Swift的MVVM项目，依旧通过[WanAndroid开放API](https://www.wanandroid.com/)制作。
 
-如果你要说为啥不直接上Combine，我只是想说Rx学了，Combine还会难么？
+我已经写了Flutter和uni-app版本，所以Swift版本更看重是对逻辑与RxSwift的理解。
 
-SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，一个好的响应式和状态管理都还不够好，虽然Rx有些框架已经在向大前端的实现了，可惜的时候原生的支持不够好的，学习成本也太高了。
+曾经的我更看重在单个UI页面上的编写与实现，现在经常想的是这个有没有现成的轮子可以，更偏向于思路与思考。我不是说UI不需要思考，如果有好用的轮子何乐而不为呢？
 
-这个可能是我第一个Swift的MVVM项目，依旧撸的玩安卓的api。
+**欢迎大家star、pr和一起讨论！！！**
 
-我已经写了Flutter和uni-app版本，所以Swift版本更看重的逻辑与RxSwift的理解。
+### 项目截图
+ 
+| ![](ScreenShots/1.png) | ![](ScreenShots/2.png) | ![](ScreenShots/3.png) | ![](ScreenShots/4.png) |
+| --- | --- | --- | --- |
+| ![](ScreenShots/5.png) | ![](ScreenShots/6.png) | ![](ScreenShots/7.png) | ![](ScreenShots/8.png) |  
 
-曾经的我更看重在单个UI上的编写与实现，现在经常想的是这个有没有现成的轮子可以，更偏向于思路与思考。我不是说UI不需要思考，如果有好用的轮子何乐而不为呢？
+### 功能说明
 
-能用OC桥接过来的库，必然有它的独特性与通用性，MJRefresh与MB、SV真香。
+* 首页、项目、公众号、体系、我的，五大模块；
+* 登录注册功能；
+* 搜索功能：热门搜索、搜索历史；
+* 文章列表，普通的TableView布局
+* Tab切换功能
+* 自动轮播图
+* MJRefresh的下拉刷新，无感知上拉加载更多
+* RxMoya的使用，Moya插件的使用
+* RxSwift、RxCocoa的响应式编程，ViewModel的绑定
+* 适配iOS 15
+* 适配黑暗模式
+* 常用扩展封装
+* 详细的注释与思考过程
 
+<<<<<<< HEAD
 代码提交测试。
 
 ## 更新2021年7月28日
 MBProgressHUD全部替换为SVProgressHUD。
+=======
+### 引入的第三库
+>>>>>>> play_android
 
-黑暗模式适配完成。
+```
+# Rx Core
+pod 'RxSwift'
+pod 'RxCocoa'
+
+# Networking
+pod 'Moya/RxSwift'
+
+# Rx Extensions
+pod 'RxDataSources'
+pod 'RxSwiftExt' #暂时没有使用,更多的是对序列的运算符优化
+pod 'RxViewController' # 暂时没有使用
+pod 'RxGesture' # 暂时没有使用
+pod 'RxOptional' # 暂时没有使用
+pod 'RxTheme' # 暂时没有使用,可以做主题优化,但是现在基本上适配黑暗模式即可
+pod 'RxBlocking' # 暂时没有使用
+pod 'NSObject+Rx'
+
+
+# Image
+pod 'Kingfisher'
+# Date
+pod 'SwiftDate' # 暂时没有使用
+
+# Tools
+pod 'R.swift'
+
+# Keychain
+pod 'KeychainAccess' # 暂时没有使用
+
+# UI'
+pod 'DZNEmptyDataSet'
+pod 'AcknowList'
+pod 'MBProgressHUD' # 被SVProgressHUD替代了
+pod 'MJRefresh'
+pod 'FSPagerView'
+pod 'JXSegmentedView'
+pod 'MarqueeLabel'
+pod 'SVProgressHUD'
+  
+# Keyboard
+pod 'IQKeyboardManagerSwift'
+
+# Auto Layout
+pod 'SnapKit'
+
+# 打印日志
+pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
+    
+# SFSymbols的安全引用
+pod 'SFSafeSymbols', '~> 2.1.3' #暂时没有使用
+```
+
+## 使用RxSwift、Flutter、Vue的一点感受
+
+之前跑去学了Flutter和简单的Vue入门。
+
+说实话Vue的学习成本是最低的，因为它的MVVM框架开箱即用，你不需要做太多的操作，也非常容易理解。
+
+Flutter的学习曲线稍微难一点，但是学会了Provider之后，基本上MVVM的思想也上路了。
+
+反观RxSwift的学习曲线真的是陡峭啊，虽然我理解Oberveral其实就是异步的stream，但是使用起来的时候还是一脸懵逼，偶尔想要使用绑定，还需要自己做Rx的扩展，需要理解大量非原生的API，成本非常的高。
+
+你说为啥不直接上Combine，我只是想说，RxSwift学了，理解Combine还会难么？
+
+SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成熟好用的响应式和状态管理都还没有出世。
+
+而RxSwift系列的一些框架已经在向大前端的实现了，可惜对原生的支持不够好的，学习成本也太高了。
 
 ## Flutter版wanandroid客户端
 
@@ -40,23 +126,7 @@ MBProgressHUD全部替换为SVProgressHUD。
 
 [项目地址](https://github.com/seasonZhu/UniAppPlayAndroid)
 
-## Xcode新版的代码块
-[代码块](https://www.jianshu.com/p/967efd9fb8d2)
+## 我的掘金主页
 
-## 最近的出现的bug
+[我的主页](https://juejin.cn/user/4353721778057997)
 
-```
-[TableView] Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy (the table view or one of its superviews has not been added to a window). This may cause bugs by forcing views inside the table view to load and perform layout without accurate information (e.g. table view bounds, trait collection, layout margins, safe area insets, etc), and will also cause unnecessary performance overhead due to extra layout passes. Make a symbolic breakpoint at UITableViewAlertForLayoutOutsideViewHierarchy to catch this in the debugger and see what caused this to occur, so you can avoid this action altogether if possible, or defer it until the table view has been added to a window. Table view: <UITableView: 0x14c864c00; frame = (-207 -368; 414 736); clipsToBounds = YES; gestureRecognizers = <NSArray: 0x28028cea0>; layer = <CALayer: 0x280cdf420>; contentOffset: {0, 0}; contentSize: {414, 0}; adjustedContentInset: {0, 0, 44, 0}; dataSource: <RxCocoa.RxTableViewDataSourceProxy: 0x2828e4060>>
-```
-我在Stack Overflow看了一下,大概意思就是我没有在主线程进行页面布局
-
-[Stack Overflow](https://stackoverflow.com/questions/64568183/warning-once-only-uitableview-was-told-to-layout-its-visible-cells-and-other-co)
-
-然后我把BaseTableViewController => viewDidLoad => setupTableView => 简单布局 
-
-```
-DispatchQueue.main.async {
-    
-}
-```
-我这个包裹就可以,我实在没明白为什么
