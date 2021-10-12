@@ -19,6 +19,16 @@
 **欢迎大家star、pr和一起讨论！！！**
 
 ### 项目截图
+
+#### 先来一张动图
+
+<div align="center">
+
+![](ScreenShots/preview.gif)
+
+</div>
+
+#### 界面截图
  
 | ![](ScreenShots/1.PNG) | ![](ScreenShots/2.PNG) | ![](ScreenShots/3.PNG) | ![](ScreenShots/4.PNG) |
 | --- | --- | --- | --- |
@@ -26,9 +36,9 @@
 
 ### 功能说明
 
-* 首页、项目、公众号、体系、我的，五大模块；
-* 登录注册功能；
-* 搜索功能：热门搜索、搜索历史；
+* 首页、项目、公众号、体系、我的，五大模块
+* 登录注册功能
+* 搜索功能：热门搜索、输入搜索
 * 文章列表，普通的TableView布局
 * Tab切换功能
 * 自动轮播图
@@ -59,7 +69,6 @@ pod 'RxOptional' # 暂时没有使用
 pod 'RxTheme' # 暂时没有使用,可以做主题优化,但是现在基本上适配黑暗模式即可
 pod 'RxBlocking' # 暂时没有使用
 pod 'NSObject+Rx'
-
 
 # Image
 pod 'Kingfisher'
