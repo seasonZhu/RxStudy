@@ -12,8 +12,6 @@ func aFunction(arg: Any) {
     
 }
 
-aFunction(arg: callback)
-
 var tuple: (Int, String) = (10, "season")
 print(tuple)
 print(tuple.0)
@@ -184,35 +182,6 @@ let newArray = array.map { "\($0)" }
 
 let newObservable = observable.map { "\($0)" }
 
-//MARK: 测试代码
-private func requestTest() {
-    homeProvider.rx.request(HomeService.banner)
-        .map(BaseModel<[Banner]>.self)
-        .map { $0.data }
-        .subscribe { model in
-        print(model)
-    } onError: { error in
-
-    }.disposed(by: disposeBag)
-
-    let model1 = try? homeProvider.rx.request(HomeService.banner).map(BaseModel<[Banner]>.self).toBlocking().first()
-    let model2 = try? homeProvider.rx.request(HomeService.topArticle).map(BaseModel<[Info]>.self).toBlocking().first()
-    let model3 = try? homeProvider.rx.request(HomeService.normalArticle(0)).map(BaseModel<Page<Info>>.self).toBlocking().first()
-    print("toBlocking")
-    print(model1)
-    print("----------------")
-    print(model2)
-    print("----------------")
-    print(model3)
-    print("----------------")
-
-    myProvider.rx.request(MyService.coinRank(1)).map(BaseModel<Page<CoinRank>>.self).subscribe(onSuccess: { model in
-        print(model)
-    }, onError: { error in
-        print(error)
-    }).disposed(by: disposeBag)
-}
-
 private func createObservable() {
 
         let subject = PublishSubject<Void>()
@@ -311,4 +280,66 @@ func responseData() {
     } onError: { _ in
         
     }.disposed(by: disposeBag)
+}
+
+array.map { e in
+    print(e)
+}
+
+array.compactMap { e in
+    print(e)
+}
+
+let towDArray = [
+    [1, 2, 3],
+    [4, 5, [6, 7]]
+    ]
+
+let oneDArray = towDArray.flatMap { $0 }
+    
+let finalArray = oneDArray.flatMap { $0 }
+
+print(finalArray)
+
+//let dict = ["one": 1, "two": 2, "three": 3, "another": ["four": 4]] as [String : Any]
+//
+//dict.map { (k, v) in
+//
+//}
+//
+//dict.compactMap { (k, v) in
+//
+//}
+//
+//dict.flatMap { <#(key: String, value: Any)#> in
+//    <#code#>
+//}
+
+[1, 2, 3].map({ (i: Int) -> Int in return i * 2 })
+[1, 2, 3].map({ i in return i * 2 } )
+[1, 2, 3].map({ i in i * 2 })
+[1, 2, 3].map({ $0 * 2 })
+[1, 2, 3].map() { $0 * 2 }
+[1, 2, 3].map{ $0 * 2 }
+
+let s = ["1", "2", "3", "a"].flatMap { Int($0) }
+print(s)
+
+
+let someArray = [[1, 2, 3], [4, 5, 6]].flatMap { $0 }
+print(someArray)
+
+let anotherArray = [[1, 2, 3], [4, 5, [6, 7]]].flatMap { $0 }
+
+print(anotherArray)
+
+extension Array {
+    func map<T>(_ transform: (Element) -> T) -> [T] {
+        var newArray:[T] = []
+        for element in self {
+            let newElement = transform(element)
+            newArray.append(newElement)
+        }
+        return newArray
+    }
 }
