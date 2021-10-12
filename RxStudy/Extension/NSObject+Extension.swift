@@ -25,4 +25,13 @@ extension NSObject {
     public var runtimeType: NSObject.Type {
         return type(of: self)
     }
+    
+    /// 这是一个例子函数
+    /// - Parameter arg:
+    /// - Parameter argument: 传入Int类型的参数
+    /// - Parameter num: <#num description#>
+    /// - Returns: 返回Int类型的参数
+    public func afunction(argument: Int, num: Int) -> Int {
+        return argument
+    }
 }

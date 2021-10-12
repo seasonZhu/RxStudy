@@ -41,7 +41,7 @@ class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
 }
 
-//MARK: 网络请求,普通列表数据
+//MARK: - 网络请求,普通列表数据
 private extension SearchResultViewModel {
     
     func refresh() {

@@ -21,7 +21,7 @@ class ViewController: UITabBarController {
     
     private lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
     
-    //MARK: viewDidLoad
+    //MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -66,7 +66,7 @@ class ViewController: UITabBarController {
         }
     }
     
-    //MARK: 添加子控制器
+    //MARK: - 添加子控制器
     private func addSubviewController(subViewController: UIViewController, title: String, imageName: String, selectImageName: String) {
         subViewController.tabBarItem.title = title
         subViewController.tabBarItem.image = UIImage(named: imageName)
@@ -76,7 +76,7 @@ class ViewController: UITabBarController {
         titles.append(title)
     }
 
-    //MARK: 添加所有子控制器
+    //MARK: - 添加所有子控制器
     private func addChildControllers() {
 
         let homeVC = HomeController()

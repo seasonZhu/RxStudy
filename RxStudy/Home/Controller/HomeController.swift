@@ -95,7 +95,7 @@ extension HomeController {
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
-        //MARK: 轮播图的设置,这一段基本上就典型的Cocoa代码了
+        //MARK: - 轮播图的设置,这一段基本上就典型的Cocoa代码了
         
         let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
         pagerView.dataSource = self
@@ -126,7 +126,7 @@ extension HomeController {
     }
 }
 
-//MARK: FSPagerViewDataSource
+//MARK: - FSPagerViewDataSource
 extension HomeController: FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return itmes.count
@@ -141,7 +141,7 @@ extension HomeController: FSPagerViewDataSource {
     }
 }
 
-//MARK: FSPagerViewDelegate
+//MARK: - FSPagerViewDelegate
 extension HomeController: FSPagerViewDelegate {
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: false)

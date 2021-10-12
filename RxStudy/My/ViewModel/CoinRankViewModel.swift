@@ -41,7 +41,7 @@ class CoinRankViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
 }
 
-//MARK: 网络请求
+//MARK: - 网络请求
 private extension CoinRankViewModel {
     
     func refresh() {

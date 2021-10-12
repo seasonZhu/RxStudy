@@ -22,7 +22,7 @@ class HotKeyViewModel: BaseViewModel {
     }
 }
 
-//MARK: 网络请求
+//MARK: - 网络请求
 private extension HotKeyViewModel {
     func requestData() {
         homeProvider.rx.request(HomeService.hotKey)

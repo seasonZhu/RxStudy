@@ -32,7 +32,7 @@ class TabsViewModel: BaseViewModel {
     }
 }
 
-//MARK: 网络请求
+//MARK: - 网络请求
 private extension TabsViewModel {
     func requestData() {
         let result: Single<Response>

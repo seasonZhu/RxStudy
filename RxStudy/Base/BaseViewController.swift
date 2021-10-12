@@ -92,7 +92,7 @@ class BaseViewController: UIViewController {
 
 }
 
-//MARK:- 网络请求错误页面的配置
+//MARK: - 网络请求错误页面的配置
 extension BaseViewController {
     private func setupErrorImage() {
         view.addSubview(errorImage)
@@ -137,7 +137,7 @@ extension BaseViewController {
     }
 }
 
-//MARK:- 绑定
+//MARK: - 绑定
 extension Reactive where Base: BaseViewController {
     
     /// 显示网络错误
