@@ -10,47 +10,26 @@ import Foundation
 
 import Moya
 
+/// 插件
+let requestLoadingPlugin = RequestLoadingPlugin()
+
 /// 集中管理provider
+/// StubBehavior的默认值就是never,所以不用特地去写
 
-let homeProvider: MoyaProvider<HomeService> = {
-        let stubClosure = { (target: HomeService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<HomeService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
+/// 首页
+let homeProvider = MoyaProvider<HomeService>(plugins: [requestLoadingPlugin])
 
+/// 我的
+let myProvider = MoyaProvider<MyService>(plugins: [requestLoadingPlugin])
 
-let myProvider: MoyaProvider<MyService> = {
-        let stubClosure = { (target: MyService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<MyService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
+/// 项目
+let projectProvider = MoyaProvider<ProjectService>(plugins: [requestLoadingPlugin])
 
-let projectProvider: MoyaProvider<ProjectService> = {
-        let stubClosure = { (target: ProjectService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<ProjectService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
+/// 公众号
+let publicNumberProvider = MoyaProvider<PublicNumberService>(plugins: [requestLoadingPlugin])
 
-let publicNumberProvider: MoyaProvider<PublicNumberService> = {
-        let stubClosure = { (target: PublicNumberService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<PublicNumberService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
+/// 体系
+let treeProvider = MoyaProvider<TreeService>(plugins: [requestLoadingPlugin])
 
-let treeProvider: MoyaProvider<TreeService> = {
-        let stubClosure = { (target: TreeService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<TreeService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
-
-let accountProvider: MoyaProvider<AccountService> = {
-        let stubClosure = { (target: AccountService) -> StubBehavior in
-            return .never
-        }
-        return MoyaProvider<AccountService>(stubClosure: stubClosure, plugins: [RequestLoadingPlugin()])
-}()
+/// 账号
+let accountProvider = MoyaProvider<AccountService>(plugins: [requestLoadingPlugin])
