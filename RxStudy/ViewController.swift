@@ -30,6 +30,11 @@ class ViewController: UITabBarController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        /// 这段代码必须写在这里,写在viewDidLoad中,items还没有,无法正确赋值
+        for (index, _) in children.enumerated() {
+            tabBar.items?[index].tag = index
+        }
     }
     
     private func setupUI() {
@@ -60,10 +65,6 @@ class ViewController: UITabBarController {
         
         /// 我其实没有明白UIViewController中children与UITabBarViewController的viewControllers的区别
         title = viewControllers?.first?.title
-        
-        for (index, _) in children.enumerated() {
-            tabBar.items?[index].tag = index
-        }
     }
     
     //MARK: - 添加子控制器
@@ -117,6 +118,8 @@ extension ViewController {
     override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         transform.selectedIndex = item.tag
         transform.preIndex = selectedIndex
+        debugLog("selectedIndex:\(item.tag)")
+        debugLog("preIndex:\(selectedIndex)")
     }
 }
 
