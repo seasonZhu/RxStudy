@@ -166,6 +166,11 @@ extension TabsController: JXSegmentedViewDelegate {
 
 extension TabsController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if #available(iOS 15.0, *) {
+            /// 目前测试来看,iOS15的手势滑动有些异常,在iOS15的时候先禁用了
+            return
+        }
+        
         var driver: Driver<ViewController.Direction>?
         
         /// 最左边
