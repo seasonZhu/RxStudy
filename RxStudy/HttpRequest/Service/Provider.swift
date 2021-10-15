@@ -28,7 +28,7 @@ let activityPlugin = NetworkActivityPlugin { (state, targetType) in
 }
 
 /// 插件集合
-let plugins: [PluginType] = [activityPlugin, loggerPlugin]
+let plugins: [PluginType] = [activityPlugin]
 
 /// 集中管理provider
 /// StubBehavior的默认值就是never,所以不用特地去写

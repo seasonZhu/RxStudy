@@ -9,6 +9,7 @@
 import UIKit
 
 import IQKeyboardManagerSwift
+import AlamofireNetworkActivityLogger
 import SVProgressHUD
 
 @UIApplicationMain
@@ -20,6 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         IQKeyboardManager.shared.enable = true
         SVProgressHUD.setting()
+        #if DEBUG
+        NetworkActivityLogger.shared.level = .debug
+        NetworkActivityLogger.shared.startLogging()
+        #endif
+        
         window?.backgroundColor = .playAndroidBg
         AccountManager.shared.autoLogin()
         return true
