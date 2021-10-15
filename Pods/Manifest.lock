@@ -1,6 +1,8 @@
 PODS:
   - AcknowList (2.0.1)
   - Alamofire (5.4.3)
+  - AlamofireNetworkActivityLogger (3.4.0):
+    - Alamofire (~> 5.4.0)
   - ColorizeSwift (1.2.0)
   - Differentiator (4.0.1)
   - DZNEmptyDataSet (1.8.1)
@@ -63,6 +65,7 @@ PODS:
 
 DEPENDENCIES:
   - AcknowList
+  - AlamofireNetworkActivityLogger
   - DZNEmptyDataSet
   - FSPagerView
   - IQKeyboardManagerSwift
@@ -94,6 +97,7 @@ SPEC REPOS:
   trunk:
     - AcknowList
     - Alamofire
+    - AlamofireNetworkActivityLogger
     - ColorizeSwift
     - Differentiator
     - DZNEmptyDataSet
@@ -128,6 +132,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
   ColorizeSwift: 4eef354dce7335d7747a0ccacf78afe2b589a1be
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -159,6 +164,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: 110584af5e72edc332bdaf5fc5b1c0c0249f9b4d
+PODFILE CHECKSUM: 6a2af9cdfc1c523c65c9e4591e4885d335b09c46
 
-COCOAPODS: 1.10.2
+COCOAPODS: 1.11.2

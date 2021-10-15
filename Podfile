@@ -11,6 +11,9 @@ target 'RxStudy' do
 
   # Networking
   pod 'Moya/RxSwift'
+ 
+  # AlamofireNetworkActivityLogger集成
+  pod 'AlamofireNetworkActivityLogger'
 
   # Rx Extensions
   pod 'RxDataSources'
