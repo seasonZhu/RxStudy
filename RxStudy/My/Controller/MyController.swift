@@ -28,6 +28,8 @@ class MyController: BaseTableViewController {
         tableView.emptyDataSetSource = nil
         tableView.emptyDataSetDelegate = nil
         
+        tableView.rowHeight = 44
+        
         let myView = MyView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
         tableView.tableHeaderView = myView
         
