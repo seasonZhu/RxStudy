@@ -29,6 +29,7 @@ extension UIColor {
                 }
             }
         } else {
+            /// 是我自己小看了这里,因为是一个便利构造函数,所以这里必须使用一级构造函数
             self.init(cgColor: lightThemeColor.cgColor)
         }
     }

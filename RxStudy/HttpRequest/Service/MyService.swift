@@ -62,3 +62,10 @@ extension MyService: TargetType {
         return loginHeader
     }
 }
+
+/// 在wanandroid客户端中,针对登录后状态,在请求头中塞进cookie
+extension TargetType {
+    var loginHeader: [String : String]? {
+        return AccountManager.shared.isLogin.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil
+    }
+}

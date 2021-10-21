@@ -19,15 +19,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        /// 键盘配置
         IQKeyboardManager.shared.enable = true
+        
+        /// SVProgressHUD配置
         SVProgressHUD.setting()
+        
+        /// 网络请求日志打印配置
         #if DEBUG
         NetworkActivityLogger.shared.level = .debug
         NetworkActivityLogger.shared.startLogging()
         #endif
         
+        /// 背景色配置
         window?.backgroundColor = .playAndroidBg
+        
+        /// 自动登录
         AccountManager.shared.autoLogin()
+        
         return true
     }
 

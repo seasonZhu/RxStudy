@@ -30,7 +30,9 @@ extension SVProgressHUD {
     static func setting() {
         /// 不显示图片,仅显示文字
         SVProgressHUD.setImageViewSize(.zero)
+        /// 转圈的风格
         UITraitCollection.isDark ? SVProgressHUD.setDefaultStyle(.dark) : SVProgressHUD.setDefaultStyle(.light)
+        /// 蒙层的类型
         SVProgressHUD.setDefaultMaskType(.clear)
         SVProgressHUD.setMinimumDismissTimeInterval(3)
     }

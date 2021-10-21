@@ -13,7 +13,7 @@ import NSObject_Rx
 import Moya
 
 class BaseViewModel {
-    /// inputs修饰前缀
+    /// inputs修饰前缀,这里没有使用rx这种命名空间的思路,并不是我不会,而是不想增加编写和理解成本
     var inputs: Self { return self }
 
     /// outputs修饰前缀

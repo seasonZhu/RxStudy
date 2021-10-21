@@ -67,13 +67,6 @@ class RequestLoadingPlugin: PluginType {
     }
 }
 
-/// 在wanandroid客户端中,针对登录后状态,在请求头中塞进cookie
-extension Moya.TargetType {
-    var loginHeader: [String : String]? {
-        return AccountManager.shared.isLogin.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil
-    }
-}
-
 /// 对Moya的Response做只读属性的扩展,打印漂亮的json
 extension Moya.Response {
     /// json打印
