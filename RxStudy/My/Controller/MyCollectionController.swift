@@ -30,7 +30,6 @@ class MyCollectionController: BaseTableViewController {
     private func setupUI() {
         
         title = "我的收藏"
-        //navigationItem.rightBarButtonItem = edit
         
         /// 是否在编辑与tableView的编辑状态绑定
         isEdited.bind(to: tableView.rx.isShowEdit).disposed(by: rx.disposeBag)
@@ -137,6 +136,12 @@ extension MyCollectionController {
     private func subscribeRightBarButtonItemAction() {
         let value = !isEdited.value
         isEdited.accept(value)
+    }
+}
+
+extension MyCollectionController {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
 }
 

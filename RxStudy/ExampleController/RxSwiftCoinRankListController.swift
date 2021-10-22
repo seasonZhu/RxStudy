@@ -51,6 +51,13 @@ class RxSwiftCoinRankListController: BaseViewController {
                 vm.loadMoreAction()
         }.disposed(by: rx.disposeBag)
         
+        /// cell删除
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { indexPath in
+                print("删除操作:\(indexPath.section)\(indexPath.row)")
+            })
+            .disposed(by: rx.disposeBag)
+        
         /// 简单布局
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
@@ -82,7 +89,11 @@ class RxSwiftCoinRankListController: BaseViewController {
 
 }
 
-extension RxSwiftCoinRankListController: UITableViewDelegate {}
+extension RxSwiftCoinRankListController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
+    }
+}
 
 
 class RxSwiftCoinRankListViewModel {
