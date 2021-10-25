@@ -23,7 +23,7 @@ class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     
     /// outputs
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
-    let dataSource: BehaviorRelay<[Info]> = BehaviorRelay(value: [])
+    let dataSource = BehaviorRelay<[Info]>(value: [])
     
     /// 既是可监听序列也是观察者的状态枚举
     let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
@@ -34,6 +34,10 @@ class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
         case .refresh:
             refresh()
         case .loadMore:
+            /// 目前解决的方法是在这里做拦截保存不进行操作,还没有找到好的方法
+            if let value = try? refreshSubject.value(), value == .showNomoreData {
+                return
+            }
             loadMore()
         }
     }

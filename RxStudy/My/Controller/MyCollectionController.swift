@@ -18,8 +18,10 @@ class MyCollectionController: BaseTableViewController {
     
     private var isEdited = BehaviorRelay(value: false)
     
+    /// 没有使用
     private lazy var edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(rightBarButtonItemAction))
     
+    /// 没有使用
     private lazy var done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(rightBarButtonItemAction))
 
     override func viewDidLoad() {
@@ -58,6 +60,9 @@ class MyCollectionController: BaseTableViewController {
         let viewModel = MyCollectionViewModel()
 
         /// 下拉刷新
+        /// Bug:下拉刷新会出发上拉刷新操作
+        /// 问题在viewModel中对于
+        /// 下拉做赋值运算self.dataSource.accept(datas),但是其他界面都是好的,就这一个出异常,还真是奇怪
         tableView.mj_header?.rx.refresh
             .asDriver()
             .drive(onNext: {
@@ -118,7 +123,7 @@ class MyCollectionController: BaseTableViewController {
 
 extension MyCollectionController {
     
-    /// 传统的右侧的点击事件
+    /// 传统的右侧的点击事件,没有使用
     @objc
     private func rightBarButtonItemAction() {
         let value = !isEdited.value
