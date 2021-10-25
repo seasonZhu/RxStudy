@@ -104,7 +104,7 @@ class RxSwiftCoinRankListViewModel {
     private let disposeBag: DisposeBag
     
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
-    let dataSource: BehaviorRelay<[CoinRank]> = BehaviorRelay(value: [])
+    let dataSource = BehaviorRelay<[CoinRank]>(value: [])
     
     /// 既是可监听序列也是观察者的状态枚举
     /// 当观察者对 BehaviorSubject 进行订阅时，它会将源 Observable 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来

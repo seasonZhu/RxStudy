@@ -23,7 +23,7 @@ class MyCoinViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     
     /// outputs
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
-    let dataSource: BehaviorRelay<[MyHistoryCoin]> = BehaviorRelay(value: [])
+    let dataSource = BehaviorRelay<[MyHistoryCoin]>(value: [])
     
     /// 既是可监听序列也是观察者的状态枚举
     let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
