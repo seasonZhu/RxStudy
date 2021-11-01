@@ -62,6 +62,9 @@ extension AccountManager {
         isLogin.accept(false)
         accountInfo = nil
         myCoin.accept(nil)
+        /// 不仅要清除内存,也要清除本地UserDefault保存的数据
+        UserDefaults.standard.removeObject(forKey: kUsername)
+        UserDefaults.standard.removeObject(forKey: kPassword)
     }
 }
 

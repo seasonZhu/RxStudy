@@ -26,6 +26,7 @@ class LoginController: AccountBaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        inputTextFieldRxSubscribe()
     }
     
     private func setupUI() {
@@ -93,6 +94,19 @@ class LoginController: AccountBaseController {
                 }
                 self?.login(username: username, password: password)
             })
+            .disposed(by: rx.disposeBag)
+    }
+}
+
+extension LoginController {
+    func inputTextFieldRxSubscribe() {
+        /// RxSwift学习插曲--UITextField的两次输出,这里使用skip(2)的缘由
+        /// https://juejin.cn/post/6844903905386577928
+        usernameFiled.rx.text
+            .skip(2)
+            .subscribe(onNext: { (text) in
+            print("你输入的是： \(text)")
+        })
             .disposed(by: rx.disposeBag)
     }
 }
