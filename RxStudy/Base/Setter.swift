@@ -22,10 +22,10 @@ public struct Setter<This> {
         var that = this
         
         return { value in
-            // 把 value 指派给 subject
+            // 把 value 指派给 that
             that[keyPath: keyPath] = value
-            // 回传的类型是 Setter 而不是 Subject
-            // 因为使用Setter来链式，而不是 Subject 本身
+            // 回传的类型是 Setter 而不是 This
+            // 因为使用Setter来链式，而不是 This 本身
             return Setter(that)
         }
     }
@@ -80,3 +80,24 @@ let view: UIView =
     .alpha(0.5)
     .frame(CGRect(x: 0, y: 0, width: 100, height: 500))
     .this
+
+final class Box<T> {
+    /// 声明一个别名
+    typealias Listener = (T) -> Void
+    var listener: Listener?
+    
+    var value: T {
+        didSet {
+            listener?(value)
+        }
+    }
+    
+    init(_ value: T){
+        self.value = value
+    }
+    
+    func bind(listener: Listener?) {
+        self.listener = listener
+        listener?(value)
+    }
+}
