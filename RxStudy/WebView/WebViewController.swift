@@ -19,6 +19,10 @@ import MJRefresh
 /// 更新自定义句柄,这个是我自己写的JS,并定义其句柄
 private let JSCallback = "wanAndroid"
 
+
+/// 在简书的网页 "打开"=>class="wrap-item-btn" => function openApp => M.stats.trackEvent=>key: "trackEvent",value: function(e) {this.callApp("Core.Instance.TrackEvent", e)}=> callApp => i = window.webkit.messageHandlers.handleMessageFromJS.postMessage(n);
+private let JianShuJSCallback = "handleMessageFromJS"
+
 class WebViewController: BaseViewController {
 
     private let webLoadInfo: WebLoadInfo
@@ -43,8 +47,9 @@ class WebViewController: BaseViewController {
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
+        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JianShuJSCallback)
         
-        /// 获取js,并添加到webView中
+        /// 获取js,并添加到webView中,在这一步,其实我们只是将js注入了某个页面,实际上还并没有执行js
         if let js = getJS() {
             config.userContentController.addUserScript(js)
         }
@@ -208,6 +213,7 @@ class WebViewController: BaseViewController {
     
     deinit {
         webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: JianShuJSCallback)
     }
     
 }
@@ -280,6 +286,13 @@ extension WebViewController: WKScriptMessageHandler {
         debugLog("方法名:\(message.name)")
         debugLog("参数:\(message.body)")
         
+        /* 但是这里捕获不到,说明没有监听到,抑或说js侧没有触发对应的方法
+        if message.name == JianShuJSCallback {
+            openApp()
+            return
+        }
+        */
+         
         guard let msg = message.body as? String else { return }
         
         if msg == "goToApp" {
@@ -303,7 +316,8 @@ extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         delayEndRefreshing()
-        /// 加载完网页后,进行运行js,将在App端通过JS编写的点击事件与掘金网页的"APP内打开绑定"
+        /// 加载完网页后,执行js方法,会根据打开的网页,决定不同的注入依赖
+        /// 将在App端通过JS编写的点击事件与掘金网页的"APP内打开绑定"
         webView.evaluateJavaScript("injectBegin('\(webView.url?.absoluteString)')") { any, error in
             debugLog(any)
             debugLog(error)
