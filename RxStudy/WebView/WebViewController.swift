@@ -104,6 +104,7 @@ class WebViewController: BaseViewController {
         /// 页面布局
         view.addSubview(webView)
         webView.navigationDelegate = self
+        webView.uiDelegate = self
         webView.snp.makeConstraints { make in
             make.edges.equalTo(view)
         }
@@ -330,6 +331,66 @@ extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         delayEndRefreshing()
+    }
+}
+
+//MARK: -  WKUIDelegate
+extension WebViewController: WKUIDelegate {
+    /// 拦截当前页面的_blank弹出窗口,然后通过弹出的窗口新建新的WebView,WKWebView 如何支持window.open方法
+    ///
+    /// - Parameters:
+    ///   - webView: WKWebView
+    ///   - configuration: WKWebViewConfiguration的配置
+    ///   - navigationAction: 导航行为 注意这个里面包含的WKNavigationType
+    ///   - windowFeatures: 窗口特性
+    /// - Returns: 新的WKWebView
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        /*
+        if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+        
+        if navigationAction.targetFrame == nil || navigationAction.targetFrame?.isMainFrame == false {
+            webView.load(navigationAction.request)
+        }
+        */
+         
+        return nil
+    }
+    
+    /// 处理js里的alert
+    ///
+    /// - Parameters:
+    ///   - webView: WKWebView
+    ///   - message: web端回传的文字
+    ///   - frame: web端的frame信息
+    ///   - completionHandler: 回调
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Void) {
+
+    }
+    
+    /// 处理js里的confirm
+    ///
+    /// - Parameters:
+    ///   - webView: WKWebView
+    ///   - message: web端回传的文字
+    ///   - frame: web端的frame信息
+    ///   - completionHandler: 回调
+    func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+        
+    }
+    
+    /// 处理js里的 textInput
+    ///
+    /// - Parameters:
+    ///   - webView: WKWebView
+    ///   - prompt: 说明文字
+    ///   - defaultText: 默认文字 placeholder
+    ///   - frame: web端的frame信息
+    ///   - completionHandler: 回调
+    func webView(_ webView: WKWebView, runJavaScriptTextInputPanelWithPrompt prompt: String, defaultText: String?, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (String?) -> Void) {
+        
     }
 }
 
