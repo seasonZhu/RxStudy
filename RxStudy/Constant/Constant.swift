@@ -43,3 +43,6 @@ let kPassword = "kPassword"
 
 /// 必须这么显式的编写,才能表示其意义
 let void: Void = ()
+
+/// 更新自定义句柄,这个是我自己写的JS,并定义其句柄
+let JSCallback = "wanAndroid"

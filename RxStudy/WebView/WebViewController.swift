@@ -16,10 +16,6 @@ import SVProgressHUD
 import MarqueeLabel
 import MJRefresh
 
-/// 更新自定义句柄,这个是我自己写的JS,并定义其句柄
-private let JSCallback = "wanAndroid"
-
-
 /// 在简书的网页 "打开"=>class="wrap-item-btn" => function openApp => M.stats.trackEvent=>key: "trackEvent",value: function(e) {this.callApp("Core.Instance.TrackEvent", e)}=> callApp => i = window.webkit.messageHandlers.handleMessageFromJS.postMessage(n);
 private let JianShuJSCallback = "handleMessageFromJS"
 
