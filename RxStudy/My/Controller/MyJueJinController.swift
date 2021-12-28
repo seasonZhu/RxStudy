@@ -74,7 +74,7 @@ extension MyJueJinController {
 extension MyJueJinController {
     /// 获取js方法,转成iOS的WKWebView可以识别的对象
     private func getJS() -> WKUserScript? {
-        guard let url = Bundle.main.url(forResource: "open", withExtension: "js") else {
+        guard let url = R.file.appStoreJs() else {
             return nil
         }
         
@@ -116,9 +116,15 @@ extension MyJueJinController: WKScriptMessageHandler {
 
 extension MyJueJinController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        webView.evaluateJavaScript("downloadInject()") { any, error in
-            debugLog(any)
-            debugLog(error)
+        if webView.url?.absoluteString.contains("zlink") == true {
+            webView.evaluateJavaScript("downloadInject()") { (result: Result<String, Error>) in
+                switch result {
+                case .success(let string):
+                    print(string)
+                case .failure(let error):
+                    print(error)
+                }
+            }
         }
     }
 }

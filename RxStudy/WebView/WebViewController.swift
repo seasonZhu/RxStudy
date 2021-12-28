@@ -406,7 +406,7 @@ extension WebViewController {
 extension WebViewController {
     /// 获取js方法,转成iOS的WKWebView可以识别的对象
     private func getJS() -> WKUserScript? {
-        guard let url = Bundle.main.url(forResource: "open", withExtension: "js") else {
+        guard let url = R.file.openJs() else {
             return nil
         }
         
