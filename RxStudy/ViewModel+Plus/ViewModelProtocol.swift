@@ -1,5 +1,5 @@
 //
-//  ViemModelProtocol.swift
+//  ViewModelProtocol.swift
 //  RxStudy
 //
 //  Created by season on 2021/5/25.

@@ -82,7 +82,7 @@
 		619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619BA35B26895DDF007C7135 /* BaseNavigationController.swift */; };
 		619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */; };
 		619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB362660BF820056A3D9 /* InfoViewCell.swift */; };
-		61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */; };
+		61A6ED0A265C963900E3CA9D /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViewModelProtocol.swift */; };
 		61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */; };
 		61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */; };
 		61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13D5F26808DC100665A08 /* ThirdPartyController.swift */; };
@@ -206,7 +206,7 @@
 		619BA35B26895DDF007C7135 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
 		619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
 		619EDB362660BF820056A3D9 /* InfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewCell.swift; sourceTree = "<group>"; };
-		61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViemModelProtocol.swift; sourceTree = "<group>"; };
+		61A6ED09265C963900E3CA9D /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		61A6ED11265C9D6800E3CA9D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		61B13D5F26808DC100665A08 /* ThirdPartyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPartyController.swift; sourceTree = "<group>"; };
@@ -280,6 +280,39 @@
 				0048E6D5277AB21F00F6C739 /* appStore.js */,
 			);
 			path = JavaScript;
+			sourceTree = "<group>";
+		};
+		0048E6D9277AE41200F6C739 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0048E6DA277AE41C00F6C739 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				61B799532681B5760025EADE /* WebViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0048E6DB277AE42200F6C739 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */,
+				61F28249265F8996009E16C9 /* WebViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0048E6DC277AE94400F6C739 /* RxDelegateTest */ = {
+			isa = PBXGroup;
+			children = (
+				006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */,
+				006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */,
+			);
+			path = RxDelegateTest;
 			sourceTree = "<group>";
 		};
 		611E2E002660782B001585AE /* SnapKitExtension */ = {
@@ -633,7 +666,7 @@
 		61BF8341265C8F190063EE4E /* ViewModel+Plus */ = {
 			isa = PBXGroup;
 			children = (
-				61A6ED09265C963900E3CA9D /* ViemModelProtocol.swift */,
+				61A6ED09265C963900E3CA9D /* ViewModelProtocol.swift */,
 			);
 			path = "ViewModel+Plus";
 			sourceTree = "<group>";
@@ -686,11 +719,10 @@
 		61F28248265F895E009E16C9 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
-				61B799532681B5760025EADE /* WebViewModel.swift */,
-				61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */,
-				61F28249265F8996009E16C9 /* WebViewController.swift */,
-				006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */,
-				006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */,
+				0048E6D9277AE41200F6C739 /* View */,
+				0048E6DA277AE41C00F6C739 /* ViewModel */,
+				0048E6DB277AE42200F6C739 /* Controller */,
+				0048E6DC277AE94400F6C739 /* RxDelegateTest */,
 			);
 			path = WebView;
 			sourceTree = "<group>";
@@ -966,7 +998,7 @@
 				616EC96E269E8154008FAFDF /* SVProgressHUD+Extension.swift in Sources */,
 				611E2E0626607869001585AE /* HotKeyController.swift in Sources */,
 				007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */,
-				61A6ED0A265C963900E3CA9D /* ViemModelProtocol.swift in Sources */,
+				61A6ED0A265C963900E3CA9D /* ViewModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
 				0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */,

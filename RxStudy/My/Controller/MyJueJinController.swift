@@ -12,7 +12,7 @@ import WebKit
 /// 我的掘金页面
 class MyJueJinController: BaseViewController {
     
-    private let juejinAppUrl =  "https://apps.apple.com/cn/app/%E6%8E%98%E9%87%91/id987739104"
+    private let juejinAppUrl = "https://apps.apple.com/cn/app/%E6%8E%98%E9%87%91/id987739104"
 
     private var url: String
         
