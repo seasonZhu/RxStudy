@@ -181,8 +181,8 @@ struct R: Rswift.Validatable {
     static let searchResultJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SearchResult", pathExtension: "json")
     /// Resource file `Tree.json`.
     static let treeJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Tree", pathExtension: "json")
-    /// Resource file `javascript.js`.
-    static let javascriptJs = Rswift.FileResource(bundle: R.hostingBundle, name: "javascript", pathExtension: "js")
+    /// Resource file `open.js`.
+    static let openJs = Rswift.FileResource(bundle: R.hostingBundle, name: "open", pathExtension: "js")
 
     /// `bundle.url(forResource: "AMapLocation", withExtension: "json")`
     static func aMapLocationJson(_: Void = ()) -> Foundation.URL? {
@@ -304,9 +304,9 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
-    /// `bundle.url(forResource: "javascript", withExtension: "js")`
-    static func javascriptJs(_: Void = ()) -> Foundation.URL? {
-      let fileResource = R.file.javascriptJs
+    /// `bundle.url(forResource: "open", withExtension: "js")`
+    static func openJs(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.openJs
       return fileResource.bundle.url(forResource: fileResource)
     }
 

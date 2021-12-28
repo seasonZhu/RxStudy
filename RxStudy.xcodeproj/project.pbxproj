@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		000D937326DCAC190099A749 /* javascript.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* javascript.js */; };
+		000D937326DCAC190099A749 /* open.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* open.js */; };
 		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
 		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
 		0038326826F5821E0071EE7E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038326726F5821E0071EE7E /* InfoCell.swift */; };
@@ -125,7 +125,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		000D937226DCAC190099A749 /* javascript.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = javascript.js; sourceTree = "<group>"; };
+		000D937226DCAC190099A749 /* open.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
 		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
 		00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
 		0038326726F5821E0071EE7E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
@@ -269,6 +269,14 @@
 			path = "FSPagerView+RxSwift";
 			sourceTree = "<group>";
 		};
+		0048E6D1277AAD9700F6C739 /* JavaScript */ = {
+			isa = PBXGroup;
+			children = (
+				000D937226DCAC190099A749 /* open.js */,
+			);
+			path = JavaScript;
+			sourceTree = "<group>";
+		};
 		611E2E002660782B001585AE /* SnapKitExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -312,9 +320,9 @@
 				61F28248265F895E009E16C9 /* WebView */,
 				61336C792656493700FDEB2A /* Extension */,
 				61336C6D265640D100FDEB2A /* HttpRequest */,
-				61BB7C47267A057700990636 /* jsons */,
+				61BB7C47267A057700990636 /* JSONS */,
+				0048E6D1277AAD9700F6C739 /* JavaScript */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
-				000D937226DCAC190099A749 /* javascript.js */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
 				6114ABF0267AD8450082BA67 /* R.generated.swift */,
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
@@ -575,7 +583,7 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
-		61BB7C47267A057700990636 /* jsons */ = {
+		61BB7C47267A057700990636 /* JSONS */ = {
 			isa = PBXGroup;
 			children = (
 				61BB7C48267A057700990636 /* Logout.json */,
@@ -597,7 +605,7 @@
 				61BB7C57267A057700990636 /* ProjectClassifyList.json */,
 				61BB7C58267A057700990636 /* Tree.json */,
 			);
-			path = jsons;
+			path = JSONS;
 			sourceTree = SOURCE_ROOT;
 		};
 		61BF833E265B421B0063EE4E /* Controller */ = {
@@ -792,7 +800,7 @@
 				61BB7C5F267A057700990636 /* Banner.json in Resources */,
 				61BB7C64267A057700990636 /* SearchResult.json in Resources */,
 				61BB7C5D267A057700990636 /* RankList.json in Resources */,
-				000D937326DCAC190099A749 /* javascript.js in Resources */,
+				000D937326DCAC190099A749 /* open.js in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
