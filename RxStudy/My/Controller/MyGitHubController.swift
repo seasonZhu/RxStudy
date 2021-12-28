@@ -1,21 +1,21 @@
 //
-//  MyBaseWebViewController.swift
+//  MyGitHubController.swift
 //  RxStudy
 //
-//  Created by season on 2021/7/2.
+//  Created by dy on 2021/12/28.
 //  Copyright © 2021 season. All rights reserved.
 //
 
 import UIKit
 import WebKit
 
-/// 在我的页面,我使用的通过字符串去创建控制器,我个人很想使用基类省去这么写的麻烦,但是在runtime的时候就报错了,所以不得不写了两个控制器
-class MyBaseWebViewController: BaseViewController {
+/// 我的GitHub页面
+class MyGitHubController: BaseViewController {
 
     private var url: String
         
     init() {
-        self.url = "https://juejin.cn/user/4353721778057997"
+        self.url = "https://github.com/seasonZhu"
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -41,8 +41,9 @@ class MyBaseWebViewController: BaseViewController {
     }
 }
 
-extension MyBaseWebViewController {
+extension MyGitHubController {
     func setupUI() {
+        title = "作者的GitHub"
         view.backgroundColor = .white
         view.addSubview(webView)
         
