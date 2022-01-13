@@ -144,8 +144,8 @@ extension AccountManager {
                 }
                 return myProvider.rx.request(MyService.userCoinInfo)
                     .map(BaseModel<CoinRank>.self)
-                    .map{ $0.data}
-                    .compactMap{ $0}.asObservable()
+                    .map{ $0.data }
+                    .compactMap{ $0 }.asObservable()
             }.asSingle()
             .subscribe { event in
                 switch event {
