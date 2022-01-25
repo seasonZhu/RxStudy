@@ -19,6 +19,7 @@ class HotKeyController: BaseViewController {
         view.backgroundColor = .playAndroidBg
         
         let textField = UITextField(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width - 40, height: 34))
+        textField.textColor = .black
         textField.layer.borderWidth = 0.5
         textField.layer.borderColor = UIColor.gray.cgColor
         textField.layer.cornerRadius = 17
