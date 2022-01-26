@@ -26,7 +26,7 @@ class BaseViewModel {
     var className: String { String(describing: self) }
     
     deinit {
-        debugLog("\(className)被销毁了")
+        debugLog("\(className)被销毁了".replacingOccurrences(of: "\(nameSpace!).", with: ""))
     }
 }
 

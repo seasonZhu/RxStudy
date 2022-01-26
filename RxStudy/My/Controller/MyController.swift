@@ -77,7 +77,7 @@ class MyController: BaseTableViewController {
 
 extension MyController {
     private func creatInstance<T: NSObject>(by className: String) -> T? {
-        guard let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String else {
+        guard let nameSpace = nameSpace else {
             return nil
         }
         
