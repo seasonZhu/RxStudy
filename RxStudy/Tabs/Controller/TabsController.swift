@@ -128,8 +128,8 @@ extension TabsController {
         listVCArray.removeAll()
         
         let _ = tabs.map { tab in
-            let vc = SingleTabListController(type: type, tab: tab) { webLoadInfo in
-                self.pushToWebViewController(webLoadInfo: webLoadInfo)
+            let vc = SingleTabListController(type: type, tab: tab) { [weak self] webLoadInfo in
+                self?.pushToWebViewController(webLoadInfo: webLoadInfo)
             }
 
             contentScrollView.addSubview(vc.view)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum My {
+enum My: CaseIterable {
     case ranking
     case openSource
     case myGitHub
