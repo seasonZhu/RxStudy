@@ -104,7 +104,7 @@ class InfoCell: UITableViewCell {
         praiseLabel.snp.makeConstraints { make in
             make.trailing.equalTo(contentLabel)
             make.top.equalTo(contentLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-10)
+            make.bottom.equalTo(contentView).offset(-10)
         }
         
         contentView.addSubview(authorLabel)
