@@ -43,18 +43,3 @@ extension UIColor {
     /// 背景颜色 light为白 dark为黑
     static let playAndroidBg = UIColor(lightThemeColor: .white, darkThemeColor: .black)
 }
-
-@available(iOS 12.0, *)
-extension UITraitCollection {
-    static var isDark: Bool { UITraitCollection().isDark }
-    
-    static var isLight: Bool { UITraitCollection().isLight }
-    
-    static var isUnspecified: Bool  { UITraitCollection().isUnspecified }
-    
-    var isDark: Bool { userInterfaceStyle == .dark }
-    
-    var isLight: Bool { userInterfaceStyle == .light }
-    
-    var isUnspecified: Bool  { userInterfaceStyle == .unspecified }
-}

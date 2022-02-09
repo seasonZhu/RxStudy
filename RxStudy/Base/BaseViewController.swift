@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 import Moya
+import SVProgressHUD
 
 class BaseViewController: UIViewController {
     
@@ -134,6 +135,13 @@ extension BaseViewController {
             
             tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
         }
+    }
+}
+
+extension BaseViewController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        SVProgressHUD.styleSetting()
     }
 }
 

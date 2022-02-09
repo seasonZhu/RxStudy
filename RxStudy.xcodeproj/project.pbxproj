@@ -12,6 +12,7 @@
 		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
 		0038326826F5821E0071EE7E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038326726F5821E0071EE7E /* InfoCell.swift */; };
 		003B6303278FBB5600EA265E /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B6302278FBB5600EA265E /* Header.swift */; };
+		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
 		0048E6CE277AAB1900F6C739 /* MyJueJinController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6CD277AAB1900F6C739 /* MyJueJinController.swift */; };
 		0048E6D0277AAB6000F6C739 /* MyGitHubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */; };
 		0048E6D6277AB21F00F6C739 /* appStore.js in Resources */ = {isa = PBXBuildFile; fileRef = 0048E6D5277AB21F00F6C739 /* appStore.js */; };
@@ -134,6 +135,7 @@
 		0038326726F5821E0071EE7E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		003B6302278FBB5600EA265E /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		003B6307278FBDA900EA265E /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
+		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
 		0048E6CD277AAB1900F6C739 /* MyJueJinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJueJinController.swift; sourceTree = "<group>"; };
 		0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGitHubController.swift; sourceTree = "<group>"; };
 		0048E6D5277AB21F00F6C739 /* appStore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = appStore.js; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 				617AAA38265CAD820029A83F /* Moya+Plugin.swift */,
 				611E2E0F266096E9001585AE /* String+Extension.swift */,
 				611471CB26B106AC00E298F5 /* UIColor+Extension.swift */,
+				0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */,
 				616EC96F269E822E008FAFDF /* HUD.swift */,
 				619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */,
 				616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */,
@@ -951,6 +954,7 @@
 				009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
+				0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */,
 				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
 				0048E6CE277AAB1900F6C739 /* MyJueJinController.swift in Sources */,
 				61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */,

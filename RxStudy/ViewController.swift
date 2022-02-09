@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import RxBlocking
 import Moya
+import SVProgressHUD
 
 class ViewController: UITabBarController {
     
@@ -201,5 +202,12 @@ extension ViewController {
             transform.selectedIndex = next
             transform.preIndex = preIndex
         }
+    }
+}
+
+extension ViewController {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        SVProgressHUD.styleSetting()
     }
 }
