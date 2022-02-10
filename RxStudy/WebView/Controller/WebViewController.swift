@@ -250,7 +250,9 @@ extension WebViewController {
             if completed {
                 SVProgressHUD.showText("分享成功!")
             }else {
-                SVProgressHUD.showText("分享失败!")
+                //SVProgressHUD.showText("分享失败!")
+                /// 此处回调的complete为Bool值,false也有可能是点击了close按钮导致,所以这里暂时就不toast内容了
+                debugLog("分享未完成")
             }
             
             activityContrller?.dismiss(animated: true, completion: nil)
