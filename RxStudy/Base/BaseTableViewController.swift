@@ -32,6 +32,11 @@ class BaseTableViewController: BaseViewController {
     
     private func setupTableView() {
         
+        /// 注册Cell之后,就可以直接在数据源中进行强制与复用,而不用再写if 与 else了
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
+        tableView.register(InfoViewCell.self, forCellReuseIdentifier: InfoViewCell.className)
+        tableView.register(InfoCell.self, forCellReuseIdentifier: InfoCell.className)
+        
         /// 设置tableFooterView
         tableView.tableFooterView = UIView()
         

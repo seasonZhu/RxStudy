@@ -96,14 +96,10 @@ class MyCollectionController: BaseTableViewController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as? InfoViewCell {
-                    cell.info = info
-                    return cell
-                }else {
-                    let cell = InfoViewCell(style: .subtitle, reuseIdentifier: InfoViewCell.className)
-                    cell.info = info
-                    return cell
-                }
+
+                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell 
+                cell.info = info
+                return cell
             }
             .disposed(by: rx.disposeBag)
         

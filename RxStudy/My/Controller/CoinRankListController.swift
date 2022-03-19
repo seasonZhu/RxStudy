@@ -66,16 +66,11 @@ extension CoinRankListController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
-                    cell.textLabel?.text = coinRank.myInfo
-                    cell.detailTextLabel?.text = coinRank.username
-                    return cell
-                }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
-                    cell.textLabel?.text = coinRank.myInfo
-                    cell.detailTextLabel?.text = coinRank.username
-                    return cell
-                }
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                cell.textLabel?.text = coinRank.myInfo
+                cell.detailTextLabel?.text = coinRank.username
+                return cell
             }
             .disposed(by: rx.disposeBag)
         

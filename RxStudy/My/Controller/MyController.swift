@@ -37,18 +37,11 @@ class MyController: BaseTableViewController {
 
         viewModel.outputs.currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
-                    cell.textLabel?.text = my.title
-                    cell.accessoryType = my.accessoryType
-                    my.layout(cell)
-                    return cell
-                }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
-                    cell.textLabel?.text = my.title
-                    cell.accessoryType = my.accessoryType
-                    my.layout(cell)
-                    return cell
-                }
+                let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                cell.textLabel?.text = my.title
+                cell.accessoryType = my.accessoryType
+                my.layout(cell)
+                return cell
             }
             .disposed(by: rx.disposeBag)
         

@@ -76,6 +76,7 @@ extension HomeController {
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
                 /// 其实这里有关Cell的复用可不可只写dequeueReusableCell,然后强转,发现直接崩溃了,和Demo里的很不一样,这里需要思考一下
+                /*  保留了一个例子,作为对比
                 if let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.className) as? InfoCell {
                     cell.info = info
                     return cell
@@ -84,6 +85,11 @@ extension HomeController {
                     cell.info = info
                     return cell
                 }
+                */
+                let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.className) as! InfoCell
+                cell.info = info
+                return cell
+                
             }
             .disposed(by: rx.disposeBag)
         

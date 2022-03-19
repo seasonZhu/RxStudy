@@ -124,16 +124,21 @@ extension SwiftCoinRankListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let coinRank = dataSource[indexPath.row]
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
-            cell.textLabel?.text = coinRank.username
-            cell.detailTextLabel?.text = coinRank.coinCount?.toString
+//        if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
+//            cell.textLabel?.text = coinRank.username
+//            cell.detailTextLabel?.text = coinRank.coinCount?.toString
+//            return cell
+//        }else {
+//            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
+//            cell.textLabel?.text = coinRank.username
+//            cell.detailTextLabel?.text = coinRank.coinCount?.toString
+//            return cell
+//        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+        cell.textLabel?.text = coinRank.username
+        cell.detailTextLabel?.text = coinRank.coinCount?.toString
             return cell
-        }else {
-            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
-            cell.textLabel?.text = coinRank.username
-            cell.detailTextLabel?.text = coinRank.coinCount?.toString
-            return cell
-        }
     }
 }
 

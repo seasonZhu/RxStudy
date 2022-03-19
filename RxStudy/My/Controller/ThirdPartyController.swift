@@ -48,14 +48,10 @@ class ThirdPartyController: BaseTableViewController {
         dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
-                if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
-                    cell.textLabel?.text = info.title
-                    return cell
-                }else {
-                    let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
-                    cell.textLabel?.text = info.title
-                    return cell
-                }
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                cell.textLabel?.text = info.title
+                return cell
             }
             .disposed(by: rx.disposeBag)
     }
