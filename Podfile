@@ -60,3 +60,15 @@ target 'RxStudy' do
   pod 'SFSafeSymbols', '~> 2.1.3' #暂时没有使用
 
 end
+
+# 如果你是M1系列芯片,请添加下面的脚本, 去掉=begin和=end,便于在模拟器上运行
+=begin
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            # Needed for building for simulator on M1 Macs
+            config.build_settings['ONLY_ACTIVE_ARCH'] = 'NO'
+        end
+    end
+end
+=end

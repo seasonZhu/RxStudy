@@ -20,7 +20,7 @@ class AccountBaseController: BaseViewController {
         textField.keyboardType = .numberPad
         textField.returnKeyType = .done
         textField.font = UIFont.systemFont(ofSize: 15)
-        textField.attributedPlaceholder = NSAttributedString(string: "请输入用户名", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
+        textField.attributedPlaceholder = NSAttributedString(string: "请输入手机号", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textField.textColor = .black
         
         let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
