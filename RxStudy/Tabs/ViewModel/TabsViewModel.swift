@@ -55,12 +55,11 @@ private extension TabsViewModel {
             .subscribe { event in
                 switch event {
                 case .success(let items):
-                    self.networkError.onNext(nil)
                     self.dataSource.accept(items)
-                case .error(let error):
-                    guard let moyarror = error as? MoyaError else { return }
-                    self.networkError.onNext(moyarror)
+                case .error:
+                    break
                 }
+                self.processRxMoyaRequestEvent(event: event)
             }
             .disposed(by: disposeBag)
     }

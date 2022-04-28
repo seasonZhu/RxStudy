@@ -26,8 +26,30 @@ class BaseViewModel {
     var className: String { String(describing: self) }
     
     deinit {
-        debugLog("\(className)被销毁了".replacingOccurrences(of: "\(nameSpace!).", with: ""))
+        debugLog("\(className.components(separatedBy: ".").last ?? "")被销毁了")
     }
 }
 
 extension BaseViewModel: HasDisposeBag {}
+
+extension BaseViewModel {
+    
+    /// 在ViewModel的基类中封装针对网络请求错误的方法,避免在子类中写重复代码
+    /// - Parameter event: SingleEvent
+    func processRxMoyaRequestEvent<T: Codable>(event: SingleEvent<T>) {
+        networkError.onNext(event.moyaError)
+    }
+}
+
+extension SingleEvent {
+    var moyaError: MoyaError? {
+        switch self {
+        case .success(_):
+            return nil
+        case .error(let error):
+            guard let moyaError = error as? MoyaError else { return nil }
+            
+            return moyaError
+        }
+    }
+}
