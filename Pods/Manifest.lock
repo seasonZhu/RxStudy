@@ -3,6 +3,7 @@ PODS:
   - Alamofire (5.4.3)
   - AlamofireNetworkActivityLogger (3.4.0):
     - Alamofire (~> 5.4.0)
+  - CocoaDebug (1.7.2)
   - ColorizeSwift (1.2.0)
   - Differentiator (4.0.1)
   - DZNEmptyDataSet (1.8.1)
@@ -11,6 +12,7 @@ PODS:
   - JXSegmentedView (1.2.7)
   - KeychainAccess (4.2.2)
   - Kingfisher (7.1.1)
+  - LookinServer (1.0.5)
   - MarqueeLabel (4.0.5)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.6.1)
@@ -66,12 +68,14 @@ PODS:
 DEPENDENCIES:
   - AcknowList
   - AlamofireNetworkActivityLogger
+  - CocoaDebug
   - DZNEmptyDataSet
   - FSPagerView
   - IQKeyboardManagerSwift
   - JXSegmentedView
   - KeychainAccess
   - Kingfisher
+  - LookinServer
   - MarqueeLabel
   - MBProgressHUD
   - MJRefresh
@@ -98,6 +102,7 @@ SPEC REPOS:
     - AcknowList
     - Alamofire
     - AlamofireNetworkActivityLogger
+    - CocoaDebug
     - ColorizeSwift
     - Differentiator
     - DZNEmptyDataSet
@@ -106,6 +111,7 @@ SPEC REPOS:
     - JXSegmentedView
     - KeychainAccess
     - Kingfisher
+    - LookinServer
     - MarqueeLabel
     - MBProgressHUD
     - MJRefresh
@@ -133,6 +139,7 @@ SPEC CHECKSUMS:
   AcknowList: d5476fd33f5c4614c676933ab79d05775e5e20b7
   Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
   AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
+  CocoaDebug: 61cf93ada6ce8f3407507dc01f9b874d91ac1d5c
   ColorizeSwift: 4eef354dce7335d7747a0ccacf78afe2b589a1be
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
@@ -141,6 +148,7 @@ SPEC CHECKSUMS:
   JXSegmentedView: eb1cad21f57c2543c00c3e08b8fd3c7ca54f5acd
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: f738f9c4a3415823b8e2985d10aa2d6a9f37bc4d
+  LookinServer: 3d9a02529ed94a6a08154440c26f6d7f453bb1e7
   MarqueeLabel: 00cc0bcd087111dca575878b3531af980559707d
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: d2c1970d1cf6e77fcfcdfe76c943dfab8dbfa5c1
@@ -164,6 +172,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: dc60f4ef9932709d379e12b016393f2ae2367afb
+PODFILE CHECKSUM: c6b755b6cbdbe1867838beccb2da43edee6cedb6
 
 COCOAPODS: 1.11.2

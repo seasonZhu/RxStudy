@@ -2,6 +2,7 @@ ${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework
+${BUILT_PRODUCTS_DIR}/CocoaDebug/CocoaDebug.framework
 ${BUILT_PRODUCTS_DIR}/ColorizeSwift/ColorizeSwift.framework
 ${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
 ${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework
@@ -10,6 +11,7 @@ ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/JXSegmentedView/JXSegmentedView.framework
 ${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework
 ${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/LookinServer/LookinServer.framework
 ${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
 ${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework

@@ -53,11 +53,13 @@ target 'RxStudy' do
   # Auto Layout
   pod 'SnapKit'
 
-  # 打印日志
-  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
-    
   # SFSymbols的安全引用
   pod 'SFSafeSymbols', '~> 2.1.3' #暂时没有使用
+  
+  # 调试
+  pod 'LookinServer', :configurations => ['Debug']
+  pod 'CocoaDebug', :configurations => ['Debug']
+  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
 
 end
 
