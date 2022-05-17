@@ -9,6 +9,7 @@
 import UIKit
 
 import IQKeyboardManagerSwift
+import Alamofire
 import AlamofireNetworkActivityLogger
 import SVProgressHUD
 
@@ -37,6 +38,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// 自动登录
         AccountManager.shared.autoLogin()
+        
+        /// 网络状态监听
+        NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { status in
+            let value = NetworkReachabilityManager.default?.isReachable == true
+            AccountManager.shared.networkIsReachableRelay.accept(value)
+        })
         
         return true
     }

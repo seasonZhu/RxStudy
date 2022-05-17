@@ -16,11 +16,14 @@ import SVProgressHUD
 
 final class AccountManager {
     
+    /// 默认是有联网的
+    let networkIsReachableRelay = BehaviorRelay<Bool>(value: true)
+    
     /// 单例
     static let shared = AccountManager()
     
     /// 对外只读是否登录属性
-    private(set) var isLogin = BehaviorRelay(value: false)
+    private(set) let isLogin = BehaviorRelay(value: false)
         
     /// 对外只读用户信息属性
     private(set) var accountInfo: AccountInfo?

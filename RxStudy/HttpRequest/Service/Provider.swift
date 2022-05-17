@@ -19,6 +19,13 @@ let loggerPlugin = NetworkLoggerPlugin()
 
 /// loading开始与取消插件
 let activityPlugin = NetworkActivityPlugin { (state, targetType) in
+    
+    /// 添加无网络拦截
+    if AccountManager.shared.networkIsReachableRelay.value == false {
+        SVProgressHUD.showText("似乎已断开与互联网的连接")
+        return
+    }
+    
     switch state {
     case .began:
         SVProgressHUD.beginLoading()

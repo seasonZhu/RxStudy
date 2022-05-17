@@ -16,7 +16,7 @@ import MJRefresh
 
 class MyCollectionController: BaseTableViewController {
     
-    private var isEdited = BehaviorRelay(value: false)
+    private let isEdited = BehaviorRelay(value: false)
     
     /// 没有使用
     private lazy var edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(rightBarButtonItemAction))

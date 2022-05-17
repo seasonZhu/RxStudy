@@ -9,6 +9,7 @@
 import Foundation
 
 import RxSwift
+import RxSwiftExt
 import RxCocoa
 import NSObject_Rx
 import SnapKit
@@ -43,6 +44,12 @@ extension HomeController {
             .disposed(by: rx.disposeBag)
         
         /// 同时获取indexPath和模型
+        
+        /// 另一种运算方式
+        tableView.rx.itemSelected.zip(with: tableView.rx.modelSelected(Info.self)) { index, model in
+            
+        }
+        
         Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Info.self))
             .bind { indexPath, model in
                 
