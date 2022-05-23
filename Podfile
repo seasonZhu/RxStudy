@@ -8,58 +8,60 @@ target 'RxStudy' do
   # Rx Core
   pod 'RxSwift'
   pod 'RxCocoa'
+  
+  # Rx Extensions
+  pod 'RxDataSources'
+  pod 'NSObject+Rx'
 
   # Networking
   pod 'Moya/RxSwift'
- 
-  # AlamofireNetworkActivityLogger集成
   pod 'AlamofireNetworkActivityLogger'
-
-  # Rx Extensions
-  pod 'RxDataSources'
-  pod 'RxSwiftExt' #暂时没有使用,更多的是对序列的运算符优化
-  pod 'RxViewController' # 暂时没有使用
-  pod 'RxGesture' # 暂时没有使用
-  pod 'RxOptional' # 暂时没有使用
-  pod 'RxTheme' # 暂时没有使用,可以做主题优化,但是现在基本上适配黑暗模式即可
-  pod 'RxBlocking' # 暂时没有使用
-  pod 'NSObject+Rx'
-
 
   # Image
   pod 'Kingfisher'
-  # Date
-  pod 'SwiftDate' # 暂时没有使用
-
+  
   # Tools
   pod 'R.swift'
-
-  # Keychain
-  pod 'KeychainAccess' # 暂时没有使用
 
   # UI'
   pod 'DZNEmptyDataSet'
   pod 'AcknowList'
-  pod 'MBProgressHUD' # 被SVProgressHUD替代了
   pod 'MJRefresh'
   pod 'FSPagerView'
   pod 'JXSegmentedView'
   pod 'MarqueeLabel'
   pod 'SVProgressHUD'
+  pod 'MBProgressHUD' # 被SVProgressHUD替代了
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'
 
   # Auto Layout
   pod 'SnapKit'
-
-  # SFSymbols的安全引用
-  pod 'SFSafeSymbols', '~> 2.1.3' #暂时没有使用
   
   # 调试
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
-  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
+  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
+  
+  # 注意,以下是没有使用的库
+  
+  # Rx Extensions
+  pod 'RxSwiftExt' #更多的是对序列的运算符优化
+  pod 'RxViewController'
+  pod 'RxGesture'
+  pod 'RxOptional'
+  pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可
+  pod 'RxBlocking'
+  
+  # Date
+  pod 'SwiftDate'
+  
+  # Keychain
+  pod 'KeychainAccess'
+  
+  # SFSymbols的安全引用
+  pod 'SFSafeSymbols', '~> 2.1.3'
 
 end
 
