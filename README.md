@@ -132,3 +132,8 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 
 [我的主页](https://juejin.cn/user/4353721778057997)
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=seasonZhu/RxStudy&type=Date)](https://star-history.com/#seasonZhu/RxStudy&Date)
+
+
