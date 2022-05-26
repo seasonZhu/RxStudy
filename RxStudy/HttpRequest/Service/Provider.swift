@@ -17,12 +17,24 @@ let requestLoadingPlugin = RequestLoadingPlugin()
 /// 官方的打印日志插件,感觉没有AlamofireNetworkActivityLogger好用
 let loggerPlugin = NetworkLoggerPlugin()
 
+/// 在黑名单的Api,不进行loading操作
+let blackList = [Api.Home.banner, Api.Home.topArticle]
+
 /// loading开始与取消插件
 let activityPlugin = NetworkActivityPlugin { (state, targetType) in
     
     /// 添加无网络拦截
     if AccountManager.shared.networkIsReachableRelay.value == false {
         SVProgressHUD.showText("似乎已断开与互联网的连接")
+        return
+    }
+    
+    if blackList.contains(targetType.path) {
+        return
+    }
+    
+    if let showLoading = targetType.headers?["showLoading"],
+       showLoading == "false" {
         return
     }
     
@@ -57,3 +69,6 @@ let treeProvider = MoyaProvider<TreeService>(plugins: plugins)
 
 /// 账号
 let accountProvider = MoyaProvider<AccountService>(plugins: plugins)
+
+/// 假数据业务
+let fakeProvider = MoyaProvider<HomeService>(stubClosure: MoyaProvider<HomeService>.immediatelyStub, plugins: plugins)
