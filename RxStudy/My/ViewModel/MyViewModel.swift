@@ -24,7 +24,7 @@ class MyViewModel: BaseViewModel {
         AccountManager.shared.myCoin.bind(to: myCoin).disposed(by: disposeBag)
         
         /// 单例的isLogin通过map后,与VM的currentDataSource进行绑定
-        AccountManager.shared.isLogin
+        AccountManager.shared.isLoginRelay
             .map { isLogin in
                 isLogin ? MyViewModel.loginDataSource : MyViewModel.logoutDataSource
             }

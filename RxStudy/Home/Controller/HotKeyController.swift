@@ -61,7 +61,9 @@ class HotKeyController: BaseViewController {
             self?.tagLayout(hotKeys: hotKeys)
         }).disposed(by: rx.disposeBag)
         
-        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
+        viewModel.outputs.networkError
+            .bind(to: rx.networkError)
+            .disposed(by: rx.disposeBag)
         
         errorRetry.subscribe { _ in
             viewModel.inputs.loadData()
@@ -70,7 +72,7 @@ class HotKeyController: BaseViewController {
     
     private func tagLayout(hotKeys: [HotKey]) {
         let textPadding: CGFloat = 10.0
-        let texts = hotKeys.map { $0.name }.compactMap {  $0 }
+        let texts = hotKeys.map { $0.name }.compactMap { $0 }
         
         let tuples = texts.map { title -> (UIButton, CGFloat) in
             let button = UIButton(type: .custom)

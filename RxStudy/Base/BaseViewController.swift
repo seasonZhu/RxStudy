@@ -104,10 +104,7 @@ extension BaseViewController {
         
         let tap = UITapGestureRecognizer()
         errorImage.addGestureRecognizer(tap)
-        tap.rx.event
-            .subscribe { [weak self] _ in
-                self?.errorRetry.onNext(void)
-        }.disposed(by: rx.disposeBag)
+        tap.rx.event.map { _ in }.bind(to: errorRetry).disposed(by: rx.disposeBag)
     }
     
     func showErrorImage() {
@@ -153,7 +150,7 @@ extension Reactive where Base: BaseViewController {
         return Binder(base) { vc, error in
             if let _ = error {
                 vc.showErrorImage()
-            }else {
+            } else {
                 vc.hiddenErrorImage()
             }
         }

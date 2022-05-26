@@ -66,7 +66,8 @@ extension SwiftCoinRankListController {
                     
                     /// 最初的写法
                     let data = response.data
-                    guard let baseModel = try? JSONDecoder().decode(BaseModel<Page<CoinRank>>.self, from: data), let array = baseModel.data?.datas else {
+                    guard let baseModel = try? JSONDecoder().decode(BaseModel<Page<CoinRank>>.self, from: data),
+                          let array = baseModel.data?.datas else {
                         return
                     }
                     pageNum == 1 ? self.dataSource = array : self.dataSource.append(contentsOf: array)
@@ -81,14 +82,15 @@ extension SwiftCoinRankListController {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                             self.isFinish = true
                         }
-                    }else {
+                    } else {
                         self.isFinish = true
                     }
                     
                     return
                     
                     /// Response扩展中已经有的写法
-                    guard let model = try? response.map(BaseModel<Page<CoinRank>>.self), let list = model.data?.datas else {
+                    guard let model = try? response.map(BaseModel<Page<CoinRank>>.self),
+                          let list = model.data?.datas else {
                         return
                     }
                     self.dataSource = list
@@ -128,7 +130,7 @@ extension SwiftCoinRankListController: UITableViewDataSource {
 //            cell.textLabel?.text = coinRank.username
 //            cell.detailTextLabel?.text = coinRank.coinCount?.toString
 //            return cell
-//        }else {
+//        } else {
 //            let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
 //            cell.textLabel?.text = coinRank.username
 //            cell.detailTextLabel?.text = coinRank.coinCount?.toString

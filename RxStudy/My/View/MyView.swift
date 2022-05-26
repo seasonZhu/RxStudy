@@ -30,7 +30,7 @@ class MyView: UIView {
             if let text = newValue?.myInfo {
                 imageView.image = R.image.android()
                 infoLabel.text = text
-            }else {
+            } else {
                 imageView.image = R.image.user()
                 infoLabel.text = "排名: -- 等级: -- 积分: --"
             }

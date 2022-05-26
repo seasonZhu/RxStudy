@@ -80,7 +80,7 @@ private extension SearchResultViewModel {
                         if self.pageNum == 0 {
                             /// 下拉做赋值运算
                             self.dataSource.accept(datas)
-                        }else {
+                        } else {
                             /// 上拉做合并运算
                             self.dataSource.accept(self.dataSource.value + datas)
                         }

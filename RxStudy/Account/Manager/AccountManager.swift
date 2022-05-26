@@ -23,7 +23,7 @@ final class AccountManager {
     static let shared = AccountManager()
     
     /// 对外只读是否登录属性
-    private(set) var isLogin = BehaviorRelay(value: false)
+    private(set) var isLoginRelay = BehaviorRelay(value: false)
         
     /// 对外只读用户信息属性
     private(set) var accountInfo: AccountInfo?
@@ -39,7 +39,8 @@ final class AccountManager {
 extension AccountManager {
     /// 已登录请求头处理
     var cookieHeaderValue: String {
-        if let username = accountInfo?.username, let password = accountInfo?.password {
+        if let username = accountInfo?.username,
+           let password = accountInfo?.password {
           return "loginUserName=\(username);loginUserPassword=\(password)";
         } else {
           return ""
@@ -57,12 +58,12 @@ extension AccountManager {
         UserDefaults.standard.setValue(username, forKey: kUsername)
         UserDefaults.standard.setValue(password, forKey: kPassword)
         /// 需要注意赋值顺序,将info赋值给单例后,再改变isLogin的状态才能获取正确的请求头
-        isLogin.accept(true)
+        isLoginRelay.accept(true)
     }
     
     /// 登出成功,清理登录信息
     func clearAccountInfo() {
-        isLogin.accept(false)
+        isLoginRelay.accept(false)
         accountInfo = nil
         myCoin.accept(nil)
         /// 不仅要清除内存,也要清除本地UserDefault保存的数据
@@ -91,8 +92,9 @@ extension AccountManager {
     
     /// 自动登录
     func autoLogin() {
-        if !isLogin.value {
-            guard let username = getUsername(), let password = getPassword() else {
+        if !isLoginRelay.value {
+            guard let username = getUsername(),
+                  let password = getPassword() else {
                 return
             }
             optimizeLogin(username: username, password: password, showLoading: false)
@@ -111,7 +113,7 @@ extension AccountManager {
                         AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     }
                     message = "登录成功"
-                case .error(_):
+                case .error:
                     message = "登录失败"
                 }
                 
@@ -154,7 +156,7 @@ extension AccountManager {
                 switch event {
                 case .success(let myCoin):
                     self.myCoin.accept(myCoin)
-                case .error(_):
+                case .error:
                     self.myCoin.accept(nil)
                 }
                 completion?()

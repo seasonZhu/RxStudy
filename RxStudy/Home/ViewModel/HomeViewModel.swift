@@ -55,7 +55,8 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                             self.dataSource.accept(topInfos + normalInfos)
                         }
 
-                        if let curPage = noramlPageModel.data?.curPage, let pageCount = noramlPageModel.data?.pageCount  {
+                        if let curPage = noramlPageModel.data?.curPage,
+                           let pageCount = noramlPageModel.data?.pageCount {
                             /// 如果发现它们相等,说明是最后一个,改变foot而状态
                             if curPage == pageCount {
                                 self.refreshSubject.onNext(.showNomoreData)
@@ -93,7 +94,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                         if pageModel.isNoMoreData {
                             self.refreshSubject.onNext(.showNomoreData)
                         }
-                    case .error(_):
+                    case .error:
                         /// error暂时不做处理
                         break
                     }

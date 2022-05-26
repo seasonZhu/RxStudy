@@ -110,7 +110,9 @@ extension TabsController {
             self?.settingSegmentedDataSource(tabs: tabs)
         }.disposed(by: rx.disposeBag)
         
-        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
+        viewModel.outputs.networkError
+            .bind(to: rx.networkError)
+            .disposed(by: rx.disposeBag)
         
         errorRetry.subscribe { _ in
             viewModel.inputs.loadData()
@@ -185,7 +187,8 @@ extension TabsController: UIScrollViewDelegate {
             driver = Driver.just(.toRight)
         }
         
-        guard let d = driver, let vc = tabBarController as? ViewController else {
+        guard let d = driver,
+              let vc = tabBarController as? ViewController else {
             return
         }
         

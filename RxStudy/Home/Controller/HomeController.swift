@@ -87,7 +87,7 @@ extension HomeController {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.className) as? InfoCell {
                     cell.info = info
                     return cell
-                }else {
+                } else {
                     let cell = InfoCell(style: .subtitle, reuseIdentifier: InfoCell.className)
                     cell.info = info
                     return cell
@@ -100,9 +100,14 @@ extension HomeController {
             }
             .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
+        viewModel.outputs.dataSource
+            .map { $0.isEmpty }
+            .bind(to: isEmptyRelay)
+            .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
+        viewModel.outputs.networkError
+            .bind(to: rx.networkError)
+            .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView
         viewModel.outputs.refreshSubject
@@ -148,7 +153,8 @@ extension HomeController: FSPagerViewDataSource {
     
     func pagerView(_ pagerView: FSPagerView, cellForItemAt index: Int) -> FSPagerViewCell {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: FSPagerViewCell.className, at: index)
-        if let imagePath = itmes[index].imagePath, let url = URL(string: imagePath) {
+        if let imagePath = itmes[index].imagePath,
+           let url = URL(string: imagePath) {
             cell.imageView?.kf.setImage(with: url)
         }
         return cell

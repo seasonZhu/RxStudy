@@ -56,7 +56,7 @@ extension UIPanGestureRecognizer {
             if x < y {
                 if translation.y > 0 {
                     panGestureAxis = .vertical(.fromTopToBottom)
-                }else {
+                } else {
                     panGestureAxis = .vertical(.fromBottomToTop)
                 }
                 
@@ -66,7 +66,7 @@ extension UIPanGestureRecognizer {
             else {
                 if translation.x > 0 {
                     panGestureAxis = .horizontal(.fromLeftToRight)
-                }else {
+                } else {
                     panGestureAxis = .horizontal(.fromRightToLeft)
                 }
                response = x > responseLength

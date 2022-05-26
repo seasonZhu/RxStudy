@@ -74,7 +74,8 @@ extension MyController {
             return nil
         }
         
-        guard let `class` = NSClassFromString(nameSpace + "." + className), let typeClass = `class` as? T.Type else {
+        guard let `class` = NSClassFromString(nameSpace + "." + className),
+              let typeClass = `class` as? T.Type else {
             return nil
         }
         return typeClass.init()

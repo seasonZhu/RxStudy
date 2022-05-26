@@ -17,9 +17,9 @@ extension WKWebView {
         evaluateJavaScript(javaScriptString) { any, error in
             if let e = error {
                 resultHandler?(.failure(e))
-            }else if let result = any as? T {
+            } else if let result = any as? T {
                 resultHandler?(.success(result))
-            }else {
+            } else {
                 resultHandler?(.failure(TransformError.anyTransformError))
             }
         }

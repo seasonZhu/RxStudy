@@ -72,7 +72,7 @@ class RxSwiftCoinRankListController: BaseViewController {
                 cell.textLabel?.text = coinRank.username
                 cell.detailTextLabel?.text = coinRank.coinCount?.toString
                 return cell
-            }else {
+            } else {
                 let cell = UITableViewCell(style: .subtitle, reuseIdentifier: UITableViewCell.className)
                 cell.textLabel?.text = coinRank.username
                 cell.detailTextLabel?.text = coinRank.coinCount?.toString
@@ -163,7 +163,7 @@ class RxSwiftCoinRankListViewModel {
                         if page == 1 {
                             /// 下拉做赋值运算
                             self.dataSource.accept(datas)
-                        }else {
+                        } else {
                             /// 上拉做合并运算
                             self.dataSource.accept(self.dataSource.value + datas)
                         }
@@ -172,7 +172,7 @@ class RxSwiftCoinRankListViewModel {
                     if pageModel.isNoMoreData {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
-                case .error(_):
+                case .error:
                     /// error暂时不做处理
                     break
                 }

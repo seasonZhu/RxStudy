@@ -27,7 +27,7 @@ extension Page {
             /// 相等就是没有数据
             if curPage == pageCount {
                 return true
-            }else {
+            } else {
                 return false
             }
         }

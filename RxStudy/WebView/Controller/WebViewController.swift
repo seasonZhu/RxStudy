@@ -109,7 +109,8 @@ class WebViewController: BaseViewController {
         let vm = WebViewModel()
         
         /// 加载url
-        guard let link = webLoadInfo.link, let url = URL(string: link) else {
+        guard let link = webLoadInfo.link,
+              let url = URL(string: link) else {
             return
         }
         
@@ -135,7 +136,7 @@ class WebViewController: BaseViewController {
             if self?.isContains.value == true {
                 /// 在这里说明是已经收藏过,取消收藏
                 vm.inputs.unCollectAction(collectId: collectId)
-            }else {
+            } else {
                 /// 在这里说明是没有收藏过,进行收藏
                 vm.inputs.collectAction(collectId: collectId)
             }
@@ -145,7 +146,7 @@ class WebViewController: BaseViewController {
 
         /// 非轮播的页面跳转进来才通过判断登录状态来看是否显示收藏页面
         if !isFromBanner {
-            AccountManager.shared.isLogin.subscribe { [weak self] event in
+            AccountManager.shared.isLoginRelay.subscribe { [weak self] event in
                 guard let self = self else {
                     return
                 }
@@ -222,13 +223,14 @@ extension WebViewController {
         
         if collectId == nil && id != nil {
             return id
-        }else {
+        } else {
             return collectId
         }
     }
     
     private func shareAction() {
-        guard let title = webLoadInfo.title, let url = webLoadInfo.link else {
+        guard let title = webLoadInfo.title,
+              let url = webLoadInfo.link else {
             SVProgressHUD.showText("无法获取分享信息")
             return
         }
@@ -249,7 +251,7 @@ extension WebViewController {
         activityContrller.completionWithItemsHandler = { [weak activityContrller] activityType, completed, returnedItems, activityError in
             if completed {
                 SVProgressHUD.showText("分享成功!")
-            }else {
+            } else {
                 //SVProgressHUD.showText("分享失败!")
                 /// 此处回调的complete为Bool值,false也有可能是点击了close按钮导致,所以这里暂时就不toast内容了
                 debugLog("分享未完成")
@@ -263,7 +265,8 @@ extension WebViewController {
 
 extension WebViewController {
     private func openApp() {
-        guard let link = webLoadInfo.link, let url = URL(string: link) else {
+        guard let link = webLoadInfo.link,
+              let url = URL(string: link) else {
             return
         }
         

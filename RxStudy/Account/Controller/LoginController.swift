@@ -52,7 +52,7 @@ class LoginController: AccountBaseController {
                     debugLog("超出了,进行截取")
                     self?.usernameFiled.text = String(text.prefix(11))
                     return true
-                }else {
+                } else {
                     return false
                 }
             }

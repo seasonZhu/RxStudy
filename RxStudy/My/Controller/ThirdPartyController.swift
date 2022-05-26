@@ -78,11 +78,9 @@ extension ThirdPartyController {
 
         if let cfBundleName = infoDictionary?["CFBundleName"] as? String {
             return cfBundleName
-        }
-        else if let cfBundleExecutable = infoDictionary?["CFBundleExecutable"] as? String {
+        } else if let cfBundleExecutable = infoDictionary?["CFBundleExecutable"] as? String {
             return cfBundleExecutable
-        }
-        else {
+        } else {
             return nil
         }
     }

@@ -269,7 +269,7 @@ private extension ConstraintArrayDSL {
         for view in self.array {
             if previousView != nil {
                 commonSuperview = view.closestCommonSuperview(commonSuperview)
-            }else {
+            } else {
                 commonSuperview = view
             }
             previousView = view

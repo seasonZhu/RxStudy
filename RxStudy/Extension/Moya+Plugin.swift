@@ -25,7 +25,8 @@ class RequestLoadingPlugin: PluginType {
     func willSend(_ request: RequestType, target: TargetType) {
         debugLog("开始请求")
         
-        if let showLoading = target.headers?["showLoading"], showLoading == "false"  {
+        if let showLoading = target.headers?["showLoading"],
+           showLoading == "false" {
             return
         }
         
@@ -49,7 +50,7 @@ class RequestLoadingPlugin: PluginType {
         case .success(let response):
             if response.statusCode == 200 {
                 debugLog(response.prettyPrintJSON)
-            }else {
+            } else {
                 DispatchQueue.main.async {
                     /// 进行统一弹窗
                     SVProgressHUD.showText("statusCode not 200")

@@ -19,9 +19,12 @@ class InfoViewCell: UITableViewCell {
             
             if let zan = newValue.zan, zan > 0 {
                 praiseLabel.text = "赞: \(zan)"
+            } else {
+                praiseLabel.text = nil
             }
             
-            if let imageString = info.envelopePic, let url = URL(string: imageString) {
+            if let imageString = info.envelopePic,
+               let url = URL(string: imageString) {
                 picView.isHidden = false
                 picView.kf.setImage(with: url, placeholder: R.image.saber())
                 
@@ -37,7 +40,7 @@ class InfoViewCell: UITableViewCell {
                     make.bottom.equalTo(contentView.snp.bottom).offset(-10)
                 }
                 
-            }else {
+            } else {
                 picView.isHidden = true
                 contentLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(contentView).offset(16)

@@ -35,7 +35,8 @@ class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
             refresh()
         case .loadMore:
             /// 目前解决的方法是在这里做拦截保存不进行操作,还没有找到好的方法
-            if let value = try? refreshSubject.value(), value == .showNomoreData {
+            if let value = try? refreshSubject.value(),
+               value == .showNomoreData {
                 return
             }
             loadMore()
@@ -83,7 +84,7 @@ private extension MyCollectionViewModel {
                         if self.pageNum == 0 {
                             /// 下拉做赋值运算
                             self.dataSource.accept(datas)
-                        }else {
+                        } else {
                             /// 上拉做合并运算
                             self.dataSource.accept(self.dataSource.value + datas)
                         }
@@ -138,7 +139,7 @@ extension MyCollectionViewModel {
                     }
                     
                     AccountManager.shared.updateCollectIds(collectIds)
-                case .error(_):
+                case .error:
                     break
                 }
             }

@@ -60,7 +60,7 @@ extension SingleTabListController {
                 guard let self = self else { return }
                 if self.type == .tree {
                     self.pushToWebViewController(webLoadInfo: model)
-                }else {
+                } else {
                     /// 嵌套页面无法push,回调到主控制器再push
                     self.cellSelected?(model)
                 }
@@ -100,9 +100,14 @@ extension SingleTabListController {
             }
             .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
+        viewModel.outputs.dataSource
+            .map { $0.isEmpty }
+            .bind(to: isEmptyRelay)
+            .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
+        viewModel.outputs.networkError
+            .bind(to: rx.networkError)
+            .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView
         viewModel.outputs.refreshSubject

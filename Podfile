@@ -1,5 +1,7 @@
 # Uncomment the next line to define a global platform for your project
- platform :ios, '12.1'
+platform :ios, '12.1'
+#source 'https://github.com/CocoaPods/Specs.git'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 target 'RxStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -63,6 +65,13 @@ target 'RxStudy' do
   # SFSymbols的安全引用
   pod 'SFSafeSymbols', '~> 2.1.3'
 
+end
+
+pre_install do |installer|
+  require 'typhoeus'
+  Typhoeus::Config.user_agent = 'CocoaPods'
+  # ....
+  
 end
 
 # 如果你是M1系列芯片,请添加下面的脚本, 去掉=begin和=end,便于在模拟器上运行

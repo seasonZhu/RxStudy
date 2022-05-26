@@ -104,10 +104,15 @@ class MyCollectionController: BaseTableViewController {
             .disposed(by: rx.disposeBag)
         
         /// 数据源是否为空绑定
-        viewModel.outputs.dataSource.map { $0.count == 0 }.bind(to: isEmpty).disposed(by: rx.disposeBag)
+        viewModel.outputs.dataSource
+            .map { $0.isEmpty }
+            .bind(to: isEmptyRelay)
+            .disposed(by: rx.disposeBag)
         
         /// 请求错误绑定
-        viewModel.outputs.networkError.bind(to: rx.networkError).disposed(by: rx.disposeBag)
+        viewModel.outputs.networkError
+            .bind(to: rx.networkError)
+            .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView
         viewModel.outputs.refreshSubject
