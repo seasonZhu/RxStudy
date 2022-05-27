@@ -67,7 +67,6 @@ extension TabsController {
 
         //5、初始化contentScrollView
         contentScrollView = UIScrollView()
-        contentScrollView.delegate = self
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsVerticalScrollIndicator = false
         contentScrollView.showsHorizontalScrollIndicator = false
@@ -75,6 +74,43 @@ extension TabsController {
         contentScrollView.bounces = true
         //禁用automaticallyInset
         contentScrollView.contentInsetAdjustmentBehavior = .never
+        
+        contentScrollView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
+        /// 之前这里使用的代理是didScroll,只有滑动就触发,实际上和ViewController中的pan一样,需要的是仅触发一次的回调,这样再进行边界判断进而滑动切tab的操作
+        contentScrollView.rx.willEndDragging.subscribe { [weak self] _ in
+
+            guard let scrollView = self?.contentScrollView else {
+                return
+            }
+            
+            guard let self = self else {
+                return
+            }
+            
+            var driver: Driver<ViewController.Direction>?
+            
+            /// 最左边
+            if scrollView.contentOffset.x < 0 {
+                debugLog("最左边了")
+                driver = Driver.just(.toLeft)
+            }
+            
+            /// 最右边
+            if scrollView.contentOffset.x + kScreenWidth > scrollView.contentSize.width {
+                debugLog("最右边了")
+                driver = Driver.just(.toRight)
+            }
+            
+            guard let d = driver,
+                  let vc = self.tabBarController as? ViewController else {
+                return
+            }
+            
+            d.drive(vc.rx.selectedIndexChange)
+                .disposed(by: self.rx.disposeBag)
+            
+        }.disposed(by: rx.disposeBag)
         
         
         view.addSubview(contentScrollView)
@@ -166,33 +202,4 @@ extension TabsController: JXSegmentedViewDelegate {
     }
 }
 
-extension TabsController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if #available(iOS 15.0, *) {
-            /// 目前测试来看,iOS15的手势滑动有些异常,在iOS15的时候先禁用了
-            return
-        }
-        
-        var driver: Driver<ViewController.Direction>?
-        
-        /// 最左边
-        if scrollView.contentOffset.x < 0 {
-            debugLog("最左边了")
-            driver = Driver.just(.toLeft)
-        }
-        
-        /// 最右边
-        if scrollView.contentOffset.x + kScreenWidth > scrollView.contentSize.width {
-            debugLog("最右边了")
-            driver = Driver.just(.toRight)
-        }
-        
-        guard let d = driver,
-              let vc = tabBarController as? ViewController else {
-            return
-        }
-        
-        d.drive(vc.rx.selectedIndexChange)
-            .disposed(by: rx.disposeBag)
-    }
-}
+extension TabsController: UIScrollViewDelegate {}

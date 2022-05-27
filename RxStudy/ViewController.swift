@@ -127,32 +127,35 @@ extension ViewController {
 /// 我尝试进行手势切换,但是目前还没有想到特别好的方式方法
 extension ViewController {
     private func addPan() {
-        if #available(iOS 15.0, *) {
-            /// 目前测试来看,iOS15的手势滑动有些异常,在iOS15的时候先禁用了
-            return
-        }
         let pan = UIPanGestureRecognizer()
         view.addGestureRecognizer(pan)
-        pan.rx.event.subscribe { [weak self] _ in
-            self?.handlePan(pan)
+        
+        pan.rx.event.subscribe { [weak self] event in
+            switch event {
+                
+            case .next(let panGestureRecognizer):
+                /// 会打印一次begin,很多次change,和一次end,我需要抓取一次的这种事件,然后再去驱动进程tab的切换而过滤掉change
+                
+                if panGestureRecognizer.state == .began {
+                    self?.handlePan(pan)
+                }
+            case .error(_):
+                break
+            case .completed:
+                break
+            }
+            
         }.disposed(by: rx.disposeBag)
     }
     
     
     private func handlePan(_ pan: UIPanGestureRecognizer) {
-        let panResult = pan.checkPanGestureAxis(in: view, responseLength: 100)
-        
-        if panResult.response {
-            switch panResult.axis {
-            case UIPanGestureRecognizer.Axis.horizontal(_):
-                let velocityX = pan.velocity(in: view).x
-                Driver<Direction>.just(velocityX < 0 ? .toRight : .toLeft)
-                    .drive(rx.selectedIndexChange)
-                    .disposed(by: rx.disposeBag)
-            default:
-                break
-            }
-        }
+        let velocityX = pan.velocity(in: view).x
+        let direction: ViewController.Direction = velocityX < 0 ? .toRight : .toLeft
+        debugLog(direction)
+        Driver.just(direction)
+            .drive(rx.selectedIndexChange)
+            .disposed(by: rx.disposeBag)
     }
 }
 
@@ -160,6 +163,19 @@ extension ViewController {
     enum Direction {
         case toLeft
         case toRight
+    }
+}
+
+extension ViewController.Direction: CustomStringConvertible {
+    var description: String {
+        let string: String
+        switch self {
+        case .toLeft:
+            string = "向左"
+        case .toRight:
+            string = "向右"
+        }
+        return string
     }
 }
 
