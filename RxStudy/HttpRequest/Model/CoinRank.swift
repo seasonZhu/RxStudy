@@ -25,4 +25,12 @@ struct CoinRank : Codable {
         }
         return "排名: \(rank) 等级: \(level) 积分: \(coinCount)"
     }
+    
+    var rankInfo: String {
+        if let username = username {
+            return "\(username)\n\n\(myInfo)"
+        } else {
+            return myInfo
+        }
+    }
 }

@@ -17,7 +17,7 @@ import SVProgressHUD
 final class AccountManager {
     
     /// 默认是有联网的
-    let networkIsReachableRelay = BehaviorRelay<Bool>(value: true)
+    let networkIsReachableRelay = BehaviorRelay(value: true)
     
     /// 单例
     static let shared = AccountManager()

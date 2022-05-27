@@ -23,7 +23,8 @@ class BaseTableViewController: BaseViewController {
     /// BehaviorRelay 就是 BehaviorSubject 去掉终止事件 onError 或 onCompleted
     /// 当观察者对 BehaviorSubject 进行订阅时，它会将源 Observable 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来。
     /// 所以下面的代码对其订阅,首先会发出默认值false,表名一开始是有值的,所以被拦住,当变为true时,就走到if noContent的逻辑中
-    let isEmptyRelay: BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    let isEmptyRelay = BehaviorRelay(value: false)
 
     override func viewDidLoad() {
         super.viewDidLoad()

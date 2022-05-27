@@ -68,8 +68,8 @@ extension CoinRankListController {
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
-                cell.textLabel?.text = coinRank.myInfo
-                cell.detailTextLabel?.text = coinRank.username
+                cell.textLabel?.numberOfLines = 3
+                cell.textLabel?.text = coinRank.rankInfo
                 return cell
             }
             .disposed(by: rx.disposeBag)
