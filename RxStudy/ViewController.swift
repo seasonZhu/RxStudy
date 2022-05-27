@@ -130,32 +130,33 @@ extension ViewController {
         let pan = UIPanGestureRecognizer()
         view.addGestureRecognizer(pan)
         
-        pan.rx.event.subscribe { [weak self] event in
-            switch event {
-                
-            case .next(let panGestureRecognizer):
-                /// 会打印一次begin,很多次change,和一次end,我需要抓取一次的这种事件,然后再去驱动进程tab的切换而过滤掉change
-                
-                if panGestureRecognizer.state == .began {
+        /// 会打印一次begin,很多次change,和一次end,我需要抓取一次的这种事件,然后再去驱动进程tab的切换而过滤掉change
+        pan.rx.event.map { $0.state == .began }
+            .subscribe(onNext: { [weak self] isBegan in
+                if isBegan {
                     self?.handlePan(pan)
                 }
-            case .error(_):
-                break
-            case .completed:
-                break
-            }
-            
-        }.disposed(by: rx.disposeBag)
+            })
+            .disposed(by: rx.disposeBag)
     }
     
     
     private func handlePan(_ pan: UIPanGestureRecognizer) {
         let velocityX = pan.velocity(in: view).x
-        let direction: ViewController.Direction = velocityX < 0 ? .toRight : .toLeft
-        debugLog(direction)
-        Driver.just(direction)
-            .drive(rx.selectedIndexChange)
-            .disposed(by: rx.disposeBag)
+        
+        let translation = pan.translation(in: view)
+        let x = abs(translation.x)
+        
+        debugLog("x: \(x)")
+        
+        if x >= 5 {
+            let direction: ViewController.Direction = velocityX < 0 ? .toRight : .toLeft
+    
+            Driver.just(direction)
+                .drive(rx.selectedIndexChange)
+                .disposed(by: rx.disposeBag)
+        }
+
     }
 }
 
