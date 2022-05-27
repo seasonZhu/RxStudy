@@ -143,20 +143,24 @@ extension ViewController {
     
     private func handlePan(_ pan: UIPanGestureRecognizer) {
         let velocityX = pan.velocity(in: view).x
-        
         let translation = pan.translation(in: view)
+        
         let x = abs(translation.x)
+        let y = abs(translation.y)
         
-        debugLog("x: \(x)")
+        debugLog("x: \(x), y: \(y)")
         
-        if x >= 5 {
+        
+        if x < y {
+            /// 纵向滑动
+        } else {
+            /// 横向滑动
             let direction: ViewController.Direction = velocityX < 0 ? .toRight : .toLeft
     
             Driver.just(direction)
                 .drive(rx.selectedIndexChange)
                 .disposed(by: rx.disposeBag)
         }
-
     }
 }
 
