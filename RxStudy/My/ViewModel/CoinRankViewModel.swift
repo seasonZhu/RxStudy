@@ -89,7 +89,7 @@ private extension CoinRankViewModel {
                     if pageModel.isNoMoreData {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
-                case .error:
+                case .failure:
                     break
                 }
                 self.processRxMoyaRequestEvent(event: event)

@@ -6,33 +6,12 @@
 //  Copyright © 2015 Krunoslav Zaher. All rights reserved.
 //
 
-import struct Foundation.URL
-import struct Foundation.Data
-import struct Foundation.Date
-import struct Foundation.TimeInterval
-import class Foundation.JSONSerialization
-import class Foundation.NSError
-import var Foundation.NSURLErrorCancelled
-import var Foundation.NSURLErrorDomain
+import Foundation
+import RxSwift
 
 #if canImport(FoundationNetworking)
-import struct FoundationNetworking.URLRequest
-import class FoundationNetworking.HTTPURLResponse
-import class FoundationNetworking.URLSession
-import class FoundationNetworking.URLResponse
-#else
-import struct Foundation.URLRequest
-import class Foundation.HTTPURLResponse
-import class Foundation.URLSession
-import class Foundation.URLResponse
+import FoundationNetworking
 #endif
-
-#if os(Linux)
-    // don't know why
-    import Foundation
-#endif
-
-import RxSwift
 
 /// RxCocoa URL errors.
 public enum RxCocoaURLError
@@ -72,7 +51,7 @@ private func convertURLRequestToCurlCommand(_ request: URLRequest) -> String {
     let method = request.httpMethod ?? "GET"
     var returnValue = "curl -X \(method) "
 
-    if let httpBody = request.httpBody, request.httpMethod == "POST" || request.httpMethod == "PUT" {
+    if let httpBody = request.httpBody {
         let maybeBody = String(data: httpBody, encoding: String.Encoding.utf8)
         if let body = maybeBody {
             returnValue += "-d \"\(escapeTerminalString(body))\" "
@@ -135,7 +114,7 @@ extension Reactive where Base: URLSession {
             // smart compiler should be able to optimize this out
             let d: Date?
 
-            if Logging.URLRequests(request) {
+            if URLSession.rx.shouldLogRequest(request) {
                 d = Date()
             }
             else {
@@ -144,7 +123,7 @@ extension Reactive where Base: URLSession {
 
             let task = self.base.dataTask(with: request) { data, response, error in
 
-                if Logging.URLRequests(request) {
+                if URLSession.rx.shouldLogRequest(request) {
                     let interval = Date().timeIntervalSince(d ?? Date())
                     print(convertURLRequestToCurlCommand(request))
                     #if os(Linux)
@@ -245,7 +224,17 @@ extension Reactive where Base: URLSession {
     - returns: Observable sequence of response JSON.
     */
     public func json(url: Foundation.URL) -> Observable<Any> {
-        return self.json(request: URLRequest(url: url))
+        self.json(request: URLRequest(url: url))
     }
 }
 
+extension Reactive where Base == URLSession {
+    /// Log URL requests to standard output in curl format.
+    public static var shouldLogRequest: (URLRequest) -> Bool = { _ in
+        #if DEBUG
+            return true
+        #else
+            return false
+        #endif
+    }
+}

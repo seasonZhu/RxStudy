@@ -46,7 +46,7 @@ extension SingleEvent {
         switch self {
         case .success(_):
             return nil
-        case .error(let error):
+        case .failure(let error):
             guard let moyaError = error as? MoyaError else { return nil }
             
             return moyaError

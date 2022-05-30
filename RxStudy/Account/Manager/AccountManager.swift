@@ -113,7 +113,7 @@ extension AccountManager {
                         AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                     }
                     message = "登录成功"
-                case .error:
+                case .failure:
                     message = "登录失败"
                 }
                 
@@ -156,7 +156,7 @@ extension AccountManager {
                 switch event {
                 case .success(let myCoin):
                     self.myCoin.accept(myCoin)
-                case .error:
+                case .failure:
                     self.myCoin.accept(nil)
                 }
                 completion?()

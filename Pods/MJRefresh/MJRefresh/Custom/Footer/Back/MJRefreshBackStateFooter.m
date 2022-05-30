@@ -1,12 +1,13 @@
 //
 //  MJRefreshBackStateFooter.m
-//  MJRefreshExample
+//  MJRefresh
 //
 //  Created by MJ Lee on 15/6/13.
 //  Copyright © 2015年 小码哥. All rights reserved.
 //
 
 #import "MJRefreshBackStateFooter.h"
+#import "NSBundle+MJRefresh.h"
 
 @interface MJRefreshBackStateFooter()
 {
@@ -48,6 +49,14 @@
   return self.stateTitles[@(state)];
 }
 
+- (void)textConfiguration {
+    // 初始化文字
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterIdleText] forState:MJRefreshStateIdle];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterPullingText] forState:MJRefreshStatePulling];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterRefreshingText] forState:MJRefreshStateRefreshing];
+    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+}
+
 #pragma mark - 重写父类的方法
 - (void)prepare
 {
@@ -55,12 +64,13 @@
     
     // 初始化间距
     self.labelLeftInset = MJRefreshLabelLeftInset;
+    [self textConfiguration];
+}
+
+- (void)i18nDidChange {
+    [self textConfiguration];
     
-    // 初始化文字
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterIdleText] forState:MJRefreshStateIdle];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterPullingText] forState:MJRefreshStatePulling];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterRefreshingText] forState:MJRefreshStateRefreshing];
-    [self setTitle:[NSBundle mj_localizedStringForKey:MJRefreshBackFooterNoMoreDataText] forState:MJRefreshStateNoMoreData];
+    [super i18nDidChange];
 }
 
 - (void)placeSubviews

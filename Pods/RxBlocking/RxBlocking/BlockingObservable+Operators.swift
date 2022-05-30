@@ -16,7 +16,7 @@ import RxSwift
 ///
 /// If the sequence terminates with error, the result is represented
 /// by `.failed` with both the array of elements and the terminating error.
-public enum MaterializedSequenceResult<T> {
+@frozen public enum MaterializedSequenceResult<T> {
     case completed(elements: [T])
     case failed(elements: [T], error: Error)
 }
@@ -64,7 +64,7 @@ extension BlockingObservable {
     ///
     /// - returns: Returns the only element of an sequence, and reports an error if there is not exactly one element in the observable sequence.
     public func single() throws -> Element {
-        return try self.single { _ in true }
+        try self.single { _ in true }
     }
 
     /// Blocks current thread until sequence terminates.
@@ -96,7 +96,7 @@ extension BlockingObservable {
     ///
     /// - returns: On completion, returns the list of elements in the sequence. On error, returns the list of elements up to that point, along with the error itself.
     public func materialize() -> MaterializedSequenceResult<Element> {
-        return self.materializeResult()
+        self.materializeResult()
     }
 }
 

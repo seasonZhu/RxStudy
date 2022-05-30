@@ -64,7 +64,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                         }
                         
                         self.banners.accept(items)
-                    case .error(let error):
+                    case .failure(let error):
                         guard let moyarror = error as? MoyaError else { return }
                         self.networkError.onNext(moyarror)
                     }
@@ -94,7 +94,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                         if pageModel.isNoMoreData {
                             self.refreshSubject.onNext(.showNomoreData)
                         }
-                    case .error:
+                    case .failure:
                         /// error暂时不做处理
                         break
                     }

@@ -264,7 +264,7 @@ func request() -> Single<Data> {
             let data = try Data(contentsOf: URL(string: "https://www.wanandroid.com/banner/json")!)
             single(.success(data))
         }catch {
-            single(.error(error))
+            single(.failure(error))
         }
         return Disposables.create()
     }.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated)).observeOn(MainScheduler.instance)

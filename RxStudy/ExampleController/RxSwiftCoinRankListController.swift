@@ -172,7 +172,7 @@ class RxSwiftCoinRankListViewModel {
                     if pageModel.isNoMoreData {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
-                case .error:
+                case .failure:
                     /// error暂时不做处理
                     break
                 }

@@ -93,7 +93,7 @@ private extension MyCollectionViewModel {
                     if pageModel.isNoMoreData {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
-                case .error:
+                case .failure:
                     break
                 }
                 self.processRxMoyaRequestEvent(event: event)
@@ -139,7 +139,7 @@ extension MyCollectionViewModel {
                     }
                     
                     AccountManager.shared.updateCollectIds(collectIds)
-                case .error:
+                case .failure:
                     break
                 }
             }

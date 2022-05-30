@@ -106,7 +106,7 @@ extension AccountBaseController {
                         }
                         self.login(username: username, password: password)
                     }
-                case .error:
+                case .failure:
                     break
                 }
             }.disposed(by: rx.disposeBag)

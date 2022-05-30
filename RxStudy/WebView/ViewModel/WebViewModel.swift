@@ -38,7 +38,7 @@ extension WebViewModel {
                     collectIds.append(collectId)
                     
                     AccountManager.shared.updateCollectIds(collectIds)
-                case .error:
+                case .failure:
                     self.collectSuccess.accept(false)
                 }
             }
@@ -64,7 +64,7 @@ extension WebViewModel {
                     }
                     
                     AccountManager.shared.updateCollectIds(collectIds)
-                case .error:
+                case .failure:
                     self.unCollectSuccess.accept(false)
                 }
             }

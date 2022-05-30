@@ -22,7 +22,7 @@ private final class TableViewDataSourceNotSet
     , UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -33,8 +33,7 @@ private final class TableViewDataSourceNotSet
 /// For more information take a look at `DelegateProxyType`.
 open class RxTableViewDataSourceProxy
     : DelegateProxy<UITableView, UITableViewDataSource>
-    , DelegateProxyType 
-    , UITableViewDataSource {
+    , DelegateProxyType {
 
     /// Typed parent object.
     public weak private(set) var tableView: UITableView?
@@ -52,24 +51,23 @@ open class RxTableViewDataSourceProxy
 
     private weak var _requiredMethodsDataSource: UITableViewDataSource? = tableViewDataSourceNotSet
 
-    // MARK: delegate
-
-    /// Required delegate method implementation.
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (_requiredMethodsDataSource ?? tableViewDataSourceNotSet).tableView(tableView, numberOfRowsInSection: section)
-    }
-
-    /// Required delegate method implementation.
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return (_requiredMethodsDataSource ?? tableViewDataSourceNotSet).tableView(tableView, cellForRowAt: indexPath)
-    }
-
     /// For more information take a look at `DelegateProxyType`.
     open override func setForwardToDelegate(_ forwardToDelegate: UITableViewDataSource?, retainDelegate: Bool) {
         _requiredMethodsDataSource = forwardToDelegate  ?? tableViewDataSourceNotSet
         super.setForwardToDelegate(forwardToDelegate, retainDelegate: retainDelegate)
     }
+}
 
+extension RxTableViewDataSourceProxy: UITableViewDataSource {
+    /// Required delegate method implementation.
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        (_requiredMethodsDataSource ?? tableViewDataSourceNotSet).tableView(tableView, numberOfRowsInSection: section)
+    }
+
+    /// Required delegate method implementation.
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        (_requiredMethodsDataSource ?? tableViewDataSourceNotSet).tableView(tableView, cellForRowAt: indexPath)
+    }
 }
 
 #endif

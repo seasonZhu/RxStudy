@@ -20,8 +20,11 @@
 
 import RxSwift
 import RxCocoa
+import struct CoreGraphics.CGPoint
 
-extension ObservableType where Element: GestureRecognizer {
+public typealias LocationInView = (RxGestureView) -> CGPoint
+
+extension ObservableType where Element: RxGestureRecognizer {
 
     /**
      Filters the observable `GestureRecognizer` events sequence based on the `GestureRecognizer` state.
@@ -29,9 +32,9 @@ extension ObservableType where Element: GestureRecognizer {
      - parameter state: An `GestureRecognizerState` that is used to filter the `GestureRecognizer` events sequence.
      - returns: An observable `GestureRecognizer` events sequence that only contains events emitted while the `GestureRecognizer`'s state match the given `state`.
      */
-    public func when(_ states: GestureRecognizerState...) -> Observable<Element> {
-        return filter { gesture in
-            return states.contains(gesture.state)
+    public func when(_ states: RxGestureRecognizerState...) -> Observable<Element> {
+        filter { gesture in
+            states.contains(gesture.state)
         }
     }
 
@@ -41,9 +44,9 @@ extension ObservableType where Element: GestureRecognizer {
      - parameter state: An `GestureRecognizerState` that is used to filter the `GestureRecognizer` events sequence.
      - returns: An observable `GestureRecognizer` events sequence that only contains events emitted while the `GestureRecognizer`'s state match the given `state`.
      */
-    internal func when(_ states: [GestureRecognizerState]) -> Observable<Element> {
-        return filter { gesture in
-            return states.contains(gesture.state)
+    internal func when(_ states: [RxGestureRecognizerState]) -> Observable<Element> {
+        filter { gesture in
+            states.contains(gesture.state)
         }
     }
 
@@ -52,9 +55,20 @@ extension ObservableType where Element: GestureRecognizer {
 
      - parameter view: A `TargetView` value on which the gesture took place.
      */
-    public func asLocation(in view: TargetView = .view) -> Observable<Point> {
-        return map { gesture in
-            return gesture.location(in: view.targetView(for: gesture))
+    public func asLocation(in view: TargetView = .view) -> Observable<RxGesturePoint> {
+        map { gesture in
+            gesture.location(in: view.targetView(for: gesture))
         }
     }
+
+    public func asLocationInView() -> Observable<LocationInView> {
+        map { gesture in
+            let targetView = gesture.view!
+            let location = gesture.location(in: targetView)
+            return { view in
+                targetView.convert(location, to: view)
+            }
+        }
+    }
+
 }

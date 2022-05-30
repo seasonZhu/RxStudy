@@ -56,7 +56,7 @@ private extension TabsViewModel {
                 switch event {
                 case .success(let items):
                     self.dataSource.accept(items)
-                case .error:
+                case .failure:
                     break
                 }
                 self.processRxMoyaRequestEvent(event: event)

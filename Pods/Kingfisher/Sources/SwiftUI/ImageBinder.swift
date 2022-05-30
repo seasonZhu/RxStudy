@@ -44,14 +44,21 @@ extension KFImage {
             return loading || loadedImage != nil
         }
 
-        @Published var loaded = false
-        @Published var loadedImage: KFCrossPlatformImage? = nil
-        @Published var progress: Progress = .init()
+        // Do not use @Published due to https://github.com/onevcat/Kingfisher/issues/1717. Revert to @Published once
+        // we can drop iOS 12.
+        var loaded = false                           { willSet { objectWillChange.send() } }
+        var loadedImage: KFCrossPlatformImage? = nil { willSet { objectWillChange.send() } }
+        var progress: Progress = .init()             { willSet { objectWillChange.send() } }
 
         func start<HoldingView: KFImageHoldingView>(context: Context<HoldingView>) {
             guard let source = context.source else {
                 CallbackQueue.mainCurrentOrAsync.execute {
                     context.onFailureDelegate.call(KingfisherError.imageSettingError(reason: .emptySource))
+                    if let image = context.options.onFailureImage {
+                        self.loadedImage = image
+                    }
+                    self.loading = false
+                    self.loaded = true
                 }
                 return
             }
@@ -79,10 +86,13 @@ extension KFImage {
                         switch result {
                         case .success(let value):
                             CallbackQueue.mainCurrentOrAsync.execute {
+                                if let fadeDuration = context.fadeTransitionDuration(cacheType: value.cacheType) {
+                                    let animation = Animation.linear(duration: fadeDuration)
+                                    withAnimation(animation) { self.loaded = true }
+                                } else {
+                                    self.loaded = true
+                                }
                                 self.loadedImage = value.image
-                                let animation = context.fadeTransitionDuration(cacheType: value.cacheType)
-                                    .map { duration in Animation.linear(duration: duration) }
-                                withAnimation(animation) { self.loaded = true }
                             }
 
                             CallbackQueue.mainAsync.execute {

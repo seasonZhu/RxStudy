@@ -1,4 +1,4 @@
-[![Travis CI](https://travis-ci.org/RxSwiftCommunity/RxDataSources.svg?branch=master)](https://travis-ci.org/RxSwiftCommunity/RxDataSources)
+[![Travis CI](https://travis-ci.org/RxSwiftCommunity/RxDataSources.svg?branch=main)](https://travis-ci.org/RxSwiftCommunity/RxDataSources)
 
 Table and Collection view data sources
 ======================================
@@ -105,7 +105,7 @@ dataSource.titleForHeaderInSection = { dataSource, index in
   return dataSource.sectionModels[index].header
 }
 
-dataSource.titleForFooterInSection = { dataSource, indexPath in
+dataSource.titleForFooterInSection = { dataSource, index in
   return dataSource.sectionModels[index].footer
 }
 
@@ -159,12 +159,29 @@ For Swift 2.3 version please use versions `0.1 ... 0.9`
 
 Podfile
 ```
-pod 'RxDataSources', '~> 3.0'
+pod 'RxDataSources', '~> 4.0'
 ```
 
 ### Carthage
 
 Cartfile
 ```
-github "RxSwiftCommunity/RxDataSources" ~> 3.0
+github "RxSwiftCommunity/RxDataSources" ~> 4.0
 ```
+
+### Swift Package Manager
+
+Create a `Package.swift` file.
+
+```swift
+import PackageDescription
+
+let package = Package(
+    name: "SampleProject",
+    dependencies: [
+        .package(url: "https://github.com/RxSwiftCommunity/RxDataSources.git", from: "4.0.0")
+    ]
+)
+```
+
+If you are using Xcode 11 or higher, go to **File / Swift Packages / Add Package Dependency...** and enter package repository URL **https://github.com/RxSwiftCommunity/RxDataSources.git**, then follow the instructions.

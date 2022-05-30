@@ -18,6 +18,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if canImport(UIKit)
+
 import UIKit
 import RxSwift
 import RxCocoa
@@ -26,25 +28,25 @@ public typealias RotationConfiguration = Configuration<UIRotationGestureRecogniz
 public typealias RotationControlEvent = ControlEvent<UIRotationGestureRecognizer>
 public typealias RotationObservable = Observable<UIRotationGestureRecognizer>
 
-extension Factory where Gesture == GestureRecognizer {
+extension Factory where Gesture == RxGestureRecognizer {
 
     /**
      Returns an `AnyFactory` for `UIRotationGestureRecognizer`
      - parameter configuration: A closure that allows to fully configure the gesture recognizer
      */
     public static func rotation(configuration: RotationConfiguration? = nil) -> AnyFactory {
-        return make(configuration: configuration).abstracted()
+        make(configuration: configuration).abstracted()
     }
 }
 
-extension Reactive where Base: View {
+extension Reactive where Base: RxGestureView {
 
     /**
      Returns an observable `UIRotationGestureRecognizer` events sequence
      - parameter configuration: A closure that allows to fully configure the gesture recognizer
      */
     public func rotationGesture(configuration: RotationConfiguration? = nil) -> RotationControlEvent {
-        return gesture(make(configuration: configuration))
+        gesture(make(configuration: configuration))
     }
 }
 
@@ -54,8 +56,10 @@ extension ObservableType where Element: UIRotationGestureRecognizer {
      Maps the observable `GestureRecognizer` events sequence to an observable sequence of rotation values of the gesture in radians alongside the gesture velocity.
      */
     public func asRotation() -> Observable<(rotation: CGFloat, velocity: CGFloat)> {
-        return self.map { gesture in
-            return (gesture.rotation, gesture.velocity)
+        self.map { gesture in
+            (gesture.rotation, gesture.velocity)
         }
     }
 }
+
+#endif

@@ -1,4 +1,4 @@
-[![CircleCI](https://img.shields.io/circleci/project/github/RxSwiftCommunity/RxSwiftExt/master.svg)](https://circleci.com/gh/RxSwiftCommunity/RxSwiftExt/tree/master)
+[![CircleCI](https://img.shields.io/circleci/project/github/RxSwiftCommunity/RxSwiftExt/main.svg)](https://circleci.com/gh/RxSwiftCommunity/RxSwiftExt/tree/main)
 ![pod](https://img.shields.io/cocoapods/v/RxSwiftExt.svg)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
@@ -73,7 +73,6 @@ These operators are much like the RxSwift & RxCocoa core operators, but provide 
 * [Observable.fromAsync](#fromasync)
 * [Observable.zip(with:)](#zipwith)
 * [Observable.merge(with:)](#mergewith)
-* [withUnretained](#withunretained)
 * [count](#count)
 * [partition](#partition)
 * [bufferWithTrigger](#bufferWithTrigger)
@@ -465,7 +464,7 @@ The sequence above keeps even numbers 2, 4, 6 and produces the sequence 4, 8, 12
 
 #### errors, elements
 
-These operators only apply to observable serquences that have been materialized with the `materialize()` operator (from RxSwift core). `errors` returns a sequence of filtered error events, ommitting elements. `elements` returns a sequence of filtered element events, ommitting errors.
+These operators only apply to observable sequences that have been materialized with the `materialize()` operator (from RxSwift core). `errors` returns a sequence of filtered error events, ommitting elements. `elements` returns a sequence of filtered element events, ommitting errors.
 
 ```swift
 let imageResult = _chooseImageButtonPressed.asObservable()
@@ -564,40 +563,6 @@ next(5)
 completed
 ```
 This example emits 2, 5 (`NSDecimalNumber` Type).
-
-#### withUnretained
-
-The `withUnretained(_:resultSelector:)` operator provides an unretained, safe to use (i.e. not implicitly unwrapped), reference to an object along with the events emitted by the sequence.
-In the case the provided object cannot be retained successfully, the seqeunce will complete.
-
-```swift
-class TestClass: CustomStringConvertible {
-    var description: String { return "Test Class" }
-}
-
-Observable
-    .of(1, 2, 3, 5, 8, 13, 18, 21, 23)
-    .withUnretained(testClass)
-    .do(onNext: { _, value in
-        if value == 13 {
-            // When testClass becomes nil, the next emission of the original
-            // sequence will try to retain it and fail. As soon as it fails,
-            // the sequence will complete.
-            testClass = nil
-        }
-    })
-    .subscribe()
-```
-
-```
-next((Test Class, 1))
-next((Test Class, 2))
-next((Test Class, 3))
-next((Test Class, 5))
-next((Test Class, 8))
-next((Test Class, 13))
-completed
-```
 
 #### [count](http://reactivex.io/documentation/operators/count.html)
 
