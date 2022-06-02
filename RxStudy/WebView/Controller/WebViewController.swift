@@ -177,36 +177,15 @@ class WebViewController: BaseViewController {
             .disposed(by: rx.disposeBag)
 
         navigationItem.rightBarButtonItems = items.reversed()
-
-        vm.outputs.collectSuccess.subscribe { [weak self] event in
-            guard let self = self else {
-                return
-            }
-
-            switch event {
-            case .next(let isSuccess):
-                if isSuccess {
-                    self.isContains.accept(isSuccess)
-                }
-            default:
-                break
-            }
-        }.disposed(by: rx.disposeBag)
-
-        vm.outputs.unCollectSuccess.subscribe { [weak self] event in
-            guard let self = self else {
-               return
-            }
-            
-            switch event {
-            case .next(let isSuccess):
-                if isSuccess {
-                    self.isContains.accept(!isSuccess)
-                }
-            default:
-                break
-            }
-        }.disposed(by: rx.disposeBag)
+        
+        vm.outputs.collectRelay
+            .bind(to: isContains)
+            .disposed(by: rx.disposeBag)
+        
+        vm.outputs.unCollectRelay
+            .map { !$0 }
+            .bind(to: isContains)
+            .disposed(by: rx.disposeBag)
     }
     
     deinit {

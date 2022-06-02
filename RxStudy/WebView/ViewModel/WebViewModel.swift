@@ -14,9 +14,9 @@ import Moya
 
 class WebViewModel: BaseViewModel {
     
-    let collectSuccess = BehaviorRelay(value: false)
+    let collectRelay = BehaviorRelay(value: false)
     
-    let unCollectSuccess = BehaviorRelay(value: false)
+    let unCollectRelay = BehaviorRelay(value: false)
     
 }
 
@@ -29,7 +29,7 @@ extension WebViewModel {
             .subscribe { event in
                 switch event {
                 case .success(let isSuccess):
-                    self.collectSuccess.accept(isSuccess)
+                    self.collectRelay.accept(isSuccess)
                     
                     guard var collectIds = AccountManager.shared.accountInfo?.collectIds else {
                         return
@@ -39,7 +39,7 @@ extension WebViewModel {
                     
                     AccountManager.shared.updateCollectIds(collectIds)
                 case .failure:
-                    self.collectSuccess.accept(false)
+                    self.collectRelay.accept(false)
                 }
             }
             .disposed(by: disposeBag)
@@ -53,7 +53,7 @@ extension WebViewModel {
             .subscribe { event in
                 switch event {
                 case .success(let isSuccess):
-                    self.unCollectSuccess.accept(isSuccess)
+                    self.unCollectRelay.accept(isSuccess)
                     
                     guard var collectIds = AccountManager.shared.accountInfo?.collectIds else {
                         return
@@ -65,7 +65,7 @@ extension WebViewModel {
                     
                     AccountManager.shared.updateCollectIds(collectIds)
                 case .failure:
-                    self.unCollectSuccess.accept(false)
+                    self.unCollectRelay.accept(false)
                 }
             }
             .disposed(by: disposeBag)

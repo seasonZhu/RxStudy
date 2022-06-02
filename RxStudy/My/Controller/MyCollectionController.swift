@@ -16,7 +16,7 @@ import MJRefresh
 
 class MyCollectionController: BaseTableViewController {
     
-    private let isEdited = BehaviorRelay(value: false)
+    private let isEditedRelay = BehaviorRelay(value: false)
     
     /// 没有使用
     private lazy var edit = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(rightBarButtonItemAction))
@@ -34,17 +34,29 @@ class MyCollectionController: BaseTableViewController {
         title = "我的收藏"
         
         /// 是否在编辑与tableView的编辑状态绑定
-        isEdited.bind(to: tableView.rx.isShowEdit).disposed(by: rx.disposeBag)
+        isEditedRelay.bind(to: tableView.rx.isShowEdit).disposed(by: rx.disposeBag)
         
-        MyCollectionController.done.rx.tap.subscribe { [weak self] _ in
-            self?.subscribeRightBarButtonItemAction()
-        }.disposed(by: rx.disposeBag)
+        MyCollectionController.done.rx.tap
+            .map { [weak self] in
+                guard let self = self else {
+                    return true
+                }
+                return !self.isEditedRelay.value
+            }
+            .bind(to: isEditedRelay)
+            .disposed(by: rx.disposeBag)
         
-        MyCollectionController.edit.rx.tap.subscribe { [weak self]  _ in
-            self?.subscribeRightBarButtonItemAction()
-        }.disposed(by: rx.disposeBag)
+        MyCollectionController.edit.rx.tap
+            .map { [weak self] in
+                guard let self = self else {
+                    return false
+                }
+                return !self.isEditedRelay.value
+            }
+            .bind(to: isEditedRelay)
+            .disposed(by: rx.disposeBag)
         
-        isEdited
+        isEditedRelay
             .map { $0 ? MyCollectionController.done : MyCollectionController.edit }
             .bind(to: navigationItem.rx.rightBarButtonItem)
             .disposed(by: rx.disposeBag)
@@ -127,8 +139,8 @@ extension MyCollectionController {
     /// 传统的右侧的点击事件,没有使用
     @objc
     private func rightBarButtonItemAction() {
-        let value = !isEdited.value
-        isEdited.accept(value)
+        let value = !isEditedRelay.value
+        isEditedRelay.accept(value)
         self.navigationItem.rightBarButtonItem = value ? done : edit
     }
 }
@@ -137,12 +149,6 @@ extension MyCollectionController {
     private static let edit = UIBarButtonItem(barButtonSystemItem: .edit, target: nil, action: nil)
     
     private static let done = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: nil)
-    
-    /// 定义右侧的点击事件
-    private func subscribeRightBarButtonItemAction() {
-        let value = !isEdited.value
-        isEdited.accept(value)
-    }
 }
 
 extension MyCollectionController {
