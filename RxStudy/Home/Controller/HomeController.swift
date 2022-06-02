@@ -137,10 +137,12 @@ extension HomeController {
         
         /// 轮播图数据驱动
         /// 我尝试给FSPagerView做rx扩展,当我写到第300行的时候,发现我引用的越来越多的时候,放弃了
-        viewModel.outputs.banners.asDriver(onErrorJustReturn: []).drive { [weak self] models in
-            self?.itmes = models
-            pageControl.numberOfPages = models.count
-            pagerView.reloadData()
+        viewModel.outputs.banners
+            .asDriver(onErrorJustReturn: [])
+            .drive { [weak self] models in
+                self?.itmes = models
+                pageControl.numberOfPages = models.count
+                pagerView.reloadData()
         }.disposed(by: rx.disposeBag)
     }
 }

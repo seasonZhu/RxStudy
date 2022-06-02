@@ -58,7 +58,7 @@ class HotKeyController: BaseViewController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self ] hotKeys in
-            self?.tagLayout(hotKeys: hotKeys)
+                self?.tagLayout(hotKeys: hotKeys)
         }).disposed(by: rx.disposeBag)
         
         viewModel.outputs.networkError

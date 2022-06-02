@@ -22,8 +22,8 @@ final class AccountManager {
     /// 单例
     static let shared = AccountManager()
     
-    /// 对外只读是否登录属性
-    private(set) var isLoginRelay = BehaviorRelay(value: false)
+    /// 是否登录的BehaviorRelay属性
+    let isLoginRelay = BehaviorRelay(value: false)
         
     /// 对外只读用户信息属性
     private(set) var accountInfo: AccountInfo?

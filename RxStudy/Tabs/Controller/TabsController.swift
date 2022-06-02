@@ -138,7 +138,7 @@ extension TabsController {
     func requestData() {
         let viewModel = TabsViewModel(type: type)
         
-        viewModel.loadData()
+        viewModel.inputs.loadData()
         
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])

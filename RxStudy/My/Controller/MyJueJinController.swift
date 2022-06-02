@@ -28,7 +28,7 @@ class MyJueJinController: BaseViewController {
     
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
-        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
+        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: ScriptMessageHandlerType.wanAndroid.rawValue)
         
         /// 获取js,并添加到webView中,在这一步,其实我们只是将js注入了某个页面,实际上还并没有执行js
         if let js = getJS() {
@@ -53,7 +53,7 @@ class MyJueJinController: BaseViewController {
     }
     
     deinit {
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: ScriptMessageHandlerType.wanAndroid.rawValue)
     }
 }
 

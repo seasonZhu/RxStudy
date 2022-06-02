@@ -16,9 +16,6 @@ import SVProgressHUD
 import MarqueeLabel
 import MJRefresh
 
-/// 在简书的网页 "打开"=>class="wrap-item-btn" => function openApp => M.stats.trackEvent=>key: "trackEvent",value: function(e) {this.callApp("Core.Instance.TrackEvent", e)}=> callApp => i = window.webkit.messageHandlers.handleMessageFromJS.postMessage(n);
-private let JianShuJSCallback = "handleMessageFromJS"
-
 class WebViewController: BaseViewController {
 
     private let webLoadInfo: WebLoadInfo
@@ -42,8 +39,10 @@ class WebViewController: BaseViewController {
     
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
-        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JSCallback)
-        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: JianShuJSCallback)
+        /// 监听js的句柄
+        for type in ScriptMessageHandlerType.allCases {
+            config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: type.rawValue)
+        }
         
         /// 获取js,并添加到webView中,在这一步,其实我们只是将js注入了某个页面,实际上还并没有执行js
         if let js = getJS() {
@@ -131,7 +130,7 @@ class WebViewController: BaseViewController {
                 return
             }
 
-            self?.hasCollectAction.onNext(())
+            self?.hasCollectAction.onNext(void)
 
             if self?.isContains.value == true {
                 /// 在这里说明是已经收藏过,取消收藏
@@ -189,8 +188,9 @@ class WebViewController: BaseViewController {
     }
     
     deinit {
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: JSCallback)
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: JianShuJSCallback)
+        for type in ScriptMessageHandlerType.allCases {
+            webView.configuration.userContentController.removeScriptMessageHandler(forName: type.rawValue)
+        }
     }
     
 }

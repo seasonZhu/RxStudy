@@ -17,6 +17,7 @@
 		0048E6D0277AAB6000F6C739 /* MyGitHubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */; };
 		0048E6D6277AB21F00F6C739 /* appStore.js in Resources */ = {isa = PBXBuildFile; fileRef = 0048E6D5277AB21F00F6C739 /* appStore.js */; };
 		0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */; };
+		005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */; };
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
 		006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */; };
@@ -142,6 +143,7 @@
 		0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGitHubController.swift; sourceTree = "<group>"; };
 		0048E6D5277AB21F00F6C739 /* appStore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = appStore.js; sourceTree = "<group>"; };
 		0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebView+Extension.swift"; sourceTree = "<group>"; };
+		005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandlerType.swift; sourceTree = "<group>"; };
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -323,6 +325,14 @@
 				006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */,
 			);
 			path = RxDelegateTest;
+			sourceTree = "<group>";
+		};
+		005BD7F428489488000B6885 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		611E2E002660782B001585AE /* SnapKitExtension */ = {
@@ -734,6 +744,7 @@
 		61F28248265F895E009E16C9 /* WebView */ = {
 			isa = PBXGroup;
 			children = (
+				005BD7F428489488000B6885 /* Enum */,
 				0048E6D9277AE41200F6C739 /* View */,
 				0048E6DA277AE41C00F6C739 /* ViewModel */,
 				0048E6DB277AE42200F6C739 /* Controller */,
@@ -1001,6 +1012,7 @@
 				006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */,
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
 				61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */,
+				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
 				61CE1D99265E53EE0039E288 /* Tab.swift in Sources */,
 				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
