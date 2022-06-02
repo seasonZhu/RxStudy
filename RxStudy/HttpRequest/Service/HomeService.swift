@@ -59,13 +59,13 @@ extension HomeService: TargetType {
     var task: Task {
         switch self {
         case .banner:
-            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
         case .topArticle:
-            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
         case .normalArticle(_):
-            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
         case .hotKey:
-            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
         case .queryKeyword(let keyword, _):
             return .requestParameters(parameters: ["k": keyword], encoding: URLEncoding.default)
         }

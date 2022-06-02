@@ -53,7 +53,7 @@ extension AccountService: TargetType {
         case .register(let username, let password, let repassword):
             return .requestParameters(parameters: ["username": username, "password": password, "repassword": repassword], encoding: URLEncoding.default)
         case .logout:
-            return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
         
         }
         

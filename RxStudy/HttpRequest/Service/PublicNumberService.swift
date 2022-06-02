@@ -38,7 +38,7 @@ extension PublicNumberService: TargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+        return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
         
     }
     

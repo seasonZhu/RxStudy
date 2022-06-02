@@ -12,6 +12,13 @@ import Moya
 import MBProgressHUD
 import SVProgressHUD
 
+/// 在wanandroid客户端中,针对登录后状态,在请求头中塞进cookie
+extension TargetType {
+    var loginHeader: [String : String]? {
+        return AccountManager.shared.isLoginRelay.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil
+    }
+}
+
 /// 可以认为是请求和响应的拦截器,这里做的是在请求时loading,请求完毕后结束loading
 class RequestLoadingPlugin: PluginType {
     
