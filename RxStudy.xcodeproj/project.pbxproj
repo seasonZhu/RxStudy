@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000301F5284E047800A41EA6 /* Collection+Extension.swift */; };
 		000D937326DCAC190099A749 /* open.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* open.js */; };
 		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
 		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
@@ -132,6 +133,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000301F5284E047800A41EA6 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		000D937226DCAC190099A749 /* open.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
 		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
 		00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
@@ -457,6 +459,7 @@
 				0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */,
 				00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */,
 				00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */,
+				000301F5284E047800A41EA6 /* Collection+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1013,6 +1016,7 @@
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
 				61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */,
 				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
+				000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */,
 				61CE1D99265E53EE0039E288 /* Tab.swift in Sources */,
 				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,

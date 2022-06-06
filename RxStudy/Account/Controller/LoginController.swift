@@ -59,7 +59,7 @@ class LoginController: AccountBaseController {
             .share(replay: 1) // without this map would be executed once for each binding, rx is stateless by default
 
         let passwordValid = passwordField.rx.text.orEmpty
-            .map { $0.count > 0 }
+            .map { $0.isNotEmpty}
             .share(replay: 1)
 
         let everythingValid = Observable.combineLatest(usernameValid, passwordValid) { $0 && $1 }

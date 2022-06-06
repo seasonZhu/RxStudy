@@ -77,7 +77,7 @@ extension TreeController {
     }
     
     private func tableViewSectionAndCellConfig(tabs: [Tab]) {
-        guard tabs.count > 0 else {
+        guard tabs.isNotEmpty else {
             return
         }
         

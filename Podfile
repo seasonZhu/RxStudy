@@ -50,7 +50,9 @@ target 'RxStudy' do
   # 注意,以下是没有使用的库
   
   # Rx Extensions
-  pod 'RxSwiftExt' #更多的是对序列的运算符优化
+  
+  # 对序列的操作符的扩充,让序列从一种类型转换到另一种类型变得更加快捷 https://github.com/RxSwiftCommunity/RxSwiftExt
+  pod 'RxSwiftExt'
   pod 'RxViewController'
   pod 'RxOptional'
   pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可

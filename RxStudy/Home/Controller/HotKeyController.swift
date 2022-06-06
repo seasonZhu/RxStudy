@@ -46,7 +46,7 @@ class HotKeyController: BaseViewController {
         }).disposed(by: rx.disposeBag)
         
         let searchValid = textField.rx.text.orEmpty
-                .map { $0.count > 0 }
+                .map { $0.isNotEmpty }
                 .share(replay: 1)
         
         searchValid.bind(to: navigationItem.rightBarButtonItem!.rx.isEnabled).disposed(by: rx.disposeBag)
