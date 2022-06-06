@@ -29,7 +29,7 @@
 </div>
 
 #### 界面截图
- 
+
 | ![](ScreenShots/1.PNG) | ![](ScreenShots/2.PNG) | ![](ScreenShots/3.PNG) | ![](ScreenShots/4.PNG) |
 | --- | --- | --- | --- |
 | ![](ScreenShots/5.PNG) | ![](ScreenShots/6.PNG) | ![](ScreenShots/7.PNG) | ![](ScreenShots/8.PNG) |  
@@ -52,56 +52,64 @@
 
 ### 引入的第三库
 
-```
+```ruby
 # Rx Core
 pod 'RxSwift'
 pod 'RxCocoa'
 
-# Networking
-pod 'Moya/RxSwift'
-
 # Rx Extensions
 pod 'RxDataSources'
-pod 'RxSwiftExt' #暂时没有使用,更多的是对序列的运算符优化
-pod 'RxViewController' # 暂时没有使用
-pod 'RxGesture' # 暂时没有使用
-pod 'RxOptional' # 暂时没有使用
-pod 'RxTheme' # 暂时没有使用,可以做主题优化,但是现在基本上适配黑暗模式即可
-pod 'RxBlocking' # 暂时没有使用
 pod 'NSObject+Rx'
+
+# Networking
+pod 'Moya/RxSwift'
+pod 'AlamofireNetworkActivityLogger'
 
 # Image
 pod 'Kingfisher'
-# Date
-pod 'SwiftDate' # 暂时没有使用
 
-# Tools
+# R函数
 pod 'R.swift'
 
-# Keychain
-pod 'KeychainAccess' # 暂时没有使用
-
-# UI'
+# UI
 pod 'DZNEmptyDataSet'
 pod 'AcknowList'
-pod 'MBProgressHUD' # 被SVProgressHUD替代了
 pod 'MJRefresh'
 pod 'FSPagerView'
 pod 'JXSegmentedView'
 pod 'MarqueeLabel'
 pod 'SVProgressHUD'
-  
+pod 'MBProgressHUD' # 被SVProgressHUD替代了
+
 # Keyboard
 pod 'IQKeyboardManagerSwift'
 
 # Auto Layout
 pod 'SnapKit'
 
-# 打印日志
-pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug" # enabled on `Debug` build only
-    
+# 调试
+pod 'LookinServer', :configurations => ['Debug']
+pod 'CocoaDebug', :configurations => ['Debug']
+pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
+
+# 注意,以下是没有使用的库
+
+# Rx Extensions
+pod 'RxSwiftExt' #更多的是对序列的运算符优化
+pod 'RxViewController'
+pod 'RxGesture'
+pod 'RxOptional'
+pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可
+pod 'RxBlocking'
+
+# Date
+pod 'SwiftDate'
+
+# Keychain
+pod 'KeychainAccess'
+
 # SFSymbols的安全引用
-pod 'SFSafeSymbols', '~> 2.1.3' #暂时没有使用
+pod 'SFSafeSymbols', '~> 2.1.3'
 ```
 
 ## 使用RxSwift、Flutter、Vue的一点感受
@@ -135,5 +143,4 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=seasonZhu/RxStudy&type=Date)](https://star-history.com/#seasonZhu/RxStudy&Date)
-
 

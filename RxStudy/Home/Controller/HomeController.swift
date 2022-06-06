@@ -45,7 +45,7 @@ extension HomeController {
         
         /// 同时获取indexPath和模型
         
-        /// 另一种运算方式
+        /// 另一种运算方式,其实这种zip预算拿到的类型和Observable.zip并不相同
         tableView.rx.itemSelected.zip(with: tableView.rx.modelSelected(Info.self)) { index, model in
             
         }

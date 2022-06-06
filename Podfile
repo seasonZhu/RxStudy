@@ -22,10 +22,10 @@ target 'RxStudy' do
   # Image
   pod 'Kingfisher'
   
-  # Tools
+  # R函数
   pod 'R.swift'
 
-  # UI'
+  # UI
   pod 'DZNEmptyDataSet'
   pod 'AcknowList'
   pod 'MJRefresh'
@@ -67,12 +67,14 @@ target 'RxStudy' do
 
 end
 
-#pre_install do |installer|
-#  require 'typhoeus'
-#  Typhoeus::Config.user_agent = 'CocoaPods'
-#  # ....
-#  
-#end
+=begin
+pre_install do |installer|
+  require 'typhoeus'
+  Typhoeus::Config.user_agent = 'CocoaPods'
+  # ....
+  
+end
+=end
 
 # 如果你是M1系列芯片,请添加下面的脚本, 去掉=begin和=end,便于在模拟器上运行
 =begin
