@@ -14,6 +14,7 @@ target 'RxStudy' do
   # Rx Extensions
   pod 'RxDataSources'
   pod 'NSObject+Rx'
+  pod 'RxGesture'
 
   # Networking
   pod 'Moya/RxSwift'
@@ -51,7 +52,6 @@ target 'RxStudy' do
   # Rx Extensions
   pod 'RxSwiftExt' #更多的是对序列的运算符优化
   pod 'RxViewController'
-  pod 'RxGesture'
   pod 'RxOptional'
   pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可
   pod 'RxBlocking'

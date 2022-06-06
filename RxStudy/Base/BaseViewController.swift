@@ -10,6 +10,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxGesture
 
 import Moya
 import SVProgressHUD
@@ -102,9 +103,18 @@ extension BaseViewController {
         }
         errorImage.isHidden = true
         
+        /*
+        /// 被rx.tapGesture()取代
         let tap = UITapGestureRecognizer()
         errorImage.addGestureRecognizer(tap)
         tap.rx.event.map { _ in }.bind(to: errorRetry).disposed(by: rx.disposeBag)
+        */
+        
+        errorImage.rx.tapGesture()
+            .when(.recognized)
+            .map { _ in }
+            .bind(to: errorRetry)
+            .disposed(by: rx.disposeBag)
     }
     
     func showErrorImage() {

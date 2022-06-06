@@ -11,6 +11,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxBlocking
+import RxGesture
+
 import Moya
 import SVProgressHUD
 
@@ -27,6 +29,7 @@ class ViewController: UITabBarController {
         super.viewDidLoad()
         setupUI()
         addPan()
+        //addRxPan()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -136,6 +139,15 @@ extension ViewController {
                 if isBegan {
                     self?.handlePan(pan)
                 }
+            })
+            .disposed(by: rx.disposeBag)
+    }
+    
+    /// 这个rx.panGesture,在项目\公众号页面,无法区分是scrollViwe的左右滑动还是手势的左右侧滑
+    private func addRxPan() {
+        view.rx.panGesture().when(.began)
+            .subscribe(onNext: { [weak self] pan in
+                self?.handlePan(pan)
             })
             .disposed(by: rx.disposeBag)
     }
