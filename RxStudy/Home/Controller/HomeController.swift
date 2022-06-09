@@ -143,7 +143,7 @@ extension HomeController {
                 self?.itmes = models
                 pageControl.numberOfPages = models.count
                 pagerView.reloadData()
-        }.disposed(by: rx.disposeBag)
+            }.disposed(by: rx.disposeBag)
     }
 }
 

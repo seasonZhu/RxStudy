@@ -38,7 +38,7 @@ extension TreeController {
     private func setupUI() {
         title = type.title
         
-        tableView.mj_header = nil
+        //tableView.mj_header = nil
         tableView.mj_footer = nil
             
         /// 获取cell中的模型
@@ -51,8 +51,13 @@ extension TreeController {
             .disposed(by: rx.disposeBag)
                 
         let viewModel = TreeViewModel(type: type)
-
-        viewModel.inputs.loadData()
+        
+        tableView.mj_header?.rx.refresh
+            .asDriver()
+            .drive(onNext: {
+                viewModel.inputs.loadData()
+            })
+            .disposed(by: rx.disposeBag)
 
         /// 绑定数据
         viewModel.outputs.dataSource
@@ -60,6 +65,11 @@ extension TreeController {
             .drive(onNext: { [weak self] tabs in
                 self?.tableViewSectionAndCellConfig(tabs: tabs)
             })
+            .disposed(by: rx.disposeBag)
+        
+        /// 下拉与上拉状态绑定到tableView
+        viewModel.outputs.refreshSubject?
+            .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
         /// 重写
@@ -93,6 +103,11 @@ extension TreeController {
         }
 
         let items = Observable.just(sectionModels)
+        
+        /// 必须要加这一行,否则再次下拉刷新就崩溃,崩溃如下,后面想想如何优化
+        /// Assertion failed: This is a feature to warn you that there is already a delegate (or data source) set somewhere previously. The action you are trying to perform will clear that delegate (data source) and that means that some of your features that depend on that delegate (data source) being set will likely stop working.
+        /// If you are ok with this, try to set delegate (data source) to `nil` in front of this operation.
+        tableView.dataSource = nil
 
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<Tab, Tab>>(
             configureCell: { (ds, tv, indexPath, element) in

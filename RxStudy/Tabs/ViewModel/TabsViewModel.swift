@@ -20,11 +20,19 @@ class TabsViewModel: BaseViewModel {
     
     init(type: TagType) {
         self.type = type
+        
+        if self.type == .tree {
+            refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
+        }
+        
         super.init()
     }
     
     /// outputs    
     let dataSource = BehaviorRelay<[Tab]>(value: [])
+    
+    /// 仅仅针对体系页面有用
+    var refreshSubject: BehaviorSubject<MJRefreshAction>?
     
     /// inputs
     func loadData() {
@@ -53,6 +61,11 @@ private extension TabsViewModel {
             .asObservable()
             .asSingle()
             .subscribe { event in
+                
+                if self.type == .tree {
+                    self.refreshSubject?.onNext(.stopRefresh)
+                }
+                
                 switch event {
                 case .success(let items):
                     self.dataSource.accept(items)
