@@ -53,7 +53,12 @@ extension HomeService: TargetType {
     }
     
     var sampleData: Data {
-        return Data()
+        switch self {
+        case .hotKey:
+            return try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "HotKey", ofType: "json")!))
+        default:
+            return Data()
+        }
     }
     
     var task: Task {

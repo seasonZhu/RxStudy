@@ -25,6 +25,7 @@ class HotKeyViewModel: BaseViewModel {
 //MARK: - 网络请求
 private extension HotKeyViewModel {
     func requestData() {
+        //fakeProvider
         homeProvider.rx.request(HomeService.hotKey)
             .map(BaseModel<[HotKey]>.self)
             .map{ $0.data }
