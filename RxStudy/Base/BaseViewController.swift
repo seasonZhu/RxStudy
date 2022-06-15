@@ -99,7 +99,7 @@ extension BaseViewController {
     private func setupErrorImage() {
         view.addSubview(errorImage)
         errorImage.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.edges.equalToSuperview()
         }
         errorImage.isHidden = true
         

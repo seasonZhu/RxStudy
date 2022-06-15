@@ -101,7 +101,7 @@ class WebViewController: BaseViewController {
         webView.navigationDelegate = self
         webView.uiDelegate = self
         webView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.edges.equalToSuperview()
         }
         
         /// vm

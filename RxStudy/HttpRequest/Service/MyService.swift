@@ -58,7 +58,5 @@ extension MyService: TargetType {
         return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
     }
     
-    var headers: [String : String]? {
-        return loginHeader
-    }
+    var headers: [String : String]? { loginHeader }
 }

@@ -10,6 +10,7 @@ import UIKit
 import WebKit
 
 /// 在我的页面,我使用的通过字符串去创建控制器,我个人很想使用基类省去这么写的麻烦,但是在runtime的时候就报错了,所以不得不写了两个控制器
+/// 其实可以设计为一个控制器,通过枚举来进行不同的页面操作,但是考虑使用runtime机制去生成与加载,所以放弃了
 class MyBaseWebViewController: BaseViewController {
 
     private var url: String

@@ -33,13 +33,13 @@ class InfoCell: UITableViewCell {
                 /// update对于其他控件的依赖是不能变更,只能改变offset的数值
                 /// 以上结论是掘金大佬给我的提示
                 contentLabel.snp.updateConstraints { make in
-                    make.leading.equalTo(contentView).offset(76)
+                    make.leading.equalToSuperview().offset(76)
                 }
                 
             } else {
                 picView.isHidden = true
                 contentLabel.snp.updateConstraints { make in
-                    make.leading.equalTo(contentView).offset(16)
+                    make.leading.equalToSuperview().offset(16)
                 }
             }
         } get {
@@ -91,23 +91,23 @@ class InfoCell: UITableViewCell {
         
         contentView.addSubview(picView)
         picView.snp.makeConstraints { make in
-            make.leading.equalTo(contentView).offset(16)
-            make.centerY.equalTo(contentView)
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
             make.width.height.equalTo(44)
         }
         
         contentView.addSubview(contentLabel)
         contentLabel.snp.makeConstraints { make in
-            make.leading.equalTo(contentView).offset(76)
-            make.trailing.equalTo(contentView).offset(-16)
-            make.top.equalTo(contentView).offset(10)
+            make.leading.equalToSuperview().offset(76)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalToSuperview().offset(10)
         }
         
         contentView.addSubview(praiseLabel)
         praiseLabel.snp.makeConstraints { make in
             make.trailing.equalTo(contentLabel)
             make.top.equalTo(contentLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(contentView).offset(-10)
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         contentView.addSubview(authorLabel)

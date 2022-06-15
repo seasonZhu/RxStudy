@@ -14,7 +14,7 @@ private let kDamping: CGFloat  = 0.75
 
 private let kVelocity: CGFloat = 2
 
-/// TabbarController的动画转换器,next=>iOS中UITabbarController左右滑动切换
+/// TabbarController的动画转换器
 class Transform: NSObject {
     
     var preIndex: Int

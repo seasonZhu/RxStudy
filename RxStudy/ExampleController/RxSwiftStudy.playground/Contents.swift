@@ -104,8 +104,8 @@ let numbers: Observable<Int> = Observable.create { observer -> Disposable in
 
     return Disposables.create()
 }
-.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
-.observeOn(MainScheduler.instance)
+    .subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+    .observe(on: MainScheduler.instance)
 
 numbers.subscribe { event in
     print(Thread.current)
@@ -152,9 +152,9 @@ let obs = Observable.just(CocaCola())
 let subject = PublishSubject<Int>()
 
 /// 这里虽然是subscribeOn,但是实际上是生成序列的线程,命名是不是很奇葩
-subject.subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
+subject.subscribe(on: ConcurrentDispatchQueueScheduler(qos: .userInitiated))
 /// 这里虽然是observeOn,但是实际是订阅所在的线程,就是观察者实现的线程
-subject.observeOn(MainScheduler.instance)
+subject.observe(on: MainScheduler.instance)
 
 /// 消费生产的序列
 subject.subscribe { (event: Event<Int>) in
@@ -277,7 +277,7 @@ func responseData() {
         print(string)
         print(Thread.current)
         
-    } onError: { _ in
+    } onFailure: { _ in
         
     }.disposed(by: disposeBag)
 }

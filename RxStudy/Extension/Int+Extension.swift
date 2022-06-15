@@ -9,7 +9,5 @@
 import Foundation
 
 extension Int {
-    var toString: String {
-        "\(self)"
-    }
+    var toString: String { "\(self)" }
 }

@@ -26,9 +26,9 @@ class SnapKitLayoutController: BaseViewController {
         
         view.addSubview(redButton)
         redButton.snp.makeConstraints { (make) in
-            make.top.equalTo(view).offset(100)
-            make.leading.equalTo(view).offset(16)
-            make.trailing.equalTo(view).offset(-16)
+            make.top.equalToSuperview().offset(100)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(44)
         }
         
@@ -40,9 +40,9 @@ class SnapKitLayoutController: BaseViewController {
             
             /// 注意这里使用的是update
             redButton.snp.remakeConstraints { (make) in
-                make.top.equalTo(self.view).offset(200)
-                make.leading.equalTo(self.view).offset(50)
-                make.trailing.equalTo(self.view).offset(-50)
+                make.top.equalToSuperview().offset(200)
+                make.leading.equalToSuperview().offset(50)
+                make.trailing.equalToSuperview().offset(-50)
             }
         }.disposed(by: rx.disposeBag)
         

@@ -69,7 +69,10 @@ extension My {
         }
         return string
     }
-    
+}
+
+//MARK: -  这个分类的属性从这里开始就不纯粹了,和UI有关系了,这么设计不知道是
+extension My {
     var accessoryType: UITableViewCell.AccessoryType {
         switch self {
         case .logout:
@@ -83,9 +86,9 @@ extension My {
         return { cell in
             if self == .logout {
                 cell.textLabel?.textAlignment = .center
-                cell.textLabel?.snp.makeConstraints({ make in
+                cell.textLabel?.snp.makeConstraints { make in
                     make.edges.equalTo(cell)
-                })
+                }
             }
             
         }

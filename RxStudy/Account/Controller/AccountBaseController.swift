@@ -69,9 +69,9 @@ class AccountBaseController: BaseViewController {
         
         view.addSubview(usernameFiled)
         usernameFiled.snp.makeConstraints { make in
-            make.top.equalTo(view).offset(kTopMargin + 16)
-            make.leading.equalTo(view).offset(16)
-            make.trailing.equalTo(view).offset(-16)
+            make.top.equalToSuperview().offset(kTopMargin + 16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(44)
         }
         usernameFiled.layer.cornerRadius = 22

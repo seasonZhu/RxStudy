@@ -123,7 +123,7 @@ class BaseTableViewController: BaseViewController {
     private func addTableViewAndLayout() {
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.edges.equalToSuperview()
         }
     }
 }

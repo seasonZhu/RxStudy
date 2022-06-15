@@ -41,7 +41,7 @@ class SwiftCoinRankListController: BaseViewController {
         /// 简单布局
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view)
+            make.edges.equalToSuperview()
         }
     }
 

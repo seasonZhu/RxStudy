@@ -30,28 +30,28 @@ class InfoViewCell: UITableViewCell {
                 
                 contentLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(picView.snp.trailing).offset(16)
-                    make.trailing.equalTo(contentView).offset(-16)
-                    make.top.equalTo(contentView).offset(10)
+                    make.trailing.equalToSuperview().offset(-16)
+                    make.top.equalToSuperview().offset(10)
                 }
                 
                 authorLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(contentLabel)
                     make.top.equalTo(contentLabel.snp.bottom).offset(10)
-                    make.bottom.equalTo(contentView.snp.bottom).offset(-10)
+                    make.bottom.equalToSuperview().offset(-10)
                 }
                 
             } else {
                 picView.isHidden = true
                 contentLabel.snp.remakeConstraints { make in
-                    make.leading.equalTo(contentView).offset(16)
-                    make.trailing.equalTo(contentView).offset(-16)
-                    make.top.equalTo(contentView).offset(10)
+                    make.leading.equalToSuperview().offset(16)
+                    make.trailing.equalToSuperview().offset(-16)
+                    make.top.equalToSuperview().offset(10)
                 }
                 
                 authorLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(contentLabel)
                     make.top.equalTo(contentLabel.snp.bottom).offset(10)
-                    make.bottom.equalTo(contentView.snp.bottom).offset(-10)
+                    make.bottom.equalToSuperview().offset(-10)
                 }
             }
         } get {
@@ -103,23 +103,23 @@ class InfoViewCell: UITableViewCell {
         
         contentView.addSubview(picView)
         picView.snp.makeConstraints { make in
-            make.leading.equalTo(contentView).offset(16)
-            make.centerY.equalTo(contentView)
+            make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
             make.width.height.equalTo(44)
         }
         
         contentView.addSubview(contentLabel)
         contentLabel.snp.makeConstraints { make in
             make.leading.equalTo(picView.snp.trailing).offset(16)
-            make.trailing.equalTo(contentView).offset(-16)
-            make.top.equalTo(contentView).offset(10)
+            make.trailing.equalToSuperview().offset(-16)
+            make.top.equalToSuperview().offset(10)
         }
         
         contentView.addSubview(praiseLabel)
         praiseLabel.snp.makeConstraints { make in
             make.trailing.equalTo(contentLabel)
             make.top.equalTo(contentLabel.snp.bottom).offset(10)
-            make.bottom.equalTo(contentView).offset(-10)
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         contentView.addSubview(authorLabel)

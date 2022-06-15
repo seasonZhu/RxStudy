@@ -61,7 +61,7 @@ class RxSwiftCoinRankListController: BaseViewController {
         /// 简单布局
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view)
+            make.edges.equalToSuperview()
         }
         
         /// 数据源驱动
