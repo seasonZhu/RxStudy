@@ -59,6 +59,6 @@ extension String {
             .replacingOccurrences(of: "&nbsp;",with:  " ")
             .replacingOccurrences(of: "&amp;",with:  "&")
             .replacingOccurrences(of: "&quot;",with:  "\"")
-            .replacingOccurrences(of: "&yen;",with:  "¥");
+            .replacingOccurrences(of: "&yen;",with:  "¥")
       }
 }

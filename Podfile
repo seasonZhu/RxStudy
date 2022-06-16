@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '12.1'
+platform :ios, '13.0'
 source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
@@ -41,6 +41,11 @@ target 'RxStudy' do
 
   # Auto Layout
   pod 'SnapKit'
+  
+  # Combine 学习
+  pod 'Moya/Combine'
+  pod 'CombineExt'
+  pod 'CombineCocoa'
   
   # 调试
   pod 'LookinServer', :configurations => ['Debug']

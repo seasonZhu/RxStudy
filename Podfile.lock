@@ -5,6 +5,8 @@ PODS:
     - Alamofire (~> 5.4.0)
   - CocoaDebug (1.7.2)
   - ColorizeSwift (1.2.0)
+  - CombineCocoa (0.4.0)
+  - CombineExt (1.6.1)
   - Differentiator (5.0.0)
   - DZNEmptyDataSet (1.8.1)
   - FSPagerView (0.8.3)
@@ -16,6 +18,8 @@ PODS:
   - MarqueeLabel (4.3.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.5)
+  - Moya/Combine (15.0.0):
+    - Moya/Core
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - Moya/RxSwift (15.0.0):
@@ -69,6 +73,8 @@ DEPENDENCIES:
   - AcknowList
   - AlamofireNetworkActivityLogger
   - CocoaDebug
+  - CombineCocoa
+  - CombineExt
   - DZNEmptyDataSet
   - FSPagerView
   - IQKeyboardManagerSwift
@@ -79,6 +85,7 @@ DEPENDENCIES:
   - MarqueeLabel
   - MBProgressHUD
   - MJRefresh
+  - Moya/Combine
   - Moya/RxSwift
   - "NSObject+Rx"
   - R.swift
@@ -104,6 +111,8 @@ SPEC REPOS:
     - AlamofireNetworkActivityLogger
     - CocoaDebug
     - ColorizeSwift
+    - CombineCocoa
+    - CombineExt
     - Differentiator
     - DZNEmptyDataSet
     - FSPagerView
@@ -141,6 +150,8 @@ SPEC CHECKSUMS:
   AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
   CocoaDebug: 61cf93ada6ce8f3407507dc01f9b874d91ac1d5c
   ColorizeSwift: 4eef354dce7335d7747a0ccacf78afe2b589a1be
+  CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
+  CombineExt: 57d5234da457f4dab303bac37929192cb4d9626f
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
@@ -172,6 +183,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: 5a72c8637c92cdaa5997dbdcd34a7d53c28747e4
+PODFILE CHECKSUM: 845c43a8d1ba7ec080e11f7b3fde5e958321d713
 
 COCOAPODS: 1.11.3
