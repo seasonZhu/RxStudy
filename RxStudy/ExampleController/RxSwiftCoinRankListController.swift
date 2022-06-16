@@ -179,3 +179,30 @@ class RxSwiftCoinRankListViewModel {
             }.disposed(by: disposeBag)
     }
 }
+
+//MARK: -  Combine进行网络请求
+
+import Combine
+
+class CombineMyCoinViewModel {
+    var cancellable: AnyCancellable?
+    
+    func getMyCoinList(page: Int) {
+        cancellable = myProvider.requestPublisher(MyService.myCoinList((page)))
+            .map(BaseModel<Page<MyHistoryCoin>>.self)
+            .map{ $0.data }
+            .compactMap { $0 }
+            .sink { completion in
+                print(completion)
+                guard case let .failure(error) = completion else { return }
+                print(error)
+            } receiveValue: { pageModel in
+                print(pageModel)
+            }
+
+    }
+    
+    deinit {
+        cancellable?.cancel()
+    }
+}
