@@ -46,8 +46,11 @@ let activityPlugin = NetworkActivityPlugin { (state, targetType) in
     }
 }
 
+
+let responseInterceptorPlugin = ResponseInterceptorPlugin()
+
 /// 插件集合
-let plugins: [PluginType] = [activityPlugin]
+let plugins: [PluginType] = [activityPlugin, responseInterceptorPlugin]
 
 /// 集中管理provider
 /// StubBehavior的默认值就是never,所以不用特地去写
