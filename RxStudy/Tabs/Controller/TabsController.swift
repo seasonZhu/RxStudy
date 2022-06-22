@@ -150,9 +150,9 @@ extension TabsController {
             .bind(to: rx.networkError)
             .disposed(by: rx.disposeBag)
         
-        errorRetry.subscribe { _ in
-            viewModel.inputs.loadData()
-        }.disposed(by: rx.disposeBag)
+        errorRetry
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
     }
     
     func settingSegmentedDataSource(tabs: [Tab]) {

@@ -33,11 +33,14 @@ class HotKeyController: BaseViewController {
         textField.rightView = emptyView
         textField.leftViewMode = .always
         textField.rightViewMode = .always
-        textField.rx.controlEvent([.editingDidEndOnExit]) /// 状态可以组合
+        
+        /// 状态可以组合
+        textField.rx.controlEvent([.editingDidEndOnExit])
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.pushToSearchResultController(keyword: textField.text!)
             }).disposed(by: rx.disposeBag)
+        
         navigationItem.titleView = textField
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
@@ -65,9 +68,9 @@ class HotKeyController: BaseViewController {
             .bind(to: rx.networkError)
             .disposed(by: rx.disposeBag)
         
-        errorRetry.subscribe { _ in
-            viewModel.inputs.loadData()
-        }.disposed(by: rx.disposeBag)
+        errorRetry
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
     }
     
     private func tagLayout(hotKeys: [HotKey]) {
@@ -83,9 +86,25 @@ class HotKeyController: BaseViewController {
             button.layer.cornerRadius = 4
             button.layer.masksToBounds = true
             
+            /*
+            /// 原始版本
             button.rx.tap.subscribe { [weak self] _ in
                 self?.pushToSearchResultController(keyword: title)
             }.disposed(by: rx.disposeBag)
+            
+            /// 赋值为一个闭包传入,便于理解的版本
+            let function = pushToSearchResultController
+            button.rx.tap
+                .map { title }
+                .bind(onNext: function)
+                .disposed(by: rx.disposeBag)
+            */
+             
+            /// 直接将函数当作闭包直接传入
+            button.rx.tap
+                .map { title }
+                .bind(onNext: pushToSearchResultController)
+                .disposed(by: rx.disposeBag)
 
             
             let width = title.size(withFont: (button.titleLabel?.font)!).width + textPadding * 2

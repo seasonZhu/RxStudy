@@ -43,24 +43,19 @@ extension CoinRankListController {
         let viewModel = CoinRankViewModel()
 
         tableView.mj_header?.rx.refresh
-            .asDriver()
-            .drive(onNext: {
-                viewModel.inputs.loadData(actionType: .refresh)
-                
-            })
+            .map { ScrollViewActionType.refresh }
+            .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
 
         tableView.mj_footer?.rx.refresh
-            .asDriver()
-            .drive(onNext: {
-                viewModel.inputs.loadData(actionType: .loadMore)
-                
-            })
+            .map { ScrollViewActionType.loadMore }
+            .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
         
-        errorRetry.subscribe { _ in
-            viewModel.inputs.loadData(actionType: .refresh)
-        }.disposed(by: rx.disposeBag)
+        errorRetry
+            .map { ScrollViewActionType.refresh }
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
 
         /// 绑定数据
         viewModel.outputs.dataSource

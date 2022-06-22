@@ -53,10 +53,7 @@ extension TreeController {
         let viewModel = TreeViewModel(type: type)
         
         tableView.mj_header?.rx.refresh
-            .asDriver()
-            .drive(onNext: {
-                viewModel.inputs.loadData()
-            })
+            .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
 
         /// 绑定数据
@@ -81,9 +78,9 @@ extension TreeController {
             .bind(to: rx.networkError)
             .disposed(by: rx.disposeBag)
         
-        errorRetry.subscribe { _ in
-            viewModel.inputs.loadData()
-        }.disposed(by: rx.disposeBag)
+        errorRetry
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
     }
     
     private func tableViewSectionAndCellConfig(tabs: [Tab]) {

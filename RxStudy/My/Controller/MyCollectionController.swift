@@ -76,20 +76,14 @@ class MyCollectionController: BaseTableViewController {
         /// 问题在viewModel中对于
         /// 下拉做赋值运算self.dataSource.accept(datas),但是其他界面都是好的,就这一个出异常,还真是奇怪
         tableView.mj_header?.rx.refresh
-            .asDriver()
-            .drive(onNext: {
-                viewModel.inputs.loadData(actionType: .refresh)
-                
-            })
+            .map { ScrollViewActionType.refresh }
+            .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
 
         /// 上拉加载更多
         tableView.mj_footer?.rx.refresh
-            .asDriver()
-            .drive(onNext: {
-                viewModel.inputs.loadData(actionType: .loadMore)
-                
-            })
+            .map { ScrollViewActionType.loadMore }
+            .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
         
         /// cell删除
@@ -100,9 +94,10 @@ class MyCollectionController: BaseTableViewController {
             .disposed(by: rx.disposeBag)
 
         /// 错误重试
-        errorRetry.subscribe { _ in
-            viewModel.inputs.loadData(actionType: .refresh)
-        }.disposed(by: rx.disposeBag)
+        errorRetry
+            .map { ScrollViewActionType.refresh }
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
 
         /// 绑定数据
         viewModel.outputs.dataSource
