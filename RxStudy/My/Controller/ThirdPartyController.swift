@@ -39,10 +39,8 @@ class ThirdPartyController: BaseTableViewController {
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Acknow.self)
-            .subscribe(onNext: { [weak self] model in
-                guard let self = self else { return }
-                self.navigationController?.pushViewController(ThirdPartyDetailController(acknowledgement: model), animated: true)
-            })
+            .map { (ThirdPartyDetailController(acknowledgement: $0), true) }
+            .bind(onNext: navigationController!.pushViewController)
             .disposed(by: rx.disposeBag)
         
         dataSource

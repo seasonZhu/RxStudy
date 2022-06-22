@@ -86,26 +86,27 @@ class HotKeyController: BaseViewController {
             button.layer.cornerRadius = 4
             button.layer.masksToBounds = true
             
-            /*
+            
             /// 原始版本
             button.rx.tap.subscribe { [weak self] _ in
                 self?.pushToSearchResultController(keyword: title)
             }.disposed(by: rx.disposeBag)
             
+            /* 这种写法会导致循环引用
             /// 赋值为一个闭包传入,便于理解的版本
             let function = pushToSearchResultController
             button.rx.tap
                 .map { title }
                 .bind(onNext: function)
                 .disposed(by: rx.disposeBag)
-            */
+            
              
             /// 直接将函数当作闭包直接传入
             button.rx.tap
                 .map { title }
                 .bind(onNext: pushToSearchResultController)
                 .disposed(by: rx.disposeBag)
-
+             */
             
             let width = title.size(withFont: (button.titleLabel?.font)!).width + textPadding * 2
             return (button, width)

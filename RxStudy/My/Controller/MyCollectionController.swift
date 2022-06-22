@@ -88,9 +88,7 @@ class MyCollectionController: BaseTableViewController {
         
         /// cell删除
         tableView.rx.itemDeleted
-            .subscribe(onNext: { indexPath in
-                viewModel.inputs.unCollectAction(indexPath: indexPath)
-            })
+            .bind(onNext: viewModel.inputs.unCollectAction)
             .disposed(by: rx.disposeBag)
 
         /// 错误重试
