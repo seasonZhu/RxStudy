@@ -168,8 +168,8 @@ class WebViewController: BaseViewController {
                         }
 
                         let value = collectIds.contains(collectId)
-
-                        self.isContainsRelay.accept(value)
+                        
+                        self.collectionButton.isSelected = value
                     }
                 default:
                     break
@@ -180,16 +180,6 @@ class WebViewController: BaseViewController {
         isContainsRelay
             .bind(to: collectionButton.rx.isSelected)
             .disposed(by: rx.disposeBag)
-        
-//        isContainsRelay.subscribe { [weak self] event in
-//            switch event {
-//                
-//            case .next(let value):
-//                self?.collectionButton.isSelected = value
-//            default:
-//                break
-//            }
-//        }.disposed(by: rx.disposeBag)
 
         navigationItem.rightBarButtonItems = items.reversed()
         

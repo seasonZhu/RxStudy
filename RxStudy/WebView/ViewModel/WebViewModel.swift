@@ -14,9 +14,9 @@ import Moya
 
 class WebViewModel: BaseViewModel {
     
-    let collectRelay = BehaviorRelay(value: false)
+    let collectRelay = PublishRelay<Bool>()
     
-    let unCollectRelay = BehaviorRelay(value: false)
+    let unCollectRelay = PublishRelay<Bool>()
     
 }
 
