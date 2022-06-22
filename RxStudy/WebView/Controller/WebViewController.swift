@@ -74,7 +74,7 @@ class WebViewController: BaseViewController {
         return button
     }()
     
-    let isContains = BehaviorRelay(value: false)
+    let isContainsRelay = PublishRelay<Bool>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -129,16 +129,22 @@ class WebViewController: BaseViewController {
             guard let collectId = self?.getRealCollectId() else {
                 return
             }
-
-            self?.hasCollectAction.onNext(void)
-
-            if self?.isContains.value == true {
+            
+            guard let self = self else { return }
+            
+            /// 回调给上一个页面,做了操作,需要进行页面刷新
+            self.hasCollectAction.onNext(void)
+            
+            if self.collectionButton.isSelected {
                 /// 在这里说明是已经收藏过,取消收藏
                 vm.inputs.unCollectAction(collectId: collectId)
             } else {
                 /// 在这里说明是没有收藏过,进行收藏
                 vm.inputs.collectAction(collectId: collectId)
             }
+            
+            self.collectionButton.isSelected = !self.collectionButton.isSelected
+            
         }.disposed(by: rx.disposeBag)
 
         var items = [toShare]
@@ -163,7 +169,7 @@ class WebViewController: BaseViewController {
 
                         let value = collectIds.contains(collectId)
 
-                        self.isContains.accept(value)
+                        self.isContainsRelay.accept(value)
                     }
                 default:
                     break
@@ -171,19 +177,29 @@ class WebViewController: BaseViewController {
             }.disposed(by: rx.disposeBag)
         }
 
-        isContains
+        isContainsRelay
             .bind(to: collectionButton.rx.isSelected)
             .disposed(by: rx.disposeBag)
+        
+//        isContainsRelay.subscribe { [weak self] event in
+//            switch event {
+//                
+//            case .next(let value):
+//                self?.collectionButton.isSelected = value
+//            default:
+//                break
+//            }
+//        }.disposed(by: rx.disposeBag)
 
         navigationItem.rightBarButtonItems = items.reversed()
         
         vm.outputs.collectRelay
-            .bind(to: isContains)
+            .bind(to: isContainsRelay)
             .disposed(by: rx.disposeBag)
         
         vm.outputs.unCollectRelay
             .map { !$0 }
-            .bind(to: isContains)
+            .bind(to: isContainsRelay)
             .disposed(by: rx.disposeBag)
     }
     
