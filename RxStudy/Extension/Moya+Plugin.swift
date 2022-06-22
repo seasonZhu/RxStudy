@@ -18,7 +18,7 @@ extension TargetType {
         AccountManager.shared.isLoginRelay.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil
     }
 }
-
+         
 /// 可以认为是请求和响应的拦截器,这里做的是在请求时loading,请求完毕后结束loading
 class RequestLoadingPlugin: PluginType {
     

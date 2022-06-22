@@ -180,17 +180,17 @@ class RxSwiftCoinRankListViewModel {
     }
 }
 
-//MARK: -  Combine进行网络请求
+//MARK: -  Moya + Combine进行网络请求
 
 import Combine
 import CombineExt
 
-class CombineMyCoinViewModel {
+class CombineCoinRankListViewModel {
     var cancellable: AnyCancellable?
     
     func getMyCoinList(page: Int) {
-        cancellable = myProvider.requestPublisher(MyService.myCoinList((page)))
-            .map(BaseModel<Page<MyHistoryCoin>>.self)
+        cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
+            .map(BaseModel<Page<CoinRank>>.self)
             .map{ $0.data }
             .compactMap { $0 }
             /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。

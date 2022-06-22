@@ -14,6 +14,8 @@ import MBProgressHUD
 import SVProgressHUD
 
 class MyController: BaseTableViewController {
+    
+    let vm = CombineCoinRankListViewModel()
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,5 +106,11 @@ extension MyController {
         alertController.addAction(actionOK)
         
         present(alertController, animated: true, completion: nil)
+    }
+}
+
+extension MyController {
+    private func moya_combineHttpRequest() {
+        vm.getMyCoinList(page: 1)
     }
 }
