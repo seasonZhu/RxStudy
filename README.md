@@ -145,3 +145,23 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 [![Star History Chart](https://api.star-history.com/svg?repos=seasonZhu/RxStudy&type=Date)](https://star-history.com/#seasonZhu/RxStudy&Date)
 
 ## 开始尝试使用Combine做响应式编程
+
+## RxSwift6.5出现的bug
+
+在更新到RxSwift6.5后,发现WebViewController的收藏状态有异常,
+
+明明isContainsRelay我优化成为PublishRelay类型,并且只做了一次isContainsRelay.accept操作,但是subscribe却走了两次,而且没有收藏,第二次的值确实true.
+我回滚到RxSwift5.1版本,发现是好的,我觉得是RxSwift向上升级,导致的bug
+
+```
+        isContainsRelay.subscribe { [weak self] event in
+            switch event {
+                
+            case .next(let value):
+                self?.collectionButton.isSelected = value
+            default:
+                break
+            }
+        }.disposed(by: rx.disposeBag)
+
+```
