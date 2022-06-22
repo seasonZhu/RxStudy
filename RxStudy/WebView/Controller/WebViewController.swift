@@ -151,6 +151,10 @@ class WebViewController: BaseViewController {
 
         /// 非轮播的页面跳转进来才通过判断登录状态来看是否显示收藏页面
         if !isFromBanner {
+            
+            /// 这里其实使用let isLogin = AccountManager.shared.isLoginRelay.value去做判断在本App中也是可以的
+            /// 因为玩安卓App不存在被挤掉这种场景
+            /// 但是考虑到isLoginRelay应该是随着登录的状态变化而做出UI变化的,于是保留了subscribe
             AccountManager.shared.isLoginRelay.subscribe { [weak self] event in
                 guard let self = self else {
                     return
@@ -175,6 +179,23 @@ class WebViewController: BaseViewController {
                     break
                 }
             }.disposed(by: rx.disposeBag)
+            
+            /*
+             let isLogin = AccountManager.shared.isLoginRelay.value
+             if isLogin {
+                 let collection = UIBarButtonItem(customView: self.collectionButton)
+                 items.append(collection)
+
+                 guard let collectIds = AccountManager.shared.accountInfo?.collectIds,
+                       let collectId = self.getRealCollectId() else {
+                     return
+                 }
+
+                 let value = collectIds.contains(collectId)
+                 
+                 self.collectionButton.isSelected = value
+             }
+             */
         }
 
         isContainsRelay
