@@ -24,7 +24,7 @@ class MyController: BaseTableViewController {
     }
     
     private func setupUI() {
-        tableView.mj_header = nil
+        //tableView.mj_header = nil
         tableView.mj_footer = nil
         
         tableView.emptyDataSetSource = nil
@@ -36,6 +36,10 @@ class MyController: BaseTableViewController {
         tableView.tableHeaderView = myView
         
         let viewModel = MyViewModel()
+        
+        tableView.mj_header?.rx.refresh
+            .bind(onNext: viewModel.inputs.getMyCoin)
+            .disposed(by: rx.disposeBag)
 
         viewModel.outputs.currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
@@ -49,6 +53,11 @@ class MyController: BaseTableViewController {
         
         viewModel.outputs.myCoin
             .bind(to: myView.rx.myInfo)
+            .disposed(by: rx.disposeBag)
+        
+        /// 下拉与上拉状态绑定到tableView
+        viewModel.outputs.refreshSubject
+            .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
         /// 这里相当于重写

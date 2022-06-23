@@ -18,6 +18,8 @@ class MyViewModel: BaseViewModel {
     
     let myCoin = BehaviorRelay<CoinRank?>(value: nil)
     
+    let refreshSubject = PublishSubject<MJRefreshAction>()
+    
     override init() {
         super.init()
         /// 单例的myCoin与VM的myCoin进行绑定
@@ -34,10 +36,22 @@ class MyViewModel: BaseViewModel {
 }
 
 extension MyViewModel {
-    func getMyCoin() -> Single<BaseModel<CoinRank>> {
-        return myProvider.rx.request(MyService.userCoinInfo)
+    func getMyCoin() {
+        myProvider.rx.request(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
-
+            .map{ $0.data }
+            .compactMap{ $0 }
+            .asObservable()
+            .asSingle()
+            .subscribe { event in
+                self.refreshSubject.onNext(.stopRefresh)
+                switch event {
+                case .success(let myCoin):
+                    self.myCoin.accept(myCoin)
+                case .failure:
+                    self.myCoin.accept(nil)
+                }
+            }.disposed(by: disposeBag)
     }
     
     func logout() -> Single<BaseModel<String>> {
