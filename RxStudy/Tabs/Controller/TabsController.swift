@@ -16,9 +16,9 @@ class TabsController: BaseViewController {
     
     private let type: TagType
     
-    private lazy var segmentedDataSource: JXSegmentedTitleDataSource = JXSegmentedTitleDataSource()
+    private lazy var segmentedDataSource = JXSegmentedTitleDataSource()
     
-    private lazy var segmentedView: JXSegmentedView = JXSegmentedView()
+    private lazy var segmentedView = JXSegmentedView()
     
     /// 存储点击tag导致的刷新
     private var tagSelectRefreshIndexs: Set<Int> = []
@@ -47,6 +47,9 @@ extension TabsController {
         title = type.title
         view.backgroundColor = .playAndroidBg
         
+        //1、segmentedView已经懒加载了
+        
+        //2、数据源配置
         //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedDataSource.isTitleColorGradientEnabled = true
         segmentedDataSource.titleNormalColor = .playAndroidTitle
@@ -63,7 +66,13 @@ extension TabsController {
         //4、配置JXSegmentedView的属性
         segmentedView.delegate = self
         segmentedView.backgroundColor = .playAndroidBg
+        
         view.addSubview(segmentedView)
+        segmentedView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(kTopMargin)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(44)
+        }
 
         //5、初始化contentScrollView
         contentScrollView = UIScrollView()
@@ -75,7 +84,8 @@ extension TabsController {
         //禁用automaticallyInset
         contentScrollView.contentInsetAdjustmentBehavior = .never
         
-        contentScrollView.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        contentScrollView.rx.setDelegate(self)
+            .disposed(by: rx.disposeBag)
         
         /// 之前这里使用的代理是didScroll,只有滑动就触发,实际上和ViewController中的pan一样,需要的是仅触发一次的回调,这样再进行边界判断进而滑动切tab的操作
         contentScrollView.rx.willEndDragging.subscribe { [weak self] _ in
@@ -117,13 +127,6 @@ extension TabsController {
 
         //6、将contentScrollView和segmentedView.contentScrollView进行关联
         segmentedView.contentScrollView = contentScrollView
-        
-        segmentedView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(kTopMargin)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(44)
-        }
-        
         contentScrollView.snp.makeConstraints { make in
             make.top.equalTo(segmentedView.snp.bottom)
             make.leading.trailing.equalToSuperview()
