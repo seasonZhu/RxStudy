@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum TagType {
     case project
@@ -39,6 +40,14 @@ extension TagType {
             return 0
         case .course:
             return 0
+        }
+    }
+    
+    var bottomOffset: CGFloat {
+        if self == .course {
+            return 0
+        } else {
+            return -kBottomMargin
         }
     }
 }

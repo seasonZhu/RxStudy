@@ -143,7 +143,7 @@ extension TabsController {
         contentScrollView.snp.makeConstraints { make in
             make.top.equalTo(segmentedView.snp.bottom)
             make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view).offset(-kBottomMargin)
+            make.bottom.equalTo(view).offset(type.bottomOffset)
         }
 
         requestData()
