@@ -91,7 +91,11 @@ extension Api {
         static let collectArticle = "lg/collect/"
 
         static let unCollectArticle = "lg/uncollect_originId/"
-        
+    }
+}
+
+extension Api {
+    enum Other {
         static let tools = "tools/list/json"
     }
 }

@@ -26,6 +26,13 @@ class ToolController: BaseTableViewController {
         title = "工具列表"
         
         tableView.mj_footer = nil
+        
+        tableView.rx.modelSelected(Tool.self)
+            .subscribe(onNext: { [weak self] model in
+                guard let self = self else { return }
+                self.pushToWebViewController(webLoadInfo: model)
+            })
+            .disposed(by: rx.disposeBag)
                 
         let viewModel = ToolViewModel()
 
@@ -43,7 +50,7 @@ class ToolController: BaseTableViewController {
             .drive(tableView.rx.items) { (tableView, row, myHistoryCoin) in
 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
-                cell.textLabel?.text = myHistoryCoin.name
+                cell.textLabel?.text = myHistoryCoin.title
                 cell.detailTextLabel?.text = myHistoryCoin.desc
                 return cell
             }

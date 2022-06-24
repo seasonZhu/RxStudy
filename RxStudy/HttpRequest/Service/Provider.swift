@@ -73,5 +73,8 @@ let treeProvider = MoyaProvider<TreeService>(plugins: plugins)
 /// 账号
 let accountProvider = MoyaProvider<AccountService>(plugins: plugins)
 
+/// 其他
+let otherProvider = MoyaProvider<OtherService>(plugins: plugins)
+
 /// 假数据业务
 let fakeProvider = MoyaProvider<HomeService>(stubClosure: MoyaProvider<HomeService>.immediatelyStub, plugins: plugins)

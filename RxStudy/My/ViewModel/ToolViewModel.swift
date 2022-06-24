@@ -28,7 +28,7 @@ class ToolViewModel: BaseViewModel {
 //MARK: - 网络请求
 private extension ToolViewModel {
     func requestData() {
-        myProvider.rx.request(MyService.tools)
+        otherProvider.rx.request(OtherService.tools)
             .map(BaseModel<[Tool]>.self)
             .map{ $0.data }
             /// 去掉其中为nil的值

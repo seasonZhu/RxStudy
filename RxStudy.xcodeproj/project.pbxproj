@@ -32,6 +32,7 @@
 		00CCD16B2865553F00925C1E /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16A2865553F00925C1E /* Tool.swift */; };
 		00CCD16D286555BC00925C1E /* ToolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16C286555BC00925C1E /* ToolController.swift */; };
 		00CCD16F2865568200925C1E /* ToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16E2865568200925C1E /* ToolViewModel.swift */; };
+		00CCD1712865857300925C1E /* OtherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1702865857300925C1E /* OtherService.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
 		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
@@ -163,6 +164,7 @@
 		00CCD16A2865553F00925C1E /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		00CCD16C286555BC00925C1E /* ToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolController.swift; sourceTree = "<group>"; };
 		00CCD16E2865568200925C1E /* ToolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolViewModel.swift; sourceTree = "<group>"; };
+		00CCD1702865857300925C1E /* OtherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherService.swift; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -442,6 +444,7 @@
 				61F2823B265F3D44009E16C9 /* PublicNumberService.swift */,
 				61F2823D265F3FAD009E16C9 /* TreeService.swift */,
 				6171E19A266611650065C34D /* AccountService.swift */,
+				00CCD1702865857300925C1E /* OtherService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -964,6 +967,7 @@
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
+				00CCD1712865857300925C1E /* OtherService.swift in Sources */,
 				61B44A4126B79CA500791859 /* Transform.swift in Sources */,
 				00CCD16D286555BC00925C1E /* ToolController.swift in Sources */,
 				0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */,
