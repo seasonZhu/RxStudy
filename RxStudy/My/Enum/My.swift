@@ -14,6 +14,7 @@ enum My: CaseIterable {
     case myGitHub
     case myJueJin
     case tools
+    case course
     case myCoin
     case myCollect
     case login
@@ -34,6 +35,8 @@ extension My {
             string = "作者的掘金"
         case .tools:
             string = "工具列表"
+        case .course:
+            string = "教程"
         case .myCoin:
             string = "我的积分"
         case .myCollect:
@@ -63,6 +66,8 @@ extension My {
             string = "MyJueJinController"
         case .tools:
             string = "ToolController"
+        case .course:
+            string = "TabsController"
         case .myCoin:
             string = "MyCoinController"
         case .myCollect:

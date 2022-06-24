@@ -51,6 +51,8 @@ private extension TabsViewModel {
             result = publicNumberProvider.rx.request(PublicNumberService.tags)
         case .tree:
             result = treeProvider.rx.request(TreeService.tags)
+        case .course:
+            result = courseProvider.rx.request(CourseService.tags)
         }
         
         result

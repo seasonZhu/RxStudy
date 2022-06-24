@@ -32,6 +32,10 @@ class TabsController: BaseViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
+    convenience init() {
+        self.init(type: .course)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -98,6 +102,15 @@ extension TabsController {
                 return
             }
             
+            /// 对教程需要做特殊处理
+            if self.type == .course {
+                if scrollView.contentOffset.x < 0 {
+                    self.navigationController?.popViewController(animated: true)
+                }
+                return
+            }
+            
+            /// 在UITabViewController的处理
             var driver: Driver<ViewController.Direction>?
             
             /// 最左边

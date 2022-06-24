@@ -20,3 +20,5 @@ struct Tab : Codable {
     let visible : Int?
 
 }
+
+extension Tab: TabAble {}

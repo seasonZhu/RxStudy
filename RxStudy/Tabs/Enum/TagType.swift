@@ -12,6 +12,7 @@ enum TagType {
     case project
     case publicNumber
     case tree
+    case course
 }
 
 extension TagType {
@@ -23,6 +24,8 @@ extension TagType {
             return "公众号"
         case .tree:
             return "体系"
+        case .course:
+            return "教程"
         }
     }
     
@@ -33,6 +36,8 @@ extension TagType {
         case .publicNumber:
             return 1
         case .tree:
+            return 0
+        case .course:
             return 0
         }
     }

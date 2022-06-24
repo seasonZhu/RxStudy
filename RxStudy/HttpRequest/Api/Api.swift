@@ -12,6 +12,8 @@ enum Api {
     /// baseUrl
     static let baseUrl = "https://www.wanandroid.com/"
     
+    static let courseBaseUrl = "https://wanandroid.com"
+    
     /// 以下Api是没有实现的
     
     /// 常用网站
@@ -97,5 +99,14 @@ extension Api {
 extension Api {
     enum Other {
         static let tools = "tools/list/json"
+
+    }
+}
+
+extension Api {
+    enum Course {
+        static let tags = "chapter/547/sublist/json"
+        
+        static let tagList = "article/list/"
     }
 }

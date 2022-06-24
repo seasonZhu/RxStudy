@@ -33,6 +33,9 @@
 		00CCD16D286555BC00925C1E /* ToolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16C286555BC00925C1E /* ToolController.swift */; };
 		00CCD16F2865568200925C1E /* ToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16E2865568200925C1E /* ToolViewModel.swift */; };
 		00CCD1712865857300925C1E /* OtherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1702865857300925C1E /* OtherService.swift */; };
+		00CCD173286588D400925C1E /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD172286588D400925C1E /* Course.swift */; };
+		00CCD17528658E0C00925C1E /* TabAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD17428658E0C00925C1E /* TabAble.swift */; };
+		00CCD177286590C900925C1E /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD176286590C900925C1E /* CourseService.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
 		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
@@ -165,6 +168,9 @@
 		00CCD16C286555BC00925C1E /* ToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolController.swift; sourceTree = "<group>"; };
 		00CCD16E2865568200925C1E /* ToolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolViewModel.swift; sourceTree = "<group>"; };
 		00CCD1702865857300925C1E /* OtherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherService.swift; sourceTree = "<group>"; };
+		00CCD172286588D400925C1E /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
+		00CCD17428658E0C00925C1E /* TabAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabAble.swift; sourceTree = "<group>"; };
+		00CCD176286590C900925C1E /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -425,11 +431,13 @@
 				61336C742656443A00FDEB2A /* Banner.swift */,
 				61336C802656667900FDEB2A /* Info.swift */,
 				61336C8426574E0500FDEB2A /* CoinRank.swift */,
+				00CCD17428658E0C00925C1E /* TabAble.swift */,
 				61CE1D98265E53EE0039E288 /* Tab.swift */,
 				611E2E0726607929001585AE /* HotKey.swift */,
 				6171E19C266615850065C34D /* AccountInfo.swift */,
 				61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */,
 				00CCD16A2865553F00925C1E /* Tool.swift */,
+				00CCD172286588D400925C1E /* Course.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -445,6 +453,7 @@
 				61F2823D265F3FAD009E16C9 /* TreeService.swift */,
 				6171E19A266611650065C34D /* AccountService.swift */,
 				00CCD1702865857300925C1E /* OtherService.swift */,
+				00CCD176286590C900925C1E /* CourseService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1010,11 +1019,13 @@
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
+				00CCD173286588D400925C1E /* Course.swift in Sources */,
 				6171E18F2665D4190065C34D /* MyController.swift in Sources */,
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
+				00CCD177286590C900925C1E /* CourseService.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
 				00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */,
 				616EC970269E822E008FAFDF /* HUD.swift in Sources */,
@@ -1033,6 +1044,7 @@
 				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
 				000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */,
 				61CE1D99265E53EE0039E288 /* Tab.swift in Sources */,
+				00CCD17528658E0C00925C1E /* TabAble.swift in Sources */,
 				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
