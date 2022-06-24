@@ -25,6 +25,8 @@ class BaseTableViewController: BaseViewController {
     /// 所以下面的代码对其订阅,首先会发出默认值false,表名一开始是有值的,所以被拦住,当变为true时,就走到if noContent的逻辑中
     
     let isEmptyRelay = BehaviorRelay(value: false)
+    
+    static let allClass: [NSObject.Type] = [UITableViewCell.self, InfoViewCell.self, InfoCell.self, LogoutCell.self]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +36,7 @@ class BaseTableViewController: BaseViewController {
     private func setupTableView() {
         
         /// 注册Cell之后,就可以直接在数据源中进行强制与复用,而不用再写if 与 else了
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
-        tableView.register(InfoViewCell.self, forCellReuseIdentifier: InfoViewCell.className)
-        tableView.register(InfoCell.self, forCellReuseIdentifier: InfoCell.className)
+        let _ = BaseTableViewController.allClass.map { tableView.register($0, forCellReuseIdentifier: $0.className) }
         
         /// 设置tableFooterView
         tableView.tableFooterView = UIView()
