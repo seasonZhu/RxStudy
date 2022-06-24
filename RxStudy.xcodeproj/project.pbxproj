@@ -37,6 +37,11 @@
 		00CCD17528658E0C00925C1E /* TabAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD17428658E0C00925C1E /* TabAble.swift */; };
 		00CCD177286590C900925C1E /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD176286590C900925C1E /* CourseService.swift */; };
 		00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1782865ACA300925C1E /* LogoutCell.swift */; };
+		00CCD17B2865BDB300925C1E /* Message.json in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD17A2865BDB300925C1E /* Message.json */; };
+		00CCD17D2865BDE300925C1E /* MessageCount.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD17C2865BDE300925C1E /* MessageCount.json */; };
+		00CCD17F2865BE0F00925C1E /* Tools.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD17E2865BE0F00925C1E /* Tools.json */; };
+		00CCD1812865BE5100925C1E /* CourseDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD1802865BE5100925C1E /* CourseDetail.json */; };
+		00CCD1832865BE9100925C1E /* Course.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD1822865BE9100925C1E /* Course.json */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
 		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
@@ -173,6 +178,11 @@
 		00CCD17428658E0C00925C1E /* TabAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabAble.swift; sourceTree = "<group>"; };
 		00CCD176286590C900925C1E /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
 		00CCD1782865ACA300925C1E /* LogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
+		00CCD17A2865BDB300925C1E /* Message.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Message.json; sourceTree = "<group>"; };
+		00CCD17C2865BDE300925C1E /* MessageCount.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MessageCount.json; sourceTree = "<group>"; };
+		00CCD17E2865BE0F00925C1E /* Tools.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Tools.json; sourceTree = "<group>"; };
+		00CCD1802865BE5100925C1E /* CourseDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CourseDetail.json; sourceTree = "<group>"; };
+		00CCD1822865BE9100925C1E /* Course.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Course.json; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -694,6 +704,11 @@
 				61BB7C56267A057700990636 /* HotKey.json */,
 				61BB7C57267A057700990636 /* ProjectClassifyList.json */,
 				61BB7C58267A057700990636 /* Tree.json */,
+				00CCD17E2865BE0F00925C1E /* Tools.json */,
+				00CCD1822865BE9100925C1E /* Course.json */,
+				00CCD1802865BE5100925C1E /* CourseDetail.json */,
+				00CCD17A2865BDB300925C1E /* Message.json */,
+				00CCD17C2865BDE300925C1E /* MessageCount.json */,
 			);
 			path = JSONS;
 			sourceTree = SOURCE_ROOT;
@@ -872,6 +887,7 @@
 				61BB7C63267A057700990636 /* PublicNumberList.json in Resources */,
 				612DBF66220022BE007F73CC /* LaunchScreen.storyboard in Resources */,
 				612DBF63220022BE007F73CC /* Assets.xcassets in Resources */,
+				00CCD17F2865BE0F00925C1E /* Tools.json in Resources */,
 				008598BF27B4E0DA003E9EF7 /* InfoPlist.strings in Resources */,
 				6114ABEF267AD6CD0082BA67 /* MyCoin.json in Resources */,
 				61BB7C69267A057700990636 /* Tree.json in Resources */,
@@ -891,7 +907,10 @@
 				61BB7C59267A057700990636 /* Logout.json in Resources */,
 				61BB7C67267A057700990636 /* HotKey.json in Resources */,
 				61BB7C5F267A057700990636 /* Banner.json in Resources */,
+				00CCD1812865BE5100925C1E /* CourseDetail.json in Resources */,
+				00CCD17D2865BDE300925C1E /* MessageCount.json in Resources */,
 				61BB7C64267A057700990636 /* SearchResult.json in Resources */,
+				00CCD1832865BE9100925C1E /* Course.json in Resources */,
 				61BB7C5D267A057700990636 /* RankList.json in Resources */,
 				000D937326DCAC190099A749 /* open.js in Resources */,
 				0048E6D6277AB21F00F6C739 /* appStore.js in Resources */,
@@ -994,6 +1013,7 @@
 				61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				0038326826F5821E0071EE7E /* InfoCell.swift in Sources */,
+				00CCD17B2865BDB300925C1E /* Message.json in Sources */,
 				00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
 				61B539002678863A00EEFE1F /* My.swift in Sources */,
