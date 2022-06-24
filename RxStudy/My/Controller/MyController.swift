@@ -15,11 +15,12 @@ import SVProgressHUD
 
 class MyController: BaseTableViewController {
     
-    let vm = CombineCoinRankListViewModel()
+    let combineVM = CombineCoinRankListViewModel()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        /// 将自动登录放在AppDelegate中的didFinishLaunchingWithOptions中,加快获取数据,getMyCoin这个接口返回数据是有点慢
         //AccountManager.shared.autoLogin()
     }
     
@@ -120,6 +121,6 @@ extension MyController {
 
 extension MyController {
     private func moya_combineHttpRequest() {
-        vm.getMyCoinList(page: 1)
+        combineVM.getMyCoinList(page: 1)
     }
 }

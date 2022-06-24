@@ -17,6 +17,7 @@ enum MyService {
     case collectArticleList(_ page: Int)
     case collectArticle(_ collectId: Int)
     case unCollectArticle(_ collectId: Int)
+    case tools
 }
 
 extension MyService: TargetType {
@@ -38,12 +39,14 @@ extension MyService: TargetType {
             return Api.My.collectArticle + collectId.toString + "/json"
         case .unCollectArticle(let collectId):
             return Api.My.unCollectArticle + collectId.toString + "/json"
+        case .tools:
+            return Api.My.tools
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList:
+        case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList, .tools:
             return .get
         case .collectArticle, .unCollectArticle:
             return .post

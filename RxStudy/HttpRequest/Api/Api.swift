@@ -91,5 +91,7 @@ extension Api {
         static let collectArticle = "lg/collect/"
 
         static let unCollectArticle = "lg/uncollect_originId/"
+        
+        static let tools = "tools/list/json"
     }
 }

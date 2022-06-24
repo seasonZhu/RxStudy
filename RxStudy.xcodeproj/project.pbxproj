@@ -29,6 +29,9 @@
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
 		00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */; };
 		00CC8000283B8A4400E92A6C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */; };
+		00CCD16B2865553F00925C1E /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16A2865553F00925C1E /* Tool.swift */; };
+		00CCD16D286555BC00925C1E /* ToolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16C286555BC00925C1E /* ToolController.swift */; };
+		00CCD16F2865568200925C1E /* ToolViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16E2865568200925C1E /* ToolViewModel.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
 		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
@@ -157,6 +160,9 @@
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
 		00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
+		00CCD16A2865553F00925C1E /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		00CCD16C286555BC00925C1E /* ToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolController.swift; sourceTree = "<group>"; };
+		00CCD16E2865568200925C1E /* ToolViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolViewModel.swift; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -421,6 +427,7 @@
 				611E2E0726607929001585AE /* HotKey.swift */,
 				6171E19C266615850065C34D /* AccountInfo.swift */,
 				61B5390126789F4D00EEFE1F /* MyHistoryCoin.swift */,
+				00CCD16A2865553F00925C1E /* Tool.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -494,6 +501,7 @@
 				61BB7C452679C4F800990636 /* MyViewModel.swift */,
 				61B7994F268190F40025EADE /* MyCoinViewModel.swift */,
 				61B79951268193D00025EADE /* MyCollectionViewModel.swift */,
+				00CCD16E2865568200925C1E /* ToolViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -687,6 +695,7 @@
 				6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */,
 				0048E6CD277AAB1900F6C739 /* MyJueJinController.swift */,
 				0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */,
+				00CCD16C286555BC00925C1E /* ToolController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -956,6 +965,7 @@
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
 				61B44A4126B79CA500791859 /* Transform.swift in Sources */,
+				00CCD16D286555BC00925C1E /* ToolController.swift in Sources */,
 				0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */,
 				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
@@ -992,6 +1002,7 @@
 				61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */,
 				6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */,
 				6164F0FF268F053000CD43DF /* MyBaseWebViewController.swift in Sources */,
+				00CCD16F2865568200925C1E /* ToolViewModel.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
@@ -1026,6 +1037,7 @@
 				611E2E10266096EA001585AE /* String+Extension.swift in Sources */,
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
+				00CCD16B2865553F00925C1E /* Tool.swift in Sources */,
 				6171E1982665FE570065C34D /* Constant.swift in Sources */,
 				6114ABF9267AED660082BA67 /* MyCollectionController.swift in Sources */,
 				61B799542681B5760025EADE /* WebViewModel.swift in Sources */,

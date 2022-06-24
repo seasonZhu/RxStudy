@@ -61,7 +61,7 @@ extension MyViewModel {
 }
 
 extension MyViewModel {
-    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .ranking, .login]
+    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .ranking, .login]
     
-    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .ranking, .myCoin, .myCollect, .logout]
+    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .ranking, .myCoin, .myCollect, .logout]
 }
