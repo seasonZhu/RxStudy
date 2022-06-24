@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import MBProgressHUD
 import SVProgressHUD
+import MJRefresh
 
 class MyController: BaseTableViewController {
     
@@ -25,7 +26,20 @@ class MyController: BaseTableViewController {
     }
     
     private func setupUI() {
-        //tableView.mj_header = nil
+        AccountManager.shared.isLoginRelay.subscribe { [weak self] event in
+            switch event {
+                
+            case .next(let value):
+                if value {
+                    self?.tableView.mj_header = MJRefreshNormalHeader()
+                } else {
+                    self?.tableView.mj_header = nil
+                }
+            default:
+                break
+            }
+        }.disposed(by: rx.disposeBag)
+        
         tableView.mj_footer = nil
         
         tableView.emptyDataSetSource = nil
@@ -44,11 +58,17 @@ class MyController: BaseTableViewController {
 
         viewModel.outputs.currentDataSource.asDriver()
             .drive(tableView.rx.items) { (tableView, row, my) in
-                let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
-                cell.textLabel?.text = my.title
-                cell.accessoryType = my.accessoryType
-                my.layout(cell)
-                return cell
+                if my == .logout {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: LogoutCell.className) as! LogoutCell
+                    cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                    cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
+                    return cell
+                }
             }
             .disposed(by: rx.disposeBag)
         

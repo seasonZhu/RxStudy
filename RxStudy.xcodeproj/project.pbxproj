@@ -36,6 +36,7 @@
 		00CCD173286588D400925C1E /* Course.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD172286588D400925C1E /* Course.swift */; };
 		00CCD17528658E0C00925C1E /* TabAble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD17428658E0C00925C1E /* TabAble.swift */; };
 		00CCD177286590C900925C1E /* CourseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD176286590C900925C1E /* CourseService.swift */; };
+		00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1782865ACA300925C1E /* LogoutCell.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
 		611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611471CB26B106AC00E298F5 /* UIColor+Extension.swift */; };
@@ -171,6 +172,7 @@
 		00CCD172286588D400925C1E /* Course.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		00CCD17428658E0C00925C1E /* TabAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabAble.swift; sourceTree = "<group>"; };
 		00CCD176286590C900925C1E /* CourseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
+		00CCD1782865ACA300925C1E /* LogoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
 		6109341026B2749C0079A597 /* RxSwiftStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxSwiftStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -522,6 +524,7 @@
 			isa = PBXGroup;
 			children = (
 				6114ABF4267ADF6E0082BA67 /* MyView.swift */,
+				00CCD1782865ACA300925C1E /* LogoutCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1049,6 +1052,7 @@
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
+				00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */,
 				611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */,
 				611E2E10266096EA001585AE /* String+Extension.swift in Sources */,
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,

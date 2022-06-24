@@ -91,16 +91,4 @@ extension My {
             return .disclosureIndicator
         }
     }
-    
-    var layout: (UITableViewCell) -> Void {
-        return { cell in
-            if self == .logout {
-                cell.textLabel?.textAlignment = .center
-                cell.textLabel?.snp.makeConstraints { make in
-                    make.edges.equalTo(cell)
-                }
-            }
-            
-        }
-    }
 }
