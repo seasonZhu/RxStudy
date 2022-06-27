@@ -106,7 +106,9 @@ extension Api {
 extension Api {
     enum Other {
         static let tools = "tools/list/json"
-
+        
+        /// 问答和工具在数据结构与页面样式一模一样,所以就不再不停的重复写了
+        static let questionAndAnswer = "wenda/list/"
     }
 }
 

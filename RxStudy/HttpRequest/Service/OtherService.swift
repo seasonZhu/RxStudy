@@ -12,6 +12,8 @@ import Moya
 
 enum OtherService {
     case tools
+    
+    case questionAndAnswer(_ page: Int)
 }
 
 extension OtherService: TargetType {
@@ -23,6 +25,8 @@ extension OtherService: TargetType {
         switch self {
         case .tools:
             return Api.Other.tools
+        case .questionAndAnswer(let page):
+            return Api.Other.questionAndAnswer + page.toString + "/json"
         }
     }
     
@@ -35,10 +39,7 @@ extension OtherService: TargetType {
     }
     
     var task: Task {
-        switch self {
-        case .tools:
-            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
-        }
+        return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
         
     }
     
