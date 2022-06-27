@@ -64,9 +64,8 @@ extension MyMessageController {
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, message) in
                 
-                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell
-                cell.textLabel?.text = message.message
-                //cell.info = info
+                let cell = tableView.dequeueReusableCell(withIdentifier: MessageContentCell.className) as! MessageContentCell
+                cell.message = message
                 return cell
             }
             .disposed(by: rx.disposeBag)

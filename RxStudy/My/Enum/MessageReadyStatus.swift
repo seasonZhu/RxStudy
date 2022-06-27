@@ -34,7 +34,7 @@ extension MessageReadyStatus {
         case .unread:
             return "我的未读站内消息"
         case .read:
-            return "我的已读站内消息"
+            return "我的全部站内消息"
         }
     }
 }

@@ -18,6 +18,7 @@
 		0048E6D0277AAB6000F6C739 /* MyGitHubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */; };
 		0048E6D6277AB21F00F6C739 /* appStore.js in Resources */ = {isa = PBXBuildFile; fileRef = 0048E6D5277AB21F00F6C739 /* appStore.js */; };
 		0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */; };
+		0059B4C828699743006C22D7 /* MessageContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0059B4C728699743006C22D7 /* MessageContentCell.swift */; };
 		005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */; };
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
@@ -163,6 +164,7 @@
 		0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGitHubController.swift; sourceTree = "<group>"; };
 		0048E6D5277AB21F00F6C739 /* appStore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = appStore.js; sourceTree = "<group>"; };
 		0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebView+Extension.swift"; sourceTree = "<group>"; };
+		0059B4C728699743006C22D7 /* MessageContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContentCell.swift; sourceTree = "<group>"; };
 		005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandlerType.swift; sourceTree = "<group>"; };
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
@@ -548,6 +550,7 @@
 				6114ABF4267ADF6E0082BA67 /* MyView.swift */,
 				00CCD1782865ACA300925C1E /* LogoutCell.swift */,
 				00FE0DDD28694D6500B9D48F /* MessageCell.swift */,
+				0059B4C728699743006C22D7 /* MessageContentCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1054,6 +1057,7 @@
 				6186948D267C4DBC0086F051 /* MJRefresh+RxSwift.swift in Sources */,
 				61336C8526574E0500FDEB2A /* CoinRank.swift in Sources */,
 				61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */,
+				0059B4C828699743006C22D7 /* MessageContentCell.swift in Sources */,
 				6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */,
 				00FE0DDE28694D6500B9D48F /* MessageCell.swift in Sources */,
 				6164F0FF268F053000CD43DF /* MyBaseWebViewController.swift in Sources */,
