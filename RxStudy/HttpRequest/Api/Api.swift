@@ -12,7 +12,8 @@ enum Api {
     /// baseUrl
     static let baseUrl = "https://www.wanandroid.com/"
     
-    static let courseBaseUrl = "https://wanandroid.com"
+    /// 新的baseUrl,目前感觉两个都在同时使用
+    static let newBaseUrl = "https://wanandroid.com/"
     
     /// 以下Api是没有实现的
     
@@ -93,6 +94,12 @@ extension Api {
         static let collectArticle = "lg/collect/"
 
         static let unCollectArticle = "lg/uncollect_originId/"
+        
+        static let unreadCount = "message/lg/count_unread/json"
+        
+        static let unreadList = "message/lg/unread_list/"
+        
+        static let readList = "message/lg/readed_list/"
     }
 }
 

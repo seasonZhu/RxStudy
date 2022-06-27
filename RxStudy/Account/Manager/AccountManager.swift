@@ -34,6 +34,8 @@ final class AccountManager {
     /// 这个是尝试在一个接口调用另一个接口获取的模型
     let myCoin = BehaviorRelay<CoinRank?>(value: nil)
     
+    let myMessageCount = PublishRelay<Int>()
+    
 }
 
 extension AccountManager {
@@ -143,24 +145,46 @@ extension AccountManager {
             .retry(2)
             .map(BaseModel<AccountInfo>.self)
             .asObservable()
-            .flatMapLatest { (baseModel) -> Observable<CoinRank> in
+            .flatMapLatest { (baseModel) -> Single<(CoinRank, Int)> in
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
                 }
-                return myProvider.rx.request(MyService.userCoinInfo)
-                    .map(BaseModel<CoinRank>.self)
-                    .map{ $0.data }
-                    .compactMap{ $0 }.asObservable()
-            }.asSingle()
+                return Single.zip(self.getMyCoin(), self.getMyUnreadMessageCount())
+            }
+            .asSingle()
             .subscribe { event in
                 switch event {
-                case .success(let myCoin):
+                case .success((let myCoin, let count)):
+     
                     self.myCoin.accept(myCoin)
-                case .failure:
+                    self.myMessageCount.accept(count)
+                    
+                case .failure(_):
                     self.myCoin.accept(nil)
                 }
                 completion?()
             }.disposed(by: disposeBag)
+    }
+}
+
+extension AccountManager {
+    
+    private func getMyCoin() -> Single<CoinRank> {
+        myProvider.rx.request(MyService.userCoinInfo)
+            .map(BaseModel<CoinRank>.self)
+            .map{ $0.data }
+            .compactMap{ $0 }
+            .asObservable()
+            .asSingle()
+    }
+    
+    private func getMyUnreadMessageCount()  -> Single<Int> {
+        myProvider.rx.request(MyService.unreadCount)
+            .map(BaseModel<Int>.self)
+            .map{ $0.data }
+            .compactMap{ $0 }
+            .asObservable()
+            .asSingle()
     }
 }
 

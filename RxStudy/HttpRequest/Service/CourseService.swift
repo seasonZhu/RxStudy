@@ -21,7 +21,7 @@ extension CourseService: TargetType {
         case .tags:
             return URL(string: Api.baseUrl)!
         case .tagList:
-            return URL(string: Api.courseBaseUrl)!
+            return URL(string: Api.newBaseUrl)!
         }
         
     }

@@ -17,11 +17,14 @@ enum MyService {
     case collectArticleList(_ page: Int)
     case collectArticle(_ collectId: Int)
     case unCollectArticle(_ collectId: Int)
+    case unreadCount
+    case unreadList(_ page: Int)
+    case readList(_ page: Int)
 }
 
 extension MyService: TargetType {
     var baseURL: URL {
-        return URL(string: Api.baseUrl)!
+        return URL(string: Api.baseUrl)!        
     }
     
     var path: String {
@@ -38,12 +41,18 @@ extension MyService: TargetType {
             return Api.My.collectArticle + collectId.toString + "/json"
         case .unCollectArticle(let collectId):
             return Api.My.unCollectArticle + collectId.toString + "/json"
+        case .unreadCount:
+            return Api.My.unreadCount
+        case .unreadList(let page):
+            return Api.My.unreadList + page.toString + "/json"
+        case .readList(let page):
+            return Api.My.readList + page.toString + "/json"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList:
+        case .coinRank, .userCoinInfo, .myCoinList, .collectArticleList, .unreadCount, .unreadList, .readList:
             return .get
         case .collectArticle, .unCollectArticle:
             return .post

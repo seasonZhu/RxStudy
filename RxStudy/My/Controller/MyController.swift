@@ -53,7 +53,7 @@ class MyController: BaseTableViewController {
         let viewModel = MyViewModel()
         
         tableView.mj_header?.rx.refresh
-            .bind(onNext: viewModel.inputs.getMyCoin)
+            .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
 
         viewModel.outputs.currentDataSource.asDriver()

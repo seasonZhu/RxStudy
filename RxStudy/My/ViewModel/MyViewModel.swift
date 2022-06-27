@@ -18,6 +18,8 @@ class MyViewModel: BaseViewModel {
     
     let myCoin = BehaviorRelay<CoinRank?>(value: nil)
     
+    let myMessageCount = PublishRelay<Int>()
+    
     let refreshSubject = PublishSubject<MJRefreshAction>()
     
     override init() {
@@ -33,25 +35,47 @@ class MyViewModel: BaseViewModel {
             .bind(to: currentDataSource)
             .disposed(by: disposeBag)
     }
+    
+    func loadData() {
+        Single.zip(getMyCoin(), getMyUnreadMessageCount()).subscribe { event in
+            self.refreshSubject.onNext(.stopRefresh)
+            switch event {
+            case .success((let myCoin, let count)):
+                self.myCoin.accept(myCoin)
+                self.myMessageCount.accept(count)
+                
+                /// 同步到单例
+                AccountManager.shared.myCoin.accept(myCoin)
+                AccountManager.shared.myMessageCount.accept(count)
+                
+            case .failure(_):
+                self.myCoin.accept(nil)
+                
+                /// 同步到单例
+                AccountManager.shared.myCoin.accept(nil)
+            }
+        }.disposed(by: disposeBag)
+    }
 }
 
 extension MyViewModel {
-    func getMyCoin() {
+    
+    private func getMyCoin() -> Single<CoinRank> {
         myProvider.rx.request(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
             .map{ $0.data }
             .compactMap{ $0 }
             .asObservable()
             .asSingle()
-            .subscribe { event in
-                self.refreshSubject.onNext(.stopRefresh)
-                switch event {
-                case .success(let myCoin):
-                    self.myCoin.accept(myCoin)
-                case .failure:
-                    self.myCoin.accept(nil)
-                }
-            }.disposed(by: disposeBag)
+    }
+    
+    private func getMyUnreadMessageCount()  -> Single<Int> {
+        myProvider.rx.request(MyService.unreadCount)
+            .map(BaseModel<Int>.self)
+            .map{ $0.data }
+            .compactMap{ $0 }
+            .asObservable()
+            .asSingle()
     }
     
     func logout() -> Single<BaseModel<String>> {
