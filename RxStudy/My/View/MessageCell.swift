@@ -8,6 +8,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class MessageCell: UITableViewCell {
     
     private lazy var countLabel: UILabel = {
@@ -33,7 +36,7 @@ class MessageCell: UITableViewCell {
         
     }
     
-    var _count: Int!
+    private var _count: Int!
     
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -54,6 +57,14 @@ extension MessageCell {
             make.centerY.equalToSuperview()
             make.height.equalTo(22)
             make.trailing.equalToSuperview().offset(-15)
+        }
+    }
+}
+
+extension Reactive where Base == MessageCell {
+    var count: Binder<Int> {
+        return Binder(base) { cell, count in
+            cell.count = count
         }
     }
 }

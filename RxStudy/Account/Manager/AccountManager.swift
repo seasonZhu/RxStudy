@@ -32,9 +32,9 @@ final class AccountManager {
     private init() {}
     
     /// 这个是尝试在一个接口调用另一个接口获取的模型
-    let myCoin = BehaviorRelay<CoinRank?>(value: nil)
+    let myCoinRelay = BehaviorRelay<CoinRank?>(value: nil)
     
-    let myMessageCount = PublishRelay<Int>()
+    let myUnreadMessageCountRelay = BehaviorRelay<Int>(value: 0)
     
 }
 
@@ -67,7 +67,8 @@ extension AccountManager {
     func clearAccountInfo() {
         isLoginRelay.accept(false)
         accountInfo = nil
-        myCoin.accept(nil)
+        myCoinRelay.accept(nil)
+        myUnreadMessageCountRelay.accept(0)
         /// 不仅要清除内存,也要清除本地UserDefault保存的数据
         UserDefaults.standard.removeObject(forKey: kUsername)
         UserDefaults.standard.removeObject(forKey: kPassword)
@@ -156,11 +157,12 @@ extension AccountManager {
                 switch event {
                 case .success((let myCoin, let count)):
      
-                    self.myCoin.accept(myCoin)
-                    self.myMessageCount.accept(count)
+                    self.myCoinRelay.accept(myCoin)
+                    self.myUnreadMessageCountRelay.accept(count)
                     
                 case .failure(_):
-                    self.myCoin.accept(nil)
+                    self.myCoinRelay.accept(nil)
+                    self.myUnreadMessageCountRelay.accept(0)
                 }
                 completion?()
             }.disposed(by: disposeBag)

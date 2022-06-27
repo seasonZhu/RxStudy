@@ -17,6 +17,7 @@ enum My: CaseIterable {
     case course
     case myCoin
     case myCollect
+    case myMessage
     case login
     case logout
 }
@@ -41,6 +42,8 @@ extension My {
             string = "我的积分"
         case .myCollect:
             string = "我的收藏"
+        case .myMessage:
+            string = "我的站内消息"
         case .login:
             string = "登录"
         case .logout:
@@ -72,6 +75,8 @@ extension My {
             string = "MyCoinController"
         case .myCollect:
             string = "MyCollectionController"
+        case .myMessage:
+            string = "MyMessageController"
         case .login:
             string = "LoginController"
         case .logout:

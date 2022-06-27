@@ -26,7 +26,7 @@ class BaseTableViewController: BaseViewController {
     
     let isEmptyRelay = BehaviorRelay(value: false)
     
-    static let allClass: [NSObject.Type] = [UITableViewCell.self, InfoViewCell.self, InfoCell.self, LogoutCell.self]
+    static let allClass: [NSObject.Type] = [UITableViewCell.self, InfoViewCell.self, InfoCell.self, LogoutCell.self, MessageCell.self]
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -16,17 +16,11 @@ class MyViewModel: BaseViewModel {
     
     let currentDataSource = BehaviorRelay<[My]>(value: [])
     
-    let myCoin = BehaviorRelay<CoinRank?>(value: nil)
-    
-    let myMessageCount = PublishRelay<Int>()
-    
     let refreshSubject = PublishSubject<MJRefreshAction>()
     
     override init() {
         super.init()
-        /// 单例的myCoin与VM的myCoin进行绑定
-        AccountManager.shared.myCoin.bind(to: myCoin).disposed(by: disposeBag)
-        
+
         /// 单例的isLogin通过map后,与VM的currentDataSource进行绑定
         AccountManager.shared.isLoginRelay
             .map { isLogin in
@@ -41,18 +35,16 @@ class MyViewModel: BaseViewModel {
             self.refreshSubject.onNext(.stopRefresh)
             switch event {
             case .success((let myCoin, let count)):
-                self.myCoin.accept(myCoin)
-                self.myMessageCount.accept(count)
                 
                 /// 同步到单例
-                AccountManager.shared.myCoin.accept(myCoin)
-                AccountManager.shared.myMessageCount.accept(count)
+                AccountManager.shared.myCoinRelay.accept(myCoin)
+                AccountManager.shared.myUnreadMessageCountRelay.accept(count)
                 
             case .failure(_):
-                self.myCoin.accept(nil)
-                
+
                 /// 同步到单例
-                AccountManager.shared.myCoin.accept(nil)
+                AccountManager.shared.myCoinRelay.accept(nil)
+                AccountManager.shared.myUnreadMessageCountRelay.accept(0)
             }
         }.disposed(by: disposeBag)
     }
@@ -87,5 +79,5 @@ extension MyViewModel {
 extension MyViewModel {
     static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .course, .ranking, .login]
     
-    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .course, .ranking, .myCoin, .myCollect, .logout]
+    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .course, .ranking, .myCoin, .myCollect, .myMessage, .logout]
 }

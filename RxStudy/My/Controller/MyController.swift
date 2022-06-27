@@ -57,11 +57,23 @@ class MyController: BaseTableViewController {
             .disposed(by: rx.disposeBag)
 
         viewModel.outputs.currentDataSource.asDriver()
-            .drive(tableView.rx.items) { (tableView, row, my) in
+            .drive(tableView.rx.items) { [weak self] (tableView, row, my) in
                 if my == .logout {
                     let cell = tableView.dequeueReusableCell(withIdentifier: LogoutCell.className) as! LogoutCell
                     cell.textLabel?.text = my.title
                     cell.accessoryType = my.accessoryType
+                    return cell
+                } else if my == .myMessage {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.className) as! MessageCell
+                    cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
+                    
+                    if let self = self {
+                        AccountManager.shared.myUnreadMessageCountRelay
+                            .bind(to: cell.rx.count)
+                            .disposed(by: self.rx.disposeBag)
+                    }
+                    
                     return cell
                 } else {
                     let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
@@ -72,7 +84,7 @@ class MyController: BaseTableViewController {
             }
             .disposed(by: rx.disposeBag)
         
-        viewModel.outputs.myCoin
+        AccountManager.shared.myCoinRelay
             .bind(to: myView.rx.myInfo)
             .disposed(by: rx.disposeBag)
         
@@ -89,6 +101,8 @@ class MyController: BaseTableViewController {
                 switch my {
                 case .logout:
                     self?.logoutAction(viewModel: viewModel)
+                case .myMessage:
+                    self?.toMyMessageController()
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return
@@ -137,10 +151,15 @@ extension MyController {
         
         present(alertController, animated: true, completion: nil)
     }
+    
+    private func toMyMessageController() {
+        let status = AccountManager.shared.myUnreadMessageCountRelay.value.greaterThanZero ? MessageReadyStatus.unread : MessageReadyStatus.read
+        navigationController?.pushViewController(MyMessageController(status: status), animated: true)
+    }
 }
 
 extension MyController {
-    private func moya_combineHttpRequest() {
+    private func moyaCombineHttpRequest() {
         combineVM.getMyCoinList(page: 1)
     }
 }
