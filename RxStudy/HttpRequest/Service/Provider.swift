@@ -18,7 +18,7 @@ let requestLoadingPlugin = RequestLoadingPlugin()
 let loggerPlugin = NetworkLoggerPlugin()
 
 /// 在黑名单的Api,不进行loading操作
-let blackList = [Api.Home.banner, Api.Home.topArticle]
+let blackList = [Api.Home.banner, Api.Home.topArticle, Api.My.unreadCount]
 
 /// loading开始与取消插件
 let activityPlugin = NetworkActivityPlugin { (state, targetType) in
