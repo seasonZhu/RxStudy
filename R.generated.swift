@@ -139,7 +139,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 22 files.
+  /// This `R.file` struct is generated, and contains static references to 26 files.
   struct file {
     /// Resource file `AMapLocation.json`.
     static let aMapLocationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "AMapLocation", pathExtension: "json")
@@ -151,12 +151,18 @@ struct R: Rswift.Validatable {
     static let bannerJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Banner", pathExtension: "json")
     /// Resource file `CollectArticleAction.json`.
     static let collectArticleActionJson = Rswift.FileResource(bundle: R.hostingBundle, name: "CollectArticleAction", pathExtension: "json")
+    /// Resource file `Course.json`.
+    static let courseJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Course", pathExtension: "json")
+    /// Resource file `CourseDetail.json`.
+    static let courseDetailJson = Rswift.FileResource(bundle: R.hostingBundle, name: "CourseDetail", pathExtension: "json")
     /// Resource file `HotKey.json`.
     static let hotKeyJson = Rswift.FileResource(bundle: R.hostingBundle, name: "HotKey", pathExtension: "json")
     /// Resource file `LoginAndRegister.json`.
     static let loginAndRegisterJson = Rswift.FileResource(bundle: R.hostingBundle, name: "LoginAndRegister", pathExtension: "json")
     /// Resource file `Logout.json`.
     static let logoutJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Logout", pathExtension: "json")
+    /// Resource file `MessageCount.json`.
+    static let messageCountJson = Rswift.FileResource(bundle: R.hostingBundle, name: "MessageCount", pathExtension: "json")
     /// Resource file `MyCoin.json`.
     static let myCoinJson = Rswift.FileResource(bundle: R.hostingBundle, name: "MyCoin", pathExtension: "json")
     /// Resource file `MyCoinList.json`.
@@ -179,6 +185,8 @@ struct R: Rswift.Validatable {
     static let rankListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RankList", pathExtension: "json")
     /// Resource file `SearchResult.json`.
     static let searchResultJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SearchResult", pathExtension: "json")
+    /// Resource file `Tools.json`.
+    static let toolsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Tools", pathExtension: "json")
     /// Resource file `Tree.json`.
     static let treeJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Tree", pathExtension: "json")
     /// Resource file `appStore.js`.
@@ -216,6 +224,18 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "Course", withExtension: "json")`
+    static func courseJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.courseJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "CourseDetail", withExtension: "json")`
+    static func courseDetailJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.courseDetailJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     /// `bundle.url(forResource: "HotKey", withExtension: "json")`
     static func hotKeyJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.hotKeyJson
@@ -231,6 +251,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "Logout", withExtension: "json")`
     static func logoutJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.logoutJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "MessageCount", withExtension: "json")`
+    static func messageCountJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.messageCountJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 
@@ -300,6 +326,12 @@ struct R: Rswift.Validatable {
       return fileResource.bundle.url(forResource: fileResource)
     }
 
+    /// `bundle.url(forResource: "Tools", withExtension: "json")`
+    static func toolsJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.toolsJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
     /// `bundle.url(forResource: "Tree", withExtension: "json")`
     static func treeJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.treeJson
@@ -321,7 +353,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.image` struct is generated, and contains static references to 18 images.
+  /// This `R.image` struct is generated, and contains static references to 19 images.
   struct image {
     /// Image `LaunchImagePlayAndroid`.
     static let launchImagePlayAndroid = Rswift.ImageResource(bundle: R.hostingBundle, name: "LaunchImagePlayAndroid")
@@ -359,6 +391,8 @@ struct R: Rswift.Validatable {
     static let tree = Rswift.ImageResource(bundle: R.hostingBundle, name: "tree")
     /// Image `user`.
     static let user = Rswift.ImageResource(bundle: R.hostingBundle, name: "user")
+    /// Image `wan_android_placeholder`.
+    static let wan_android_placeholder = Rswift.ImageResource(bundle: R.hostingBundle, name: "wan_android_placeholder")
 
     #if os(iOS) || os(tvOS)
     /// `UIImage(named: "LaunchImagePlayAndroid", bundle: ..., traitCollection: ...)`
@@ -483,6 +517,13 @@ struct R: Rswift.Validatable {
     /// `UIImage(named: "user", bundle: ..., traitCollection: ...)`
     static func user(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
       return UIKit.UIImage(resource: R.image.user, compatibleWith: traitCollection)
+    }
+    #endif
+
+    #if os(iOS) || os(tvOS)
+    /// `UIImage(named: "wan_android_placeholder", bundle: ..., traitCollection: ...)`
+    static func wan_android_placeholder(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.wan_android_placeholder, compatibleWith: traitCollection)
     }
     #endif
 

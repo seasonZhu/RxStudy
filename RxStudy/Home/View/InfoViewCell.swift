@@ -26,7 +26,7 @@ class InfoViewCell: UITableViewCell {
             if let imageString = info.envelopePic,
                let url = URL(string: imageString) {
                 picView.isHidden = false
-                picView.kf.setImage(with: url, placeholder: R.image.saber())
+                picView.kf.setImage(with: url, placeholder: R.image.wan_android_placeholder())
                 
                 contentLabel.snp.remakeConstraints { make in
                     make.leading.equalTo(picView.snp.trailing).offset(16)
