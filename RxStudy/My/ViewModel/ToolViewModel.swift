@@ -12,10 +12,10 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class ToolViewModel: BaseViewModel {
+class ToolViewModel<T: Codable>: BaseViewModel {
     
     /// outputs
-    let dataSource = BehaviorRelay<[Tool]>(value: [])
+    let dataSource = BehaviorRelay<[T]>(value: [])
     
     let refreshSubject = PublishSubject<MJRefreshAction>()
     
@@ -29,7 +29,7 @@ class ToolViewModel: BaseViewModel {
 private extension ToolViewModel {
     func requestData() {
         otherProvider.rx.request(OtherService.tools)
-            .map(BaseModel<[Tool]>.self)
+            .map(BaseModel<[T]>.self)
             .map{ $0.data }
             /// 去掉其中为nil的值
             .compactMap{ $0 }

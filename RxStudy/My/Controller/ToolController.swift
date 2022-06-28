@@ -34,7 +34,7 @@ class ToolController: BaseTableViewController {
             })
             .disposed(by: rx.disposeBag)
                 
-        let viewModel = ToolViewModel()
+        let viewModel = ToolViewModel<Tool>()
 
         tableView.mj_header?.rx.refresh
             .bind(onNext: viewModel.inputs.loadData)
@@ -47,11 +47,11 @@ class ToolController: BaseTableViewController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, myHistoryCoin) in
+            .drive(tableView.rx.items) { (tableView, row, tool) in
 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
-                cell.textLabel?.text = myHistoryCoin.title
-                cell.detailTextLabel?.text = myHistoryCoin.desc
+                cell.textLabel?.text = tool.title
+                cell.detailTextLabel?.text = tool.desc
                 return cell
             }
             .disposed(by: rx.disposeBag)
