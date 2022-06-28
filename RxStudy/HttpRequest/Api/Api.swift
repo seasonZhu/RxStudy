@@ -14,14 +14,6 @@ enum Api {
     
     /// 新的baseUrl,目前感觉两个都在同时使用
     static let newBaseUrl = "https://wanandroid.com/"
-    
-    /// 以下Api是没有实现的
-    
-    /// 常用网站
-    static let friend = "friend/json"
-    
-    /// 导航
-    static let navi = "navi/json"
 }
 
 extension Api {
@@ -109,6 +101,12 @@ extension Api {
         
         /// 问答和工具在数据结构与页面样式一模一样,所以就不再不停的重复写了
         static let questionAndAnswer = "wenda/list/"
+        
+        /// 常用网站
+        static let friend = "friend/json"
+        
+        /// 导航
+        static let navi = "navi/json"
     }
 }
 
