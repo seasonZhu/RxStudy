@@ -20,15 +20,15 @@ class WebViewController: BaseViewController {
 
     private let webLoadInfo: WebLoadInfo
     
-    private let isFromBanner: Bool
+    private let isNeedShowCollection: Bool
     
     weak var delegate: WebViewControllerDelegate?
     
     let hasCollectAction = PublishSubject<Void>()
     
-    init(webLoadInfo: WebLoadInfo, isFromBanner: Bool) {
+    init(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool) {
         self.webLoadInfo = webLoadInfo
-        self.isFromBanner = isFromBanner
+        self.isNeedShowCollection = isNeedShowCollection
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -149,8 +149,8 @@ class WebViewController: BaseViewController {
 
         var items = [toShare]
 
-        /// 非轮播的页面跳转进来才通过判断登录状态来看是否显示收藏页面
-        if !isFromBanner {
+        /// 需要显示收藏按钮,才通过判断登录状态来看是否显示收藏页面
+        if isNeedShowCollection {
             
             /// 这里其实使用let isLogin = AccountManager.shared.isLoginRelay.value去做判断在本App中也是可以的
             /// 因为玩安卓App不存在被挤掉这种场景

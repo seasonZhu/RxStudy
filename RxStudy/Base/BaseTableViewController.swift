@@ -100,8 +100,8 @@ class BaseTableViewController: BaseViewController {
     }
 
     @discardableResult
-    override func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) -> WebViewController {
-        let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
+    override func pushToWebViewController(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool = true) -> WebViewController {
+        let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isNeedShowCollection: isNeedShowCollection)
         /// 其实这个地方使用callback或者是用Rx的subscribe感觉差不了太多,都是作为回调来看待
         vc.hasCollectAction.subscribe { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()

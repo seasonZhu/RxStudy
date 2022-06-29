@@ -164,7 +164,7 @@ extension HomeController: FSPagerViewDelegate {
         pagerView.deselectItem(at: index, animated: false)
         let item = itmes[index]
         debugLog("点击了轮播图的\(item)")
-        pushToWebViewController(webLoadInfo: item, isFromBanner: true)
+        pushToWebViewController(webLoadInfo: item, isNeedShowCollection: false)
     }
     
     func pagerView(_ pagerView: FSPagerView, willDisplay cell: FSPagerViewCell, forItemAt index: Int) {
@@ -187,7 +187,7 @@ extension HomeController: FSPagerViewDelegate {
          pg.deselectItem(at: index, animated: false)
          let item = self.itmes[index]
          debugLog("点击了轮播图的\(item)")
-         self.pushToWebViewController(webLoadInfo: item, isFromBanner: true)
+         self.pushToWebViewController(webLoadInfo: item, isNeedShowCollection: true)
      default:
          break
      }

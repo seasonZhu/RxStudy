@@ -82,8 +82,8 @@ class BaseViewController: UIViewController {
     
     /// 写在extension分类中的方法不能被重写必须写在class里面
     @discardableResult
-    func pushToWebViewController(webLoadInfo: WebLoadInfo, isFromBanner: Bool = false) -> WebViewController {
-        let vc = WebViewController(webLoadInfo: webLoadInfo, isFromBanner: isFromBanner)
+    func pushToWebViewController(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool = true) -> WebViewController {
+        let vc = WebViewController(webLoadInfo: webLoadInfo, isNeedShowCollection: isNeedShowCollection)
         navigationController?.pushViewController(vc, animated: true)
         return vc
     }
