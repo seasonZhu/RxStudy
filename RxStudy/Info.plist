@@ -20,6 +20,12 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>csdn</string>
+		<string>xitujuejin</string>
+		<string>jianshu</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -27,50 +33,13 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSBluetoothPeripheralUsageDescription</key>
-	<string>允许使用蓝牙</string>
-	<key>NSCameraUsageDescription</key>
-	<string>允许使用相机</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>允许使用位置</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>允许使用位置</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>允许使用位置</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>允许使用电话</string>
-	<key>NSMotionUsageDescription</key>
-	<string>允许使用Core Motion</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>允许使用相册</string>
-	<key>UIBackgroundModes</key>
-	<array>
-		<string>location</string>
-	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>csdn</string>
-		<string>xitujuejin</string>
-		<string>jianshu</string>
 	</array>
 </dict>
 </plist>

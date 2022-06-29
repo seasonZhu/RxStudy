@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// 实际上没有使用这个数据结构,都是用的Tab
 struct Course : Codable {
 
     let author : String?

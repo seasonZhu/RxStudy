@@ -29,6 +29,7 @@ struct Tool : Codable {
     
     let link : String?
     
+    /// 这里我将name -> title,这样就可以遵守WebLoadInfo协议
     enum CodingKeys: String, CodingKey {
         case desc = "desc"
         case icon = "icon"
@@ -42,22 +43,6 @@ struct Tool : Codable {
         case visible = "visible"
         case originId = "originId"
     }
-    
-    init(from decoder: Decoder) throws {
-        let values = try decoder.container(keyedBy: CodingKeys.self)
-        desc = try values.decodeIfPresent(String.self, forKey: .desc)
-        icon = try values.decodeIfPresent(String.self, forKey: .icon)
-        id = try values.decodeIfPresent(Int.self, forKey: .id)
-        isNew = try values.decodeIfPresent(Int.self, forKey: .isNew)
-        link = try values.decodeIfPresent(String.self, forKey: .link)
-        title = try values.decodeIfPresent(String.self, forKey: .title)
-        order = try values.decodeIfPresent(Int.self, forKey: .order)
-        showInTab = try values.decodeIfPresent(Int.self, forKey: .showInTab)
-        tabName = try values.decodeIfPresent(String.self, forKey: .tabName)
-        visible = try values.decodeIfPresent(Int.self, forKey: .visible)
-        originId = try values.decodeIfPresent(Int.self, forKey: .originId)
-    }
-
 }
 
 extension Tool: WebLoadInfo {}
