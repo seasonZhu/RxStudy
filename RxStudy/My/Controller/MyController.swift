@@ -138,7 +138,6 @@ extension MyController {
                 .drive { baseModel in
                     if baseModel.isSuccess {
                         AccountManager.shared.clearAccountInfo()
-                        //AccountManager.shared.myCoin.accept(nil)
                         DispatchQueue.main.async {
                             SVProgressHUD.showText("退出登录成功")
                         }

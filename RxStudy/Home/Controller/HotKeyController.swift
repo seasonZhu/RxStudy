@@ -64,6 +64,17 @@ class HotKeyController: BaseViewController {
                 self?.tagLayout(hotKeys: hotKeys)
         }).disposed(by: rx.disposeBag)
         
+        /*
+        /// 这么写会循环引用
+        viewModel.outputs.dataSource
+            .bind(onNext: tagLayout)
+            .disposed(by: rx.disposeBag)
+        /// 为了避免循环引用,需要将bind(onNext:(Element) -> Void)这个写进行下的改造才行
+        viewModel.outputs.dataSource
+            .bind { [weak self] in self?.tagLayout(hotKeys: $0) }
+            .disposed(by: rx.disposeBag)
+        */
+        
         viewModel.outputs.networkError
             .bind(to: rx.networkError)
             .disposed(by: rx.disposeBag)

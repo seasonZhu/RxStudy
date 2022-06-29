@@ -71,7 +71,7 @@ extension MyViewModel {
     }
     
     func logout() -> Single<BaseModel<String>> {
-        return accountProvider.rx.request(AccountService.logout)
+        accountProvider.rx.request(AccountService.logout)
             .map(BaseModel<String>.self)
     }
 }
