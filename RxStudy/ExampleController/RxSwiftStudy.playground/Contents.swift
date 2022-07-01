@@ -343,3 +343,13 @@ extension Array {
         return newArray
     }
 }
+
+let name1 = Teacher().className
+let name2 = Teacher().classNameWithoutNamespace
+let name3 = Teacher.className
+let name4 = Teacher.classNameWithoutNamespace
+
+let name5 = Student().className
+let name6 = Student().classNameWithoutNamespace
+let name7 = Student.className
+let name8 = Student.classNameWithoutNamespace

@@ -26,11 +26,13 @@ class BaseViewModel {
     var className: String { String(describing: self) }
     
     deinit {
-        debugLog("\(className.components(separatedBy: ".").last ?? "")被销毁了")
+        debugLog("\(classNameWithoutNamespace)被销毁了")
     }
 }
 
 extension BaseViewModel: HasDisposeBag {}
+
+extension BaseViewModel: TypeNameProtocol {}
 
 extension BaseViewModel {
     
