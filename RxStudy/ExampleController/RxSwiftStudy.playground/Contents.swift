@@ -353,3 +353,6 @@ let name5 = Student().className
 let name6 = Student().classNameWithoutNamespace
 let name7 = Student.className
 let name8 = Student.classNameWithoutNamespace
+
+let name9 = Teacher().memoryAddress
+let name10 = Student().memoryAddress

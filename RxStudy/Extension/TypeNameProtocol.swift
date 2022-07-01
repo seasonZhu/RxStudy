@@ -34,7 +34,7 @@ extension TypeNameProtocol {
     }
     
     static var classNameWithoutNamespace: String {
-        if self is NSObject {
+        if self is NSObject.Type {
             return className
         } else {
             return String(className.split(separator: ".").last!)
@@ -43,11 +43,14 @@ extension TypeNameProtocol {
     
 }
 
-class Student {
-    init() {
-        
+extension TypeNameProtocol where Self: AnyObject {
+    /// 获取对象的内存地址(class类才有)
+    var memoryAddress: String {
+        return "<\(classNameWithoutNamespace): \(Unmanaged.passUnretained(self).toOpaque())>"
     }
 }
+
+class Student {}
 
 class Teacher: NSObject {}
 
