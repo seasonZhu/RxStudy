@@ -91,10 +91,8 @@ class WebViewController: BaseViewController {
         /// 刷新页面
         webView.scrollView.mj_header = MJRefreshNormalHeader()
         webView.scrollView.mj_header?.rx.refresh
-            .asDriver()
-            .drive(onNext: { [weak self] in
-                self?.webView.reload()
-            }).disposed(by: rx.disposeBag)
+            .bind(to: rx.reload)
+            .disposed(by: rx.disposeBag)
         
         /// 页面布局
         view.addSubview(webView)
@@ -280,6 +278,10 @@ extension WebViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
+    
+    fileprivate func reload() {
+        webView.reload()
+    }
 }
 
 // MARK: - 协议类专门用来处理监听JavaScript方法从而调用原生方法，和WKUserContentController搭配使用
@@ -443,4 +445,12 @@ public protocol WebViewControllerDelegate: AnyObject {
  
 extension WebViewController: HasDelegate {
     typealias Delegate = WebViewControllerDelegate
+}
+
+extension Reactive where Base == WebViewController {
+    var reload: Binder<Void> {
+        return Binder(base) { base, _ in
+            base.reload()
+        }
+    }
 }

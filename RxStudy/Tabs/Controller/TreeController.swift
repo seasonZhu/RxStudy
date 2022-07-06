@@ -59,9 +59,7 @@ extension TreeController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(onNext: { [weak self] tabs in
-                self?.tableViewSectionAndCellConfig(tabs: tabs)
-            })
+            .drive(rx.tableViewSectionAndCellConfig)
             .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView
@@ -83,7 +81,7 @@ extension TreeController {
             .disposed(by: rx.disposeBag)
     }
     
-    private func tableViewSectionAndCellConfig(tabs: [Tab]) {
+    fileprivate func tableViewSectionAndCellConfig(tabs: [Tab]) {
         guard tabs.isNotEmpty else {
             return
         }
@@ -123,5 +121,13 @@ extension TreeController {
         //绑定单元格数据
         items.bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
+    }
+}
+
+extension Reactive where Base == TreeController {
+    var tableViewSectionAndCellConfig: Binder<[Tab]> {
+        return Binder(base) { base, tabs in
+            base.tableViewSectionAndCellConfig(tabs: tabs)
+        }
     }
 }

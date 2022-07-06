@@ -8,6 +8,9 @@
 
 import UIKit
 
+import RxSwift
+import RxCocoa
+
 class HotKeyController: BaseViewController {
 
     override func viewDidLoad() {
@@ -58,17 +61,25 @@ class HotKeyController: BaseViewController {
         
         viewModel.inputs.loadData()
         
+        /// 最终优化的写法
+        viewModel.outputs.dataSource
+            .bind(to: rx.tagLayout)
+            .disposed(by: rx.disposeBag)
+        
+        /*
+        /// 原始写法
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self ] hotKeys in
                 self?.tagLayout(hotKeys: hotKeys)
-        }).disposed(by: rx.disposeBag)
-        
-        /*
+            }).disposed(by: rx.disposeBag)
+         
+         
         /// 这么写会循环引用
         viewModel.outputs.dataSource
             .bind(onNext: tagLayout)
             .disposed(by: rx.disposeBag)
+         
         /// 为了避免循环引用,需要将bind(onNext:(Element) -> Void)这个写进行下的改造才行
         viewModel.outputs.dataSource
             .bind { [weak self] in self?.tagLayout(hotKeys: $0) }
@@ -84,7 +95,7 @@ class HotKeyController: BaseViewController {
             .disposed(by: rx.disposeBag)
     }
     
-    private func tagLayout(hotKeys: [HotKey]) {
+    fileprivate func tagLayout(hotKeys: [HotKey]) {
         let textPadding: CGFloat = 10.0
         let texts = hotKeys.map { $0.name }.compactMap { $0 }
         
@@ -153,5 +164,15 @@ class HotKeyController: BaseViewController {
     private func pushToSearchResultController(keyword: String) {
         let vc = SearcResultController(keyword: keyword)
         navigationController?.pushViewController(vc, animated: true)
+    }
+}
+
+extension Reactive where Base == HotKeyController {
+    
+    /// Binder(base)里面尾随闭包不能用self.base
+    var tagLayout: Binder<[HotKey]> {
+        return Binder(base) { base, hotKeys in
+            base.tagLayout(hotKeys: hotKeys)
+        }
     }
 }
