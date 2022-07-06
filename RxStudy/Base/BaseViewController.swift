@@ -70,7 +70,8 @@ class BaseViewController: UIViewController {
         
         view.backgroundColor = .clear
         
-        iOS15NavigationBarAndTabBarClear()
+        iOS15NavigationBarClear()
+        iOS15TabBarClear()
         
         setupErrorImage()
     }
@@ -129,7 +130,7 @@ extension BaseViewController {
 }
 
 extension BaseViewController {
-    private func iOS15NavigationBarAndTabBarClear() {
+    private func iOS15NavigationBarClear() {
         if #available(iOS 15.0, *) {
             /// UINavigationBarAppearance属性从iOS13开始
             let navBarAppearance = UINavigationBarAppearance()
@@ -137,7 +138,11 @@ extension BaseViewController {
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
             
             //navigationController?.navigationBar.standardAppearance = navBarAppearance
-            
+        }
+    }
+    
+    private func iOS15TabBarClear() {
+        if #available(iOS 15.0, *) {
             let tabBarAppearance = UITabBarAppearance()
             
             tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance

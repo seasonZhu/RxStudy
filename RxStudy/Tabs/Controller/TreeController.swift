@@ -67,11 +67,6 @@ extension TreeController {
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
         
-        /// 重写
-        emptyDataSetButtonTap.subscribe { _ in
-            viewModel.inputs.loadData()
-        }.disposed(by: rx.disposeBag)
-        
         viewModel.outputs.networkError
             .bind(to: rx.networkError)
             .disposed(by: rx.disposeBag)
@@ -83,15 +78,14 @@ extension TreeController {
     
     fileprivate func tableViewSectionAndCellConfig(tabs: [Tab]) {
         guard tabs.isNotEmpty else {
+            isEmptyRelay.accept(true)
             return
         }
         
         /// 这种带有section的tableView,不能通过一级菜单确定是否有数据,需要将二维数组进行降维打击
         let children = tabs.map { $0.children }.compactMap { $0 }
         let deepChildren = children.flatMap{ $0 }.map { $0.children }.compactMap { $0 }.flatMap { $0 }
-        Observable.just(deepChildren).map { $0.isEmpty }
-            .bind(to: isEmptyRelay)
-            .disposed(by: rx.disposeBag)
+        isEmptyRelay.accept(deepChildren.isEmpty)
         
         let sectionModels = tabs.map { tab in
             return SectionModel(model: tab, items: tab.children ?? [])
@@ -118,7 +112,7 @@ extension TreeController {
                 return ds.sectionModels[index].model.name
         })
 
-        //绑定单元格数据
+        /// 绑定单元格数据
         items.bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
     }

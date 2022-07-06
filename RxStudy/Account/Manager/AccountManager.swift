@@ -95,13 +95,11 @@ extension AccountManager {
     
     /// 自动登录
     func autoLogin() {
-        if !isLoginRelay.value {
-            guard let username = getUsername(),
-                  let password = getPassword() else {
-                return
-            }
-            optimizeLogin(username: username, password: password, showLoading: false)
+        guard let username = getUsername(),
+              let password = getPassword() else {
+            return
         }
+        optimizeLogin(username: username, password: password, showLoading: false)
     }
     
     /// 调用登录接口
