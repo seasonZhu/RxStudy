@@ -94,3 +94,26 @@ post_install do |installer|
     end
 end
 =end
+
+# 通过打印RxSwift.Resources.total表示当前的RxSwift中资源使用情况 https://juejin.cn/post/7088692280852217887
+post_install do |installer|
+
+  installer.pods_project.targets.each do |target|
+
+    if target.name == 'RxSwift'
+
+      target.build_configurations.each do |config|
+
+        if config.name == 'Debug'
+
+          config.build_settings['OTHER_SWIFT_FLAGS'] ||= ['-D', 'TRACE_RESOURCES']
+
+        end
+
+      end
+
+    end
+
+  end
+
+end
