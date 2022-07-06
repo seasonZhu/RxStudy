@@ -24,7 +24,7 @@ class RegisterController: AccountBaseController {
         textField.attributedPlaceholder = NSAttributedString(string: "请再次输入密码", attributes: [NSAttributedString.Key.foregroundColor: UIColor.gray])
         textField.textColor = .black
         
-        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 1))
         textField.leftView = emptyView
         textField.rightView = emptyView
         textField.leftViewMode = .always

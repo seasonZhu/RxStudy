@@ -31,7 +31,7 @@ class HotKeyController: BaseViewController {
         textField.returnKeyType = .search
         textField.font = UIFont.systemFont(ofSize: 15)
         
-        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 1))
+        let emptyView = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 1))
         textField.leftView = emptyView
         textField.rightView = emptyView
         textField.leftViewMode = .always
