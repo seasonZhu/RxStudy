@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RxCocoa
 
 /// iOS-Swift 独孤九剑：十四、Codable 的基本应用及源码浅析:
 /// https://juejin.cn/post/7100194774656745480
@@ -108,19 +109,51 @@ extension Array: DefaultValue { static var defaultValue: Array<Element> { [] } }
 extension Dictionary: DefaultValue { static var defaultValue: Dictionary<Key, Value> { [:] } }
 
 
-//MARK: -  我思维
+//MARK: -  我进行的一些思考
 /// 想要将Int和String展平为一种类型,然后来替换rank的类型,但是失败了,最后网上的一种思路成功了
 
-protocol MixinIntAndString: Codable {}
+protocol MixinTypeConvertible: Codable {}
 
-extension MixinIntAndString where Self == Int {
+//extension MixinTypeConvertible where Self == Int {}
+//
+//extension MixinTypeConvertible where Self == String {}
+//
+//extension MixinTypeConvertible where Self == Bool {}
+
+extension Int: MixinTypeConvertible {}
+
+extension String: MixinTypeConvertible {}
+
+extension Bool: MixinTypeConvertible {}
+
+
+@propertyWrapper
+struct MixinType<Wrapper: MixinTypeConvertible>: Codable {
+    var wrappedValue: Wrapper?
     
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(String.self) {
+            wrappedValue = value as? Wrapper
+        } else if let value = try? container.decode(Int.self) {
+            wrappedValue = value as? Wrapper
+        } else if let value = try? container.decode(Bool.self) {
+            wrappedValue = value as? Wrapper
+        } else {
+            wrappedValue = nil
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if let value = wrappedValue as? String {
+            try? container.encode(value)
+        } else if let value = wrappedValue as? Int {
+            try? container.encode(value)
+        } else if let value = wrappedValue as? Bool {
+            try? container.encode(value)
+        } else {
+            
+        }
+    }
 }
-
-extension MixinIntAndString where Self == String {
-    
-}
-
-extension Int: MixinIntAndString {}
-
-extension String: MixinIntAndString {}
