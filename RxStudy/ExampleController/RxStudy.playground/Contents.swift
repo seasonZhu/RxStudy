@@ -250,7 +250,6 @@ func test() {
     }
 //        .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .userInitiated))
 //        .observeOn(MainScheduler.instance)
-
     numbers.subscribe { event in
         print(Thread.current)
         print(event)
@@ -314,7 +313,6 @@ print(finalArray)
 //dict.flatMap { <#(key: String, value: Any)#> in
 //    <#code#>
 //}
-
 [1, 2, 3].map({ (i: Int) -> Int in return i * 2 })
 [1, 2, 3].map({ i in return i * 2 } )
 [1, 2, 3].map({ i in i * 2 })

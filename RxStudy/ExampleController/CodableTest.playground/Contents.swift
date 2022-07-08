@@ -99,3 +99,23 @@ let boolData = BoolJSONString.data(using: .utf8)!
 let boolModel = try? JSONDecoder().decode(MixinBoolModel.self, from: boolData)
 
 print(boolModel?.result)
+
+
+let StringValueJSONString = """
+{
+    "result": [1, 2, 3, 4]
+}
+"""
+
+struct StringValueModel: Codable {
+    @StringValue
+    var result: String?
+}
+
+let StringValueData = StringValueJSONString.data(using: .utf8)!
+
+let stringValueModel = try? JSONDecoder().decode(StringValueModel.self, from: StringValueData)
+
+print(stringValueModel?.result)
+
+//print(stringValueModel?.$result.boolToIntStringValue)

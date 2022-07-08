@@ -157,3 +157,62 @@ struct MixinType<Wrapper: MixinTypeConvertible>: Codable {
         }
     }
 }
+
+@propertyWrapper
+struct StringValue: Codable {
+    var wrappedValue: String?
+    
+    var projectedValue: StringValue { return self }
+    
+    var boolToIntStringValue: String {
+        if wrappedValue == "true" {
+            return "1"
+        } else {
+            return "0"
+        }
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(String.self) {
+            wrappedValue = value
+        } else if let value = try? container.decode(Int.self) {
+            wrappedValue = "\(value)"
+        } else if let value = try? container.decode(Double.self) {
+            wrappedValue = "\(value)"
+        } else if let value = try? container.decode(Bool.self) {
+            wrappedValue = "\(value)"
+        }  else if container.decodeNil() {
+            wrappedValue = nil
+        } else {
+            wrappedValue = nil
+        }
+    }
+}
+
+extension StringValue {
+    private mutating func test(decoder: Decoder) throws {
+        var unkeyedContainer = try decoder.unkeyedContainer()
+        
+        if let value = try? unkeyedContainer.decode([String].self) {
+            let string = try objectToString(value: value)
+            wrappedValue = string
+        } else if let value = try? unkeyedContainer.decode([Int].self) {
+            let string = try objectToString(value: value)
+            wrappedValue = string
+        } else if let value = try? unkeyedContainer.decode([Bool].self) {
+            let string = try objectToString(value: value)
+            wrappedValue = string
+        } else if try unkeyedContainer.decodeNil() {
+            wrappedValue = nil
+        } else {
+            wrappedValue = nil
+        }
+    }
+    
+    private func objectToString(value: Any) throws -> String? {
+        let data = try JSONSerialization.data(withJSONObject: value, options: .prettyPrinted)
+        let string = String(data: data, encoding: .utf8)
+        return string
+    }
+}
