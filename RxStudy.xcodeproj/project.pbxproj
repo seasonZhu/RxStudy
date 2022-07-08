@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000139CA2877FE5B00683119 /* ToCodable.json in Resources */ = {isa = PBXBuildFile; fileRef = 000139C92877FE5B00683119 /* ToCodable.json */; };
 		000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000301F5284E047800A41EA6 /* Collection+Extension.swift */; };
 		000D937326DCAC190099A749 /* open.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* open.js */; };
 		0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016CE2A286E838F0002501A /* TypeNameProtocol.swift */; };
@@ -158,6 +159,7 @@
 
 /* Begin PBXFileReference section */
 		000139C82877DC0F00683119 /* RxStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		000139C92877FE5B00683119 /* ToCodable.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToCodable.json; sourceTree = "<group>"; };
 		000301F5284E047800A41EA6 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		000D937226DCAC190099A749 /* open.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
 		0016CE2A286E838F0002501A /* TypeNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeNameProtocol.swift; sourceTree = "<group>"; };
@@ -743,6 +745,7 @@
 				00CCD17C2865BDE300925C1E /* MessageCount.json */,
 				00469127286A8E58000B3C5E /* Friend.json */,
 				0046912D286A9933000B3C5E /* NavigationUrl.json */,
+				000139C92877FE5B00683119 /* ToCodable.json */,
 			);
 			path = JSONS;
 			sourceTree = SOURCE_ROOT;
@@ -931,6 +934,7 @@
 				61BB7C66267A057700990636 /* MyCoinList.json in Resources */,
 				6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */,
 				6194601126B12D2200A66F77 /* README.md in Resources */,
+				000139CA2877FE5B00683119 /* ToCodable.json in Resources */,
 				61BB7C61267A057700990636 /* PublicNumber.json in Resources */,
 				61BB7C5E267A057700990636 /* AMapLocation.json in Resources */,
 				61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */,

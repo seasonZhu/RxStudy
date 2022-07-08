@@ -9,10 +9,12 @@
 import Foundation
 import RxCocoa
 
+
+//MARK: -  可以同时Codable 字符串和Int类型
+
 /// iOS-Swift 独孤九剑：十四、Codable 的基本应用及源码浅析:
 /// https://juejin.cn/post/7100194774656745480
 
-/// 可以同时Codable 字符串和Int类型
 struct StringInt: Codable {
     var stringValue: String
 
@@ -41,6 +43,8 @@ struct StringInt: Codable {
         }
     }
 }
+
+//MARK: -  默认值组合
 
 /// 拥有 DefaultValue 协议和 Codable 协议的组合协议，目的是使 SingleValueDecodingContainer 的 decode 保证语法上正确！
 typealias DefaultCodableValue = DefaultValue & Codable
@@ -108,6 +112,30 @@ extension Array: DefaultValue { static var defaultValue: Array<Element> { [] } }
 
 extension Dictionary: DefaultValue { static var defaultValue: Dictionary<Key, Value> { [:] } }
 
+//MARK: -  JSONString的解析
+@propertyWrapper
+struct JSONString<Base: Codable>: Codable {
+    var wrappedValue: Base?
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let string = try? container.decode(String.self),
+           let data = string.data(using: .utf8) {
+            wrappedValue = try JSONDecoder().decode(Base.self, from: data)
+        } else {
+            wrappedValue = try container.decode(Base.self)
+        }
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        let data = try JSONEncoder().encode(wrappedValue)
+        if let string = String(data: data, encoding: .utf8) {
+            try container.encode(string)
+        }
+    }
+}
+
 
 //MARK: -  我进行的一些思考
 /// 想要将Int和String展平为一种类型,然后来替换rank的类型,但是失败了,最后网上的一种思路成功了
@@ -158,8 +186,11 @@ struct MixinType<Wrapper: MixinTypeConvertible>: Codable {
     }
 }
 
+//MARK: -  将解析值转为String
 @propertyWrapper
+/// 目前可以接受String/Int/Double/Bool类型的值为String
 struct StringValue: Codable {
+    
     var wrappedValue: String?
     
     var projectedValue: StringValue { return self }
@@ -188,10 +219,29 @@ struct StringValue: Codable {
             wrappedValue = nil
         }
     }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        let data = try JSONEncoder().encode(wrappedValue)
+        if let string = String(data: data, encoding: .utf8) {
+            try container.encode(string)
+        } 
+    }
+}
+
+extension StringValue: Equatable {
+    static func == (lhs: StringValue, rhs: StringValue) -> Bool {
+        return lhs.wrappedValue == rhs.wrappedValue
+    }
+}
+extension StringValue: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(wrappedValue)
+    }
 }
 
 extension StringValue {
-    private mutating func test(decoder: Decoder) throws {
+    private mutating func think(decoder: Decoder) throws {
         var unkeyedContainer = try decoder.unkeyedContainer()
         
         if let value = try? unkeyedContainer.decode([String].self) {

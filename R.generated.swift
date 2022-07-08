@@ -139,7 +139,7 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 28 files.
+  /// This `R.file` struct is generated, and contains static references to 29 files.
   struct file {
     /// Resource file `AMapLocation.json`.
     static let aMapLocationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "AMapLocation", pathExtension: "json")
@@ -189,6 +189,8 @@ struct R: Rswift.Validatable {
     static let rankListJson = Rswift.FileResource(bundle: R.hostingBundle, name: "RankList", pathExtension: "json")
     /// Resource file `SearchResult.json`.
     static let searchResultJson = Rswift.FileResource(bundle: R.hostingBundle, name: "SearchResult", pathExtension: "json")
+    /// Resource file `ToCodable.json`.
+    static let toCodableJson = Rswift.FileResource(bundle: R.hostingBundle, name: "ToCodable", pathExtension: "json")
     /// Resource file `Tools.json`.
     static let toolsJson = Rswift.FileResource(bundle: R.hostingBundle, name: "Tools", pathExtension: "json")
     /// Resource file `Tree.json`.
@@ -339,6 +341,12 @@ struct R: Rswift.Validatable {
     /// `bundle.url(forResource: "SearchResult", withExtension: "json")`
     static func searchResultJson(_: Void = ()) -> Foundation.URL? {
       let fileResource = R.file.searchResultJson
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+
+    /// `bundle.url(forResource: "ToCodable", withExtension: "json")`
+    static func toCodableJson(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.toCodableJson
       return fileResource.bundle.url(forResource: fileResource)
     }
 

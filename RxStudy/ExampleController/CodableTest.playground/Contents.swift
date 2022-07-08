@@ -1,50 +1,5 @@
 import UIKit
 
-struct Token: Codable {
-    @JSONString
-    var body: Body?
-}
-
-struct Body: Codable {
-    let timestamp: String?
-}
-
-let badJSONString = """
-{
-    "body":"{\"timestamp\":\"2021-10-02 03:56:46\"}"
-}
-"""
-@propertyWrapper
-struct JSONString<Base: Codable>: Codable {
-    var wrappedValue: Base
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.singleValueContainer()
-        if let string = try? container.decode(String.self),
-           let data = string.data(using: .utf8) {
-            self.wrappedValue = try JSONDecoder().decode(Base.self, from: data)
-            return
-        }
-        
-        self.wrappedValue = try container.decode(Base.self)
-    }
-        
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.singleValueContainer()
-        let data = try JSONEncoder().encode(wrappedValue)
-        if let string = String(data: data, encoding: .utf8) {
-            try container.encode(string)
-        }
-    }
-}
-
-let jsonStringData = badJSONString.data(using: .utf8)!
-
-let model = try? JSONDecoder().decode(Token.self, from: jsonStringData)
-
-print(model)
-
-
 struct MixinIntModel: Codable {
     @MixinType
     var result: Int?
@@ -103,7 +58,7 @@ print(boolModel?.result)
 
 let StringValueJSONString = """
 {
-    "result": [1, 2, 3, 4]
+    "result": 3.1415926
 }
 """
 
@@ -118,4 +73,76 @@ let stringValueModel = try? JSONDecoder().decode(StringValueModel.self, from: St
 
 print(stringValueModel?.result)
 
-//print(stringValueModel?.$result.boolToIntStringValue)
+print(stringValueModel?.$result.boolToIntStringValue)
+
+//let someData = try JSONEncoder().encode(stringValueModel!)
+//
+//let any = try JSONSerialization.jsonObject(with: someData)
+//
+//let someString = String(data: someData, encoding: .utf8)
+//
+//print(someData)
+//
+//print(any)
+//
+//print(someString)
+
+/// 这种JSONString没法解析出来,只能从.json文件读取才能正常解析
+let badJSONString = """
+{
+    "result": true,
+    "body": "{\"ret_code\":\"0\",\"ret_msg\":\"成功\",\"serial_number\":\"20211002115646portal511788\",\"timestamp\":\"2021-10-02 03:56:46\",\"response_data\":{\"token\":\"0765499c-8643-4491-8c8e-50f92a2ea004\",\"expiredMills\":1633751806616}}"
+}
+"""
+
+// MARK: - Token
+struct Token: Codable {
+    let result: Bool?
+    
+    @JSONString
+    var body: Body?
+}
+
+// MARK: - Body
+struct Body: Codable {
+
+    let retCode: String?
+    let retMsg: String?
+    let serialNumber: String?
+    let timestamp: String?
+    
+    @JSONString
+    var responseData: ResponseData?
+
+    enum CodingKeys: String, CodingKey {
+        case retCode = "ret_code"
+        case retMsg = "ret_msg"
+        case serialNumber = "serial_number"
+        case timestamp = "timestamp"
+        case responseData = "response_data"
+    }
+}
+
+// MARK: - ResponseData
+struct ResponseData: Codable {
+    let token: String?
+    let expiredMills: Date?
+}
+
+let jsonStringData = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "ToCodable", ofType: "json")!))
+
+let jsonStringModel = try? JSONDecoder().decode(Token.self, from: jsonStringData)
+
+print(jsonStringModel)
+
+let someData = try JSONEncoder().encode(jsonStringModel!)
+
+let any = try JSONSerialization.jsonObject(with: someData)
+
+let someString = String(data: someData, encoding: .utf8)
+
+print(someData)
+
+print(any)
+
+print(someString)
