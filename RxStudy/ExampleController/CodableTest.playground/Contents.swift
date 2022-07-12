@@ -87,13 +87,8 @@ print(stringValueModel?.$result.boolToIntStringValue)
 //
 //print(someString)
 
-/// 这种JSONString没法解析出来,只能从.json文件读取才能正常解析
-let badJSONString = """
-{
-    "result": true,
-    "body": "{\"ret_code\":\"0\",\"ret_msg\":\"成功\",\"serial_number\":\"20211002115646portal511788\",\"timestamp\":\"2021-10-02 03:56:46\",\"response_data\":{\"token\":\"0765499c-8643-4491-8c8e-50f92a2ea004\",\"expiredMills\":1633751806616}}"
-}
-"""
+/// 这种"""字符串"""JSONString没法解析出来,必须要使用#""#这种方式,或者从.json文件读取才能正常解析
+let badJSONString = #"{"result": true,"body": "{\"ret_code\":\"0\",\"ret_msg\":\"成功\",\"serial_number\":\"20211002115646portal511788\",\"timestamp\":\"2021-10-02 03:56:46\",\"response_data\":{\"token\":\"0765499c-8643-4491-8c8e-50f92a2ea004\",\"expiredMills\":1633751806616}}"}"#
 
 // MARK: - Token
 struct Token: Codable {
@@ -129,7 +124,7 @@ struct ResponseData: Codable {
     let expiredMills: Date?
 }
 
-let jsonStringData = try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "ToCodable", ofType: "json")!))
+let jsonStringData = badJSONString.data(using: .utf8)!//try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "ToCodable", ofType: "json")!))
 
 let jsonStringModel = try? JSONDecoder().decode(Token.self, from: jsonStringData)
 
