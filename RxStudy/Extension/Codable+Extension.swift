@@ -46,12 +46,17 @@ struct StringInt: Codable {
 
 //MARK: -  默认值组合
 
+/// 默认值协议
+protocol DefaultValue {
+    static var defaultValue: Self { get }
+}
+
 /// 拥有 DefaultValue 协议和 Codable 协议的组合协议，目的是使 SingleValueDecodingContainer 的 decode 保证语法上正确！
-typealias DefaultCodableValue = DefaultValue & Codable
+typealias DefaultValueCodable = DefaultValue & Codable
 
 /// 属性包装器
 @propertyWrapper
-struct Default<T: DefaultCodableValue> {
+struct Default<T: DefaultValueCodable> {
     var wrappedValue: T
 }
 
@@ -73,7 +78,7 @@ extension KeyedDecodingContainer {
     func decode<T>(
         _ type: Default<T>.Type,
         forKey key: Key
-    ) throws -> Default<T> where T: DefaultCodableValue {
+    ) throws -> Default<T> where T: DefaultValueCodable {
         if let value = try decodeIfPresent(type, forKey: key) {
             return value
             
@@ -87,14 +92,9 @@ extension KeyedDecodingContainer {
 extension UnkeyedDecodingContainer {
     mutating func decode<T>(
         _ type: Default<T>.Type
-    ) throws -> Default<T> where T : DefaultCodableValue {
+    ) throws -> Default<T> where T : DefaultValueCodable {
             try decodeIfPresent(type) ?? Default(wrappedValue: T.defaultValue)
     }
-}
-
-/// 默认值协议
-protocol DefaultValue {
-    static var defaultValue: Self { get }
 }
 
 /// 可以给某个可能为 nil 的类型遵守 DefaultValue，使其拥有 defaultValue
@@ -114,16 +114,16 @@ extension Dictionary: DefaultValue { static var defaultValue: Dictionary<Key, Va
 
 //MARK: -  JSONString的解析
 @propertyWrapper
-struct JSONString<Base: Codable>: Codable {
-    var wrappedValue: Base?
+struct JSONString<Model: Codable>: Codable {
+    var wrappedValue: Model?
     
     init(from decoder: Decoder) throws {
         let container = try decoder.singleValueContainer()
         if let string = try? container.decode(String.self),
            let data = string.data(using: .utf8) {
-            wrappedValue = try JSONDecoder().decode(Base.self, from: data)
+            wrappedValue = try JSONDecoder().decode(Model.self, from: data)
         } else {
-            wrappedValue = try container.decode(Base.self)
+            wrappedValue = try container.decode(Model.self)
         }
     }
 
@@ -138,25 +138,8 @@ struct JSONString<Base: Codable>: Codable {
 
 
 //MARK: -  我进行的一些思考
-/// 想要将Int和String展平为一种类型,然后来替换rank的类型,但是失败了,最后网上的一种思路成功了
-
-protocol MixinTypeConvertible: Codable {}
-
-//extension MixinTypeConvertible where Self == Int {}
-//
-//extension MixinTypeConvertible where Self == String {}
-//
-//extension MixinTypeConvertible where Self == Bool {}
-
-extension Int: MixinTypeConvertible {}
-
-extension String: MixinTypeConvertible {}
-
-extension Bool: MixinTypeConvertible {}
-
-
 @propertyWrapper
-struct MixinType<Wrapper: MixinTypeConvertible>: Codable {
+struct MixinType<Wrapper: Codable>: Codable {
     var wrappedValue: Wrapper?
     
     init(from decoder: Decoder) throws {
@@ -164,6 +147,8 @@ struct MixinType<Wrapper: MixinTypeConvertible>: Codable {
         if let value = try? container.decode(String.self) {
             wrappedValue = value as? Wrapper
         } else if let value = try? container.decode(Int.self) {
+            wrappedValue = value as? Wrapper
+        } else if let value = try? container.decode(Double.self) {
             wrappedValue = value as? Wrapper
         } else if let value = try? container.decode(Bool.self) {
             wrappedValue = value as? Wrapper
@@ -178,10 +163,12 @@ struct MixinType<Wrapper: MixinTypeConvertible>: Codable {
             try? container.encode(value)
         } else if let value = wrappedValue as? Int {
             try? container.encode(value)
+        } else if let value = wrappedValue as? Double {
+            try? container.encode(value)
         } else if let value = wrappedValue as? Bool {
             try? container.encode(value)
         } else {
-            
+            try? container.encodeNil()
         }
     }
 }
