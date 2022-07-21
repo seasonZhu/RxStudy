@@ -14,7 +14,11 @@ target 'RxStudy' do
   # Rx Extensions
   pod 'RxDataSources'
   pod 'NSObject+Rx'
+  
+  # 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
   pod 'RxGesture'
+  # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型
+  pod 'RxBlocking'
 
   # Networking
   pod 'Moya/RxSwift'
@@ -61,7 +65,6 @@ target 'RxStudy' do
   pod 'RxViewController'
   pod 'RxOptional'
   pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可
-  pod 'RxBlocking'
   
   # Date
   pod 'SwiftDate'

@@ -31,7 +31,8 @@ class MyViewModel: BaseViewModel {
     }
     
     func loadData() {
-        Single.zip(getMyCoin(), getMyUnreadMessageCount()).subscribe { event in
+        Single.zip(getMyCoin(), getMyUnreadMessageCount())
+            .subscribe { event in
             self.refreshSubject.onNext(.stopRefresh)
             switch event {
             case .success((let myCoin, let count)):
@@ -80,4 +81,38 @@ extension MyViewModel {
     static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .course, .ranking, .login]
     
     static let loginDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .course, .ranking, .myCoin, .myCollect, .myMessage, .logout]
+}
+
+import RxBlocking
+
+extension MyViewModel {
+    func testRxBlocking() {
+        
+        /// 使用自己写的BlockingObservable分类进行处理
+        let some = myProvider.rx.request(MyService.userCoinInfo)
+            .map(BaseModel<CoinRank>.self)
+            .map{ $0.data }
+            .compactMap{ $0 }
+            .toBlocking()
+            .toSingleResult
+        switch some {
+        case .success(let data):
+            print(data)
+        case .failure(let error):
+            print(error)
+        }
+        
+        /// 使用自己写的MoyaProviderType分类进行处理
+        let result = myProvider.rx.blockingRequest(MyService.userCoinInfo)
+            .map(BaseModel<CoinRank>.self)
+            .map{ $0.data }
+        
+        switch result {
+            
+        case .success(let data):
+            print(data)
+        case .failure(let error):
+            print(error)
+        }
+    }
 }
