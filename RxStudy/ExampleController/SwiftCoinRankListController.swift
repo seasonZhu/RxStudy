@@ -174,38 +174,3 @@ extension SwiftCoinRankListController: UITableViewDelegate {
         }
     }
 }
-
-/// 自己写的,对Result的扩展写法
-extension Result where Success == Moya.Response, Failure == MoyaError {
-    public func map<Model: Codable>() -> Result<Model, Failure> {
-        switch self {
-            case .success(let response):
-                do {
-                    let model = try JSONDecoder().decode(Model.self, from: response.data)
-                    return .success(model)
-                } catch  {
-                    let error = MoyaError.objectMapping(error, response)
-                    return .failure(error)
-                }
-                
-            case .failure(let error):
-                return .failure(error)
-        }
-    }
-    
-    public func map<D: Decodable>(_ type: D.Type) -> Result<D, MoyaError> {
-        switch self {
-            case .success(let response):
-                do {
-                    let model = try JSONDecoder().decode(D.self, from: response.data)
-                    return .success(model)
-                } catch  {
-                    let error = MoyaError.objectMapping(error, response)
-                    return .failure(error)
-                }
-                
-            case .failure(let error):
-                return .failure(error)
-        }
-    }
-}

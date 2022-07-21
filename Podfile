@@ -17,7 +17,8 @@ target 'RxStudy' do
   
   # 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
   pod 'RxGesture'
-  # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型
+  # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,
+  # 我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型,同时BlockingObservable的注释也说了,它用于测试与演示,并不适合用于App的生产环境,当你在程序逻辑中使用BlockingObservable,也许是该反省自己写的代码逻辑的时候了
   pod 'RxBlocking'
 
   # Networking

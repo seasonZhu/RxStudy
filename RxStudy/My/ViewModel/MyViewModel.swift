@@ -103,13 +103,29 @@ extension MyViewModel {
         }
         
         /// 使用自己写的MoyaProviderType分类进行处理
-        let result = myProvider.rx.blockingRequest(MyService.userCoinInfo)
+        let result: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
             .map{ $0.data }
+            .filterNil(CoinRank.self)
         
         switch result {
             
         case .success(let data):
+            print("哈哈")
+            print(data)
+        case .failure(let error):
+            print(error)
+        }
+        
+        let anotherResult: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
+            .map(BaseModel<CoinRank>.self)
+            .map{ $0.data }
+            .filterNil()
+        
+        switch anotherResult {
+            
+        case .success(let data):
+            print("哈哈")
             print(data)
         case .failure(let error):
             print(error)
