@@ -61,6 +61,11 @@ pod 'RxCocoa'
 pod 'RxDataSources'
 pod 'NSObject+Rx'
 
+# 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
+pod 'RxGesture'
+# 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型
+pod 'RxBlocking'
+
 # Networking
 pod 'Moya/RxSwift'
 pod 'AlamofireNetworkActivityLogger'
@@ -95,12 +100,10 @@ pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
 # 注意,以下是没有使用的库
 
 # Rx Extensions
-pod 'RxSwiftExt' #更多的是对序列的运算符优化
-pod 'RxViewController'
-pod 'RxGesture'
+pod 'RxSwiftExt' # 更多的是对序列的运算符优化
+pod 'RxViewController' # 控制器的生命周期通过rx进行监控
 pod 'RxOptional'
 pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可
-pod 'RxBlocking'
 
 # Date
 pod 'SwiftDate'
