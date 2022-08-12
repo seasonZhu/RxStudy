@@ -131,9 +131,11 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 
 而RxSwift系列的一些框架已经在向大前端的实现了，可惜对原生的支持不够好的，学习成本也太高了。
 
-## Flutter版wanandroid客户端
+## Flutter版使用GetX重构wanandroid客户端
 
-[项目地址](https://github.com/seasonZhu/FlutterPlayAndroid)
+因为RxSwift的响应式学习，鼓起勇气学习了GetX，重构了Flutter版wanandroid客户端。也希望大家喜欢和支持。
+
+[项目地址](https://github.com/seasonZhu/GetXStudy)
 
 ## uni-app版wanandroid客户端
 
