@@ -54,6 +54,10 @@ class ButtonRxTapBugController: BaseViewController {
             .map { [weak self] in !(self?.isEnableRelay.value ?? true) }
             .bind(to: isEnableRelay).disposed(by: rx.disposeBag)
         
+        blueButton.rx.tap.subscribe { [weak self] _ in
+            self?.dismiss(animated: true)
+        }
+        
         isEnableRelay.bind(to: redButton.rx.isEnabled).disposed(by: rx.disposeBag)
     }
 }
