@@ -21,6 +21,8 @@ class SnapKitLayoutController: BaseViewController {
     private func setupUI() {
         title = "SnapKit的简单布局"
         
+        view.backgroundColor = .white
+        
         let redButton = UIButton(type: .custom)
         redButton.backgroundColor = .red
         
