@@ -33,23 +33,21 @@ class RxSwiftCoinRankListController: BaseViewController {
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
         /// 创建vm
-        let vm = RxSwiftCoinRankListViewModel(disposeBag: rx.disposeBag)
+        let vm = RxSwiftCoinRankListViewModel()
         
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
         
         tableView.mj_header?.rx.refresh
-            .subscribe { _ in
-                vm.refreshAction()
-        }.disposed(by: rx.disposeBag)
+            .subscribe(onNext:vm.refreshAction)
+            .disposed(by: rx.disposeBag)
         
         /// 设置尾部刷新控件
         tableView.mj_footer = MJRefreshBackNormalFooter()
         
         tableView.mj_footer?.rx.refresh
-            .subscribe { _ in
-                vm.loadMoreAction()
-        }.disposed(by: rx.disposeBag)
+            .subscribe(onNext:vm.loadMoreAction)
+            .disposed(by: rx.disposeBag)
         
         /// cell删除
         tableView.rx.itemDeleted
@@ -100,9 +98,6 @@ class RxSwiftCoinRankListViewModel {
     /// 初始化page为1
     private var page: Int = 1
     
-    /// DisposeBag
-    private let disposeBag: DisposeBag
-    
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
     let dataSource = BehaviorRelay<[CoinRank]>(value: [])
     
@@ -110,12 +105,6 @@ class RxSwiftCoinRankListViewModel {
     /// 当观察者对 BehaviorSubject 进行订阅时，它会将源 Observable 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来
     /// 所以这里最先发出来的是默认操作,下拉刷新
     let refreshSubject = BehaviorSubject<MJRefreshAction>(value: .begainRefresh)
-    
-    /// 初始化方法
-    /// - Parameter disposeBag: 传入的disposeBag
-    init(disposeBag: DisposeBag) {
-        self.disposeBag = disposeBag
-    }
     
     /// 下拉刷新行为
     func refreshAction() {
@@ -179,6 +168,8 @@ class RxSwiftCoinRankListViewModel {
             }.disposed(by: disposeBag)
     }
 }
+
+extension RxSwiftCoinRankListViewModel: HasDisposeBag {}
 
 //MARK: -  Moya + Combine进行网络请求
 
