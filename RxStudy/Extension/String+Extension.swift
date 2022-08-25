@@ -62,3 +62,16 @@ extension String {
             .replacingOccurrences(of: "&yen;",with:  "¥")
       }
 }
+
+@propertyWrapper
+struct ReplaceHtmlElement {
+    var wrappedValue: String? {
+        didSet {
+            wrappedValue = wrappedValue?.replaceHtmlElement
+        }
+    }
+
+    init(wrappedValue: String?) {
+        self.wrappedValue = wrappedValue?.replaceHtmlElement
+    }
+}

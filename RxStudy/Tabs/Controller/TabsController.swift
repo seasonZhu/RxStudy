@@ -173,6 +173,7 @@ extension TabsController {
     
     func settingSegmentedDataSource(tabs: [Tab]) {
         segmentedDataSource.titles = tabs.map{ $0.name?.replaceHtmlElement }.compactMap{ $0 }
+        //segmentedDataSource.titles = tabs.map{ self.getRealString(html: $0.name) }.compactMap{ $0 }
         segmentedView.defaultSelectedIndex = 0
         segmentedView.reloadData()
 
@@ -205,6 +206,11 @@ extension TabsController {
             tagSelectRefreshIndexs.insert(0)
         }
         view.setNeedsLayout()
+    }
+    
+    /// 这个方法,将html入参的时候,就转换成我们想要的格式
+    func getRealString(@ReplaceHtmlElement html: String?) -> String? {
+        return html
     }
 }
 
