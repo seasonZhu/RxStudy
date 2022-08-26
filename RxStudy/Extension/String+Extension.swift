@@ -75,3 +75,28 @@ struct ReplaceHtmlElement {
         self.wrappedValue = wrappedValue?.replaceHtmlElement
     }
 }
+
+@propertyWrapper
+struct IntToStringFactory {
+    
+    var wrappedValue: Int
+
+    var projectedValue: String { String(wrappedValue) }
+
+}
+
+
+@propertyWrapper
+struct FunctionFactory<Input, Output> {
+    
+    var wrappedValue: Input
+    
+    let function: (Input) -> Output
+
+    var projectedValue: Output { function(wrappedValue) }
+    
+//    init(wrappedValue: Input, function: @escaping (Input) -> Output) {
+//        self.wrappedValue = wrappedValue
+//        self.function = function
+//    }
+}
