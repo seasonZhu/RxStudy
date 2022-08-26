@@ -51,7 +51,7 @@ extension TabsController {
         title = type.title
         view.backgroundColor = .playAndroidBg
         
-        let _ = getRealString(html: nil, aNumber: 100)
+        let _ = getRealString(html: nil, aNumber: 100, other: 3)
         
         //1、segmentedView已经懒加载了
         
@@ -211,8 +211,16 @@ extension TabsController {
     }
     
     /// 这个方法,将html入参的时候,就转换成我们想要的格式
-    func getRealString(@ReplaceHtmlElement html: String?, @IntToStringFactory aNumber: Int) -> String? {
+    func getRealString(@ReplaceHtmlElement html: String?, @IntToStringFactory aNumber: Int, @StringFactory(aNum: 100) other: Int) -> String? {
         let num = $aNumber
+        
+        /// 未加工的原始值 other
+        let origin = other
+        /// 类型StringFactory
+        let type = _other
+        /// 加工后的值 100 * other的字符串
+        let value = $other
+        
         print(num)
         return html
     }

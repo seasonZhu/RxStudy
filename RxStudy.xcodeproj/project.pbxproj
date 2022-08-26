@@ -34,6 +34,7 @@
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
 		0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* DebugLog.swift */; };
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
+		0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */; };
 		008598BF27B4E0DA003E9EF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 008598C127B4E0DA003E9EF7 /* InfoPlist.strings */; };
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
 		00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */; };
@@ -190,6 +191,7 @@
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		0082108C26E1FF3300525CE4 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
+		0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		008598C027B4E0DA003E9EF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		008598C227B4E0ED003E9EF7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */,
 				00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */,
 				000301F5284E047800A41EA6 /* Collection+Extension.swift */,
+				0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1123,6 +1126,7 @@
 				61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */,
 				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
 				000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */,
+				0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */,
 				61CE1D99265E53EE0039E288 /* Tab.swift in Sources */,
 				00CCD17528658E0C00925C1E /* TabAble.swift in Sources */,
 				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
