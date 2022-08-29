@@ -63,7 +63,7 @@ class RxSwiftCoinRankListController: BaseViewController {
         }
         
         /// 数据源驱动
-        vm.dataSource
+        vm.$dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, coinRank) in
             if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
@@ -98,8 +98,16 @@ class RxSwiftCoinRankListViewModel {
     /// 初始化page为1
     private var page: Int = 1
     
+    @AFunction(input: "这是一个input")
+    var aCallback: ((String) -> String) = { $0 + "season" }
+    
+    @FunctionFactory(function: { (num: Int) in num * 10 })
+    var aaa = 1000
+    
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
-    let dataSource = BehaviorRelay<[CoinRank]>(value: [])
+    /// RxBehaviorRelay是对BehaviorRelay通过@propertyWrapper的再封装,可以简化代码
+    @RxBehaviorRelay<[CoinRank]>
+    var dataSource = []
     
     /// 既是可监听序列也是观察者的状态枚举
     /// 当观察者对 BehaviorSubject 进行订阅时，它会将源 Observable 中最新的元素发送出来（如果不存在最新的元素，就发出默认元素）。然后将随后产生的元素发送出来
@@ -110,6 +118,13 @@ class RxSwiftCoinRankListViewModel {
     func refreshAction() {
         resetCurrentPageAndMjFooter()
         getCoinRank(page: page)
+        
+        let some = $aCallback
+        print(some)
+        
+        print($aaa)
+        aaa = 1110
+        print($aaa)
     }
     
     /// 上拉加载更多行为
@@ -151,10 +166,10 @@ class RxSwiftCoinRankListViewModel {
                         /// 通过page的值判断是下拉还是上拉,做数据处理,这里为了方便写注释,没有使用三目运算符
                         if page == 1 {
                             /// 下拉做赋值运算
-                            self.dataSource.accept(datas)
+                            self.$dataSource.accept(datas)
                         } else {
                             /// 上拉做合并运算
-                            self.dataSource.accept(self.dataSource.value + datas)
+                            self.$dataSource.accept(self.$dataSource.value + datas)
                         }
                     }
                     
