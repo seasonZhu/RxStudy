@@ -93,3 +93,34 @@ class AFunction {
         aString + "哈哈"
     }
 }
+
+/// 使用结构体做属性包装器的好处是 构造函数已经隐式写好了
+@propertyWrapper
+struct A<T> {
+    var wrappedValue: T
+    
+    var projectedValue: Int? {
+        if let num = wrappedValue as? Int {
+            return num * 10
+        } else {
+            return nil
+        }
+    }
+}
+
+@propertyWrapper
+class B<T> {
+    var wrappedValue: A<T>
+    
+    init(wrappedValue: A<T>) {
+        self.wrappedValue = wrappedValue
+    }
+    
+    var projectedValue: Int? {
+        if let num = wrappedValue.projectedValue {
+            return num * 100
+        } else {
+            return nil
+        }
+    }
+}

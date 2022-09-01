@@ -104,6 +104,9 @@ class RxSwiftCoinRankListViewModel {
     @FunctionFactory(function: { (num: Int) in num * 10 })
     var aaa = 1000
     
+    @B @A
+    var ba = 1
+    
     /// 既是可监听序列也是观察者的数据源,里面封装的其实是BehaviorSubject
     /// RxBehaviorRelay是对BehaviorRelay通过@propertyWrapper的再封装,可以简化代码
     @RxBehaviorRelay<[CoinRank]>
@@ -125,6 +128,25 @@ class RxSwiftCoinRankListViewModel {
         print($aaa)
         aaa = 1110
         print($aaa)
+        
+        
+        /// 未加工的原始值 other
+        let origin = ba
+        /// 类型StringFactory
+        let type = _ba
+        /// 加工后的值 100 * other的字符串
+        let value = $ba
+        
+        /// 解包出A<T>类型
+        let aType = _ba.wrappedValue
+        
+        /// 拿出A的wrappedValue
+        let _ = aType.wrappedValue
+        
+        /// 拿出A的projectedValue
+        let _ = aType.projectedValue
+        
+        print("origin:\(origin) type:\(type) value:\(value)")
     }
     
     /// 上拉加载更多行为
