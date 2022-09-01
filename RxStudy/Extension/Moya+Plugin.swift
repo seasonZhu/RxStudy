@@ -39,7 +39,7 @@ class RequestLoadingPlugin: PluginType {
         
         /// 开启loading
         DispatchQueue.main.async {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            //UIApplication.shared.isNetworkActivityIndicatorVisible = true
             SVProgressHUD.beginLoading()
         }
     }
@@ -49,7 +49,7 @@ class RequestLoadingPlugin: PluginType {
         
         /// 关闭loading
         DispatchQueue.main.async {
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            //UIApplication.shared.isNetworkActivityIndicatorVisible = false
             SVProgressHUD.stopLoading()
         }
         

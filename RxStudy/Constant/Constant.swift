@@ -9,7 +9,7 @@
 import UIKit
 
 /// 状态栏的高度(竖屏限定)
-let kStatusBarHeight: CGFloat = UIApplication.shared.statusBarFrame.height
+let kStatusBarHeight: CGFloat = UIApplication.shared.windows.first?.windowScene?.statusBarManager?.statusBarFrame.height ?? 20
 
 /// 导航栏的高度(竖屏限定)
 let kNavigationBarHeight: CGFloat = 44.0
@@ -18,7 +18,7 @@ let kNavigationBarHeight: CGFloat = 44.0
 let kTopMargin = kStatusBarHeight + kNavigationBarHeight
 
 /// 底部安全区间距(竖屏限定)
-let kSafeBottomMargin: CGFloat = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+let kSafeBottomMargin: CGFloat = UIApplication.shared.windows.first?.safeAreaInsets.bottom ?? 0
 
 /// tabbar的高度
 let kTabbarHeight: CGFloat = 49

@@ -215,12 +215,11 @@ extension TabsController {
         let num = $aNumber
         
         /// 未加工的原始值 other
-        let origin = other
+        let _ = other
         /// 类型StringFactory
-        let type = _other
+        let _ = _other
         /// 加工后的值 100 * other的字符串
-        let value = $other
-        
+        let _ = $other
         print(num)
         return html
     }

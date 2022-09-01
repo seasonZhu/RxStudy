@@ -23,7 +23,7 @@ extension ViewState {
     var view: Widget {
         switch self {
         case .loading:
-            return UIActivityIndicatorView(style: .whiteLarge)
+            return UIActivityIndicatorView(style: .large)
         case .error:
             return UILabel()
         case .success(let success):

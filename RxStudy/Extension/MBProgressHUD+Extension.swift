@@ -9,7 +9,7 @@
 import MBProgressHUD
 
 extension MBProgressHUD: HUD {
-    static var keyWindow: UIWindow { UIApplication.shared.keyWindow! }
+    static var keyWindow: UIWindow { UIApplication.shared.windows.first! }
     
     static func beginLoading() {
         MBProgressHUD.showAdded(to:keyWindow , animated: true)
