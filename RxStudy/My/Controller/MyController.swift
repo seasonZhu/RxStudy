@@ -8,6 +8,8 @@
 
 import UIKit
 
+import SafariServices
+
 import RxSwift
 import RxCocoa
 import MBProgressHUD
@@ -103,6 +105,16 @@ class MyController: BaseTableViewController {
                     self?.logoutAction(viewModel: viewModel)
                 case .myMessage:
                     self?.toMyMessageController()
+                case .myGitHub:
+                    /// 尝试使用了SFSafariViewController而非WebView进行加载,对于一个纯粹的展示性Web,SFSafariViewController体验效果更好
+                    let sfsVC = SFSafariViewController(url: URL(string: "https://github.com/seasonZhu")!)
+                    /// 左侧返回按钮无法自定义,只能使用三个枚举
+                    sfsVC.dismissButtonStyle = .close
+                    /// 如果这里声明了modalPresentationStyle,又变成了present
+                    //sfsVC.modalPresentationStyle = .automatic
+                    /// 这里我明明使用的是present,但是在App中还是push的效果,倒是如果使用pushViewController,页面会感觉非常奇葩
+                    self?.present(sfsVC, animated: true)
+                    //self?.navigationController?.pushViewController(sfsVC, animated: true)
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return
