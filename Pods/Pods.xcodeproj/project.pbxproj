@@ -10121,6 +10121,7 @@
 			baseConfigurationReference = DD7760B6614A9ACC1F034568E09503E1 /* AcknowList.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/AcknowList";
+				DEVELOPMENT_TEAM = B6Q5RKSB5N;
 				IBSC_MODULE = AcknowList;
 				INFOPLIST_FILE = "Target Support Files/AcknowList/ResourceBundle-AcknowListBundle-AcknowList-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -11503,6 +11504,7 @@
 			baseConfigurationReference = 14937A8F6E0A261769AB0CE8C38CE914 /* AcknowList.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/AcknowList";
+				DEVELOPMENT_TEAM = B6Q5RKSB5N;
 				IBSC_MODULE = AcknowList;
 				INFOPLIST_FILE = "Target Support Files/AcknowList/ResourceBundle-AcknowListBundle-AcknowList-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
