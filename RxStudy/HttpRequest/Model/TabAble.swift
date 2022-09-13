@@ -10,7 +10,7 @@ import Foundation
 
 protocol TabAble {
     
-    associatedtype T: TabAble&Codable
+    associatedtype T: TabAble & Codable
     
     var children : [T]? { get }
     var courseId : Int? { get }

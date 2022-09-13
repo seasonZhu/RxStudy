@@ -14,10 +14,10 @@ import Moya
 
 class BaseViewModel {
     /// inputs修饰前缀,这里没有使用rx这种命名空间的思路,并不是我不会,而是不想增加编写和理解成本
-    var inputs: Self { return self }
+    var inputs: Self { self }
 
     /// outputs修饰前缀
-    var outputs: Self { return self }
+    var outputs: Self { self }
     
     /// 网络请求的Moya错误,为空说明走到success里面了,有值的话,并不在乎值是什么,直接显示error画面
     let networkError = PublishSubject<MoyaError?>()
@@ -38,7 +38,7 @@ extension BaseViewModel {
     
     /// 在ViewModel的基类中封装针对网络请求错误的方法,避免在子类中写重复代码
     /// - Parameter event: SingleEvent
-    func processRxMoyaRequestEvent<T: Codable>(event: SingleEvent<T>) {
+    func processRxMoyaRequestEvent(event: SingleEvent<some Codable>) {
         networkError.onNext(event.moyaError)
     }
 }

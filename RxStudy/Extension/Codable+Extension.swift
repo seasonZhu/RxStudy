@@ -180,7 +180,7 @@ struct StringValue: Codable {
     
     var wrappedValue: String?
     
-    var projectedValue: StringValue { return self }
+    var projectedValue: StringValue { self }
     
     var boolToIntStringValue: String {
         if wrappedValue == "true" {
