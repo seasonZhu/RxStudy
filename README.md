@@ -24,7 +24,7 @@
 
 <div align="center">
 
-![](ScreenShots/preview.gif)
+![](ScreenShots/example.mov)
 
 </div>
 
