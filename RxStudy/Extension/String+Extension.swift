@@ -27,11 +27,12 @@ extension String {
     
     mutating func filterHTML() -> String? {
         let scanner = Scanner(string: self)
-        var text: NSString?
         while !scanner.isAtEnd {
-          scanner.scanUpTo("<", into: nil)
-          scanner.scanUpTo(">", into: &text)
-            self = self.replacingOccurrences(of: "\(text == nil ? "" : text!)>", with: "").replaceHtmlElement
+            let s1 = scanner.scanUpToString("<")
+            let s2 = scanner.scanUpToString(">")
+            
+            self = self.replacingOccurrences(of: "\(s1 == nil ? "" : s1!)<", with: "").replaceHtmlElement
+            self = self.replacingOccurrences(of: "\(s2 == nil ? "" : s2!)>", with: "").replaceHtmlElement
         }
         return self
     }
