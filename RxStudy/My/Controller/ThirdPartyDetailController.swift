@@ -73,12 +73,12 @@ class ThirdPartyDetailController: BaseViewController {
     open override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if let textView = textView {
+        if let textView {
             updateTextViewInsets(textView)
         }
 
         // Need to set the textView text after the layout is completed, so that the content inset and offset properties can be adjusted automatically.
-        if let acknowledgement = acknowledgement {
+        if let acknowledgement {
             textView?.text = acknowledgement.text
         }
     }

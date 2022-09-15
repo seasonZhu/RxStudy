@@ -128,7 +128,7 @@ class WebViewController: BaseViewController {
                 return
             }
             
-            guard let self = self else { return }
+            guard let self else { return }
             
             /// 回调给上一个页面,做了操作,需要进行页面刷新
             self.hasCollectAction.onNext(void)
@@ -154,7 +154,7 @@ class WebViewController: BaseViewController {
             /// 因为玩安卓App不存在被挤掉这种场景
             /// 但是考虑到isLoginRelay应该是随着登录的状态变化而做出UI变化的,于是保留了subscribe
             AccountManager.shared.isLoginRelay.subscribe { [weak self] event in
-                guard let self = self else {
+                guard let self else {
                     return
                 }
 

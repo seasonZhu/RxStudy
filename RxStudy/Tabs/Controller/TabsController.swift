@@ -100,7 +100,7 @@ extension TabsController {
                 return
             }
             
-            guard let self = self else {
+            guard let self else {
                 return
             }
             
@@ -127,12 +127,12 @@ extension TabsController {
                 driver = Driver.just(.toRight)
             }
             
-            guard let d = driver,
+            guard let driver,
                   let vc = self.tabBarController as? ViewController else {
                 return
             }
             
-            d.drive(vc.rx.selectedIndexChange)
+            driver.drive(vc.rx.selectedIndexChange)
                 .disposed(by: self.rx.disposeBag)
             
         }.disposed(by: rx.disposeBag)

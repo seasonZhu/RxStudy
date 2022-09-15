@@ -18,9 +18,9 @@ struct CoinRank : Codable {
     let username : String?
     
     var myInfo: String {
-        guard let rank = self.rank,
-              let level = self.level,
-              let coinCount = self.coinCount else {
+        guard let rank,
+              let level,
+              let coinCount else {
             return "排名: -- 等级: -- 积分: --"
         }
         return "排名: \(rank) 等级: \(level) 积分: \(coinCount)"

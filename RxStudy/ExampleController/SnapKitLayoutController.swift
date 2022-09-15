@@ -38,7 +38,7 @@ class SnapKitLayoutController: BaseViewController {
         redButton.rx.tap.subscribe { [weak self, weak redButton] (_) in
             
             /// 避免循环引用使用了weak修饰,guard一把
-            guard let self = self, let redButton = redButton else { return }
+            guard let self, let redButton else { return }
             
             /// 注意这里使用的是update
             redButton.snp.remakeConstraints { (make) in

@@ -38,7 +38,7 @@ class MyCollectionController: BaseTableViewController {
         
         MyCollectionController.done.rx.tap
             .map { [weak self] in
-                guard let self = self else {
+                guard let self else {
                     return true
                 }
                 return !self.isEditedRelay.value
@@ -48,7 +48,7 @@ class MyCollectionController: BaseTableViewController {
         
         MyCollectionController.edit.rx.tap
             .map { [weak self] in
-                guard let self = self else {
+                guard let self else {
                     return false
                 }
                 return !self.isEditedRelay.value
@@ -64,7 +64,7 @@ class MyCollectionController: BaseTableViewController {
         /// 点击cell,获取cell中的模型
         tableView.rx.modelSelected(Info.self)
             .subscribe(onNext: { [weak self] model in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.pushToWebViewController(webLoadInfo: model)
             })
             .disposed(by: rx.disposeBag)

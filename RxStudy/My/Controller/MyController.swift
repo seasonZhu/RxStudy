@@ -70,7 +70,7 @@ class MyController: BaseTableViewController {
                     cell.textLabel?.text = my.title
                     cell.accessoryType = my.accessoryType
                     
-                    if let self = self {
+                    if let self {
                         AccountManager.shared.myUnreadMessageCountRelay
                             .bind(to: cell.rx.count)
                             .disposed(by: self.rx.disposeBag)

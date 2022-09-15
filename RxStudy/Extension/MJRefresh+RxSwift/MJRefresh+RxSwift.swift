@@ -26,13 +26,13 @@ class Target: NSObject, Disposable {
 }
 
 private final class MJRefreshTarget<Component: MJRefreshComponent>: Target {
-    typealias CallBack = (MJRefreshState) -> Void
+    typealias Callback = (MJRefreshState) -> Void
     /// 组件
     weak var component: Component?
     /// 回调
-    let callBack: CallBack
+    let callBack: Callback
     
-    init(_ component: Component, callBack: @escaping CallBack) {
+    init(_ component: Component, callBack: @escaping Callback) {
         self.callBack = callBack
         self.component = component
         super.init()
@@ -70,7 +70,7 @@ extension Reactive where Base: MJRefreshComponent {
     var state: ControlProperty<MJRefreshState> {
         let source: Observable<MJRefreshState> = Observable.create { [weak component = base] observer  in
             MainScheduler.ensureExecutingOnScheduler()
-            guard let component = component else {
+            guard let component else {
                 observer.on(.completed)
                 return Disposables.create()
             }

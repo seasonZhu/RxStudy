@@ -29,7 +29,7 @@ class ToolController: BaseTableViewController {
         
         tableView.rx.modelSelected(Tool.self)
             .subscribe(onNext: { [weak self] model in
-                guard let self = self else { return }
+                guard let self else { return }
                 self.pushToWebViewController(webLoadInfo: model, isNeedShowCollection: false)
             })
             .disposed(by: rx.disposeBag)

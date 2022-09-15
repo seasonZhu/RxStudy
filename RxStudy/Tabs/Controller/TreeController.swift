@@ -44,7 +44,7 @@ extension TreeController {
         /// 获取cell中的模型
         tableView.rx.modelSelected(Tab.self)
             .subscribe(onNext: { [weak self] tab in
-                guard let self = self else { return }
+                guard let self else { return }
                 let vc = SingleTabListController(type: self.type, tab: tab)
                 self.navigationController?.pushViewController(vc, animated: true)
             })

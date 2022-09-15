@@ -31,10 +31,10 @@ extension ViewState {
             case .empty:
                 return UIView()
             case .hasContent(let widget):
-                guard let w = widget else {
+                guard let widget else {
                     return UIView()
                 }
-                return w()
+                return widget()
             }
         }
     }

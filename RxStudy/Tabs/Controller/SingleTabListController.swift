@@ -57,7 +57,7 @@ extension SingleTabListController {
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
             .subscribe(onNext: { [weak self] model in
-                guard let self = self else { return }
+                guard let self else { return }
                 if self.type == .tree {
                     self.pushToWebViewController(webLoadInfo: model)
                 } else {

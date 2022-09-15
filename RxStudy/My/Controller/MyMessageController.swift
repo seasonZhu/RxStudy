@@ -36,7 +36,7 @@ extension MyMessageController {
         /// 获取cell中的模型
         tableView.rx.modelSelected(Message.self)
             .subscribe(onNext: { [weak self] model in
-                guard let self = self else { return }
+                guard let self else { return }
                 //self.pushToWebViewController(webLoadInfo: model)
                 debugLog("模型为:\(model)")
             })
