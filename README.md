@@ -45,7 +45,7 @@
 * MJRefresh的下拉刷新，无感知上拉加载更多
 * RxMoya的使用，Moya插件的使用
 * RxSwift、RxCocoa的响应式编程，ViewModel的绑定
-* 适配iOS 15
+* 适配iOS 16，Swift语法更新到5.7
 * 适配黑暗模式
 * 常用扩展封装
 * 详细的注释与思考过程
