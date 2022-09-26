@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 import SafariServices
 
@@ -115,6 +116,8 @@ class MyController: BaseTableViewController {
                     /// 这里我明明使用的是present,但是在App中还是push的效果,倒是如果使用pushViewController,页面会感觉非常奇葩
                     self?.present(sfsVC, animated: true)
                     //self?.navigationController?.pushViewController(sfsVC, animated: true)
+                case .aSwiftUI:
+                    self?.navigationController?.pushViewController(UIHostingController(rootView: CoinRankListPage()), animated: true)
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return

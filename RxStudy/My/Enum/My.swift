@@ -18,6 +18,7 @@ enum My: CaseIterable {
     case myCoin
     case myCollect
     case myMessage
+    case aSwiftUI
     case login
     case logout
 }
@@ -44,6 +45,8 @@ extension My {
             string = "我的收藏"
         case .myMessage:
             string = "我的站内消息"
+        case .aSwiftUI:
+            string = "一个SwiftUI的简单例子"
         case .login:
             string = "登录"
         case .logout:
@@ -77,6 +80,8 @@ extension My {
             string = "MyCollectionController"
         case .myMessage:
             string = "MyMessageController"
+        case .aSwiftUI:
+            string = "aSwiftUI"
         case .login:
             string = "LoginController"
         case .logout:

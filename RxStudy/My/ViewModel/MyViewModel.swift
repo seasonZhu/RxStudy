@@ -80,7 +80,7 @@ extension MyViewModel {
 extension MyViewModel {
     static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .course, .ranking, .login]
     
-    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .openSource, .tools, .course, .ranking, .myCoin, .myCollect, .myMessage, .logout]
+    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .myCoin, .myCollect, .myMessage, .logout]
 }
 
 import RxBlocking
