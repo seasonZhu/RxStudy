@@ -11,12 +11,25 @@
 		000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000301F5284E047800A41EA6 /* Collection+Extension.swift */; };
 		000D937326DCAC190099A749 /* open.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* open.js */; };
 		0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016CE2A286E838F0002501A /* TypeNameProtocol.swift */; };
-		001B4E1728E183BD003ADF95 /* SwiftUICombineCoinRankListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E1628E183BD003ADF95 /* SwiftUICombineCoinRankListPage.swift */; };
+		001B4E1728E183BD003ADF95 /* SwiftUIPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E1628E183BD003ADF95 /* SwiftUIPage.swift */; };
+		001B4E1A28E19229003ADF95 /* SwiftUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E1928E19229003ADF95 /* SwiftUIModel.swift */; };
+		001B4E1C28E1926E003ADF95 /* SwiftUIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E1B28E1926E003ADF95 /* SwiftUIViewModel.swift */; };
+		001B4E2E28E19BE1003ADF95 /* HeaderKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2628E19BE1003ADF95 /* HeaderKey.swift */; };
+		001B4E2F28E19BE1003ADF95 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2728E19BE1003ADF95 /* Utilities.swift */; };
+		001B4E3028E19BE1003ADF95 /* FooterKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2828E19BE1003ADF95 /* FooterKey.swift */; };
+		001B4E3128E19BE1003ADF95 /* Footer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2928E19BE1003ADF95 /* Footer.swift */; };
+		001B4E3228E19BE1003ADF95 /* Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2A28E19BE1003ADF95 /* Refresh.swift */; };
+		001B4E3328E19BE1003ADF95 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2B28E19BE1003ADF95 /* Header.swift */; };
+		001B4E3428E19BE1003ADF95 /* List+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2C28E19BE1003ADF95 /* List+Refresh.swift */; };
+		001B4E3528E19BE1003ADF95 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E2D28E19BE1003ADF95 /* Modifier.swift */; };
+		001B4E3828E1A11A003ADF95 /* SimplePullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */; };
+		001B4E3928E1A11A003ADF95 /* SimpleRefreshingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */; };
+		001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */; };
 		002CCE6528AA263D0086110E /* ButtonRxTapBugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */; };
 		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
 		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
 		0038326826F5821E0071EE7E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038326726F5821E0071EE7E /* InfoCell.swift */; };
-		003B6303278FBB5600EA265E /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B6302278FBB5600EA265E /* Header.swift */; };
+		003B6303278FBB5600EA265E /* ImportHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B6302278FBB5600EA265E /* ImportHeader.swift */; };
 		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
 		00469128286A8E58000B3C5E /* Friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 00469127286A8E58000B3C5E /* Friend.json */; };
 		0046912A286A8F0D000B3C5E /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469129286A8F0D000B3C5E /* Friend.swift */; };
@@ -167,12 +180,25 @@
 		000301F5284E047800A41EA6 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		000D937226DCAC190099A749 /* open.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
 		0016CE2A286E838F0002501A /* TypeNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeNameProtocol.swift; sourceTree = "<group>"; };
-		001B4E1628E183BD003ADF95 /* SwiftUICombineCoinRankListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUICombineCoinRankListPage.swift; sourceTree = "<group>"; };
+		001B4E1628E183BD003ADF95 /* SwiftUIPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIPage.swift; sourceTree = "<group>"; };
+		001B4E1928E19229003ADF95 /* SwiftUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIModel.swift; sourceTree = "<group>"; };
+		001B4E1B28E1926E003ADF95 /* SwiftUIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIViewModel.swift; sourceTree = "<group>"; };
+		001B4E2628E19BE1003ADF95 /* HeaderKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderKey.swift; sourceTree = "<group>"; };
+		001B4E2728E19BE1003ADF95 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		001B4E2828E19BE1003ADF95 /* FooterKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterKey.swift; sourceTree = "<group>"; };
+		001B4E2928E19BE1003ADF95 /* Footer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
+		001B4E2A28E19BE1003ADF95 /* Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
+		001B4E2B28E19BE1003ADF95 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		001B4E2C28E19BE1003ADF95 /* List+Refresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "List+Refresh.swift"; sourceTree = "<group>"; };
+		001B4E2D28E19BE1003ADF95 /* Modifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
+		001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimplePullToRefreshView.swift; sourceTree = "<group>"; };
+		001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshingView.swift; sourceTree = "<group>"; };
+		001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRxTapBugController.swift; sourceTree = "<group>"; };
 		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
 		00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
 		0038326726F5821E0071EE7E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
-		003B6302278FBB5600EA265E /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		003B6302278FBB5600EA265E /* ImportHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportHeader.swift; sourceTree = "<group>"; };
 		003B6307278FBDA900EA265E /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
 		003C4A0D2876B39F00AB3BC1 /* CodableTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CodableTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
@@ -337,6 +363,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		001B4E1828E191F1003ADF95 /* SwiftUIExample */ = {
+			isa = PBXGroup;
+			children = (
+				001B4E3F28E1A15C003ADF95 /* Model */,
+				001B4E3E28E1A150003ADF95 /* ViewModel */,
+				001B4E3D28E1A13E003ADF95 /* View */,
+				001B4E3C28E1A131003ADF95 /* Page */,
+			);
+			path = SwiftUIExample;
+			sourceTree = "<group>";
+		};
+		001B4E2528E19BE1003ADF95 /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				001B4E2628E19BE1003ADF95 /* HeaderKey.swift */,
+				001B4E2728E19BE1003ADF95 /* Utilities.swift */,
+				001B4E2828E19BE1003ADF95 /* FooterKey.swift */,
+				001B4E2928E19BE1003ADF95 /* Footer.swift */,
+				001B4E2A28E19BE1003ADF95 /* Refresh.swift */,
+				001B4E2B28E19BE1003ADF95 /* Header.swift */,
+				001B4E2C28E19BE1003ADF95 /* List+Refresh.swift */,
+				001B4E2D28E19BE1003ADF95 /* Modifier.swift */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
+		001B4E3C28E1A131003ADF95 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				001B4E1628E183BD003ADF95 /* SwiftUIPage.swift */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		001B4E3D28E1A13E003ADF95 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				001B4E2528E19BE1003ADF95 /* Refresh */,
+				001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */,
+				001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */,
+				001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		001B4E3E28E1A150003ADF95 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				001B4E1B28E1926E003ADF95 /* SwiftUIViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		001B4E3F28E1A15C003ADF95 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				001B4E1928E19229003ADF95 /* SwiftUIModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -428,6 +515,7 @@
 			children = (
 				61B44A3C26B79A7500791859 /* Transform */,
 				617E44F1269574B800DA9EA2 /* ViewState */,
+				001B4E1828E191F1003ADF95 /* SwiftUIExample */,
 				61716A9D267B396C00F9DC25 /* ExampleController */,
 				6171E1962665FE2D0065C34D /* Constant */,
 				61BF8341265C8F190063EE4E /* ViewModel+Plus */,
@@ -443,7 +531,7 @@
 				0048E6D1277AAD9700F6C739 /* JavaScript */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
-				003B6302278FBB5600EA265E /* Header.swift */,
+				003B6302278FBB5600EA265E /* ImportHeader.swift */,
 				003B6307278FBDA900EA265E /* RxStudy-Bridging-Header.h */,
 				6114ABF0267AD8450082BA67 /* R.generated.swift */,
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
@@ -586,7 +674,6 @@
 			children = (
 				61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */,
 				61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */,
-				001B4E1628E183BD003ADF95 /* SwiftUICombineCoinRankListPage.swift */,
 				007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */,
 				009723D126EC4B8D00A77EAC /* EditTableViewController.swift */,
 				002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */,
@@ -1040,7 +1127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				61B13D622680915400665A08 /* ThirdPartyDetailController.swift in Sources */,
-				001B4E1728E183BD003ADF95 /* SwiftUICombineCoinRankListPage.swift in Sources */,
+				001B4E1728E183BD003ADF95 /* SwiftUIPage.swift in Sources */,
 				6171E19F26661AAA0065C34D /* AccountBaseController.swift in Sources */,
 				0048E6D0277AAB6000F6C739 /* MyGitHubController.swift in Sources */,
 				61336C78265644DC00FDEB2A /* HomeService.swift in Sources */,
@@ -1049,6 +1136,7 @@
 				00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */,
 				61B79950268190F40025EADE /* MyCoinViewModel.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
+				001B4E3328E19BE1003ADF95 /* Header.swift in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
@@ -1059,17 +1147,21 @@
 				0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */,
 				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
-				003B6303278FBB5600EA265E /* Header.swift in Sources */,
+				003B6303278FBB5600EA265E /* ImportHeader.swift in Sources */,
 				6171E19B266611650065C34D /* AccountService.swift in Sources */,
 				6171E1A126661EC60065C34D /* RegisterController.swift in Sources */,
+				001B4E3528E19BE1003ADF95 /* Modifier.swift in Sources */,
 				00CCD1852865BFAC00925C1E /* Message.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
+				001B4E3428E19BE1003ADF95 /* List+Refresh.swift in Sources */,
 				617E44F3269574CF00DA9EA2 /* ViewState.swift in Sources */,
 				00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */,
 				61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
+				001B4E1A28E19229003ADF95 /* SwiftUIModel.swift in Sources */,
 				0038326826F5821E0071EE7E /* InfoCell.swift in Sources */,
 				00CCD17B2865BDB300925C1E /* Message.json in Sources */,
+				001B4E1C28E1926E003ADF95 /* SwiftUIViewModel.swift in Sources */,
 				00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
 				61B539002678863A00EEFE1F /* My.swift in Sources */,
@@ -1083,9 +1175,11 @@
 				00FE0DDC28694BB600B9D48F /* MyMessageController.swift in Sources */,
 				61336C7F2656642700FDEB2A /* Page.swift in Sources */,
 				0048E6CE277AAB1900F6C739 /* MyJueJinController.swift in Sources */,
+				001B4E2F28E19BE1003ADF95 /* Utilities.swift in Sources */,
 				61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */,
 				61F28245265F4A23009E16C9 /* TreeController.swift in Sources */,
 				0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */,
+				001B4E3828E1A11A003ADF95 /* SimplePullToRefreshView.swift in Sources */,
 				0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */,
 				6114ABF5267ADF6E0082BA67 /* MyView.swift in Sources */,
 				006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */,
@@ -1115,9 +1209,13 @@
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
 				00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */,
 				616EC970269E822E008FAFDF /* HUD.swift in Sources */,
+				001B4E3928E1A11A003ADF95 /* SimpleRefreshingView.swift in Sources */,
 				61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */,
 				6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
+				001B4E3228E19BE1003ADF95 /* Refresh.swift in Sources */,
+				001B4E3128E19BE1003ADF95 /* Footer.swift in Sources */,
+				001B4E3028E19BE1003ADF95 /* FooterKey.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
 				61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */,
 				61BF833D265B41E50063EE4E /* NSObject+Extension.swift in Sources */,
@@ -1136,8 +1234,10 @@
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
+				001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */,
 				00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */,
 				611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */,
+				001B4E2E28E19BE1003ADF95 /* HeaderKey.swift in Sources */,
 				611E2E10266096EA001585AE /* String+Extension.swift in Sources */,
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
