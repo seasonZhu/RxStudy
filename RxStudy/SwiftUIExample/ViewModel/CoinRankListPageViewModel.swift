@@ -24,10 +24,13 @@ class CoinRankListPageViewModel: ObservableObject {
     
     @Published var isNoMoreData = false
     
-    init() {
-        refreshAction()
+    deinit {
+        print("\(className)被销毁了")
+        cancellable?.cancel()
     }
-    
+}
+
+extension CoinRankListPageViewModel {
     /// 下拉刷新行为
     func refreshAction() {
         resetCurrentPageAndMjFooter()
@@ -39,7 +42,9 @@ class CoinRankListPageViewModel: ObservableObject {
         page = page + 1
         getCoinRank(page: page)
     }
-    
+}
+
+extension CoinRankListPageViewModel {
     /// 下拉的参数与状态重置行为
     private func resetCurrentPageAndMjFooter() {
         page = 1
@@ -49,7 +54,8 @@ class CoinRankListPageViewModel: ObservableObject {
         isNoMoreData = false
     }
     
-    func getCoinRank(page: Int) {
+    /// 具体的网络请求
+    private func getCoinRank(page: Int) {
         cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
             .map(BaseModel<Page<ClassCoinRank>>.self)
             .map{ $0.data }
@@ -83,11 +89,6 @@ class CoinRankListPageViewModel: ObservableObject {
                 self.isNoMoreData = pageModel.isNoMoreData
                 //self.noMore = self.dataSource.count > 50
             }
-    }
-    
-    deinit {
-        print("\(className)被销毁了")
-        cancellable?.cancel()
     }
 }
 

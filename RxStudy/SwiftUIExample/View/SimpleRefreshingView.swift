@@ -9,6 +9,9 @@ import SwiftUI
 
 struct SimpleRefreshingView: View {
     var body: some View {
-        ActivityIndicator(style: .medium)
+        HStack {
+            ActivityIndicator(style: .medium)
+            Text("Loading...")
+        }
     }
 }
