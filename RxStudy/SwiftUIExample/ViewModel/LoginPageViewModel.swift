@@ -23,35 +23,19 @@ class LoginPageViewModel: ObservableObject {
 
     var cancellables = Set<AnyCancellable>()
 
-    var userNamePublisher: AnyPublisher<Bool, Never> {
-        return $userName
-            .receive(on: RunLoop.main)
-            .map { $0.isNotEmpty }
-            .eraseToAnyPublisher()
-    }
+    @CbBehaviorSubject
+    var userNamePublisher = true
 
-    var passwordPublisher: AnyPublisher<Bool, Never> {
-        return $password
-            .receive(on: RunLoop.main)
-            .map { $0.isNotEmpty }
-            .eraseToAnyPublisher()
-    }
+    var passwordPublisher = CurrentValueSubject<Bool, Never>(true)
 
     init() {
-        Publishers
-            .CombineLatest(userNamePublisher, passwordPublisher)
-            .map { $0 && $1 }
-            .receive(on: RunLoop.main)
-            /// 使用assign是有要求的extension Publisher where Self.Failure == Never
-            .assign(to: \.buttonEnable, on: self)
-            .store(in: &cancellables)
         
         /// 这种sink与下面的assign是同一种意思
 //        userNamePublisher
 //            .sink { self.showUserNameError = !$0 }
 //            .store(in: &cancellables)
         
-        userNamePublisher
+        $userNamePublisher
             .map { !$0 }
             .assign(to: \.showUserNameError, on: self)
             .store(in: &cancellables)
@@ -59,6 +43,36 @@ class LoginPageViewModel: ObservableObject {
         passwordPublisher
             .map { !$0 }
             .assign(to: \.showPasswordError, on: self)
+            .store(in: &cancellables)
+    }
+    
+    func startListenUserNameInput() {
+        $userName
+            .receive(on: RunLoop.main)
+            .map { $0.isNotEmpty }
+            .sink { self.$userNamePublisher.value = $0 }
+            .store(in: &cancellables)
+        
+        //combineUserNameAndPassword()
+    }
+    
+    func startListenPasswordInput() {
+        $password
+            .receive(on: RunLoop.main)
+            .map { $0.isNotEmpty }
+            .sink { self.passwordPublisher.value = $0 }
+            .store(in: &cancellables)
+        
+        //combineUserNameAndPassword()
+    }
+    
+    func combineUserNameAndPassword() {
+        Publishers
+            .CombineLatest($userNamePublisher, passwordPublisher)
+            .map { $0 && $1 }
+            .receive(on: RunLoop.main)
+            /// 使用assign是有要求的extension Publisher where Self.Failure == Never
+            .assign(to: \.buttonEnable, on: self)
             .store(in: &cancellables)
     }
 
@@ -74,3 +88,24 @@ class LoginPageViewModel: ObservableObject {
 }
 
 extension LoginPageViewModel: TypeNameProtocol {}
+
+/// CbBehaviorSubject即CombineBehaviorSubject的缩写
+@propertyWrapper
+class CbBehaviorSubject<T> {
+    var wrappedValue: T {
+        set {
+            projectedValue.value = newValue
+        }
+        
+        get {
+            projectedValue.value
+        }
+    }
+    
+    var projectedValue: CurrentValueSubject<T, Never>
+    
+    init(wrappedValue: T) {
+        self.projectedValue = CurrentValueSubject(wrappedValue)
+        self.wrappedValue = wrappedValue
+    }
+}

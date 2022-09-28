@@ -14,15 +14,20 @@ struct LoginPage: View {
     
     var body: some View {
         VStack {
-            TextField("请输入用户名", text: $dataModel.userName)
+            TextField("请输入用户名", text: $dataModel.userName) { _ in
+                dataModel.startListenUserNameInput()
+            }
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             if dataModel.showUserNameError {
                 Text("用户名不能为空")
                     .foregroundColor(Color.red)
             }
-
-            SecureField("请输入密码", text: $dataModel.password)
+            
+            /// 这货没有onEditingChanged这个方法
+            SecureField("请输入密码", text: $dataModel.password) {
+                dataModel.startListenPasswordInput()
+            }
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             if dataModel.showPasswordError {
