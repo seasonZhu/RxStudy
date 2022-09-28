@@ -18,7 +18,7 @@ struct LoginPage: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             if dataModel.showUserNameError {
-                Text("用户名不能少于3位！！！")
+                Text("用户名不能为空")
                     .foregroundColor(Color.red)
             }
 
@@ -26,7 +26,7 @@ struct LoginPage: View {
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             if dataModel.showPasswordError {
-                Text("密码不能少于6位！！！")
+                Text("密码不能为空")
                     .foregroundColor(Color.red)
             }
 
