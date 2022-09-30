@@ -53,6 +53,7 @@
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
 		0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */; };
 		008598BF27B4E0DA003E9EF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 008598C127B4E0DA003E9EF7 /* InfoPlist.strings */; };
+		008B1FA628E6C85500A8B009 /* ALayoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B1FA528E6C85500A8B009 /* ALayoutPage.swift */; };
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
 		00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */; };
 		00CC8000283B8A4400E92A6C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */; };
@@ -228,6 +229,7 @@
 		0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		008598C027B4E0DA003E9EF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		008598C227B4E0ED003E9EF7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		008B1FA528E6C85500A8B009 /* ALayoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALayoutPage.swift; sourceTree = "<group>"; };
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
 		00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
@@ -400,6 +402,7 @@
 			children = (
 				001B4E1628E183BD003ADF95 /* CoinRankListPage.swift */,
 				0075943D28E42A4E005AC9E0 /* LoginPage.swift */,
+				008B1FA528E6C85500A8B009 /* ALayoutPage.swift */,
 			);
 			path = Page;
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 				001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */,
 				00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */,
 				611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */,
+				008B1FA628E6C85500A8B009 /* ALayoutPage.swift in Sources */,
 				001B4E2E28E19BE1003ADF95 /* HeaderKey.swift in Sources */,
 				611E2E10266096EA001585AE /* String+Extension.swift in Sources */,
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,
