@@ -28,6 +28,8 @@ struct ALayoutPage: View {
         "-",
     ]
     
+    @Binding var isActive: Bool
+    
     var body: some View {
         NavigationView {
             if #available(iOS 15.0, *) {
@@ -259,16 +261,16 @@ struct ALayoutPage: View {
                         .foregroundColor(Color(red: 231/255, green: 200/255, blue: 153/255))
                     }
                 }
-                // 自定义导航栏左右两边的按钮
+                /// 自定义导航栏左右两边的按钮
                 .navigationBarItems(
                     leading: Button(action: {
-                        // 点击按钮时的操作
+                        isActive = false
                     }, label: {
                         Image(systemName: "chevron.left")
                             .foregroundColor(Color(red: 231/255, green: 200/255, blue: 153/255))
                     }),
                     trailing: Button(action: {
-                        // 点击按钮时的操作
+                        /// 点击按钮时的操作
                     }, label: {
                         Text("明细")
                             .foregroundColor(Color(red: 231/255, green: 200/255, blue: 153/255))
@@ -283,7 +285,7 @@ struct ALayoutPage: View {
 
 struct ALayoutPage_Previews: PreviewProvider {
     static var previews: some View {
-        ALayoutPage()
+        ALayoutPage(isActive: .constant(true))
     }
 }
 

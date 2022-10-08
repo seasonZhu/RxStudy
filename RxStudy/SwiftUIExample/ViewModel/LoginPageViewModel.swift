@@ -89,7 +89,7 @@ class LoginPageViewModel: ObservableObject {
 
 extension LoginPageViewModel: TypeNameProtocol {}
 
-/// CbBehaviorSubject即CombineBehaviorSubject的缩写
+/// CbBehaviorSubject即CombineBehaviorSubject的缩写,本质上是封装CurrentValueSubject,它和RxSwift中的BehaviorSubject类似
 @propertyWrapper
 class CbBehaviorSubject<T> {
     var wrappedValue: T {
