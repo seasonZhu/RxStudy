@@ -20,6 +20,11 @@ import MJRefresh
 class MyController: BaseTableViewController {
     
     let combineVM = CombineCoinRankListViewModel()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.setNavigationBarHidden(false, animated: false)
+    }
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +122,8 @@ class MyController: BaseTableViewController {
                     self?.present(sfsVC, animated: true)
                     //self?.navigationController?.pushViewController(sfsVC, animated: true)
                 case .aSwiftUI:
-                    self?.navigationController?.pushViewController(UIHostingController(rootView: CoinRankListPage()), animated: true)
+                    self?.navigationController?.setNavigationBarHidden(true, animated: false)
+                    self?.navigationController?.pushViewController(UIHostingController(rootView: CoinRankListPage().environmentObject(AppState())), animated: true)
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return

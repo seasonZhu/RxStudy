@@ -11,20 +11,27 @@ import Combine
 
 struct CoinRankListPage: View {
     
+    @EnvironmentObject var appState: AppState
+    
     @StateObject var viewModel = CoinRankListPageViewModel()
     
     var body: some View {
-        ScrollView(showsIndicators: false) {
-            refreshHeader
-            listView
-            loadMoreFooter
+        NavigationView {
+            ScrollView(showsIndicators: false) {
+                refreshHeader
+                listView
+                loadMoreFooter
+            }
+            .enableRefresh()
+            .overlay(HUD)
+            /// 防止页面向上顶
+            .padding(.top, 20)
+            .navigationBarTitle("SwiftUI例子", displayMode: .inline)
+            .onLoad {
+                viewModel.refreshAction()
+                UINavigationBar.appearance().isHidden = true
+            }
         }
-        .enableRefresh()
-        .overlay(HUD)
-        /// 防止页面向上顶
-        .padding(.top, 20)
-        .navigationBarTitle("SwiftUI例子", displayMode: .inline)
-        .onAppear{ viewModel.refreshAction() } 
     }
 }
 
