@@ -8,6 +8,8 @@
 
 import SwiftUI
 
+import SFSafeSymbols
+
 struct CoinRankListPageCell: View {
     let rank: ClassCoinRank?
     
@@ -23,18 +25,26 @@ struct CoinRankListPageCell: View {
     }
     
     var cell: some View {
-        VStack(alignment: .leading, spacing: 10) {
-            if let username = rank?.username {
-                Text(username)
+        
+        HStack {
+            VStack(alignment: .leading, spacing: 10) {
+                if let username = rank?.username {
+                    Text(username)
+                        .padding(.leading, 15)
+                }
+                
+                if let myInfo = rank?.myInfo {
+                    Text(myInfo)
+                        .padding(.leading, 15)
+                }
+                
+                Divider()
                     .padding(.leading, 15)
             }
             
-            if let myInfo = rank?.myInfo {
-                Text(myInfo)
-                    .padding(.leading, 15)
-            }
             
-            Divider()
+            Image(systemSymbol: .chevronRight)
+                .padding(.trailing, 15)
         }
         /// 使用这个将文字又改回黑色
         .foregroundColor(Color.black)

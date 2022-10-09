@@ -15,8 +15,16 @@ extension View {
     func onLoad(perform action: (() -> Void)? = nil) -> some View {
         modifier(ViewDidLoadModifier(perform: action))
     }
-
 }
+
+extension View {
+    
+    func onFirstAppear(perform action: (() -> Void)? = nil) -> some View {
+        modifier(ViewFirstAppearModifier(perform: action))
+    }
+}
+
+typealias ViewFirstAppearModifier = ViewDidLoadModifier
 
 struct ViewDidLoadModifier: ViewModifier {
 
