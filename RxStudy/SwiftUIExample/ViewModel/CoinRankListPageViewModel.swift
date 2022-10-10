@@ -82,7 +82,7 @@ extension CoinRankListPageViewModel {
                     print("CoinRankListPageViewModel completion: \(completion)")
                 case .failure(let error):
                     print("CoinRankListPageViewModel error: \(error)")
-                    self.state = .error
+                    self.state = .error(self.refreshAction)
                 }
                 
             } receiveValue: { pageModel in

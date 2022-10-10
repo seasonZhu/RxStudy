@@ -13,8 +13,8 @@ typealias BuilderWidget<D: Codable, V: View> = (D) -> V
 
 enum ViewState<D: Codable> {
     case loading
-    case error
-    case success(ViewSuccess)
+    case error(_ retry: (() -> Void)?)
+    case success(_ success: ViewSuccess)
     
     enum ViewSuccess {
         case noData
@@ -37,8 +37,19 @@ struct ViewMaker<D: Codable, V: View>: View {
             } else {
                 ActivityIndicator(style: .large)
             }
-        case .error:
-            Text("错误")
+        case .error(let retry):
+            VStack {
+                Text("Error")
+                
+                if let retry {
+                    Button {
+                        retry()
+                    } label: {
+                        Text("重试")
+                    }
+                }
+            }
+
         case .success(let viewSuccess):
             switch viewSuccess {
             case .noData:
