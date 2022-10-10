@@ -17,13 +17,17 @@ class CoinRankListPageViewModel: ObservableObject {
     /// 和 Cancellable 这个抽象的协议不同，AnyCancellable 是一个 class，这也赋予了它对自身的生命周期进行管理的能力。对于一般的 Cancellable，例如 connect 的返回值，我们需要显式地调用 cancel() 来停止活动，但 AnyCancellable 则在自己的 deinit 中帮我们做了这件事。换句话说，当 sink 或 assign 返回的 AnyCancellable 被释放时，它对应的订阅操作也将停止。在实际里，我们一般会把这个 AnyCancellable 设置为所在实例 (比如 UIViewController) 的存储属性。这样，当该实例 deinit 时，AnyCancellable 的 deinit 也会被触发，并自动释放资源。如果你对 RxSwift 有了解的话，它的行为和 DisposeBag 很类似
     private var cancellable: AnyCancellable?
     
-    @Published var dataSource = [ClassCoinRank]()
-    
     @Published var headerRefreshing = false
     
     @Published var footerRefreshing = false
     
     @Published var isNoMoreData = false
+    
+    /// 数据驱动(@Published不要好像也可以)
+    @Published var dataSource = [ClassCoinRank]()
+    
+    /// 状态驱动
+    var state: ViewState<[ClassCoinRank]> = .loading
     
     deinit {
         print("\(className)被销毁了")
@@ -78,6 +82,7 @@ extension CoinRankListPageViewModel {
                     print("CoinRankListPageViewModel completion: \(completion)")
                 case .failure(let error):
                     print("CoinRankListPageViewModel error: \(error)")
+                    self.state = .error
                 }
                 
             } receiveValue: { pageModel in
@@ -85,6 +90,11 @@ extension CoinRankListPageViewModel {
                     if self.page == 1 {
                         self.dataSource = datas
                         //self.headerRefreshing = false
+                        
+                        if self.dataSource.isEmpty {
+                            self.state = .success(.noData)
+                        }
+                        
                     } else {
                         self.dataSource.append(contentsOf: datas)
                         //self.footerRefreshing = false
@@ -93,6 +103,8 @@ extension CoinRankListPageViewModel {
                 
                 self.isNoMoreData = pageModel.isNoMoreData
                 //self.noMore = self.dataSource.count > 50
+                
+                self.state = .success(.content(self.dataSource))
             }
     }
 }

@@ -16,6 +16,11 @@ struct CoinRankListPage: View {
     @StateObject var viewModel = CoinRankListPageViewModel()
     
     var body: some View {
+        //normalView
+        stateView
+    }
+    
+    var normalView: some View {
         NavigationView {
             ScrollView(showsIndicators: false) {
                 refreshHeader
@@ -31,6 +36,28 @@ struct CoinRankListPage: View {
                 viewModel.refreshAction()
                 UINavigationBar.appearance().isHidden = true
             }
+        }
+    }
+    
+    var stateView: some View {
+        NavigationView {
+            ViewMaker(viewState: $viewModel.state) { dataSource in
+                ScrollView(showsIndicators: false) {
+                    refreshHeader
+                    ForEach(dataSource) { data in
+                        CoinRankListPageCell(rank: data)
+                    }
+                    loadMoreFooter
+                }
+                .enableRefresh()
+                /// 防止页面向上顶
+                .padding(.top, 20)
+                
+            }
+            .navigationBarTitle("SwiftUI例子", displayMode: .inline)
+        }
+        .onLoad {
+            viewModel.refreshAction()
         }
     }
 }
