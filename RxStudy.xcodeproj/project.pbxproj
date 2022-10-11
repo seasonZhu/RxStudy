@@ -56,6 +56,12 @@
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
 		0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */; };
 		008598BF27B4E0DA003E9EF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 008598C127B4E0DA003E9EF7 /* InfoPlist.strings */; };
+		00890CFF28F56E9E00B3E72E /* ACarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFA28F56E9E00B3E72E /* ACarouselViewModel.swift */; };
+		00890D0028F56E9E00B3E72E /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFB28F56E9E00B3E72E /* ACarousel.swift */; };
+		00890D0128F56E9E00B3E72E /* View+ReceiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFC28F56E9E00B3E72E /* View+ReceiveTimer.swift */; };
+		00890D0228F56E9E00B3E72E /* ACarouselAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFD28F56E9E00B3E72E /* ACarouselAutoScroll.swift */; };
+		00890D0328F56E9E00B3E72E /* AppLifeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFE28F56E9E00B3E72E /* AppLifeCycleModifier.swift */; };
+		00890D0528F56EFF00B3E72E /* ClassBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890D0428F56EFF00B3E72E /* ClassBanner.swift */; };
 		008B1FA628E6C85500A8B009 /* ALayoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B1FA528E6C85500A8B009 /* ALayoutPage.swift */; };
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
 		00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */; };
@@ -237,6 +243,12 @@
 		0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		008598C027B4E0DA003E9EF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		008598C227B4E0ED003E9EF7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		00890CFA28F56E9E00B3E72E /* ACarouselViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACarouselViewModel.swift; sourceTree = "<group>"; };
+		00890CFB28F56E9E00B3E72E /* ACarousel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACarousel.swift; sourceTree = "<group>"; };
+		00890CFC28F56E9E00B3E72E /* View+ReceiveTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+ReceiveTimer.swift"; sourceTree = "<group>"; };
+		00890CFD28F56E9E00B3E72E /* ACarouselAutoScroll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACarouselAutoScroll.swift; sourceTree = "<group>"; };
+		00890CFE28F56E9E00B3E72E /* AppLifeCycleModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLifeCycleModifier.swift; sourceTree = "<group>"; };
+		00890D0428F56EFF00B3E72E /* ClassBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBanner.swift; sourceTree = "<group>"; };
 		008B1FA528E6C85500A8B009 /* ALayoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALayoutPage.swift; sourceTree = "<group>"; };
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
@@ -421,6 +433,7 @@
 		001B4E3D28E1A13E003ADF95 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				00890CF928F56E9E00B3E72E /* ACarousel */,
 				001B4E2528E19BE1003ADF95 /* Refresh */,
 				001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */,
 				001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */,
@@ -446,6 +459,7 @@
 			isa = PBXGroup;
 			children = (
 				001B4E1928E19229003ADF95 /* ClassCoinRank.swift */,
+				00890D0428F56EFF00B3E72E /* ClassBanner.swift */,
 				00DC970F28F26ADF002CC564 /* AppState.swift */,
 			);
 			path = Model;
@@ -516,6 +530,18 @@
 				007AE7F828F3FF1A00AD6C72 /* State.swift */,
 			);
 			path = State;
+			sourceTree = "<group>";
+		};
+		00890CF928F56E9E00B3E72E /* ACarousel */ = {
+			isa = PBXGroup;
+			children = (
+				00890CFA28F56E9E00B3E72E /* ACarouselViewModel.swift */,
+				00890CFB28F56E9E00B3E72E /* ACarousel.swift */,
+				00890CFC28F56E9E00B3E72E /* View+ReceiveTimer.swift */,
+				00890CFD28F56E9E00B3E72E /* ACarouselAutoScroll.swift */,
+				00890CFE28F56E9E00B3E72E /* AppLifeCycleModifier.swift */,
+			);
+			path = ACarousel;
 			sourceTree = "<group>";
 		};
 		611E2E002660782B001585AE /* SnapKitExtension */ = {
@@ -1163,6 +1189,7 @@
 			files = (
 				007AE7F628F3F91800AD6C72 /* TestViewModel.swift in Sources */,
 				61B13D622680915400665A08 /* ThirdPartyDetailController.swift in Sources */,
+				00890D0128F56E9E00B3E72E /* View+ReceiveTimer.swift in Sources */,
 				001B4E1728E183BD003ADF95 /* CoinRankListPage.swift in Sources */,
 				6171E19F26661AAA0065C34D /* AccountBaseController.swift in Sources */,
 				0048E6D0277AAB6000F6C739 /* MyGitHubController.swift in Sources */,
@@ -1175,12 +1202,14 @@
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				001B4E3328E19BE1003ADF95 /* Header.swift in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
+				00890D0328F56E9E00B3E72E /* AppLifeCycleModifier.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
 				00CCD1712865857300925C1E /* OtherService.swift in Sources */,
 				61B44A4126B79CA500791859 /* Transform.swift in Sources */,
 				00CCD16D286555BC00925C1E /* ToolController.swift in Sources */,
 				0046912A286A8F0D000B3C5E /* Friend.swift in Sources */,
+				00890D0528F56EFF00B3E72E /* ClassBanner.swift in Sources */,
 				0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */,
 				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
@@ -1235,6 +1264,7 @@
 				0046912C286A94C0000B3C5E /* NavigationUrl.swift in Sources */,
 				00CCD16F2865568200925C1E /* ToolViewModel.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
+				00890D0228F56E9E00B3E72E /* ACarouselAutoScroll.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
 				00CCD173286588D400925C1E /* Course.swift in Sources */,
@@ -1242,6 +1272,7 @@
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				00FE0DE02869833500B9D48F /* MessageReadyStatus.swift in Sources */,
+				00890D0028F56E9E00B3E72E /* ACarousel.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
 				00CCD177286590C900925C1E /* CourseService.swift in Sources */,
@@ -1273,6 +1304,7 @@
 				00CCD17528658E0C00925C1E /* TabAble.swift in Sources */,
 				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
+				00890CFF28F56E9E00B3E72E /* ACarouselViewModel.swift in Sources */,
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
 				001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */,

@@ -157,4 +157,16 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 如果下面这个FuckingSwiftUI都看懂了,基本上SwiftUI布局基本上明白.
 我目前是按照Flutter的思路在写SwiftUI的布局,但是其实很多细节还是不明白.
 
+### FuckingSwiftUI
+
 [FuckingSwiftUI](https://github.com/agelessman/FuckingSwiftUI)
+
+### 使用的SwiftUI的组件
+
+下拉与上拉
+
+[Refresh](https://github.com/wxxsw/Refresh)
+
+轮播
+
+[ACarousel](https://github.com/JWAutumn/ACarousel)
