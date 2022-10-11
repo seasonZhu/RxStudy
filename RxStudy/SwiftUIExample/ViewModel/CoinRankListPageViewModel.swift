@@ -6,7 +6,6 @@
 //  Copyright © 2022 season. All rights reserved.
 //
 
-import SwiftUI
 import Combine
 
 class CoinRankListPageViewModel: ObservableObject {
@@ -42,6 +41,7 @@ extension CoinRankListPageViewModel {
     func refreshAction() {
         resetCurrentPageAndMjFooter()
         getCoinRank(page: page)
+        //rxGetCoinRank(page: page)
     }
     
     /// 上拉加载更多行为
@@ -61,7 +61,7 @@ extension CoinRankListPageViewModel {
         isNoMoreData = false
     }
     
-    /// 具体的网络请求
+    /// 具体的网络请求 Moya+Combine配合使用
     private func getCoinRank(page: Int) {
         /// 这里用不了assgin的原因:
         /// 注意 assign 所接受的第一个参数的类型为 ReferenceWritableKeyPath，也就是说，只有 class 上用 var 声明的属性可以通过 assign 来直接赋值。
@@ -91,11 +91,6 @@ extension CoinRankListPageViewModel {
                     if self.page == 1 {
                         self.dataSource = datas
                         //self.headerRefreshing = false
-                        
-                        if self.dataSource.isEmpty {
-                            self.state = .success(.noData)
-                        }
-                        
                     } else {
                         self.dataSource.append(contentsOf: datas)
                         //self.footerRefreshing = false
@@ -105,9 +100,67 @@ extension CoinRankListPageViewModel {
                 self.isNoMoreData = pageModel.isNoMoreData
                 //self.noMore = self.dataSource.count > 50
                 
-                self.state = .success(.content(self.dataSource))
+                if self.dataSource.isEmpty {
+                    self.state = .success(.noData)
+                } else {
+                    self.state = .success(.content(self.dataSource))
+                }
             }
     }
 }
 
 extension CoinRankListPageViewModel: TypeNameProtocol {}
+
+
+//MARK: -  RxMoya与SwiftUI的配合使用
+import RxSwift
+import NSObject_Rx
+
+extension CoinRankListPageViewModel {
+    private func rxGetCoinRank(page: Int) {
+        myProvider.rx.request(MyService.coinRank(page))
+            /// 转Model
+            .map(BaseModel<Page<ClassCoinRank>>.self)
+            /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
+            .map{ $0.data }
+            /// 解包,这一步Single变成了Maybe
+            .compactMap { $0 }
+            /// 转换操作, Maybe要先转成Observable
+            .asObservable()
+            /// 才能再转成Single
+            .asSingle()
+            /// 订阅
+            .subscribe { event in
+                
+                /// 订阅事件
+                /// 通过page的值判断是下拉还是上拉(可以用枚举),不管成功还是失败都结束刷新状态
+                self.headerRefreshing = false
+                self.footerRefreshing = false
+                
+                switch event {
+                case .success(let pageModel):
+                    if let datas = pageModel.datas {
+                        if self.page == 1 {
+                            self.dataSource = datas
+                        } else {
+                            self.dataSource.append(contentsOf: datas)
+                        }
+                    }
+                    
+                    self.isNoMoreData = pageModel.isNoMoreData
+                    
+                    if self.dataSource.isEmpty {
+                        self.state = .success(.noData)
+                    } else {
+                        self.state = .success(.content(self.dataSource))
+                    }
+                    
+                case .failure:
+                    self.state = .error(self.refreshAction)
+                }
+            }
+            .disposed(by: disposeBag)
+    }
+}
+
+extension CoinRankListPageViewModel: HasDisposeBag {}
