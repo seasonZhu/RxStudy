@@ -49,7 +49,6 @@ struct ViewMaker<D: Codable, V: View>: View {
                     }
                 }
             }
-
         case .success(let viewSuccess):
             switch viewSuccess {
             case .noData:

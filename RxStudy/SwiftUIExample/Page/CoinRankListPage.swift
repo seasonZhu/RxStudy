@@ -32,10 +32,10 @@ struct CoinRankListPage: View {
             /// 防止页面向上顶
             .padding(.top, 20)
             .navigationBarTitle("SwiftUI例子", displayMode: .inline)
-            .onLoad {
-                viewModel.refreshAction()
-                UINavigationBar.appearance().isHidden = true
-            }
+        }
+        .onLoad {
+            viewModel.refreshAction()
+            //UINavigationBar.appearance().isHidden = true
         }
     }
     
