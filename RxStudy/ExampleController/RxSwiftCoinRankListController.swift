@@ -129,6 +129,15 @@ class RxSwiftCoinRankListViewModel {
         aaa = 1110
         print($aaa)
         
+        /// dataSource: [CoinRank]
+        
+        /// $dataSource: BehaviorRelay<[CoinRank]>
+        
+        /// _dataSource: RxBehaviorRelay<[CoinRank]>
+        
+        /// _dataSource.projectedValue 等价 $dataSource
+        
+        /// _dataSource.wrappedValue 等价 dataSource
         
         /// 未加工的原始值 other
         let origin = ba
