@@ -50,6 +50,7 @@
 		0075943E28E42A4E005AC9E0 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075943D28E42A4E005AC9E0 /* LoginPage.swift */; };
 		007AE7F628F3F91800AD6C72 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AE7F528F3F91800AD6C72 /* TestViewModel.swift */; };
 		007AE7F928F3FF1A00AD6C72 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AE7F828F3FF1A00AD6C72 /* State.swift */; };
+		007AE7FB28F4FBF800AD6C72 /* BasePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AE7FA28F4FBF800AD6C72 /* BasePageViewModel.swift */; };
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
 		0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* DebugLog.swift */; };
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
@@ -229,6 +230,7 @@
 		0075943D28E42A4E005AC9E0 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		007AE7F528F3F91800AD6C72 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		007AE7F828F3FF1A00AD6C72 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		007AE7FA28F4FBF800AD6C72 /* BasePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewModel.swift; sourceTree = "<group>"; };
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		0082108C26E1FF3300525CE4 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
 		0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 		001B4E3E28E1A150003ADF95 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				007AE7FA28F4FBF800AD6C72 /* BasePageViewModel.swift */,
 				001B4E1B28E1926E003ADF95 /* CoinRankListPageViewModel.swift */,
 				0075943B28E422E5005AC9E0 /* LoginPageViewModel.swift */,
 				007AE7F528F3F91800AD6C72 /* TestViewModel.swift */,
@@ -1204,6 +1207,7 @@
 				617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */,
 				009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
+				007AE7FB28F4FBF800AD6C72 /* BasePageViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
 				0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */,
 				00DC971228F27335002CC564 /* View+OnLoad.swift in Sources */,
