@@ -9,14 +9,14 @@
 import SwiftUI
 
 struct LoginPage: View {
+    
     @StateObject private var dataModel = LoginPageViewModel()
+    
     @State private var showAlert = false
     
     var body: some View {
         VStack {
-            TextField("请输入用户名", text: $dataModel.userName) { _ in
-                dataModel.startListenUserNameInput()
-            }
+            TextField("请输入用户名", text: $dataModel.userName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             if dataModel.showUserNameError {
@@ -25,9 +25,7 @@ struct LoginPage: View {
             }
             
             /// 这货没有onEditingChanged这个方法
-            SecureField("请输入密码", text: $dataModel.password) {
-                dataModel.startListenPasswordInput()
-            }
+            SecureField("请输入密码", text: $dataModel.password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
             if dataModel.showPasswordError {
@@ -59,8 +57,11 @@ struct LoginPage: View {
                   message: Text("\(dataModel.userName) \n \(dataModel.password)"),
                   dismissButton: nil)
         }
-        .onDisappear {
-            dataModel.clear()
-        }
+    }
+}
+
+struct LoginPage_Previews: PreviewProvider {
+    static var previews: some View {
+        LoginPage()
     }
 }
