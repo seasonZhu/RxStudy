@@ -20,21 +20,24 @@ class LoginPageViewModel: ObservableObject {
     @Published var showUserNameError = false
     
     @Published var showPasswordError = false
-
-    var cancellables = Set<AnyCancellable>()
     
     var usernameValid = PassthroughSubject<Bool, Never>()
 
     var passwordValid = PassthroughSubject<Bool, Never>()
+    
+    var cancellables = Set<AnyCancellable>()
 
     init() {
         
         $userName
+        /// 去掉前两次监听,第一次初始化,第二次点击编辑准备输入
+            .dropFirst(2)
             .map { $0.isNotEmpty }
             .subscribe(usernameValid)
             .store(in: &cancellables)
         
         $password
+            .dropFirst(2)
             .map { $0.isNotEmpty }
             .subscribe(passwordValid)
             .store(in: &cancellables)
@@ -57,30 +60,13 @@ class LoginPageViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
-    private func clear() {
+    func clear() {
         let _ = cancellables.map { $0.cancel() }
         cancellables.removeAll()
     }
 
     deinit {
         print("\(className)被销毁了")
-        clear()
-    }
-}
-
-extension LoginPageViewModel {
-    func startListenUserNameInput() {
-        $userName
-            .map { $0.isNotEmpty }
-            .subscribe(usernameValid)
-            .store(in: &cancellables)
-    }
-    
-    func startListenPasswordInput() {
-        $password
-            .map { $0.isNotEmpty }
-            .subscribe(passwordValid)
-            .store(in: &cancellables)
     }
 }
 

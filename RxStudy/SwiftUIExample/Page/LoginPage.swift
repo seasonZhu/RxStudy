@@ -57,6 +57,10 @@ struct LoginPage: View {
                   message: Text("\(dataModel.userName) \n \(dataModel.password)"),
                   dismissButton: nil)
         }
+        .onDisappear {
+            /// 这里必须要clear,否则就引用循环了,原因未知
+            dataModel.clear()
+        }
     }
 }
 
