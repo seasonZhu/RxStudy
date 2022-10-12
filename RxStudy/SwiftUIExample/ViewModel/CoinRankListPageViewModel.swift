@@ -16,6 +16,8 @@ class CoinRankListPageViewModel: ObservableObject {
     /// 和 Cancellable 这个抽象的协议不同，AnyCancellable 是一个 class，这也赋予了它对自身的生命周期进行管理的能力。对于一般的 Cancellable，例如 connect 的返回值，我们需要显式地调用 cancel() 来停止活动，但 AnyCancellable 则在自己的 deinit 中帮我们做了这件事。换句话说，当 sink 或 assign 返回的 AnyCancellable 被释放时，它对应的订阅操作也将停止。在实际里，我们一般会把这个 AnyCancellable 设置为所在实例 (比如 UIViewController) 的存储属性。这样，当该实例 deinit 时，AnyCancellable 的 deinit 也会被触发，并自动释放资源。如果你对 RxSwift 有了解的话，它的行为和 DisposeBag 很类似
     private var cancellable: AnyCancellable?
     
+    private var cancellable1: AnyCancellable?
+    
     /// 这几个@Published不要也可以
     @Published var headerRefreshing = false
     
@@ -26,6 +28,8 @@ class CoinRankListPageViewModel: ObservableObject {
     /// 数据驱动
     @Published var dataSource: [ClassCoinRank] = []
     
+    @Published var banners: [ClassBanner] = []
+    
     /// 状态驱动
     var state: ViewState<[ClassCoinRank]> = .loading
     
@@ -33,6 +37,7 @@ class CoinRankListPageViewModel: ObservableObject {
         print("\(className)被销毁了")
         /// 这里从理论上说就算不cancel,应该也可以自己释放
         cancellable?.cancel()
+        cancellable1?.cancel()
     }
 }
 
@@ -40,7 +45,7 @@ extension CoinRankListPageViewModel {
     /// 下拉刷新行为
     func refreshAction() {
         resetCurrentPageAndMjFooter()
-        getCoinRank(page: page)
+        zip()
         //rxGetCoinRank(page: page)
     }
     
@@ -56,7 +61,7 @@ extension CoinRankListPageViewModel {
     private func resetCurrentPageAndMjFooter() {
         page = 1
         
-        //headerRefreshing = false
+        headerRefreshing = false
         footerRefreshing = false
         isNoMoreData = false
     }
@@ -106,6 +111,68 @@ extension CoinRankListPageViewModel {
                     self.state = .success(.content(self.dataSource))
                 }
             }
+    }
+    
+    private func getBanner() {
+        cancellable1 = homeProvider.requestPublisher(HomeService.banner)
+            .map(BaseModel<[ClassBanner]>.self)
+            .map{ $0.data }
+            .compactMap { $0 }
+            .sink(receiveCompletion: { completion in
+                
+                switch completion {
+                case .finished:
+                    print("CoinRankListPageViewModel getBanner completion: \(completion)")
+                case .failure(let error):
+                    print("CoinRankListPageViewModel getBanner error: \(error)")
+                }
+            }, receiveValue: { banners in
+                self.banners = banners
+            })
+    }
+    
+    private func zip() {
+        let p0 = myProvider.requestPublisher(MyService.coinRank((1))).map(BaseModel<Page<ClassCoinRank>>.self)
+            .map{ $0.data }
+            .compactMap { $0 }
+        
+        let p1 = homeProvider.requestPublisher(HomeService.banner).map(BaseModel<[ClassBanner]>.self)
+            .map{ $0.data }
+            .compactMap { $0 }
+        
+        cancellable1 = Publishers.Zip(p0, p1).sink { completion in
+            self.headerRefreshing = false
+            self.footerRefreshing = false
+            
+            switch completion {
+            case .finished:
+                print("CoinRankListPageViewModel refresh completion: \(completion)")
+            case .failure(let error):
+                print("CoinRankListPageViewModel refresh error: \(error)")
+                self.state = .error(self.refreshAction)
+            }
+        } receiveValue: { pageModel, banners in
+            
+            if let datas = pageModel.datas {
+                if self.page == 1 {
+                    self.dataSource = datas
+                } else {
+                    self.dataSource.append(contentsOf: datas)
+                }
+            }
+            
+            self.isNoMoreData = pageModel.isNoMoreData
+            
+            if self.dataSource.isEmpty {
+                self.state = .success(.noData)
+            } else {
+                self.state = .success(.content(self.dataSource))
+            }
+            
+            self.banners = banners
+
+        }
+
     }
 }
 

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import Combine
+import Kingfisher
 
 struct CoinRankListPage: View {
     
@@ -44,6 +45,7 @@ struct CoinRankListPage: View {
             ViewMaker(viewState: $viewModel.state) { dataSource in
                 ScrollView(showsIndicators: false) {
                     refreshHeader
+                    bannerView
                     ForEach(dataSource) { data in
                         CoinRankListPageCell(rank: data)
                     }
@@ -90,6 +92,24 @@ extension CoinRankListPage {
         }
         .noMore(viewModel.isNoMoreData)
         .preload(offset: 50)
+    }
+    
+    private var bannerView: some View {
+        ACarousel(viewModel.banners,
+                  spacing: 0,
+                  headspace: 0,
+                  sidesScaling: 1,
+                  autoScroll: .active(1.5)) { model in
+            if let path = model.imagePath {
+                if #available(iOS 14.0, *) {
+                    KFImage(URL(string: path))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(height: UIScreen.main.bounds.width * (9.0 / 16.0))
+                }
+            }
+        }
+                  .frame(height: UIScreen.main.bounds.width * (9.0 / 16.0))
     }
     
     private var listView: some View {
