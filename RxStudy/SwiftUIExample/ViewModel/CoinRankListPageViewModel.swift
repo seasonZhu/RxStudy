@@ -20,7 +20,7 @@ class CoinRankListPageViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     /// 用了一个Subject进行防抖
-    var refreshAction = PassthroughSubject<Void, Never>()
+    var action = PassthroughSubject<Void, Never>()
     
     /// 这几个@Published不要也可以
     @Published var headerRefreshing = false

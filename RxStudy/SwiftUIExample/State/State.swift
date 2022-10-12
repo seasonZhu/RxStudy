@@ -8,10 +8,10 @@
 
 import SwiftUI
 
+/// D代表数据,目前没有去约束,V代码是构建的View
+typealias BuilderWidget<D, V: View> = (D) -> V
 
-typealias BuilderWidget<D: Codable, V: View> = (D) -> V
-
-enum ViewState<D: Codable> {
+enum ViewState<D> {
     case loading
     case error(_ retry: (() -> Void)?)
     case success(_ success: ViewSuccess)
@@ -22,7 +22,7 @@ enum ViewState<D: Codable> {
     }
 }
 
-struct ViewMaker<D: Codable, V: View>: View {
+struct ViewMaker<D, V: View>: View {
     
     /// 这里一定要用@Binding修饰,否则状态无法改变
     @Binding var viewState: ViewState<D>

@@ -72,7 +72,7 @@ extension CoinRankListPage {
             /// 但是删除bannerView又好了,感觉就是第一次请求数据驱动了bannerView,bannerView有导致更新了一次
             /// 通过之前RxSwift的经验,通过防抖解决了
             print("下拉刷新")
-            viewModel.refreshAction.send()
+            viewModel.action.send()
             //viewModel.refreshAction()
         }) { progress in
             if viewModel.headerRefreshing {
