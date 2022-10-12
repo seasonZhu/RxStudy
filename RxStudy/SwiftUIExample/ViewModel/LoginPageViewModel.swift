@@ -9,6 +9,9 @@
 import Foundation
 import Combine
 
+import RxSwift
+import RxRelay
+
 class LoginPageViewModel: ObservableObject {
     
     @Published var userName: String = ""
@@ -58,6 +61,8 @@ class LoginPageViewModel: ObservableObject {
             /// 使用assign是有要求的extension Publisher where Self.Failure == Never
             .assign(to: \.buttonEnable, on: self)
             .store(in: &cancellables)
+        
+        aExample()
     }
     
     func clear() {
@@ -67,6 +72,48 @@ class LoginPageViewModel: ObservableObject {
 
     deinit {
         print("\(className)被销毁了")
+    }
+}
+
+extension LoginPageViewModel {
+    private func aExample() {
+        let sink = Subscribers.Sink<Bool, Never> { c in
+            
+        } receiveValue: { input in
+            print(input)
+        }
+        
+        let assign = Subscribers.Assign(object: self, keyPath: \.showUserNameError)
+        
+        /// 一个继电器
+        let relay = PassthroughSubject<Bool, Never>()
+        
+        /// 序列(继电器)把数据给继电器
+        usernameValid.subscribe(relay).store(in: &cancellables)
+        
+        /// 序列(继电器)把数据给订阅者
+        relay.receive(subscriber: sink)
+        
+        /// 而RxSwift只有一种写法,那就是subscribe,在RxCocoa中多了一种选择bind
+        let behaviorRelay = BehaviorRelay(value: "")
+        
+        $userName.sink { value in
+            behaviorRelay.subscribe { event in
+                switch event {
+                case .next(let value):
+                    print("rx value:\(value)")
+                case .error(_):
+                    break
+                case .completed:
+                    break
+                }
+            }
+            .dispose()
+            
+            Observable.just(value).bind(to: behaviorRelay).dispose()
+        }
+        .store(in: &cancellables)
+        
     }
 }
 
