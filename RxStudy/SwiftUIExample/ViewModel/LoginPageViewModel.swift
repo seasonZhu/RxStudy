@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import CombineExt
 
 import RxSwift
 import RxRelay
@@ -38,30 +39,45 @@ class LoginPageViewModel: ObservableObject {
         /// 去掉前两次监听,第一次初始化,第二次点击编辑准备输入
             .dropFirst(2)
             .map { $0.isNotEmpty }
-            .subscribe(usernameValid)
+            //.subscribe(usernameValid)
+            .sink(receiveValue: { [weak self] bool in
+                self?.usernameValid.send(bool)
+            })
             .store(in: &cancellables)
         
         $password
             .dropFirst(2)
             .map { $0.isNotEmpty }
-            .subscribe(passwordValid)
+            //.subscribe(passwordValid)
+            .sink(receiveValue: { [weak self] bool in
+                self?.passwordValid.send(bool)
+            })
             .store(in: &cancellables)
         
         usernameValid
             .map { !$0 }
-            .assign(to: \.showUserNameError, on: self)
+            //.assign(to: \.showUserNameError, on: self)
+            .sink(receiveValue: { [weak self] bool in
+                self?.showUserNameError = bool
+            })
             .store(in: &cancellables)
     
         passwordValid
             .map { !$0 }
-            .assign(to: \.showPasswordError, on: self)
+            //.assign(to: \.showPasswordError, on: self)
+            .sink(receiveValue: { [weak self] bool in
+                self?.showPasswordError = bool
+            })
             .store(in: &cancellables)
         
         Publishers
             .CombineLatest(usernameValid, passwordValid)
             .map { $0 && $1 }
             /// 使用assign是有要求的extension Publisher where Self.Failure == Never
-            .assign(to: \.buttonEnable, on: self)
+            //.assign(to: \.buttonEnable, on: self)
+            .sink(receiveValue: { [weak self] bool in
+                self?.buttonEnable = bool
+            })
             .store(in: &cancellables)
         
         aExample()
