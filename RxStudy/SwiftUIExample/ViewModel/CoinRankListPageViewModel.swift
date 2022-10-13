@@ -51,9 +51,9 @@ class CoinRankListPageViewModel: ObservableObject {
         print("\(className)被销毁了")
         
         /// 这里从理论上说就算不cancel,应该也可以自己释放
-        cancellable?.cancel()
+        //cancellable?.cancel()
         
-        clear()
+        //clear()
     }
 }
 

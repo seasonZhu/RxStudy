@@ -64,7 +64,8 @@ struct LoginPage: View {
         }
         .onDisappear {
             /// 这里必须要clear,否则就引用循环了,原因未知
-            viewModel.clear()
+            /// 解决了viewModel的循环引用,不用clear了
+            //viewModel.clear()
         }
     }
 }
