@@ -24,6 +24,8 @@ class LoginPageViewModel: ObservableObject {
     
     @Published var showPasswordError = false
     
+    @Published var showAlert = false
+    
     var usernameValid = PassthroughSubject<Bool, Never>()
 
     var passwordValid = PassthroughSubject<Bool, Never>()
@@ -80,7 +82,7 @@ extension LoginPageViewModel {
         let sink = Subscribers.Sink<Bool, Never> { c in
             
         } receiveValue: { input in
-            print(input)
+            print("combine input:\(input)")
         }
         
         let assign = Subscribers.Assign(object: self, keyPath: \.showUserNameError)

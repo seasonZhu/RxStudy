@@ -10,56 +10,61 @@ import SwiftUI
 
 struct LoginPage: View {
     
-    @StateObject private var dataModel = LoginPageViewModel()
-    
-    @State private var showAlert = false
+    @StateObject private var viewModel = LoginPageViewModel()
     
     var body: some View {
-        VStack {
-            TextField("请输入用户名", text: $dataModel.userName)
+        VStack(spacing: 20) {
+            TextField("请输入用户名", text: $viewModel.userName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
-            if dataModel.showUserNameError {
-                Text("用户名不能为空")
-                    .foregroundColor(Color.red)
+            if viewModel.showUserNameError {
+                HStack {
+                    Text("用户名不能为空")
+                        .foregroundColor(Color.red)
+                    Spacer()
+                }
             }
             
             /// 这货没有onEditingChanged这个方法
-            SecureField("请输入密码", text: $dataModel.password)
+            SecureField("请输入密码", text: $viewModel.password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
 
-            if dataModel.showPasswordError {
-                Text("密码不能为空")
-                    .foregroundColor(Color.red)
+            if viewModel.showPasswordError {
+                HStack {
+                    Text("密码不能为空")
+                        .foregroundColor(Color.red)
+                    Spacer()
+                }
             }
 
             GeometryReader { geometry in
                 Button(action: {
-                    self.showAlert.toggle()
+                    viewModel.showAlert.toggle()
                 }) {
                     Text("登录")
-                        .foregroundColor(dataModel.buttonEnable ? Color.white : Color.white.opacity(0.3))
-                        .frame(width: geometry.size.width, height: 35)
-                        .background(dataModel.buttonEnable ? Color.blue : Color.gray)
+                        .foregroundColor(viewModel.buttonEnable ? Color.white : Color.white.opacity(0.3))
+                        .frame(width: geometry.size.width, height: geometry.size.height)
+                        .background(viewModel.buttonEnable ? Color.blue : Color.gray)
                         .clipShape(Capsule())
                 }
-                .disabled(!dataModel.buttonEnable)
-
+                .disabled(!viewModel.buttonEnable)
             }
             .frame(height: 35)
+            
+            Spacer()
         }
         .padding()
-        .border(Color.green)
+        //.border(Color.green)
         .padding()
         .animation(.easeInOut)
-        .alert(isPresented: $showAlert) {
+        .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("登录成功"),
-                  message: Text("\(dataModel.userName) \n \(dataModel.password)"),
+                  message: Text("\(viewModel.userName) \n \(viewModel.password)"),
                   dismissButton: nil)
         }
         .onDisappear {
             /// 这里必须要clear,否则就引用循环了,原因未知
-            dataModel.clear()
+            viewModel.clear()
         }
     }
 }
