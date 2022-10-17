@@ -39,19 +39,15 @@ class LoginPageViewModel: ObservableObject {
         /// 去掉前两次监听,第一次初始化,第二次点击编辑准备输入
             .dropFirst(2)
             .map { $0.isNotEmpty }
-            //.subscribe(usernameValid)
-            .sink(receiveValue: { [weak self] bool in
-                self?.usernameValid.send(bool)
-            })
+        /// 说明assign(to: 这个如果只使用系统带入的语法非常容易导致循环引用,而不是这个subscribe导致的
+            .subscribe(usernameValid)
+            //.weakSubscribe(usernameValid)
             .store(in: &cancellables)
         
         $password
             .dropFirst(2)
             .map { $0.isNotEmpty }
-            //.subscribe(passwordValid)
-            .sink(receiveValue: { [weak self] bool in
-                self?.passwordValid.send(bool)
-            })
+            .subscribe(passwordValid)
             .store(in: &cancellables)
         
         usernameValid
