@@ -241,6 +241,9 @@ extension WebViewController {
         
         let activityItems = [title, url]
         
+        let activities = [SafariActivity()]
+        
+        /// 排除的分享类型,这里没有排除的分享类型,所以这个参数没有用
         let excludedActivityTypes: [UIActivity.ActivityType] = [.postToWeibo,
                                                                 .message,
                                                                 .airDrop,
@@ -250,8 +253,8 @@ extension WebViewController {
                                                                 .assignToContact
         ]
         
-        let activityContrller = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
-        activityContrller.excludedActivityTypes = excludedActivityTypes
+        let activityContrller = UIActivityViewController(activityItems: activityItems, applicationActivities: activities)
+        //activityContrller.excludedActivityTypes = excludedActivityTypes
         activityContrller.completionWithItemsHandler = { [weak activityContrller] activityType, completed, returnedItems, activityError in
             if completed {
                 SVProgressHUD.showText("分享成功!")
