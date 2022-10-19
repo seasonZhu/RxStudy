@@ -19,8 +19,6 @@ import MJRefresh
 
 class MyController: BaseTableViewController {
     
-    let combineVM = CombineCoinRankListViewModel()
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: false)
@@ -175,11 +173,5 @@ extension MyController {
     private func toMyMessageController() {
         let status = AccountManager.shared.myUnreadMessageCountRelay.value.greaterThanZero ? MessageReadyStatus.unread : MessageReadyStatus.read
         navigationController?.pushViewController(MyMessageController(status: status), animated: true)
-    }
-}
-
-extension MyController {
-    private func moyaCombineHttpRequest() {
-        combineVM.getMyCoinList(page: 1)
     }
 }

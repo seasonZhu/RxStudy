@@ -39,7 +39,16 @@ extension CombineSinkEvent {
         case .error, .completed: return true
         }
     }
-
+    
+    /*
+     /// 带参数的枚举判断,并且对值进行判断的写法
+     var size: CGSize {
+        if case .digit(let value) = self, value == 0 {
+            return CGSize(width: 88 * 2 + 8, height: 88)
+        }
+        return CGSize(width: 88, height: 88)
+     }
+     */
 
     var element: Output? {
         if case .next(let value) = self {
