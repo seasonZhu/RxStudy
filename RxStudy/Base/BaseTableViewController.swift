@@ -167,7 +167,7 @@ extension BaseTableViewController: DZNEmptyDataSetDelegate {
     }
     
     func emptyDataSet(_ scrollView: UIScrollView!, didTap view: UIView!) {
-        emptyDataSetButtonTap.onNext(void)
+        emptyDataSetButtonTap.onNext()
     }
 }
 

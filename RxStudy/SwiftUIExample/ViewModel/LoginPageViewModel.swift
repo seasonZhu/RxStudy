@@ -13,6 +13,7 @@ import CombineExt
 import RxSwift
 import RxRelay
 
+/// 在 ObservableObject 中，如果没有定义 objectWillChange，编译器会为你自动生成它，并在被标记为 @Published 的属性发生变更时，自动去调用 objectWillChange.send()。这样就省去了我们一个个添加 willSet 的麻烦
 class LoginPageViewModel: ObservableObject {
     
     @Published var userName: String = ""

@@ -131,7 +131,7 @@ class WebViewController: BaseViewController {
             guard let self else { return }
             
             /// 回调给上一个页面,做了操作,需要进行页面刷新
-            self.hasCollectAction.onNext(void)
+            self.hasCollectAction.onNext()
             
             if self.collectionButton.isSelected {
                 /// 在这里说明是已经收藏过,取消收藏
