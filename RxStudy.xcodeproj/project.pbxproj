@@ -589,7 +589,7 @@
 				61B44A3C26B79A7500791859 /* Transform */,
 				617E44F1269574B800DA9EA2 /* ViewState */,
 				001B4E1828E191F1003ADF95 /* SwiftUIExample */,
-				61716A9D267B396C00F9DC25 /* ExampleController */,
+				61716A9D267B396C00F9DC25 /* RxSwiftExample */,
 				6171E1962665FE2D0065C34D /* Constant */,
 				61BF8341265C8F190063EE4E /* ViewModel+Plus */,
 				61336C89265757F500FDEB2A /* Base */,
@@ -745,7 +745,7 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		61716A9D267B396C00F9DC25 /* ExampleController */ = {
+		61716A9D267B396C00F9DC25 /* RxSwiftExample */ = {
 			isa = PBXGroup;
 			children = (
 				61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */,
@@ -756,7 +756,7 @@
 				000139C82877DC0F00683119 /* RxStudy.playground */,
 				003C4A0D2876B39F00AB3BC1 /* CodableTest.playground */,
 			);
-			path = ExampleController;
+			path = RxSwiftExample;
 			sourceTree = "<group>";
 		};
 		6171E1922665DD680065C34D /* Controller */ = {
