@@ -241,20 +241,13 @@ extension WebViewController {
         
         let activityItems = [title, url]
         
-        let activities = [SafariActivity()]
+        let activities = [SafariActivity(), CopyActivity()]
         
         /// 排除的分享类型,这里没有排除的分享类型,所以这个参数没有用
-        let excludedActivityTypes: [UIActivity.ActivityType] = [.postToWeibo,
-                                                                .message,
-                                                                .airDrop,
-                                                                .addToReadingList,
-                                                                .copyToPasteboard,
-                                                                .mail,
-                                                                .assignToContact
-        ]
+        let excludedActivityTypes: [UIActivity.ActivityType] = [.copyToPasteboard,]
         
         let activityContrller = UIActivityViewController(activityItems: activityItems, applicationActivities: activities)
-        //activityContrller.excludedActivityTypes = excludedActivityTypes
+        activityContrller.excludedActivityTypes = excludedActivityTypes
         activityContrller.completionWithItemsHandler = { [weak activityContrller] activityType, completed, returnedItems, activityError in
             if completed {
                 SVProgressHUD.showText("分享成功!")
