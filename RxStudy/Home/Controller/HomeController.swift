@@ -16,6 +16,7 @@ import SnapKit
 import MJRefresh
 import Kingfisher
 import FSPagerView
+import SVProgressHUD
 
 /// 需要非常小心循环引用
 class HomeController: BaseTableViewController {
@@ -38,8 +39,20 @@ extension HomeController {
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
             .subscribe(onNext: { [weak self] model in
-                self?.pushToWebViewController(webLoadInfo: model)
                 debugLog("模型为:\(model)")
+                if model.id == 24742 {
+                    if OtherApp.qq.isCanOpen {
+                        if let urlString = model.link?.replaceHtmlElement,
+                           let url = URL(string: urlString),
+                           UIApplication.shared.canOpenURL(url) {
+                            UIApplication.shared.open(url)
+                        }
+                    } else {
+                        SVProgressHUD.showText("请先安装手机QQ")
+                    }
+                } else {
+                    self?.pushToWebViewController(webLoadInfo: model)
+                }
             })
             .disposed(by: rx.disposeBag)
         

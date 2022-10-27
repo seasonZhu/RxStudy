@@ -28,6 +28,7 @@
 		001B4E3828E1A11A003ADF95 /* SimplePullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */; };
 		001B4E3928E1A11A003ADF95 /* SimpleRefreshingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */; };
 		001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */; };
+		0026AB88290A6AF20023BC6B /* OtherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026AB87290A6AF20023BC6B /* OtherApp.swift */; };
 		002A0055290152F500A872E0 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002A0054290152F500A872E0 /* SubscriptionToken.swift */; };
 		002CCE6528AA263D0086110E /* ButtonRxTapBugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */; };
 		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
@@ -218,6 +219,7 @@
 		001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimplePullToRefreshView.swift; sourceTree = "<group>"; };
 		001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshingView.swift; sourceTree = "<group>"; };
 		001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		0026AB87290A6AF20023BC6B /* OtherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherApp.swift; sourceTree = "<group>"; };
 		002A0054290152F500A872E0 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRxTapBugController.swift; sourceTree = "<group>"; };
 		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
@@ -475,6 +477,14 @@
 				00DC970F28F26ADF002CC564 /* AppState.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0026AB86290A6AE30023BC6B /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				0026AB87290A6AF20023BC6B /* OtherApp.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */ = {
@@ -842,6 +852,7 @@
 		61A6ED0B265C9BEC00E3CA9D /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0026AB86290A6AE30023BC6B /* Enum */,
 				61A6ED0E265C9C2200E3CA9D /* View */,
 				61A6ED0D265C9C1C00E3CA9D /* ViewModel */,
 				61A6ED0C265C9C1200E3CA9D /* Controller */,
@@ -1298,6 +1309,7 @@
 				00890D0028F56E9E00B3E72E /* ACarousel.swift in Sources */,
 				00A08EFD28FD3BFE00093FB4 /* Combine+Extension.swift in Sources */,
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
+				0026AB88290A6AF20023BC6B /* OtherApp.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
 				00CCD177286590C900925C1E /* CourseService.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
