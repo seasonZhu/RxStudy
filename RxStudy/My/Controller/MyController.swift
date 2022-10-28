@@ -19,11 +19,6 @@ import MJRefresh
 
 class MyController: BaseTableViewController {
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: false)
-    }
-        
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -120,8 +115,9 @@ class MyController: BaseTableViewController {
                     self?.present(sfsVC, animated: true)
                     //self?.navigationController?.pushViewController(sfsVC, animated: true)
                 case .aSwiftUI:
-                    self?.navigationController?.setNavigationBarHidden(true, animated: false)
-                    self?.navigationController?.pushViewController(UIHostingController(rootView: CoinRankListPage().environmentObject(AppState())), animated: true)
+                    let vc = UIHostingController(rootView: CoinRankListPage().environmentObject(AppState()))
+                    self?.present(vc, animated: true)
+                    
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return

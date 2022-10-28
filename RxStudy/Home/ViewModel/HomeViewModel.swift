@@ -144,7 +144,7 @@ private extension HomeViewModel {
     }
     
     /// 轮播图
-    /// - Returns: Single<BaseModel<[Banner]>>
+    /// - Returns: Single<[Banner]>
     func bannerData() -> Single<[Banner]> {
         let result = homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
