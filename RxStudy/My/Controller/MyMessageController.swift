@@ -37,7 +37,8 @@ extension MyMessageController {
         tableView.rx.modelSelected(Message.self)
             .subscribe(onNext: { [weak self] model in
                 guard let self else { return }
-                //self.pushToWebViewController(webLoadInfo: model)
+                let info = MessageLoadInfo(id: model.id, originId: model.id, title: model.title, link: model.fullLink)
+                self.pushToWebViewController(webLoadInfo: info, isNeedShowCollection: false)
                 debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)

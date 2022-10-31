@@ -24,3 +24,16 @@ struct Message : Codable {
     let title : String?
     let userId : Int?
 }
+
+/// 跳转到WebController的简化模型
+struct MessageLoadInfo: WebLoadInfo {
+    var id: Int?
+    
+    var originId: Int?
+    
+    var title: String?
+    
+    var link: String?
+    
+    
+}
