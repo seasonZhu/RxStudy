@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 import SwiftUI
 
 import SafariServices
@@ -18,6 +19,11 @@ import SVProgressHUD
 import MJRefresh
 
 class MyController: BaseTableViewController {
+    
+    var cancelable: AnyCancellable?
+    
+    /// 如果定义为UIHostingController,会要求有个类型约束,与rootView.environmentObject(AppState())的不透明类型矛盾,导致编译问题
+    var hostingVC: UIViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,9 +121,19 @@ class MyController: BaseTableViewController {
                     self?.present(sfsVC, animated: true)
                     //self?.navigationController?.pushViewController(sfsVC, animated: true)
                 case .aSwiftUI:
-                    let vc = UIHostingController(rootView: CoinRankListPage().environmentObject(AppState()))
-                    self?.present(vc, animated: true)
+                    let rootView = CoinRankListPage()
+                    self?.cancelable = rootView.publisher.sink { _ in
+                        self?.hostingVC?.dismiss(animated: true)
+                    }
                     
+                    self?.hostingVC = UIHostingController(rootView: rootView.environmentObject(AppState()))
+                    self?.hostingVC?.modalPresentationStyle = .fullScreen
+                    
+                    guard let hostingVC = self?.hostingVC else {
+                        return
+                    }
+                    
+                    self?.present(hostingVC, animated: true)
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return

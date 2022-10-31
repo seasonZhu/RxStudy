@@ -14,7 +14,13 @@ struct CoinRankListPage: View {
     
     @EnvironmentObject var appState: AppState
     
+    @State var isActive = false
+    
     @StateObject var viewModel = CoinRankListPageViewModel()
+    
+    private let backButtonSubject = PassthroughSubject<Void, Never>()
+    
+    var publisher: AnyPublisher<Void, Never> { backButtonSubject.eraseToAnyPublisher() }
     
     var body: some View {
         //normalView
@@ -57,6 +63,17 @@ struct CoinRankListPage: View {
                 
             }
             .navigationBarTitle("SwiftUI例子", displayMode: .inline)
+            .navigationBarItems(
+                leading: Button(action: {
+                    backButtonSubject.send()
+                }, label: {
+                    Image(systemName: "chevron.left")
+                }),
+                trailing: NavigationLink("Login", destination: {
+                    LoginPage()
+                })
+            )
+
         }
         .onLoad {
             viewModel.refreshAction()
