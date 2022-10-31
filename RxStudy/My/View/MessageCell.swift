@@ -55,7 +55,7 @@ extension MessageCell {
         contentView.addSubview(countLabel)
         countLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.height.equalTo(22)
+            make.width.height.equalTo(22)
             make.trailing.equalToSuperview().offset(-15)
         }
     }
