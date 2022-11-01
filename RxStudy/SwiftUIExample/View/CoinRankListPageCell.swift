@@ -46,7 +46,7 @@ struct CoinRankListPageCell: View {
             Image(systemSymbol: .chevronRight)
                 .padding(.trailing, 15)
         }
-        /// 使用这个将文字又改回黑色
-        .foregroundColor(Color.black)
+        /// 使用这个将文字又改回原来的颜色
+        .foregroundColor(Color(UIColor.playAndroidTitle))
     }
 }

@@ -42,6 +42,7 @@ extension HomeController {
                 debugLog("模型为:\(model)")
                 if model.id == 24742 {
                     if OtherApp.qq.isCanOpen {
+                        /// 这里将https改为mqq,虽然可以直接跳转到QQ,但是没有办法正常添加QQ群了
                         if let urlString = model.link?.replaceHtmlElement,
                            let url = URL(string: urlString),
                            UIApplication.shared.canOpenURL(url) {
