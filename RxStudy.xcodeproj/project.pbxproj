@@ -87,6 +87,7 @@
 		00CCD1812865BE5100925C1E /* CourseDetail.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD1802865BE5100925C1E /* CourseDetail.json */; };
 		00CCD1832865BE9100925C1E /* Course.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD1822865BE9100925C1E /* Course.json */; };
 		00CCD1852865BFAC00925C1E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1842865BFAC00925C1E /* Message.swift */; };
+		00CDD94F2910F02100027A81 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDD94E2910F02100027A81 /* Theme.swift */; };
 		00DC971028F26ADF002CC564 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC970F28F26ADF002CC564 /* AppState.swift */; };
 		00DC971228F27335002CC564 /* View+OnLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC971128F27335002CC564 /* View+OnLoad.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
@@ -281,6 +282,7 @@
 		00CCD1802865BE5100925C1E /* CourseDetail.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = CourseDetail.json; sourceTree = "<group>"; };
 		00CCD1822865BE9100925C1E /* Course.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Course.json; sourceTree = "<group>"; };
 		00CCD1842865BFAC00925C1E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		00CDD94E2910F02100027A81 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		00DC970F28F26ADF002CC564 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		00DC971128F27335002CC564 /* View+OnLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnLoad.swift"; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				6171E18B2664B08C0065C34D /* BaseTableViewController.swift */,
 				617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */,
 				00634E8A26E9D4BD00B3350D /* Setter.swift */,
+				00CDD94E2910F02100027A81 /* Theme.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1341,6 +1344,7 @@
 				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				00890CFF28F56E9E00B3E72E /* ACarouselViewModel.swift in Sources */,
+				00CDD94F2910F02100027A81 /* Theme.swift in Sources */,
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
 				001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */,
