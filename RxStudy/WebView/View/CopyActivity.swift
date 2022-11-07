@@ -8,8 +8,6 @@
 
 import UIKit
 
-import SFSafeSymbols
-
 class CopyActivity: UIActivity {
     
     private var urlString: String?

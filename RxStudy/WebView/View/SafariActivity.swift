@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// 其实可以考虑构建枚举类型来进行不同的分享Activity区分,虽然不是必要的
 class SafariActivity: UIActivity {
     
     private var url: URL?

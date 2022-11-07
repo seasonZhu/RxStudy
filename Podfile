@@ -20,6 +20,9 @@ target 'RxStudy' do
   # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,
   # 我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型,同时BlockingObservable的注释也说了,它用于测试与演示,并不适合用于App的生产环境,当你在程序逻辑中使用BlockingObservable,也许是该反省自己写的代码逻辑的时候了
   pod 'RxBlocking'
+  
+  # 可以做主题优化,但是现在基本上适配黑暗模式即可,尝试做了全局主题,但是我想的太简单了
+  pod 'RxTheme'
 
   # Networking
   pod 'Moya/RxSwift'
@@ -39,7 +42,12 @@ target 'RxStudy' do
   pod 'JXSegmentedView'
   pod 'MarqueeLabel'
   pod 'SVProgressHUD'
-  pod 'MBProgressHUD' # 被SVProgressHUD替代了
+  
+  # 被SVProgressHUD替代了
+  pod 'MBProgressHUD'
+  
+  # SFSymbols的安全引用
+  pod 'SFSafeSymbols', '~> 2.1.3'
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'
@@ -65,16 +73,12 @@ target 'RxStudy' do
   pod 'RxSwiftExt'
   pod 'RxViewController'
   pod 'RxOptional'
-  pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可
   
   # Date
   pod 'SwiftDate'
   
   # Keychain
   pod 'KeychainAccess'
-  
-  # SFSymbols的安全引用
-  pod 'SFSafeSymbols', '~> 2.1.3'
 
 end
 

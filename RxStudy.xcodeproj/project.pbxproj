@@ -50,6 +50,7 @@
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
 		006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */; };
+		0070157D2918A85500B8E386 /* ShareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0070157C2918A85500B8E386 /* ShareType.swift */; };
 		0075943C28E422E5005AC9E0 /* LoginPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075943B28E422E5005AC9E0 /* LoginPageViewModel.swift */; };
 		0075943E28E42A4E005AC9E0 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0075943D28E42A4E005AC9E0 /* LoginPage.swift */; };
 		007AE7F628F3F91800AD6C72 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AE7F528F3F91800AD6C72 /* TestViewModel.swift */; };
@@ -244,6 +245,7 @@
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
+		0070157C2918A85500B8E386 /* ShareType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
 		0075943B28E422E5005AC9E0 /* LoginPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewModel.swift; sourceTree = "<group>"; };
 		0075943D28E42A4E005AC9E0 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		007AE7F528F3F91800AD6C72 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
@@ -546,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */,
+				0070157C2918A85500B8E386 /* ShareType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1251,6 +1254,7 @@
 				6171E19B266611650065C34D /* AccountService.swift in Sources */,
 				6171E1A126661EC60065C34D /* RegisterController.swift in Sources */,
 				001B4E3528E19BE1003ADF95 /* Modifier.swift in Sources */,
+				0070157D2918A85500B8E386 /* ShareType.swift in Sources */,
 				00CCD1852865BFAC00925C1E /* Message.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				001B4E3428E19BE1003ADF95 /* List+Refresh.swift in Sources */,

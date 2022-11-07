@@ -57,66 +57,84 @@
 ### 引入的第三库
 
 ```ruby
-# Rx Core
-pod 'RxSwift'
-pod 'RxCocoa'
+target 'RxStudy' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+  
+  # Rx Core
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  
+  # Rx Extensions
+  pod 'RxDataSources'
+  pod 'NSObject+Rx'
+  
+  # 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
+  pod 'RxGesture'
+  # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,
+  # 我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型,同时BlockingObservable的注释也说了,它用于测试与演示,并不适合用于App的生产环境,当你在程序逻辑中使用BlockingObservable,也许是该反省自己写的代码逻辑的时候了
+  pod 'RxBlocking'
+  
+  # 可以做主题优化,但是现在基本上适配黑暗模式即可,尝试做了全局主题,但是我想的太简单了
+  pod 'RxTheme'
 
-# Rx Extensions
-pod 'RxDataSources'
-pod 'NSObject+Rx'
+  # Networking
+  pod 'Moya/RxSwift'
+  pod 'AlamofireNetworkActivityLogger'
 
-# 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
-pod 'RxGesture'
-# 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型
-pod 'RxBlocking'
+  # Image
+  pod 'Kingfisher'
+  
+  # R函数
+  pod 'R.swift'
 
-# Networking
-pod 'Moya/RxSwift'
-pod 'AlamofireNetworkActivityLogger'
+  # UI
+  pod 'DZNEmptyDataSet'
+  pod 'AcknowList'
+  pod 'MJRefresh'
+  pod 'FSPagerView'
+  pod 'JXSegmentedView'
+  pod 'MarqueeLabel'
+  pod 'SVProgressHUD'
+  
+  # 被SVProgressHUD替代了
+  pod 'MBProgressHUD'
+  
+  # SFSymbols的安全引用
+  pod 'SFSafeSymbols', '~> 2.1.3'
+  
+  # Keyboard
+  pod 'IQKeyboardManagerSwift'
 
-# Image
-pod 'Kingfisher'
+  # Auto Layout
+  pod 'SnapKit'
+  
+  # Combine 学习
+  pod 'Moya/Combine'
+  pod 'CombineExt'
+  pod 'CombineCocoa'
+  
+  # 调试
+  pod 'LookinServer', :configurations => ['Debug']
+  pod 'CocoaDebug', :configurations => ['Debug']
+  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
+  
+  # 注意,以下是没有使用的库
+  
+  # Rx Extensions
+  
+  # 对序列的操作符的扩充,让序列从一种类型转换到另一种类型变得更加快捷 https://github.com/RxSwiftCommunity/RxSwiftExt
+  pod 'RxSwiftExt'
+  pod 'RxViewController'
+  pod 'RxOptional'
+  
+  # Date
+  pod 'SwiftDate'
+  
+  # Keychain
+  pod 'KeychainAccess'
 
-# R函数
-pod 'R.swift'
-
-# UI
-pod 'DZNEmptyDataSet'
-pod 'AcknowList'
-pod 'MJRefresh'
-pod 'FSPagerView'
-pod 'JXSegmentedView'
-pod 'MarqueeLabel'
-pod 'SVProgressHUD'
-pod 'MBProgressHUD' # 被SVProgressHUD替代了
-
-# Keyboard
-pod 'IQKeyboardManagerSwift'
-
-# Auto Layout
-pod 'SnapKit'
-
-# 调试
-pod 'LookinServer', :configurations => ['Debug']
-pod 'CocoaDebug', :configurations => ['Debug']
-pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
-
-# 注意,以下是没有使用的库
-
-# Rx Extensions
-pod 'RxSwiftExt' # 更多的是对序列的运算符优化
-pod 'RxViewController' # 控制器的生命周期通过rx进行监控
-pod 'RxOptional'
-pod 'RxTheme' # 可以做主题优化,但是现在基本上适配黑暗模式即可
-
-# Date
-pod 'SwiftDate'
-
-# Keychain
-pod 'KeychainAccess'
-
-# SFSymbols的安全引用
-pod 'SFSafeSymbols', '~> 2.1.3'
+end
 ```
 
 ## 使用RxSwift、Flutter、Vue的一点感受
