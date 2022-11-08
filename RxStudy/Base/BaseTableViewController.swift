@@ -45,6 +45,9 @@ class BaseTableViewController: BaseViewController {
         /// 设置tableFooterView
         tableView.tableFooterView = UIView()
         
+        /// 不显示滑动条
+        tableView.showsVerticalScrollIndicator = false
+        
         /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         

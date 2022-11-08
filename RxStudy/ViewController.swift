@@ -17,7 +17,7 @@ import SVProgressHUD
 
 class ViewController: UITabBarController {
     
-    var transform: Transform!
+    lazy var transform = Transform()
     
     private var titles: [String] = []
     
@@ -41,7 +41,6 @@ class ViewController: UITabBarController {
     }
     
     private func setupUI() {
-        transform = Transform()
         delegate = transform
         
         view.backgroundColor = .playAndroidBg

@@ -56,6 +56,7 @@ class WebViewController: BaseViewController {
         let webView = WKWebView(frame: CGRect.zero, configuration: config)
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.isScrollEnabled = true
+        webView.scrollView.showsVerticalScrollIndicator = false
         return webView
     }()
     
@@ -243,7 +244,7 @@ extension WebViewController {
         
         let activities = [SafariActivity(), CopyActivity()]
         
-        /// 排除的分享类型,这里没有排除的分享类型,所以这个参数没有用
+        /// 排除的分享类型,这里排除系统的复制到剪切板
         let excludedActivityTypes: [UIActivity.ActivityType] = [.copyToPasteboard,]
         
         let activityContrller = UIActivityViewController(activityItems: activityItems, applicationActivities: activities)
