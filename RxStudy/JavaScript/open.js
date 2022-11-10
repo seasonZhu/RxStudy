@@ -33,7 +33,7 @@ function juejinAddOnClickOnButton() {
 
 /// 在CSDN网页的 APP内打开 这个按钮添加点击事件
 function csdnAddOnClickOnButton() {
-    var button = document.querySelector('.feed-Sign-span');
+    var button = document.querySelector('.open-app open-app-csdn open_app_channelCode');
     console.log(button);
     button.onclick = function (e) {
         window.webkit.messageHandlers.wanAndroid.postMessage('goToApp');

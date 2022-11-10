@@ -12,6 +12,9 @@ enum  OtherApp: String {
     case alipay
     case weixin
     case qq
+    case juejin
+    case jianshu
+    case csdn
 }
 
 extension OtherApp {
@@ -23,6 +26,12 @@ extension OtherApp {
             return "weixin://"
         case .qq:
             return "mqq://"
+        case .juejin:
+            return "openjj://"
+        case .jianshu:
+            return "com.jianshu.Hugo://"
+        case .csdn:
+            return "csdn://"
         }
     }
     

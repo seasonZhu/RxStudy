@@ -306,7 +306,13 @@ extension WebViewController: WKScriptMessageHandler {
         if msg == "goToApp" {
             debugLog("打开App操作")
             /// 这里其实只是针对掘金了,CSDN的可以其实可以直接跳转了
-            //openApp()
+            if OtherApp.juejin.isCanOpen
+                || OtherApp.jianshu.isCanOpen
+                || OtherApp.csdn.isCanOpen {
+                return
+            }
+                
+            openApp()
         }
     }
 }
