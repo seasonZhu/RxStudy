@@ -302,10 +302,11 @@ extension WebViewController: WKScriptMessageHandler {
          
         guard let msg = message.body as? String else { return }
         
+        /// 简书和掘金都可以直接跳转到App了,这里的js注入没有什么意义了
         if msg == "goToApp" {
             debugLog("打开App操作")
             /// 这里其实只是针对掘金了,CSDN的可以其实可以直接跳转了
-            openApp()
+            //openApp()
         }
     }
 }
