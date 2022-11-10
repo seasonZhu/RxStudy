@@ -92,6 +92,7 @@
 		00DC971028F26ADF002CC564 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC970F28F26ADF002CC564 /* AppState.swift */; };
 		00DC971228F27335002CC564 /* View+OnLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC971128F27335002CC564 /* View+OnLoad.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
+		00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */; };
 		00FE0DDA2869455500B9D48F /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DD92869455500B9D48F /* MessageViewModel.swift */; };
 		00FE0DDC28694BB600B9D48F /* MyMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDB28694BB600B9D48F /* MyMessageController.swift */; };
 		00FE0DDE28694D6500B9D48F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDD28694D6500B9D48F /* MessageCell.swift */; };
@@ -288,6 +289,7 @@
 		00DC970F28F26ADF002CC564 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		00DC971128F27335002CC564 /* View+OnLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnLoad.swift"; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		00FE0DD92869455500B9D48F /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		00FE0DDB28694BB600B9D48F /* MyMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageController.swift; sourceTree = "<group>"; };
 		00FE0DDD28694D6500B9D48F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -712,6 +714,7 @@
 				00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */,
 				00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */,
 				00099E0229026BD7001FC753 /* ObserverType+Extension.swift */,
+				00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1310,6 +1313,7 @@
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
 				00CCD173286588D400925C1E /* Course.swift in Sources */,
 				6171E18F2665D4190065C34D /* MyController.swift in Sources */,
+				00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */,
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				00FE0DE02869833500B9D48F /* MessageReadyStatus.swift in Sources */,

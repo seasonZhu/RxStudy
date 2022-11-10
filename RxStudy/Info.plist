@@ -22,10 +22,14 @@
 	<string>1</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>mqq</string>
 		<string>csdn</string>
 		<string>xitujuejin</string>
+		<string>cn.juejin</string>
+		<string>cn.juejin.xitu</string>
 		<string>jianshu</string>
-        <string>mqq</string>
+		<string>jianshu.hugo</string>
+		<string>com.jianshu.Hugo</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
