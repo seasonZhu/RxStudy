@@ -60,6 +60,7 @@ class ViewController: UITabBarController {
         
         navigationItem.rightBarButtonItem?.rx.tap.subscribe { [weak self] _ in
             debugLog("点击事件")
+            Haptics.success.feedback()
             self?.navigationController?.pushViewController(HotKeyController(), animated: true)
         }.disposed(by: rx.disposeBag)
         

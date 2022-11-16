@@ -164,6 +164,9 @@ extension MyController {
             
         }
         let actionOK = UIAlertAction(title: "确定", style: .default) { (action) in
+            
+            Haptics.success.feedback()
+            
             viewModel.inputs.logout()
                 .asDriver(onErrorJustReturn: BaseModel(data: nil, errorCode: nil, errorMsg: nil))
                 .drive { baseModel in

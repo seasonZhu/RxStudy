@@ -54,3 +54,24 @@ func themeTriggered() {
         themeService.switch(.light)
     }
 }
+
+/// 触控反馈
+enum Haptics {
+    case success
+    case warning
+    case error
+}
+
+extension Haptics {
+    func feedback() {
+        let generator = UINotificationFeedbackGenerator()
+        switch self {
+        case .success:
+            generator.notificationOccurred(.success)
+        case .warning:
+            generator.notificationOccurred(.warning)
+        case .error:
+            generator.notificationOccurred(.error)
+        }
+    }
+}
