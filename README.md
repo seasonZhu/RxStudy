@@ -77,6 +77,10 @@ target 'RxStudy' do
   
   # 可以做主题优化,但是现在基本上适配黑暗模式即可,尝试做了全局主题,但是我想的太简单了
   pod 'RxTheme'
+  
+  # 对序列的操作符的扩充,让序列从一种类型转换到另一种类型变得更加快捷 https://github.com/RxSwiftCommunity/RxSwiftExt
+  # 使用subscribeNext(weak:...)这个方法来避免循环引用,详细可以见HotKeyController,同时_ onNext: @escaping (Object) -> (Element) -> Void 这种并不是特别好理解, 可以理解为 (Object) -> ((Element) -> Void),闭包嵌套闭包的写法
+  pod 'RxSwiftExt'
 
   # Networking
   pod 'Moya/RxSwift'
@@ -122,9 +126,6 @@ target 'RxStudy' do
   # 注意,以下是没有使用的库
   
   # Rx Extensions
-  
-  # 对序列的操作符的扩充,让序列从一种类型转换到另一种类型变得更加快捷 https://github.com/RxSwiftCommunity/RxSwiftExt
-  pod 'RxSwiftExt'
   pod 'RxViewController'
   pod 'RxOptional'
   

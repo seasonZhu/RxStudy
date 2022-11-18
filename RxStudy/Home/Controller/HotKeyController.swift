@@ -9,6 +9,7 @@
 import UIKit
 
 import RxSwift
+import RxSwiftExt
 import RxCocoa
 
 class HotKeyController: BaseViewController {
@@ -143,13 +144,18 @@ class HotKeyController: BaseViewController {
             button.layer.cornerRadius = 4
             button.layer.masksToBounds = true
             
+            /// 使用RxSwiftExt中的ObservableType+Weak,来避免循环引用,但是三重闭包不是很好看清楚
+            button.rx.tap
+                .map { title }
+                .subscribeNext(weak: self) { (self) in { self.pushToSearchResultController(keyword: $0) }
+                }.disposed(by: rx.disposeBag)
             
+            /* 这种写法会导致循环引用
             /// 原始版本
             button.rx.tap.subscribe { [weak self] _ in
                 self?.pushToSearchResultController(keyword: title)
             }.disposed(by: rx.disposeBag)
-            
-            /* 这种写法会导致循环引用
+             
             /// 赋值为一个闭包传入,便于理解的版本
             let function = pushToSearchResultController
             button.rx.tap

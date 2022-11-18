@@ -7,13 +7,23 @@
 //
 
 import RxSwift
+import RxSwiftExt
 
 extension ObservableType {
     
     /// 仅订阅onNext
-    /// - Parameter onNext: 序列
+    /// - Parameter onNext: onNext
     /// - Returns: Disposable
-    public func subscribeOnlyOnNext(onNext: ((Element) -> Void)? = nil) -> Disposable {
+    public func subscribeOnlyOnNext(_ onNext: ((Element) -> Void)? = nil) -> Disposable {
         subscribe(onNext: onNext, onError: nil, onCompleted: nil, onDisposed: nil)
+    }
+    
+    /// weak修饰仅订阅onNext
+    /// - Parameters:
+    ///   - weak: 持有对象
+    ///   - onNext: onNext
+    /// - Returns: Disposable
+    public func subscribeWeakifyOnNext<Object: AnyObject>(_ weak: Object, _ onNext: @escaping (Object) -> (Element) -> Void) -> Disposable {
+        subscribeNext(weak: weak, onNext)
     }
 }
