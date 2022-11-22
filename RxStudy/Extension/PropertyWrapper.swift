@@ -25,6 +25,7 @@ struct ReplaceHtmlElement {
     }
 }
 
+/// 通过$,将Int转为String
 @propertyWrapper
 struct IntToStringFactory {
     
@@ -34,7 +35,7 @@ struct IntToStringFactory {
 
 }
 
-
+/// 定义的时候,入参一个闭包,$拿到的就是闭包处理后的数据
 @propertyWrapper
 struct FunctionFactory<Input, Output> {
     
@@ -45,6 +46,7 @@ struct FunctionFactory<Input, Output> {
     var projectedValue: Output { function(wrappedValue) }
 }
 
+/// 其实和IntToStringFactory逻辑相似
 @propertyWrapper
 struct StringFactory {
     var wrappedValue: Int
@@ -76,6 +78,7 @@ class RxBehaviorRelay<T> {
     }
 }
 
+/// 和FunctionFactory类似,这里只是将赋值的变为闭包,而入参变成普通参数而已
 @propertyWrapper
 class AFunction {
     var wrappedValue: ((String) -> String)
@@ -121,6 +124,59 @@ class B<T> {
             return num * 100
         } else {
             return nil
+        }
+    }
+}
+
+/// UserDefaults.standard的简化写法
+@propertyWrapper
+struct UserDefault<T> {
+    let key: String
+    
+    let defaultValue: T
+  
+    var wrappedValue: T {
+        get {
+            return UserDefaults.standard.object(forKey: key) as? T ?? defaultValue
+            
+        } set {
+            UserDefaults.standard.set(newValue, forKey: key)
+        }
+    }
+    
+    /// 这里如果不定义projectedValue,那么外部要获取UserDefault<T> 类型,只能使用_some,定义了就可以使用$some
+    var projectedValue: Self { self }
+    
+    /// 移除
+    func remove() {
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+}
+
+
+protocol Copyable: AnyObject {
+    func copy() -> Self
+}
+
+/// 写时复制
+@propertyWrapper
+struct CopyOnWrite<Value: Copyable> {
+    
+    init(wrappedValue: Value) {
+        self.wrappedValue = wrappedValue
+    }
+  
+    private(set) var wrappedValue: Value
+  
+    var projectedValue: Value {
+        mutating get {
+            if !isKnownUniquelyReferenced(&wrappedValue) {
+                wrappedValue = wrappedValue.copy()
+            }
+            return wrappedValue
+        }
+        set {
+            wrappedValue = newValue
         }
     }
 }

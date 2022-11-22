@@ -19,22 +19,30 @@ final class AccountManager {
     /// 默认是有联网的
     let networkIsReachableRelay = BehaviorRelay(value: true)
     
-    /// 单例
-    static let shared = AccountManager()
-    
     /// 是否登录的BehaviorRelay属性
     let isLoginRelay = BehaviorRelay(value: false)
+    
+    /// 这个是尝试在一个接口调用另一个接口获取的模型
+    let myCoinRelay = BehaviorRelay<CoinRank?>(value: nil)
+    
+    let myUnreadMessageCountRelay = BehaviorRelay<Int>(value: 0)
+    
+    /// 本地保存用户名
+    @UserDefault(key: kUsername, defaultValue: nil)
+    var username: String?
+    
+    /// 本地保存密码
+    @UserDefault(key: kPassword, defaultValue: nil)
+    var password: String?
+    
+    /// 单例
+    static let shared = AccountManager()
         
     /// 对外只读用户信息属性
     private(set) var accountInfo: AccountInfo?
     
     /// 私有化初始化方法
     private init() {}
-    
-    /// 这个是尝试在一个接口调用另一个接口获取的模型
-    let myCoinRelay = BehaviorRelay<CoinRank?>(value: nil)
-    
-    let myUnreadMessageCountRelay = BehaviorRelay<Int>(value: 0)
     
 }
 
@@ -56,9 +64,10 @@ extension AccountManager {
         accountInfo = info
         accountInfo?.username = username
         accountInfo?.password = password
+                
+        self.username = username
+        self.password = password
         
-        UserDefaults.standard.setValue(username, forKey: kUsername)
-        UserDefaults.standard.setValue(password, forKey: kPassword)
         /// 需要注意赋值顺序,将info赋值给单例后,再改变isLogin的状态才能获取正确的请求头
         isLoginRelay.accept(true)
     }
@@ -70,8 +79,9 @@ extension AccountManager {
         myCoinRelay.accept(nil)
         myUnreadMessageCountRelay.accept(0)
         /// 不仅要清除内存,也要清除本地UserDefault保存的数据
-        UserDefaults.standard.removeObject(forKey: kUsername)
-        UserDefaults.standard.removeObject(forKey: kPassword)
+        $username.remove()
+        $password.remove()
+        
     }
 }
 
@@ -82,21 +92,11 @@ extension AccountManager {
     }
 }
 
-extension AccountManager {
-    /// 获取本地保存用户名
-    func getUsername() -> String? {
-        return UserDefaults.standard.value(forKey: kUsername) as? String
-    }
-    
-    /// 获取本地保存密码
-    func getPassword() -> String? {
-        return UserDefaults.standard.value(forKey: kPassword) as? String
-    }
-    
+extension AccountManager {    
     /// 自动登录
     func autoLogin() {
-        guard let username = getUsername(),
-              let password = getPassword() else {
+        guard let username = self.username,
+              let password = self.password else {
             return
         }
         optimizeLogin(username: username, password: password, showLoading: false)
