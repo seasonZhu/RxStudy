@@ -10,6 +10,8 @@ import UIKit
 
 import RxCocoa
 
+import SnapKit
+
 class ButtonRxTapBugController: BaseViewController {
     
     private lazy var redButton: UIButton = {
@@ -59,5 +61,104 @@ class ButtonRxTapBugController: BaseViewController {
         }.disposed(by: rx.disposeBag)
         
         isEnableRelay.bind(to: redButton.rx.isEnabled).disposed(by: rx.disposeBag)
+    }
+}
+
+/*
+ 最近在看UIScrollView + UIStackView配合替代UITableView的方案
+ http://octotap.com/2019/08/03/uistackview-inside-uiscrollview/
+ https://zirkler.medium.com/uikit-programmatically-embed-a-uistackview-in-an-uiscrollview-using-autolayout-fd4e97ce8f26
+ */
+class ScrollableStackController: BaseViewController {
+
+    lazy var stackView: UIStackView = {
+        let stackView = UIStackView()
+        return stackView
+    }()
+    
+    lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsHorizontalScrollIndicator = false
+        return scrollView
+    }()
+    
+    /// 圆形
+    var circle: UIView {
+        let circle = UIView()
+        circle.translatesAutoresizingMaskIntoConstraints = true
+        circle.widthAnchor.constraint(equalToConstant: 200).isActive = true
+        circle.heightAnchor.constraint(equalToConstant: 200).isActive = true
+        circle.backgroundColor = .random
+        circle.layer.cornerRadius = 100
+        circle.layer.masksToBounds = true
+        return circle
+    }
+    
+    /// 标题
+    var titleLabel: UILabel {
+        let label = UILabel()
+        label.text = "UIStackView inside UIScrollView."
+        label.font = UIFont.systemFont(ofSize: 24, weight: .medium)
+        label.textColor = .white
+        label.textAlignment = .center
+        label.backgroundColor = .random
+        return label
+    }
+        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .white
+        title = "UIScrollView + UIStackView"
+        
+        //horizontalLayout()
+        verticalLayout()
+    }
+    
+    private func horizontalLayout() {
+        stackView.axis = .horizontal
+        stackView.spacing = 20
+        stackView.alignment = .center
+        
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        scrollView.addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        for _ in 0..<20 {
+            stackView.addArrangedSubview(circle)
+        }
+    }
+    
+    private func verticalLayout() {
+        stackView.axis = .vertical
+        stackView.spacing = 20
+        stackView.alignment = .fill
+        
+        view.addSubview(scrollView)
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        let contentView = UIView()
+        scrollView.addSubview(contentView)
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(kScreenWidth)
+        }
+        
+        contentView.addSubview(stackView)
+        stackView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.bottom.equalTo(contentView.snp.bottom).offset(0)
+        }
+        
+        for _ in 0..<20 {
+            stackView.addArrangedSubview(circle)
+        }
     }
 }

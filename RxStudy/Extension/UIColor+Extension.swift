@@ -37,6 +37,17 @@ extension UIColor {
 
 extension UIColor {
     
+    /// 随机颜色
+    static var random: UIColor  {
+        let red = CGFloat.random(in: 0...1)
+        let green = CGFloat.random(in: 0...1)
+        let blue = CGFloat.random(in: 0...1)
+        return  UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    }
+}
+
+extension UIColor {
+    
     /// 文字颜色 light为黑 dark为白
     static let playAndroidTitle = UIColor(lightThemeColor: .black, darkThemeColor: .white)
     
