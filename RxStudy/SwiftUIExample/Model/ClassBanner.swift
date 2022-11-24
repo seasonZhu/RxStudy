@@ -8,6 +8,8 @@
 
 import Foundation
 
+import HttpRequest
+
 class ClassBanner : ObservableObject, Identifiable, Codable {    
     
     var id : Int?

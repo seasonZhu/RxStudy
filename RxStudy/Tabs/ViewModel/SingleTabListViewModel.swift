@@ -12,6 +12,8 @@ import RxSwift
 import RxCocoa
 import Moya
 
+import HttpRequest
+
 class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting {
 
     var pageNum: Int

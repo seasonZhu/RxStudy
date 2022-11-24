@@ -8,6 +8,8 @@
 
 import UIKit
 
+import HttpRequest
+
 import IQKeyboardManagerSwift
 import Alamofire
 import AlamofireNetworkActivityLogger

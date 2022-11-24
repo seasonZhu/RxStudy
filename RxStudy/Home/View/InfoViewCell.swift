@@ -8,6 +8,8 @@
 
 import UIKit
 
+import HttpRequest
+
 class InfoViewCell: UITableViewCell {
 
     var info: Info! {

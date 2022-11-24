@@ -16,7 +16,7 @@
     "tag": "1.0.0"
   },
   "platforms": {
-    "ios": "11.0"
+    "ios": "13.0"
   },
   "source_files": "HUD/Classes/**/*",
   "dependencies": {

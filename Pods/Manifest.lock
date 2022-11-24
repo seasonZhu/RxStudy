@@ -10,6 +10,13 @@ PODS:
   - Differentiator (5.0.0)
   - DZNEmptyDataSet (1.8.1)
   - FSPagerView (0.8.3)
+  - HttpRequest (1.0.0):
+    - HUD
+    - Moya/RxSwift
+    - "NSObject+Rx"
+    - RxBlocking
+    - RxRelay
+    - RxSwift
   - HUD (1.0.0):
     - MBProgressHUD
     - SVProgressHUD
@@ -80,6 +87,7 @@ DEPENDENCIES:
   - CombineExt
   - DZNEmptyDataSet
   - FSPagerView
+  - HttpRequest (from `DevelopmentPods/HttpRequest`)
   - HUD (from `DevelopmentPods/HUD`)
   - IQKeyboardManagerSwift
   - JXSegmentedView
@@ -149,6 +157,8 @@ SPEC REPOS:
     - SwiftPrettyPrint
 
 EXTERNAL SOURCES:
+  HttpRequest:
+    :path: DevelopmentPods/HttpRequest
   HUD:
     :path: DevelopmentPods/HUD
 
@@ -163,7 +173,8 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
-  HUD: 1b0f95653cda1691441dc006cf76fa480546fe2d
+  HttpRequest: d5f71dc685accd677ff6fe73dd7b9bcf8164f311
+  HUD: be9576e4845ac29d51b02cac13a9e0bfece54d47
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
@@ -192,6 +203,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: d80c053f4777a567cda2583dc804e3029287c1cd
+PODFILE CHECKSUM: 1d9250ac9e41a9222d49540032a12c883337c3ed
 
 COCOAPODS: 1.11.3

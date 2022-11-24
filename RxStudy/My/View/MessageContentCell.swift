@@ -8,6 +8,8 @@
 
 import UIKit
 
+import HttpRequest
+
 class MessageContentCell: UITableViewCell {
 
     var message: Message! {

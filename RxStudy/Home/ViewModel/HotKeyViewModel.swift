@@ -6,10 +6,12 @@
 //  Copyright © 2021 season. All rights reserved.
 //
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
 import NSObject_Rx
-import Moya
+
 
 class HotKeyViewModel: BaseViewModel {
     

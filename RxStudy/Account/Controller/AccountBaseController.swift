@@ -7,6 +7,9 @@
 //
 
 import UIKit
+
+import HttpRequest
+
 import MBProgressHUD
 import SVProgressHUD
 

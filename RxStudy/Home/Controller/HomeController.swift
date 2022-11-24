@@ -8,6 +8,8 @@
 
 import Foundation
 
+import HttpRequest
+
 import RxSwift
 import RxSwiftExt
 import RxCocoa

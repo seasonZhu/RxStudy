@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
 import MBProgressHUD

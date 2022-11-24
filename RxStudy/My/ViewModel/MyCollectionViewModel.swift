@@ -10,7 +10,9 @@ import Foundation
 
 import RxSwift
 import RxCocoa
-import Moya
+
+
+import HttpRequest
 
 class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 

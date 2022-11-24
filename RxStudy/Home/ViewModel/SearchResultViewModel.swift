@@ -8,9 +8,11 @@
 
 import Foundation
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
-import Moya
+
 
 class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     /// 搜索结果的首页是从0开始的

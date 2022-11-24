@@ -9,6 +9,7 @@ target 'RxStudy' do
   
   # 本地HUD模块,兼容了SVProgressHUD与MBProgressHUD两个组件的简单场景
   pod 'HUD', :path => 'DevelopmentPods/HUD'
+  pod 'HttpRequest', :path => 'DevelopmentPods/HttpRequest'
   
   # Rx Core
   pod 'RxSwift'

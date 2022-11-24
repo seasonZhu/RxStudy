@@ -8,9 +8,11 @@
 
 import Foundation
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
-import Moya
+
 
 /// 进击的ViewModel
 class CoinRankViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {

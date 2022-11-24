@@ -8,7 +8,9 @@
 
 import Foundation
 
-import Moya
+import HttpRequest
+
+
 
 enum MessageReadyStatus {
     case unread

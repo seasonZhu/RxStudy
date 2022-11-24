@@ -8,11 +8,13 @@
 
 import UIKit
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
 import RxGesture
-
 import Moya
+
 import SVProgressHUD
 
 class BaseViewController: UIViewController {

@@ -25,7 +25,7 @@ import Kingfisher
 import MarqueeLabel
 import MBProgressHUD
 import MJRefresh
-import Moya
+
 import NSObject_Rx
 import RxCocoa
 import RxSwift

@@ -8,9 +8,11 @@
 
 import Foundation
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
-import Moya
+
 
 class MyCoinViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 

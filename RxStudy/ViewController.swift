@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import RxGesture
 
-import Moya
+
 import SVProgressHUD
 
 class ViewController: UITabBarController {

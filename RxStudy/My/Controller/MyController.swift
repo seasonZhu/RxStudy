@@ -12,6 +12,8 @@ import SwiftUI
 
 import SafariServices
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
 import MBProgressHUD

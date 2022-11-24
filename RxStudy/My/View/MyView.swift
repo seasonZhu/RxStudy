@@ -8,6 +8,8 @@
 
 import UIKit
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
 

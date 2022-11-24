@@ -8,6 +8,8 @@
 
 import UIKit
 
+import HttpRequest
+
 class MyMessageController: BaseTableViewController {
     
     let status: MessageReadyStatus

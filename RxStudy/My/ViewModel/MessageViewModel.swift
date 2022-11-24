@@ -8,9 +8,11 @@
 
 import Foundation
 
+import HttpRequest
+
 import RxSwift
 import RxCocoa
-import Moya
+
 
 class MessageViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     /// 站内消息是从1开始的
