@@ -1,0 +1,30 @@
+{
+  "name": "HUD",
+  "version": "1.0.0",
+  "summary": "A short description of HUD.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/zhujilong1987@163.com/HUD",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zhujilong1987@163.com": "zhujilong1987@163.com"
+  },
+  "source": {
+    "git": "https://github.com/zhujilong1987@163.com/HUD.git",
+    "tag": "1.0.0"
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "source_files": "HUD/Classes/**/*",
+  "dependencies": {
+    "SVProgressHUD": [
+
+    ],
+    "MBProgressHUD": [
+
+    ]
+  }
+}

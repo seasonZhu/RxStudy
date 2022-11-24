@@ -1,0 +1,27 @@
+PODS:
+  - HUD (1.0.0):
+    - MBProgressHUD
+    - SVProgressHUD
+  - MBProgressHUD (1.2.0)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - HUD (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - MBProgressHUD
+    - SVProgressHUD
+
+EXTERNAL SOURCES:
+  HUD:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  HUD: 1b0f95653cda1691441dc006cf76fa480546fe2d
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: 6df6d3e545353716cbc0f5ef25e3d46831a56d87
+
+COCOAPODS: 1.11.3
