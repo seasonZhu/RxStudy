@@ -1,0 +1,6 @@
+framework module HUD {
+  umbrella header "HUD-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -132,7 +132,6 @@
 		61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61336C8A2657581100FDEB2A /* BaseViewController.swift */; };
 		6164F0FF268F053000CD43DF /* MyBaseWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */; };
 		616EC96E269E8154008FAFDF /* SVProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */; };
-		616EC970269E822E008FAFDF /* HUD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 616EC96F269E822E008FAFDF /* HUD.swift */; };
 		61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */; };
 		61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */; };
 		6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6171E18B2664B08C0065C34D /* BaseTableViewController.swift */; };
@@ -153,7 +152,6 @@
 		61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6199033F265F2DBB002C8A1A /* SingleTabListController.swift */; };
 		61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */; };
 		619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619BA35B26895DDF007C7135 /* BaseNavigationController.swift */; };
-		619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */; };
 		619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619EDB362660BF820056A3D9 /* InfoViewCell.swift */; };
 		61A6ED0A265C963900E3CA9D /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED09265C963900E3CA9D /* ViewModelProtocol.swift */; };
 		61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */; };
@@ -331,7 +329,6 @@
 		61336C8A2657581100FDEB2A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6164F0FE268F052F00CD43DF /* MyBaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseWebViewController.swift; sourceTree = "<group>"; };
 		616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Extension.swift"; sourceTree = "<group>"; };
-		616EC96F269E822E008FAFDF /* HUD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		61716A9E267B3A4A00F9DC25 /* SwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftCoinRankListController.swift; sourceTree = "<group>"; };
 		61716AA0267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftCoinRankListController.swift; sourceTree = "<group>"; };
@@ -353,7 +350,6 @@
 		6199033F265F2DBB002C8A1A /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
 		61990341265F2F07002C8A1A /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
 		619BA35B26895DDF007C7135 /* BaseNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
-		619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
 		619EDB362660BF820056A3D9 /* InfoViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewCell.swift; sourceTree = "<group>"; };
 		61A6ED09265C963900E3CA9D /* ViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
@@ -701,9 +697,7 @@
 				611E2E0F266096E9001585AE /* String+Extension.swift */,
 				611471CB26B106AC00E298F5 /* UIColor+Extension.swift */,
 				0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */,
-				616EC96F269E822E008FAFDF /* HUD.swift */,
 				0016CE2A286E838F0002501A /* TypeNameProtocol.swift */,
-				619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */,
 				616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */,
 				0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */,
 				0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */,
@@ -1325,7 +1319,6 @@
 				00CCD177286590C900925C1E /* CourseService.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
 				00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */,
-				616EC970269E822E008FAFDF /* HUD.swift in Sources */,
 				001B4E3928E1A11A003ADF95 /* SimpleRefreshingView.swift in Sources */,
 				61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */,
 				6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */,
@@ -1353,7 +1346,6 @@
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				00890CFF28F56E9E00B3E72E /* ACarouselViewModel.swift in Sources */,
 				00CDD94F2910F02100027A81 /* Theme.swift in Sources */,
-				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
 				001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */,
 				00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */,

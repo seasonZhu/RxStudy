@@ -7,6 +7,9 @@ target 'RxStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   
+  # 本地HUD模块,兼容了SVProgressHUD与MBProgressHUD两个组件的简单场景
+  pod 'HUD', :path => 'DevelopmentPods/HUD'
+  
   # Rx Core
   pod 'RxSwift'
   pod 'RxCocoa'

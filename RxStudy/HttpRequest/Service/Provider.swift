@@ -8,6 +8,8 @@
 
 import Foundation
 
+import HUD
+
 import Moya
 import SVProgressHUD
 
