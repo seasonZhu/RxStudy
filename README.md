@@ -193,3 +193,19 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 轮播
 
 [ACarousel](https://github.com/JWAutumn/ACarousel)
+
+## 组件化
+
+我在这个项目的`module`分支上面进行了简单的组件化尝试。
+
+所有的pod目前都是进行的本地化管理，也是放在当前项目下的`DevelopmentPods`文件夹下面。
+
+我之前很天真的以为自己写的代码很好解耦，应该一会就可以进行组件化，但是当我尝试拆解`HttpRequest`的时候就吃瘪了。
+
+我发现，我的`HttpRequest`中使用了Moya的插件，到请求开始与结束的使用了蒙层的loading与dismiss，于是乎，我优先去组件化了`HUD`。
+
+然后我的`HttpRequest`要先去依赖`HUD`才能进行正常的组件化与编译，结果发现`HttpRequest`实际上和登录状态也是有关联的，在`wanandroid`的API中，登录和未登录在有几个API里面的请求头是有差别的，登录后不将数据塞入请求头是拿不到数据的，于是乎就在我考虑是将`AccountManager`独立作为个组件还是放在`HttpRequest`里面，纠结了半天，然后还是考虑封装的网络请求层其实也算是业务层了，我个人理解`Moya`已经算是纯粹的网络请求层了，于是乎`AccountManager`和`HttpRequest`就放在一起了。
+
+没有组件化之前，虽然我也知道`public`修饰的重要性，结果进行组件化后，才更能理解，小心慎重的时候这些修饰符是多么的重要。
+
+如果大家有兴趣，可以切到`module`分支上面去看看。
