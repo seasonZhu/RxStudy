@@ -57,6 +57,7 @@ PODS:
     - RxSwift (~> 6.0)
   - RxRelay (6.5.0):
     - RxSwift (= 6.5.0)
+  - RxStudyUtils (1.0.0)
   - RxSwift (6.5.0)
   - RxSwiftExt (6.0.1):
     - RxSwiftExt/Core (= 6.0.1)
@@ -106,6 +107,7 @@ DEPENDENCIES:
   - RxDataSources
   - RxGesture
   - RxOptional
+  - RxStudyUtils (from `DevelopmentPods/RxStudyUtils`)
   - RxSwift
   - RxSwiftExt
   - RxTheme
@@ -161,6 +163,8 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/HttpRequest
   HUD:
     :path: DevelopmentPods/HUD
+  RxStudyUtils:
+    :path: DevelopmentPods/RxStudyUtils
 
 SPEC CHECKSUMS:
   AcknowList: 6d4faca4c3e0173377fe5649e086d627cd60b003
@@ -193,6 +197,7 @@ SPEC CHECKSUMS:
   RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
   RxOptional: 3664964c96b69dd20c9cf78bdfe546615e26eca8
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
+  RxStudyUtils: 0cab8206ae0ca1d25bd98346d369bf7ad3a93497
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxSwiftExt: d61c4b9b06e0a448041b1c659e0f1b5c5a035afc
   RxTheme: be60cb14e0544b3cbd574cc37fed35ba9d61aa1f
@@ -203,6 +208,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: 1d9250ac9e41a9222d49540032a12c883337c3ed
+PODFILE CHECKSUM: 28ccf142211ce4fc96403d3f8fb2d3d81d78f9ee
 
 COCOAPODS: 1.11.3

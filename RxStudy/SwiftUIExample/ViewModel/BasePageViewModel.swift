@@ -8,6 +8,8 @@
 
 import Combine
 
+import RxStudyUtils
+
 protocol BasePageViewModelProtocol: ObservableObject {
     var cancellables: Set<AnyCancellable> { get set }
     

@@ -94,3 +94,27 @@ func <-> <T>(property: ControlProperty<T>, relay: BehaviorRelay<T>) -> Disposabl
 
     return Disposables.create(bindToUIDisposable, bindToRelay)
 }
+
+import RxRelay
+
+/// RxCocoa's BehaviorRelay replays the most recent value provided to it for each of the subscribed observers. It is created with an initial value, has wrappedValue property to access the current value and a projectedValue to expose a projection providing API to subscribe a new observer: (Thanks to Adrian Zubarev for pointing this out)
+/// Combine's Published property wrapper is similar in spirit, allowing clients to subscribe to @Published properties (via the $ projection) to receive updates when the value changes.
+@propertyWrapper
+class RxBehaviorRelay<T> {
+    var wrappedValue: T {
+        set {
+            projectedValue.accept(newValue)
+        }
+        
+        get {
+            projectedValue.value
+        }
+    }
+    
+    var projectedValue: BehaviorRelay<T>
+    
+    init(wrappedValue: T) {
+        self.projectedValue = BehaviorRelay(value: wrappedValue)
+        self.wrappedValue = wrappedValue
+    }
+}

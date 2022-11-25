@@ -1,0 +1,6 @@
+framework module RxStudyUtils {
+  umbrella header "RxStudyUtils-umbrella.h"
+
+  export *
+  module * { export * }
+}

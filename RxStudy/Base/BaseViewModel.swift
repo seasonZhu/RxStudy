@@ -8,6 +8,8 @@
 
 import Foundation
 
+import RxStudyUtils
+
 import RxSwift
 import NSObject_Rx
 import Moya

@@ -8,6 +8,8 @@
 
 import UIKit
 
+import RxStudyUtils
+
 class BaseNavigationController: UINavigationController {
 
     override func viewDidLoad() {
