@@ -73,12 +73,22 @@ PODS:
   - RxViewController (2.0.0):
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
-  - SFSafeSymbols (2.1.3)
+  - SFSafeSymbols (4.0.0)
   - SnapKit (5.6.0)
   - SVProgressHUD (2.2.5)
   - SwiftDate (6.3.1)
   - SwiftPrettyPrint (1.2.0):
     - ColorizeSwift
+  - SwiftUIExample (1.0.0):
+    - CombineExt
+    - HttpRequest
+    - HUD
+    - Kingfisher
+    - Moya/Combine
+    - RxRelay
+    - RxStudyUtils
+    - RxSwift
+    - SFSafeSymbols
 
 DEPENDENCIES:
   - AcknowList
@@ -112,11 +122,12 @@ DEPENDENCIES:
   - RxSwiftExt
   - RxTheme
   - RxViewController
-  - SFSafeSymbols (~> 2.1.3)
+  - SFSafeSymbols
   - SnapKit
   - SVProgressHUD
   - SwiftDate
   - SwiftPrettyPrint (~> 1.2.0)
+  - SwiftUIExample (from `DevelopmentPods/SwiftUIExample`)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -165,6 +176,8 @@ EXTERNAL SOURCES:
     :path: DevelopmentPods/HUD
   RxStudyUtils:
     :path: DevelopmentPods/RxStudyUtils
+  SwiftUIExample:
+    :path: DevelopmentPods/SwiftUIExample
 
 SPEC CHECKSUMS:
   AcknowList: 6d4faca4c3e0173377fe5649e086d627cd60b003
@@ -202,12 +215,13 @@ SPEC CHECKSUMS:
   RxSwiftExt: d61c4b9b06e0a448041b1c659e0f1b5c5a035afc
   RxTheme: be60cb14e0544b3cbd574cc37fed35ba9d61aa1f
   RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
-  SFSafeSymbols: 1c2d431b9e5ed20cd92a4ac303427f780d3354a3
+  SFSafeSymbols: 38b8031609bf2e36e905ab3a1820d7418f3ac56d
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
+  SwiftUIExample: 0aa794f2f6abf5d7e9c95407881d157cd79477fc
 
-PODFILE CHECKSUM: 28ccf142211ce4fc96403d3f8fb2d3d81d78f9ee
+PODFILE CHECKSUM: fecafc56cd1745f5f409d219bef45ec37ae5c236
 
 COCOAPODS: 1.11.3

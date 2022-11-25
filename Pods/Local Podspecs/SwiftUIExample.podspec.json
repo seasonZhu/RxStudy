@@ -1,0 +1,51 @@
+{
+  "name": "SwiftUIExample",
+  "version": "1.0.0",
+  "summary": "A short description of SwiftUIExample.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/zhujilong1987@163.com/SwiftUIExample",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "zhujilong1987@163.com": "zhujilong1987@163.com"
+  },
+  "source": {
+    "git": "https://github.com/zhujilong1987@163.com/SwiftUIExample.git",
+    "tag": "1.0.0"
+  },
+  "platforms": {
+    "ios": "13.0"
+  },
+  "source_files": "SwiftUIExample/Classes/**/*",
+  "dependencies": {
+    "HttpRequest": [
+
+    ],
+    "HUD": [
+
+    ],
+    "RxStudyUtils": [
+
+    ],
+    "Kingfisher": [
+
+    ],
+    "SFSafeSymbols": [
+
+    ],
+    "CombineExt": [
+
+    ],
+    "RxSwift": [
+
+    ],
+    "RxRelay": [
+
+    ],
+    "Moya/Combine": [
+
+    ]
+  }
+}

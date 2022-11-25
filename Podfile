@@ -11,6 +11,7 @@ target 'RxStudy' do
   pod 'HUD', :path => 'DevelopmentPods/HUD'
   pod 'HttpRequest', :path => 'DevelopmentPods/HttpRequest'
   pod 'RxStudyUtils', :path => 'DevelopmentPods/RxStudyUtils'
+  pod 'SwiftUIExample', :path => 'DevelopmentPods/SwiftUIExample'
   
   # Rx Core
   pod 'RxSwift'
@@ -52,7 +53,7 @@ target 'RxStudy' do
   pod 'MBProgressHUD'
   
   # SFSymbols的安全引用
-  pod 'SFSafeSymbols', '~> 2.1.3'
+  pod 'SFSafeSymbols'
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'

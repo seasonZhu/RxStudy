@@ -1,0 +1,6 @@
+framework module SwiftUIExample {
+  umbrella header "SwiftUIExample-umbrella.h"
+
+  export *
+  module * { export * }
+}

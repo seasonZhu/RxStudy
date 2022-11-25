@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+        NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
         /// 键盘配置
         IQKeyboardManager.shared.enable = true
         
