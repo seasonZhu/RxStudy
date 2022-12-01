@@ -246,3 +246,41 @@ class CombineCoinRankListViewModel {
         cancellable?.cancel()
     }
 }
+
+/// Future的简单实战
+extension CombineCoinRankListViewModel {
+    func requestMyCoinList(page: Int) -> Future<Page<CoinRank>, MoyaError> {
+        
+        Future { promise in
+            self.cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
+                .map(BaseModel<Page<CoinRank>>.self)
+                .map{ $0.data }
+                .compactMap { $0 }
+                /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。
+                //.materialize()
+                .sink { completion in
+                    print(completion)
+                    guard case let .failure(error) = completion else { return }
+                    promise(.failure(error))
+                } receiveValue: { pageModel in
+                    print(pageModel)
+                    promise(.success(pageModel))
+                }
+        }
+        
+    }
+    
+    func futureTest() async {
+        let vm = CombineCoinRankListViewModel()
+        let response = vm.requestMyCoinList(page: 1)
+        if #available(iOS 15.0, *) {
+            do {
+                let value = try await response.value
+            } catch let moyaError {
+                print(moyaError)
+            }
+        } else {
+            
+        }
+    }
+}
