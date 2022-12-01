@@ -41,6 +41,9 @@ let kUsername = "kUsername"
 /// 保存密码的key
 let kPassword = "kPassword"
 
+/// 是否是灰色模式的key
+let kIsGrayMode = "kIsGrayMode"
+
 /// 必须这么显式的编写,才能表示其意义
 let void: Void = ()
 

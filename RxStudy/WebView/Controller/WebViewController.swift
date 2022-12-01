@@ -49,6 +49,10 @@ class WebViewController: BaseViewController {
             config.userContentController.addUserScript(js)
         }
         
+        if let grayModeJS = getGrayMode(), AccountManager.shared.isGrayMode {
+            config.userContentController.addUserScript(grayModeJS)
+        }
+        
         let preferences = WKPreferences()
         preferences.javaScriptCanOpenWindowsAutomatically = true
         config.preferences = preferences
@@ -336,6 +340,11 @@ extension WebViewController: WKNavigationDelegate {
             debugLog(any)
             debugLog(error)
         }
+        
+        /// 执行灰色模式
+        if AccountManager.shared.isGrayMode {
+            webView.evaluateJavaScript("grayMode()")
+        }
     }
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
@@ -434,6 +443,27 @@ extension WebViewController {
         let userScript = WKUserScript(source: string, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
         
         debugLog(string)
+        
+        return userScript
+    }
+    
+    private func getGrayMode() -> WKUserScript? {
+        let jsString = "var filter = '-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%); -ms-filter:grayscale(100%); -o-filter:grayscale(100%) filter:grayscale(100%);';document.getElementsByTagName('html')[0].style.filter = 'grayscale(100%)';"
+        
+        /*
+        guard let url = R.file.grayModeJs() else {
+            return nil
+        }
+        
+        guard let string = try? String(contentsOf: url, encoding: .utf8) else {
+            return nil
+        }
+        
+        debugLog(string)
+        */
+        let userScript = WKUserScript(source: jsString, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        
         
         return userScript
     }
