@@ -68,6 +68,8 @@ class ViewController: UITabBarController {
         
         /// 我其实没有明白UIViewController中children与UITabBarViewController的viewControllers的区别
         title = viewControllers?.first?.title
+        
+        grayMode()
     }
     
     //MARK: - 添加子控制器
@@ -114,6 +116,14 @@ class ViewController: UITabBarController {
                              title: "我的",
                              imageName: R.image.my.name,
                              selectImageName: R.image.my_selected.name)
+    }
+    
+    private func grayMode() {
+        if AccountManager.shared.isGrayMode {
+            let overlay = GrayView(frame: view.bounds)
+            view.addSubview(overlay)
+            view.bringSubviewToFront(overlay)
+        }
     }
 }
 

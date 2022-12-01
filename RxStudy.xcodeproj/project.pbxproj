@@ -37,6 +37,7 @@
 		003B6303278FBB5600EA265E /* ImportHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B6302278FBB5600EA265E /* ImportHeader.swift */; };
 		003CA16C29384D0A0094A1E0 /* grayMode.js in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16B29384D0A0094A1E0 /* grayMode.js */; };
 		003CA16D29384DE80094A1E0 /* grayMode.js in Resources */ = {isa = PBXBuildFile; fileRef = 003CA16B29384D0A0094A1E0 /* grayMode.js */; };
+		003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16E29385AFA0094A1E0 /* GrayView.swift */; };
 		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
 		00469128286A8E58000B3C5E /* Friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 00469127286A8E58000B3C5E /* Friend.json */; };
 		0046912A286A8F0D000B3C5E /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469129286A8F0D000B3C5E /* Friend.swift */; };
@@ -234,6 +235,7 @@
 		003B6307278FBDA900EA265E /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
 		003C4A0D2876B39F00AB3BC1 /* CodableTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CodableTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		003CA16B29384D0A0094A1E0 /* grayMode.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = grayMode.js; sourceTree = "<group>"; };
+		003CA16E29385AFA0094A1E0 /* GrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayView.swift; sourceTree = "<group>"; };
 		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
 		00469127286A8E58000B3C5E /* Friend.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Friend.json; sourceTree = "<group>"; };
 		00469129286A8F0D000B3C5E /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -805,6 +807,7 @@
 		6171E1942665DD770065C34D /* View */ = {
 			isa = PBXGroup;
 			children = (
+				003CA16E29385AFA0094A1E0 /* GrayView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1349,6 +1352,7 @@
 				006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */,
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
 				61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */,
+				003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */,
 				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
 				000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */,
 				0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */,
