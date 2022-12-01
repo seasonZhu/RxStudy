@@ -9,8 +9,11 @@ target 'RxStudy' do
   
   # 本地HUD模块,兼容了SVProgressHUD与MBProgressHUD两个组件的简单场景
   pod 'HUD', :path => 'DevelopmentPods/HUD'
+  # 本地网络请求模块,通过Moya封装了业务请求
   pod 'HttpRequest', :path => 'DevelopmentPods/HttpRequest'
+  # 本地工具类的扩展
   pod 'RxStudyUtils', :path => 'DevelopmentPods/RxStudyUtils'
+  # 本地编写的一个SwiftUI例子
   pod 'SwiftUIExample', :path => 'DevelopmentPods/SwiftUIExample'
   
   # Rx Core
