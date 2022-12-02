@@ -49,7 +49,7 @@ class WebViewController: BaseViewController {
             config.userContentController.addUserScript(js)
         }
         
-        if let grayModeJS = getGrayMode(), AccountManager.shared.isGrayMode {
+        if let grayModeJS = getGrayMode(), AccountManager.shared.isGrayModeRelay.value {
             config.userContentController.addUserScript(grayModeJS)
         }
         
@@ -342,7 +342,7 @@ extension WebViewController: WKNavigationDelegate {
         }
         
         /// 执行灰色模式
-        if AccountManager.shared.isGrayMode {
+        if AccountManager.shared.isGrayModeRelay.value {
             webView.evaluateJavaScript("grayMode()")
         }
     }

@@ -35,8 +35,7 @@ final class AccountManager {
     @UserDefault(key: kPassword, defaultValue: nil)
     var password: String?
     
-    @UserDefault(key: kIsGrayMode, defaultValue: false)
-    var isGrayMode: Bool
+    var isGrayModeRelay = BehaviorRelay(value: false)
     
     /// 单例
     static let shared = AccountManager()

@@ -15,15 +15,6 @@ class BaseNavigationController: UINavigationController {
         interactivePopGestureRecognizer?.delegate = self
         delegate = self
         //leftPanBankSettingAction()
-        grayMode()
-    }
-    
-    private func grayMode() {
-        if AccountManager.shared.isGrayMode {
-            let overlay = GrayView(frame: view.bounds)
-            view.addSubview(overlay)
-            view.bringSubviewToFront(overlay)
-        }
     }
     
 }
