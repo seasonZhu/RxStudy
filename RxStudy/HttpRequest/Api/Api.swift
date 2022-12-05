@@ -117,3 +117,9 @@ extension Api {
         static let tagList = "article/list/"
     }
 }
+
+extension Api {
+    enum Mock {
+        static let mourn = "mourn/json"
+    }
+}

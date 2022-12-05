@@ -19,6 +19,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     init(pageNum: Int = 1) {
         self.pageNum = pageNum
         super.init()
+        mock()
     }
     
     /// outputs    
@@ -162,5 +163,24 @@ extension HomeViewModel {
     func resetCurrentPageAndMjFooter() {
         pageNum = 0
         refreshSubject.onNext(.resetNomoreData)
+    }
+}
+
+extension HomeViewModel {
+    private func mock() {
+        mockProvider.rx.request(.mourn)
+            .map(BaseModel<Bool>.self)
+            .map { $0.data }
+            .compactMap { $0 }
+            .asObservable()
+            .asSingle()
+            .subscribe { event in
+                switch event {
+                case .success(let value):
+                    AccountManager.shared.isGrayModeRelay.accept(value)
+                case .failure(_):
+                    break
+                }
+            }.disposed(by: disposeBag)
     }
 }

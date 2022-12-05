@@ -79,5 +79,5 @@ let otherProvider = MoyaProvider<OtherService>(plugins: plugins)
 /// 教程
 let courseProvider = MoyaProvider<CourseService>(plugins: plugins)
 
-/// 假数据业务
-let fakeProvider = MoyaProvider<HomeService>(stubClosure: MoyaProvider<HomeService>.immediatelyStub, plugins: plugins)
+/// mock数据业务
+let mockProvider = MoyaProvider(stubClosure: MoyaProvider<MockService>.immediatelyStub, plugins: plugins)

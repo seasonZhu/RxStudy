@@ -72,6 +72,7 @@
 		00890D0528F56EFF00B3E72E /* ClassBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890D0428F56EFF00B3E72E /* ClassBanner.swift */; };
 		008B1FA628E6C85500A8B009 /* ALayoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B1FA528E6C85500A8B009 /* ALayoutPage.swift */; };
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
+		00982E57293DCAC100B6C960 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00982E56293DCAC100B6C960 /* MockService.swift */; };
 		00A08EFB28FD3B1E00093FB4 /* CombineSinkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */; };
 		00A08EFD28FD3BFE00093FB4 /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */; };
 		00AF63FD28FF9B96005821DA /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF63FC28FF9B96005821DA /* SafariActivity.swift */; };
@@ -271,6 +272,7 @@
 		00890D0428F56EFF00B3E72E /* ClassBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBanner.swift; sourceTree = "<group>"; };
 		008B1FA528E6C85500A8B009 /* ALayoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALayoutPage.swift; sourceTree = "<group>"; };
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		00982E56293DCAC100B6C960 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineSinkEvent.swift; sourceTree = "<group>"; };
 		00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
 		00AF63FC28FF9B96005821DA /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
@@ -686,6 +688,7 @@
 				61C9792E265E282C00E7A1BC /* ProjectService.swift */,
 				61F2823B265F3D44009E16C9 /* PublicNumberService.swift */,
 				61F2823D265F3FAD009E16C9 /* TreeService.swift */,
+				00982E56293DCAC100B6C960 /* MockService.swift */,
 				6171E19A266611650065C34D /* AccountService.swift */,
 				00CCD1702865857300925C1E /* OtherService.swift */,
 				00CCD176286590C900925C1E /* CourseService.swift */,
@@ -1370,6 +1373,7 @@
 				611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */,
 				008B1FA628E6C85500A8B009 /* ALayoutPage.swift in Sources */,
 				001B4E2E28E19BE1003ADF95 /* HeaderKey.swift in Sources */,
+				00982E57293DCAC100B6C960 /* MockService.swift in Sources */,
 				611E2E10266096EA001585AE /* String+Extension.swift in Sources */,
 				61F2823E265F3FAD009E16C9 /* TreeService.swift in Sources */,
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
