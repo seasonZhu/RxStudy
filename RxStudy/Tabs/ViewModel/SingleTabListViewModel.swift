@@ -77,7 +77,7 @@ private extension SingleTabListViewModel {
         case .tree:
             result = treeProvider.rx.request(TreeService.tagList(id, page))
         case .course:
-            result = courseProvider.rx.request(CourseService.tagList(id, page))
+            result = provider.rx.request(MultiTarget(CourseService.tagList(id, page)))
         }
         
         result

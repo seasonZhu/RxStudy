@@ -77,10 +77,10 @@ let accountProvider = MoyaProvider<AccountService>(plugins: plugins)
 let otherProvider = MoyaProvider<OtherService>(plugins: plugins)
 
 /// 教程
-let courseProvider = MoyaProvider<CourseService>(plugins: plugins)
+//let courseProvider = MoyaProvider<CourseService>(plugins: plugins)
 
 /// mock数据业务
-let mockProvider = MoyaProvider(stubClosure: MoyaProvider<MockService>.immediatelyStub, plugins: plugins)
+let mockProvider = MoyaProvider(stubClosure: MoyaProvider<MockService>.immediatelyStub)
 
 /// 每个provider使用相同的plugins/closures,需要额外的工作来管理它.
 /// 然而,我们可以使用MutiTarget这个内置枚举,它可以很容易的使用,而且能帮我们解决上面的问题.

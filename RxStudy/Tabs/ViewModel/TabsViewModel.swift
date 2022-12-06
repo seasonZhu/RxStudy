@@ -52,7 +52,7 @@ private extension TabsViewModel {
         case .tree:
             result = treeProvider.rx.request(TreeService.tags)
         case .course:
-            result = courseProvider.rx.request(CourseService.tags)
+            result = provider.rx.request(MultiTarget(CourseService.tags))
         }
         
         result
