@@ -88,7 +88,8 @@ class ResponseInterceptorPlugin: PluginType {
                 
                 SVProgressHUD.showText(message)
                 
-                return .failure(.jsonMapping(response))
+                /// 注意,这里我自认为是statusCode导致的错误
+                return .failure(.statusCode(response))
             } else {
                 return result
             }

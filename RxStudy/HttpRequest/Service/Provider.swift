@@ -81,3 +81,18 @@ let courseProvider = MoyaProvider<CourseService>(plugins: plugins)
 
 /// mock数据业务
 let mockProvider = MoyaProvider(stubClosure: MoyaProvider<MockService>.immediatelyStub, plugins: plugins)
+
+/// 每个provider使用相同的plugins/closures,需要额外的工作来管理它.
+/// 然而,我们可以使用MutiTarget这个内置枚举,它可以很容易的使用,而且能帮我们解决上面的问题.
+/// 有了这个,除了mockProvider,其他的都可以不要了 https://www.hangge.com/blog/cache/detail_1817.html
+let provider = MoyaProvider<MultiTarget>(plugins: plugins)
+
+/*
+homeProvider.request(.banner) { result in
+    
+}
+
+provider.request(MultiTarget(HomeService.banner)) { result in
+    
+}
+*/
