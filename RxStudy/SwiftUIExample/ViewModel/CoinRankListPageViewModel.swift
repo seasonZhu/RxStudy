@@ -8,6 +8,8 @@
 
 import Combine
 
+import Moya
+
 class CoinRankListPageViewModel: ObservableObject {
     
     /// 初始化page为1
@@ -97,7 +99,7 @@ extension CoinRankListPageViewModel {
         /// 这里用不了assgin的原因:
         /// 注意 assign 所接受的第一个参数的类型为 ReferenceWritableKeyPath，也就是说，只有 class 上用 var 声明的属性可以通过 assign 来直接赋值。
         /// assign 的另一个“限制”是，上游 Publisher 的 Failure 的类型必须是 Never。如果上游 Publisher 可能会发生错误，我们则必须先对它进行处理，比如使用 replaceError 或者 catch 来把错误在绑定之前就“消化”掉。
-        myProvider.requestPublisher(MyService.coinRank((page)))
+        provider.requestPublisher(MultiTarget(MyService.coinRank((page))))
             .map(BaseModel<Page<ClassCoinRank>>.self)
             .map{ $0.data }
             .compactMap { $0 }
@@ -141,7 +143,7 @@ extension CoinRankListPageViewModel {
     }
     
     private func getBanner() {
-        homeProvider.requestPublisher(HomeService.banner)
+        provider.requestPublisher(MultiTarget(HomeService.banner))
             .map(BaseModel<[ClassBanner]>.self)
             .map{ $0.data }
             .compactMap { $0 }
@@ -160,11 +162,11 @@ extension CoinRankListPageViewModel {
     }
     
     private func zip() {
-        let p0 = myProvider.requestPublisher(MyService.coinRank((1))).map(BaseModel<Page<ClassCoinRank>>.self)
+        let p0 = provider.requestPublisher(MultiTarget(MyService.coinRank((1)))).map(BaseModel<Page<ClassCoinRank>>.self)
             .map{ $0.data }
             .compactMap { $0 }
         
-        let p1 = homeProvider.requestPublisher(HomeService.banner).map(BaseModel<[ClassBanner]>.self)
+        let p1 = provider.requestPublisher(MultiTarget(HomeService.banner)).map(BaseModel<[ClassBanner]>.self)
             .map{ $0.data }
             .compactMap { $0 }
         
@@ -214,7 +216,7 @@ import NSObject_Rx
 
 extension CoinRankListPageViewModel {
     private func rxGetCoinRank(page: Int) {
-        myProvider.rx.request(MyService.coinRank(page))
+        provider.rx.request(MultiTarget(MyService.coinRank(page)))
             /// 转Model
             .map(BaseModel<Page<ClassCoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas

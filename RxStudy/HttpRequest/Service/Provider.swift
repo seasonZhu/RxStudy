@@ -55,30 +55,6 @@ let plugins: [PluginType] = [activityPlugin, responseInterceptorPlugin]
 /// 集中管理provider
 /// StubBehavior的默认值就是never,所以不用特地去写
 
-/// 首页
-let homeProvider = MoyaProvider<HomeService>(plugins: plugins)
-
-/// 我的
-let myProvider = MoyaProvider<MyService>(plugins: plugins)
-
-/// 项目
-let projectProvider = MoyaProvider<ProjectService>(plugins: plugins)
-
-/// 公众号
-let publicNumberProvider = MoyaProvider<PublicNumberService>(plugins: plugins)
-
-/// 体系
-let treeProvider = MoyaProvider<TreeService>(plugins: plugins)
-
-/// 账号
-let accountProvider = MoyaProvider<AccountService>(plugins: plugins)
-
-/// 其他
-let otherProvider = MoyaProvider<OtherService>(plugins: plugins)
-
-/// 教程
-//let courseProvider = MoyaProvider<CourseService>(plugins: plugins)
-
 /// mock数据业务
 let mockProvider = MoyaProvider(stubClosure: MoyaProvider<MockService>.immediatelyStub)
 
@@ -86,13 +62,3 @@ let mockProvider = MoyaProvider(stubClosure: MoyaProvider<MockService>.immediate
 /// 然而,我们可以使用MutiTarget这个内置枚举,它可以很容易的使用,而且能帮我们解决上面的问题.
 /// 有了这个,除了mockProvider,其他的都可以不要了 https://www.hangge.com/blog/cache/detail_1817.html
 let provider = MoyaProvider<MultiTarget>(plugins: plugins)
-
-/*
-homeProvider.request(.banner) { result in
-    
-}
-
-provider.request(MultiTarget(HomeService.banner)) { result in
-    
-}
-*/

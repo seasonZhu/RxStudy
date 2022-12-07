@@ -54,7 +54,7 @@ class MyViewModel: BaseViewModel {
 extension MyViewModel {
     
     private func getMyCoin() -> Single<CoinRank> {
-        myProvider.rx.request(MyService.userCoinInfo)
+        provider.rx.request(MultiTarget(MyService.userCoinInfo))
             .map(BaseModel<CoinRank>.self)
             .map{ $0.data }
             .compactMap{ $0 }
@@ -63,7 +63,7 @@ extension MyViewModel {
     }
     
     private func getMyUnreadMessageCount()  -> Single<Int> {
-        myProvider.rx.request(MyService.unreadCount)
+        provider.rx.request(MultiTarget(MyService.unreadCount))
             .map(BaseModel<Int>.self)
             .map{ $0.data }
             .compactMap{ $0 }
@@ -72,7 +72,7 @@ extension MyViewModel {
     }
     
     func logout() -> Single<BaseModel<String>> {
-        accountProvider.rx.request(AccountService.logout)
+        provider.rx.request(MultiTarget(AccountService.logout))
             .map(BaseModel<String>.self)
     }
 }
@@ -89,7 +89,7 @@ extension MyViewModel {
     func testRxBlocking() {
         
         /// 使用自己写的BlockingObservable分类进行处理
-        let some = myProvider.rx.request(MyService.userCoinInfo)
+        let some = provider.rx.request(MultiTarget(MyService.userCoinInfo))
             .map(BaseModel<CoinRank>.self)
             .map{ $0.data }
             .compactMap{ $0 }
@@ -103,7 +103,7 @@ extension MyViewModel {
         }
         
         /// 使用自己写的MoyaProviderType分类进行处理
-        let result: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
+        let result: Result<CoinRank, MoyaError> = provider.rx.blockingRequest(MultiTarget(MyService.userCoinInfo))
             .map(BaseModel<CoinRank>.self)
             .map{ $0.data }
             .filterNil(CoinRank.self)
@@ -117,7 +117,7 @@ extension MyViewModel {
             print(error)
         }
         
-        let anotherResult: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
+        let anotherResult: Result<CoinRank, MoyaError> = provider.rx.blockingRequest(MultiTarget(MyService.userCoinInfo))
             .map(BaseModel<CoinRank>.self)
             .map{ $0.data }
             .filterNil()

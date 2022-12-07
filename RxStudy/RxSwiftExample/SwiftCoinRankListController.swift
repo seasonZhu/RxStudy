@@ -60,7 +60,7 @@ extension SwiftCoinRankListController {
     
     private func getCoinRank(pageNum: Int) {
         /// 这里只获取第一页的数据
-        myProvider.request(MyService.coinRank(pageNum)) { (result: Result<Response, MoyaError>)  in
+        provider.request(MultiTarget(MyService.coinRank(pageNum))) { (result: Result<Response, MoyaError>)  in
             switch result {
                 case .success(let response):
                     

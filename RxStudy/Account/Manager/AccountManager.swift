@@ -8,6 +8,7 @@
 
 import Foundation
 
+import Moya
 import RxSwift
 import RxCocoa
 import NSObject_Rx
@@ -106,7 +107,7 @@ extension AccountManager {
     
     /// 调用登录接口
     func login(username: String, password: String, showLoading: Bool = true) {
-        accountProvider.rx.request(AccountService.login(username, password, showLoading))
+        provider.rx.request(MultiTarget(AccountService.login(username, password, showLoading)))
             .map(BaseModel<AccountInfo>.self)
             .subscribe { event in
                 let message: String
@@ -142,7 +143,7 @@ extension AccountManager {
     ///   - showLoading: 是否使用SV
     ///   - completion: 完成后的回调
     func optimizeLogin(username: String, password: String, showLoading: Bool = true, completion: (() -> Void)? = nil) {
-        accountProvider.rx.request(AccountService.login(username, password, showLoading))
+        provider.rx.request(MultiTarget(AccountService.login(username, password, showLoading)))
             .retry(2)
             .map(BaseModel<AccountInfo>.self)
             .asObservable()
@@ -172,7 +173,7 @@ extension AccountManager {
 extension AccountManager {
     
     private func getMyCoin() -> Single<CoinRank> {
-        myProvider.rx.request(MyService.userCoinInfo)
+        provider.rx.request(MultiTarget(MyService.userCoinInfo))
             .map(BaseModel<CoinRank>.self)
             .map{ $0.data }
             .compactMap{ $0 }
@@ -181,7 +182,7 @@ extension AccountManager {
     }
     
     private func getMyUnreadMessageCount()  -> Single<Int> {
-        myProvider.rx.request(MyService.unreadCount)
+        provider.rx.request(MultiTarget(MyService.unreadCount))
             .map(BaseModel<Int>.self)
             .map{ $0.data }
             .compactMap{ $0 }

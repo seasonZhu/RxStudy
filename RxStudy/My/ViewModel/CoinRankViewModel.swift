@@ -56,7 +56,7 @@ private extension CoinRankViewModel {
     }
     
     func requestData(page: Int) {
-        myProvider.rx.request(MyService.coinRank(page))
+        provider.rx.request(MultiTarget(MyService.coinRank(page)))
             .map(BaseModel<Page<CoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .map{ $0.data }

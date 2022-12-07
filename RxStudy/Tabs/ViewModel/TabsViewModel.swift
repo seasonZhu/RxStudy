@@ -46,11 +46,11 @@ private extension TabsViewModel {
         let result: Single<Response>
         switch type {
         case .project:
-            result = projectProvider.rx.request(ProjectService.tags)
+            result = provider.rx.request(MultiTarget(ProjectService.tags))
         case .publicNumber:
-            result = publicNumberProvider.rx.request(PublicNumberService.tags)
+            result = provider.rx.request(MultiTarget(PublicNumberService.tags))
         case .tree:
-            result = treeProvider.rx.request(TreeService.tags)
+            result = provider.rx.request(MultiTarget(TreeService.tags))
         case .course:
             result = provider.rx.request(MultiTarget(CourseService.tags))
         }

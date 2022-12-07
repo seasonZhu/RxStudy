@@ -7,6 +7,8 @@
 //
 
 import UIKit
+
+import Moya
 import MBProgressHUD
 import SVProgressHUD
 
@@ -95,7 +97,7 @@ extension AccountBaseController {
     }
     
     func registerAndLogin(username: String, password: String, repassword: String) {
-        accountProvider.rx.request(AccountService.register(username, password, repassword))
+        provider.rx.request(MultiTarget(AccountService.register(username, password, repassword)))
             .map(BaseModel<AccountInfo>.self)
             .subscribe { event in
                 switch event {

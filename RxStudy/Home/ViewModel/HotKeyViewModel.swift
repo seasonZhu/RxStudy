@@ -26,7 +26,7 @@ class HotKeyViewModel: BaseViewModel {
 private extension HotKeyViewModel {
     func requestData() {
         //fakeProvider
-        homeProvider.rx.request(HomeService.hotKey)
+        provider.rx.request(MultiTarget(HomeService.hotKey))
             .map(BaseModel<[HotKey]>.self)
             .map{ $0.data }
             /// 去掉其中为nil的值

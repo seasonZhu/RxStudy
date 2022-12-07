@@ -55,7 +55,7 @@ private extension MyCoinViewModel {
     }
     
     func requestData(page: Int) {
-        myProvider.rx.request(MyService.myCoinList(page))
+        provider.rx.request(MultiTarget(MyService.myCoinList(page)))
             .map(BaseModel<Page<MyHistoryCoin>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .map{ $0.data }

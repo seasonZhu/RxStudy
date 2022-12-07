@@ -124,7 +124,7 @@ private extension HomeViewModel {
     /// - Parameter page: 页码
     /// - Returns: Single<BaseModel<Page<Info>>>
     func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
-        let result = homeProvider.rx.request(HomeService.normalArticle(page))
+        let result = provider.rx.request(MultiTarget(HomeService.normalArticle(page)))
             .map(BaseModel<Page<Info>>.self)
         
         return result
@@ -134,7 +134,7 @@ private extension HomeViewModel {
     /// 置顶文章
     /// - Returns: Single<[Info]>
     func topArticleData() -> Single<[Info]> {
-        let result = homeProvider.rx.request(HomeService.topArticle)
+        let result = provider.rx.request(MultiTarget(HomeService.topArticle))
             .map(BaseModel<[Info]>.self)
             .map{ $0.data }
             .compactMap { $0 }
@@ -147,7 +147,7 @@ private extension HomeViewModel {
     /// 轮播图
     /// - Returns: Single<[Banner]>
     func bannerData() -> Single<[Banner]> {
-        let result = homeProvider.rx.request(HomeService.banner)
+        let result = provider.rx.request(MultiTarget(HomeService.banner))
             .map(BaseModel<[Banner]>.self)
             .map{ $0.data }
             .compactMap { $0 }

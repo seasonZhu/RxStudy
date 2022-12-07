@@ -172,7 +172,7 @@ class RxSwiftCoinRankListViewModel {
     
     /// 网络请求
     private func getCoinRank(page: Int) {
-        myProvider.rx.request(MyService.coinRank(page))
+        provider.rx.request(MultiTarget(MyService.coinRank(page)))
             /// 转Model
             .map(BaseModel<Page<CoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
@@ -226,7 +226,7 @@ class CombineCoinRankListViewModel {
     var cancellable: AnyCancellable?
     
     func getMyCoinList(page: Int) {
-        cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
+        cancellable = provider.requestPublisher(MultiTarget(MyService.coinRank((page))))
             .map(BaseModel<Page<CoinRank>>.self)
             .map{ $0.data }
             .compactMap { $0 }
@@ -252,7 +252,7 @@ extension CombineCoinRankListViewModel {
     func requestMyCoinList(page: Int) -> Future<Page<CoinRank>, MoyaError> {
         
         Future { promise in
-            self.cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
+            self.cancellable = provider.requestPublisher(MultiTarget(MyService.coinRank((page))))
                 .map(BaseModel<Page<CoinRank>>.self)
                 .map{ $0.data }
                 .compactMap { $0 }

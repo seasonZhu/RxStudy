@@ -58,7 +58,7 @@ private extension MessageViewModel {
     func requestData(page: Int) {
         let service = status.requestService(page)
         
-        myProvider.rx.request(service)
+        provider.rx.request(MultiTarget(service))
             .map(BaseModel<Page<Message>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .map{ $0.data }

@@ -60,7 +60,7 @@ private extension MyCollectionViewModel {
     }
     
     func requestData(page: Int) {
-        myProvider.rx.request(MyService.collectArticleList(page))
+        provider.rx.request(MultiTarget(MyService.collectArticleList(page)))
             .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .map{ $0.data }
@@ -116,7 +116,7 @@ extension MyCollectionViewModel {
             return
         }
         
-        myProvider.rx.request(MyService.unCollectArticle(collectId))
+        provider.rx.request(MultiTarget(MyService.unCollectArticle(collectId)))
             .map(BaseModel<String>.self)
             .map { $0.isSuccess }
             .subscribe { event in

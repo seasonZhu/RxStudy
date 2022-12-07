@@ -71,11 +71,11 @@ private extension SingleTabListViewModel {
         switch type {
         case .project:
             debugLog("请求:\(id)")
-            result = projectProvider.rx.request(ProjectService.tagList(id, page))
+            result = provider.rx.request(MultiTarget(ProjectService.tagList(id, page)))
         case .publicNumber:
-            result = publicNumberProvider.rx.request(PublicNumberService.tagList(id, page))
+            result = provider.rx.request(MultiTarget(PublicNumberService.tagList(id, page)))
         case .tree:
-            result = treeProvider.rx.request(TreeService.tagList(id, page))
+            result = provider.rx.request(MultiTarget(TreeService.tagList(id, page)))
         case .course:
             result = provider.rx.request(MultiTarget(CourseService.tagList(id, page)))
         }
