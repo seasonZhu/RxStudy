@@ -65,7 +65,7 @@ private extension SingleTabListViewModel {
         }
     }
     
-    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
+    func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         guard let id = tab.id else {
             return
         }
@@ -117,7 +117,7 @@ private extension SingleTabListViewModel {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
                 case .failure:
-                    resetCurrentPageNumCallback?()
+                    loadMoreFailureResetCurrentPageCallback?()
                 }
                 self.processRxMoyaRequestEvent(event: event)
             }.disposed(by: disposeBag)

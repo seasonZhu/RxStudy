@@ -57,7 +57,7 @@ private extension CoinRankViewModel {
         }
     }
     
-    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
+    func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         myProvider.rx.request(MyService.coinRank(page))
             .map(BaseModel<Page<CoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
@@ -92,7 +92,7 @@ private extension CoinRankViewModel {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
                 case .failure:
-                    resetCurrentPageNumCallback?()
+                    loadMoreFailureResetCurrentPageCallback?()
                 }
                 self.processRxMoyaRequestEvent(event: event)
             }.disposed(by: disposeBag)

@@ -61,7 +61,7 @@ private extension MyCollectionViewModel {
         }
     }
     
-    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
+    func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         myProvider.rx.request(MyService.collectArticleList(page))
             .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas

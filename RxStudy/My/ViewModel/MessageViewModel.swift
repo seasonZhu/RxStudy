@@ -57,7 +57,7 @@ private extension MessageViewModel {
         }
     }
     
-    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
+    func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         let service = status.requestService(page)
         
         myProvider.rx.request(service)
@@ -99,7 +99,7 @@ private extension MessageViewModel {
                     }
                     
                 case .failure:
-                    resetCurrentPageNumCallback?()
+                    loadMoreFailureResetCurrentPageCallback?()
                 }
                 self.processRxMoyaRequestEvent(event: event)
             }.disposed(by: disposeBag)

@@ -56,7 +56,7 @@ private extension MyCoinViewModel {
         }
     }
     
-    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
+    func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         myProvider.rx.request(MyService.myCoinList(page))
             .map(BaseModel<Page<MyHistoryCoin>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
@@ -91,7 +91,7 @@ private extension MyCoinViewModel {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
                 case .failure:
-                    resetCurrentPageNumCallback?()
+                    loadMoreFailureResetCurrentPageCallback?()
                 }
                 self.processRxMoyaRequestEvent(event: event)
             }.disposed(by: disposeBag)
