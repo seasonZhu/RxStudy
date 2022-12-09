@@ -67,7 +67,9 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                         self.banners.accept(items)
                     case .failure(let error):
                         guard let moyarror = error as? MoyaError else { return }
-                        self.networkError.onNext(moyarror)
+                        if self.dataSource.value.isEmpty {
+                            self.networkError.onNext(moyarror)
+                        }
                     }
                 }
                 .disposed(by: disposeBag)

@@ -119,7 +119,12 @@ private extension SingleTabListViewModel {
                 case .failure:
                     loadMoreFailureResetCurrentPageCallback?()
                 }
-                self.processRxMoyaRequestEvent(event: event)
+                
+                /// 数据源为空才展示错误页面
+                if self.dataSource.value.isEmpty {
+                    self.processRxMoyaRequestEvent(event: event)
+                }
+                
             }.disposed(by: disposeBag)
     }
 }
