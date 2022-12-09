@@ -52,10 +52,12 @@ private extension SearchResultViewModel {
     
     func loadMore() {
         pageNum = pageNum + 1
-        requestData(page: pageNum)
+        requestData(page: pageNum) {
+            self.loadMoreFailureResetCurrentPage()
+        }
     }
     
-    func requestData(page: Int) {
+    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
         homeProvider.rx.request(HomeService.queryKeyword(keyword, page))
             .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
@@ -90,7 +92,7 @@ private extension SearchResultViewModel {
                         self.refreshSubject.onNext(.showNomoreData)
                     }
                 case .failure:
-                    break
+                    resetCurrentPageNumCallback?()
                 }
                 self.processRxMoyaRequestEvent(event: event)
             }.disposed(by: disposeBag)
@@ -101,5 +103,10 @@ extension SearchResultViewModel {
     func resetCurrentPageAndMjFooter() {
         pageNum = 0
         refreshSubject.onNext(.resetNomoreData)
+    }
+    
+    /// loadMore失败,回退pageNum
+    func loadMoreFailureResetCurrentPage() {
+        pageNum = pageNum - 1
     }
 }

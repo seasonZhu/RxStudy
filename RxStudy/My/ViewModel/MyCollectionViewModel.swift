@@ -56,10 +56,12 @@ private extension MyCollectionViewModel {
     
     func loadMore() {
         pageNum = pageNum + 1
-        requestData(page: pageNum)
+        requestData(page: pageNum) {
+            self.loadMoreFailureResetCurrentPage()
+        }
     }
     
-    func requestData(page: Int) {
+    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
         myProvider.rx.request(MyService.collectArticleList(page))
             .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
@@ -151,6 +153,10 @@ extension MyCollectionViewModel {
     func resetCurrentPageAndMjFooter() {
         pageNum = 0
         refreshSubject.onNext(.resetNomoreData)
+    }
+    
+    func loadMoreFailureResetCurrentPage() {
+        pageNum = pageNum - 1
     }
 }
 

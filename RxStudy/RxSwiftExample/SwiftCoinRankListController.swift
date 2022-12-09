@@ -98,6 +98,11 @@ extension SwiftCoinRankListController {
                     
                 case .failure(let error):
                     self.isFinish = false
+                
+                    if self.pageNum > 1 {
+                        self.pageNum = self.pageNum - 1
+                    }
+                    
                     debugLog(error.errorDescription)
             }
             

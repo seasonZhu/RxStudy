@@ -52,10 +52,12 @@ private extension MessageViewModel {
     
     func loadMore() {
         pageNum = pageNum + 1
-        requestData(page: pageNum)
+        requestData(page: pageNum) {
+            self.loadMoreFailureResetCurrentPage()
+        }
     }
     
-    func requestData(page: Int) {
+    func requestData(page: Int, resetCurrentPageNumCallback: (() -> Void)? = nil) {
         let service = status.requestService(page)
         
         myProvider.rx.request(service)
@@ -97,7 +99,7 @@ private extension MessageViewModel {
                     }
                     
                 case .failure:
-                    break
+                    resetCurrentPageNumCallback?()
                 }
                 self.processRxMoyaRequestEvent(event: event)
             }.disposed(by: disposeBag)
@@ -108,5 +110,10 @@ extension MessageViewModel {
     func resetCurrentPageAndMjFooter() {
         pageNum = 1
         refreshSubject.onNext(.resetNomoreData)
+    }
+    
+    /// loadMore失败,回退pageNum
+    func loadMoreFailureResetCurrentPage() {
+        pageNum = pageNum - 1
     }
 }

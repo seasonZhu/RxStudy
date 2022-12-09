@@ -96,8 +96,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                             self.refreshSubject.onNext(.showNomoreData)
                         }
                     case .failure:
-                        /// error暂时不做处理
-                        break
+                        self.loadMoreFailureResetCurrentPage()
                     }
                 }.disposed(by: disposeBag)
         }
@@ -163,6 +162,11 @@ extension HomeViewModel {
     func resetCurrentPageAndMjFooter() {
         pageNum = 0
         refreshSubject.onNext(.resetNomoreData)
+    }
+    
+    /// loadMore失败,回退pageNum
+    func loadMoreFailureResetCurrentPage() {
+        pageNum = pageNum - 1
     }
 }
 
