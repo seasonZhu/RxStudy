@@ -41,6 +41,8 @@ extension CoinRankListController {
             .disposed(by: rx.disposeBag)
                 
         let viewModel = CoinRankViewModel()
+        
+        //let viewModel = ListViewModel<CoinRank, ListModel>(target: ListModel(page: nil, listService: .coinRank(0)))
 
         tableView.mj_header?.rx.refresh
             .map { ScrollViewActionType.refresh }
