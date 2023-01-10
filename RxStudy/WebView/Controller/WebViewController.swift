@@ -26,6 +26,12 @@ class WebViewController: BaseViewController {
     
     let hasCollectAction = PublishSubject<Void>()
     
+    private lazy var progressView: UIProgressView = {
+        let view = UIProgressView(frame: .zero)
+        view.tintColor = .systemBlue
+        return view
+    }()
+    
     init(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool) {
         self.webLoadInfo = webLoadInfo
         self.isNeedShowCollection = isNeedShowCollection
@@ -106,6 +112,37 @@ class WebViewController: BaseViewController {
         webView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        
+        view.addSubview(progressView)
+        progressView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(kTopMargin)
+            make.height.equalTo(2)
+        }
+        
+        webView.rx.observe(Double.self, #keyPath(WKWebView.estimatedProgress)).subscribe { [weak self] event in
+            switch event {
+                
+            case .next(let value):
+                if let value {
+                    self?.progressView.setProgress(Float(value), animated: true)
+                    
+                    if value >= 1 {
+                        UIView.animate(withDuration: 0.5, delay: 1.5, options: .curveEaseInOut) {
+                            self?.progressView.isHidden = true
+                        } completion: { finish in
+                            if finish == true {
+                                self?.progressView.progress = 0
+                            }
+                        }
+                    }
+                }
+            case .error(_):
+                self?.progressView.isHidden = true
+            case .completed:
+                self?.progressView.isHidden = true
+            }
+        }.disposed(by: rx.disposeBag)
         
         /// vm
         let vm = WebViewModel()
@@ -349,10 +386,12 @@ extension WebViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
         delayEndRefreshing()
+        progressView.isHidden = true
     }
     
     func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
         delayEndRefreshing()
+        progressView.isHidden = true
     }
 }
 
