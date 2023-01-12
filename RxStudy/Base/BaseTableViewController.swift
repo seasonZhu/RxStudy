@@ -93,6 +93,7 @@ class BaseTableViewController: BaseViewController {
                 /// isEmpty中的value为true才调用下面的方法
                 if noContent {
                     debugLog("监听没有内容")
+                    self?.tableView.reloadEmptyDataSet()
                     self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
             default:
