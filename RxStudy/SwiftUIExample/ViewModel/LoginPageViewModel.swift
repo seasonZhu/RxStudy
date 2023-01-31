@@ -58,14 +58,29 @@ class LoginPageViewModel: ObservableObject {
 //                self?.showUserNameError = bool
 //            })
             .store(in: &cancellables)
-    
-        passwordValid
-            .map { !$0 }
-            .assign(to: \.showPasswordError, on: self, ownership: .weak)
-//            .sink(receiveValue: { [weak self] bool in
-//                self?.showPasswordError = bool
-//            })
-            .store(in: &cancellables)
+        
+        if #available(iOS 14.0, *) {
+            /**
+             看起来一切都很好。但是对assign(to:on:) 的调用创建了一个 strong 持有 self 的 Subscription。 导致 self 挂在Subscription 上，而 Subscription 挂在 self 上，创建了一个导致内存泄漏的引用循环。
+             因此引入了该 Operator 的另一个重载 assign(to:)。该 Operator 通过对 Publisher 的 inout 引用来将值分配给 @Published 属性。
+
+             作者：Layer
+             链接：https://juejin.cn/post/7180990074408927292
+             来源：稀土掘金
+             著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
+             */
+            passwordValid
+                .map { !$0 }
+                .assign(to: &$showPasswordError)
+        } else {
+            passwordValid
+                .map { !$0 }
+                .assign(to: \.showPasswordError, on: self, ownership: .weak)
+    //            .sink(receiveValue: { [weak self] bool in
+    //                self?.showPasswordError = bool
+    //            })
+                .store(in: &cancellables)
+        }
         
         Publishers
             .CombineLatest(usernameValid, passwordValid)
