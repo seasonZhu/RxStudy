@@ -21,6 +21,8 @@ class ViewController: UITabBarController {
     
     private var titles: [String] = []
     
+    let textRelay = ExBehaviorRelay(value: "season", isIgnoreInitValue: true, isIgnoreFirstAccept: true)
+    
     private lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
     
     //MARK: - viewDidLoad
@@ -29,6 +31,7 @@ class ViewController: UITabBarController {
         setupUI()
         addPan()
         //addRxPan()
+        testExBehaviorRelay()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -243,5 +246,36 @@ extension ViewController {
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         SVProgressHUD.styleSetting()
+    }
+}
+
+extension ViewController {
+    private func testExBehaviorRelay() {
+//        textRelay.exSubscribe(onNext: { [weak textRelay] string in
+//            print(string)
+//        })
+//        .disposed(by: rx.disposeBag)
+        
+        let observer: AnyObserver<String> = AnyObserver { [weak self] (event) in
+            guard let self else { return }
+            if self.textRelay.isIgnoreInitValue {
+                self.textRelay.isIgnoreInitValue = false
+                return
+            }
+            
+            switch event {
+            case .next(let data):
+                print("Data Task Success with count: \(data)")
+            case .error(let error):
+                print("Data Task Error: \(error)")
+            default:
+                break
+            }
+        }
+        
+        textRelay.subscribe(observer).disposed(by: rx.disposeBag)
+        
+        textRelay.accept("soso")
+        textRelay.accept("sola")
     }
 }

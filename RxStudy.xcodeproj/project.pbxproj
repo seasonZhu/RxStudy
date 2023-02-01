@@ -39,6 +39,8 @@
 		003CA16D29384DE80094A1E0 /* grayMode.js in Resources */ = {isa = PBXBuildFile; fileRef = 003CA16B29384D0A0094A1E0 /* grayMode.js */; };
 		003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16E29385AFA0094A1E0 /* GrayView.swift */; };
 		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
+		004623622989F209008F0676 /* ControllerConstructProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623612989F209008F0676 /* ControllerConstructProtocol.swift */; };
+		004623642989F96A008F0676 /* ExBehaviorRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623632989F96A008F0676 /* ExBehaviorRelay.swift */; };
 		00469128286A8E58000B3C5E /* Friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 00469127286A8E58000B3C5E /* Friend.json */; };
 		0046912A286A8F0D000B3C5E /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469129286A8F0D000B3C5E /* Friend.swift */; };
 		0046912C286A94C0000B3C5E /* NavigationUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0046912B286A94C0000B3C5E /* NavigationUrl.swift */; };
@@ -239,6 +241,8 @@
 		003CA16B29384D0A0094A1E0 /* grayMode.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = grayMode.js; sourceTree = "<group>"; };
 		003CA16E29385AFA0094A1E0 /* GrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayView.swift; sourceTree = "<group>"; };
 		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
+		004623612989F209008F0676 /* ControllerConstructProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerConstructProtocol.swift; sourceTree = "<group>"; };
+		004623632989F96A008F0676 /* ExBehaviorRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExBehaviorRelay.swift; sourceTree = "<group>"; };
 		00469127286A8E58000B3C5E /* Friend.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Friend.json; sourceTree = "<group>"; };
 		00469129286A8F0D000B3C5E /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0046912B286A94C0000B3C5E /* NavigationUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUrl.swift; sourceTree = "<group>"; };
@@ -726,6 +730,7 @@
 				00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */,
 				00099E0229026BD7001FC753 /* ObserverType+Extension.swift */,
 				00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */,
+				004623632989F96A008F0676 /* ExBehaviorRelay.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -750,6 +755,7 @@
 				617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */,
 				00634E8A26E9D4BD00B3350D /* Setter.swift */,
 				00CDD94E2910F02100027A81 /* Theme.swift */,
+				004623612989F209008F0676 /* ControllerConstructProtocol.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1267,6 +1273,7 @@
 				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Plugin.swift in Sources */,
 				00A08EFB28FD3B1E00093FB4 /* CombineSinkEvent.swift in Sources */,
+				004623642989F96A008F0676 /* ExBehaviorRelay.swift in Sources */,
 				003B6303278FBB5600EA265E /* ImportHeader.swift in Sources */,
 				6171E19B266611650065C34D /* AccountService.swift in Sources */,
 				6171E1A126661EC60065C34D /* RegisterController.swift in Sources */,
@@ -1325,6 +1332,7 @@
 				00890D0228F56E9E00B3E72E /* ACarouselAutoScroll.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
+				004623622989F209008F0676 /* ControllerConstructProtocol.swift in Sources */,
 				00CCD173286588D400925C1E /* Course.swift in Sources */,
 				6171E18F2665D4190065C34D /* MyController.swift in Sources */,
 				00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */,
