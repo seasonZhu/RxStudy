@@ -1,6 +1,6 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '13.0'
-source 'https://github.com/CocoaPods/Specs.git'
+#source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 target 'RxStudy' do
@@ -64,6 +64,7 @@ target 'RxStudy' do
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
   pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
+  pod 'FunnyButton', :configurations => ['Debug']
   
   # 注意,以下是没有使用的库
   

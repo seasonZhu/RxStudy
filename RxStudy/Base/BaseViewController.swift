@@ -14,6 +14,7 @@ import RxGesture
 
 import Moya
 import SVProgressHUD
+import FunnyButton
 
 class BaseViewController: UIViewController {
     
@@ -93,6 +94,21 @@ class BaseViewController: UIViewController {
         debugLog("\(className)被销毁了")
     }
 
+}
+
+//MARK: -  FunnyButton的使用
+extension BaseViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        replaceFunnyAction {
+            print("点我干森莫")
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        removeFunnyActions()
+    }
 }
 
 //MARK: - 网络请求错误页面的配置

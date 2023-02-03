@@ -273,7 +273,12 @@ extension ViewController {
             }
         }
         
+        let binder = Binder<String>(view) { _, string in
+            print(string)
+        }
+
         textRelay.subscribe(observer).disposed(by: rx.disposeBag)
+        textRelay.subscribe(binder).disposed(by: rx.disposeBag)
         
         textRelay.accept("soso")
         textRelay.accept("sola")

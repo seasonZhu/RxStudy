@@ -10,6 +10,7 @@ PODS:
   - Differentiator (5.0.0)
   - DZNEmptyDataSet (1.8.1)
   - FSPagerView (0.8.3)
+  - FunnyButton (0.1.4)
   - IQKeyboardManagerSwift (6.5.10)
   - JXSegmentedView (1.3.0)
   - KeychainAccess (4.2.2)
@@ -77,6 +78,7 @@ DEPENDENCIES:
   - CombineExt
   - DZNEmptyDataSet
   - FSPagerView
+  - FunnyButton
   - IQKeyboardManagerSwift
   - JXSegmentedView
   - KeychainAccess
@@ -105,7 +107,7 @@ DEPENDENCIES:
   - SwiftPrettyPrint (~> 1.2.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - AcknowList
     - Alamofire
     - AlamofireNetworkActivityLogger
@@ -116,6 +118,7 @@ SPEC REPOS:
     - Differentiator
     - DZNEmptyDataSet
     - FSPagerView
+    - FunnyButton
     - IQKeyboardManagerSwift
     - JXSegmentedView
     - KeychainAccess
@@ -155,6 +158,7 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  FunnyButton: 03c7ee78b7d4882719ef2776011374f3128b9da1
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
@@ -183,6 +187,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: 982d3e6ee92877317b13f013e4768118896923e8
+PODFILE CHECKSUM: c47887c3ca095d738647af23faea0e1484ad0f33
 
 COCOAPODS: 1.11.3
