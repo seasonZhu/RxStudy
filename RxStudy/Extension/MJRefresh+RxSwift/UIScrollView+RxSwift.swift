@@ -36,7 +36,7 @@ extension Reactive where Base: UIScrollView {
         
         return Binder(base) { (target, action) in
             
-            switch action{
+            switch action {
             case .begainRefresh:
                 if let header =  target.mj_header {
                     header.beginRefreshing()

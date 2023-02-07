@@ -42,6 +42,7 @@ target 'RxStudy' do
   pod 'JXSegmentedView'
   pod 'MarqueeLabel'
   pod 'SVProgressHUD'
+  pod 'SkeletonView'
   
   # 被SVProgressHUD替代了
   pod 'MBProgressHUD'

@@ -64,6 +64,7 @@ PODS:
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
   - SFSafeSymbols (2.1.3)
+  - SkeletonView (1.30.4)
   - SnapKit (5.6.0)
   - SVProgressHUD (2.2.5)
   - SwiftDate (6.3.1)
@@ -101,6 +102,7 @@ DEPENDENCIES:
   - RxTheme
   - RxViewController
   - SFSafeSymbols (~> 2.1.3)
+  - SkeletonView
   - SnapKit
   - SVProgressHUD
   - SwiftDate
@@ -142,6 +144,7 @@ SPEC REPOS:
     - RxTheme
     - RxViewController
     - SFSafeSymbols
+    - SkeletonView
     - SnapKit
     - SVProgressHUD
     - SwiftDate
@@ -182,11 +185,12 @@ SPEC CHECKSUMS:
   RxTheme: be60cb14e0544b3cbd574cc37fed35ba9d61aa1f
   RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
   SFSafeSymbols: 1c2d431b9e5ed20cd92a4ac303427f780d3354a3
+  SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: c47887c3ca095d738647af23faea0e1484ad0f33
+PODFILE CHECKSUM: 2f014c62b237e575de4ff3250704695516556296
 
 COCOAPODS: 1.11.3
