@@ -4,6 +4,8 @@ import NSObject_Rx
 
 import SwiftUI
 
+let disposeBag = DisposeBag()
+
 let callback: (() -> Void) = {
     
 }
@@ -85,8 +87,6 @@ func example1(num: NSNumber, nickName: String) -> PersonInfo {
 func example2(num: NSNumber, nickName: String) -> PersonInfo {
     return (num.intValue, nickName)
 }
-
-let disposeBag = DisposeBag()
 
 let numbers: Observable<Int> = Observable.create { observer -> Disposable in
     print(Thread.current)
@@ -354,3 +354,22 @@ let name8 = Student.classNameWithoutNamespace
 
 let name9 = Teacher().memoryAddress
 let name10 = Student().memoryAddress
+
+/// 注意这个bufferSize传入的值,传入的越多,说明可以保留该订阅值的数据也就越多
+let replaySubject = ReplaySubject<String>.create(bufferSize: 0)
+/// 可以无限缓存,订阅前的数据,但是你要清楚你缓存的数据是有穷的,否则内存都兜不住
+let unlimitedReplaySubject = ReplaySubject<String>.createUnbounded()
+
+replaySubject
+  .subscribe { print("Subscription: 1 Event:", $0) }
+  .disposed(by: disposeBag)
+
+replaySubject.onNext("🐶")
+replaySubject.onNext("🐱")
+
+replaySubject
+  .subscribe { print("Subscription: 2 Event:", $0) }
+  .disposed(by: disposeBag)
+
+replaySubject.onNext("🅰️")
+replaySubject.onNext("🅱️")
