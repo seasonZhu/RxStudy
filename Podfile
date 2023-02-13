@@ -42,13 +42,12 @@ target 'RxStudy' do
   pod 'JXSegmentedView'
   pod 'MarqueeLabel'
   pod 'SVProgressHUD'
-  pod 'SkeletonView'
   
   # 被SVProgressHUD替代了
   pod 'MBProgressHUD'
   
   # SFSymbols的安全引用
-  pod 'SFSafeSymbols', '~> 2.1.3'
+  pod 'SFSafeSymbols'
   
   # Keyboard
   pod 'IQKeyboardManagerSwift'
