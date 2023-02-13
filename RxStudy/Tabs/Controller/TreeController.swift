@@ -31,6 +31,7 @@ class TreeController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
 }
 
@@ -38,7 +39,6 @@ extension TreeController {
     private func setupUI() {
         title = type.title
         
-        //tableView.mj_header = nil
         tableView.mj_footer = nil
             
         /// 获取cell中的模型
@@ -49,7 +49,9 @@ extension TreeController {
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: rx.disposeBag)
-                
+    }
+    
+    private func binding() {
         let viewModel = TreeViewModel(type: type)
         
         tableView.mj_header?.rx.refresh

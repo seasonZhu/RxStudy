@@ -24,6 +24,7 @@ class MyMessageController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
 
 }
@@ -42,7 +43,9 @@ extension MyMessageController {
                 debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
-        
+    }
+    
+    private func binding() {
         let viewModel = MessageViewModel(status: status)
         
         tableView.mj_header?.rx.refresh

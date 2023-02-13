@@ -21,11 +21,35 @@ import SVProgressHUD
 /// 需要非常小心循环引用
 class HomeController: BaseTableViewController {
         
-    var itmes: [Banner] = []
+    private var itmes: [Banner] = [] {
+        willSet {
+            pageControl.numberOfPages = newValue.count
+            pagerView.reloadData()
+        }
+    }
+    
+    private lazy var pagerView: FSPagerView = {
+        let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
+        pagerView.dataSource = self
+        pagerView.delegate = self
+        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: FSPagerViewCell.className)
+        pagerView.automaticSlidingInterval = 3.0
+        pagerView.isInfinite = true
+        return pagerView
+    }()
+    
+    private lazy var pageControl: FSPageControl = {
+        let pageControl = FSPageControl(frame: CGRect.zero)
+        pageControl.numberOfPages = itmes.count
+        pageControl.currentPage = 0
+        pageControl.hidesForSinglePage = true
+        return pageControl
+    }()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
 }
 
@@ -35,6 +59,15 @@ extension HomeController {
         title = "首页"
         
         tableView.estimatedRowHeight = 88
+        
+        tableView.tableHeaderView = pagerView
+        
+        pagerView.addSubview(pageControl)
+        pagerView.bringSubviewToFront(pageControl)
+        pageControl.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(pagerView)
+            make.height.equalTo(40)
+        }
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
@@ -56,20 +89,9 @@ extension HomeController {
                 }
             })
             .disposed(by: rx.disposeBag)
-        
-        /// 同时获取indexPath和模型
-        
-        /// 另一种运算方式,其实这种zip预算拿到的类型和Observable.zip并不相同
-        tableView.rx.itemSelected.zip(with: tableView.rx.modelSelected(Info.self)) { index, model in
-            
-        }
-        
-        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Info.self))
-            .bind { indexPath, model in
-                
-            }
-            .disposed(by: rx.disposeBag)
-                
+    }
+    
+    private func binding() {
         let viewModel = HomeViewModel()
 
         tableView.mj_header?.rx.refresh
@@ -122,37 +144,12 @@ extension HomeController {
         viewModel.outputs.refreshSubject
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
-        
-        //MARK: - 轮播图的设置,这一段基本上就典型的Cocoa代码了
-        
-        let pagerView = FSPagerView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
-        pagerView.dataSource = self
-        pagerView.delegate = self
-        pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: FSPagerViewCell.className)
-        pagerView.automaticSlidingInterval = 3.0
-        pagerView.isInfinite = true
-        tableView.tableHeaderView = pagerView
-        
-        let pageControl = FSPageControl(frame: CGRect.zero)
-        pageControl.numberOfPages = itmes.count
-        pageControl.currentPage = 0
-        pageControl.hidesForSinglePage = true
-        pagerView.addSubview(pageControl)
-        pagerView.bringSubviewToFront(pageControl)
-        pageControl.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalTo(pagerView)
-            make.height.equalTo(40)
-        }
-        
+    
         /// 轮播图数据驱动
         /// 我尝试给FSPagerView做rx扩展,当我写到第300行的时候,发现我引用的越来越多的时候,放弃了
         viewModel.outputs.banners
-            .asDriver(onErrorJustReturn: [])
-            .drive { [weak self] models in
-                self?.itmes = models
-                pageControl.numberOfPages = models.count
-                pagerView.reloadData()
-            }.disposed(by: rx.disposeBag)
+            .bind(to: rx.itmes)
+            .disposed(by: rx.disposeBag)
     }
 }
 
@@ -186,6 +183,34 @@ extension HomeController: FSPagerViewDelegate {
             return
         }
         pageControl.currentPage = index
+    }
+}
+
+extension HomeController {
+    private func zipDebug() {
+        /// 同时获取indexPath和模型
+        
+        /// 另一种运算方式,其实这种zip预算拿到的类型和Observable.zip并不相同
+        tableView.rx.itemSelected.zip(with: tableView.rx.modelSelected(Info.self)) { index, model in
+            return (index, model)
+        }.subscribe { event in
+            switch event {
+                
+            case .next((let index, let model)):
+                break
+            case .error(let error):
+                debugLog(error)
+            case .completed:
+                debugLog("completed")
+            }
+            
+        }.disposed(by: rx.disposeBag)
+        
+        Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Info.self))
+            .bind { indexPath, model in
+                
+            }
+            .disposed(by: rx.disposeBag)
     }
 }
 

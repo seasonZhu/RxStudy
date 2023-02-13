@@ -19,6 +19,7 @@ class CoinRankListController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
 }
 
@@ -39,7 +40,9 @@ extension CoinRankListController {
                 debugLog("模型为:\(model)")
             }
             .disposed(by: rx.disposeBag)
-                
+    }
+    
+    private func binding() {
         let viewModel = CoinRankViewModel()
         
         //let viewModel = ListViewModel<CoinRank, ListModel>(target: ListModel(page: nil, listService: .coinRank(0)))

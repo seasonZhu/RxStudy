@@ -30,6 +30,7 @@ class SearcResultController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
 }
 
@@ -46,6 +47,10 @@ extension SearcResultController {
                 debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
+
+    }
+    
+    private func binding() {
         
         let viewModel = SearchResultViewModel(keyword: keyword)
         
@@ -69,7 +74,7 @@ extension SearcResultController {
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
                 
-                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell 
+                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell
                 cell.info = info
                 return cell
             }

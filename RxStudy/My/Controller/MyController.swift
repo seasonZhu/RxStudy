@@ -28,6 +28,7 @@ class MyController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
         /// 将自动登录放在AppDelegate中的didFinishLaunchingWithOptions中,加快获取数据,getMyCoin这个接口返回数据是有点慢
         //AccountManager.shared.autoLogin()
     }
@@ -56,6 +57,15 @@ class MyController: BaseTableViewController {
         
         let myView = MyView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
         tableView.tableHeaderView = myView
+    }
+    
+    private func binding() {
+        
+        if let myView = tableView.tableHeaderView as? MyView {
+            AccountManager.shared.myCoinRelay
+                .bind(to: myView.rx.myInfo)
+                .disposed(by: rx.disposeBag)
+        }
         
         let viewModel = MyViewModel()
         
@@ -90,11 +100,7 @@ class MyController: BaseTableViewController {
                 }
             }
             .disposed(by: rx.disposeBag)
-        
-        AccountManager.shared.myCoinRelay
-            .bind(to: myView.rx.myInfo)
-            .disposed(by: rx.disposeBag)
-        
+                
         /// 下拉与上拉状态绑定到tableView
         viewModel.outputs.refreshSubject
             .bind(to: tableView.rx.refreshAction)

@@ -19,12 +19,15 @@ class MyCoinController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
     
 
     private func setupUI() {
         title = "我的积分"
-                
+    }
+    
+    private func binding() {
         let viewModel = MyCoinViewModel()
 
         tableView.mj_header?.rx.refresh

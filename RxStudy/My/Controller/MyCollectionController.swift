@@ -27,6 +27,7 @@ class MyCollectionController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
     
     private func setupUI() {
@@ -68,7 +69,9 @@ class MyCollectionController: BaseTableViewController {
                 self.pushToWebViewController(webLoadInfo: model)
             })
             .disposed(by: rx.disposeBag)
-                
+    }
+    
+    private func binding() {
         let viewModel = MyCollectionViewModel()
 
         /// 下拉刷新
@@ -102,7 +105,7 @@ class MyCollectionController: BaseTableViewController {
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
 
-                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell 
+                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell
                 cell.info = info
                 return cell
             }

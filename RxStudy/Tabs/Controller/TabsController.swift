@@ -43,6 +43,7 @@ class TabsController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
 }
 
@@ -147,13 +148,9 @@ extension TabsController {
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(view).offset(type.bottomOffset)
         }
-
-        requestData()
     }
-}
-
-extension TabsController {
-    func requestData() {
+    
+    func binding() {
         let viewModel = TabsViewModel(type: type)
         
         viewModel.inputs.loadData()
@@ -172,8 +169,10 @@ extension TabsController {
             .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
     }
-    
-    func settingSegmentedDataSource(tabs: [Tab]) {
+}
+
+extension TabsController {
+    private func settingSegmentedDataSource(tabs: [Tab]) {
         segmentedDataSource.titles = tabs.map{ $0.name?.replaceHtmlElement }.compactMap{ $0 }
         //segmentedDataSource.titles = tabs.map{ self.getRealString(html: $0.name) }.compactMap{ $0 }
         segmentedView.defaultSelectedIndex = 0
@@ -209,9 +208,11 @@ extension TabsController {
         }
         view.setNeedsLayout()
     }
-    
+}
+
+extension TabsController {
     /// 这个方法,将html入参的时候,就转换成我们想要的格式
-    func getRealString(@ReplaceHtmlElement html: String?, @IntToStringFactory aNumber: Int, @StringFactory(aNum: 100) other: Int) -> String? {
+    private func getRealString(@ReplaceHtmlElement html: String?, @IntToStringFactory aNumber: Int, @StringFactory(aNum: 100) other: Int) -> String? {
         let num = $aNumber
         
         /// 未加工的原始值 other

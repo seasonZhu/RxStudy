@@ -19,6 +19,7 @@ class ToolController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
     
 
@@ -33,7 +34,9 @@ class ToolController: BaseTableViewController {
                 self.pushToWebViewController(webLoadInfo: model, isNeedShowCollection: false)
             })
             .disposed(by: rx.disposeBag)
-                
+    }
+    
+    private func binding() {
         let viewModel = ToolViewModel<Tool>()
 
         tableView.mj_header?.rx.refresh

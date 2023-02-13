@@ -32,17 +32,6 @@ class WebViewController: BaseViewController {
         return view
     }()
     
-    init(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool) {
-        self.webLoadInfo = webLoadInfo
-        self.isNeedShowCollection = isNeedShowCollection
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         /// 监听js的句柄
@@ -86,13 +75,30 @@ class WebViewController: BaseViewController {
     }()
     
     let isContainsRelay = PublishRelay<Bool>()
+    
+    init(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool) {
+        self.webLoadInfo = webLoadInfo
+        self.isNeedShowCollection = isNeedShowCollection
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        
     }
     
+    deinit {
+        for type in ScriptMessageHandlerType.allCases {
+            webView.configuration.userContentController.removeScriptMessageHandler(forName: type.rawValue)
+        }
+    }
+}
+
+extension WebViewController {
     private func setupUI() {
         /// 走马灯的Label
         var title = webLoadInfo.title
@@ -144,9 +150,6 @@ class WebViewController: BaseViewController {
             }
         }.disposed(by: rx.disposeBag)
         
-        /// vm
-        let vm = WebViewModel()
-        
         /// 加载url
         guard let link = webLoadInfo.link,
               let url = URL(string: link) else {
@@ -162,6 +165,9 @@ class WebViewController: BaseViewController {
         toShare.rx.tap.subscribe { [weak self] _ in
             self?.shareAction()
         }.disposed(by: rx.disposeBag)
+        
+        /// viewModel
+        let viewModel = WebViewModel()
 
         /// 收藏与取消收藏
         collectionButton.rx.tap.subscribe { [weak self] _ in
@@ -177,10 +183,10 @@ class WebViewController: BaseViewController {
             
             if self.collectionButton.isSelected {
                 /// 在这里说明是已经收藏过,取消收藏
-                vm.inputs.unCollectAction(collectId: collectId)
+                viewModel.inputs.unCollectAction(collectId: collectId)
             } else {
                 /// 在这里说明是没有收藏过,进行收藏
-                vm.inputs.collectAction(collectId: collectId)
+                viewModel.inputs.collectAction(collectId: collectId)
             }
             
             self.collectionButton.isSelected = !self.collectionButton.isSelected
@@ -244,22 +250,15 @@ class WebViewController: BaseViewController {
 
         navigationItem.rightBarButtonItems = items.reversed()
         
-        vm.outputs.collectRelay
+        viewModel.outputs.collectRelay
             .bind(to: isContainsRelay)
             .disposed(by: rx.disposeBag)
         
-        vm.outputs.unCollectRelay
+        viewModel.outputs.unCollectRelay
             .map { !$0 }
             .bind(to: isContainsRelay)
             .disposed(by: rx.disposeBag)
     }
-    
-    deinit {
-        for type in ScriptMessageHandlerType.allCases {
-            webView.configuration.userContentController.removeScriptMessageHandler(forName: type.rawValue)
-        }
-    }
-    
 }
 
 extension WebViewController {
@@ -458,9 +457,11 @@ extension WebViewController: WKUIDelegate {
 extension WebViewController {
     private func delayEndRefreshing() {
         /// 其实使用Rx做这种延时操作还不如GCD简单明白
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-//            self.webView.scrollView.mj_header?.endRefreshing()
-//        }
+        /*
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.webView.scrollView.mj_header?.endRefreshing()
+        }
+        */
         
         Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe { _ in
             self.webView.scrollView.mj_header?.endRefreshing()

@@ -36,6 +36,7 @@ class SingleTabListController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
     
     
@@ -67,7 +68,9 @@ extension SingleTabListController {
                 debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
-                
+    }
+    
+    private func binding() {
         let viewModel = SingleTabListViewModel(type: type, tab: tab)
 
         tableView.mj_header?.rx.refresh
@@ -89,7 +92,7 @@ extension SingleTabListController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, row, info) in
-                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell 
+                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell
                 cell.info = info
                 return cell
             }
