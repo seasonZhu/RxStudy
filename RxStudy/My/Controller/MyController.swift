@@ -17,7 +17,6 @@ import RxCocoa
 import MBProgressHUD
 import SVProgressHUD
 import MJRefresh
-import SkeletonView
 
 class MyController: BaseTableViewController {
     
