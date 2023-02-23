@@ -35,7 +35,7 @@ class SnapKitLayoutController: BaseViewController {
         }
         
         /// 按钮的点击事件,更新布局
-        redButton.rx.tap.subscribe { [weak self, weak redButton] (_) in
+        redButton.rx.tap.subscribe(onNext: { [weak self, weak redButton] (_) in
             
             /// 避免循环引用使用了weak修饰,guard一把
             guard let self, let redButton else { return }
@@ -46,7 +46,7 @@ class SnapKitLayoutController: BaseViewController {
                 make.leading.equalToSuperview().offset(50)
                 make.trailing.equalToSuperview().offset(-50)
             }
-        }
+        })
         .disposed(by: rx.disposeBag)
         
         let blueButton = UIButton(type: .custom)
