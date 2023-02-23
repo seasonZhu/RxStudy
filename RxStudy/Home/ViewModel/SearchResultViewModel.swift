@@ -100,7 +100,8 @@ private extension SearchResultViewModel {
                     self.processRxMoyaRequestEvent(event: event)
                 }
                 
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

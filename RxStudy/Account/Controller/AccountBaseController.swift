@@ -109,6 +109,7 @@ extension AccountBaseController {
                 case .failure:
                     break
                 }
-            }.disposed(by: rx.disposeBag)
+            }
+            .disposed(by: rx.disposeBag)
     }
 }

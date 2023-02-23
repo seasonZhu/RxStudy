@@ -52,7 +52,8 @@ class HotKeyController: BaseViewController {
             .subscribe(onNext: { [weak self] _ in
                 guard let self else { return }
                 self.pushToSearchResultController(keyword: self.textField.text!)
-            }).disposed(by: rx.disposeBag)
+            })
+            .disposed(by: rx.disposeBag)
         
         navigationItem.rightBarButtonItem?.rx.tap
             .map { [weak self] in self?.textField.text }
@@ -87,7 +88,8 @@ class HotKeyController: BaseViewController {
             .asDriver(onErrorJustReturn: [])
             .drive(onNext: { [weak self ] hotKeys in
                 self?.tagLayout(hotKeys: hotKeys)
-            }).disposed(by: rx.disposeBag)
+            })
+            .disposed(by: rx.disposeBag)
          
          
         /// 这么写会循环引用
@@ -127,13 +129,15 @@ class HotKeyController: BaseViewController {
             button.rx.tap
                 .map { title }
                 .subscribeNext(weak: self) { (self) in { self.pushToSearchResultController(keyword: $0) }
-                }.disposed(by: rx.disposeBag)
+                }
+                .disposed(by: rx.disposeBag)
             
             /* 这种写法会导致循环引用
             /// 原始版本
             button.rx.tap.subscribe { [weak self] _ in
                 self?.pushToSearchResultController(keyword: title)
-            }.disposed(by: rx.disposeBag)
+            }
+             .disposed(by: rx.disposeBag)
              
             /// 赋值为一个闭包传入,便于理解的版本
             let function = pushToSearchResultController
@@ -211,18 +215,21 @@ extension HotKeyController {
           ) -> Disposable
          */
         /// 而有的确实调用public func subscribe(_ on: @escaping (Event<Element>) -> Void) -> Disposable,所以会调用complete的情况
-        navigationItem.rightBarButtonItem?.rx.tap.subscribe{
+        navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: {
             print("event:\($0)")
-        }.disposed(by: rx.disposeBag)
+        })
+        .disposed(by: rx.disposeBag)
         
         navigationItem.rightBarButtonItem?.rx.tap.asDriver().drive {
             print("drive event:\($0)")
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         
         let disposeBag = DisposeBag()
-        navigationItem.rightBarButtonItem?.rx.tap.subscribe{
+        navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: {
             print("controller disposeBag event:\($0)")
-        }.disposed(by: disposeBag)
+        })
+        .disposed(by: disposeBag)
     }
 }
 

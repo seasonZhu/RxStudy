@@ -128,7 +128,8 @@ extension AccountManager {
                     SVProgressHUD.showText(message)
                 }
                 
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }
 
@@ -165,7 +166,8 @@ extension AccountManager {
                     self.myUnreadMessageCountRelay.accept(0)
                 }
                 completion?()
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

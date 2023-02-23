@@ -46,7 +46,8 @@ class MyController: BaseTableViewController {
             default:
                 break
             }
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         
         tableView.mj_footer = nil
         

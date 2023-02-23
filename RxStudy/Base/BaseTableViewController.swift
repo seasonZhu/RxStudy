@@ -79,9 +79,10 @@ class BaseTableViewController: BaseViewController {
         tableView.emptyDataSetDelegate = self
         
         /// 订阅点击了数据为空，请重试的行为，里面没有用状态去绑定tableView是因为没有ViewModel
-        emptyDataSetButtonTap.subscribe { [weak self] _ in
+        emptyDataSetButtonTap.subscribe(onNext:  { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()
-        }.disposed(by: rx.disposeBag)
+        })
+        .disposed(by: rx.disposeBag)
         
         /// 数据为空的订阅
         isEmptyRelay.subscribe { [weak self] event in
@@ -99,23 +100,26 @@ class BaseTableViewController: BaseViewController {
             default:
                 break
             }
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
     }
 
     @discardableResult
     override func pushToWebViewController(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool = true) -> WebViewController {
         let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isNeedShowCollection: isNeedShowCollection)
         /// 其实这个地方使用callback或者是用Rx的subscribe感觉差不了太多,都是作为回调来看待
-        vc.hasCollectAction.subscribe { [weak self] _ in
+        vc.hasCollectAction.subscribe(onNext:  { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()
-        }.disposed(by: rx.disposeBag)
+        })
+        .disposed(by: rx.disposeBag)
         
         /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
         //vc.delegate = self
         vc.rx.setDelegate(self).disposed(by: rx.disposeBag)
         vc.rx.actionSuccess.subscribe { _ in
             print("操作成功了")
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         return vc
     }
     

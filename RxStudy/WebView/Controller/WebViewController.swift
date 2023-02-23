@@ -148,7 +148,8 @@ extension WebViewController {
             case .completed:
                 self?.progressView.isHidden = true
             }
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         
         /// 加载url
         guard let link = webLoadInfo.link,
@@ -162,15 +163,16 @@ extension WebViewController {
         /// 分享
         let toShare = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
 
-        toShare.rx.tap.subscribe { [weak self] _ in
+        toShare.rx.tap.subscribe(onNext:  { [weak self] _ in
             self?.shareAction()
-        }.disposed(by: rx.disposeBag)
+        })
+        .disposed(by: rx.disposeBag)
         
         /// viewModel
         let viewModel = WebViewModel()
 
         /// 收藏与取消收藏
-        collectionButton.rx.tap.subscribe { [weak self] _ in
+        collectionButton.rx.tap.subscribe(onNext:  { [weak self] _ in
 
             guard let collectId = self?.getRealCollectId() else {
                 return
@@ -191,7 +193,8 @@ extension WebViewController {
             
             self.collectionButton.isSelected = !self.collectionButton.isSelected
             
-        }.disposed(by: rx.disposeBag)
+        })
+        .disposed(by: rx.disposeBag)
 
         var items = [toShare]
 
@@ -224,7 +227,8 @@ extension WebViewController {
                 default:
                     break
                 }
-            }.disposed(by: rx.disposeBag)
+            }
+            .disposed(by: rx.disposeBag)
             
             /*
              let isLogin = AccountManager.shared.isLoginRelay.value
@@ -463,9 +467,10 @@ extension WebViewController {
         }
         */
         
-        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe { _ in
+        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe(onNext:  { _ in
             self.webView.scrollView.mj_header?.endRefreshing()
-        }.disposed(by: rx.disposeBag)
+        })
+        .disposed(by: rx.disposeBag)
     }
 }
 

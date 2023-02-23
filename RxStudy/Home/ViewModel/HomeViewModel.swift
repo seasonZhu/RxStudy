@@ -100,7 +100,8 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
                     case .failure:
                         self.loadMoreFailureResetCurrentPage()
                     }
-                }.disposed(by: disposeBag)
+                }
+                .disposed(by: disposeBag)
         }
     }
 
@@ -187,6 +188,7 @@ extension HomeViewModel {
                 case .failure(_):
                     break
                 }
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }

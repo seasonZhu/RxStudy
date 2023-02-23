@@ -33,21 +33,22 @@ class MyViewModel: BaseViewModel {
     func loadData() {
         Single.zip(getMyCoin(), getMyUnreadMessageCount())
             .subscribe { event in
-            self.refreshSubject.onNext(.stopRefresh)
-            switch event {
-            case .success((let myCoin, let count)):
-                
-                /// 同步到单例
-                AccountManager.shared.myCoinRelay.accept(myCoin)
-                AccountManager.shared.myUnreadMessageCountRelay.accept(count)
-                
-            case .failure(_):
+                self.refreshSubject.onNext(.stopRefresh)
+                switch event {
+                case .success((let myCoin, let count)):
+                    
+                    /// 同步到单例
+                    AccountManager.shared.myCoinRelay.accept(myCoin)
+                    AccountManager.shared.myUnreadMessageCountRelay.accept(count)
+                    
+                case .failure(_):
 
-                /// 同步到单例
-                AccountManager.shared.myCoinRelay.accept(nil)
-                AccountManager.shared.myUnreadMessageCountRelay.accept(0)
+                    /// 同步到单例
+                    AccountManager.shared.myCoinRelay.accept(nil)
+                    AccountManager.shared.myUnreadMessageCountRelay.accept(0)
+                }
             }
-        }.disposed(by: disposeBag)
+            .disposed(by: disposeBag)
     }
 }
 

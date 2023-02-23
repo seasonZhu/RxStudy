@@ -99,7 +99,8 @@ private extension MyCoinViewModel {
                     self.processRxMoyaRequestEvent(event: event)
                 }
                 
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

@@ -82,9 +82,10 @@ class LoginController: AccountBaseController {
             .disposed(by: rx.disposeBag)
         
         toRegisterButton.rx.tap
-            .subscribe { [weak self] _ in
+            .subscribe(onNext:  { [weak self] _ in
                 self?.navigationController?.pushViewController(RegisterController(), animated: true)
-            }.disposed(by: rx.disposeBag)
+            })
+            .disposed(by: rx.disposeBag)
 
         actionButton.rx.tap
             .subscribe(onNext: { [weak self] _ in
@@ -105,8 +106,8 @@ extension LoginController {
         usernameFiled.rx.text
             .skip(2)
             .subscribe(onNext: { (text) in
-            print("你输入的是： \(text)")
-        })
+                print("你输入的是： \(text)")
+            })
             .disposed(by: rx.disposeBag)
     }
 }

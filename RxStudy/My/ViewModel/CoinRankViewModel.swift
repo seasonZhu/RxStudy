@@ -100,7 +100,8 @@ private extension CoinRankViewModel {
                     self.processRxMoyaRequestEvent(event: event)
                 }
                 
-            }.disposed(by: disposeBag)
+            }
+            .disposed(by: disposeBag)
     }
 }
 

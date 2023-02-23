@@ -50,15 +50,18 @@ class ButtonRxTapBugController: BaseViewController {
         /// 并不是所有的button.rx.tap.subscribe都会出现这种异常
         redButton.rx.tap.subscribe {
             print("event: \($0)")
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         
         blueButton.rx.tap
             .map { [weak self] in !(self?.isEnableRelay.value ?? true) }
-            .bind(to: isEnableRelay).disposed(by: rx.disposeBag)
+            .bind(to: isEnableRelay)
+            .disposed(by: rx.disposeBag)
         
         blueButton.rx.tap.subscribe { [weak self] _ in
             self?.dismiss(animated: true)
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         
         isEnableRelay.bind(to: redButton.rx.isEnabled).disposed(by: rx.disposeBag)
     }

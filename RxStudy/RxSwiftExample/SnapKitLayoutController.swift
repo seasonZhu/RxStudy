@@ -46,7 +46,8 @@ class SnapKitLayoutController: BaseViewController {
                 make.leading.equalToSuperview().offset(50)
                 make.trailing.equalToSuperview().offset(-50)
             }
-        }.disposed(by: rx.disposeBag)
+        }
+        .disposed(by: rx.disposeBag)
         
         let blueButton = UIButton(type: .custom)
         blueButton.backgroundColor = .blue

@@ -95,7 +95,7 @@ extension TabsController {
             .disposed(by: rx.disposeBag)
         
         /// 之前这里使用的代理是didScroll,只有滑动就触发,实际上和ViewController中的pan一样,需要的是仅触发一次的回调,这样再进行边界判断进而滑动切tab的操作
-        contentScrollView.rx.willEndDragging.subscribe { [weak self] _ in
+        contentScrollView.rx.willEndDragging.subscribe(onNext:  { [weak self] _ in
 
             guard let scrollView = self?.contentScrollView else {
                 return
@@ -136,7 +136,8 @@ extension TabsController {
             driver.drive(vc.rx.selectedIndexChange)
                 .disposed(by: self.rx.disposeBag)
             
-        }.disposed(by: rx.disposeBag)
+        })
+        .disposed(by: rx.disposeBag)
         
         
         view.addSubview(contentScrollView)
@@ -158,8 +159,9 @@ extension TabsController {
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
             .drive { [weak self] tabs in
-            self?.settingSegmentedDataSource(tabs: tabs)
-        }.disposed(by: rx.disposeBag)
+                self?.settingSegmentedDataSource(tabs: tabs)
+            }
+            .disposed(by: rx.disposeBag)
         
         viewModel.outputs.networkError
             .bind(to: rx.networkError)
