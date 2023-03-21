@@ -21,8 +21,9 @@ class MyCoinController: BaseTableViewController {
         setupUI()
         binding()
     }
-    
+}
 
+extension MyCoinController {
     private func setupUI() {
         title = "我的积分"
     }
@@ -71,5 +72,4 @@ class MyCoinController: BaseTableViewController {
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
     }
-
 }

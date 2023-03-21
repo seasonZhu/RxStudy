@@ -21,7 +21,9 @@ class ThirdPartyController: BaseTableViewController {
         super.viewDidLoad()
         setupUI()
     }
-    
+}
+
+extension ThirdPartyController {
     private func setupUI() {
         title = AcknowLocalization.localizedTitle()
         
@@ -53,9 +55,7 @@ class ThirdPartyController: BaseTableViewController {
             }
             .disposed(by: rx.disposeBag)
     }
-}
-
-extension ThirdPartyController {
+    
     private func defaultAcknowledgementsPlistPath() -> String? {
         guard let bundleName = bundleName() else {
             return nil

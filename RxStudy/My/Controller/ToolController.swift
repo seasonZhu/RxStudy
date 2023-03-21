@@ -21,8 +21,9 @@ class ToolController: BaseTableViewController {
         setupUI()
         binding()
     }
-    
+}
 
+extension ToolController {
     private func setupUI() {
         title = "工具列表"
         
@@ -75,5 +76,4 @@ class ToolController: BaseTableViewController {
         
         viewModel.inputs.refreshSubject.onNext(.begainRefresh)
     }
-
 }

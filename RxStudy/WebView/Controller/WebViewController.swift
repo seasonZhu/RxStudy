@@ -516,7 +516,8 @@ extension WebViewController {
 
 // MARK: - 自己写的Rx的代理,其实既不好写,也不好理解,而且有不少坑,不如直接代理来的简单明了
 
-@objc /// 死活点不出来的原因找到了,因为需要在协议上面加上@objc, 这里协议名称需要用objc修饰,同时optional也需要objc修复,太久没在swift中写这种协议,都忘记了
+/// 死活点不出来的原因找到了,因为需要在协议上面加上@objc, 这里协议名称需要用objc修饰,同时optional也需要objc修复,太久没在swift中写这种协议,都忘记了
+@objc
 public protocol WebViewControllerDelegate: AnyObject {
     
     @objc optional func webViewControllerActionSuccess()

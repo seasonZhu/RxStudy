@@ -37,6 +37,27 @@ class BaseTableViewController: BaseViewController {
         setupTableView()
     }
     
+    @discardableResult
+    override func pushToWebViewController(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool = true) -> WebViewController {
+        let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isNeedShowCollection: isNeedShowCollection)
+        /// 其实这个地方使用callback或者是用Rx的subscribe感觉差不了太多,都是作为回调来看待
+        vc.hasCollectAction.subscribe(onNext:  { [weak self] _ in
+            self?.tableView.mj_header?.beginRefreshing()
+        })
+        .disposed(by: rx.disposeBag)
+
+        /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
+        //vc.delegate = self
+        vc.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        vc.rx.actionSuccess.subscribe { _ in
+            print("操作成功了")
+        }
+        .disposed(by: rx.disposeBag)
+        return vc
+    }
+}
+
+extension BaseTableViewController {
     private func setupTableView() {
         
         /// 注册Cell之后,就可以直接在数据源中进行强制与复用,而不用再写if 与 else了
@@ -102,25 +123,6 @@ class BaseTableViewController: BaseViewController {
             }
         }
         .disposed(by: rx.disposeBag)
-    }
-
-    @discardableResult
-    override func pushToWebViewController(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool = true) -> WebViewController {
-        let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isNeedShowCollection: isNeedShowCollection)
-        /// 其实这个地方使用callback或者是用Rx的subscribe感觉差不了太多,都是作为回调来看待
-        vc.hasCollectAction.subscribe(onNext:  { [weak self] _ in
-            self?.tableView.mj_header?.beginRefreshing()
-        })
-        .disposed(by: rx.disposeBag)
-        
-        /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
-        //vc.delegate = self
-        vc.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        vc.rx.actionSuccess.subscribe { _ in
-            print("操作成功了")
-        }
-        .disposed(by: rx.disposeBag)
-        return vc
     }
     
     /// 会报错Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy

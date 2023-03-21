@@ -32,7 +32,9 @@ class MyController: BaseTableViewController {
         /// 将自动登录放在AppDelegate中的didFinishLaunchingWithOptions中,加快获取数据,getMyCoin这个接口返回数据是有点慢
         //AccountManager.shared.autoLogin()
     }
-    
+}
+
+extension MyController {
     private func setupUI() {
         AccountManager.shared.isLoginRelay.subscribe { [weak self] event in
             switch event {
