@@ -17,14 +17,18 @@ import MarqueeLabel
 import MJRefresh
 
 class WebViewController: BaseViewController {
+    
+    weak var delegate: WebViewControllerDelegate?
+    
+    let collectActionRelay = PublishRelay<CollectActionType>()
 
     private let webLoadInfo: WebLoadInfo
     
     private let isNeedShowCollection: Bool
     
-    weak var delegate: WebViewControllerDelegate?
+    private var actionTag = 0
     
-    let hasCollectAction = PublishSubject<Void>()
+    private var type: CollectActionType?
     
     private lazy var progressView: UIProgressView = {
         let view = UIProgressView(frame: .zero)
@@ -84,6 +88,13 @@ class WebViewController: BaseViewController {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        if actionTag != 0, let type {
+            collectActionRelay.accept(type)
+        }
     }
 
     override func viewDidLoad() {
@@ -180,9 +191,6 @@ extension WebViewController {
             
             guard let self else { return }
             
-            /// 回调给上一个页面,做了操作,需要进行页面刷新
-            self.hasCollectAction.onNext()
-            
             if self.collectionButton.isSelected {
                 /// 在这里说明是已经收藏过,取消收藏
                 viewModel.inputs.unCollectAction(collectId: collectId)
@@ -262,6 +270,18 @@ extension WebViewController {
             .map { !$0 }
             .bind(to: isContainsRelay)
             .disposed(by: rx.disposeBag)
+        
+        isContainsRelay.subscribe(onNext: { [weak self] isContains in
+            guard let self else { return }
+            
+            if isContains {
+                self.actionTag = self.actionTag + 1
+                self.type = .collect(self.webLoadInfo)
+            } else {
+                self.actionTag = self.actionTag - 1
+                self.type = .unCollect(self.webLoadInfo)
+            }
+        }).disposed(by: rx.disposeBag)
     }
 }
 

@@ -23,6 +23,8 @@ class MyCollectionController: BaseTableViewController {
     
     /// 没有使用
     private lazy var done = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(rightBarButtonItemAction))
+    
+    private var viewModel: MyCollectionViewModel?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,6 +32,41 @@ class MyCollectionController: BaseTableViewController {
         binding()
     }
     
+    @discardableResult
+    override func pushToWebViewController(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool = true) -> WebViewController {
+        let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isNeedShowCollection: isNeedShowCollection)
+        /// 其实这个地方使用callback或者是用Rx的subscribe感觉差不了太多,都是作为回调来看待
+        vc.collectActionRelay.subscribe(onNext:  { [weak self] collectActionType in
+            
+            guard let self, let viewModel = self.viewModel else { return }
+            
+            switch collectActionType {
+                
+            case .collect(_):
+                break
+            case .unCollect(let webLoadInfo):
+                var dataSource = viewModel.outputs.dataSource.value
+                guard let index = dataSource.firstIndex(where: { $0.link == webLoadInfo.link}) else {
+                    return
+                }
+                dataSource.remove(at: index)
+                viewModel.outputs.dataSource.accept(dataSource)
+            }
+        })
+        .disposed(by: rx.disposeBag)
+
+        /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
+        //vc.delegate = self
+        vc.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        vc.rx.actionSuccess.subscribe { _ in
+            print("操作成功了")
+        }
+        .disposed(by: rx.disposeBag)
+        return vc
+    }
+}
+
+extension MyCollectionController {
     private func setupUI() {
         
         title = "我的收藏"
@@ -126,8 +163,9 @@ class MyCollectionController: BaseTableViewController {
         viewModel.outputs.refreshSubject
             .bind(to: tableView.rx.refreshAction)
             .disposed(by: rx.disposeBag)
+        
+        self.viewModel = viewModel
     }
-
 }
 
 extension MyCollectionController {
