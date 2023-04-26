@@ -14,7 +14,7 @@ PODS:
   - IQKeyboardManagerSwift (6.5.10)
   - JXSegmentedView (1.3.0)
   - KeychainAccess (4.2.2)
-  - Kingfisher (7.2.2)
+  - Kingfisher (7.6.2)
   - LookinServer (1.0.5)
   - MarqueeLabel (4.3.0)
   - MBProgressHUD (1.2.0)
@@ -162,7 +162,7 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
   JXSegmentedView: fec0d335355b6e019c494fe2e030bde8a36d2df6
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  Kingfisher: 184d4d1a8c36666e663caf8e08abe87898595c53
+  Kingfisher: 6c5449c6450c5239166510ba04afe374a98afc4f
   LookinServer: 3d9a02529ed94a6a08154440c26f6d7f453bb1e7
   MarqueeLabel: 02f5ac8fd6877c94564556cb93fa86c70c08baeb
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -187,6 +187,6 @@ SPEC CHECKSUMS:
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
   SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: 129f0b49bb03a75df2896bba7ffe74d8b23ad852
+PODFILE CHECKSUM: 9662296527f3ea40639405893d957bdec833b0f6
 
 COCOAPODS: 1.11.3
