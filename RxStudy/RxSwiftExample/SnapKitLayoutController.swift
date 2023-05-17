@@ -71,3 +71,58 @@ class SnapKitLayoutController: BaseViewController {
     }
 
 }
+
+/// 这种形式更新约束的动画效果更好
+class SnapKitLayoutAnimationController: UIViewController {
+     
+    lazy var box = UIView()
+     
+    var scacle = 1.0
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = .white
+         
+        /// 单击监听
+        let tapSingle = UITapGestureRecognizer(target:self,action:#selector(tapSingleDid))
+        tapSingle.numberOfTapsRequired = 1
+        tapSingle.numberOfTouchesRequired = 1
+        view.addGestureRecognizer(tapSingle)
+         
+        box.backgroundColor = UIColor.orange
+        view.addSubview(box)
+         
+        box.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(view)
+            /// 初始宽、高为100（优先级低）
+            make.width.height.equalTo(100 * self.scacle).priority(.low);
+            /// 最大尺寸不能超过屏幕
+            make.width.height.lessThanOrEqualTo(self.view.snp.width)
+            make.width.height.lessThanOrEqualTo(self.view.snp.height)
+        }
+    }
+     
+    //视图约束更新
+    override func updateViewConstraints() {
+        self.box.snp.updateConstraints{ (make) -> Void in
+            /// 放大尺寸（优先级低）
+            make.width.height.equalTo(100 * self.scacle).priority(.low);
+        }
+         
+        super.updateViewConstraints()
+    }
+     
+    //点击屏幕
+    @objc
+    func tapSingleDid(){
+        self.scacle += 0.1
+        /// 告诉self.view约束需要更新
+        self.view.setNeedsUpdateConstraints()
+        /// 动画
+        UIView.animate(withDuration: 0.5) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
