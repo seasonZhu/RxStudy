@@ -11,11 +11,11 @@ let IntJSONString = """
 }
 """
 
-let intData = IntJSONString.data(using: .utf8)!
-
-let intModel = try? JSONDecoder().decode(MixinIntModel.self, from: intData)
-
-print(intModel?.result)
+//let intData = IntJSONString.data(using: .utf8)!
+//
+//let intModel = try? JSONDecoder().decode(MixinIntModel.self, from: intData)
+//
+//print(intModel?.result)
 
 
 struct MixinStringModel: Codable {
@@ -159,3 +159,28 @@ for mode in modes {
         print(some!)
     }
 }
+
+/// 使用Decimal类型来接住整型与浮点型
+let πJSONSring = """
+{
+    "result": 3.1415926,
+    "data": 1
+}
+"""
+
+struct DecimalModel: Codable {
+    var result: Decimal?
+    var data: Decimal?
+}
+
+let πData = πJSONSring.data(using: .utf8)!
+
+let πModel = try? JSONDecoder().decode(DecimalModel.self, from: πData)
+
+print(πModel)
+
+print(πModel?.result?.formatted())
+
+print(πModel?.data?.formatted())
+
+typealias ErrorStringConvertible = Error & CustomDebugStringConvertible & CustomStringConvertible
