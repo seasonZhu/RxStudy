@@ -199,3 +199,14 @@ extension MyController {
         navigationController?.pushViewController(MyMessageController(status: status), animated: true)
     }
 }
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct ViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        MyController().showPreview()
+    }
+}
+#endif

@@ -98,6 +98,7 @@
 		00CDD94F2910F02100027A81 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDD94E2910F02100027A81 /* Theme.swift */; };
 		00DC971028F26ADF002CC564 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC970F28F26ADF002CC564 /* AppState.swift */; };
 		00DC971228F27335002CC564 /* View+OnLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC971128F27335002CC564 /* View+OnLoad.swift */; };
+		00E042EB2A286EC30000C081 /* UIKitBridgeSwiftUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */; };
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		00E9329A29C9499400A618FE /* CollectActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9329929C9499400A618FE /* CollectActionType.swift */; };
 		00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */; };
@@ -302,6 +303,7 @@
 		00CDD94E2910F02100027A81 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		00DC970F28F26ADF002CC564 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		00DC971128F27335002CC564 /* View+OnLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnLoad.swift"; sourceTree = "<group>"; };
+		00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitBridgeSwiftUI.swift; sourceTree = "<group>"; };
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		00E9329929C9499400A618FE /* CollectActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectActionType.swift; sourceTree = "<group>"; };
 		00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 				00099E0229026BD7001FC753 /* ObserverType+Extension.swift */,
 				00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */,
 				004623632989F96A008F0676 /* ExBehaviorRelay.swift */,
+				00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1249,6 +1252,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				007AE7F628F3F91800AD6C72 /* TestViewModel.swift in Sources */,
+				00E042EB2A286EC30000C081 /* UIKitBridgeSwiftUI.swift in Sources */,
 				61B13D622680915400665A08 /* ThirdPartyDetailController.swift in Sources */,
 				00890D0128F56E9E00B3E72E /* View+ReceiveTimer.swift in Sources */,
 				001B4E1728E183BD003ADF95 /* CoinRankListPage.swift in Sources */,
