@@ -175,7 +175,7 @@ struct MixinType<Wrapper: Codable>: Codable {
 
 //MARK: -  将解析值转为String
 @propertyWrapper
-/// 目前可以接受String/Int/Double/Bool类型的值为String
+/// 目前可以接受String/Decimal/Bool类型的值为String
 struct StringValue: Codable {
     
     var wrappedValue: String?
@@ -194,9 +194,7 @@ struct StringValue: Codable {
         let container = try decoder.singleValueContainer()
         if let value = try? container.decode(String.self) {
             wrappedValue = value
-        } else if let value = try? container.decode(Int.self) {
-            wrappedValue = "\(value)"
-        } else if let value = try? container.decode(Double.self) {
+        } else if let value = try? container.decode(Decimal.self) {
             wrappedValue = "\(value)"
         } else if let value = try? container.decode(Bool.self) {
             wrappedValue = "\(value)"

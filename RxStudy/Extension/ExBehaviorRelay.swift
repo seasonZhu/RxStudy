@@ -8,6 +8,7 @@
 
 import RxSwift
 
+/// 其实忽略BehaviorRelay的初始value,使用skip(1)就可以了
 public final class ExBehaviorRelay<Element>: ObservableType {
     
     /// 忽略初始值的订阅
