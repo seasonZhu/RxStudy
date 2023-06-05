@@ -60,6 +60,9 @@ target 'RxStudy' do
   pod 'CombineExt'
   pod 'CombineCocoa'
   
+  # Bug&Crash
+  pod 'KSCrash'
+  
   # 调试
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']

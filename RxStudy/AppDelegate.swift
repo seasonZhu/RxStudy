@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import Alamofire
 import AlamofireNetworkActivityLogger
 import SVProgressHUD
+import KSCrash
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        /// 崩溃配置
+        installCrashHandler()
         
         /// 键盘配置
         IQKeyboardManager.shared.enable = true
@@ -68,5 +72,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    }
+}
+
+extension AppDelegate {
+    private func installCrashHandler() {
+        let installation = makeEmailInstallation()
+        installation.install()
+        KSCrash.sharedInstance().deleteBehaviorAfterSendAll = KSCDeleteBehavior(rawValue: 0)
+        installation.sendAllReports { array, completed, error in
+            if completed {
+                print("Sent \(array?.count ?? 0) reports")
+            } else {
+                print("Failed to send reports: \(error.debugDescription)")
+            }
+        }
+    }
+    
+    private func makeEmailInstallation() -> KSCrashInstallation {
+        let emailAddress = "zhujilong1987@163.com"
+        let email = KSCrashInstallationEmail.sharedInstance()!
+        email.recipients = [emailAddress]
+        email.subject = "Crash Report"
+        email.message = "This is a crash report"
+        email.filenameFmt = "crash-report-%d.txt.gz"
+        
+        email.addConditionalAlert(withTitle: "Crash Detected", message: "The app crashed last time it was launched. Send a crash report?", yesAnswer: "Sure!", noAnswer: "No thanks")
+        
+        email.setReportStyle(KSCrashEmailReportStyle(rawValue: 1), useDefaultFilenameFormat: true)
+        
+        return email
+        
     }
 }

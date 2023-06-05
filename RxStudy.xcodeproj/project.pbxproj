@@ -49,6 +49,7 @@
 		0048E6D0277AAB6000F6C739 /* MyGitHubController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */; };
 		0048E6D6277AB21F00F6C739 /* appStore.js in Resources */ = {isa = PBXBuildFile; fileRef = 0048E6D5277AB21F00F6C739 /* appStore.js */; };
 		0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */; };
+		0053B40F2A2D733C00457779 /* CrashController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0053B40E2A2D733C00457779 /* CrashController.m */; };
 		0059B4C828699743006C22D7 /* MessageContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0059B4C728699743006C22D7 /* MessageContentCell.swift */; };
 		005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */; };
 		006029722888FF3B0024CC7F /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */; };
@@ -253,6 +254,8 @@
 		0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGitHubController.swift; sourceTree = "<group>"; };
 		0048E6D5277AB21F00F6C739 /* appStore.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = appStore.js; sourceTree = "<group>"; };
 		0048E6D7277AB4E100F6C739 /* WebView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebView+Extension.swift"; sourceTree = "<group>"; };
+		0053B40D2A2D733C00457779 /* CrashController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashController.h; sourceTree = "<group>"; };
+		0053B40E2A2D733C00457779 /* CrashController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashController.m; sourceTree = "<group>"; };
 		0059B4C728699743006C22D7 /* MessageContentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContentCell.swift; sourceTree = "<group>"; };
 		005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandlerType.swift; sourceTree = "<group>"; };
 		006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+BlockingObservable.swift"; sourceTree = "<group>"; };
@@ -564,6 +567,15 @@
 			path = RxDelegateTest;
 			sourceTree = "<group>";
 		};
+		0053B40C2A2D733C00457779 /* CrashController */ = {
+			isa = PBXGroup;
+			children = (
+				0053B40D2A2D733C00457779 /* CrashController.h */,
+				0053B40E2A2D733C00457779 /* CrashController.m */,
+			);
+			path = CrashController;
+			sourceTree = "<group>";
+		};
 		005BD7F428489488000B6885 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -710,6 +722,7 @@
 		61336C792656493700FDEB2A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0053B40C2A2D733C00457779 /* CrashController */,
 				00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */,
 				6186948A267C4DBB0086F051 /* MJRefresh+RxSwift */,
 				611E2E002660782B001585AE /* SnapKitExtension */,
@@ -1386,6 +1399,7 @@
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
 				001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */,
+				0053B40F2A2D733C00457779 /* CrashController.m in Sources */,
 				003CA16C29384D0A0094A1E0 /* grayMode.js in Sources */,
 				00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */,
 				00E9329A29C9499400A618FE /* CollectActionType.swift in Sources */,
