@@ -10,9 +10,9 @@ import UIKit
 
 class ContentScrollView: UIScrollView {
     
-    let scrollDirection: UICollectionView.ScrollDirection
+    let scrollDirection: ScrollDirection
     
-    init(scrollDirection: UICollectionView.ScrollDirection, frame: CGRect) {
+    init(scrollDirection: ScrollDirection, frame: CGRect) {
         self.scrollDirection = scrollDirection
         super.init(frame: frame)
     }
@@ -31,24 +31,36 @@ class ContentScrollView: UIScrollView {
             case .vertical:
                 let width = frame.width
  
-                let view = subviews[subviews.count - count]
-                let maxY = view.frame.maxY
+                guard let maxY = subviews[0...subviews.count - count].map({ $0.frame.maxY }).max() else {
+                    return
+                }
                 
                 contentSize = CGSize(width: width, height: maxY)
             case .horizontal:
                 let height = frame.height
                 
-                let view = subviews[subviews.count - count]
-                let maxX = view.frame.maxX
+                guard let maxX = subviews[0...subviews.count - count].map({ $0.frame.maxX }).max() else {
+                    return
+                }
                 
                 contentSize = CGSize(width: maxX, height: height)
-            @unknown default:
-                fatalError()
             }
             
         }
     }
+}
+
+extension ContentScrollView {
     
+    enum ScrollDirection {
+        
+        case vertical
+
+        case horizontal
+    }
+}
+
+extension ContentScrollView {
     private func realSubviewsCount() -> Int {
         let count: Int
         

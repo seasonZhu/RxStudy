@@ -16,6 +16,7 @@ class SnapKitLayoutController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        //contentScrollViewLayout()
     }
     
     private func setupUI() {
@@ -68,6 +69,24 @@ class SnapKitLayoutController: BaseViewController {
              make.height.equalTo(44)
          }
          */
+    }
+    
+    private func contentScrollViewLayout() {
+        let contentScrollView = ContentScrollView(scrollDirection: .horizontal, frame: .zero)
+        contentScrollView.showsVerticalScrollIndicator = false
+        contentScrollView.showsHorizontalScrollIndicator = false
+        view.addSubview(contentScrollView)
+        contentScrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        for i in 0...9 {
+            let some = UIView(frame: CGRect(x:  i * 100, y: 0, width: 100, height: Int(kScreenWidth)))
+            some.backgroundColor = .random
+            some.tag = 100 + i
+            
+            contentScrollView.addSubview(some)
+        }
     }
 
 }
