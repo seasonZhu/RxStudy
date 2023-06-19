@@ -44,6 +44,13 @@ class ContentScrollView: UIScrollView {
                 }
                 
                 contentSize = CGSize(width: maxX, height: height)
+            case .both:
+                guard let maxX = subviews[0...subviews.count - count].map({ $0.frame.maxX }).max(),
+                      let maxY = subviews[0...subviews.count - count].map({ $0.frame.maxY }).max() else {
+                    return
+                }
+
+                contentSize = CGSize(width: maxX, height: maxY)
             }
             
         }
@@ -57,6 +64,8 @@ extension ContentScrollView {
         case vertical
 
         case horizontal
+        
+        case both
     }
 }
 
