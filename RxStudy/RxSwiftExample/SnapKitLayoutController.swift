@@ -15,8 +15,8 @@ class SnapKitLayoutController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
-        //contentScrollViewLayout()
+        //setupUI()
+        contentScrollViewLayout()
     }
     
     private func setupUI() {
@@ -72,6 +72,8 @@ class SnapKitLayoutController: BaseViewController {
     }
     
     private func contentScrollViewLayout() {
+        view.backgroundColor = .white
+        
         let contentScrollView = ContentScrollView(scrollDirection: .horizontal, frame: .zero)
         contentScrollView.showsVerticalScrollIndicator = false
         contentScrollView.showsHorizontalScrollIndicator = false
@@ -81,7 +83,23 @@ class SnapKitLayoutController: BaseViewController {
         }
         
         for i in 0...9 {
-            let some = UIView(frame: CGRect(x:  i * 100, y: 0, width: 100, height: Int(kScreenWidth)))
+            let x: CGFloat
+            let y: CGFloat
+            
+            switch contentScrollView.scrollDirection {
+                
+            case .vertical:
+                x = 0
+                y = CGFloat(i * 100)
+            case .horizontal:
+                x = CGFloat(i * 100)
+                y = 0
+            case .both:
+                x = CGFloat(i * 100)
+                y = CGFloat(i * 100)
+            }
+            
+            let some = UIView(frame: CGRect(x: x, y: y, width: 100, height: 100))
             some.backgroundColor = .random
             some.tag = 100 + i
             
