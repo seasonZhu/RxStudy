@@ -93,7 +93,7 @@ let badJSONString = #"{"result": true,"body": "{\"ret_code\":\"0\",\"ret_msg\":\
 // MARK: - Token
 struct Token: Codable {
     let result: Bool?
-    
+
     @JSONString
     var body: Body?
 }
@@ -105,7 +105,7 @@ struct Body: Codable {
     let retMsg: String?
     let serialNumber: String?
     let timestamp: String?
-    
+
     @JSONString
     var responseData: ResponseData?
 
@@ -153,7 +153,7 @@ let modes: [NumberFormatter.RoundingMode] = [.halfUp]
 
 for mode in modes {
     formatter.roundingMode = mode
-    
+
     for number in numbers {
         let some = formatter.string(for: number)
         print(some!)
@@ -184,3 +184,29 @@ print(πModel?.result?.formatted())
 print(πModel?.data?.formatted())
 
 typealias ErrorStringConvertible = Error & CustomDebugStringConvertible & CustomStringConvertible
+
+struct SexModel: Codable {
+    @GuardEnumType
+    var sexType: SexType
+}
+
+
+let SexTypeJSONString = """
+{
+    "sexType": "4"
+}
+"""
+
+let sexData = SexTypeJSONString.data(using: .utf8)!
+
+let sexModel = try? JSONDecoder().decode(SexModel.self, from: sexData)
+
+print(sexModel?.sexType)
+
+let sexModelData = JSONEncoder().encode(sexModel!)
+
+let sexModelJson = try JSONSerialization.jsonObject(with: sexModelData)
+
+print(sexModelJson)
+
+

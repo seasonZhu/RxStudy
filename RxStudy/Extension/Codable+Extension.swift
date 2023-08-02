@@ -251,3 +251,41 @@ extension StringValue {
         return string
     }
 }
+
+
+protocol EnumDefaultType {
+    static func getEnumDefaultType() -> Self
+}
+
+enum SexType: Int {
+    case man
+    case woman
+    case unknow
+}
+
+extension SexType: Codable {}
+
+extension SexType: EnumDefaultType {
+    static func getEnumDefaultType() -> SexType {
+        .unknow
+    }
+}
+
+@propertyWrapper
+struct GuardEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable, Enum: EnumDefaultType, Enum.RawValue: Codable {
+    var wrappedValue: Enum
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Enum.RawValue.self) {
+            wrappedValue = Enum(rawValue: value) ?? Enum.getEnumDefaultType()
+        } else {
+            wrappedValue = Enum.getEnumDefaultType()
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try? container.encode(wrappedValue.rawValue)
+    }
+}

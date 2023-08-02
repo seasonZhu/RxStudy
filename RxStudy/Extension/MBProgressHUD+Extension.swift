@@ -45,6 +45,6 @@ extension MBProgressHUD: HUD {
         hud.removeFromSuperViewOnHide = true
         /// 编码的顺序很重要,只有在这里设置颜色才生效
         hud.detailsLabel.textColor = .white
-        hud .hide(animated: true, afterDelay: 3)
+        hud.hide(animated: true, afterDelay: 3)
     }
 }
