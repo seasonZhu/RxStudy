@@ -85,8 +85,8 @@ extension TreeController {
         }
         
         /// 这种带有section的tableView,不能通过一级菜单确定是否有数据,需要将二维数组进行降维打击
-        let children = tabs.map { $0.children }.compactMap { $0 }
-        let deepChildren = children.flatMap{ $0 }.map { $0.children }.compactMap { $0 }.flatMap { $0 }
+        let children = tabs.compactMap { $0.children }
+        let deepChildren = children.flatMap{ $0 }.compactMap { $0.children }.flatMap { $0 }
         isEmptyRelay.accept(deepChildren.isEmpty)
         
         let sectionModels = tabs.map { tab in

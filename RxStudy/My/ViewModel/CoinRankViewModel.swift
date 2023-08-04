@@ -61,9 +61,7 @@ private extension CoinRankViewModel {
         myProvider.rx.request(MyService.coinRank(page))
             .map(BaseModel<Page<CoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .map{ $0.data }
-            /// 解包
-            .compactMap { $0 }
+            .compactMap{ $0.data }
             /// 转换操作
             .asObservable()
             .asSingle()

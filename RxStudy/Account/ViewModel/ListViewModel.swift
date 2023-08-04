@@ -141,10 +141,8 @@ private extension ListViewModel {
         target.page = page
         provider.rx.request(MultiTarget(target))
             .map(BaseModel<Page<M>>.self)
-            /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .map{ $0.data }
-            /// 解包
-            .compactMap { $0 }
+            /// 解包,由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
+            .compactMap{ $0.data }
             /// 转换操作
             .asObservable()
             .asSingle()

@@ -76,9 +76,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
         case .loadMore:
             loadMore()
                 /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-                .map{ $0.data }
-                /// 解包
-                .compactMap { $0 }
+                .compactMap{ $0.data }
                 /// 转换操作
                 .asObservable()
                 .asSingle()/// 订阅
@@ -138,8 +136,7 @@ private extension HomeViewModel {
     func topArticleData() -> Single<[Info]> {
         let result = homeProvider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
-            .map{ $0.data }
-            .compactMap { $0 }
+            .compactMap{ $0.data }
             .asObservable()
             .asSingle()
         
@@ -151,8 +148,7 @@ private extension HomeViewModel {
     func bannerData() -> Single<[Banner]> {
         let result = homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
-            .map{ $0.data }
-            .compactMap { $0 }
+            .compactMap{ $0.data }
             .asObservable()
             .asSingle()
 
@@ -177,8 +173,7 @@ extension HomeViewModel {
     private func mock() {
         mockProvider.rx.request(.mourn)
             .map(BaseModel<Bool>.self)
-            .map { $0.data }
-            .compactMap { $0 }
+            .compactMap { $0.data }
             .asObservable()
             .asSingle()
             .subscribe { event in

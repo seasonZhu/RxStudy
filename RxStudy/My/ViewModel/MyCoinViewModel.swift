@@ -60,9 +60,7 @@ private extension MyCoinViewModel {
         myProvider.rx.request(MyService.myCoinList(page))
             .map(BaseModel<Page<MyHistoryCoin>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .map{ $0.data }
-            /// 解包
-            .compactMap { $0 }
+            .compactMap{ $0.data }
             /// 转换操作
             .asObservable()
             .asSingle()
