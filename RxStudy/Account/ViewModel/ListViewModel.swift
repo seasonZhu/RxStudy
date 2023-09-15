@@ -132,9 +132,7 @@ private extension ListViewModel {
     
     func loadMore() {
         pageNum = pageNum + 1
-        requestData(page: pageNum) {
-            self.loadMoreFailureResetCurrentPage()
-        }
+        requestData(page: pageNum, loadMoreFailureResetCurrentPageCallback: loadMoreFailureResetCurrentPage)
     }
     
     func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
