@@ -11,6 +11,7 @@ PODS:
   - CombineExt (1.6.1)
   - Differentiator (5.0.0)
   - DZNEmptyDataSet (1.8.1)
+  - FBRetainCycleDetector (0.1.4)
   - FSPagerView (0.8.3)
   - FunnyButton (0.1.4)
   - IQKeyboardManagerSwift (6.5.10)
@@ -84,6 +85,8 @@ PODS:
   - MarqueeLabel (4.3.0)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.5)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
   - Moya/Combine (15.0.0):
     - Moya/Core
   - Moya/Core (15.0.0):
@@ -153,6 +156,7 @@ DEPENDENCIES:
   - MarqueeLabel
   - MBProgressHUD
   - MJRefresh
+  - MLeaksFinder
   - Moya/Combine
   - Moya/RxSwift
   - "NSObject+Rx"
@@ -183,6 +187,7 @@ SPEC REPOS:
     - CombineExt
     - Differentiator
     - DZNEmptyDataSet
+    - FBRetainCycleDetector
     - FSPagerView
     - FunnyButton
     - IQKeyboardManagerSwift
@@ -194,6 +199,7 @@ SPEC REPOS:
     - MarqueeLabel
     - MBProgressHUD
     - MJRefresh
+    - MLeaksFinder
     - Moya
     - "NSObject+Rx"
     - R.swift
@@ -224,6 +230,7 @@ SPEC CHECKSUMS:
   CombineExt: 57d5234da457f4dab303bac37929192cb4d9626f
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   FunnyButton: 03c7ee78b7d4882719ef2776011374f3128b9da1
   IQKeyboardManagerSwift: 52962c76ab33532f15ad9f3ff4e5715eda5335bb
@@ -235,6 +242,7 @@ SPEC CHECKSUMS:
   MarqueeLabel: 02f5ac8fd6877c94564556cb93fa86c70c08baeb
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   R.swift: ec98ff71c4ab2f6fd01dd077e5afd15e63a4834c
@@ -255,6 +263,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
 
-PODFILE CHECKSUM: cba88c825a5914e82adb915eeacc9c7fc4453584
+PODFILE CHECKSUM: 623d3e9fb3197b4b6096561b291128ecf2705184
 
 COCOAPODS: 1.12.1

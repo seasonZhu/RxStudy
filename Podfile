@@ -67,6 +67,7 @@ target 'RxStudy' do
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
   pod 'FunnyButton', :configurations => ['Debug']
+  pod 'MLeaksFinder', :configurations => ['Debug']
   
   # 日志打印与跟踪
   pod 'CocoaLumberjack/Swift'
