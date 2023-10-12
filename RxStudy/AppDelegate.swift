@@ -25,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// 崩溃配置
         installCrashHandler()
         
+        /// 日志配置
+        logSetting()
+        
         /// 键盘配置
         IQKeyboardManager.shared.enable = true
         
@@ -103,5 +106,65 @@ extension AppDelegate {
         
         return email
         
+    }
+}
+
+import CocoaLumberjack
+import SSZipArchive
+
+extension AppDelegate {
+    func logSetting() {
+        #if DEBUG
+        dynamicLogLevel = .verbose;
+        #else
+        dynamicLogLevel = .warning;
+        #endif
+                
+        DDLog.add(DDOSLogger.sharedInstance) // Uses os_log
+
+        let fileLogger = DDFileLogger() // File Logger
+        fileLogger.rollingFrequency = 60 * 60 * 24 // 24 hours
+        fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        DDLog.add(fileLogger)
+        
+        /// /var/mobile/Containers/Data/Application/4C9CBFDB-5752-4163-B2F4-8B96F3DB5193/Library/Caches/Logs
+        print("logsDirectory: \(fileLogger.logFileManager.logsDirectory)")
+        
+        print("sortedLogFilePaths: \(fileLogger.logFileManager.sortedLogFilePaths)")
+    }
+    
+    func logsUpload() {
+        let fileLogger = DDFileLogger()
+        
+        let filePaths = fileLogger.logFileManager.sortedLogFilePaths
+
+        if filePaths.isNotEmpty {
+            
+            let zipName = "Logs\(Date().timeIntervalSince1970)"
+            
+            let zipPath = fileLogger.logFileManager.logsDirectory.replacingOccurrences(of: "Logs", with: "\(zipName).zip")
+            
+            let result = SSZipArchive.createZipFile(atPath: zipPath, withFilesAtPaths: filePaths)
+            
+            /// 压缩成功
+            if result {
+                
+                let zipURL = URL(fileURLWithPath: zipPath)
+                
+                var isUploadSuccess = true
+                
+                if isUploadSuccess {
+                    /// 如果上传成功,压缩文件zip进行删除和文件夹里的文件都进行删除
+                    try? FileManager.default.removeItem(atPath: zipPath)
+                    
+                    filePaths.forEach { filePath in
+                        try? FileManager.default.removeItem(atPath: filePath)
+                    }
+                } else {
+                    /// 如果上传失败,压缩文件zip进行删除
+                    try? FileManager.default.removeItem(atPath: zipPath)
+                }
+            }
+        }
     }
 }

@@ -91,7 +91,7 @@ class BaseViewController: UIViewController {
     }
     
     deinit {
-        debugLog("\(className)被销毁了")
+        deinitDDLog()
     }
 
 }

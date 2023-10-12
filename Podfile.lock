@@ -4,7 +4,9 @@ PODS:
   - AlamofireNetworkActivityLogger (3.4.0):
     - Alamofire (~> 5.4.0)
   - CocoaDebug (1.7.2)
-  - ColorizeSwift (1.2.0)
+  - CocoaLumberjack/Core (3.8.0)
+  - CocoaLumberjack/Swift (3.8.0):
+    - CocoaLumberjack/Core
   - CombineCocoa (0.4.0)
   - CombineExt (1.6.1)
   - Differentiator (5.0.0)
@@ -128,15 +130,15 @@ PODS:
     - RxSwift (~> 6.0)
   - SFSafeSymbols (4.1.1)
   - SnapKit (5.6.0)
+  - SSZipArchive (2.4.3)
   - SVProgressHUD (2.2.5)
   - SwiftDate (6.3.1)
-  - SwiftPrettyPrint (1.2.0):
-    - ColorizeSwift
 
 DEPENDENCIES:
   - AcknowList
   - AlamofireNetworkActivityLogger
   - CocoaDebug
+  - CocoaLumberjack/Swift
   - CombineCocoa
   - CombineExt
   - DZNEmptyDataSet
@@ -166,9 +168,9 @@ DEPENDENCIES:
   - RxViewController
   - SFSafeSymbols
   - SnapKit
+  - SSZipArchive
   - SVProgressHUD
   - SwiftDate
-  - SwiftPrettyPrint (~> 1.2.0)
 
 SPEC REPOS:
   trunk:
@@ -176,7 +178,7 @@ SPEC REPOS:
     - Alamofire
     - AlamofireNetworkActivityLogger
     - CocoaDebug
-    - ColorizeSwift
+    - CocoaLumberjack
     - CombineCocoa
     - CombineExt
     - Differentiator
@@ -208,16 +210,16 @@ SPEC REPOS:
     - RxViewController
     - SFSafeSymbols
     - SnapKit
+    - SSZipArchive
     - SVProgressHUD
     - SwiftDate
-    - SwiftPrettyPrint
 
 SPEC CHECKSUMS:
   AcknowList: 6d4faca4c3e0173377fe5649e086d627cd60b003
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
   CocoaDebug: 61cf93ada6ce8f3407507dc01f9b874d91ac1d5c
-  ColorizeSwift: 4eef354dce7335d7747a0ccacf78afe2b589a1be
+  CocoaLumberjack: 78abfb691154e2a9df8ded4350d504ee19d90732
   CombineCocoa: 68a050228ce7c53c1c5ac2c57cccf92a7f5c5085
   CombineExt: 57d5234da457f4dab303bac37929192cb4d9626f
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
@@ -249,10 +251,10 @@ SPEC CHECKSUMS:
   RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
   SFSafeSymbols: 902576dbf8ea16b4c6152cef2a26e47b3f55defb
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
-  SwiftPrettyPrint: feca848b6aba4de9201e38f73184e9e5ac09da55
 
-PODFILE CHECKSUM: b6e192958f5be09996acb0b3afaa671b2366ec24
+PODFILE CHECKSUM: cba88c825a5914e82adb915eeacc9c7fc4453584
 
 COCOAPODS: 1.12.1

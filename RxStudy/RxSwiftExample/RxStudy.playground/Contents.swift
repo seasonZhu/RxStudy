@@ -373,3 +373,34 @@ replaySubject
 
 replaySubject.onNext("🅰️")
 replaySubject.onNext("🅱️")
+
+@dynamicMemberLookup
+struct JSON {
+    private let value: Any
+    
+    init(_ value: Any) {
+        self.value = value
+    }
+    
+    subscript(dynamicMember member: String) -> JSON {
+        if let dict = value as? [String: Any], let value = dict[member] {
+            return JSON(value)
+        } else {
+            return JSON(NSNull())
+        }
+    }
+    
+    subscript(index: Int) -> JSON {
+        if let array = value as? [Any], array.indices.contains(index) {
+            return JSON(array[index])
+        } else {
+            return JSON(NSNull())
+        }
+    }
+}
+
+let json = JSON(["name": "Tom", "age": 20, "hobbies": ["reading", "swimming"]])
+print(json.name) // 输出 "Tom"
+print(json.age) // 输出 20
+print(json.hobbies[1]) // 输出 "swimming"
+

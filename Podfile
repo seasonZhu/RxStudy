@@ -66,8 +66,14 @@ target 'RxStudy' do
   # 调试
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
-  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
   pod 'FunnyButton', :configurations => ['Debug']
+  
+  # 日志打印与跟踪
+  pod 'CocoaLumberjack/Swift'
+  
+  # 用于日志压缩为zip
+  pod 'SSZipArchive'
+  
   
   # 注意,以下是没有使用的库
   
