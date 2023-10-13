@@ -37,7 +37,7 @@ extension TypeNameProtocol {
         if self is NSObject.Type {
             return className
         } else {
-            return String(className.split(separator: ".").last!)
+            return className.replacingOccurrences(of: "\(nameSpace ?? "").", with: "")
         }
     }
     

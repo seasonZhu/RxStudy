@@ -114,7 +114,8 @@ post_install do |installer|
 end
 =end
 
-# 通过打印RxSwift.Resources.total表示当前的RxSwift中资源使用情况 https://juejin.cn/post/7088692280852217887
+# 通过打印RxSwift.Resources.total表示当前的RxSwift中资源使用情况
+# https://juejin.cn/post/7088692280852217887
 # https://www.jianshu.com/p/671a68870bdf
 post_install do |installer|
     installer.pods_project.targets.each do |target|

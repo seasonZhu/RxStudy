@@ -188,12 +188,16 @@ typealias ErrorStringConvertible = Error & CustomDebugStringConvertible & Custom
 struct SexModel: Codable {
     @GuardEnumType
     var sexType: SexType
+    
+    var sexEnum: SexEnum
 }
 
 
 let SexTypeJSONString = """
 {
-    "sexType": "4"
+    "sexType": "4",
+
+    "sexEnum": "unknow"
 }
 """
 

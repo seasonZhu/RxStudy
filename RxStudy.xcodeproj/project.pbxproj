@@ -54,6 +54,7 @@
 		005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */; };
 		006029722888FF3B0024CC7F /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */; };
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
+		006A358F2AD8E5FC00C9298E /* DefaultEnumCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
 		006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */; };
 		0070157D2918A85500B8E386 /* ShareType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0070157C2918A85500B8E386 /* ShareType.swift */; };
@@ -261,6 +262,7 @@
 		005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandlerType.swift; sourceTree = "<group>"; };
 		006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+BlockingObservable.swift"; sourceTree = "<group>"; };
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
+		006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
 		0070157C2918A85500B8E386 /* ShareType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
@@ -753,6 +755,7 @@
 				004623632989F96A008F0676 /* ExBehaviorRelay.swift */,
 				00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */,
 				00DBD3182A3C3BC400664246 /* ContentScrollView.swift */,
+				006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1352,6 +1355,7 @@
 				0046912C286A94C0000B3C5E /* NavigationUrl.swift in Sources */,
 				00CCD16F2865568200925C1E /* ToolViewModel.swift in Sources */,
 				61F2824B265F8996009E16C9 /* WebViewController.swift in Sources */,
+				006A358F2AD8E5FC00C9298E /* DefaultEnumCodable.swift in Sources */,
 				00890D0228F56E9E00B3E72E /* ACarouselAutoScroll.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
