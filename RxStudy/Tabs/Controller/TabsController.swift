@@ -51,7 +51,7 @@ class TabsController: BaseViewController {
 extension TabsController {
     private func setupUI() {
         title = type.title
-        view.backgroundColor = .playAndroidBg
+        view.backgroundColor = .playAndroidBackground
         
         let _ = getRealString(html: nil, aNumber: 100, other: 3)
         
@@ -73,7 +73,7 @@ extension TabsController {
 
         //4、配置JXSegmentedView的属性
         segmentedView.delegate = self
-        segmentedView.backgroundColor = .playAndroidBg
+        segmentedView.backgroundColor = .playAndroidBackground
         
         view.addSubview(segmentedView)
         segmentedView.snp.makeConstraints { make in

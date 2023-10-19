@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 //MARK: - - LightMode与DarkMode的颜色思路
 extension UIColor {
@@ -31,6 +32,7 @@ extension UIColor {
         } else {
             /// 是我自己小看了这里,因为是一个便利构造函数,所以这里必须使用一级构造函数
             self.init(cgColor: lightThemeColor.cgColor)
+            //self.init(Color(uiColor: lightThemeColor))
         }
     }
 }
@@ -52,5 +54,5 @@ extension UIColor {
     static let playAndroidTitle = UIColor(lightThemeColor: .black, darkThemeColor: .white)
     
     /// 背景颜色 light为白 dark为黑
-    static let playAndroidBg = UIColor(lightThemeColor: .white, darkThemeColor: .black)
+    static let playAndroidBackground = UIColor(lightThemeColor: .white, darkThemeColor: .black)
 }

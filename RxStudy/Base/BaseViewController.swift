@@ -22,7 +22,7 @@ class BaseViewController: UIViewController {
         let imageView = UIImageView(image: R.image.notFound())
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
-        imageView.backgroundColor = .playAndroidBg
+        imageView.backgroundColor = .playAndroidBackground
         return imageView
     }()
     

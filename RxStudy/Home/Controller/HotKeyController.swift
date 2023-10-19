@@ -40,7 +40,7 @@ class HotKeyController: BaseViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .playAndroidBg
+        view.backgroundColor = .playAndroidBackground
         
         navigationItem.titleView = textField
         

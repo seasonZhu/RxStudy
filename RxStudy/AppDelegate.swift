@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         /// 背景色配置
-        window?.backgroundColor = .playAndroidBg
+        window?.backgroundColor = .playAndroidBackground
         
         /// 自动登录
         AccountManager.shared.autoLogin()

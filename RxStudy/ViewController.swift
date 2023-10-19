@@ -46,7 +46,7 @@ class ViewController: UITabBarController {
     private func setupUI() {
         delegate = transform
         
-        view.backgroundColor = .playAndroidBg
+        view.backgroundColor = .playAndroidBackground
         
         navigationItem.rightBarButtonItem = searchButtonItem
         

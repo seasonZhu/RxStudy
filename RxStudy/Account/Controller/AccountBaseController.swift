@@ -65,7 +65,7 @@ class AccountBaseController: BaseViewController {
     }
     
     private func setupUI() {
-        view.backgroundColor = .playAndroidBg
+        view.backgroundColor = .playAndroidBackground
         
         view.addSubview(usernameFiled)
         usernameFiled.snp.makeConstraints { make in
