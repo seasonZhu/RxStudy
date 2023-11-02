@@ -60,3 +60,54 @@ struct ViewMaker<D, V: View>: View {
     }
 }
 
+/*
+struct State {
+    var products: [String] = []
+    var isLoading = false
+}
+
+enum Action {
+    case fetch
+}
+
+@dynamicMemberLookup
+final class Store<State, Action>: ObservableObject {
+    
+    typealias ReduceFunction = (State, Action) -> State
+
+    @Published private var state: State
+    private let reduce: ReduceFunction
+
+    init(
+        initialState state: State,
+        reduce: @escaping ReduceFunction
+    ) {
+        self.state = state
+        self.reduce = reduce
+    }
+
+    subscript<T>(dynamicMember keyPath: KeyPath<State, T>) -> T {
+        state[keyPath: keyPath]
+    }
+
+    func send(_ action: Action) {
+        state = reduce(state, action)
+    }
+
+}
+
+let store: Store<State, Action> = .init(initialState: .init()) { state, action in
+    var state = state
+    switch action {
+        case .fetch:
+        state.isLoading = true
+    }
+    return state
+}
+
+/*
+print(store.isLoading)
+print(store.products)
+print(store.favorites)
+*/
+*/

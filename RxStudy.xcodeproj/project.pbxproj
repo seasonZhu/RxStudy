@@ -10,6 +10,8 @@
 		000023F928E2909900E81BEC /* CoinRankListPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000023F828E2909900E81BEC /* CoinRankListPageCell.swift */; };
 		000139CA2877FE5B00683119 /* ToCodable.json in Resources */ = {isa = PBXBuildFile; fileRef = 000139C92877FE5B00683119 /* ToCodable.json */; };
 		000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000301F5284E047800A41EA6 /* Collection+Extension.swift */; };
+		0008D7212AF383E5006782E6 /* CustomLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */; };
+		0008D7232AF3847F006782E6 /* CustomLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */; };
 		00099E0329026BD7001FC753 /* ObserverType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099E0229026BD7001FC753 /* ObserverType+Extension.swift */; };
 		000D937326DCAC190099A749 /* open.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* open.js */; };
 		0011D5882908C5000041F4FD /* CopyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0011D5872908C5000041F4FD /* CopyActivity.swift */; };
@@ -39,7 +41,7 @@
 		003CA16D29384DE80094A1E0 /* grayMode.js in Resources */ = {isa = PBXBuildFile; fileRef = 003CA16B29384D0A0094A1E0 /* grayMode.js */; };
 		003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16E29385AFA0094A1E0 /* GrayView.swift */; };
 		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
-		004623622989F209008F0676 /* ControllerConstructProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623612989F209008F0676 /* ControllerConstructProtocol.swift */; };
+		004623622989F209008F0676 /* ConstructorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623612989F209008F0676 /* ConstructorProtocol.swift */; };
 		004623642989F96A008F0676 /* ExBehaviorRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623632989F96A008F0676 /* ExBehaviorRelay.swift */; };
 		00469128286A8E58000B3C5E /* Friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 00469127286A8E58000B3C5E /* Friend.json */; };
 		0046912A286A8F0D000B3C5E /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469129286A8F0D000B3C5E /* Friend.swift */; };
@@ -216,6 +218,8 @@
 		000139C82877DC0F00683119 /* RxStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		000139C92877FE5B00683119 /* ToCodable.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToCodable.json; sourceTree = "<group>"; };
 		000301F5284E047800A41EA6 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
+		0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogFormatter.swift; sourceTree = "<group>"; };
+		0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogFileManager.swift; sourceTree = "<group>"; };
 		00099E0229026BD7001FC753 /* ObserverType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObserverType+Extension.swift"; sourceTree = "<group>"; };
 		000D937226DCAC190099A749 /* open.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
 		0011D5872908C5000041F4FD /* CopyActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyActivity.swift; sourceTree = "<group>"; };
@@ -246,7 +250,7 @@
 		003CA16B29384D0A0094A1E0 /* grayMode.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = grayMode.js; sourceTree = "<group>"; };
 		003CA16E29385AFA0094A1E0 /* GrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayView.swift; sourceTree = "<group>"; };
 		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
-		004623612989F209008F0676 /* ControllerConstructProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerConstructProtocol.swift; sourceTree = "<group>"; };
+		004623612989F209008F0676 /* ConstructorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorProtocol.swift; sourceTree = "<group>"; };
 		004623632989F96A008F0676 /* ExBehaviorRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExBehaviorRelay.swift; sourceTree = "<group>"; };
 		00469127286A8E58000B3C5E /* Friend.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Friend.json; sourceTree = "<group>"; };
 		00469129286A8F0D000B3C5E /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -437,6 +441,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0008D71F2AF383AB006782E6 /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */,
+				0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
 		001B4E1828E191F1003ADF95 /* SwiftUIExample */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +670,7 @@
 				61336C6D265640D100FDEB2A /* HttpRequest */,
 				61BB7C47267A057700990636 /* JSONS */,
 				0048E6D1277AAD9700F6C739 /* JavaScript */,
+				0008D71F2AF383AB006782E6 /* Log */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
 				003B6302278FBB5600EA265E /* ImportHeader.swift */,
@@ -780,7 +794,7 @@
 				617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */,
 				00634E8A26E9D4BD00B3350D /* Setter.swift */,
 				00CDD94E2910F02100027A81 /* Theme.swift */,
-				004623612989F209008F0676 /* ControllerConstructProtocol.swift */,
+				004623612989F209008F0676 /* ConstructorProtocol.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -1359,7 +1373,7 @@
 				00890D0228F56E9E00B3E72E /* ACarouselAutoScroll.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
-				004623622989F209008F0676 /* ControllerConstructProtocol.swift in Sources */,
+				004623622989F209008F0676 /* ConstructorProtocol.swift in Sources */,
 				00CCD173286588D400925C1E /* Course.swift in Sources */,
 				6171E18F2665D4190065C34D /* MyController.swift in Sources */,
 				00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */,
@@ -1380,6 +1394,7 @@
 				6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
 				000023F928E2909900E81BEC /* CoinRankListPageCell.swift in Sources */,
+				0008D7232AF3847F006782E6 /* CustomLogFileManager.swift in Sources */,
 				001B4E3228E19BE1003ADF95 /* Refresh.swift in Sources */,
 				001B4E3128E19BE1003ADF95 /* Footer.swift in Sources */,
 				00DC971028F26ADF002CC564 /* AppState.swift in Sources */,
@@ -1402,6 +1417,7 @@
 				611E2E0C26608E00001585AE /* SearcResultController.swift in Sources */,
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				00890CFF28F56E9E00B3E72E /* ACarouselViewModel.swift in Sources */,
+				0008D7212AF383E5006782E6 /* CustomLogFormatter.swift in Sources */,
 				00CDD94F2910F02100027A81 /* Theme.swift in Sources */,
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,

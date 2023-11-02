@@ -122,9 +122,14 @@ extension AppDelegate {
                 
         DDLog.add(DDOSLogger.sharedInstance) // Uses os_log
 
-        let fileLogger = DDFileLogger() // File Logger
+        /// 设置 file logger 的文件管理器为自定义的类
+        let fileLogger = DDFileLogger(logFileManager: CustomLogFileManager()) // File Logger
         fileLogger.rollingFrequency = 60 * 60 * 24 // 24 hours
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+        
+        /// 设置 file logger 的格式器
+        fileLogger.logFormatter = CustomLogFormatter()
+        
         DDLog.add(fileLogger)
         
         /// /var/mobile/Containers/Data/Application/4C9CBFDB-5752-4163-B2F4-8B96F3DB5193/Library/Caches/Logs

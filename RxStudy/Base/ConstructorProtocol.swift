@@ -1,5 +1,5 @@
 //
-//  ControllerConstructProtocol.swift
+//  ConstructorProtocol.swift
 //  RxStudy
 //
 //  Created by dy on 2023/2/1.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-protocol ControllerConstructProtocol {
+protocol ConstructorProtocol {
     func setupUI()
     func binding()
 }
 
-extension ControllerConstructProtocol {
+extension ConstructorProtocol {
     func setupUI() {}
     func binding() {}
 }

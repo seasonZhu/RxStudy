@@ -8,6 +8,8 @@
 
 import Foundation
 
+//MARK: -  继承Codable协议进行处理
+
 /// https://github.com/line/line-sdk-ios-swift/blob/master/LineSDK/LineSDK/Networking/Model/CustomizeCoding/CodingExtension.swift
 
 /// A data structure that can be parsed to a `RawRepresentable` type, with a default case to be used if the received
@@ -37,4 +39,41 @@ enum SexEnum: String {
 
 extension SexEnum: DefaultEnumCodable {
     static let defaultCase: SexEnum = .man
+}
+
+//MARK: -  通过@propertyWrapper进行处理
+
+protocol EnumDefaultType {
+    static var defaultCase: Self { get }
+}
+
+enum SexType: Int {
+    case man
+    case woman
+    case unknow
+}
+
+extension SexType: Codable {}
+
+extension SexType: EnumDefaultType {
+    static let defaultCase = SexType.unknow
+}
+
+@propertyWrapper
+struct GuardEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable, Enum: EnumDefaultType, Enum.RawValue: Codable {
+    var wrappedValue: Enum
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Enum.RawValue.self) {
+            wrappedValue = Enum(rawValue: value) ?? Enum.defaultCase
+        } else {
+            wrappedValue = Enum.defaultCase
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try? container.encode(wrappedValue.rawValue)
+    }
 }

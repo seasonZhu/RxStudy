@@ -46,6 +46,12 @@ class SnapKitLayoutController: BaseViewController {
                 make.top.equalToSuperview().offset(200)
                 make.leading.equalToSuperview().offset(50)
                 make.trailing.equalToSuperview().offset(-50)
+                /*
+                /// low格写法
+                make.right.equalTo(-kScreenWidth * 0.33 - 25)
+                /// 逼格写法
+                make.trailing.equalToSuperview().multipliedBy(0.67).inset(25)
+                 */
             }
         })
         .disposed(by: rx.disposeBag)
