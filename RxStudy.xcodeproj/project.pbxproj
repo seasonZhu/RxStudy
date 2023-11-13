@@ -30,6 +30,7 @@
 		001B4E3828E1A11A003ADF95 /* SimplePullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */; };
 		001B4E3928E1A11A003ADF95 /* SimpleRefreshingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */; };
 		001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */; };
+		001EFFA22B020EE800C8F8C9 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 001EFFA12B020EE800C8F8C9 /* .swiftlint.yml */; };
 		0026AB88290A6AF20023BC6B /* OtherApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0026AB87290A6AF20023BC6B /* OtherApp.swift */; };
 		002A0055290152F500A872E0 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002A0054290152F500A872E0 /* SubscriptionToken.swift */; };
 		002CCE6528AA263D0086110E /* ButtonRxTapBugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */; };
@@ -238,6 +239,7 @@
 		001B4E3628E1A11A003ADF95 /* SimplePullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimplePullToRefreshView.swift; sourceTree = "<group>"; };
 		001B4E3728E1A11A003ADF95 /* SimpleRefreshingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleRefreshingView.swift; sourceTree = "<group>"; };
 		001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		001EFFA12B020EE800C8F8C9 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		0026AB87290A6AF20023BC6B /* OtherApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherApp.swift; sourceTree = "<group>"; };
 		002A0054290152F500A872E0 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRxTapBugController.swift; sourceTree = "<group>"; };
@@ -679,6 +681,7 @@
 				612DBF5F220022BA007F73CC /* Main.storyboard */,
 				612DBF64220022BE007F73CC /* LaunchScreen.storyboard */,
 				612DBF67220022BE007F73CC /* Info.plist */,
+				001EFFA12B020EE800C8F8C9 /* .swiftlint.yml */,
 				008598C127B4E0DA003E9EF7 /* InfoPlist.strings */,
 				6194601026B12D2200A66F77 /* README.md */,
 				6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */,
@@ -1120,6 +1123,7 @@
 				612DBF55220022BA007F73CC /* Frameworks */,
 				612DBF56220022BA007F73CC /* Resources */,
 				0460F2413F12E891719D5EFC /* [CP] Embed Pods Frameworks */,
+				001EFFA02B020E9A00C8F8C9 /* SwiftLint Run Script */,
 			);
 			buildRules = (
 			);
@@ -1188,6 +1192,7 @@
 				6114ABEF267AD6CD0082BA67 /* MyCoin.json in Resources */,
 				61BB7C69267A057700990636 /* Tree.json in Resources */,
 				61BB7C5C267A057700990636 /* MyCollectList.json in Resources */,
+				001EFFA22B020EE800C8F8C9 /* .swiftlint.yml in Resources */,
 				61BB7C66267A057700990636 /* MyCoinList.json in Resources */,
 				6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */,
 				6194601126B12D2200A66F77 /* README.md in Resources */,
@@ -1218,6 +1223,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		001EFFA02B020E9A00C8F8C9 /* SwiftLint Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n#export PATH=\"$PATH:/opt/homebrew/bin\"\n#if which swiftlint > /dev/null; then\n  #swiftlint\n#else\n  #echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
+		};
 		0460F2413F12E891719D5EFC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

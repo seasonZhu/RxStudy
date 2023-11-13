@@ -139,8 +139,10 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
 
-  /// This `R.file` struct is generated, and contains static references to 30 files.
+  /// This `R.file` struct is generated, and contains static references to 31 files.
   struct file {
+    /// Resource file `.swiftlint.yml`.
+    static let swiftlintYml = Rswift.FileResource(bundle: R.hostingBundle, name: ".swiftlint", pathExtension: "yml")
     /// Resource file `AMapLocation.json`.
     static let aMapLocationJson = Rswift.FileResource(bundle: R.hostingBundle, name: "AMapLocation", pathExtension: "json")
     /// Resource file `ArticleNormalList.json`.
@@ -201,6 +203,12 @@ struct R: Rswift.Validatable {
     static let grayModeJs = Rswift.FileResource(bundle: R.hostingBundle, name: "grayMode", pathExtension: "js")
     /// Resource file `open.js`.
     static let openJs = Rswift.FileResource(bundle: R.hostingBundle, name: "open", pathExtension: "js")
+
+    /// `bundle.url(forResource: ".swiftlint", withExtension: "yml")`
+    static func swiftlintYml(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.swiftlintYml
+      return fileResource.bundle.url(forResource: fileResource)
+    }
 
     /// `bundle.url(forResource: "AMapLocation", withExtension: "json")`
     static func aMapLocationJson(_: Void = ()) -> Foundation.URL? {
