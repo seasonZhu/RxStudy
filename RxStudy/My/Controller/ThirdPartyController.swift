@@ -35,7 +35,7 @@ extension ThirdPartyController {
         
         tableView.rowHeight = 44
         
-        let list = AcknowParser(plistPath: defaultAcknowledgementsPlistPath()!).parseAcknowledgements()
+        let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []//AcknowParser(plistPath: defaultAcknowledgementsPlistPath()!).parseAcknowledgements()
         
         dataSource.accept(list)
         

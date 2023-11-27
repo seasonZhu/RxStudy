@@ -27,37 +27,30 @@ import UIKit
 @available(iOSApplicationExtension, unavailable)
 @objc open class IQBarButtonItem: UIBarButtonItem {
 
-    private static var _classInitialize: Void = classInitialize()
-
     @objc public override init() {
-        _ = IQBarButtonItem._classInitialize
-          super.init()
-      }
+        super.init()
+        initialize()
+    }
 
     @objc public required init?(coder aDecoder: NSCoder) {
-        _ = IQBarButtonItem._classInitialize
-           super.init(coder: aDecoder)
-       }
+        super.init(coder: aDecoder)
+        initialize()
+    }
 
-    private class func classInitialize() {
+    private func initialize() {
 
-        let  appearanceProxy = self.appearance()
-
-        let states: [UIControl.State]
-
-        states = [.normal, .highlighted, .disabled, .selected, .application, .reserved]
+        let states: [UIControl.State] = [.normal, .highlighted, .disabled, .focused]
 
         for state in states {
 
-            appearanceProxy.setBackgroundImage(nil, for: state, barMetrics: .default)
-            appearanceProxy.setBackgroundImage(nil, for: state, style: .done, barMetrics: .default)
-            appearanceProxy.setBackgroundImage(nil, for: state, style: .plain, barMetrics: .default)
-            appearanceProxy.setBackButtonBackgroundImage(nil, for: state, barMetrics: .default)
+            setBackgroundImage(UIImage(), for: state, barMetrics: .default)
+            setBackgroundImage(UIImage(), for: state, style: .plain, barMetrics: .default)
+            setBackButtonBackgroundImage(UIImage(), for: state, barMetrics: .default)
         }
 
-        appearanceProxy.setTitlePositionAdjustment(UIOffset(), for: .default)
-        appearanceProxy.setBackgroundVerticalPositionAdjustment(0, for: .default)
-        appearanceProxy.setBackButtonBackgroundVerticalPositionAdjustment(0, for: .default)
+        setTitlePositionAdjustment(UIOffset(), for: .default)
+        setBackgroundVerticalPositionAdjustment(0, for: .default)
+        setBackButtonBackgroundVerticalPositionAdjustment(0, for: .default)
     }
 
     @objc override open var tintColor: UIColor? {
@@ -98,10 +91,22 @@ import UIKit
     /**
      Customized Invocation to be called when button is pressed. invocation is internally created using setTarget:action: method.
      */
-    @objc open var invocation: IQInvocation?
+    @objc open var invocation: IQInvocation? {
+        didSet {
+            // We have to put this condition here because if we override this function then
+            // We were getting "Cannot override '_' which has been marked unavailable" in Xcode 15
+            if let titleBarButton = self as? IQTitleBarButtonItem {
 
-    deinit {
-        target = nil
-        invocation = nil
+                if let target = invocation?.target, let action = invocation?.action {
+                    titleBarButton.isEnabled = true
+                    titleBarButton.titleButton?.isEnabled = true
+                    titleBarButton.titleButton?.addTarget(target, action: action, for: .touchUpInside)
+                } else {
+                    titleBarButton.isEnabled = false
+                    titleBarButton.titleButton?.isEnabled = false
+                    titleBarButton.titleButton?.removeTarget(nil, action: nil, for: .touchUpInside)
+                }
+            }
+        }
     }
 }

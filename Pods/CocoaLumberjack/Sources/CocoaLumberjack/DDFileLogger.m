@@ -1,6 +1,6 @@
 // Software License Agreement (BSD License)
 //
-// Copyright (c) 2010-2022, Deusty, LLC
+// Copyright (c) 2010-2023, Deusty, LLC
 // All rights reserved.
 //
 // Redistribution and use of this software in source and binary forms,
@@ -18,6 +18,9 @@
 #endif
 
 #import <sys/xattr.h>
+#import <sys/file.h>
+#import <errno.h>
+#import <unistd.h>
 
 #import "DDFileLogger+Internal.h"
 
@@ -50,6 +53,23 @@ unsigned long long const kDDDefaultLogFilesDiskQuota   = 20 * 1024 * 1024; // 20
 
 NSTimeInterval     const kDDRollingLeeway              = 1.0;              // 1s
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+#pragma mark -
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+@implementation DDFileLogPlainTextMessageSerializer
+
+- (instancetype)init {
+    return [super init];
+}
+
+- (NSData *)dataForString:(NSString *)string originatingFromMessage:(DDLogMessage *)message {
+    return [string dataUsingEncoding:NSUTF8StringEncoding];
+}
+
+@end
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #pragma mark -
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,6 +90,7 @@ NSTimeInterval     const kDDRollingLeeway              = 1.0;              // 1s
 
 @synthesize maximumNumberOfLogFiles = _maximumNumberOfLogFiles;
 @synthesize logFilesDiskQuota = _logFilesDiskQuota;
+@synthesize logMessageSerializer = _logMessageSerializer;
 
 - (instancetype)init {
     return [self initWithLogsDirectory:nil];
@@ -90,6 +111,8 @@ NSTimeInterval     const kDDRollingLeeway              = 1.0;              // 1s
         } else {
             _logsDirectory = [[self defaultLogsDirectory] copy];
         }
+
+        _logMessageSerializer = [[DDFileLogPlainTextMessageSerializer alloc] init];
 
         NSLogVerbose(@"DDFileLogManagerDefault: logsDirectory:\n%@", [self logsDirectory]);
         NSLogVerbose(@"DDFileLogManagerDefault: sortedLogFileNames:\n%@", [self sortedLogFileNames]);
@@ -427,7 +450,7 @@ NSTimeInterval     const kDDRollingLeeway              = 1.0;              // 1s
         fileHeaderStr = [fileHeaderStr stringByAppendingString:@"\n"];
     }
 
-    return [fileHeaderStr dataUsingEncoding:NSUTF8StringEncoding];
+    return [_logMessageSerializer dataForString:fileHeaderStr originatingFromMessage:nil];
 }
 
 - (NSString *)createNewLogFileWithError:(NSError *__autoreleasing  _Nullable *)error {
@@ -703,7 +726,7 @@ NSTimeInterval     const kDDRollingLeeway              = 1.0;              // 1s
     dispatch_block_t block = ^{
         @autoreleasepool {
             self->_maximumFileSize = newMaximumFileSize;
-            if (self->_currentLogFileHandle != nil || [self lt_currentLogFileHandle] != nil) {
+            if (self->_currentLogFileHandle != nil) {
                 [self lt_maybeRollLogFileDueToSize];
             }
         }
@@ -762,7 +785,7 @@ NSTimeInterval     const kDDRollingLeeway              = 1.0;              // 1s
     dispatch_block_t block = ^{
         @autoreleasepool {
             self->_rollingFrequency = newRollingFrequency;
-            if (self->_currentLogFileHandle != nil || [self lt_currentLogFileHandle] != nil) {
+            if (self->_currentLogFileHandle != nil) {
                 [self lt_maybeRollLogFileDueToAge];
             }
         }
@@ -1137,6 +1160,13 @@ NSTimeInterval     const kDDRollingLeeway              = 1.0;              // 1s
     NSAssert([self isOnInternalLoggerQueue], @"lt_ methods should be on logger queue.");
     NSAssert(_currentLogFileHandle, @"Can not monitor without handle.");
 
+    // This seems to work around crashes when an active source is replaced / released.
+    // See https://github.com/CocoaLumberjack/CocoaLumberjack/issues/1341
+    // And https://stackoverflow.com/questions/36296528/what-does-this-dispatch-xref-dispose-error-mean
+    if (_currentLogFileVnode) {
+        dispatch_source_cancel(_currentLogFileVnode);
+    }
+
     _currentLogFileVnode = dispatch_source_create(DISPATCH_SOURCE_TYPE_VNODE,
                                                   (uintptr_t)[_currentLogFileHandle fileDescriptor],
                                                   DISPATCH_VNODE_DELETE | DISPATCH_VNODE_RENAME | DISPATCH_VNODE_REVOKE,
@@ -1319,7 +1349,7 @@ static int exception_count = 0;
         implementsDeprecatedDidLog = [self respondsToSelector:@selector(didLogMessage)];
     });
 
-    NSAssert([self isOnInternalLoggerQueue], @"logMessage should only be executed on internal queue.");
+    NSAssert([self isOnInternalLoggerQueue], @"lt_logData should only be executed on internal queue.");
 
     if (data.length == 0) {
         return;
@@ -1338,6 +1368,12 @@ static int exception_count = 0;
             [self willLogMessage:_currentLogFileInfo];
         }
 
+        // use an advisory lock to coordinate write with other processes
+        int fd = [handle fileDescriptor];
+        while(flock(fd, LOCK_EX) != 0) {
+            NSLogError(@"DDFileLogger: Could not lock logfile, retrying in 1ms: %s (%d)", strerror(errno), errno);
+            usleep(1000);
+        }
         if (@available(macOS 10.15, iOS 13.0, tvOS 13.0, watchOS 6.0, *)) {
             __autoreleasing NSError *error = nil;
             BOOL success = [handle seekToEndReturningOffset:nil error:&error];
@@ -1352,6 +1388,7 @@ static int exception_count = 0;
             [handle seekToEndOfFile];
             [handle writeData:data];
         }
+        flock(fd, LOCK_UN);
 
         if (implementsDeprecatedDidLog) {
 #pragma clang diagnostic push
@@ -1375,27 +1412,35 @@ static int exception_count = 0;
     }
 }
 
-- (NSData *)lt_dataForMessage:(DDLogMessage *)logMessage {
-    NSAssert([self isOnInternalLoggerQueue], @"logMessage should only be executed on internal queue.");
+- (id <DDFileLogMessageSerializer>)lt_logFileSerializer {
+    if ([_logFileManager respondsToSelector:@selector(logMessageSerializer)]) {
+        return _logFileManager.logMessageSerializer;
+    } else {
+        return [[DDFileLogPlainTextMessageSerializer alloc] init];
+    }
+}
 
-    NSString *message = logMessage->_message;
-    BOOL isFormatted = NO;
+- (NSData *)lt_dataForMessage:(DDLogMessage *)logMessage {
+    NSAssert([self isOnInternalLoggerQueue], @"lt_dataForMessage should only be executed on internal queue.");
+
+    __auto_type messageString = logMessage->_message;
+    __auto_type isFormatted = NO;
 
     if (_logFormatter != nil) {
-        message = [_logFormatter formatLogMessage:logMessage];
-        isFormatted = message != logMessage->_message;
+        messageString = [_logFormatter formatLogMessage:logMessage];
+        isFormatted = messageString != logMessage->_message;
     }
 
-    if (message.length == 0) {
+    if (messageString.length == 0) {
         return nil;
     }
 
-    BOOL shouldFormat = !isFormatted || _automaticallyAppendNewlineForCustomFormatters;
-    if (shouldFormat && ![message hasSuffix:@"\n"]) {
-        message = [message stringByAppendingString:@"\n"];
+    __auto_type shouldFormat = !isFormatted || _automaticallyAppendNewlineForCustomFormatters;
+    if (shouldFormat && ![messageString hasSuffix:@"\n"]) {
+        messageString = [messageString stringByAppendingString:@"\n"];
     }
 
-    return [message dataUsingEncoding:NSUTF8StringEncoding];
+    return [[self lt_logFileSerializer] dataForString:messageString originatingFromMessage:logMessage];
 }
 
 @end
@@ -1419,12 +1464,9 @@ static NSString * const kDDXAttrArchivedName = @"lumberjack.log.archived";
 }
 
 #if TARGET_IPHONE_SIMULATOR
-
 // Old implementation of extended attributes on the simulator.
-
 - (BOOL)_hasExtensionAttributeWithName:(NSString *)attrName;
 - (void)_removeExtensionAttributeWithName:(NSString *)attrName;
-
 #endif
 
 @end
@@ -1730,15 +1772,15 @@ static NSString *_xattrToExtensionName(NSString *attrName) {
 
     if (result < 0) {
         if (errno != ENOENT) {
-            NSLogError(@"DDLogFileInfo: setxattr(%@, %@): error = %s",
+            NSLogError(@"DDLogFileInfo: setxattr(%@, %@): error = %@",
                        attrName,
                        filePath,
-                       strerror(errno));
+                       @(strerror(errno)));
         } else {
-            NSLogDebug(@"DDLogFileInfo: File does not exist in setxattr(%@, %@): error = %s",
+            NSLogDebug(@"DDLogFileInfo: File does not exist in setxattr(%@, %@): error = %@",
                        attrName,
                        filePath,
-                       strerror(errno));
+                       @(strerror(errno)));
         }
     }
 #if TARGET_IPHONE_SIMULATOR
@@ -1755,10 +1797,10 @@ static NSString *_xattrToExtensionName(NSString *attrName) {
     int result = removexattr(path, name, 0);
 
     if (result < 0 && errno != ENOATTR) {
-        NSLogError(@"DDLogFileInfo: removexattr(%@, %@): error = %s",
+        NSLogError(@"DDLogFileInfo: removexattr(%@, %@): error = %@",
                    attrName,
                    self.fileName,
-                   strerror(errno));
+                   @(strerror(errno)));
     }
 
 #if TARGET_IPHONE_SIMULATOR
@@ -1784,16 +1826,21 @@ static NSString *_xattrToExtensionName(NSString *attrName) {
     return [filePath hash];
 }
 
+- (NSComparisonResult)reverseCompareDatesUs:(NSDate *_Nullable)us them:(NSDate *_Nullable)them {
+    if (us != nil && them != nil) {
+        return [them compare:(NSDate * _Nonnull)us];
+    } else if (us == nil && them == nil) {
+       return NSOrderedSame;
+    }
+    return them == nil ? NSOrderedAscending : NSOrderedDescending;
+}
+
 - (NSComparisonResult)reverseCompareByCreationDate:(DDLogFileInfo *)another {
-    __auto_type us = [self creationDate];
-    __auto_type them = [another creationDate];
-    return [them compare:us];
+    return [self reverseCompareDatesUs:[self creationDate] them:[another creationDate]];
 }
 
 - (NSComparisonResult)reverseCompareByModificationDate:(DDLogFileInfo *)another {
-    __auto_type us = [self modificationDate];
-    __auto_type them = [another modificationDate];
-    return [them compare:us];
+    return [self reverseCompareDatesUs:[self modificationDate] them:[another modificationDate]];
 }
 
 @end
@@ -1806,7 +1853,11 @@ static NSString *_xattrToExtensionName(NSString *attrName) {
  * want (even if device is locked). Thats why that attribute have to be changed to
  * NSFileProtectionCompleteUntilFirstUserAuthentication.
  */
-BOOL doesAppRunInBackground() {
+BOOL doesAppRunInBackground(void) {
+    if ([[[NSBundle mainBundle] executablePath] containsString:@".appex/"]) {
+        return YES;
+    }
+
     BOOL answer = NO;
 
     NSArray *backgroundModes = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"UIBackgroundModes"];

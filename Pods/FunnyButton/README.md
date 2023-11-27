@@ -1,29 +1,38 @@
 # FunnyButton
 
-## Example
-
 在平时开发，运行期间有时候想中途看一下某个视图或变量的信息，虽说打断点是可以查看，但有时候断点调试有时候会卡住好一会才能看到（尤其是大项目经常卡很久），极度影响效率。
 
-基于这种情况，`FunnyButton`就是为了能够便捷调试的全局按钮，添加好点击事件，就能随时点击查看某个视图或变量的信息，又可以直接调试某些函数。
+基于这种情况，`FunnyButton`就是为了能够便捷调试的全局按钮，添加好调试事件，就能随时点击查看某个视图或变量的信息，又可以直接调试某些函数。
 
     Feature：
         ✅ 位于Window层级，不会被app内的界面覆盖；
         ✅ 自适应安全区域，自动靠边，适配横竖屏；
-        ✅ 可执行单个/多个点击事件；
+        ✅ 可执行单个/多个调试事件；
+        ✅ 兼容`iPhone`&`iPad`；
         ✅ 兼容Objective-C环境调试；
-        ✅ 仅限DEBUG环境；
         ✅ API简单易用。
+
+`SwiftUI`版本：[FunnyButton_SwiftUI](https://github.com/Rogue24/FunnyButton_SwiftUI)
+
+## Effect
+- 单个调试事件
+
+![single_action](https://github.com/Rogue24/JPCover/raw/master/FunnyButton_SwiftUI/single_action.gif)
+
+- 多个调试事件
+
+![multiple_actions](https://github.com/Rogue24/JPCover/raw/master/FunnyButton_SwiftUI/multiple_actions.gif)
 
 ## Basic use
 
-为了兼容OC，基于`NSObject`的扩展提供给所有基类设置点击事件的接口，以`UIViewController`为例：
+为了兼容OC，基于`NSObject`的扩展提供给所有基类设置调试事件的接口，以`UIViewController`为例：
 
 - Swift
 ```swift
 // 建议初始化好页面时设置
 override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    // 设置点击事件
+    // 设置调试事件
     replaceFunnyAction {
         // 注意内存泄漏：闭包内部用到`self`记得使用`[weak self]`
         print("点我干森莫")
@@ -33,7 +42,7 @@ override func viewDidAppear(_ animated: Bool) {
 // 建议页面即将消失时移除这些事件
 override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    // 移除点击事件
+    // 移除调试事件
     removeFunnyActions()
 }
 ```
@@ -43,7 +52,7 @@ override func viewWillDisappear(_ animated: Bool) {
 // 建议初始化好页面时设置
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    // 设置点击事件
+    // 设置调试事件
     [self replaceFunnyActionWithWork:^{
         // 注意内存泄漏：闭包内部用到`self`记得使用`__weak`
         NSLog(@"点我干森莫");
@@ -53,7 +62,7 @@ override func viewWillDisappear(_ animated: Bool) {
 // 建议页面即将消失时移除这些事件
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    // 移除点击事件
+    // 移除调试事件
     [self removeFunnyActions];
 }
 ```
@@ -146,7 +155,7 @@ FunnyButton is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'FunnyButton'
+pod 'FunnyButton', :configurations => ['Debug']
 ```
 
 ## Author

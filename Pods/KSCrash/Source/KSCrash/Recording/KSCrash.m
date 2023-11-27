@@ -58,7 +58,7 @@
 @end
 
 
-static NSString* getBundleName()
+static NSString* getBundleName(void)
 {
     NSString* bundleName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleName"];
     if(bundleName == nil)
@@ -68,7 +68,7 @@ static NSString* getBundleName()
     return bundleName;
 }
 
-static NSString* getBasePath()
+static NSString* getBasePath(void)
 {
     NSArray* directories = NSSearchPathForDirectoriesInDomains(NSCachesDirectory,
                                                                NSUserDomainMask,
@@ -649,7 +649,7 @@ SYNTHESIZE_CRASH_STATE_PROPERTY(BOOL, crashedLastLaunch)
 
 
 //! Project version number for KSCrashFramework.
-const double KSCrashFrameworkVersionNumber = 1.1527;
+const double KSCrashFrameworkVersionNumber = 1.1602;
 
 //! Project version string for KSCrashFramework.
-const unsigned char KSCrashFrameworkVersionString[] = "1.15.27";
+const unsigned char KSCrashFrameworkVersionString[] = "1.16.2";

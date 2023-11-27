@@ -30,9 +30,18 @@ internal extension FunnyButton {
             fatalError("init(coder:) has not been implemented")
         }
         
-        override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        /// 📢 对于`UIWindow`的特殊处理：
+        public override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
             guard !isHidden, subviews.count > 0 else { return nil }
             for subview in subviews.reversed() where !subview.isHidden && subview.alpha > 0.01 && subview.frame.contains(point) {
+                /// 由于`UIWindow`会存在系统添加的一些私有类，例如`UITransitionView`，占全屏区域，是`rootVC.presentedVC.view`的父视图。
+                /// 但在iPad端，当`rootVC.presentedVC`为空时，`UITransitionView`则会放入`UIDropShadowView`，
+                /// `UIDropShadowView`是私有类，也是占全屏并且能响应手势（应该是专门处理拖拽事件），阻拦了手势的穿透，
+                /// 因此需要对此进行【过滤】判定。
+                if rootViewController?.presentedViewController == nil, let cls = NSClassFromString("UITransitionView"), subview.isKind(of: cls) {
+                    continue
+                }
+                
                 let subPoint = convert(point, to: subview)
                 guard let rspView = subview.hitTest(subPoint, with: event) else { continue }
                 return rspView

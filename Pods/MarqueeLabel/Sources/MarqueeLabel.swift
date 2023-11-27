@@ -1337,7 +1337,7 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
     */
     public func triggerScrollStart() {
         if labelShouldScroll() && !awayFromHome {
-            updateAndScroll()
+            updateAndScroll(overrideHold: true)
         }
     }
     
@@ -1529,18 +1529,6 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
     //
     // MARK: - Modified UILabel Functions/Getters/Setters
     //
-    
-    #if os(iOS)
-    override open func forBaselineLayout() -> UIView {
-        // Use subLabel view for handling baseline layouts
-        return sublabel
-    }
-    
-    override open var forLastBaselineLayout: UIView {
-        // Use subLabel view for handling baseline layouts
-        return sublabel
-    }
-    #endif
 
     override open var text: String? {
         get {
@@ -1723,6 +1711,73 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
     open override var isAccessibilityElement: Bool {
         didSet {
             sublabel.isAccessibilityElement = self.isAccessibilityElement
+        }
+    }
+    
+    open override var adjustsFontForContentSizeCategory: Bool {
+        get {
+            return sublabel.adjustsFontForContentSizeCategory
+        }
+        set {
+            if sublabel.adjustsFontForContentSizeCategory == newValue {
+                return
+            }
+            sublabel.adjustsFontForContentSizeCategory = newValue
+            super.adjustsFontForContentSizeCategory = newValue
+            
+            updateAndScroll()
+        }
+    }
+    
+    //
+    // MARK: - Version Specific Properties
+    //
+    #if os(iOS)
+    override open func forBaselineLayout() -> UIView {
+        // Use subLabel view for handling baseline layouts
+        return sublabel
+    }
+
+    override open var forLastBaselineLayout: UIView {
+        // Use subLabel view for handling baseline layouts
+        return sublabel
+    }
+    #endif
+    
+    @available(iOS 15.0, tvOS 15.0, *)
+    open override var minimumContentSizeCategory: UIContentSizeCategory? {
+        get {
+            return sublabel.minimumContentSizeCategory
+        }
+        set {
+            if sublabel.minimumContentSizeCategory == newValue {
+                return
+            }
+            sublabel.minimumContentSizeCategory = newValue
+            super.minimumContentSizeCategory = newValue
+            
+            updateAndScroll()
+        }
+    }
+    
+    @available(iOS 15.0, tvOS 15.0, *)
+    open override var appliedContentSizeCategoryLimitsDescription: String {
+        return sublabel.appliedContentSizeCategoryLimitsDescription
+    }
+    
+    @available(iOS 15.0, tvOS 15.0, *)
+    open override var maximumContentSizeCategory: UIContentSizeCategory? {
+        get {
+            return sublabel.maximumContentSizeCategory
+        }
+        set {
+            if sublabel.maximumContentSizeCategory == newValue {
+                return
+            }
+            sublabel.maximumContentSizeCategory = newValue
+            super.maximumContentSizeCategory = newValue
+            
+            updateAndScroll()
         }
     }
 

@@ -14,6 +14,8 @@
 #import "NSObject+CocoaDebug.h"
 #import "CocoaDebug.h"
 #import "CocoaDebugDeviceInfo.h"
+#import "_DeviceUtil+Constant.h"
+#import "_DeviceUtil.h"
 #import "_CacheStoragePolicy.h"
 #import "_CanonicalRequest.h"
 #import "_CustomHTTPProtocol.h"

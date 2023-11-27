@@ -1,7 +1,7 @@
 //
 // AcknowViewController.swift
 //
-// Copyright (c) 2015-2021 Vincent Tourraine (https://www.vtourraine.net)
+// Copyright (c) 2015-2022 Vincent Tourraine (https://www.vtourraine.net)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if os(iOS) || os(tvOS)
 import UIKit
 
 /// Subclass of `UIViewController` that displays a single acknowledgement.
+@available(iOS 9.0.0, tvOS 9.0.0, *)
 open class AcknowViewController: UIViewController {
 
     /// The main text view.
@@ -34,10 +36,8 @@ open class AcknowViewController: UIViewController {
 
     /**
      Initializes the `AcknowViewController` instance with an acknowledgement.
-
-     - parameter acknowledgement: The represented acknowledgement.
-
-     - returns: The new `AcknowViewController` instance.
+     - Parameter acknowledgement: The represented acknowledgement.
+     - Returns: The new `AcknowViewController` instance.
      */
     public init(acknowledgement: Acknow) {
         super.init(nibName: nil, bundle: nil)
@@ -48,10 +48,8 @@ open class AcknowViewController: UIViewController {
 
     /**
      Initializes the `AcknowViewController` instance with a coder.
-
-     - parameter aDecoder: The archive coder.
-
-     - returns: The new `AcknowViewController` instance.
+     - Parameter aDecoder: The archive coder.
+     - Returns: The new `AcknowViewController` instance.
      */
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -106,6 +104,8 @@ open class AcknowViewController: UIViewController {
     }
 
     func updateTextViewInsets(_ textView: UITextView) {
-        textView.textContainerInset = UIEdgeInsets(top: DefaultMarginTopBottom, left: view.layoutMargins.left, bottom: DefaultMarginTopBottom, right: view.layoutMargins.right)
+        textView.textContainerInset = UIEdgeInsets(top: DefaultMarginTopBottom, left: view.readableContentGuide.layoutFrame.minX, bottom: DefaultMarginTopBottom, right: view.frame.width - view.readableContentGuide.layoutFrame.maxX)
     }
 }
+
+#endif

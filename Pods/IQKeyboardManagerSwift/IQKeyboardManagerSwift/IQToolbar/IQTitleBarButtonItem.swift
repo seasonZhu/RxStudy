@@ -24,7 +24,7 @@
 import UIKit
 
 @available(iOSApplicationExtension, unavailable)
-open class IQTitleBarButtonItem: IQBarButtonItem {
+@objc open class IQTitleBarButtonItem: IQBarButtonItem {
 
     @objc open var titleFont: UIFont? {
 
@@ -77,25 +77,6 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
         }
     }
 
-    /**
-     Customized Invocation to be called on title button action. titleInvocation is internally created using setTitleTarget:action: method.
-     */
-    @objc override open var invocation: IQInvocation? {
-
-        didSet {
-
-            if let target = invocation?.target, let action = invocation?.action {
-                self.isEnabled = true
-                titleButton?.isEnabled = true
-                titleButton?.addTarget(target, action: action, for: .touchUpInside)
-            } else {
-                self.isEnabled = false
-                titleButton?.isEnabled = false
-                titleButton?.removeTarget(nil, action: nil, for: .touchUpInside)
-            }
-        }
-    }
-
     internal var titleButton: UIButton?
     private var _titleView: UIView?
 
@@ -126,45 +107,32 @@ open class IQTitleBarButtonItem: IQBarButtonItem {
         titleButton?.titleLabel?.font = self.titleFont
         _titleView?.addSubview(titleButton!)
 
-        if #available(iOS 11, *) {
+        let layoutDefaultLowPriority = UILayoutPriority(rawValue: UILayoutPriority.defaultLow.rawValue-1)
+        let layoutDefaultHighPriority = UILayoutPriority(rawValue: UILayoutPriority.defaultHigh.rawValue-1)
 
-            let layoutDefaultLowPriority = UILayoutPriority(rawValue: UILayoutPriority.defaultLow.rawValue-1)
-            let layoutDefaultHighPriority = UILayoutPriority(rawValue: UILayoutPriority.defaultHigh.rawValue-1)
+        _titleView?.translatesAutoresizingMaskIntoConstraints = false
+        _titleView?.setContentHuggingPriority(layoutDefaultLowPriority, for: .vertical)
+        _titleView?.setContentHuggingPriority(layoutDefaultLowPriority, for: .horizontal)
+        _titleView?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .vertical)
+        _titleView?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .horizontal)
 
-            _titleView?.translatesAutoresizingMaskIntoConstraints = false
-            _titleView?.setContentHuggingPriority(layoutDefaultLowPriority, for: .vertical)
-            _titleView?.setContentHuggingPriority(layoutDefaultLowPriority, for: .horizontal)
-            _titleView?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .vertical)
-            _titleView?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .horizontal)
+        titleButton?.translatesAutoresizingMaskIntoConstraints = false
+        titleButton?.setContentHuggingPriority(layoutDefaultLowPriority, for: .vertical)
+        titleButton?.setContentHuggingPriority(layoutDefaultLowPriority, for: .horizontal)
+        titleButton?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .vertical)
+        titleButton?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .horizontal)
 
-            titleButton?.translatesAutoresizingMaskIntoConstraints = false
-            titleButton?.setContentHuggingPriority(layoutDefaultLowPriority, for: .vertical)
-            titleButton?.setContentHuggingPriority(layoutDefaultLowPriority, for: .horizontal)
-            titleButton?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .vertical)
-            titleButton?.setContentCompressionResistancePriority(layoutDefaultHighPriority, for: .horizontal)
+        let top = NSLayoutConstraint.init(item: titleButton!, attribute: .top, relatedBy: .equal, toItem: _titleView, attribute: .top, multiplier: 1, constant: 0)
+        let bottom = NSLayoutConstraint.init(item: titleButton!, attribute: .bottom, relatedBy: .equal, toItem: _titleView, attribute: .bottom, multiplier: 1, constant: 0)
+        let leading = NSLayoutConstraint.init(item: titleButton!, attribute: .leading, relatedBy: .equal, toItem: _titleView, attribute: .leading, multiplier: 1, constant: 0)
+        let trailing = NSLayoutConstraint.init(item: titleButton!, attribute: .trailing, relatedBy: .equal, toItem: _titleView, attribute: .trailing, multiplier: 1, constant: 0)
 
-            let top = NSLayoutConstraint.init(item: titleButton!, attribute: .top, relatedBy: .equal, toItem: _titleView, attribute: .top, multiplier: 1, constant: 0)
-            let bottom = NSLayoutConstraint.init(item: titleButton!, attribute: .bottom, relatedBy: .equal, toItem: _titleView, attribute: .bottom, multiplier: 1, constant: 0)
-            let leading = NSLayoutConstraint.init(item: titleButton!, attribute: .leading, relatedBy: .equal, toItem: _titleView, attribute: .leading, multiplier: 1, constant: 0)
-            let trailing = NSLayoutConstraint.init(item: titleButton!, attribute: .trailing, relatedBy: .equal, toItem: _titleView, attribute: .trailing, multiplier: 1, constant: 0)
-
-            _titleView?.addConstraints([top, bottom, leading, trailing])
-        } else {
-            _titleView?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-            titleButton?.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        }
+        _titleView?.addConstraints([top, bottom, leading, trailing])
 
         customView = _titleView
     }
 
     @objc required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-
-    deinit {
-        customView = nil
-        titleButton?.removeTarget(nil, action: nil, for: .touchUpInside)
-        _titleView = nil
-        titleButton = nil
     }
 }

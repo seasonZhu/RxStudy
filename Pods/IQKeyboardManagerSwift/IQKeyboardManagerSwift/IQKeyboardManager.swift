@@ -43,7 +43,7 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
     /**
      Invalid point value.
      */
-    internal static let  kIQCGPointInvalid = CGPoint.init(x: CGFloat.greatestFiniteMagnitude, y: CGFloat.greatestFiniteMagnitude)
+    internal static let kIQCGPointInvalid = CGPoint.init(x: CGFloat.greatestFiniteMagnitude, y: CGFloat.greatestFiniteMagnitude)
 
     // MARK: UIKeyboard handling
 
@@ -53,14 +53,14 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
     @objc public var enable = false {
 
         didSet {
-            //If not enable, enable it.
+            // If not enable, enable it.
             if enable, !oldValue {
-                //If keyboard is currently showing. Sending a fake notification for keyboardWillHide to retain view's original position.
+                // If keyboard is currently showing. Sending a fake notification for keyboardWillHide to retain view's original position.
                 if let notification = keyboardShowNotification {
                     keyboardWillShow(notification)
                 }
                 showLog("Enabled")
-            } else if !enable, oldValue {   //If not disable, desable it.
+            } else if !enable, oldValue {   // If not disable, desable it.
                 keyboardWillHide(nil)
                 showLog("Disabled")
             }
@@ -79,7 +79,11 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
     */
     @objc public var enableAutoToolbar = true {
         didSet {
-            privateIsEnableAutoToolbar() ? addToolbarIfRequired() : removeToolbarIfRequired()
+            if privateIsEnableAutoToolbar() {
+                addToolbarIfRequired()
+            } else {
+                removeToolbarIfRequired()
+            }
 
             let enableToolbar = enableAutoToolbar ? "Yes" : "NO"
 
@@ -137,7 +141,7 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
     @objc public var toolbarNextBarButtonItemAccessibilityLabel: String?
     @objc public var toolbarDoneBarButtonItemText: String?
     @objc public var toolbarDoneBarButtonItemAccessibilityLabel: String?
-
+    @objc public var toolbarTitlBarButtonItemAccessibilityLabel: String?
     /**
     If YES, then it add the textField's placeholder text on IQToolbar. Default is YES.
     */
@@ -207,11 +211,11 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
             return false
         }
 
-        //Resigning first responder
+        // Resigning first responder
         guard textFieldRetain.resignFirstResponder() else {
             showLog("Refuses to resign first responder: \(textFieldRetain)")
             //  If it refuses then becoming it as first responder again.    (Bug ID: #96)
-            //If it refuses to resign then becoming it first responder again for getting notifications callback.
+            // If it refuses to resign then becoming it first responder again for getting notifications callback.
             textFieldRetain.becomeFirstResponder()
             return false
         }
@@ -311,14 +315,8 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
 
         self.registerAllNotifications()
 
-        //Creating gesture for @shouldResignOnTouchOutside. (Enhancement ID: #14)
+        // Creating gesture for @shouldResignOnTouchOutside. (Enhancement ID: #14)
         resignFirstResponderGesture.isEnabled = shouldResignOnTouchOutside
-
-        //Loading IQToolbar, IQTitleBarButtonItem, IQBarButtonItem to fix first time keyboard appearance delay (Bug ID: #550)
-        //If you experience exception breakpoint issue at below line then try these solutions https://stackoverflow.com/questions/27375640/all-exception-break-point-is-stopping-for-no-reason-on-simulator
-        let textField = UITextField()
-        textField.addDoneOnKeyboardWithTarget(nil, action: #selector(self.doneAction(_:)))
-        textField.addPreviousNextDoneOnKeyboardWithTarget(nil, previousAction: #selector(self.previousAction(_:)), nextAction: #selector(self.nextAction(_:)), doneAction: #selector(self.doneAction(_:)))
 
         disabledDistanceHandlingClasses.append(UITableViewController.self)
         disabledDistanceHandlingClasses.append(UIAlertController.self)
@@ -329,6 +327,14 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
         toolbarPreviousNextAllowedClasses.append(IQPreviousNextView.self)
         touchResignedGestureIgnoreClasses.append(UIControl.self)
         touchResignedGestureIgnoreClasses.append(UINavigationBar.self)
+
+        // Loading IQToolbar, IQTitleBarButtonItem, IQBarButtonItem to fix first time keyboard appearance delay (Bug ID: #550)
+        // If you experience exception breakpoint issue at below line then try these solutions https://stackoverflow.com/questions/27375640/all-exception-break-point-is-stopping-for-no-reason-on-simulator
+        DispatchQueue.main.async {
+            let textField = UITextField()
+            textField.addDoneOnKeyboardWithTarget(nil, action: #selector(self.doneAction(_:)))
+            textField.addPreviousNextDoneOnKeyboardWithTarget(nil, previousAction: #selector(self.previousAction(_:)), nextAction: #selector(self.nextAction(_:)), doneAction: #selector(self.doneAction(_:)))
+        }
     }
 
     deinit {
@@ -364,12 +370,12 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
             originalKeyWindow = UIApplication.shared.keyWindow
             #endif
 
-            //If original key window is not nil and the cached keywindow is also not original keywindow then changing keywindow.
+            // If original key window is not nil and the cached keywindow is also not original keywindow then changing keywindow.
             if let originalKeyWindow = originalKeyWindow {
                 Static.keyWindow = originalKeyWindow
             }
 
-            //Return KeyWindow
+            // Return KeyWindow
             return Static.keyWindow
         }
     }
@@ -385,7 +391,7 @@ Codeless drop-in universal library allows to prevent issues of keyboard sliding 
             textFieldView.isAlertViewTextField() == false else {
                 return
         }
-        optimizedAdjustPosition()
+        self.adjustPosition()
     }
 }
 
@@ -397,7 +403,7 @@ extension IQKeyboardManager: UIGestureRecognizerDelegate {
 
         if gesture.state == .ended {
 
-            //Resigning currently responder textField.
+            // Resigning currently responder textField.
             resignFirstResponder()
         }
     }
@@ -411,11 +417,8 @@ extension IQKeyboardManager: UIGestureRecognizerDelegate {
     @objc public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         //  Should not recognize gesture if the clicked view is either UIControl or UINavigationBar(<Back button etc...)    (Bug ID: #145)
 
-        for ignoreClass in touchResignedGestureIgnoreClasses {
-
-            if touch.view?.isKind(of: ignoreClass) ?? false {
-                return false
-            }
+        for ignoreClass in touchResignedGestureIgnoreClasses where touch.view?.isKind(of: ignoreClass) ?? false {
+            return false
         }
 
         return true
