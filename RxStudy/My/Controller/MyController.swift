@@ -130,6 +130,7 @@ extension MyController {
                     self?.present(sfsVC, animated: true)
                     //self?.navigationController?.pushViewController(sfsVC, animated: true)
                 case .aSwiftUI:
+                    /// 这里MLeaksFinder会说有内存泄漏,但是具体怎么解决,还没有找到方法
                     let rootView = CoinRankListPage()
                     self?.cancelable = rootView.publisher.sink { _ in
                         self?.hostingVC?.dismiss(animated: true)
