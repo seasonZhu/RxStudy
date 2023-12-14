@@ -25,6 +25,7 @@ class HomeController: BaseTableViewController {
         willSet {
             pageControl.numberOfPages = newValue.count
             pagerView.reloadData()
+            //bannerCustomScroll()
         }
     }
     
@@ -150,6 +151,32 @@ extension HomeController {
         viewModel.outputs.banners
             .bind(to: rx.itmes)
             .disposed(by: rx.disposeBag)
+    }
+    
+    private func bannerCustomScroll() {
+        for subview in pagerView.subviews {
+            for sub in subview.subviews {
+                if let collectionView = sub as? UICollectionView {
+                    collectionView.isPagingEnabled = false
+                    let interval: TimeInterval = 1.0/6.0
+                    Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
+                        let x = collectionView.contentOffset.x
+                        
+                        let contentOffset = CGPoint(x: x + 2, y: 0)
+                        collectionView.setContentOffset(contentOffset, animated: true)
+                    }
+                    
+                    pagerView.panGestureRecognizer.rx.event.subscribe(onNext: { pan in
+                        print("滑动了")
+                        let x = collectionView.contentOffset.x
+                        
+                        let contentOffset = CGPoint(x: x + 2, y: 0)
+                        collectionView.setContentOffset(contentOffset, animated: true)
+                    }).disposed(by: self.rx.disposeBag)
+                    break
+                }
+            }
+        }
     }
 }
 
