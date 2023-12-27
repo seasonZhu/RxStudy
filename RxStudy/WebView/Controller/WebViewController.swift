@@ -60,6 +60,12 @@ class WebViewController: BaseViewController {
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.isScrollEnabled = true
         webView.scrollView.showsVerticalScrollIndicator = false
+        if #available(iOS 16.4, *) {
+            /// 在Safari浏览器中可以进行开发模式,目前这个配置项必须加入
+            webView.isInspectable = true
+        } else {
+            // Fallback on earlier versions
+        }
         return webView
     }()
     
