@@ -189,6 +189,9 @@ struct SexModel: Codable {
     @GuardEnumType
     var sexType: SexType
     
+    @CanNilEnumType
+    var sexStatus: SexType?
+    
     var sexEnum: SexEnum
 }
 
@@ -197,15 +200,22 @@ let SexTypeJSONString = """
 {
     "sexType": "4",
 
+    "sexStatus": "4",
+
     "sexEnum": "unknow"
 }
 """
+
 
 let sexData = SexTypeJSONString.data(using: .utf8)!
 
 let sexModel = try? JSONDecoder().decode(SexModel.self, from: sexData)
 
 print(sexModel?.sexType)
+
+print(sexModel?.sexStatus)
+
+print(sexModel?.sexEnum)
 
 let sexModelData = JSONEncoder().encode(sexModel!)
 

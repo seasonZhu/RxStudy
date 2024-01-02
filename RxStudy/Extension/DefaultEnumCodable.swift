@@ -77,3 +77,63 @@ struct GuardEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable,
         try? container.encode(wrappedValue.rawValue)
     }
 }
+
+
+@propertyWrapper
+struct CanNilEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable, Enum.RawValue: Codable {
+    var wrappedValue: Enum?
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Enum.RawValue.self) {
+            wrappedValue = Enum(rawValue: value) ?? nil
+        } else {
+            wrappedValue = nil
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if let wrappedValue {
+            try? container.encode(wrappedValue.rawValue)
+        } else {
+            /// do Nothing
+        }
+    }
+}
+
+//MARK: -  这个思路失败了
+@propertyWrapper
+struct DefaultEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable, Enum.RawValue: Codable {
+    
+    private var defaultValue: Enum!
+
+
+    var wrappedValue: Enum!
+
+    init(defaultValue: Enum) {
+        /// 先走了这初始化方法,defaultValue拿到了值
+        self.defaultValue = defaultValue
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        if let value = try? container.decode(Enum.RawValue.self) {
+            /// 在解析的时候,走了这里,此时wrappedValue和defaultValue都是nil,也就是在做json转模型的时候,初始赋值的defaultValue并没有效果
+            wrappedValue = Enum(rawValue: value) ?? defaultValue
+        } else {
+            wrappedValue = defaultValue
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        if let wrappedValue {
+            try? container.encode(wrappedValue.rawValue)
+        } else if let defaultValue {
+            try? container.encode(defaultValue.rawValue)
+        } else {
+            
+        }
+    }
+}
