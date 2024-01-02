@@ -52,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AccountManager.shared.networkIsReachableRelay.accept(value)
         })
         
+        screenCapturedListen()
+        
         return true
     }
 
@@ -169,6 +171,27 @@ extension AppDelegate {
                     /// 如果上传失败,压缩文件zip进行删除
                     try? FileManager.default.removeItem(atPath: zipPath)
                 }
+            }
+        }
+    }
+}
+
+extension AppDelegate {
+    private func screenCapturedListen() {
+        /// 监听截屏
+        NotificationCenter.default.addObserver(forName: UIApplication.userDidTakeScreenshotNotification, object: nil, queue: .main) { notification in
+            print("屏幕正在被截屏")
+        }
+        
+        /// 监听录屏
+        NotificationCenter.default.addObserver(forName: UIScreen.capturedDidChangeNotification, object: nil, queue: .main) { notification in
+            if UIScreen.main.isCaptured {
+                /// 屏幕正在被捕获，可以在这里做一些隐藏内容的操作，比如
+                /// 显示一个覆盖所有内容的视图
+                print("屏幕正在被捕获，可以在这里做一些隐藏内容的操作")
+            } else {
+                /// 屏幕没有被捕获，可以移除那个覆盖的视图
+                print("屏幕没有被捕获，可以移除那个覆盖的视图")
             }
         }
     }
