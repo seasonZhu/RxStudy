@@ -71,6 +71,8 @@
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
 		0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */; };
 		008598BF27B4E0DA003E9EF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 008598C127B4E0DA003E9EF7 /* InfoPlist.strings */; };
+		008759782B4F9475002A4CF8 /* InnerViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008759772B4F9475002A4CF8 /* InnerViewEvent.swift */; };
+		0087597A2B4F94AA002A4CF8 /* InnerEventResponsible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008759792B4F94AA002A4CF8 /* InnerEventResponsible.swift */; };
 		00890CFF28F56E9E00B3E72E /* ACarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFA28F56E9E00B3E72E /* ACarouselViewModel.swift */; };
 		00890D0028F56E9E00B3E72E /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFB28F56E9E00B3E72E /* ACarousel.swift */; };
 		00890D0128F56E9E00B3E72E /* View+ReceiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFC28F56E9E00B3E72E /* View+ReceiveTimer.swift */; };
@@ -283,6 +285,8 @@
 		0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		008598C027B4E0DA003E9EF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		008598C227B4E0ED003E9EF7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		008759772B4F9475002A4CF8 /* InnerViewEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerViewEvent.swift; sourceTree = "<group>"; };
+		008759792B4F94AA002A4CF8 /* InnerEventResponsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerEventResponsible.swift; sourceTree = "<group>"; };
 		00890CFA28F56E9E00B3E72E /* ACarouselViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACarouselViewModel.swift; sourceTree = "<group>"; };
 		00890CFB28F56E9E00B3E72E /* ACarousel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ACarousel.swift; sourceTree = "<group>"; };
 		00890CFC28F56E9E00B3E72E /* View+ReceiveTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+ReceiveTimer.swift"; sourceTree = "<group>"; };
@@ -614,6 +618,15 @@
 			path = State;
 			sourceTree = "<group>";
 		};
+		008759762B4F9451002A4CF8 /* InnerViewEvent */ = {
+			isa = PBXGroup;
+			children = (
+				008759772B4F9475002A4CF8 /* InnerViewEvent.swift */,
+				008759792B4F94AA002A4CF8 /* InnerEventResponsible.swift */,
+			);
+			path = InnerViewEvent;
+			sourceTree = "<group>";
+		};
 		00890CF928F56E9E00B3E72E /* ACarousel */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,6 +669,7 @@
 		612DBF5A220022BA007F73CC /* RxStudy */ = {
 			isa = PBXGroup;
 			children = (
+				008759762B4F9451002A4CF8 /* InnerViewEvent */,
 				61B44A3C26B79A7500791859 /* Transform */,
 				617E44F1269574B800DA9EA2 /* ViewState */,
 				001B4E1828E191F1003ADF95 /* SwiftUIExample */,
@@ -1324,6 +1338,7 @@
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				001B4E3328E19BE1003ADF95 /* Header.swift in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
+				0087597A2B4F94AA002A4CF8 /* InnerEventResponsible.swift in Sources */,
 				00890D0328F56E9E00B3E72E /* AppLifeCycleModifier.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
@@ -1343,6 +1358,7 @@
 				001B4E3528E19BE1003ADF95 /* Modifier.swift in Sources */,
 				0070157D2918A85500B8E386 /* ShareType.swift in Sources */,
 				00CCD1852865BFAC00925C1E /* Message.swift in Sources */,
+				008759782B4F9475002A4CF8 /* InnerViewEvent.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				001B4E3428E19BE1003ADF95 /* List+Refresh.swift in Sources */,
 				00099E0329026BD7001FC753 /* ObserverType+Extension.swift in Sources */,

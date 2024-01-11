@@ -10,6 +10,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import RxGesture
 
 class MyView: UIView {
     
@@ -64,6 +65,11 @@ class MyView: UIView {
         imageView.layer.masksToBounds = true
         imageView.layer.borderWidth = 0.5
         imageView.layer.borderColor = UIColor.systemGray.cgColor
+        imageView.isUserInteractionEnabled = true
+        
+        imageView.rx.tapGesture().subscribe(onNext: ({ [weak self] _ in
+            self?.bubbleEvent(InnerViewEvent.custom(["name": "season"]))
+        })).disposed(by: rx.disposeBag)
         
         addSubview(infoLabel)
         infoLabel.snp.makeConstraints { make in

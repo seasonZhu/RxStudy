@@ -201,6 +201,17 @@ extension MyController {
     }
 }
 
+
+extension MyController: InnerEventResponsible {
+    func innerEventHandle(event: any InnerEventConvertible) {
+        guard let type = event as? InnerViewEvent else { return }
+        switch type {
+        case .custom(let dictionary):
+            print(dictionary)
+        }
+    }
+}
+
 #if DEBUG
 import SwiftUI
 
