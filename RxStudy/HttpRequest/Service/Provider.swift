@@ -25,8 +25,15 @@ let activityPlugin = NetworkActivityPlugin { (state, targetType) in
     
     /// 添加无网络拦截
     if AccountManager.shared.networkIsReachableRelay.value == false {
-        SVProgressHUD.showText("似乎已断开与互联网的连接")
-        return
+        if plugins.contains(where: {
+            return $0 is ResponseCachePlugin
+        }) {
+            return
+        } else {
+            SVProgressHUD.showText("似乎已断开与互联网的连接")
+            return
+        }
+        
     }
     
     if blackList.contains(targetType.path) {
@@ -46,11 +53,14 @@ let activityPlugin = NetworkActivityPlugin { (state, targetType) in
     }
 }
 
-
+/// 响应拦截器插件
 let responseInterceptorPlugin = ResponseInterceptorPlugin()
 
+/// 响应缓存插件
+let responseCachePlugin = ResponseCachePlugin()
+
 /// 插件集合
-let plugins: [PluginType] = [activityPlugin, responseInterceptorPlugin]
+let plugins: [PluginType] = [activityPlugin, responseInterceptorPlugin, responseCachePlugin]
 
 /// 集中管理provider
 /// StubBehavior的默认值就是never,所以不用特地去写
