@@ -46,7 +46,7 @@ extension MockService: TargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
+        return .requestPlain
     }
     
     var headers: [String : String]? { nil }
