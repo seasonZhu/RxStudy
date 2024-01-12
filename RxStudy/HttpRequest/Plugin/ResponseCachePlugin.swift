@@ -32,8 +32,9 @@ protocol ResponseCacheConvertible {
 
     func loadData(forKey key: String) throws -> Data?
 
-
     func saveData(_ object: Data, forKey key: String) throws
+        
+    func clearAllData()
 
 }
 
@@ -58,6 +59,10 @@ extension Storage: ResponseCacheConvertible where Value == Data, Key == String {
     func saveData(_ data: Data, forKey key: String) throws {
         try setObject(data , forKey: key)
     }
+    
+    func clearAllData() {
+        try? removeAll()
+    }
 }
 #endif
 
@@ -77,6 +82,10 @@ extension YYCache: ResponseCacheConvertible {
         let nsData = object as NSData
         setObject(nsData, forKey: key.SHA256)
     }
+    
+    func clearAllData() {
+        return removeAllObjects()
+    }
 }
 #endif
 
@@ -91,6 +100,13 @@ extension UserDefaults: ResponseCacheConvertible {
     func saveData(_ data: Data, forKey key: String) throws {
         set(data, forKey: key.SHA256)
     }
+    
+    func clearAllData() {
+        let dict = dictionaryRepresentation()
+        for key in dict.keys {
+            removeObject(forKey: key)
+        }
+    }
 }
 
 import Moya
@@ -98,7 +114,7 @@ import Moya
 //MARK: - 响应缓存插件
 class ResponseCachePlugin: PluginType {
     
-    let cache: any ResponseCacheConvertible
+    private let cache: any ResponseCacheConvertible
     
     init(cache: any ResponseCacheConvertible = userDefaultsCache) {
         self.cache = cache
@@ -118,6 +134,10 @@ class ResponseCachePlugin: PluginType {
             
             return result
         }
+    }
+    
+    func clearResponseCache() {
+        cache.clearAllData()
     }
 }
 
