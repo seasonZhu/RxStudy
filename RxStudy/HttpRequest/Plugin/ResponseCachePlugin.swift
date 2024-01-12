@@ -159,7 +159,7 @@ extension Moya.Task {
             } else {
                 return ""
             }
-        /// 这里认为上传下载的response数据缓存没有差异化
+        /// 这里认为上传下载的response不需要通过入参进行数据缓存没有差异化
         case .uploadFile, .uploadMultipart, .uploadCompositeMultipart, .downloadDestination, .downloadParameters:
             return ""
         }

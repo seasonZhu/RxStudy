@@ -46,7 +46,7 @@ extension CourseService: TargetType {
     var task: Task {
         switch self {
         case .tags:
-            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
+            return .requestPlain
         case .tagList(let id, _):
             /// article/list/0/json?cid=549&order_type=1
             return .requestParameters(parameters: ["cid": id.toString, "order_type=1": 1.toString], encoding: URLEncoding.default)

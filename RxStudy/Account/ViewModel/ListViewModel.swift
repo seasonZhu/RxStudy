@@ -37,7 +37,7 @@ extension ListService: TargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: Dictionary.empty, encoding: URLEncoding.default)
+        return .requestPlain
     }
     
     var headers: [String : String]? { loginHeader }

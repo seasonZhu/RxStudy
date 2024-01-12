@@ -40,7 +40,7 @@ extension TreeService: TargetType {
     var task: Task {
         switch self {
         case .tags:
-            return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
+            return .requestPlain
         case .tagList(let id, _):
             return .requestParameters(parameters: ["cid": id.toString], encoding: URLEncoding.default)
         }

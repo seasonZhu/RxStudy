@@ -47,7 +47,7 @@ extension OtherService: TargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: .empty, encoding: URLEncoding.default)
+        return .requestPlain
         
     }
     
@@ -75,7 +75,7 @@ extension TestService: TargetType {
     }
     
     var task: Task {
-        .requestParameters(parameters: .empty, encoding: URLEncoding.default)
+        return .requestPlain
     }
     
     var headers: [String : String]? {
