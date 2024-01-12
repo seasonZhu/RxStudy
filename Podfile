@@ -76,8 +76,8 @@ target 'RxStudy' do
   pod 'SSZipArchive'
   
   # 缓存
-  pod 'Cache'
-  pod 'YYCache'
+  #pod 'Cache'
+  #pod 'YYCache'
   
   
   # 注意,以下是没有使用的库

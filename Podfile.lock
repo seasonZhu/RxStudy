@@ -3,7 +3,6 @@ PODS:
   - Alamofire (5.4.4)
   - AlamofireNetworkActivityLogger (3.4.0):
     - Alamofire (~> 5.4.0)
-  - Cache (6.0.0)
   - CocoaDebug (1.7.7)
   - CocoaLumberjack/Core (3.8.2)
   - CocoaLumberjack/Swift (3.8.2):
@@ -139,12 +138,10 @@ PODS:
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftDate (7.0.0)
-  - YYCache (1.0.4)
 
 DEPENDENCIES:
   - AcknowList
   - AlamofireNetworkActivityLogger
-  - Cache
   - CocoaDebug
   - CocoaLumberjack/Swift
   - CombineCocoa
@@ -180,14 +177,12 @@ DEPENDENCIES:
   - SSZipArchive
   - SVProgressHUD
   - SwiftDate
-  - YYCache
 
 SPEC REPOS:
   trunk:
     - AcknowList
     - Alamofire
     - AlamofireNetworkActivityLogger
-    - Cache
     - CocoaDebug
     - CocoaLumberjack
     - CombineCocoa
@@ -225,13 +220,11 @@ SPEC REPOS:
     - SSZipArchive
     - SVProgressHUD
     - SwiftDate
-    - YYCache
 
 SPEC CHECKSUMS:
   AcknowList: 1aca788e5f1fae79d671c9c48d83ef21027232c0
   Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
   AlamofireNetworkActivityLogger: 162ab8aee00e6267a4304d7cc134e13ccfe3bcc5
-  Cache: 4ca7e00363fca5455f26534e5607634c820ffc2d
   CocoaDebug: b38d31464b91a9775928f8667d114db07b136565
   CocoaLumberjack: f8d89a516e7710fdb2e9b8f1560b16ec6040eef0
   CombineCocoa: e5210dbfb480ff251078929459ac17e750e7af1d
@@ -269,8 +262,7 @@ SPEC CHECKSUMS:
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
-  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
-PODFILE CHECKSUM: 488bf93941f7f5d129e169811ace04e63e8cccec
+PODFILE CHECKSUM: 7748a2e95d8e48942bf11eeb15066068c30a8a02
 
 COCOAPODS: 1.14.3
