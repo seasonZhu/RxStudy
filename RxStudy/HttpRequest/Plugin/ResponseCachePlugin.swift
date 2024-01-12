@@ -108,10 +108,10 @@ class ResponseCachePlugin: PluginType {
 
         switch result {
         case .success(let response):
-            try? cache.saveData(response.data, forKey: target.path)
+            try? cache.saveData(response.data, forKey: "\(target.path)\(target.task.parametersString)")
             return result
         case .failure:
-            if let data = try? cache.loadData(forKey: target.path) {
+            if let data = try? cache.loadData(forKey: "\(target.path)\(target.task.parametersString)") {
                 let respone = Moya.Response(statusCode: 600, data: data)
                 return .success(respone)
             }
@@ -121,3 +121,47 @@ class ResponseCachePlugin: PluginType {
     }
 }
 
+extension Moya.Task {
+    var parametersString: String {
+        switch self {
+        case .requestPlain:
+            return ""
+        case .requestData(let data):
+            return String(data: data, encoding: .utf8) ?? ""
+        case .requestJSONEncodable(let encodable), .requestCustomJSONEncodable(let encodable, _):
+            let encoder = JSONEncoder()
+            if let data = try? encoder.encode(encodable), let string = String(data: data, encoding: .utf8) {
+                return string
+            } else {
+                return ""
+            }
+        case .requestParameters(let parameters, _):
+            if let data = try? JSONSerialization.data(withJSONObject: parameters), let string = String(data: data, encoding: .utf8) {
+                return string
+            } else {
+                return ""
+            }
+        case .requestCompositeData(let bodyData, let urlParameters):
+            if let data = try? JSONSerialization.data(withJSONObject: urlParameters),
+               let urlString = String(data: data, encoding: .utf8),
+               let string = String(data: bodyData, encoding: .utf8) {
+                return "\(urlString)\(string)"
+            } else {
+                return ""
+            }
+        case .requestCompositeParameters(let bodyParameters, _, let urlParameters):
+            var newBodyParameters = bodyParameters
+            for (k, v) in urlParameters {
+                newBodyParameters[k] = v
+            }
+            if let data = try? JSONSerialization.data(withJSONObject: newBodyParameters), let string = String(data: data, encoding: .utf8) {
+                return string
+            } else {
+                return ""
+            }
+        /// 这里认为上传下载的response数据缓存没有差异化
+        case .uploadFile, .uploadMultipart, .uploadCompositeMultipart, .downloadDestination, .downloadParameters:
+            return ""
+        }
+    }
+}
