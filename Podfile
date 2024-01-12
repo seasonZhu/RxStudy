@@ -75,8 +75,9 @@ target 'RxStudy' do
   # 用于日志压缩为zip
   pod 'SSZipArchive'
   
-  # 用户缓存
+  # 缓存
   pod 'Cache'
+  pod 'YYCache'
   
   
   # 注意,以下是没有使用的库

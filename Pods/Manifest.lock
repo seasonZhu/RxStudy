@@ -139,6 +139,7 @@ PODS:
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftDate (7.0.0)
+  - YYCache (1.0.4)
 
 DEPENDENCIES:
   - AcknowList
@@ -179,6 +180,7 @@ DEPENDENCIES:
   - SSZipArchive
   - SVProgressHUD
   - SwiftDate
+  - YYCache
 
 SPEC REPOS:
   trunk:
@@ -223,6 +225,7 @@ SPEC REPOS:
     - SSZipArchive
     - SVProgressHUD
     - SwiftDate
+    - YYCache
 
 SPEC CHECKSUMS:
   AcknowList: 1aca788e5f1fae79d671c9c48d83ef21027232c0
@@ -266,7 +269,8 @@ SPEC CHECKSUMS:
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
+  YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
-PODFILE CHECKSUM: 3b4cbd47d970b0d13d8e2d65b98f3e4733dca807
+PODFILE CHECKSUM: 488bf93941f7f5d129e169811ace04e63e8cccec
 
 COCOAPODS: 1.14.3
