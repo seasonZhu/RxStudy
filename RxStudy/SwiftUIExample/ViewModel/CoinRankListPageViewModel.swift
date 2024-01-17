@@ -213,6 +213,21 @@ import RxSwift
 import NSObject_Rx
 
 extension CoinRankListPageViewModel {
+    /// 一个使用keyPath的例子
+    static func keyPathGetCoinRank(page: Int = 1) -> Single<[ClassCoinRank]> {
+        return myProvider.rx.request(MyService.coinRank(page))
+            .map([ClassCoinRank].self, atKeyPath: "data.datas")
+            .compactMap { $0 }
+            .asObservable()
+            .asSingle()
+        
+        return myProvider.rx.request(MyService.coinRank(page))
+            .map(BaseModel<Page<ClassCoinRank>>.self)
+            .compactMap { $0.data?.datas }
+            .asObservable()
+            .asSingle()
+    }
+    
     private func rxGetCoinRank(page: Int) {
         myProvider.rx.request(MyService.coinRank(page))
             /// 转Model
