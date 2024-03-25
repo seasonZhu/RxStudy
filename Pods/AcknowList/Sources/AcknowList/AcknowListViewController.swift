@@ -1,7 +1,7 @@
 //
 // AcknowListViewController.swift
 //
-// Copyright (c) 2015-2022 Vincent Tourraine (https://www.vtourraine.net)
+// Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,9 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+import Foundation
+
 #if os(iOS) || os(tvOS)
 import UIKit
 #endif
+
 #if os(iOS)
 import SafariServices
 #endif
@@ -36,6 +39,9 @@ open class AcknowListViewController: UITableViewController {
 
     /// The represented array of `Acknow`.
     open var acknowledgements: [Acknow] = []
+
+    /// Indicates if the view controller should try to fetch missing licenses from the GitHub API.
+    open var canFetchLicenseFromGitHub = true
 
     /**
      Header text to be displayed above the list of the acknowledgements.
@@ -214,11 +220,7 @@ open class AcknowListViewController: UITableViewController {
             return
         }
 
-        if #available(iOS 10.0, tvOS 10.0, *) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        } else {
-            UIApplication.shared.openURL(url)
-        }
+        url.openWithDefaultBrowser()
     }
 
     /**
@@ -385,18 +387,30 @@ open class AcknowListViewController: UITableViewController {
         - indexPath: An index path locating the new selected row in `tableView`.
      */
     open override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let acknowledgement = acknowledgements[(indexPath as NSIndexPath).row] as Acknow?,
+        if let acknowledgement = acknowledgements[indexPath.row] as Acknow?,
            let navigationController = navigationController {
             if acknowledgement.text != nil {
                 let viewController = AcknowViewController(acknowledgement: acknowledgement)
                 navigationController.pushViewController(viewController, animated: true)
             }
-            else if canOpenRepository(for: acknowledgement),
-                    let repository = acknowledgement.repository {
-#if !os(tvOS)
-                let safariViewController = SFSafariViewController(url: repository)
-                present(safariViewController, animated: true)
-#endif
+            else if canFetchLicenseFromGitHub,
+                    let repository = acknowledgement.repository,
+                    GitHubAPI.isGitHubRepository(repository) {
+                GitHubAPI.getLicense(for: repository) { [weak self] result in
+                    switch result {
+                    case .success(let text):
+                        let updatedAcknowledgement = Acknow(title: acknowledgement.title, text: text, license: acknowledgement.license, repository: acknowledgement.repository)
+                        self?.acknowledgements[indexPath.row] = updatedAcknowledgement
+                        let viewController = AcknowViewController(acknowledgement: updatedAcknowledgement)
+                        navigationController.pushViewController(viewController, animated: true)
+
+                    case .failure:
+                        self?.openRepository(repository)
+                    }
+                }
+            }
+            else if let repository = acknowledgement.repository {
+                openRepository(repository)
             }
         }
     }
@@ -415,15 +429,32 @@ open class AcknowListViewController: UITableViewController {
     // MARK: - Navigation
 
     private func canOpen(_ acknowledgement: Acknow) -> Bool {
-        return acknowledgement.text != nil || canOpenRepository(for: acknowledgement)
+        if acknowledgement.text != nil {
+            return true
+        }
+        else if let repository = acknowledgement.repository {
+            return canOpenRepository(repository)
+        }
+        else {
+            return false
+        }
     }
 
-    private func canOpenRepository(for acknowledgement: Acknow) -> Bool {
-        guard let scheme = acknowledgement.repository?.scheme else {
+    private func canOpenRepository(_ repository: URL) -> Bool {
+        guard let scheme = repository.scheme else {
             return false
         }
 
         return scheme == "http" || scheme == "https"
+    }
+
+    private func openRepository(_ repository: URL) {
+#if !os(tvOS)
+        if canOpenRepository(repository) {
+            let safariViewController = SFSafariViewController(url: repository)
+            present(safariViewController, animated: true)
+        }
+#endif
     }
 }
 

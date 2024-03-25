@@ -15,7 +15,6 @@
 
 import AcknowList
 import Alamofire
-import AlamofireNetworkActivityLogger
 import DZNEmptyDataSet
 import FSPagerView
 import IQKeyboardManagerSwift

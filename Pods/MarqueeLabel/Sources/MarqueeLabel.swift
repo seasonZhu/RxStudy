@@ -563,6 +563,8 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(MarqueeLabel.shutdownLabel), name: UIApplication.didEnterBackgroundNotification, object: nil)
     }
     
+    // Interface Builder features deprecated in visionOS
+    #if !os(visionOS)
     override open func awakeFromNib() {
         super.awakeFromNib()
         forwardPropertiesToSublabel()
@@ -573,6 +575,7 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
         super.prepareForInterfaceBuilder()
         forwardPropertiesToSublabel()
     }
+    #endif
     
     private func forwardPropertiesToSublabel() {
         /*
@@ -1139,7 +1142,11 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
             // No mask exists, create new mask
             gradientMask = CAGradientLayer()
             gradientMask.shouldRasterize = true
+          #if os(visionOS)
+            gradientMask.rasterizationScale = UITraitCollection.current.displayScale
+          #else
             gradientMask.rasterizationScale = UIScreen.main.scale
+          #endif
             gradientMask.startPoint = CGPoint(x:0.0, y:0.5)
             gradientMask.endPoint = CGPoint(x:1.0, y:0.5)
         }

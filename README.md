@@ -84,7 +84,8 @@ target 'RxStudy' do
 
   # Networking
   pod 'Moya/RxSwift'
-  pod 'AlamofireNetworkActivityLogger'
+  # AlamofireNetworkActivityLogger的版本很久都没有升级,导致其绑定Alamofire无法升级,直接移除拖入,保证Alamofire和Moya可以向上升级
+  #pod 'AlamofireNetworkActivityLogger'
 
   # Image
   pod 'Kingfisher'

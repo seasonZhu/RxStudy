@@ -106,6 +106,7 @@
 		00CCD1832865BE9100925C1E /* Course.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD1822865BE9100925C1E /* Course.json */; };
 		00CCD1852865BFAC00925C1E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1842865BFAC00925C1E /* Message.swift */; };
 		00CDD94F2910F02100027A81 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDD94E2910F02100027A81 /* Theme.swift */; };
+		00D545732BB10CB9007B0325 /* NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D545702BB10CB9007B0325 /* NetworkActivityLogger.swift */; };
 		00DBD3192A3C3BC400664246 /* ContentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DBD3182A3C3BC400664246 /* ContentScrollView.swift */; };
 		00DC971028F26ADF002CC564 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC970F28F26ADF002CC564 /* AppState.swift */; };
 		00DC971228F27335002CC564 /* View+OnLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC971128F27335002CC564 /* View+OnLoad.swift */; };
@@ -323,6 +324,7 @@
 		00CCD1822865BE9100925C1E /* Course.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Course.json; sourceTree = "<group>"; };
 		00CCD1842865BFAC00925C1E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		00CDD94E2910F02100027A81 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		00D545702BB10CB9007B0325 /* NetworkActivityLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivityLogger.swift; sourceTree = "<group>"; };
 		00DBD3182A3C3BC400664246 /* ContentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentScrollView.swift; sourceTree = "<group>"; };
 		00DC970F28F26ADF002CC564 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		00DC971128F27335002CC564 /* View+OnLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnLoad.swift"; sourceTree = "<group>"; };
@@ -655,6 +657,22 @@
 			path = ACarousel;
 			sourceTree = "<group>";
 		};
+		00D5456D2BB10CB9007B0325 /* AlamofireNetworkActivityLogger */ = {
+			isa = PBXGroup;
+			children = (
+				00D545702BB10CB9007B0325 /* NetworkActivityLogger.swift */,
+				00D5456F2BB10CB9007B0325 /* Source */,
+			);
+			path = AlamofireNetworkActivityLogger;
+			sourceTree = "<group>";
+		};
+		00D5456F2BB10CB9007B0325 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		611E2E002660782B001585AE /* SnapKitExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -774,6 +792,7 @@
 		61336C792656493700FDEB2A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				00D5456D2BB10CB9007B0325 /* AlamofireNetworkActivityLogger */,
 				0053B40C2A2D733C00457779 /* CrashController */,
 				00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */,
 				6186948A267C4DBB0086F051 /* MJRefresh+RxSwift */,
@@ -1467,6 +1486,7 @@
 				006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */,
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
 				61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */,
+				00D545732BB10CB9007B0325 /* NetworkActivityLogger.swift in Sources */,
 				003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */,
 				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
 				000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */,

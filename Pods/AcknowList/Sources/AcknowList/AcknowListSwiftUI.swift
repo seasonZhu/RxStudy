@@ -1,7 +1,7 @@
 //
 // AcknowListSwiftUI.swift
 //
-// Copyright (c) 2015-2022 Vincent Tourraine (https://www.vtourraine.net)
+// Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -117,8 +117,11 @@ public struct AcknowListRowSwiftUIView: View {
     /// The represented `Acknow`.
     public var acknowledgement: Acknow
 
+    /// Indicates if the view controller should try to fetch missing licenses from the GitHub API.
+    public var canFetchLicenseFromGitHub = true
+
     public var body: some View {
-        if acknowledgement.text != nil {
+        if acknowledgement.text != nil || canFetchLicenseFromGitHubAndIsGitHubRepository(acknowledgement) {
             NavigationLink(destination: AcknowSwiftUIView(acknowledgement: acknowledgement)) {
                 Text(acknowledgement.title)
             }
@@ -126,9 +129,7 @@ public struct AcknowListRowSwiftUIView: View {
         else if let repository = acknowledgement.repository,
                 canOpenRepository(for: repository) {
             Button(action: {
-#if os(iOS)
-                UIApplication.shared.open(repository)
-#endif
+                repository.openWithDefaultBrowser()
             }) {
                 Text(acknowledgement.title)
                     .foregroundColor(.primary)
@@ -146,12 +147,22 @@ public struct AcknowListRowSwiftUIView: View {
 
         return scheme == "http" || scheme == "https"
     }
+
+    private func canFetchLicenseFromGitHubAndIsGitHubRepository(_ acknowledgement: Acknow) -> Bool {
+        if canFetchLicenseFromGitHub,
+           let repository = acknowledgement.repository {
+            return GitHubAPI.isGitHubRepository(repository)
+        }
+        else {
+            return false
+        }
+    }
 }
 
 @available(iOS 13.0.0, macOS 10.15.0, watchOS 7.0.0, tvOS 13.0.0, *)
 struct AcknowListSwiftUI_Previews: PreviewProvider {
     static let license = """
-        Copyright (c) 2015-2021 Vincent Tourraine (https://www.vtourraine.net)
+        Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)
 
         Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

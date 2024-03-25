@@ -10,7 +10,6 @@ import UIKit
 
 import IQKeyboardManagerSwift
 import Alamofire
-import AlamofireNetworkActivityLogger
 import SVProgressHUD
 import KSCrash
 
