@@ -79,6 +79,7 @@ PODS:
     - KSCrash/Reporting/Tools
   - KSCrash/Reporting/Tools (1.17.0):
     - KSCrash/Recording
+  - LifetimeTracker (1.8.3)
   - LookinServer (1.2.7):
     - LookinServer/Core (= 1.2.7)
   - LookinServer/Core (1.2.7)
@@ -151,6 +152,7 @@ DEPENDENCIES:
   - KeychainAccess
   - Kingfisher
   - KSCrash
+  - LifetimeTracker
   - LookinServer
   - MarqueeLabel
   - MBProgressHUD
@@ -193,6 +195,7 @@ SPEC REPOS:
     - KeychainAccess
     - Kingfisher
     - KSCrash
+    - LifetimeTracker
     - LookinServer
     - MarqueeLabel
     - MBProgressHUD
@@ -234,6 +237,7 @@ SPEC CHECKSUMS:
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
   KSCrash: 593ec373759e4c1bce381421a627326a20d2dc66
+  LifetimeTracker: e67647bf9130e4173e488689896f057a63de16ec
   LookinServer: 36f1a0ad280de34b9794cf8825867fcc2dd93e75
   MarqueeLabel: 4b46d196abd253448e830cbd976f9eacc3af0849
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
@@ -258,6 +262,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
 
-PODFILE CHECKSUM: ff7747c9642b9b1e215979d1801386d54b0912a1
+PODFILE CHECKSUM: 86041bf434c248dd126e5b565b799f95999d47a5
 
 COCOAPODS: 1.15.2

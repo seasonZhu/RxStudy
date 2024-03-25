@@ -69,6 +69,7 @@ target 'RxStudy' do
   pod 'CocoaDebug', :configurations => ['Debug']
   pod 'FunnyButton', :configurations => ['Debug']
   pod 'MLeaksFinder', :configurations => ['Debug']
+  pod 'LifetimeTracker'
   
   # 日志打印与跟踪
   pod 'CocoaLumberjack/Swift'

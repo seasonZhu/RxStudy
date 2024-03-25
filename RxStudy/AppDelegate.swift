@@ -12,6 +12,7 @@ import IQKeyboardManagerSwift
 import Alamofire
 import SVProgressHUD
 import KSCrash
+import LifetimeTracker
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         NetworkActivityLogger.shared.level = .debug
         NetworkActivityLogger.shared.startLogging()
+        #endif
+        
+        #if DEBUG
+            LifetimeTracker.setup(
+                onUpdate: LifetimeTrackerDashboardIntegration(
+                    visibility: .alwaysVisible,
+                    style: .bar,
+                    textColorForNoIssues: .systemGreen,
+                    textColorForLeakDetected: .systemRed
+                ).refreshUI
+            )
         #endif
         
         /// 背景色配置

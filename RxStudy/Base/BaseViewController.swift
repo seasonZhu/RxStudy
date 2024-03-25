@@ -15,6 +15,7 @@ import RxGesture
 import Moya
 import SVProgressHUD
 import FunnyButton
+import LifetimeTracker
 
 class BaseViewController: UIViewController {
     
@@ -28,6 +29,15 @@ class BaseViewController: UIViewController {
     
     /// 错误异常重试
     let errorRetry = PublishSubject<Void>()
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        trackLifetime()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -108,6 +118,13 @@ extension BaseViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeFunnyActions()
+    }
+}
+
+//MARK: -  LifetimeTracker的使用
+extension BaseViewController: LifetimeTrackable {
+    class var lifetimeConfiguration: LifetimeConfiguration {
+        return LifetimeConfiguration(maxCount: 1, groupName: "VC")
     }
 }
 
