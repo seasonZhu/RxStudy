@@ -1,57 +1,22 @@
-disabled_rules: # rule identifiers to exclude from running
-  - force_cast
-  - trailing_whitespace
-  - cyclomatic_complexity
-  - unused_closure_parameter
-#   - colon
-#   - comma
-#   - control_statement
-# opt_in_rules: # some rules are only opt-in
-#   - empty_count
-#   - missing_docs
-#   # Find all the available rules by running:
-#   # swiftlint rules
-# included: # paths to include during linting. `--path` is ignored if present.
-#   - Docs.M/*/*.swift
-excluded: # paths to ignore during linting. Takes precedence over `included`.
-  - Carthage
+excluded:
   - Pods
-  # - Source/ExcludedFolder
-  # - Source/ExcludedFile.swift
-
-# configurable rules can be customized from this configuration file
-# binary rules can set their severity level
-# force_cast: warning # implicitly
-force_try:
-  severity: warning # explicitly
-# rules that have both warning and error levels, can set just the warning level
-# implicitly
-line_length:
-  warning: 200
-  ignores_function_declarations: true
-  ignores_comments: true
-
-# they can set both implicitly with an array
-type_body_length:
-  - 300 # warning
-  - 400 # error
-# or they can set both explicitly
-file_length:
-  warning: 500
+disabled_rules:
+    - trailing_whitespace # 每一个空行不能有空格，会与Xcode换行后自动对齐生成的空格冲突，建议排除掉加。
+    - missing_docs # 缺失说明注释, 官方解释：”Public declarations should be documented.”， 公共声明应该被注释/标记。 在函数声明的时候， 一般情况下， 带public关键字的函数的注释只能用 “///”和 “/* /”来注释， 如果不带public关键字的函数只能用 “//”和 “/* */” 。这个属性应该禁用，没必要！！！
+    - function_parameter_count # 函数参数计数违例:函数应该有5个参数，多余会报错 函数参数个数， 函数参数数量(init方法除外)应该少点， 不要太多，swiftlint规定函数参数数量超过5个给warning， 超过8个直接报error。这个属性推荐使用， 由于简单就不举例了。注：function_parameter_count: error 这样并不能改变它的警告或错误，该属性不允许修改，但是可以禁用
+    - identifier_name   #命名规则必须按照驼峰原则（可能model中的某些字段与json字段命名冲突，建议排除掉）
+    - type_name #类型命名规则限制,以大写字母开头，且长度在1到20个字符之间
+    - shorthand_operator #使用+= ， -=， *=， /=  代替 a = a + 1
+    - large_tuple #元祖成员 元组冲突:元组应该最多有2个成员，多余两个会报错
+    - for_where #使用 `for where` 代替 简单的 `for { if }`
+    - class_delegate_protocol #delegate protocol 应该被设定为 class-only,才能被弱引用
+    - todo #避免 TODOs and FIXMEs 标识
+    - function_body_length
+    - line_length
+    - file_length
+cyclomatic_complexity: 20 #代码复杂度,默认为10
+force_try: warning # try语句判断
+force_cast: warning # 强制转换（代码中存在一些前面通过if判断过类型，后面做的强制转换的代码）
+type_body_length:   #类的长度
+  warning: 800
   error: 1200
-# naming rules can set warnings/errors for min_length and max_length
-# additionally they can set excluded names
-# type_name:
-#   min_length: 4 # only warning
-#   max_length: # warning and error
-#     warning: 40
-#     error: 50
-#   excluded: iPhone # excluded via string
-identifier_name:
-  min_length: # only min_length
-    error: 3 # only error
-  excluded: # excluded via string array
-    - id
-#     - URL
-#     - GlobalAPIKey
-reporter: "xcode" # reporter type (xcode, json, csv, checkstyle, junit, html, emoji)

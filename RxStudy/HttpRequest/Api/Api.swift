@@ -61,7 +61,6 @@ extension Api {
     }
 }
 
-
 extension Api {
     /// 体系 均是get请求
     enum Tree {

@@ -1289,7 +1289,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if [[ \"$(uname -m)\" == arm64 ]]; then\n    #export PATH=\"/opt/homebrew/bin:$PATH\"\n#fi\n\n#if which swiftlint > /dev/null; then\n  #swiftlint\n#else\n  #echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\n#fi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n# 使用Cocopods集成SwiftLint使用以下脚本\n#\"${PODS_ROOT}/SwiftLint/swiftlint\" --fix\n#\"${PODS_ROOT}/SwiftLint/swiftlint\" lint\n";
 		};
 		0460F2413F12E891719D5EFC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
