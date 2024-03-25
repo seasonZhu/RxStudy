@@ -9,7 +9,7 @@
 import UIKit
 import SwiftUI
 
-//MARK: - - LightMode与DarkMode的颜色思路
+// MARK: - - LightMode与DarkMode的颜色思路
 extension UIColor {
     /// 便利构造函数(配合cssHex函数使用 更好)
     /// - Parameters:
@@ -32,7 +32,7 @@ extension UIColor {
         } else {
             /// 是我自己小看了这里,因为是一个便利构造函数,所以这里必须使用一级构造函数
             self.init(cgColor: lightThemeColor.cgColor)
-            //self.init(Color(uiColor: lightThemeColor))
+            // self.init(Color(uiColor: lightThemeColor))
         }
     }
 }
@@ -40,7 +40,7 @@ extension UIColor {
 extension UIColor {
     
     /// 随机颜色
-    static var random: UIColor  {
+    static var random: UIColor {
         let red = CGFloat.random(in: 0...1)
         let green = CGFloat.random(in: 0...1)
         let blue = CGFloat.random(in: 0...1)

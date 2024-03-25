@@ -9,14 +9,14 @@
 import Foundation
 
 /// 有分页的基础模型
-struct Page<Content: Codable> : Codable {
-    let curPage : Int?
-    let datas : [Content]?
-    let offset : Int?
-    let over : Bool?
-    let pageCount : Int?
-    let size : Int?
-    let total : Int?
+struct Page<Content: Codable>: Codable {
+    let curPage: Int?
+    let datas: [Content]?
+    let offset: Int?
+    let over: Bool?
+    let pageCount: Int?
+    let size: Int?
+    let total: Int?
 }
 
 extension Page {

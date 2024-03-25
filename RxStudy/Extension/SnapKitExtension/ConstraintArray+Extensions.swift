@@ -1,4 +1,3 @@
-
 import SnapKit
 
 extension String {
@@ -14,4 +13,3 @@ extension Array where Element: ConstraintView {
         return ConstraintArrayDSL(array: self)
     }
 }
-

@@ -10,7 +10,7 @@ import Combine
 
 extension Publisher {
     /// 这个并有什么用
-    func weakSubscribe<S>(_ subject: S) -> AnyCancellable where S : Subject, Self.Failure == Never, Self.Failure == S.Failure, Self.Output == S.Output {
+    func weakSubscribe<S>(_ subject: S) -> AnyCancellable where S: Subject, Self.Failure == Never, Self.Failure == S.Failure, Self.Output == S.Output {
         return sink { [weak subject] value in
             subject?.send(value)
         }
@@ -45,4 +45,3 @@ extension Publisher {
         }
     }
 }
-

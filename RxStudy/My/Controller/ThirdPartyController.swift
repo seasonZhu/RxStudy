@@ -35,7 +35,7 @@ extension ThirdPartyController {
         
         tableView.rowHeight = 44
         
-        let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []//AcknowParser(plistPath: defaultAcknowledgementsPlistPath()!).parseAcknowledgements()
+        let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []// AcknowParser(plistPath: defaultAcknowledgementsPlistPath()!).parseAcknowledgements()
         
         dataSource.accept(list)
         
@@ -47,7 +47,7 @@ extension ThirdPartyController {
         
         dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, info) in
+            .drive(tableView.rx.items) { (tableView, _, info) in
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
                 cell.textLabel?.text = info.title
@@ -83,9 +83,7 @@ extension ThirdPartyController {
         }
     }
     
-    private func acknowledgementsPlistPath(name:String) -> String? {
+    private func acknowledgementsPlistPath(name: String) -> String? {
         return Bundle.main.path(forResource: name, ofType: "plist")
     }
 }
-
-

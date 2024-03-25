@@ -8,24 +8,24 @@
 
 import Foundation
 
-class ClassBanner : ObservableObject, Identifiable, Codable {    
+class ClassBanner: ObservableObject, Identifiable, Codable {    
     
-    var id : Int?
+    var id: Int?
     
-    var title : String?
+    var title: String?
     
-    var originId: Int? = nil
+    var originId: Int?
     
     var link: String? { url }
         
-    let desc : String?
+    let desc: String?
     
-    let imagePath : String?
-    let isVisible : Int?
-    let order : Int?
+    let imagePath: String?
+    let isVisible: Int?
+    let order: Int?
     
-    let type : Int?
-    let url : String?
+    let type: Int?
+    let url: String?
 }
 
 extension ClassBanner: WebLoadInfo {}

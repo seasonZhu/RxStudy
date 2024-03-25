@@ -67,7 +67,6 @@ extension ObservableType {
         self.bind(to: relays)
     }
 
-
     public func bind(to relays: ExBehaviorRelay<Element?>...) -> Disposable {
         self.map { $0 as Element? }.bind(to: relays)
     }

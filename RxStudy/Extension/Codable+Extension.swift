@@ -9,8 +9,7 @@
 import Foundation
 import RxCocoa
 
-
-//MARK: -  可以同时Codable 字符串和Int类型
+// MARK: - 可以同时Codable 字符串和Int类型
 
 /// iOS-Swift 独孤九剑：十四、Codable 的基本应用及源码浅析:
 /// https://juejin.cn/post/7100194774656745480
@@ -44,7 +43,7 @@ struct StringInt: Codable {
     }
 }
 
-//MARK: -  默认值组合
+// MARK: - 默认值组合
 
 /// 默认值协议
 protocol DefaultValue {
@@ -92,7 +91,7 @@ extension KeyedDecodingContainer {
 extension UnkeyedDecodingContainer {
     mutating func decode<T>(
         _ type: Default<T>.Type
-    ) throws -> Default<T> where T : DefaultValueCodable {
+    ) throws -> Default<T> where T: DefaultValueCodable {
             try decodeIfPresent(type) ?? Default(wrappedValue: T.defaultValue)
     }
 }
@@ -108,11 +107,11 @@ extension Double: DefaultValue { static let defaultValue: Double = 0.0 }
 
 extension Float: DefaultValue { static let defaultValue: Float  = 0.0  }
 
-extension Array: DefaultValue { static var defaultValue: Array<Element> { [] } }
+extension Array: DefaultValue { static var defaultValue: [Element] { [] } }
 
-extension Dictionary: DefaultValue { static var defaultValue: Dictionary<Key, Value> { [:] } }
+extension Dictionary: DefaultValue { static var defaultValue: [Key: Value] { [:] } }
 
-//MARK: -  JSONString的解析
+// MARK: - JSONString的解析
 @propertyWrapper
 struct JSONString<Model: Codable>: Codable {
     var wrappedValue: Model?
@@ -136,8 +135,7 @@ struct JSONString<Model: Codable>: Codable {
     }
 }
 
-
-//MARK: -  我进行的一些思考
+// MARK: - 我进行的一些思考
 @propertyWrapper
 struct MixinType<Wrapper: Codable>: Codable {
     var wrappedValue: Wrapper?
@@ -173,7 +171,7 @@ struct MixinType<Wrapper: Codable>: Codable {
     }
 }
 
-//MARK: -  将解析值转为String
+// MARK: - 将解析值转为String
 @propertyWrapper
 /// 目前可以接受String/Decimal/Bool类型的值为String
 struct StringValue: Codable {
@@ -198,7 +196,7 @@ struct StringValue: Codable {
             wrappedValue = "\(value)"
         } else if let value = try? container.decode(Bool.self) {
             wrappedValue = "\(value)"
-        }  else if container.decodeNil() {
+        } else if container.decodeNil() {
             wrappedValue = nil
         } else {
             wrappedValue = nil

@@ -12,7 +12,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
-//MARK: -  列表服务
+// MARK: - 列表服务
 enum ListService {
     case coinRank(_ page: Int)
     case myCoinList(_ page: Int)
@@ -40,15 +40,15 @@ extension ListService: TargetType {
         return .requestPlain
     }
     
-    var headers: [String : String]? { loginHeader }
+    var headers: [String: String]? { loginHeader }
 }
 
-//MARK: -  Page协议
+// MARK: - Page协议
 protocol PageProtocol {
     var page: Int? { get set }
 }
 
-//MARK: -  包含Page协议与Moya.TargetType协议的数据类
+// MARK: - 包含Page协议与Moya.TargetType协议的数据类
 struct ListModel {
     var page: Int?
     var listService: ListService
@@ -82,14 +82,13 @@ extension ListModel: TargetType {
         listService.task
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         listService.headers
     }
     
-    
 }
 
-//MARK: - 通用型的ListViewModel
+// MARK: - 通用型的ListViewModel
 class ListViewModel<M: Codable, T: PageProtocol&TargetType>: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
     var pageNum: Int
@@ -121,14 +120,13 @@ class ListViewModel<M: Codable, T: PageProtocol&TargetType>: BaseViewModel, VMIn
 
 }
 
-//MARK: - 网络请求
+// MARK: - 网络请求
 private extension ListViewModel {
     
     func refresh() {
         resetCurrentPageAndMjFooter()
         requestData(page: pageNum)
     }
-  
     
     func loadMore() {
         pageNum = pageNum + 1
@@ -140,7 +138,7 @@ private extension ListViewModel {
         provider.rx.request(MultiTarget(target))
             .map(BaseModel<Page<M>>.self)
             /// 解包,由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .compactMap{ $0.data }
+            .compactMap { $0.data }
             /// 转换操作
             .asObservable()
             .asSingle()

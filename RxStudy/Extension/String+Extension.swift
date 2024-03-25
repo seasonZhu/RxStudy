@@ -36,32 +36,31 @@ extension String {
         }
         return self
     }
-
     
     var replaceHtmlElement: String {
         return
-            replacingOccurrences(of: "&ndash;",with:  "–")
-            .replacingOccurrences(of: "&mdash;",with:  "—")
-            .replacingOccurrences(of: "&lsquo;",with:  "‘")
-            .replacingOccurrences(of: "&rsquo;",with:  "’")
-            .replacingOccurrences(of: "&sbquo;",with:  "‚")
-            .replacingOccurrences(of: "&ldquo;",with:  "“")
-            .replacingOccurrences(of: "&rdquo;",with:  "”")
-            .replacingOccurrences(of: "&bdquo;",with:  "„")
-            .replacingOccurrences(of: "&permil;",with:  "‰")
-            .replacingOccurrences(of: "&lsaquo;",with:  "‹")
-            .replacingOccurrences(of: "&rsaquo;",with: "›")
-            .replacingOccurrences(of: "&euro;",with:  "€")
-            .replacingOccurrences(of: "<p>",with:  "")
-            .replacingOccurrences(of: "</p>",with:  "")
-            .replacingOccurrences(of: "</br>",with:  "\n")
-            .replacingOccurrences(of: "<br>",with:  "\n")
-            .replacingOccurrences(of: "&lt;",with:  "<")
-            .replacingOccurrences(of: "&gt;",with:  ">")
-            .replacingOccurrences(of: "&nbsp;",with:  " ")
-            .replacingOccurrences(of: "&amp;",with:  "&")
-            .replacingOccurrences(of: "&quot;",with:  "\"")
-            .replacingOccurrences(of: "&yen;",with:  "¥")
+            replacingOccurrences(of: "&ndash;", with: "–")
+            .replacingOccurrences(of: "&mdash;", with: "—")
+            .replacingOccurrences(of: "&lsquo;", with: "‘")
+            .replacingOccurrences(of: "&rsquo;", with: "’")
+            .replacingOccurrences(of: "&sbquo;", with: "‚")
+            .replacingOccurrences(of: "&ldquo;", with: "“")
+            .replacingOccurrences(of: "&rdquo;", with: "”")
+            .replacingOccurrences(of: "&bdquo;", with: "„")
+            .replacingOccurrences(of: "&permil;", with: "‰")
+            .replacingOccurrences(of: "&lsaquo;", with: "‹")
+            .replacingOccurrences(of: "&rsaquo;", with: "›")
+            .replacingOccurrences(of: "&euro;", with: "€")
+            .replacingOccurrences(of: "<p>", with: "")
+            .replacingOccurrences(of: "</p>", with: "")
+            .replacingOccurrences(of: "</br>", with: "\n")
+            .replacingOccurrences(of: "<br>", with: "\n")
+            .replacingOccurrences(of: "&lt;", with: "<")
+            .replacingOccurrences(of: "&gt;", with: ">")
+            .replacingOccurrences(of: "&nbsp;", with: " ")
+            .replacingOccurrences(of: "&amp;", with: "&")
+            .replacingOccurrences(of: "&quot;", with: "\"")
+            .replacingOccurrences(of: "&yen;", with: "¥")
       }
 }
 

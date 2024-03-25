@@ -53,7 +53,7 @@ class MyView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: - 搭建界面
+    // MARK: - 搭建界面
     private func setupUI() {
         addSubview(imageView)
         imageView.snp.makeConstraints { make in

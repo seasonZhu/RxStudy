@@ -47,5 +47,5 @@ extension TreeService: TargetType {
         
     }
     
-    var headers: [String : String]? { nil }
+    var headers: [String: String]? { nil }
 }

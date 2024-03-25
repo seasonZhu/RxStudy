@@ -54,7 +54,6 @@ open class RxFSPagerViewDelegateProxy
     
     private var _pagerViewDidEndDeceleratingPublishSubject: PublishSubject<()>?
 
-
     /// Optimized version used for observing content offset changes.
     internal var pagerViewShouldHighlightItemAtPublishSubject: PublishSubject<Int> {
         

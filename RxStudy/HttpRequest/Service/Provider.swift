@@ -87,7 +87,7 @@ let accountProvider = MoyaProvider<AccountService>(plugins: plugins)
 let otherProvider = MoyaProvider<OtherService>(plugins: plugins)
 
 /// 教程
-//let courseProvider = MoyaProvider<CourseService>(plugins: plugins)
+// let courseProvider = MoyaProvider<CourseService>(plugins: plugins)
 
 /// mock数据业务
 let mockProvider = MoyaProvider(stubClosure: MoyaProvider<MockService>.immediatelyStub)

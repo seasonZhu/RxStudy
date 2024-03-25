@@ -30,7 +30,7 @@ class MyController: BaseTableViewController {
         setupUI()
         binding()
         /// 将自动登录放在AppDelegate中的didFinishLaunchingWithOptions中,加快获取数据,getMyCoin这个接口返回数据是有点慢
-        //AccountManager.shared.autoLogin()
+        // AccountManager.shared.autoLogin()
     }
 }
 
@@ -77,7 +77,7 @@ extension MyController {
             .disposed(by: rx.disposeBag)
 
         viewModel.outputs.currentDataSource.asDriver()
-            .drive(tableView.rx.items) { [weak self] (tableView, row, my) in
+            .drive(tableView.rx.items) { [weak self] (tableView, _, my) in
                 if my == .logout {
                     let cell = tableView.dequeueReusableCell(withIdentifier: LogoutCell.className) as! LogoutCell
                     cell.textLabel?.text = my.title
@@ -125,10 +125,10 @@ extension MyController {
                     /// 左侧返回按钮无法自定义,只能使用三个枚举
                     sfsVC.dismissButtonStyle = .close
                     /// 如果这里声明了modalPresentationStyle,又变成了present
-                    //sfsVC.modalPresentationStyle = .automatic
+                    // sfsVC.modalPresentationStyle = .automatic
                     /// 这里我明明使用的是present,但是在App中还是push的效果,倒是如果使用pushViewController,页面会感觉非常奇葩
                     self?.present(sfsVC, animated: true)
-                    //self?.navigationController?.pushViewController(sfsVC, animated: true)
+                    // self?.navigationController?.pushViewController(sfsVC, animated: true)
                 case .aSwiftUI:
                     /// 这里MLeaksFinder会说有内存泄漏,但是具体怎么解决,还没有找到方法
                     let rootView = CoinRankListPage()
@@ -170,10 +170,10 @@ extension MyController {
     
     private func logoutAction(viewModel: MyViewModel) {
         let alertController = UIAlertController(title: "提示", message: "是否确定退出登录?", preferredStyle: .alert)
-        let actionCancel = UIAlertAction(title: "取消", style: .destructive) { (action) in
+        let actionCancel = UIAlertAction(title: "取消", style: .destructive) { (_) in
             
         }
-        let actionOK = UIAlertAction(title: "确定", style: .default) { (action) in
+        let actionOK = UIAlertAction(title: "确定", style: .default) { (_) in
             
             Haptics.success.feedback()
             
@@ -200,7 +200,6 @@ extension MyController {
         navigationController?.pushViewController(MyMessageController(status: status), animated: true)
     }
 }
-
 
 extension MyController: InnerEventResponsible {
     func innerEventHandle(event: any InnerEventConvertible) {

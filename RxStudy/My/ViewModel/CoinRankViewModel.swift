@@ -41,14 +41,13 @@ class CoinRankViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
 }
 
-//MARK: - 网络请求
+// MARK: - 网络请求
 private extension CoinRankViewModel {
     
     func refresh() {
         resetCurrentPageAndMjFooter()
         requestData(page: pageNum)
     }
-  
     
     func loadMore() {
         pageNum = pageNum + 1
@@ -59,7 +58,7 @@ private extension CoinRankViewModel {
         myProvider.rx.request(MyService.coinRank(page))
             .map(BaseModel<Page<CoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .compactMap{ $0.data }
+            .compactMap { $0.data }
             /// 转换操作
             .asObservable()
             .asSingle()

@@ -71,13 +71,13 @@ class BaseViewController: UIViewController {
          */
         
         /// 下面这个代码看似没有什么问题,如果在根控制器进行侧滑操作,然后再尝试点击进行页面的push操作就会卡住,必须要配合BaseNavigationController进行操作才行
-        ///navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        /// navigationController?.interactivePopGestureRecognizer?.delegate = nil
         
         /// 第一种: 将导航栏改成不透明即可, 可行
-        //navigationController?.navigationBar.isTranslucent = false
+        // navigationController?.navigationBar.isTranslucent = false
         
         /// 第二种:导航栏透明的情况下,frame从导航栏下面开始,并没有达到预期的效果
-        //edgesForExtendedLayout = UIRectEdge([])
+        // edgesForExtendedLayout = UIRectEdge([])
         
         view.backgroundColor = .clear
         
@@ -106,7 +106,7 @@ class BaseViewController: UIViewController {
 
 }
 
-//MARK: -  FunnyButton的使用
+// MARK: - FunnyButton的使用
 extension BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -121,14 +121,14 @@ extension BaseViewController {
     }
 }
 
-//MARK: -  LifetimeTracker的使用
+// MARK: - LifetimeTracker的使用
 extension BaseViewController: LifetimeTrackable {
     class var lifetimeConfiguration: LifetimeConfiguration {
         return LifetimeConfiguration(maxCount: 1, groupName: "VC")
     }
 }
 
-//MARK: - 网络请求错误页面的配置
+// MARK: - 网络请求错误页面的配置
 extension BaseViewController {
     private func setupErrorImage() {
         view.addSubview(errorImage)
@@ -170,7 +170,7 @@ extension BaseViewController {
 
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
             
-            //navigationController?.navigationBar.standardAppearance = navBarAppearance
+            // navigationController?.navigationBar.standardAppearance = navBarAppearance
         }
     }
     
@@ -190,7 +190,7 @@ extension BaseViewController {
     }
 }
 
-//MARK: - 绑定
+// MARK: - 绑定
 extension Reactive where Base: BaseViewController {
     
     /// 显示网络错误

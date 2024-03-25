@@ -42,7 +42,6 @@ struct CoinRankListPageCell: View {
                     .padding(.leading, 15)
             }
             
-            
             Image(systemSymbol: .chevronRight)
                 .padding(.trailing, 15)
         }

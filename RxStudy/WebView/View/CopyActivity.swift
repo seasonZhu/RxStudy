@@ -13,7 +13,7 @@ class CopyActivity: UIActivity {
     private var urlString: String?
     
     /// 设置分享按钮的类型
-    override class var activityCategory:  UIActivity.Category { .share }
+    override class var activityCategory: UIActivity.Category { .share }
     
     override var activityType: UIActivity.ActivityType? { ActivityType(CopyActivity.className) }
     

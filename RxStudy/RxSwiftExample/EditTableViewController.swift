@@ -8,24 +8,24 @@
 
 import Foundation
 
-//定义各种操作命令
+// 定义各种操作命令
 enum TableEditingCommand {
-    case setItems(items: [String])  //设置表格数据
-    case addItem(item: String)  //新增数据
-    case moveItem(from: IndexPath, to: IndexPath) //移动数据
-    case deleteItem(IndexPath) //删除数据
+    case setItems(items: [String])  // 设置表格数据
+    case addItem(item: String)  // 新增数据
+    case moveItem(from: IndexPath, to: IndexPath) // 移动数据
+    case deleteItem(IndexPath) // 删除数据
 }
 
-//定义表格对应的ViewModel
+// 定义表格对应的ViewModel
 struct TableViewModel {
-    //表格数据项
-    fileprivate var items:[String]
+    // 表格数据项
+    fileprivate var items: [String]
       
     init(items: [String] = []) {
         self.items = items
     }
       
-    //执行相应的命令，并返回最终的结果
+    // 执行相应的命令，并返回最终的结果
     func execute(command: TableEditingCommand) -> TableViewModel {
         switch command {
         case .setItems(let items):
@@ -57,14 +57,14 @@ import RxDataSources
  
 class EditTableViewController: UIViewController {
      
-    //刷新按钮
+    // 刷新按钮
     lazy var refreshButton = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: nil)
      
-    //新增按钮
+    // 新增按钮
     lazy var addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: nil)
      
-    //表格
-    lazy var tableView = UITableView(frame: self.view.frame, style:.plain)
+    // 表格
+    lazy var tableView = UITableView(frame: self.view.frame, style: .plain)
      
     let disposeBag = DisposeBag()
      
@@ -73,34 +73,34 @@ class EditTableViewController: UIViewController {
         
         navigationItem.rightBarButtonItems = [addButton, refreshButton]
          
-        //创建一个重用的单元格
+        // 创建一个重用的单元格
         tableView.register(UITableViewCell.self,
                                  forCellReuseIdentifier: "Cell")
         view.addSubview(self.tableView)
          
-        //表格模型
+        // 表格模型
         let initialVM = TableViewModel()
          
-        //刷新数据命令
+        // 刷新数据命令
         let refreshCommand = refreshButton.rx.tap.asObservable()
-            .startWith(()) //加这个为了页面初始化时会自动加载一次数据
+            .startWith(()) // 加这个为了页面初始化时会自动加载一次数据
             .flatMapLatest(getRandomResult)
             .map(TableEditingCommand.setItems)
          
-        //新增条目命令
+        // 新增条目命令
         let addCommand = addButton.rx.tap.asObservable()
-            .map{ "\(arc4random())" }
+            .map { "\(arc4random())" }
             .map(TableEditingCommand.addItem)
          
-        //移动位置命令
+        // 移动位置命令
         let movedCommand = tableView.rx.itemMoved
             .map(TableEditingCommand.moveItem)
          
-        //删除条目命令
+        // 删除条目命令
         let deleteCommand = tableView.rx.itemDeleted.asObservable()
             .map(TableEditingCommand.deleteItem)
          
-        //绑定单元格数据
+        // 绑定单元格数据
         Observable.of(refreshCommand, addCommand, movedCommand, deleteCommand)
             .merge()
             .scan(initialVM) { (vm: TableViewModel, command: TableEditingCommand)
@@ -116,12 +116,7 @@ class EditTableViewController: UIViewController {
             .disposed(by: disposeBag)
     }
      
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //tableView.setEditing(true, animated: true)
-    }
-     
-    //获取随机数据
+    // 获取随机数据
     func getRandomResult() -> Observable<[String]> {
         print("生成随机数据。")
         let items = (0 ..< 5).map {_ in
@@ -132,25 +127,25 @@ class EditTableViewController: UIViewController {
 }
  
 extension EditTableViewController {
-    //创建表格数据源
+    // 创建表格数据源
     static func dataSource() -> RxTableViewSectionedAnimatedDataSource
         <AnimatableSectionModel<String, String>> {
         return RxTableViewSectionedAnimatedDataSource(
-            //设置插入、删除、移动单元格的动画效果
+            // 设置插入、删除、移动单元格的动画效果
             animationConfiguration: AnimationConfiguration(insertAnimation: .top,
                                                            reloadAnimation: .fade,
                                                            deleteAnimation: .left),
             configureCell: {
-                (dataSource, tv, indexPath, element) in
+                (_, tv, indexPath, element) in
                 let cell = tv.dequeueReusableCell(withIdentifier: "Cell")!
                 cell.textLabel?.text = "条目\(indexPath.row)：\(element)"
                 return cell
         },
             canEditRowAtIndexPath: { _, _ in
-                return true //单元格可删除
+                return true // 单元格可删除
         },
             canMoveRowAtIndexPath: { _, _ in
-                return true //单元格可移动
+                return true // 单元格可移动
         }
         )
     }

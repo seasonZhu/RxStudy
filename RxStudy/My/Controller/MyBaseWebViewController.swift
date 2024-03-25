@@ -25,7 +25,6 @@ class MyBaseWebViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         let preferences = WKPreferences()

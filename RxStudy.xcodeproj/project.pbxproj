@@ -1289,7 +1289,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n# 使用Cocopods集成SwiftLint使用以下脚本\n#\"${PODS_ROOT}/SwiftLint/swiftlint\" --fix\n#\"${PODS_ROOT}/SwiftLint/swiftlint\" lint\n";
+			shellScript = "# 如果你这里报错,可以尝试删除下面代码,或者根据SwiftLint的提示进行Homebrew安装或者Cocopods安装\n# https://github.com/realm/SwiftLint\n# https://juejin.cn/post/7302240874505797641\nif [[ \"$(uname -m)\" == arm64 ]]; then\n    export PATH=\"/opt/homebrew/bin:$PATH\"\nfi\n\nif which swiftlint > /dev/null; then\n    # 这个命令是用于检查\n    swiftlint lint\n    # 这个命令使用用于修复\n    swiftlint --fix\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n# 使用Cocopods集成SwiftLint使用以下脚本\n#\"${PODS_ROOT}/SwiftLint/swiftlint\" --fix\n#\"${PODS_ROOT}/SwiftLint/swiftlint\" lint\n";
 		};
 		0460F2413F12E891719D5EFC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

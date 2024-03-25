@@ -32,7 +32,7 @@ extension CoinRankListController {
 
          所以，tableView: cellForRowAtIndexPath中的[tableView dequeueReusableCellWithIdentifier:］返回的都不是nil。并且，cell的style一直是UITableViewCellStyleDefault，所以detailTextLabel无法显示。
          */
-        //tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
+        // tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
         
         title = "积分排名"
         
@@ -40,7 +40,7 @@ extension CoinRankListController {
         tableView.rx.modelSelected(CoinRank.self)
             .subscribe { model in
                 debugLog("模型为:\(model)")
-                //self.test()
+                // self.test()
             }
             .disposed(by: rx.disposeBag)
     }
@@ -48,7 +48,7 @@ extension CoinRankListController {
     private func binding() {
         let viewModel = CoinRankViewModel()
         
-        //let viewModel = ListViewModel<CoinRank, ListModel>(target: ListModel(page: nil, listService: .coinRank(0)))
+        // let viewModel = ListViewModel<CoinRank, ListModel>(target: ListModel(page: nil, listService: .coinRank(0)))
 
         tableView.mj_header?.rx.refresh
             .map { ScrollViewActionType.refresh }
@@ -68,7 +68,7 @@ extension CoinRankListController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, coinRank) in
+            .drive(tableView.rx.items) { (tableView, _, coinRank) in
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
                 cell.textLabel?.numberOfLines = 3
@@ -93,7 +93,7 @@ extension CoinRankListController {
     }
     
     /// 此方法用于验证MLeaksFinder发现循环引用的问题
-    private func test() {
+    func test() {
 
     }
     

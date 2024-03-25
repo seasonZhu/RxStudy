@@ -212,7 +212,7 @@ private extension NetworkActivityLogger {
         print("---------------------")
     }
     
-    func logHeaders(headers: [AnyHashable : Any]) {
+    func logHeaders(headers: [AnyHashable: Any]) {
         print("Headers: [")
         for (key, value) in headers {
             print("  \(key): \(value)")

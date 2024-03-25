@@ -16,13 +16,12 @@ protocol BasePageViewModelProtocol: ObservableObject {
 
 extension BasePageViewModelProtocol {
     func clear() {
-        let _ = cancellables.map { $0.cancel() }
+        _ = cancellables.map { $0.cancel() }
         cancellables.removeAll()
     }
 }
 
-
-class BasePageViewModel: BasePageViewModelProtocol  {
+class BasePageViewModel: BasePageViewModelProtocol {
     var cancellables: Set<AnyCancellable> = []
     
     deinit {

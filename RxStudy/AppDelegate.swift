@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AccountManager.shared.autoLogin()
         
         /// 网络状态监听
-        NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { status in
+        NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
             let value = NetworkReachabilityManager.default?.isReachable == true
             AccountManager.shared.networkIsReachableRelay.accept(value)
         })
@@ -128,9 +128,9 @@ import SSZipArchive
 extension AppDelegate {
     func logSetting() {
         #if DEBUG
-        dynamicLogLevel = .verbose;
+        dynamicLogLevel = .verbose
         #else
-        dynamicLogLevel = .warning;
+        dynamicLogLevel = .warning
         #endif
                 
         DDLog.add(DDOSLogger.sharedInstance) // Uses os_log
@@ -190,12 +190,12 @@ extension AppDelegate {
 extension AppDelegate {
     private func screenCapturedListen() {
         /// 监听截屏
-        NotificationCenter.default.addObserver(forName: UIApplication.userDidTakeScreenshotNotification, object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: UIApplication.userDidTakeScreenshotNotification, object: nil, queue: .main) { _ in
             print("屏幕正在被截屏")
         }
         
         /// 监听录屏
-        NotificationCenter.default.addObserver(forName: UIScreen.capturedDidChangeNotification, object: nil, queue: .main) { notification in
+        NotificationCenter.default.addObserver(forName: UIScreen.capturedDidChangeNotification, object: nil, queue: .main) { _ in
             if UIScreen.main.isCaptured {
                 /// 屏幕正在被捕获，可以在这里做一些隐藏内容的操作，比如
                 /// 显示一个覆盖所有内容的视图

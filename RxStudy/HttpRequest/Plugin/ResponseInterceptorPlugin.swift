@@ -9,7 +9,7 @@
 import Moya
 import SVProgressHUD
 
-//MARK: - 响应异常拦截器插件
+// MARK: - 响应异常拦截器插件
 class ResponseInterceptorPlugin: PluginType {
     func process(_ result: Swift.Result<Moya.Response, MoyaError>, target: TargetType) -> Swift.Result<Moya.Response, MoyaError> {
 
@@ -37,7 +37,6 @@ extension ResponseInterceptorPlugin {
     static let errorServerCodes = [-1]
 }
 
-
 /// 对Moya的Response做只读属性的扩展,打印漂亮的json
 extension Moya.Response {
     /// json打印
@@ -63,4 +62,3 @@ extension Moya.Response {
     }
     
 }
-

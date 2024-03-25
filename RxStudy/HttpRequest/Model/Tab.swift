@@ -8,16 +8,16 @@
 
 import Foundation
 
-struct Tab : Codable {
+struct Tab: Codable {
 
-    let children : [Tab]?
-    let courseId : Int?
-    let id : Int?
-    let name : String?
-    let order : Int?
-    let parentChapterId : Int?
-    let userControlSetTop : Bool?
-    let visible : Int?
+    let children: [Tab]?
+    let courseId: Int?
+    let id: Int?
+    let name: String?
+    let order: Int?
+    let parentChapterId: Int?
+    let userControlSetTop: Bool?
+    let visible: Int?
 
 }
 

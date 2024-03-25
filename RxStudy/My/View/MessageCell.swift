@@ -37,7 +37,6 @@ class MessageCell: UITableViewCell {
     }
     
     private var _count: Int!
-    
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

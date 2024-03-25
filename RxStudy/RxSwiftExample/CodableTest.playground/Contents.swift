@@ -11,12 +11,11 @@ let IntJSONString = """
 }
 """
 
-//let intData = IntJSONString.data(using: .utf8)!
+// let intData = IntJSONString.data(using: .utf8)!
 //
-//let intModel = try? JSONDecoder().decode(MixinIntModel.self, from: intData)
+// let intModel = try? JSONDecoder().decode(MixinIntModel.self, from: intData)
 //
-//print(intModel?.result)
-
+// print(intModel?.result)
 
 struct MixinStringModel: Codable {
     @MixinType
@@ -55,7 +54,6 @@ let boolModel = try? JSONDecoder().decode(MixinBoolModel.self, from: boolData)
 
 print(boolModel?.result)
 
-
 let StringValueJSONString = """
 {
     "result": 3.1415926
@@ -75,17 +73,17 @@ print(stringValueModel?.result)
 
 print(stringValueModel?.$result.boolToIntStringValue)
 
-//let someData = try JSONEncoder().encode(stringValueModel!)
+// let someData = try JSONEncoder().encode(stringValueModel!)
 //
-//let any = try JSONSerialization.jsonObject(with: someData)
+// let any = try JSONSerialization.jsonObject(with: someData)
 //
-//let someString = String(data: someData, encoding: .utf8)
+// let someString = String(data: someData, encoding: .utf8)
 //
-//print(someData)
+// print(someData)
 //
-//print(any)
+// print(any)
 //
-//print(someString)
+// print(someString)
 
 /// 这种"""字符串"""JSONString没法解析出来,必须要使用#""#这种方式,或者从.json文件读取才能正常解析
 let badJSONString = #"{"result": true,"body": "{\"ret_code\":\"0\",\"ret_msg\":\"成功\",\"serial_number\":\"20211002115646portal511788\",\"timestamp\":\"2021-10-02 03:56:46\",\"response_data\":{\"token\":\"0765499c-8643-4491-8c8e-50f92a2ea004\",\"expiredMills\":1633751806616}}"}"#
@@ -124,7 +122,7 @@ struct ResponseData: Codable {
     let expiredMills: Date?
 }
 
-let jsonStringData = badJSONString.data(using: .utf8)!//try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "ToCodable", ofType: "json")!))
+let jsonStringData = badJSONString.data(using: .utf8)!// try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: "ToCodable", ofType: "json")!))
 
 let jsonStringModel = try? JSONDecoder().decode(Token.self, from: jsonStringData)
 
@@ -142,14 +140,13 @@ print(any)
 
 print(someString)
 
-
 let formatter = NumberFormatter()
 formatter.numberStyle = .decimal
 formatter.maximumFractionDigits = 1
 
 let numbers = [1.2, 1.22, 1.25, 1.27, -1.25, 0.03]
 let modes: [NumberFormatter.RoundingMode] = [.halfUp]
-    //[.ceiling, .floor, .up, .down, .halfUp, .halfDown, .halfEven]
+    // [.ceiling, .floor, .up, .down, .halfUp, .halfDown, .halfEven]
 
 for mode in modes {
     formatter.roundingMode = mode
@@ -195,7 +192,6 @@ struct SexModel: Codable {
     var sexEnum: SexEnum
 }
 
-
 let SexTypeJSONString = """
 {
     "sexType": "4",
@@ -205,7 +201,6 @@ let SexTypeJSONString = """
     "sexEnum": "unknow"
 }
 """
-
 
 let sexData = SexTypeJSONString.data(using: .utf8)!
 
@@ -222,5 +217,3 @@ let sexModelData = JSONEncoder().encode(sexModel!)
 let sexModelJson = try JSONSerialization.jsonObject(with: sexModelData)
 
 print(sexModelJson)
-
-

@@ -26,7 +26,6 @@ class MyJueJinController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     private lazy var webView: WKWebView = {
         let config = WKWebViewConfiguration()
         config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: ScriptMessageHandlerType.wanAndroid.rawValue)

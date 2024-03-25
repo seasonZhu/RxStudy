@@ -20,7 +20,6 @@
 
 import SwiftUI
 
-
 #if os(macOS)
 import AppKit
 typealias Application = NSApplication
@@ -37,9 +36,9 @@ struct AppLifeCycleModifier: ViewModifier {
     let active = NotificationCenter.default.publisher(for: Application.didBecomeActiveNotification)
     let inactive = NotificationCenter.default.publisher(for: Application.willResignActiveNotification)
     
-    private let action: (Bool) -> ()
+    private let action: (Bool) -> Void
     
-    init(_ action: @escaping (Bool) -> ()) {
+    init(_ action: @escaping (Bool) -> Void) {
         self.action = action
     }
     
@@ -57,7 +56,7 @@ struct AppLifeCycleModifier: ViewModifier {
 
 @available(iOS 13.0, OSX 10.15, *)
 extension View {
-    func onReceiveAppLifeCycle(perform action: @escaping (Bool) -> ()) -> some View {
+    func onReceiveAppLifeCycle(perform action: @escaping (Bool) -> Void) -> some View {
         self.modifier(AppLifeCycleModifier(action))
     }
 }

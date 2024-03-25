@@ -67,5 +67,5 @@ extension MyService: TargetType {
         return .requestPlain
     }
     
-    var headers: [String : String]? { loginHeader }
+    var headers: [String: String]? { loginHeader }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-//MARK: -  继承Codable协议进行处理
+// MARK: - 继承Codable协议进行处理
 
 /// https://github.com/line/line-sdk-ios-swift/blob/master/LineSDK/LineSDK/Networking/Model/CustomizeCoding/CodingExtension.swift
 
@@ -41,7 +41,7 @@ extension SexEnum: DefaultEnumCodable {
     static let defaultCase: SexEnum = .man
 }
 
-//MARK: -  通过@propertyWrapper进行处理
+// MARK: - 通过@propertyWrapper进行处理
 
 protocol EnumDefaultType {
     static var defaultCase: Self { get }
@@ -78,7 +78,6 @@ struct GuardEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable,
     }
 }
 
-
 @propertyWrapper
 struct CanNilEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable, Enum.RawValue: Codable {
     var wrappedValue: Enum?
@@ -102,12 +101,11 @@ struct CanNilEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable
     }
 }
 
-//MARK: -  这个思路失败了
+// MARK: - 这个思路失败了
 @propertyWrapper
 struct DefaultEnumType<Enum>: Codable where Enum: Codable, Enum: RawRepresentable, Enum.RawValue: Codable {
     
     private var defaultValue: Enum!
-
 
     var wrappedValue: Enum!
 

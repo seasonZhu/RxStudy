@@ -8,13 +8,13 @@
 
 import Foundation
 
-struct Friend : Codable {
+struct Friend: Codable {
 
-    let category : String?
-    let icon : String?
-    let id : Int?
-    let link : String?
-    let name : String?
-    let order : Int?
-    let visible : Int?
+    let category: String?
+    let icon: String?
+    let id: Int?
+    let link: String?
+    let name: String?
+    let order: Int?
+    let visible: Int?
 }

@@ -35,7 +35,7 @@ protocol VMOutputs {
 
 protocol PageVMBaseSetting {
     /// 页码数
-    var pageNum: Int { set get }
+    var pageNum: Int { get set }
     
     /// 重置刷新状态与页码数
     func resetCurrentPageAndMjFooter()

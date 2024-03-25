@@ -39,14 +39,14 @@ class RxSwiftCoinRankListController: BaseViewController {
         tableView.mj_header = MJRefreshNormalHeader()
         
         tableView.mj_header?.rx.refresh
-            .subscribe(onNext:vm.refreshAction)
+            .subscribe(onNext: vm.refreshAction)
             .disposed(by: rx.disposeBag)
         
         /// 设置尾部刷新控件
         tableView.mj_footer = MJRefreshBackNormalFooter()
         
         tableView.mj_footer?.rx.refresh
-            .subscribe(onNext:vm.loadMoreAction)
+            .subscribe(onNext: vm.loadMoreAction)
             .disposed(by: rx.disposeBag)
         
         /// cell删除
@@ -65,7 +65,7 @@ class RxSwiftCoinRankListController: BaseViewController {
         /// 数据源驱动
         vm.$dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, coinRank) in
+            .drive(tableView.rx.items) { (tableView, _, coinRank) in
             if let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className) {
                 cell.textLabel?.text = coinRank.username
                 cell.detailTextLabel?.text = coinRank.coinCount?.toString
@@ -92,7 +92,6 @@ extension RxSwiftCoinRankListController: UITableViewDelegate {
         return .delete
     }
 }
-
 
 class RxSwiftCoinRankListViewModel {
     /// 初始化page为1
@@ -150,10 +149,10 @@ class RxSwiftCoinRankListViewModel {
         let aType = _ba.wrappedValue
         
         /// 拿出A的wrappedValue
-        let _ = aType.wrappedValue
+        _ = aType.wrappedValue
         
         /// 拿出A的projectedValue
-        let _ = aType.projectedValue
+        _ = aType.projectedValue
         
         print("origin:\(origin) type:\(type) value:\(value)")
     }
@@ -176,7 +175,7 @@ class RxSwiftCoinRankListViewModel {
             /// 转Model
             .map(BaseModel<Page<CoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .map{ $0.data }
+            .map { $0.data }
             /// 解包,这一步Single变成了Maybe
             .compactMap { $0 }
             /// 转换操作, Maybe要先转成Observable
@@ -217,7 +216,7 @@ class RxSwiftCoinRankListViewModel {
 
 extension RxSwiftCoinRankListViewModel: HasDisposeBag {}
 
-//MARK: -  Moya + Combine进行网络请求
+// MARK: - Moya + Combine进行网络请求
 
 import Combine
 import CombineExt
@@ -228,10 +227,10 @@ class CombineCoinRankListViewModel {
     func getMyCoinList(page: Int) {
         cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
             .map(BaseModel<Page<CoinRank>>.self)
-            .map{ $0.data }
+            .map { $0.data }
             .compactMap { $0 }
             /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。
-            //.materialize()
+            // .materialize()
             .sink { completion in
                 print(completion)
                 guard case let .failure(error) = completion else { return }
@@ -254,10 +253,10 @@ extension CombineCoinRankListViewModel {
         Future { promise in
             self.cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
                 .map(BaseModel<Page<CoinRank>>.self)
-                .map{ $0.data }
+                .map { $0.data }
                 .compactMap { $0 }
                 /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。
-                //.materialize()
+                // .materialize()
                 .sink { completion in
                     print(completion)
                     guard case let .failure(error) = completion else { return }

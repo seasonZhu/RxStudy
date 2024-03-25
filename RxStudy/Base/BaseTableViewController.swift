@@ -42,7 +42,7 @@ extension BaseTableViewController {
     private func setupTableView() {
         
         /// 注册Cell之后,就可以直接在数据源中进行强制与复用,而不用再写if 与 else了
-        let _ = BaseTableViewController.allClass.map { tableView.register($0, forCellReuseIdentifier: $0.className) }
+        _ = BaseTableViewController.allClass.map { tableView.register($0, forCellReuseIdentifier: $0.className) }
         
         /// 设置tableFooterView
         tableView.tableFooterView = UIView()
@@ -81,14 +81,14 @@ extension BaseTableViewController {
         tableView.emptyDataSetDelegate = self
         
         /// 订阅点击了数据为空，请重试的行为，里面没有用状态去绑定tableView是因为没有ViewModel
-        emptyDataSetButtonTap.subscribe(onNext:  { [weak self] _ in
+        emptyDataSetButtonTap.subscribe(onNext: { [weak self] _ in
             self?.tableView.mj_header?.beginRefreshing()
         })
         .disposed(by: rx.disposeBag)
         
         /// 数据为空的订阅
         isEmptyRelay.subscribe { [weak self] event in
-            ///有的时候你发现所有页面都循环引用了,而且就算继承的这个类写不写代码都循环引用,这个时候你要回头看看基类,是不是基类写的东西导致了循环引用
+            /// 有的时候你发现所有页面都循环引用了,而且就算继承的这个类写不写代码都循环引用,这个时候你要回头看看基类,是不是基类写的东西导致了循环引用
             
             switch event {
             case .next(let noContent):
@@ -123,10 +123,10 @@ extension BaseTableViewController {
     }
 }
 
-//MARK: - UITableViewDelegate
+// MARK: - UITableViewDelegate
 extension BaseTableViewController: UITableViewDelegate {}
 
-//MARK: - DZNEmptyDataSetSource
+// MARK: - DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetSource {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
@@ -146,7 +146,7 @@ extension BaseTableViewController: DZNEmptyDataSetSource {
     }
 }
 
-//MARK: - DZNEmptyDataSetSource
+// MARK: - DZNEmptyDataSetSource
 extension BaseTableViewController: DZNEmptyDataSetDelegate {
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {

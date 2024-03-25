@@ -49,14 +49,13 @@ class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting
 
 }
 
-//MARK: - 网络请求,普通列表数据
+// MARK: - 网络请求,普通列表数据
 private extension SingleTabListViewModel {
     
     func refresh() {
         resetCurrentPageAndMjFooter()
         requestData(page: pageNum)
     }
-  
     
     func loadMore() {
         pageNum = pageNum + 1
@@ -84,7 +83,7 @@ private extension SingleTabListViewModel {
             /// Response转Model
             .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .compactMap{ $0.data }
+            .compactMap { $0.data }
             /// 转换操作
             .asObservable()
             .asSingle()

@@ -46,7 +46,7 @@ extension BaseViewModel {
 extension SingleEvent {
     var moyaError: MoyaError? {
         switch self {
-        case .success(_):
+        case .success:
             return nil
         case .failure(let error):
             guard let moyaError = error as? MoyaError else { return nil }

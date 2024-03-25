@@ -23,7 +23,7 @@ struct CoinRankListPage: View {
     var publisher: AnyPublisher<Void, Never> { backButtonSubject.eraseToAnyPublisher() }
     
     var body: some View {
-        //normalView
+        // normalView
         stateView
     }
     
@@ -42,7 +42,7 @@ struct CoinRankListPage: View {
         }
         .onLoad {
             viewModel.refreshAction()
-            //UINavigationBar.appearance().isHidden = true
+            // UINavigationBar.appearance().isHidden = true
         }
     }
     
@@ -90,7 +90,7 @@ extension CoinRankListPage {
             /// 通过之前RxSwift的经验,通过防抖解决了
             print("下拉刷新")
             viewModel.action.send()
-            //viewModel.refreshAction()
+            // viewModel.refreshAction()
         }) { progress in
             if viewModel.headerRefreshing {
                 SimpleRefreshingView()

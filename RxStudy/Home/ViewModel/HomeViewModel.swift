@@ -76,7 +76,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
         case .loadMore:
             loadMore()
                 /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-                .compactMap{ $0.data }
+                .compactMap { $0.data }
                 /// 转换操作
                 .asObservable()
                 .asSingle()/// 订阅
@@ -105,7 +105,7 @@ class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
 }
 
-//MARK: - 网络请求 
+// MARK: - 网络请求 
 private extension HomeViewModel {
     
     /// 下拉刷新操作
@@ -130,13 +130,12 @@ private extension HomeViewModel {
         return result
     }
     
-    
     /// 置顶文章
     /// - Returns: Single<[Info]>
     func topArticleData() -> Single<[Info]> {
         let result = homeProvider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
-            .compactMap{ $0.data }
+            .compactMap { $0.data }
             .asObservable()
             .asSingle()
         
@@ -148,7 +147,7 @@ private extension HomeViewModel {
     func bannerData() -> Single<[Banner]> {
         let result = homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
-            .compactMap{ $0.data }
+            .compactMap { $0.data }
             .asObservable()
             .asSingle()
 
@@ -180,7 +179,7 @@ extension HomeViewModel {
                 switch event {
                 case .success(let value):
                     AccountManager.shared.isGrayModeRelay.accept(value)
-                case .failure(_):
+                case .failure:
                     break
                 }
             }

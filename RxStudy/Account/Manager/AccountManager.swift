@@ -53,7 +53,7 @@ extension AccountManager {
     var cookieHeaderValue: String {
         if let username = accountInfo?.username,
            let password = accountInfo?.password {
-          return "loginUserName=\(username);loginUserPassword=\(password)";
+          return "loginUserName=\(username);loginUserPassword=\(password)"
         } else {
           return ""
         }
@@ -161,7 +161,7 @@ extension AccountManager {
                     self.myCoinRelay.accept(myCoin)
                     self.myUnreadMessageCountRelay.accept(count)
                     
-                case .failure(_):
+                case .failure:
                     self.myCoinRelay.accept(nil)
                     self.myUnreadMessageCountRelay.accept(0)
                 }
@@ -176,17 +176,17 @@ extension AccountManager {
     private func getMyCoin() -> Single<CoinRank> {
         myProvider.rx.request(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
-            .map{ $0.data }
-            .compactMap{ $0 }
+            .map { $0.data }
+            .compactMap { $0 }
             .asObservable()
             .asSingle()
     }
     
-    private func getMyUnreadMessageCount()  -> Single<Int> {
+    private func getMyUnreadMessageCount() -> Single<Int> {
         myProvider.rx.request(MyService.unreadCount)
             .map(BaseModel<Int>.self)
-            .map{ $0.data }
-            .compactMap{ $0 }
+            .map { $0.data }
+            .compactMap { $0 }
             .asObservable()
             .asSingle()
     }

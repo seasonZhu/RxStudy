@@ -19,4 +19,3 @@ extension AnyCancellable {
         token.cancellable = self
     }
 }
-

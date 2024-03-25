@@ -40,7 +40,7 @@ class TabsViewModel: BaseViewModel {
     }
 }
 
-//MARK: - 网络请求
+// MARK: - 网络请求
 private extension TabsViewModel {
     func requestData() {
         let result: Single<Response>
@@ -57,9 +57,9 @@ private extension TabsViewModel {
         
         result
             .map(BaseModel<[Tab]>.self)
-            .map{ $0.data }
+            .map { $0.data }
             /// 去掉其中为nil的值
-            .compactMap{ $0 }
+            .compactMap { $0 }
             .asObservable()
             .asSingle()
             .subscribe { event in

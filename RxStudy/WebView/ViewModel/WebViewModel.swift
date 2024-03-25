@@ -22,7 +22,7 @@ class WebViewModel: BaseViewModel {
 
 extension WebViewModel {
     
-    func collectAction(collectId: Int){
+    func collectAction(collectId: Int) {
         myProvider.rx.request(MyService.collectArticle(collectId))
             .map(BaseModel<String>.self)
             .map { $0.isSuccess }

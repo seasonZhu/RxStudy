@@ -26,7 +26,6 @@ public enum ACarouselAutoScroll {
     case active(TimeInterval)
 }
 
-
 extension ACarouselAutoScroll {
     
     /// default active
@@ -38,7 +37,7 @@ extension ACarouselAutoScroll {
     var isActive: Bool {
         switch self {
         case .active(let t): return t > 0
-        case .inactive : return false
+        case .inactive: return false
         }
     }
     
@@ -46,7 +45,7 @@ extension ACarouselAutoScroll {
     var interval: TimeInterval {
         switch self {
         case .active(let t): return t
-        case .inactive : return 0
+        case .inactive: return 0
         }
     }
 }

@@ -6,9 +6,9 @@
 //  Copyright © 2021 season. All rights reserved.
 //
 
-//import UIKit
+// import UIKit
 //
-//enum ViewState {
+// enum ViewState {
 //    case loading
 //    case success(ViewStateSuccess)
 //    case error
@@ -17,9 +17,9 @@
 //        case hasContent(BuilderWidget?)
 //        case empty
 //    }
-//}
+// }
 //
-//extension ViewState {
+// extension ViewState {
 //    var view: Widget {
 //        switch self {
 //        case .loading:
@@ -38,11 +38,11 @@
 //            }
 //        }
 //    }
-//}
+// }
 //
 //
-//protocol Widget {}
+// protocol Widget {}
 //
-//extension UIView: Widget {}
+// extension UIView: Widget {}
 //
-//typealias BuilderWidget = () -> Widget
+// typealias BuilderWidget = () -> Widget

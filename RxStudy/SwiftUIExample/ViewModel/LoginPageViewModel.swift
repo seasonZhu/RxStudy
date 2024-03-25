@@ -42,7 +42,7 @@ class LoginPageViewModel: ObservableObject {
             .map { $0.isNotEmpty }
         /// 说明assign(to: 这个如果只使用系统带入的语法非常容易导致循环引用,而不是这个subscribe导致的
             .subscribe(usernameValid)
-            //.weakSubscribe(usernameValid)
+            // .weakSubscribe(usernameValid)
             .store(in: &cancellables)
         
         $password
@@ -96,7 +96,7 @@ class LoginPageViewModel: ObservableObject {
     }
     
     func clear() {
-        let _ = cancellables.map { $0.cancel() }
+        _ = cancellables.map { $0.cancel() }
         cancellables.removeAll()
     }
 
@@ -107,7 +107,7 @@ class LoginPageViewModel: ObservableObject {
 
 extension LoginPageViewModel {
     private func aExample() {
-        let sink = Subscribers.Sink<Bool, Never> { c in
+        let sink = Subscribers.Sink<Bool, Never> { _ in
             
         } receiveValue: { input in
             print("combine input:\(input)")
@@ -132,7 +132,7 @@ extension LoginPageViewModel {
                 switch event {
                 case .next(let value):
                     print("rx value:\(value)")
-                case .error(_):
+                case .error:
                     break
                 case .completed:
                     break
@@ -149,8 +149,7 @@ extension LoginPageViewModel {
 
 extension LoginPageViewModel: TypeNameProtocol {}
 
-
-//MARK: -  CbBehaviorSubject
+// MARK: - CbBehaviorSubject
 /// CbBehaviorSubject即CombineBehaviorSubject的缩写,本质上是封装CurrentValueSubject,它和RxSwift中的BehaviorSubject类似
 @propertyWrapper
 class CbBehaviorSubject<T> {

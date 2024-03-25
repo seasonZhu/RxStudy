@@ -1,10 +1,9 @@
-
 import SnapKit
 
 public struct ConstraintArrayDSL {
     @discardableResult
     public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {
-        var constraints = Array<Constraint>()
+        var constraints = [Constraint]()
         for view in self.array {
             constraints.append(contentsOf: view.snp.prepareConstraints(closure))
         }
@@ -60,12 +59,12 @@ public struct ConstraintArrayDSL {
             return
         }
         
-        var prev : ConstraintView?
+        var prev: ConstraintView?
         var vMinX: CGFloat = 0
         
         let maxW = maxWidth - (edgeInset.right + edgeInset.left)
         
-        for (i,v) in self.array.enumerated() {
+        for (i, v) in self.array.enumerated() {
             
             let curWidth = min(determineWidths[i], maxW)
             v.snp.makeConstraints({ (make) in
@@ -78,16 +77,14 @@ public struct ConstraintArrayDSL {
                     make.top.equalTo(tmpTarget).offset(edgeInset.top)
                     make.left.equalTo(tempSuperview).offset(edgeInset.left)
                     vMinX = curWidth + horizontalSpacing
-                }
-                else {
+                } else {
                     make.right.lessThanOrEqualToSuperview().offset(-edgeInset.right)
                     
                     if vMinX + curWidth > maxW {
                         make.top.equalTo(prev!.snp.bottom).offset(verticalSpacing)
                         make.left.equalTo(tempSuperview).offset(edgeInset.left)
                         vMinX = curWidth + horizontalSpacing
-                    }
-                    else {
+                    } else {
                         make.top.equalTo(prev!)
                         make.left.equalTo(prev!.snp.right).offset(horizontalSpacing)
                         vMinX += curWidth + horizontalSpacing
@@ -143,8 +140,7 @@ public struct ConstraintArrayDSL {
                     make.bottom.lessThanOrEqualTo(tempSuperview).offset(-edgeInset.bottom)
                 })
             }
-        }
-        else {
+        } else {
             self.array.first?.snp.makeConstraints({ (make) in
                 if fixedItemLength != nil {
                     make.width.equalTo(fixedItemLength!)
@@ -172,7 +168,6 @@ public struct ConstraintArrayDSL {
         }
     }
     
-    
     /// distribute with the width that you give
     /// you should calculate the width of each item first
     ///
@@ -194,11 +189,11 @@ public struct ConstraintArrayDSL {
         }
         
         let columnCount = warpCount
-        let rowCount = self.array.count % warpCount == 0 ? self.array.count / warpCount : self.array.count / warpCount + 1;
+        let rowCount = self.array.count % warpCount == 0 ? self.array.count / warpCount : self.array.count / warpCount + 1
         
-        var prev : ConstraintView?
+        var prev: ConstraintView?
         
-        for (i,v) in self.array.enumerated() {
+        for (i, v) in self.array.enumerated() {
             
             let currentRow = i / warpCount
             let currentColumn = i % warpCount
@@ -207,64 +202,62 @@ public struct ConstraintArrayDSL {
                 if prev != nil {
                     make.width.height.equalTo(prev!)
                 }
-                if currentRow == 0 {//fisrt row
+                if currentRow == 0 {// fisrt row
                     let tmpTarget = topConstrainView != nil ? topConstrainView!.snp.bottom : tempSuperview.snp.top
                     make.top.equalTo(tmpTarget).offset(edgeInset.top)
                     if itemHeight != nil {
                         make.height.equalTo(itemHeight!)
                     }
                 }
-                if currentRow == rowCount - 1 {//last row
+                if currentRow == rowCount - 1 {// last row
                     if currentRow != 0 && i - columnCount >= 0 {
                         make.top.equalTo(self.array[i-columnCount].snp.bottom).offset(verticalSpacing)
                     }
                     
                     if itemHeight != nil {
                         make.bottom.lessThanOrEqualTo(tempSuperview).offset(-edgeInset.bottom)
-                    }
-                    else {
+                    } else {
                         make.bottom.equalTo(tempSuperview).offset(-edgeInset.bottom)
                     }
                 }
                 
-                if currentRow != 0 && currentRow != rowCount - 1 {//other row
-                    make.top.equalTo(self.array[i-columnCount].snp.bottom).offset(verticalSpacing);
+                if currentRow != 0 && currentRow != rowCount - 1 {// other row
+                    make.top.equalTo(self.array[i-columnCount].snp.bottom).offset(verticalSpacing)
                 }
                 
-                if currentColumn == 0 {//first col
+                if currentColumn == 0 {// first col
                     make.left.equalTo(tempSuperview).offset(edgeInset.left)
                 }
-                if currentColumn == warpCount - 1 {//last col
+                if currentColumn == warpCount - 1 {// last col
                     if currentColumn != 0 {
                         make.left.equalTo(prev!.snp.right).offset(horizontalSpacing)
                     }
                     make.right.equalTo(tempSuperview).offset(-edgeInset.right)
                 }
                 
-                if currentColumn != 0 && currentColumn != warpCount - 1 {//other col
-                    make.left.equalTo(prev!.snp.right).offset(horizontalSpacing);
+                if currentColumn != 0 && currentColumn != warpCount - 1 {// other col
+                    make.left.equalTo(prev!.snp.right).offset(horizontalSpacing)
                 }
             })
             prev = v
         }
     }
     
-    
     public var target: AnyObject? {
         return self.array as AnyObject
     }
     
-    internal let array: Array<ConstraintView>
+    internal let array: [ConstraintView]
     
-    internal init(array: Array<ConstraintView>) {
+    internal init(array: [ConstraintView]) {
         self.array = array
     }
 }
 
 private extension ConstraintArrayDSL {
     func commonSuperviewOfViews() -> ConstraintView? {
-        var commonSuperview : ConstraintView?
-        var previousView : ConstraintView?
+        var commonSuperview: ConstraintView?
+        var previousView: ConstraintView?
         
         for view in self.array {
             if previousView != nil {
@@ -279,7 +272,7 @@ private extension ConstraintArrayDSL {
 }
 
 private extension ConstraintView {
-    func closestCommonSuperview(_ view : ConstraintView?) -> ConstraintView? {
+    func closestCommonSuperview(_ view: ConstraintView?) -> ConstraintView? {
         var closestCommonSuperview: ConstraintView?
         var secondViewSuperview: ConstraintView? = view
         while closestCommonSuperview == nil && secondViewSuperview != nil {

@@ -22,7 +22,6 @@ enum HomeService {
     case queryKeyword(_ keyword: String, _ page: Int)
 }
 
-
 extension HomeService: TargetType {
     var baseURL: URL {
         return URL(string: Api.baseUrl)!
@@ -67,7 +66,7 @@ extension HomeService: TargetType {
             return .requestPlain
         case .topArticle:
             return .requestPlain
-        case .normalArticle(_):
+        case .normalArticle:
             return .requestPlain
         case .hotKey:
             return .requestPlain
@@ -76,5 +75,5 @@ extension HomeService: TargetType {
         }
     }
     
-    var headers: [String : String]? { nil }
+    var headers: [String: String]? { nil }
 }

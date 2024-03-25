@@ -41,7 +41,7 @@ class MyViewModel: BaseViewModel {
                     AccountManager.shared.myCoinRelay.accept(myCoin)
                     AccountManager.shared.myUnreadMessageCountRelay.accept(count)
                     
-                case .failure(_):
+                case .failure:
 
                     /// 同步到单例
                     AccountManager.shared.myCoinRelay.accept(nil)
@@ -57,17 +57,17 @@ extension MyViewModel {
     private func getMyCoin() -> Single<CoinRank> {
         myProvider.rx.request(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
-            .map{ $0.data }
-            .compactMap{ $0 }
+            .map { $0.data }
+            .compactMap { $0 }
             .asObservable()
             .asSingle()
     }
     
-    private func getMyUnreadMessageCount()  -> Single<Int> {
+    private func getMyUnreadMessageCount() -> Single<Int> {
         myProvider.rx.request(MyService.unreadCount)
             .map(BaseModel<Int>.self)
-            .map{ $0.data }
-            .compactMap{ $0 }
+            .map { $0.data }
+            .compactMap { $0 }
             .asObservable()
             .asSingle()
     }
@@ -92,8 +92,8 @@ extension MyViewModel {
         /// 使用自己写的BlockingObservable分类进行处理
         let some = myProvider.rx.request(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
-            .map{ $0.data }
-            .compactMap{ $0 }
+            .map { $0.data }
+            .compactMap { $0 }
             .toBlocking()
             .toSingleResult
         switch some {
@@ -106,7 +106,7 @@ extension MyViewModel {
         /// 使用自己写的MoyaProviderType分类进行处理
         let result: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
-            .map{ $0.data }
+            .map { $0.data }
             .filterNil(CoinRank.self)
         
         switch result {
@@ -120,7 +120,7 @@ extension MyViewModel {
         
         let anotherResult: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
             .map(BaseModel<CoinRank>.self)
-            .map{ $0.data }
+            .map { $0.data }
             .filterNil()
         
         switch anotherResult {

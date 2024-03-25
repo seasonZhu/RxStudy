@@ -17,11 +17,11 @@ extension UITraitCollection {
     
     static var isLight: Bool { UITraitCollection.current.isLight }
     
-    static var isUnspecified: Bool  { UITraitCollection.current.isUnspecified }
+    static var isUnspecified: Bool { UITraitCollection.current.isUnspecified }
     
     var isDark: Bool { userInterfaceStyle == .dark }
     
     var isLight: Bool { userInterfaceStyle == .light }
     
-    var isUnspecified: Bool  { userInterfaceStyle == .unspecified }
+    var isUnspecified: Bool { userInterfaceStyle == .unspecified }
 }

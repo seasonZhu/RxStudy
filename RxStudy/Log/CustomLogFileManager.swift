@@ -63,7 +63,6 @@ class CustomLogFileManager: NSObject, DDLogFileManager {
         sortedLogFilePaths.map { DDLogFileInfo(filePath: $0)}
     }
     
-    
     override init() {
         /// 设置 logsDirectory 为 Documents/Logs 目录
         let paths = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)
@@ -165,4 +164,3 @@ class CustomLogFileManager: NSObject, DDLogFileManager {
         }
     }
 }
-

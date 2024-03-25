@@ -82,7 +82,7 @@ class LoginController: AccountBaseController {
             .disposed(by: rx.disposeBag)
         
         toRegisterButton.rx.tap
-            .subscribe(onNext:  { [weak self] _ in
+            .subscribe(onNext: { [weak self] _ in
                 self?.navigationController?.pushViewController(RegisterController(), animated: true)
             })
             .disposed(by: rx.disposeBag)

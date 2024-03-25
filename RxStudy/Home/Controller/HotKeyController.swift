@@ -161,8 +161,7 @@ class HotKeyController: BaseViewController {
         let buttons = tuples.map { $0.0 }
         let textWidths = tuples.map { $0.1 }
         
-        
-        let _ = tuples.map {
+        _ = tuples.map {
             self.view.addSubview($0.0)
         }
         

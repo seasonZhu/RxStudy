@@ -49,5 +49,5 @@ extension MockService: TargetType {
         return .requestPlain
     }
     
-    var headers: [String : String]? { nil }
+    var headers: [String: String]? { nil }
 }

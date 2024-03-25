@@ -91,7 +91,7 @@ extension My {
     }
 }
 
-//MARK: -  这个分类的属性从这里开始就不纯粹了,和UI有关系了,这么设计不知道是
+// MARK: - 这个分类的属性从这里开始就不纯粹了,和UI有关系了,这么设计不知道是
 extension My {
     var accessoryType: UITableViewCell.AccessoryType {
         switch self {

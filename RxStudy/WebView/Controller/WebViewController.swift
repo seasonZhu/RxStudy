@@ -76,7 +76,6 @@ class WebViewController: BaseViewController {
         return label
     }()
     
-    
     private lazy var collectionButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setImage(R.image.collect(), for: .normal)
@@ -161,7 +160,7 @@ extension WebViewController {
                         }
                     }
                 }
-            case .error(_):
+            case .error:
                 self?.progressView.isHidden = true
             case .completed:
                 self?.progressView.isHidden = true
@@ -181,7 +180,7 @@ extension WebViewController {
         /// 分享
         let toShare = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
 
-        toShare.rx.tap.subscribe(onNext:  { [weak self] _ in
+        toShare.rx.tap.subscribe(onNext: { [weak self] _ in
             self?.shareAction()
         })
         .disposed(by: rx.disposeBag)
@@ -190,7 +189,7 @@ extension WebViewController {
         let viewModel = WebViewModel()
 
         /// 收藏与取消收藏
-        collectionButton.rx.tap.subscribe(onNext:  { [weak self] _ in
+        collectionButton.rx.tap.subscribe(onNext: { [weak self] _ in
 
             guard let collectId = self?.getRealCollectId() else {
                 return
@@ -316,15 +315,15 @@ extension WebViewController {
         let activities = [SafariActivity(), CopyActivity()]
         
         /// 排除的分享类型,这里排除系统的复制到剪切板
-        let excludedActivityTypes: [UIActivity.ActivityType] = [.copyToPasteboard,]
+        let excludedActivityTypes: [UIActivity.ActivityType] = [.copyToPasteboard ]
         
         let activityContrller = UIActivityViewController(activityItems: activityItems, applicationActivities: activities)
         activityContrller.excludedActivityTypes = excludedActivityTypes
-        activityContrller.completionWithItemsHandler = { [weak activityContrller] activityType, completed, returnedItems, activityError in
+        activityContrller.completionWithItemsHandler = { [weak activityContrller] _, completed, _, _ in
             if completed {
                 SVProgressHUD.showText("分享成功!")
             } else {
-                //SVProgressHUD.showText("分享失败!")
+                // SVProgressHUD.showText("分享失败!")
                 /// 此处回调的complete为Bool值,false也有可能是点击了close按钮导致,所以这里暂时就不toast内容了
                 debugLog("分享未完成")
             }
@@ -425,7 +424,7 @@ extension WebViewController: WKNavigationDelegate {
     }
 }
 
-//MARK: -  WKUIDelegate
+// MARK: - WKUIDelegate
 extension WebViewController: WKUIDelegate {
     /// 拦截当前页面的_blank弹出窗口,然后通过弹出的窗口新建新的WebView,WKWebView 如何支持window.open方法
     ///
@@ -494,7 +493,7 @@ extension WebViewController {
         }
         */
         
-        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe(onNext:  { _ in
+        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe(onNext: { _ in
             self.webView.scrollView.mj_header?.endRefreshing()
         })
         .disposed(by: rx.disposeBag)
@@ -534,8 +533,6 @@ extension WebViewController {
         debugLog(string)
         */
         let userScript = WKUserScript(source: jsString, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-        
-        
         
         return userScript
     }

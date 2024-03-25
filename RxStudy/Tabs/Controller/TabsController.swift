@@ -53,25 +53,25 @@ extension TabsController {
         title = type.title
         view.backgroundColor = .playAndroidBackground
         
-        let _ = getRealString(html: nil, aNumber: 100, other: 3)
+        _ = getRealString(html: nil, aNumber: 100, other: 3)
         
-        //1、segmentedView已经懒加载了
+        // 1、segmentedView已经懒加载了
         
-        //2、数据源配置
-        //segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
+        // 2、数据源配置
+        // segmentedViewDataSource一定要通过属性强持有！！！！！！！！！
         segmentedDataSource.isTitleColorGradientEnabled = true
         segmentedDataSource.titleNormalColor = .playAndroidTitle
         segmentedDataSource.titleSelectedColor = .systemBlue
         segmentedView.dataSource = segmentedDataSource
 
-        //3、配置指示器
+        // 3、配置指示器
         let indicator = JXSegmentedIndicatorLineView()
         indicator.indicatorWidth = JXSegmentedViewAutomaticDimension
         indicator.lineStyle = .lengthen
         indicator.indicatorColor = .systemBlue
         segmentedView.indicators = [indicator]
 
-        //4、配置JXSegmentedView的属性
+        // 4、配置JXSegmentedView的属性
         segmentedView.delegate = self
         segmentedView.backgroundColor = .playAndroidBackground
         
@@ -82,21 +82,21 @@ extension TabsController {
             make.height.equalTo(44)
         }
 
-        //5、初始化contentScrollView
+        // 5、初始化contentScrollView
         contentScrollView = UIScrollView()
         contentScrollView.isPagingEnabled = true
         contentScrollView.showsVerticalScrollIndicator = false
         contentScrollView.showsHorizontalScrollIndicator = false
         contentScrollView.scrollsToTop = false
         contentScrollView.bounces = true
-        //禁用automaticallyInset
+        // 禁用automaticallyInset
         contentScrollView.contentInsetAdjustmentBehavior = .never
         
         contentScrollView.rx.setDelegate(self)
             .disposed(by: rx.disposeBag)
         
         /// 之前这里使用的代理是didScroll,只有滑动就触发,实际上和ViewController中的pan一样,需要的是仅触发一次的回调,这样再进行边界判断进而滑动切tab的操作
-        contentScrollView.rx.willEndDragging.subscribe(onNext:  { [weak self] _ in
+        contentScrollView.rx.willEndDragging.subscribe(onNext: { [weak self] _ in
 
             guard let scrollView = self?.contentScrollView else {
                 return
@@ -140,10 +140,9 @@ extension TabsController {
         })
         .disposed(by: rx.disposeBag)
         
-        
         view.addSubview(contentScrollView)
 
-        //6、将contentScrollView和segmentedView.contentScrollView进行关联
+        // 6、将contentScrollView和segmentedView.contentScrollView进行关联
         segmentedView.contentScrollView = contentScrollView
         contentScrollView.snp.makeConstraints { make in
             make.top.equalTo(segmentedView.snp.bottom)
@@ -176,8 +175,8 @@ extension TabsController {
 
 extension TabsController {
     private func settingSegmentedDataSource(tabs: [Tab]) {
-        segmentedDataSource.titles = tabs.map{ $0.name?.replaceHtmlElement }.compactMap{ $0 }
-        //segmentedDataSource.titles = tabs.map{ self.getRealString(html: $0.name) }.compactMap{ $0 }
+        segmentedDataSource.titles = tabs.map { $0.name?.replaceHtmlElement }.compactMap { $0 }
+        // segmentedDataSource.titles = tabs.map{ self.getRealString(html: $0.name) }.compactMap{ $0 }
         segmentedView.defaultSelectedIndex = 0
         segmentedView.reloadData()
 
@@ -186,7 +185,7 @@ extension TabsController {
         }
         listVCArray.removeAll()
         
-        let _ = tabs.map { tab in
+        _ = tabs.map { tab in
             let vc = SingleTabListController(type: type, tab: tab) { [weak self] webLoadInfo in
                 self?.pushToWebViewController(webLoadInfo: webLoadInfo)
             }
@@ -219,11 +218,11 @@ extension TabsController {
         let num = $aNumber
         
         /// 未加工的原始值 other
-        let _ = other
+        _ = other
         /// 类型StringFactory
-        let _ = _other
+        _ = _other
         /// 加工后的值 100 * other的字符串
-        let _ = $other
+        _ = $other
         print(num)
         return html
     }

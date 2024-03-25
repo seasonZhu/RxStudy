@@ -40,7 +40,6 @@ class SingleTabListController: BaseTableViewController {
         binding()
     }
     
-    
     /// 请求数据
     /// - Parameter isFirstVC: 是否是第一个控制器,这里需要对第一个控制的内容边界做优化,不然它会显示不全,而其他页面不会有这个问题
     func requestData(isFirstVC: Bool = false) {
@@ -92,7 +91,7 @@ extension SingleTabListController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, info) in
+            .drive(tableView.rx.items) { (tableView, _, info) in
                 let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell
                 cell.info = info
                 return cell
@@ -121,4 +120,3 @@ extension SingleTabListController {
         }
     }
 }
-

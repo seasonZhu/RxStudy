@@ -22,15 +22,15 @@ class HotKeyViewModel: BaseViewModel {
     }
 }
 
-//MARK: - 网络请求
+// MARK: - 网络请求
 private extension HotKeyViewModel {
     func requestData() {
-        //fakeProvider
+        // fakeProvider
         homeProvider.rx.request(HomeService.hotKey)
             .map(BaseModel<[HotKey]>.self)
-            .map{ $0.data }
+            .map { $0.data }
             /// 去掉其中为nil的值
-            .compactMap{ $0 }
+            .compactMap { $0 }
             .asObservable()
             .asSingle()
             .subscribe { event in
@@ -45,4 +45,3 @@ private extension HotKeyViewModel {
             .disposed(by: disposeBag)
     }
 }
-

@@ -44,7 +44,7 @@ func <-> <Base>(textInput: TextInput<Base>, relay: BehaviorRelay<String>) -> Dis
     let bindToUIDisposable = relay.bind(to: textInput.text)
 
     let bindToRelay = textInput.text
-        .subscribe(onNext: { [weak base = textInput.base] n in
+        .subscribe(onNext: { [weak base = textInput.base] _ in
             guard let base = base else {
                 return
             }
@@ -65,7 +65,7 @@ func <-> <Base>(textInput: TextInput<Base>, relay: BehaviorRelay<String>) -> Dis
             if let nonMarkedTextValue = nonMarkedTextValue, nonMarkedTextValue != relay.value {
                 relay.accept(nonMarkedTextValue)
             }
-        }, onCompleted:  {
+        }, onCompleted: {
             bindToUIDisposable.dispose()
         })
 
@@ -88,7 +88,7 @@ func <-> <T>(property: ControlProperty<T>, relay: BehaviorRelay<T>) -> Disposabl
     let bindToRelay = property
         .subscribe(onNext: { n in
             relay.accept(n)
-        }, onCompleted:  {
+        }, onCompleted: {
             bindToUIDisposable.dispose()
         })
 

@@ -8,21 +8,21 @@
 
 import Foundation
 
-struct Message : Codable {
+struct Message: Codable {
 
-    let category : Int?
-    let date : Int?
-    let fromUser : String?
-    let fromUserId : Int?
-    let fullLink : String?
-    let id : Int?
-    let isRead : Int?
-    let link : String?
-    let message : String?
-    let niceDate : String?
-    let tag : String?
-    let title : String?
-    let userId : Int?
+    let category: Int?
+    let date: Int?
+    let fromUser: String?
+    let fromUserId: Int?
+    let fullLink: String?
+    let id: Int?
+    let isRead: Int?
+    let link: String?
+    let message: String?
+    let niceDate: String?
+    let tag: String?
+    let title: String?
+    let userId: Int?
 }
 
 /// 跳转到WebController的简化模型
@@ -34,6 +34,5 @@ struct MessageLoadInfo: WebLoadInfo {
     var title: String?
     
     var link: String?
-    
     
 }

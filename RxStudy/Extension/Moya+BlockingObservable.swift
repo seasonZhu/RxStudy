@@ -86,8 +86,7 @@ extension Result where Success == Moya.Response, Failure == MoyaError {
     }
 }
 
-extension Result where Success == Optional<Any>, Failure == Moya.MoyaError {
-    
+extension Result where Success == Any?, Failure == Moya.MoyaError {
     
     /// Result类型为Optional的去除nil普通写法
     /// - Returns: Result

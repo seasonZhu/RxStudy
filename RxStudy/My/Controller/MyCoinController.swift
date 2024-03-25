@@ -49,7 +49,7 @@ extension MyCoinController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, myHistoryCoin) in
+            .drive(tableView.rx.items) { (tableView, _, myHistoryCoin) in
 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
                 cell.textLabel?.text = myHistoryCoin.desc

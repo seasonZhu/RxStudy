@@ -80,7 +80,7 @@ extension Reactive where Base: FSPagerView {
     public var pagerViewWillBeginDragging: Observable<()> {
         return delegate
             .sentMessage(#selector(FSPagerViewDelegate.pagerViewWillBeginDragging(_:)))
-            .map({ (a) in
+            .map({ (_) in
                 return ()
             })
     }
@@ -97,7 +97,7 @@ extension Reactive where Base: FSPagerView {
     public var pagerViewDidScroll: Observable<()> {
         return delegate
             .sentMessage(#selector(FSPagerViewDelegate.pagerViewDidScroll(_:)))
-            .map({ (a) in
+            .map({ (_) in
                 return ()
             })
     }
@@ -105,7 +105,7 @@ extension Reactive where Base: FSPagerView {
     public var pagerViewDidEndScrollAnimation: Observable<()> {
         return delegate
             .sentMessage(#selector(FSPagerViewDelegate.pagerViewDidEndScrollAnimation(_:)))
-            .map({ (a) in
+            .map({ (_) in
                 return ()
             })
     }
@@ -113,7 +113,7 @@ extension Reactive where Base: FSPagerView {
     public var pagerViewDidEndDecelerating: Observable<()> {
         return delegate
             .sentMessage(#selector(FSPagerViewDelegate.pagerViewDidEndDecelerating(_:)))
-            .map({ (a) in
+            .map({ (_) in
                 return ()
             })
     }
@@ -124,15 +124,15 @@ extension Reactive where Base: FSPagerView {
     }
 }
 
-//转类型的函数（转换失败后，会发出Error）
-fileprivate func castOrThrow<T>(_ resultType: T.Type, _ object: Any) throws -> T {
+// 转类型的函数（转换失败后，会发出Error）
+private func castOrThrow<T>(_ resultType: T.Type, _ object: Any) throws -> T {
     guard let returnValue = object as? T else {
         throw RxCocoaError.castingError(object: object, targetType: resultType)
     }
     return returnValue
 }
 
-fileprivate func castOptionalOrThrow<T>(_ resultType: T.Type,
+private func castOptionalOrThrow<T>(_ resultType: T.Type,
                                         _ object: Any) throws -> T? {
     if NSNull().isEqual(object) {
         return nil

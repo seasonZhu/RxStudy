@@ -14,7 +14,7 @@ class SafariActivity: UIActivity {
     private var url: URL?
     
     /// 设置分享按钮的类型
-    override class var activityCategory:  UIActivity.Category { .share }
+    override class var activityCategory: UIActivity.Category { .share }
     
     override var activityType: UIActivity.ActivityType? { ActivityType(SafariActivity.className) }
     

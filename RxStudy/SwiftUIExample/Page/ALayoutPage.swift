@@ -29,7 +29,7 @@ struct ALayoutPage: View {
         "书架 500 本上限",
         "每月可下载 3 本",
         "仅可兑换体验卡",
-        "-",
+        "-"
     ]
     
     @Binding var isActive: Bool
@@ -43,7 +43,7 @@ struct ALayoutPage: View {
                         .edgesIgnoringSafeArea(.all)
                     
                     /// ScrollView
-                    ScrollView(showsIndicators: false)  {
+                    ScrollView(showsIndicators: false) {
                         VStack(alignment: .leading) {
                             VStack(alignment: .leading) {
                                 Text("付费会员卡")
@@ -78,7 +78,7 @@ struct ALayoutPage: View {
                                     Color(red: 56/255, green: 81/255, blue: 116/255),
                                     Color(red: 39/255, green: 46/255, blue: 71/255),
                                     Color(red: 231/255, green: 200/255, blue: 153/255),
-                                    Color(red: 39/255, green: 46/255, blue: 71/255),
+                                    Color(red: 39/255, green: 46/255, blue: 71/255)
                                 ]
                             ),
                             center: .center,
@@ -116,7 +116,7 @@ struct ALayoutPage: View {
                                 Spacer()
                                 
                                 VStack(alignment: .leading, spacing: 20) {
-                                    HStack() {
+                                    HStack {
                                         Image(systemName: "infinity")
                                         Text("体验卡")
                                     }

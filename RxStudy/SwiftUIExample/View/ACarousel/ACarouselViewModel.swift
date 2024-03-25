@@ -22,7 +22,7 @@ import SwiftUI
 import Combine
 
 @available(iOS 13.0, OSX 10.15, *)
-class ACarouselViewModel<Data, ID>: ObservableObject where Data : RandomAccessCollection, ID : Hashable {
+class ACarouselViewModel<Data, ID>: ObservableObject where Data: RandomAccessCollection, ID: Hashable {
     
     /// external index
     @Binding
@@ -61,7 +61,6 @@ class ACarouselViewModel<Data, ID>: ObservableObject where Data : RandomAccessCo
         self._index = index
     }
     
-    
     /// The index of the currently active subview.
     @Published var activeIndex: Int = 0 {
         willSet {
@@ -85,7 +84,6 @@ class ACarouselViewModel<Data, ID>: ObservableObject where Data : RandomAccessCo
     /// size of GeometryProxy
     var viewSize: CGSize = .zero
     
-    
     /// Counting of time
     /// work when `isTimerActive` is true
     /// Toggles the active subviewview and resets if the count is the same as
@@ -102,14 +100,12 @@ class ACarouselViewModel<Data, ID>: ObservableObject where Data : RandomAccessCo
     
 }
 
-
-extension ACarouselViewModel where ID == Data.Element.ID, Data.Element : Identifiable {
+extension ACarouselViewModel where ID == Data.Element.ID, Data.Element: Identifiable {
     
     convenience init(_ data: Data, index: Binding<Int>, spacing: CGFloat, headspace: CGFloat, sidesScaling: CGFloat, isWrap: Bool, autoScroll: ACarouselAutoScroll, canMove: Bool) {
         self.init(data, id: \.id, index: index, spacing: spacing, headspace: headspace, sidesScaling: sidesScaling, isWrap: isWrap, autoScroll: autoScroll, canMove: canMove)
     }
 }
-
 
 extension ACarouselViewModel {
     
@@ -314,7 +310,6 @@ extension ACarouselViewModel {
         resetTiming()
     }
     
-    
     /// reset counting of time
     private func resetTiming() {
         timing = 0
@@ -325,7 +320,6 @@ extension ACarouselViewModel {
         timing += 1
     }
 }
-
 
 private extension UserDefaults {
 

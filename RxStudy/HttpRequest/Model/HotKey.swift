@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct HotKey : Codable {
+struct HotKey: Codable {
 
-    let id : Int?
-    let link : String?
-    let name : String?
-    let order : Int?
-    let visible : Int?
+    let id: Int?
+    let link: String?
+    let name: String?
+    let order: Int?
+    let visible: Int?
 
 }

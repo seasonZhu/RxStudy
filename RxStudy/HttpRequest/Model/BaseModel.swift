@@ -9,9 +9,9 @@
 import Foundation
 
 struct BaseModel<T: Codable>: Codable {
-    let data : T?
-    let errorCode : Int?
-    let errorMsg : String?
+    let data: T?
+    let errorCode: Int?
+    let errorMsg: String?
 }
 
 extension BaseModel {

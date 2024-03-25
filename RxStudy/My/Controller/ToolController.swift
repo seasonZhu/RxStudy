@@ -51,7 +51,7 @@ extension ToolController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, tool) in
+            .drive(tableView.rx.items) { (tableView, _, tool) in
 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
                 cell.textLabel?.text = tool.title

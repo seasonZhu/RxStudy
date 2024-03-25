@@ -20,9 +20,8 @@
 
 import SwiftUI
 
-
 @available(iOS 13.0, OSX 10.15, *)
-public struct ACarousel<Data, ID, Content> : View where Data : RandomAccessCollection, ID : Hashable, Content : View {
+public struct ACarousel<Data, ID, Content>: View where Data: RandomAccessCollection, ID: Hashable, Content: View {
     
     @ObservedObject
     private var viewModel: ACarouselViewModel<Data, ID>
@@ -51,7 +50,6 @@ public struct ACarousel<Data, ID, Content> : View where Data : RandomAccessColle
         .onReceiveAppLifeCycle(perform: viewModel.setTimerActive)
     }
 }
-
 
 // MARK: - Initializers
 
@@ -83,7 +81,7 @@ extension ACarousel {
 }
 
 @available(iOS 13.0, OSX 10.15, *)
-extension ACarousel where ID == Data.Element.ID, Data.Element : Identifiable {
+extension ACarousel where ID == Data.Element.ID, Data.Element: Identifiable {
     
     /// Creates an instance that uniquely identifies and creates views across
     /// updates based on the identity of the underlying data.
@@ -107,7 +105,6 @@ extension ACarousel where ID == Data.Element.ID, Data.Element : Identifiable {
     }
     
 }
-
 
 @available(iOS 14.0, OSX 11.0, *)
 struct ACarousel_LibraryContent: LibraryContentProvider {

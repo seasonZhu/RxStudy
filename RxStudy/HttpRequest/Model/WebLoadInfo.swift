@@ -9,8 +9,8 @@
 import Foundation
 
 protocol WebLoadInfo {
-    var id: Int? { set get }
-    var originId: Int? { set get }
-    var title: String? { set get }
+    var id: Int? { get set }
+    var originId: Int? { get set }
+    var title: String? { get set }
     var link: String? { get }
 }

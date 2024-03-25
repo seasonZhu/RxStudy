@@ -51,14 +51,14 @@ extension OtherService: TargetType {
         
     }
     
-    var headers: [String : String]? { nil }
+    var headers: [String: String]? { nil }
 }
 
 enum TestService: String {
     case square = "user_article/list/"
     
     /// 枚举的继承与枚举带参不能同时使用,如果可以同时使用,我就不同特地去写Api这个枚举了,当然如果后台的请求Api优化的足够,可能也不需要带参枚举
-    //case square(_ page: Int) = "user_article/list/"
+    // case square(_ page: Int) = "user_article/list/"
 }
 
 extension TestService: TargetType {
@@ -78,9 +78,8 @@ extension TestService: TargetType {
         return .requestPlain
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         nil
     }
-    
     
 }

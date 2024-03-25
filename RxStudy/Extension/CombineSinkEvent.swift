@@ -84,8 +84,7 @@ extension CombineSinkEvent {
             case .completed:
                 return .completed
             }
-        }
-        catch let e {
+        } catch let e {
             return .error(e)
         }
     }

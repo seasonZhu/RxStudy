@@ -36,13 +36,13 @@ class MyCollectionController: BaseTableViewController {
     override func pushToWebViewController(webLoadInfo: WebLoadInfo, isNeedShowCollection: Bool = true) -> WebViewController {
         let vc = super.pushToWebViewController(webLoadInfo: webLoadInfo, isNeedShowCollection: isNeedShowCollection)
         /// 其实这个地方使用callback或者是用Rx的subscribe感觉差不了太多,都是作为回调来看待
-        vc.collectActionRelay.subscribe(onNext:  { [weak self] collectActionType in
+        vc.collectActionRelay.subscribe(onNext: { [weak self] collectActionType in
             
             guard let self, let viewModel = self.viewModel else { return }
             
             switch collectActionType {
                 
-            case .collect(_):
+            case .collect:
                 break
             case .unCollect(let webLoadInfo):
                 var dataSource = viewModel.outputs.dataSource.value
@@ -56,7 +56,7 @@ class MyCollectionController: BaseTableViewController {
         .disposed(by: rx.disposeBag)
 
         /// 上面这个操作其实和这个操作是同一个功能,但是你看这代码量,所以说还是回调好啊
-        //vc.delegate = self
+        // vc.delegate = self
         vc.rx.setDelegate(self).disposed(by: rx.disposeBag)
         vc.rx.actionSuccess.subscribe { _ in
             print("操作成功了")
@@ -140,7 +140,7 @@ extension MyCollectionController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, info) in
+            .drive(tableView.rx.items) { (tableView, _, info) in
 
                 let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell
                 cell.info = info

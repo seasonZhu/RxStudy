@@ -67,7 +67,7 @@ extension MyMessageController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, message) in
+            .drive(tableView.rx.items) { (tableView, _, message) in
                 
                 let cell = tableView.dequeueReusableCell(withIdentifier: MessageContentCell.className) as! MessageContentCell
                 cell.message = message

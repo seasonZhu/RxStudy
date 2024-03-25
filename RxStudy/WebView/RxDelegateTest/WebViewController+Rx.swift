@@ -20,7 +20,7 @@ extension Reactive where Base: WebViewController {
         return delegate
             .sentMessage(#selector(WebViewControllerDelegate
                             .webViewControllerActionSuccess))
-            .map({ (a) in
+            .map({ (_) in
                 return ()
             })
     }
@@ -30,4 +30,3 @@ extension Reactive where Base: WebViewController {
         return RxWebViewControllerDelegateProxy.installForwardDelegate(delegate, retainDelegate: false, onProxyForObject: self.base)
     }
 }
-

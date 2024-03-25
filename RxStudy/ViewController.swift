@@ -25,12 +25,12 @@ class ViewController: UITabBarController {
     
     private lazy var searchButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: nil, action: nil)
     
-    //MARK: - viewDidLoad
+    // MARK: - viewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         addPan()
-        //addRxPan()
+        // addRxPan()
         testExBehaviorRelay()
     }
     
@@ -62,7 +62,7 @@ class ViewController: UITabBarController {
         })
         .disposed(by: rx.disposeBag)
         
-        navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext:  { [weak self] _ in
+        navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { [weak self] _ in
             debugLog("点击事件")
             Haptics.success.feedback()
             self?.navigationController?.pushViewController(HotKeyController(), animated: true)
@@ -77,7 +77,7 @@ class ViewController: UITabBarController {
         bindGayMode()
     }
     
-    //MARK: - 添加子控制器
+    // MARK: - 添加子控制器
     private func addSubviewController(subViewController: UIViewController, title: String, imageName: String, selectImageName: String) {
         subViewController.tabBarItem.title = title
         subViewController.tabBarItem.image = UIImage(named: imageName)
@@ -87,7 +87,7 @@ class ViewController: UITabBarController {
         titles.append(title)
     }
 
-    //MARK: - 添加所有子控制器
+    // MARK: - 添加所有子控制器
     private func addChildControllers() {
 
         let homeVC = HomeController()
@@ -96,13 +96,11 @@ class ViewController: UITabBarController {
                              imageName: R.image.home.name,
                              selectImageName: R.image.home_selected.name)
 
-
         let projectVC = TabsController(type: .project)
         addSubviewController(subViewController: projectVC,
                              title: "项目",
                              imageName: R.image.project.name,
                              selectImageName: R.image.project_selected.name)
-
 
         let publicNumberVC = TabsController(type: .publicNumber)
         addSubviewController(subViewController: publicNumberVC,
@@ -158,7 +156,6 @@ extension ViewController {
             .disposed(by: rx.disposeBag)
     }
     
-    
     private func handlePan(_ pan: UIPanGestureRecognizer) {
         let velocityX = pan.velocity(in: view).x
         let translation = pan.translation(in: view)
@@ -167,7 +164,6 @@ extension ViewController {
         let y = abs(translation.y)
         
         debugLog("x: \(x), y: \(y)")
-        
         
         if x < y {
             /// 纵向滑动
@@ -222,7 +218,7 @@ extension ViewController {
     }
     
     func leftScroll() {
-        if (selectedIndex > 0) {
+        if selectedIndex > 0 {
             let next = selectedIndex - 1
             let preIndex = selectedIndex
             selectedIndex = next
@@ -233,7 +229,7 @@ extension ViewController {
     }
     
     func rightScroll() {
-        if (selectedIndex < children.count - 1) {
+        if selectedIndex < children.count - 1 {
             let next = selectedIndex + 1
             let preIndex = selectedIndex
             selectedIndex = next
@@ -252,7 +248,7 @@ extension ViewController {
 }
 
 extension ViewController {
-    private func testExBehaviorRelay() {
+    func testExBehaviorRelay() {
 //        textRelay.exSubscribe(onNext: { [weak textRelay] string in
 //            print(string)
 //        })

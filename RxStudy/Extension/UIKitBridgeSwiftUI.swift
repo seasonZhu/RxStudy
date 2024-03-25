@@ -41,7 +41,6 @@ extension UIView {
         
         func updateUIView(_ uiView: UIView, context: Context) {}
     }
-    
 
     func showPreview() -> some View {
         Preview(view: self)

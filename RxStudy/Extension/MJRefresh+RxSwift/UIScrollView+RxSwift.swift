@@ -28,7 +28,7 @@ enum MJRefreshAction {
     case resetNomoreData
 }
 
-//MARK: - Refresh
+// MARK: - Refresh
 extension Reactive where Base: UIScrollView {
     
     /// 执行的操作类型

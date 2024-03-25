@@ -9,21 +9,21 @@
 import Foundation
 
 /// 实际上没有使用这个数据结构,都是用的Tab
-struct Course : Codable {
+struct Course: Codable {
 
-    let author : String?
-    let children : [Course]?
-    let courseId : Int?
-    let cover : String?
-    let desc : String?
-    let id : Int?
-    let lisense : String?
-    let lisenseLink : String?
-    let name : String?
-    let order : Int?
-    let parentChapterId : Int?
-    let userControlSetTop : Bool?
-    let visible : Int?
+    let author: String?
+    let children: [Course]?
+    let courseId: Int?
+    let cover: String?
+    let desc: String?
+    let id: Int?
+    let lisense: String?
+    let lisenseLink: String?
+    let name: String?
+    let order: Int?
+    let parentChapterId: Int?
+    let userControlSetTop: Bool?
+    let visible: Int?
 }
 
 extension Course: TabAble {}

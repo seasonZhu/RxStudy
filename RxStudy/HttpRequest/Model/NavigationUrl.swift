@@ -8,10 +8,10 @@
 
 import Foundation
 
-struct NavigationUrl : Codable {
+struct NavigationUrl: Codable {
 
-    let articles : [Info]?
-    let cid : Int?
-    let name : String?
+    let articles: [Info]?
+    let cid: Int?
+    let name: String?
 
 }

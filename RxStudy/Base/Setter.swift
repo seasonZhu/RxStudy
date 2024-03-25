@@ -92,7 +92,7 @@ final class Box<T> {
         }
     }
     
-    init(_ value: T){
+    init(_ value: T) {
         self.value = value
     }
     

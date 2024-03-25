@@ -112,7 +112,6 @@ numbers.subscribe { event in
     print(event)
 }
 
-
 let array = [0, 1, 2, 3, 4, 5]
 array.forEach { element in
     print(element)
@@ -130,7 +129,6 @@ observable.subscribe { (event: Event<Int>) in
         print(event.debugDescription)
     }
 }.disposed(by: disposeBag)
-
 
 let observable1 = Observable.zip(Observable.just(0),
                                  Observable.just(1),
@@ -176,7 +174,6 @@ subject.onNext(7)
 subject.onNext(8)
 subject.onNext(9)
 subject.onNext(10)
-
 
 let newArray = array.map { "\($0)" }
 
@@ -230,7 +227,6 @@ let errorObservable = Observable<S>.error(S())
 successObservable.materialize()
 struct S: Error {}
 
-
 func test() {
     let numbers: Observable<Int> = Observable.create { observer -> Disposable in
         print(Thread.current)
@@ -262,7 +258,7 @@ func request() -> Single<Data> {
         do {
             let data = try Data(contentsOf: URL(string: "https://www.wanandroid.com/banner/json")!)
             single(.success(data))
-        }catch {
+        } catch {
             single(.failure(error))
         }
         return Disposables.create()
@@ -300,29 +296,28 @@ let finalArray = oneDArray.flatMap { $0 }
 
 print(finalArray)
 
-//let dict = ["one": 1, "two": 2, "three": 3, "another": ["four": 4]] as [String : Any]
+// let dict = ["one": 1, "two": 2, "three": 3, "another": ["four": 4]] as [String : Any]
 //
-//dict.map { (k, v) in
+// dict.map { (k, v) in
 //
-//}
+// }
 //
-//dict.compactMap { (k, v) in
+// dict.compactMap { (k, v) in
 //
-//}
+// }
 //
-//dict.flatMap { <#(key: String, value: Any)#> in
+// dict.flatMap { <#(key: String, value: Any)#> in
 //    <#code#>
-//}
+// }
 [1, 2, 3].map({ (i: Int) -> Int in return i * 2 })
-[1, 2, 3].map({ i in return i * 2 } )
+[1, 2, 3].map({ i in return i * 2 })
 [1, 2, 3].map({ i in i * 2 })
 [1, 2, 3].map({ $0 * 2 })
-[1, 2, 3].map() { $0 * 2 }
-[1, 2, 3].map{ $0 * 2 }
+[1, 2, 3].map { $0 * 2 }
+[1, 2, 3].map { $0 * 2 }
 
 let s = ["1", "2", "3", "a"].flatMap { Int($0) }
 print(s)
-
 
 let someArray = [[1, 2, 3], [4, 5, 6]].flatMap { $0 }
 print(someArray)
@@ -333,7 +328,7 @@ print(anotherArray)
 
 extension Array {
     func map<T>(_ transform: (Element) -> T) -> [T] {
-        var newArray:[T] = []
+        var newArray: [T] = []
         for element in self {
             let newElement = transform(element)
             newArray.append(newElement)
@@ -403,4 +398,3 @@ let json = JSON(["name": "Tom", "age": 20, "hobbies": ["reading", "swimming"]])
 print(json.name) // 输出 "Tom"
 print(json.age) // 输出 20
 print(json.hobbies[1]) // 输出 "swimming"
-

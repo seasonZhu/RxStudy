@@ -25,7 +25,7 @@ class HomeController: BaseTableViewController {
         willSet {
             pageControl.numberOfPages = newValue.count
             pagerView.reloadData()
-            //bannerCustomScroll()
+            // bannerCustomScroll()
         }
     }
     
@@ -113,7 +113,7 @@ extension HomeController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(tableView.rx.items) { (tableView, row, info) in
+            .drive(tableView.rx.items) { (tableView, _, info) in
                 /// 其实这里有关Cell的复用可不可只写dequeueReusableCell,然后强转,发现直接崩溃了,和Demo里的很不一样,这里需要思考一下
                 /*  保留了一个例子,作为对比
                 if let cell = tableView.dequeueReusableCell(withIdentifier: InfoCell.className) as? InfoCell {
@@ -166,7 +166,7 @@ extension HomeController {
                         collectionView.setContentOffset(contentOffset, animated: true)
                     }
                     
-                    pagerView.panGestureRecognizer.rx.event.subscribe(onNext: { pan in
+                    pagerView.panGestureRecognizer.rx.event.subscribe(onNext: { _ in
                         print("滑动了")
                         let x = collectionView.contentOffset.x
                         
@@ -180,7 +180,7 @@ extension HomeController {
     }
 }
 
-//MARK: - FSPagerViewDataSource
+// MARK: - FSPagerViewDataSource
 extension HomeController: FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return itmes.count
@@ -196,7 +196,7 @@ extension HomeController: FSPagerViewDataSource {
     }
 }
 
-//MARK: - FSPagerViewDelegate
+// MARK: - FSPagerViewDelegate
 extension HomeController: FSPagerViewDelegate {
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: false)
@@ -235,7 +235,7 @@ extension HomeController {
         .disposed(by: rx.disposeBag)
         
         Observable.zip(tableView.rx.itemSelected, tableView.rx.modelSelected(Info.self))
-            .bind { indexPath, model in
+            .bind { _, _ in
                 
             }
             .disposed(by: rx.disposeBag)

@@ -51,15 +51,15 @@ class CoinRankListPageViewModel: ObservableObject {
         print("\(className)被销毁了")
         
         /// 这里从理论上说就算不cancel,应该也可以自己释放
-        //cancellable?.cancel()
+        // cancellable?.cancel()
         
-        //clear()
+        // clear()
     }
 }
 
 extension CoinRankListPageViewModel {
     private func clear() {
-        let _ = cancellables.map { $0.cancel() }
+        _ = cancellables.map { $0.cancel() }
         cancellables.removeAll()
     }
 }
@@ -68,10 +68,10 @@ extension CoinRankListPageViewModel {
     /// 下拉刷新行为
     func refreshAction() {
         resetCurrentPageAndMjFooter()
-        //getCoinRank(page: page)
-        //getBanner()
+        // getCoinRank(page: page)
+        // getBanner()
         zip()
-        //rxGetCoinRank(page: page)
+        // rxGetCoinRank(page: page)
     }
     
     /// 上拉加载更多行为
@@ -87,7 +87,7 @@ extension CoinRankListPageViewModel {
         page = 1
         
         /// 不注释掉这个就出问题了
-        //headerRefreshing = false
+        // headerRefreshing = false
         footerRefreshing = false
         isNoMoreData = false
     }
@@ -99,12 +99,11 @@ extension CoinRankListPageViewModel {
         /// assign 的另一个“限制”是，上游 Publisher 的 Failure 的类型必须是 Never。如果上游 Publisher 可能会发生错误，我们则必须先对它进行处理，比如使用 replaceError 或者 catch 来把错误在绑定之前就“消化”掉。
         myProvider.requestPublisher(MyService.coinRank((page)))
             .map(BaseModel<Page<ClassCoinRank>>.self)
-            .map{ $0.data }
+            .map { $0.data }
             .compactMap { $0 }
             /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。
-            //.materialize()
+            // .materialize()
             .sink { completion in
-                
                 
                 self.headerRefreshing = false
                 self.footerRefreshing = false
@@ -121,15 +120,15 @@ extension CoinRankListPageViewModel {
                 if let datas = pageModel.datas {
                     if self.page == 1 {
                         self.dataSource = datas
-                        //self.headerRefreshing = false
+                        // self.headerRefreshing = false
                     } else {
                         self.dataSource.append(contentsOf: datas)
-                        //self.footerRefreshing = false
+                        // self.footerRefreshing = false
                     }
                 }
                 
                 self.isNoMoreData = pageModel.isNoMoreData
-                //self.noMore = self.dataSource.count > 50
+                // self.noMore = self.dataSource.count > 50
                 
                 if self.dataSource.isEmpty {
                     self.state = .success(.noData)
@@ -143,7 +142,7 @@ extension CoinRankListPageViewModel {
     private func getBanner() {
         homeProvider.requestPublisher(HomeService.banner)
             .map(BaseModel<[ClassBanner]>.self)
-            .map{ $0.data }
+            .map { $0.data }
             .compactMap { $0 }
             .sink { completion in
                 
@@ -161,11 +160,11 @@ extension CoinRankListPageViewModel {
     
     private func zip() {
         let p0 = myProvider.requestPublisher(MyService.coinRank((1))).map(BaseModel<Page<ClassCoinRank>>.self)
-            .map{ $0.data }
+            .map { $0.data }
             .compactMap { $0 }
         
         let p1 = homeProvider.requestPublisher(HomeService.banner).map(BaseModel<[ClassBanner]>.self)
-            .map{ $0.data }
+            .map { $0.data }
             .compactMap { $0 }
         
         p0.zip(p1).sink { completion in
@@ -207,8 +206,7 @@ extension CoinRankListPageViewModel {
 
 extension CoinRankListPageViewModel: TypeNameProtocol {}
 
-
-//MARK: -  RxMoya与SwiftUI的配合使用
+// MARK: - RxMoya与SwiftUI的配合使用
 import RxSwift
 import NSObject_Rx
 
@@ -233,7 +231,7 @@ extension CoinRankListPageViewModel {
             /// 转Model
             .map(BaseModel<Page<ClassCoinRank>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
-            .map{ $0.data }
+            .map { $0.data }
             /// 解包,这一步Single变成了Maybe
             .compactMap { $0 }
             /// 转换操作, Maybe要先转成Observable

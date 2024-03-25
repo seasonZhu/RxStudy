@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 protocol TypeNameProtocol {
     
     var className: String { get }

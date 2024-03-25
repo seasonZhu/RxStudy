@@ -8,14 +8,14 @@
 
 import Foundation
 
-class ClassCoinRank : ObservableObject, Identifiable, Codable {
+class ClassCoinRank: ObservableObject, Identifiable, Codable {
 
-    let coinCount : Int?
-    let level : Int?
-    let nickname : String?
-    let rank : String?
-    let userId : Int?
-    let username : String?
+    let coinCount: Int?
+    let level: Int?
+    let nickname: String?
+    let rank: String?
+    let userId: Int?
+    let username: String?
     
     var myInfo: String {
         guard let rank,

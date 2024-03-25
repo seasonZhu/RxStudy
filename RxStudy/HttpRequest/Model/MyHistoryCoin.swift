@@ -9,12 +9,12 @@
 import Foundation
 
 struct MyHistoryCoin: Codable {
-    let coinCount : Int?
-    let date : Int?
-    let desc : String?
-    let id : Int?
-    let reason : String?
-    let type : Int?
-    let userId : Int?
-    let userName : String?
+    let coinCount: Int?
+    let date: Int?
+    let desc: String?
+    let id: Int?
+    let reason: String?
+    let type: Int?
+    let userId: Int?
+    let userName: String?
 }

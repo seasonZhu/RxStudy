@@ -44,9 +44,9 @@ private final class MJRefreshTarget<Component: MJRefreshComponent>: Target {
         self.component?.removeObserver(self, forKeyPath: "state")
     }
     
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
         if keyPath == "state",
-            let new = change?[NSKeyValueChangeKey.newKey] as? Int ,
+            let new = change?[NSKeyValueChangeKey.newKey] as? Int,
             let state = MJRefreshState.init(rawValue: new) {
             self.callBack(state)
         }
@@ -60,7 +60,7 @@ private final class MJRefreshTarget<Component: MJRefreshComponent>: Target {
 extension Reactive where Base: MJRefreshComponent {
     
     /// 刷新
-    var refresh:ControlEvent<Void> {
+    var refresh: ControlEvent<Void> {
         let source = state.filter({$0 == .refreshing})
             .map({_ in ()}).asObservable()
         return ControlEvent.init(events: source)

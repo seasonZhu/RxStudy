@@ -25,14 +25,14 @@ class ToolViewModel<T: Codable>: BaseViewModel {
     }
 }
 
-//MARK: - 网络请求
+// MARK: - 网络请求
 private extension ToolViewModel {
     func requestData() {
         otherProvider.rx.request(OtherService.tools)
             .map(BaseModel<[T]>.self)
-            .map{ $0.data }
+            .map { $0.data }
             /// 去掉其中为nil的值
-            .compactMap{ $0 }
+            .compactMap { $0 }
             .asObservable()
             .asSingle()
             .subscribe { event in
@@ -50,5 +50,3 @@ private extension ToolViewModel {
             .disposed(by: disposeBag)
     }
 }
-
-

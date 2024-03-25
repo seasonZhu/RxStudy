@@ -14,7 +14,7 @@ class BaseNavigationController: UINavigationController {
         super.viewDidLoad()
         interactivePopGestureRecognizer?.delegate = self
         delegate = self
-        //leftPanBankSettingAction()
+        // leftPanBankSettingAction()
     }
     
 }
@@ -23,7 +23,7 @@ extension BaseNavigationController: UIGestureRecognizerDelegate, UINavigationCon
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         interactivePopGestureRecognizer?.isEnabled = true
         /// 解决某些情况下push时的假死bug，防止把根控制器pop掉
-        if (navigationController.viewControllers.count == 1) {
+        if navigationController.viewControllers.count == 1 {
             interactivePopGestureRecognizer?.isEnabled = false
         }
     }
@@ -42,7 +42,7 @@ extension BaseNavigationController {
         if viewControllers.count > 1 {
             let panResult = pan.checkPanGestureAxis(in: self.view, responseLength: 150)
             
-            if panResult.response, case UIPanGestureRecognizer.Axis.horizontal(.fromRightToLeft) = panResult.axis  {
+            if panResult.response, case UIPanGestureRecognizer.Axis.horizontal(.fromRightToLeft) = panResult.axis {
                 popViewController(animated: true)
             }
         }

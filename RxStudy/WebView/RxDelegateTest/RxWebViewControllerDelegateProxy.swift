@@ -28,7 +28,7 @@ class RxWebViewControllerDelegateProxy
     
     private var _actionSuccessPublishSubject: PublishSubject<()>?
     
-    var actionSuccessPublishSubject: PublishSubject<()>{
+    var actionSuccessPublishSubject: PublishSubject<()> {
         if let subject = _actionSuccessPublishSubject {
             return subject
         }

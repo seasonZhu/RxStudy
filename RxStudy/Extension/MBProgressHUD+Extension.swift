@@ -12,7 +12,7 @@ extension MBProgressHUD: HUD {
     static var keyWindow: UIWindow { UIApplication.shared.windows.first! }
     
     static func beginLoading() {
-        MBProgressHUD.showAdded(to:keyWindow , animated: true)
+        MBProgressHUD.showAdded(to: keyWindow, animated: true)
     }
     
     static func stopLoading() {

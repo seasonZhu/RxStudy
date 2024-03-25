@@ -13,7 +13,7 @@ class TestViewModel {
     private var cancellables = Set<AnyCancellable>()
     
     private func clear() {
-        let _ = cancellables.map { $0.cancel() }
+        _ = cancellables.map { $0.cancel() }
         cancellables.removeAll()
     }
     

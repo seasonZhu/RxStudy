@@ -113,7 +113,7 @@ class ScrollableStackController: BaseViewController {
         view.backgroundColor = .white
         title = "UIScrollView + UIStackView"
         
-        //horizontalLayout()
+        // horizontalLayout()
         verticalLayout()
     }
     

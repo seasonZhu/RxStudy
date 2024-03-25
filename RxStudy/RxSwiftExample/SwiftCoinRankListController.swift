@@ -73,7 +73,7 @@ extension SwiftCoinRankListController {
                     pageNum == 1 ? self.dataSource = array : self.dataSource.append(contentsOf: array)
                     self.tableView.reloadData()
                     
-                    if #available(iOS 11,*) {
+                    if #available(iOS 11, *) {
                         /*
                          iOS11之后reloadData方法会执行
                          - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath 方法，将当前所有的cell过一遍，而iOS11之前只是将展示的cell过一遍。故加此方法使其在过第一次的时候不执行加载更多数
@@ -125,8 +125,6 @@ extension SwiftCoinRankListController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSource.count
     }
-    
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let coinRank = dataSource[indexPath.row]

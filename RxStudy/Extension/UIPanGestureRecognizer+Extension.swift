@@ -79,4 +79,3 @@ extension UIPanGestureRecognizer {
         return (panGestureAxis, response)
     }
 }
-

@@ -15,7 +15,7 @@ extension String {
         guard let data = self.data(using: .utf8) else {
             return ""
         }
-        var hash = [UInt8](repeating: 0,  count: Int(CC_SHA256_DIGEST_LENGTH))
+        var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
         data.withUnsafeBytes({ byte in
             _ = CC_SHA256(byte.baseAddress, CC_LONG(data.count), &hash)
         })
@@ -27,7 +27,7 @@ extension String {
     }
 }
 
-//MARK: - 写了一个胶水协议,便于让遵守协议的缓存架构都可以进行缓存
+// MARK: - 写了一个胶水协议,便于让遵守协议的缓存架构都可以进行缓存
 protocol ResponseCacheConvertible {
 
     func loadData(forKey key: String) throws -> Data?
@@ -38,7 +38,7 @@ protocol ResponseCacheConvertible {
 
 }
 
-//MARK: -  使用Cache作为缓存
+// MARK: - 使用Cache作为缓存
 #if canImport(Cache)
 import Cache
 
@@ -57,7 +57,7 @@ extension Storage: ResponseCacheConvertible where Value == Data, Key == String {
     }
     
     func saveData(_ data: Data, forKey key: String) throws {
-        try setObject(data , forKey: key)
+        try setObject(data, forKey: key)
     }
     
     func clearAllData() {
@@ -66,7 +66,7 @@ extension Storage: ResponseCacheConvertible where Value == Data, Key == String {
 }
 #endif
 
-//MARK: -  使用YYCache做缓存
+// MARK: - 使用YYCache做缓存
 #if canImport(YYCache)
 import YYCache
 
@@ -89,7 +89,7 @@ extension YYCache: ResponseCacheConvertible {
 }
 #endif
 
-//MARK: -  使用系统自带的UserDefaults也可以做缓存
+// MARK: - 使用系统自带的UserDefaults也可以做缓存
 let userDefaultsCache = UserDefaults(suiteName: "userDefaultsCache")!
 
 extension UserDefaults: ResponseCacheConvertible {
@@ -111,7 +111,7 @@ extension UserDefaults: ResponseCacheConvertible {
 
 import Moya
 
-//MARK: - 响应缓存插件
+// MARK: - 响应缓存插件
 class ResponseCachePlugin: PluginType {
     
     private let cache: any ResponseCacheConvertible

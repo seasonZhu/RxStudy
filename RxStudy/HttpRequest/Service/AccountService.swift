@@ -59,7 +59,7 @@ extension AccountService: TargetType {
         
     }
     
-    var headers: [String : String]? {
+    var headers: [String: String]? {
         switch self {
         case .login(_, _, let showLoading):
             return ["showLoading": "\(showLoading)"]

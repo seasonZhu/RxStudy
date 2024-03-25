@@ -15,7 +15,7 @@ class SnapKitLayoutController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupUI()
+        // setupUI()
         contentScrollViewLayout()
     }
     
@@ -128,7 +128,7 @@ class SnapKitLayoutAnimationController: UIViewController {
         view.backgroundColor = .white
          
         /// 单击监听
-        let tapSingle = UITapGestureRecognizer(target:self,action:#selector(tapSingleDid))
+        let tapSingle = UITapGestureRecognizer(target: self, action: #selector(tapSingleDid))
         tapSingle.numberOfTapsRequired = 1
         tapSingle.numberOfTouchesRequired = 1
         view.addGestureRecognizer(tapSingle)
@@ -139,26 +139,26 @@ class SnapKitLayoutAnimationController: UIViewController {
         box.snp.makeConstraints { (make) -> Void in
             make.center.equalTo(view)
             /// 初始宽、高为100（优先级低）
-            make.width.height.equalTo(100 * self.scacle).priority(.low);
+            make.width.height.equalTo(100 * self.scacle).priority(.low)
             /// 最大尺寸不能超过屏幕
             make.width.height.lessThanOrEqualTo(self.view.snp.width)
             make.width.height.lessThanOrEqualTo(self.view.snp.height)
         }
     }
      
-    //视图约束更新
+    // 视图约束更新
     override func updateViewConstraints() {
-        self.box.snp.updateConstraints{ (make) -> Void in
+        self.box.snp.updateConstraints { (make) -> Void in
             /// 放大尺寸（优先级低）
-            make.width.height.equalTo(100 * self.scacle).priority(.low);
+            make.width.height.equalTo(100 * self.scacle).priority(.low)
         }
          
         super.updateViewConstraints()
     }
      
-    //点击屏幕
+    // 点击屏幕
     @objc
-    func tapSingleDid(){
+    func tapSingleDid() {
         self.scacle += 0.1
         /// 告诉self.view约束需要更新
         self.view.setNeedsUpdateConstraints()
@@ -168,4 +168,3 @@ class SnapKitLayoutAnimationController: UIViewController {
         }
     }
 }
-
