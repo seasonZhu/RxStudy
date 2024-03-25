@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             LifetimeTracker.setup(
                 onUpdate: LifetimeTrackerDashboardIntegration(
                     visibility: .alwaysVisible,
-                    style: .bar,
+                    style: .circular,
                     textColorForNoIssues: .systemGreen,
                     textColorForLeakDetected: .systemRed
                 ).refreshUI
