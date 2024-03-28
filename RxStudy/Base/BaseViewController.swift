@@ -107,19 +107,19 @@ class BaseViewController: UIViewController {
 }
 
 // MARK: - FunnyButton的使用
-extension BaseViewController {
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        replaceFunnyAction {
-            print("点我干森莫")
-        }
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        removeFunnyActions()
-    }
-}
+// extension BaseViewController {
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        replaceFunnyAction {
+//            print("点我干森莫")
+//        }
+//    }
+//    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        removeFunnyActions()
+//    }
+// }
 
 // MARK: - LifetimeTracker的使用
 extension BaseViewController: LifetimeTrackable {
