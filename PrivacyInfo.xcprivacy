@@ -9,7 +9,7 @@
 			<string>NSPrivacyAccessedAPICategoryUserDefaults</string>
 			<key>NSPrivacyAccessedAPITypeReasons</key>
 			<array>
-				<string>CA92.1:Access user defaults to read and write information that is only accessible to the app itself.</string>
+				<string>CA92.1</string>
 			</array>
 		</dict>
 		<dict>
@@ -17,7 +17,7 @@
 			<string>NSPrivacyAccessedAPICategorySystemBootTime</string>
 			<key>NSPrivacyAccessedAPITypeReasons</key>
 			<array>
-				<string>35F9.1:Access the system boot time in order to measure the amount of time that has elapsed between events that occurred within the app or to perform calculations to enable timers.</string>
+				<string>35F9.1</string>
 			</array>
 		</dict>
 		<dict>
@@ -25,7 +25,7 @@
 			<string>NSPrivacyAccessedAPICategoryFileTimestamp</string>
 			<key>NSPrivacyAccessedAPITypeReasons</key>
 			<array>
-				<string>DDA9.1:display file timestamps to the person using the device.</string>
+				<string>DDA9.1</string>
 			</array>
 		</dict>
 	</array>
