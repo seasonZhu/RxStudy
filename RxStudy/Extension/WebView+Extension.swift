@@ -9,18 +9,23 @@
 import WebKit
 
 extension WKWebView {
-    enum TransformError: Error {
-        case anyTransformError
+    enum RunJavaScriptError: Error {
+        case runJavaScriptFailed(Error)
+        case genericConversionsFailed(Any?)
     }
     
-    func evaluateJavaScript<T>(_ javaScriptString: String, resultHandler: ((Result<T, Error>) -> Void)? = nil) {
+    /// 优化evaluateJavaScript方法,以保证错误类型更加明显
+    /// - Parameters:
+    ///   - javaScriptString: JavaScript方法
+    ///   - resultHandler: 回调
+    func runJavaScript<T>(_ javaScriptString: String, resultHandler: ((Result<T, WKWebView.RunJavaScriptError>) -> Void)? = nil) {
         evaluateJavaScript(javaScriptString) { any, error in
             if let e = error {
-                resultHandler?(.failure(e))
+                resultHandler?(.failure(.runJavaScriptFailed(e)))
             } else if let result = any as? T {
                 resultHandler?(.success(result))
             } else {
-                resultHandler?(.failure(TransformError.anyTransformError))
+                resultHandler?(.failure(.genericConversionsFailed(any)))
             }
         }
     }

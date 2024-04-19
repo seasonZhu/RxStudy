@@ -117,12 +117,18 @@ extension MyJueJinController: WKScriptMessageHandler {
 extension MyJueJinController: WKNavigationDelegate {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         if webView.url?.absoluteString.contains("zlink") == true {
-            webView.evaluateJavaScript("downloadInject()") { (result: Result<String, Error>) in
+            webView.runJavaScript("downloadInject()") { (result: Result<String, WKWebView.RunJavaScriptError>) in
                 switch result {
                 case .success(let string):
                     print(string)
                 case .failure(let error):
-                    print(error)
+                    switch error {
+                    case .runJavaScriptFailed(let error):
+                        print("运行JavaScript脚本错误:\(error)")
+                    case .genericConversionsFailed(let any):
+                        print("运行成功,泛型转换失败, any的实际值是:\(any)")
+                    }
+                    
                 }
             }
         }
