@@ -100,8 +100,7 @@ class LoginController: AccountBaseController {
         actionButton.rx.tap
             /// 使用withUnretained,可以很优雅的解决[weak self]的问题
             .withUnretained(self)
-            .subscribe(onNext: { owner, action in
-            
+            .subscribe(onNext: { _, _ in
             
         }).disposed(by: rx.disposeBag)
     }

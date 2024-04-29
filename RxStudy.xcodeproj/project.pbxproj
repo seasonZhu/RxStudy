@@ -107,6 +107,7 @@
 		00CCD1832865BE9100925C1E /* Course.json in Resources */ = {isa = PBXBuildFile; fileRef = 00CCD1822865BE9100925C1E /* Course.json */; };
 		00CCD1852865BFAC00925C1E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1842865BFAC00925C1E /* Message.swift */; };
 		00CDD94F2910F02100027A81 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDD94E2910F02100027A81 /* Theme.swift */; };
+		00CE180A2BDF978400310B24 /* AsyncRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE18092BDF978400310B24 /* AsyncRelay.swift */; };
 		00D545732BB10CB9007B0325 /* NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D545702BB10CB9007B0325 /* NetworkActivityLogger.swift */; };
 		00DBD3192A3C3BC400664246 /* ContentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DBD3182A3C3BC400664246 /* ContentScrollView.swift */; };
 		00DC971028F26ADF002CC564 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC970F28F26ADF002CC564 /* AppState.swift */; };
@@ -326,6 +327,7 @@
 		00CCD1822865BE9100925C1E /* Course.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Course.json; sourceTree = "<group>"; };
 		00CCD1842865BFAC00925C1E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		00CDD94E2910F02100027A81 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		00CE18092BDF978400310B24 /* AsyncRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncRelay.swift; sourceTree = "<group>"; };
 		00D545702BB10CB9007B0325 /* NetworkActivityLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivityLogger.swift; sourceTree = "<group>"; };
 		00DBD3182A3C3BC400664246 /* ContentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentScrollView.swift; sourceTree = "<group>"; };
 		00DC970F28F26ADF002CC564 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -815,6 +817,7 @@
 				00099E0229026BD7001FC753 /* ObserverType+Extension.swift */,
 				00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */,
 				004623632989F96A008F0676 /* ExBehaviorRelay.swift */,
+				00CE18092BDF978400310B24 /* AsyncRelay.swift */,
 				00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */,
 				00DBD3182A3C3BC400664246 /* ContentScrollView.swift */,
 				006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */,
@@ -1423,6 +1426,7 @@
 				61F28245265F4A23009E16C9 /* TreeController.swift in Sources */,
 				0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */,
 				001B4E3828E1A11A003ADF95 /* SimplePullToRefreshView.swift in Sources */,
+				00CE180A2BDF978400310B24 /* AsyncRelay.swift in Sources */,
 				0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */,
 				6114ABF5267ADF6E0082BA67 /* MyView.swift in Sources */,
 				006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */,
