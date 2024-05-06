@@ -90,6 +90,9 @@ class AccountBaseController: BaseViewController {
 extension AccountBaseController {
     func login(username: String, password: String, showLoading: Bool = true) {
         AccountManager.shared.optimizeLogin(username: username, password: password, showLoading: showLoading) {
+            /// 用这个代码来释放登录成功之后的LoginController,至于为什么,我还没有研究出来
+            self.usernameFiled.becomeFirstResponder()
+            
             self.navigationController?.popToRootViewController(animated: true)
         }
     }
