@@ -11,8 +11,8 @@ import Foundation
 import Moya
 import SVProgressHUD
 
-/// 自己写的插件瞬间不香了
-let requestLoadingPlugin = RequestLoadingPlugin()
+/// 将AlamofireNetworkActivityLogger改造成Moya插件进行使用
+let networkRequestLoggerPlugin = NetworkRequestLoggerPlugin(level: .debug)
 
 /// 官方的打印日志插件,感觉没有AlamofireNetworkActivityLogger好用
 let loggerPlugin = NetworkLoggerPlugin()
@@ -60,7 +60,7 @@ let responseInterceptorPlugin = ResponseInterceptorPlugin()
 let responseCachePlugin = ResponseCachePlugin()
 
 /// 插件集合
-let plugins: [PluginType] = [activityPlugin, responseInterceptorPlugin, responseCachePlugin]
+let plugins: [PluginType] = [activityPlugin, networkRequestLoggerPlugin, responseInterceptorPlugin, responseCachePlugin]
 
 /// 集中管理provider
 /// StubBehavior的默认值就是never,所以不用特地去写

@@ -36,8 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         /// 网络请求日志打印配置
         #if DEBUG
-        NetworkActivityLogger.shared.level = .debug
-        NetworkActivityLogger.shared.startLogging()
+        // NetworkActivityLogger.shared.level = .debug
+        // NetworkActivityLogger.shared.startLogging()
         #endif
         
         #if DEBUG
