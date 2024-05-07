@@ -31,12 +31,16 @@ public class NetworkRequestLoggerPlugin: PluginType {
     
     private let queue = DispatchQueue(label: "\(NetworkRequestLoggerPlugin.self) Queue")
     
+    private var startTime: TimeInterval?
+    
     init(level: NetworkRequestLoggerLevel = .info) {
         self.level = level
     }
     
     public func willSend(_ request: RequestType, target: TargetType) {
         queue.async {
+            self.startTime = CFAbsoluteTimeGetCurrent()
+            
             guard let dataRequest = request as? DataRequest,
                 let task = dataRequest.task,
                 let request = task.originalRequest,
@@ -84,12 +88,18 @@ public class NetworkRequestLoggerPlugin: PluginType {
                     return
             }
             
+            var elapsedTime: TimeInterval = 0
+            
+            if let startTime = self.startTime {
+                elapsedTime = CFAbsoluteTimeGetCurrent() - startTime
+            }
+            
             if let error = result.moyaError {
                 switch self.level {
                 case .debug, .info, .warn, .error:
                     self.logDivider()
                     
-                    print("[Error] \(httpMethod) '\(requestURL.absoluteString)'")
+                    print("[Error] \(httpMethod) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
                     print(error)
                 default:
                     break
@@ -103,7 +113,7 @@ public class NetworkRequestLoggerPlugin: PluginType {
                 case .debug:
                     self.logDivider()
                     
-                    print("\(String(response.statusCode)) '\(requestURL.absoluteString)'")
+                    print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
                     
                     self.logHeaders(headers: HTTPURLResponse.allHeaderFields)
                     
@@ -126,11 +136,13 @@ public class NetworkRequestLoggerPlugin: PluginType {
                 case .info:
                     self.logDivider()
                     
-                    print("\(String(response.statusCode)) '\(requestURL.absoluteString)'")
+                    print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
                 default:
                     break
                 }
             }
+            
+            self.startTime = nil
         }
     }
 }
