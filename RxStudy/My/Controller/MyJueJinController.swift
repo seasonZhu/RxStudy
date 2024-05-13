@@ -9,6 +9,8 @@
 import UIKit
 import WebKit
 
+import RxCocoa
+
 /// 我的掘金页面
 class MyJueJinController: BaseViewController {
     
@@ -52,6 +54,15 @@ class MyJueJinController: BaseViewController {
         setupUI()
     }
     
+    @objc
+    override func leftBarButtonItemAction(_ item: UIBarButtonItem) {
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            super.leftBarButtonItemAction(item)
+        }
+    }
+    
     deinit {
         webView.configuration.userContentController.removeScriptMessageHandler(forName: ScriptMessageHandlerType.wanAndroid.rawValue)
     }
@@ -68,6 +79,18 @@ extension MyJueJinController {
             let request = URLRequest(url: url)
             webView.load(request)
         }
+        
+        /// iOS 如何让WKWebView侧滑返回时html逐级返回，而不是直接返回到上级控制器?
+        /// https://www.imooc.com/article/26158
+        webView.rx.observeWeakly(Bool.self, "canGoBack")
+            .subscribe(onNext: { [weak self] newValue in
+                print("新的值: \(newValue)")
+                
+                if let canGoBack = newValue {
+                    self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = !canGoBack
+                }
+            })
+            .disposed(by: rx.disposeBag)
     }
 }
 

@@ -108,6 +108,15 @@ class WebViewController: BaseViewController {
         setupUI()
     }
     
+    @objc
+    override func leftBarButtonItemAction(_ item: UIBarButtonItem) {
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            super.leftBarButtonItemAction(item)
+        }
+    }
+    
     deinit {
         for type in ScriptMessageHandlerType.allCases {
             webView.configuration.userContentController.removeScriptMessageHandler(forName: type.rawValue)
@@ -288,6 +297,16 @@ extension WebViewController {
                 self.type = .unCollect(self.webLoadInfo)
             }
         }).disposed(by: rx.disposeBag)
+        
+        webView.rx.observeWeakly(Bool.self, "canGoBack")
+            .subscribe(onNext: { [weak self] newValue in
+                print("新的值: \(newValue)")
+                
+                if let canGoBack = newValue {
+                    self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = !canGoBack
+                }
+            })
+            .disposed(by: rx.disposeBag)
     }
 }
 

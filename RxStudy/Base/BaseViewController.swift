@@ -86,9 +86,11 @@ class BaseViewController: UIViewController {
         
         setupErrorImage()
     }
-    
+     
+    /// 将此方法从private改成对外暴露,让子类能有能力重新这个返回的方法,一般情况这个返回的方法会与侧滑返回的逻辑绑定,比如MyJueJinController就是例子
+    /// - Parameter item: UIBarButtonItem
     @objc
-    private func leftBarButtonItemAction(_ item: UIBarButtonItem) {
+    func leftBarButtonItemAction(_ item: UIBarButtonItem) {
         navigationController?.popViewController(animated: true)
     }
     
