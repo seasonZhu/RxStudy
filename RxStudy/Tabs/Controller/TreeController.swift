@@ -112,8 +112,14 @@ extension TreeController {
             
             },
             titleForHeaderInSection: { ds, index in
+                /// 这里是顶部悬停
                 return ds.sectionModels[index].model.name
-            }, 
+            },
+            titleForFooterInSection: { ds, index in
+                /// 这里是底部悬停
+                return nil
+                return ds.sectionModels[index].model.name
+            },
             sectionIndexTitles: { _ in
                 /// 一级目录下多达60个,显示不全,会出异常
                 return nil
