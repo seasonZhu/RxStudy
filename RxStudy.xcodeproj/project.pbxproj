@@ -61,6 +61,7 @@
 		006A358F2AD8E5FC00C9298E /* DefaultEnumCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
 		006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */; };
+		006C7C7B2C748243001F1DBC /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C7C7A2C748243001F1DBC /* CustomImageView.swift */; };
 		006F60002B4FDCBC00CBB27A /* RequestLoadingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F5FFF2B4FDCBC00CBB27A /* RequestLoadingPlugin.swift */; };
 		006F60022B4FDD2400CBB27A /* ResponseInterceptorPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F60012B4FDD2400CBB27A /* ResponseInterceptorPlugin.swift */; };
 		006F60042B4FDD6300CBB27A /* ResponseCachePlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F60032B4FDD6300CBB27A /* ResponseCachePlugin.swift */; };
@@ -281,6 +282,7 @@
 		006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
+		006C7C7A2C748243001F1DBC /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		006F5FFF2B4FDCBC00CBB27A /* RequestLoadingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoadingPlugin.swift; sourceTree = "<group>"; };
 		006F60012B4FDD2400CBB27A /* ResponseInterceptorPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseInterceptorPlugin.swift; sourceTree = "<group>"; };
 		006F60032B4FDD6300CBB27A /* ResponseCachePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCachePlugin.swift; sourceTree = "<group>"; };
@@ -824,6 +826,7 @@
 				00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */,
 				00DBD3182A3C3BC400664246 /* ContentScrollView.swift */,
 				006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */,
+				006C7C7A2C748243001F1DBC /* CustomImageView.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1507,6 +1510,7 @@
 				0053B40F2A2D733C00457779 /* CrashController.m in Sources */,
 				003CA16C29384D0A0094A1E0 /* grayMode.js in Sources */,
 				00DBD3192A3C3BC400664246 /* ContentScrollView.swift in Sources */,
+				006C7C7B2C748243001F1DBC /* CustomImageView.swift in Sources */,
 				00CCD1792865ACA300925C1E /* LogoutCell.swift in Sources */,
 				00E9329A29C9499400A618FE /* CollectActionType.swift in Sources */,
 				611E2E0A2660797C001585AE /* HotKeyViewModel.swift in Sources */,
