@@ -23,6 +23,9 @@ function injectBegin(urlString) {
 }
 
 /// 在掘金网页的 APP内打开 这个按钮添加点击事件
+/// postMessage里面需要传值,可以传空串"",不能传JavaScript中的undefined和null或者不传
+/// 传undefined和null报错如下 Optional(Error Domain=WKErrorDomain Code=4 "发生了JavaScript异常" UserInfo={WKJavaScriptExceptionLineNumber=29, WKJavaScriptExceptionMessage=TypeError: null is not an object
+/// 不传报错如下 Optional(Error Domain=WKErrorDomain Code=4 "发生了JavaScript异常" UserInfo={WKJavaScriptExceptionLineNumber=0, WKJavaScriptExceptionMessage=TypeError: undefined is not a function, WKJavaScriptExceptionColumnNumber=0, NSLocalizedDescription=发生了JavaScript异常})
 function juejinAddOnClickOnButton() {
     var button = document.querySelector('.open-button');
     console.log(button);

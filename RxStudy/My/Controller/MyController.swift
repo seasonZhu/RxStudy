@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import SwiftUI
 
+import WebKit
 import SafariServices
 
 import RxSwift
@@ -144,6 +145,8 @@ extension MyController {
                     }
                     
                     self?.present(hostingVC, animated: true)
+                    
+                    WKWebView.clearWebsiteCache()
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return

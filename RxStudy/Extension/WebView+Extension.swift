@@ -30,3 +30,17 @@ extension WKWebView {
         }
     }
 }
+
+extension WKWebView {
+    static func clearWebsiteCache() {
+        let dataStore = WKWebsiteDataStore.default()
+        dataStore.fetchDataRecords(ofTypes: WKWebsiteDataStore.allWebsiteDataTypes(), completionHandler: { records in
+            for record in records {
+                WKWebsiteDataStore.default().removeData(ofTypes: record.dataTypes, for: [record], completionHandler: {
+                    // 清除成功
+                    print("清除成功\(record)")
+                })
+            }
+        })
+    }
+}
