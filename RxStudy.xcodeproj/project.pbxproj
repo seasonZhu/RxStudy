@@ -15,6 +15,8 @@
 		0008D7232AF3847F006782E6 /* CustomLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */; };
 		00099E0329026BD7001FC753 /* ObserverType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099E0229026BD7001FC753 /* ObserverType+Extension.swift */; };
 		000D937326DCAC190099A749 /* open.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* open.js */; };
+		0010655F2CDAFD9D0014F95E /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0010655E2CDAFD9D0014F95E /* BaseTableViewCell.swift */; };
+		001065612CDB04320014F95E /* InfoGenericsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001065602CDB04320014F95E /* InfoGenericsCell.swift */; };
 		0011D5882908C5000041F4FD /* CopyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0011D5872908C5000041F4FD /* CopyActivity.swift */; };
 		0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016CE2A286E838F0002501A /* TypeNameProtocol.swift */; };
 		001B4E1728E183BD003ADF95 /* CoinRankListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001B4E1628E183BD003ADF95 /* CoinRankListPage.swift */; };
@@ -234,6 +236,8 @@
 		0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogFileManager.swift; sourceTree = "<group>"; };
 		00099E0229026BD7001FC753 /* ObserverType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObserverType+Extension.swift"; sourceTree = "<group>"; };
 		000D937226DCAC190099A749 /* open.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
+		0010655E2CDAFD9D0014F95E /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		001065602CDB04320014F95E /* InfoGenericsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGenericsCell.swift; sourceTree = "<group>"; };
 		0011D5872908C5000041F4FD /* CopyActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyActivity.swift; sourceTree = "<group>"; };
 		0016CE2A286E838F0002501A /* TypeNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeNameProtocol.swift; sourceTree = "<group>"; };
 		001B4E1628E183BD003ADF95 /* CoinRankListPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListPage.swift; sourceTree = "<group>"; };
@@ -849,6 +853,7 @@
 				619BA35B26895DDF007C7135 /* BaseNavigationController.swift */,
 				6171E18B2664B08C0065C34D /* BaseTableViewController.swift */,
 				617AAA3A265CC7BF0029A83F /* BaseViewModel.swift */,
+				0010655E2CDAFD9D0014F95E /* BaseTableViewCell.swift */,
 				00634E8A26E9D4BD00B3350D /* Setter.swift */,
 				00CDD94E2910F02100027A81 /* Theme.swift */,
 				004623612989F209008F0676 /* ConstructorProtocol.swift */,
@@ -1009,6 +1014,7 @@
 			children = (
 				619EDB362660BF820056A3D9 /* InfoViewCell.swift */,
 				0038326726F5821E0071EE7E /* InfoCell.swift */,
+				001065602CDB04320014F95E /* InfoGenericsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1391,6 +1397,7 @@
 				0048E6D8277AB4E100F6C739 /* WebView+Extension.swift in Sources */,
 				61990342265F2F07002C8A1A /* SingleTabListViewModel.swift in Sources */,
 				617AAA39265CAD820029A83F /* Moya+Extension.swift in Sources */,
+				0010655F2CDAFD9D0014F95E /* BaseTableViewCell.swift in Sources */,
 				00A08EFB28FD3B1E00093FB4 /* CombineSinkEvent.swift in Sources */,
 				004623642989F96A008F0676 /* ExBehaviorRelay.swift in Sources */,
 				003B6303278FBB5600EA265E /* ImportHeader.swift in Sources */,
@@ -1402,6 +1409,7 @@
 				008759782B4F9475002A4CF8 /* InnerViewEvent.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
 				001B4E3428E19BE1003ADF95 /* List+Refresh.swift in Sources */,
+				001065612CDB04320014F95E /* InfoGenericsCell.swift in Sources */,
 				00099E0329026BD7001FC753 /* ObserverType+Extension.swift in Sources */,
 				617E44F3269574CF00DA9EA2 /* ViewState.swift in Sources */,
 				00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */,

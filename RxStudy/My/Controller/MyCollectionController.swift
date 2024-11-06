@@ -142,8 +142,8 @@ extension MyCollectionController {
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, _, info) in
 
-                let cell = tableView.dequeueReusableCell(withIdentifier: InfoViewCell.className) as! InfoViewCell
-                cell.info = info
+                let cell = tableView.dequeueReusableCell(withIdentifier: InfoGenericsCell.className) as! InfoGenericsCell
+                cell.model = info
                 return cell
             }
             .disposed(by: rx.disposeBag)
