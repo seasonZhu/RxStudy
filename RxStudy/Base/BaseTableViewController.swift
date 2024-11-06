@@ -26,11 +26,12 @@ class BaseTableViewController: BaseViewController {
     let isEmptyRelay = ExBehaviorRelay(value: false, isIgnoreFirstAccept: true)
     
     static let allClass: [UITableViewCell.Type] = [UITableViewCell.self,
-                                            InfoViewCell.self,
-                                            InfoCell.self,
-                                            LogoutCell.self,
-                                            MessageCell.self,
-                                            MessageContentCell.self]
+                                                   InfoViewCell.self,
+                                                   InfoCell.self,
+                                                   InfoGenericsCell.self,
+                                                   LogoutCell.self,
+                                                   MessageCell.self,
+                                                   MessageContentCell.self]
 
     override func viewDidLoad() {
         super.viewDidLoad()
