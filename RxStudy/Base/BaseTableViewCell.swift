@@ -12,6 +12,8 @@ import RxSwift
 
 /// 直接让子类重新方法,这样就不用每次都重写init方法了
 class BaseTableViewCell: UITableViewCell {
+    
+    /// 初始化方法
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
@@ -23,10 +25,12 @@ class BaseTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// 构建UI
     func setupUI() {
         
     }
     
+    /// 逻辑绑定
     func binding() {
         
     }
@@ -46,6 +50,7 @@ class BaseGenericsCell<T: Codable>: BaseTableViewCell {
     
     private var _model: T!
     
+    /// 模型的set方法,数据驱动UI和逻辑更改
     func setModel(_ model: T) {
         
     }
