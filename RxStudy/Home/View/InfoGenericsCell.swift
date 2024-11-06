@@ -12,16 +12,6 @@ import RxCocoa
 
 class InfoGenericsCell: BaseGenericsCell<Info> {
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setupUI()
-        binding()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     private lazy var picView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
@@ -50,7 +40,8 @@ class InfoGenericsCell: BaseGenericsCell<Info> {
         return label
     }()
     
-    func setupUI() {
+    override func setupUI() {
+        super.setupUI()
         accessoryType = .disclosureIndicator
         
         contentView.addSubview(picView)
@@ -82,6 +73,8 @@ class InfoGenericsCell: BaseGenericsCell<Info> {
     }
     
     override func setModel(_ model: Info) {
+        super.setModel(model)
+        
         var title = model.title
         contentLabel.text = title?.filterHTML()
         authorLabel.text = model.author
