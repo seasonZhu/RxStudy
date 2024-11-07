@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6868056D761E163D10FDAF8CF1C4D9B8"
-               BuildableName = "MJRefresh.framework"
+               BuildableName = "MJRefresh"
                BlueprintName = "MJRefresh"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6868056D761E163D10FDAF8CF1C4D9B8"
-            BuildableName = "MJRefresh.framework"
+            BuildableName = "MJRefresh"
             BlueprintName = "MJRefresh"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

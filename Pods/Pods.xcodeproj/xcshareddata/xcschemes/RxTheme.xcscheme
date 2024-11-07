@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "94E41089BABBDFA3E9F37D777CB1A138"
-               BuildableName = "RxTheme.framework"
+               BuildableName = "RxTheme"
                BlueprintName = "RxTheme"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "94E41089BABBDFA3E9F37D777CB1A138"
-            BuildableName = "RxTheme.framework"
+            BuildableName = "RxTheme"
             BlueprintName = "RxTheme"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

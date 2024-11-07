@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "C23DB88E45B0ED14F0C8827BE9C46C95"
-               BuildableName = "MarqueeLabel.framework"
+               BuildableName = "MarqueeLabel"
                BlueprintName = "MarqueeLabel"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "C23DB88E45B0ED14F0C8827BE9C46C95"
-            BuildableName = "MarqueeLabel.framework"
+            BuildableName = "MarqueeLabel"
             BlueprintName = "MarqueeLabel"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

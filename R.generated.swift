@@ -144,7 +144,7 @@ struct _R {
     var wan_android_placeholder: RswiftResources.ImageResource { .init(name: "wan_android_placeholder", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 32 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 31 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
@@ -201,9 +201,6 @@ struct _R {
 
     /// Resource file `Pods-RxStudy-acknowledgements.plist`.
     var podsRxStudyAcknowledgementsPlist: RswiftResources.FileResource { .init(name: "Pods-RxStudy-acknowledgements", pathExtension: "plist", bundle: bundle, locale: LocaleReference.none) }
-
-    /// Resource file `PrivacyInfo.xcprivacy`.
-    var privacyInfoXcprivacy: RswiftResources.FileResource { .init(name: "PrivacyInfo", pathExtension: "xcprivacy", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `ProjectClassify.json`.
     var projectClassifyJson: RswiftResources.FileResource { .init(name: "ProjectClassify", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }

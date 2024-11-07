@@ -1,9 +1,9 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/RxGesture
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/RxCocoa" "${PODS_CONFIGURATION_BUILD_DIR}/RxRelay" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/RxCocoa/6.6.0-44a80/dynamic_framework/RxCocoa/Sled-Common-iphoneos" "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/RxGesture/4.0.4-f3efb/dynamic_framework/RxGesture/Sled-Common-iphoneos" "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/RxRelay/6.6.0-45eaa/dynamic_framework/RxRelay/Sled-Common-iphoneos" "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/RxSwift/6.6.0-a4b44/dynamic_framework/RxSwift/Sled-Common-iphoneos"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LIBRARY_SEARCH_PATHS = $(inherited) "${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}" /usr/lib/swift
-OTHER_LDFLAGS = $(inherited) -framework "RxCocoa" -framework "RxSwift"
+OTHER_LDFLAGS = $(inherited) -framework "RxCocoa" -framework "RxRelay" -framework "RxSwift"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

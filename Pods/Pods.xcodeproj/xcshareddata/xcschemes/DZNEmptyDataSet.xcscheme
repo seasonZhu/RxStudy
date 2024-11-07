@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "F1BCD9702276377FB5B3BDB6EAF709D7"
-               BuildableName = "DZNEmptyDataSet.framework"
+               BuildableName = "DZNEmptyDataSet"
                BlueprintName = "DZNEmptyDataSet"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "F1BCD9702276377FB5B3BDB6EAF709D7"
-            BuildableName = "DZNEmptyDataSet.framework"
+            BuildableName = "DZNEmptyDataSet"
             BlueprintName = "DZNEmptyDataSet"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

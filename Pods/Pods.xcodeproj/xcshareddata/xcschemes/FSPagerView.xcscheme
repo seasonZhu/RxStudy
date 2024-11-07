@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "D4F8239FB329387A8476B964D92D92E7"
-               BuildableName = "FSPagerView.framework"
+               BuildableName = "FSPagerView"
                BlueprintName = "FSPagerView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "D4F8239FB329387A8476B964D92D92E7"
-            BuildableName = "FSPagerView.framework"
+            BuildableName = "FSPagerView"
             BlueprintName = "FSPagerView"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

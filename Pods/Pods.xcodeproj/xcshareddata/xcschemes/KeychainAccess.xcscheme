@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "615C831BCE925ED486B225B87E44926D"
-               BuildableName = "KeychainAccess.framework"
+               BuildableName = "KeychainAccess"
                BlueprintName = "KeychainAccess"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "615C831BCE925ED486B225B87E44926D"
-            BuildableName = "KeychainAccess.framework"
+            BuildableName = "KeychainAccess"
             BlueprintName = "KeychainAccess"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

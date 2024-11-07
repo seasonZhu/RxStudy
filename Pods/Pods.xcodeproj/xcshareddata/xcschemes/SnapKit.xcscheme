@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "19622742EBA51E823D6DAE3F8CDBFAD4"
-               BuildableName = "SnapKit.framework"
+               BuildableName = "SnapKit"
                BlueprintName = "SnapKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "19622742EBA51E823D6DAE3F8CDBFAD4"
-            BuildableName = "SnapKit.framework"
+            BuildableName = "SnapKit"
             BlueprintName = "SnapKit"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

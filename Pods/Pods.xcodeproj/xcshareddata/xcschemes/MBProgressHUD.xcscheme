@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "82B0A41D3031FF27D78E17B0A9A46FB0"
-               BuildableName = "MBProgressHUD.framework"
+               BuildableName = "MBProgressHUD"
                BlueprintName = "MBProgressHUD"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "82B0A41D3031FF27D78E17B0A9A46FB0"
-            BuildableName = "MBProgressHUD.framework"
+            BuildableName = "MBProgressHUD"
             BlueprintName = "MBProgressHUD"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

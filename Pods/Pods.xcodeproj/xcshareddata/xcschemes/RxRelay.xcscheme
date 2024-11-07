@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "4622BFEF3DC16E8BD15EEFC30D4D0084"
-               BuildableName = "RxRelay.framework"
+               BuildableName = "RxRelay"
                BlueprintName = "RxRelay"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "4622BFEF3DC16E8BD15EEFC30D4D0084"
-            BuildableName = "RxRelay.framework"
+            BuildableName = "RxRelay"
             BlueprintName = "RxRelay"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

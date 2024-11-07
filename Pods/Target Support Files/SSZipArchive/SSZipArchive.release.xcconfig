@@ -1,6 +1,7 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/SSZipArchive
 DEFINES_MODULE = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/SSZipArchive/2.4.3-fe6a2/dynamic_framework/SSZipArchive/Sled-Common-iphoneos"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1 HAVE_INTTYPES_H HAVE_PKCRYPT HAVE_STDINT_H HAVE_WZAES HAVE_ZLIB
 OTHER_LDFLAGS = $(inherited) -l"iconv" -l"z" -framework "Security"
 PODS_BUILD_DIR = ${BUILD_DIR}

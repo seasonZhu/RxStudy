@@ -10,7 +10,6 @@
 		000023F928E2909900E81BEC /* CoinRankListPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000023F828E2909900E81BEC /* CoinRankListPageCell.swift */; };
 		000139CA2877FE5B00683119 /* ToCodable.json in Resources */ = {isa = PBXBuildFile; fileRef = 000139C92877FE5B00683119 /* ToCodable.json */; };
 		000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000301F5284E047800A41EA6 /* Collection+Extension.swift */; };
-		000666432BC51A15008FEE94 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 000666422BC51A15008FEE94 /* PrivacyInfo.xcprivacy */; };
 		0008D7212AF383E5006782E6 /* CustomLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */; };
 		0008D7232AF3847F006782E6 /* CustomLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */; };
 		00099E0329026BD7001FC753 /* ObserverType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099E0229026BD7001FC753 /* ObserverType+Extension.swift */; };
@@ -1184,6 +1183,7 @@
 				612DBF56220022BA007F73CC /* Resources */,
 				0460F2413F12E891719D5EFC /* [CP] Embed Pods Frameworks */,
 				001EFFA02B020E9A00C8F8C9 /* SwiftLint Run Script */,
+				352F1935B0A37DDDF9770A83 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1272,7 +1272,6 @@
 				00CCD1812865BE5100925C1E /* CourseDetail.json in Resources */,
 				00CCD17D2865BDE300925C1E /* MessageCount.json in Resources */,
 				61BB7C64267A057700990636 /* SearchResult.json in Resources */,
-				000666432BC51A15008FEE94 /* PrivacyInfo.xcprivacy in Resources */,
 				00CCD1832865BE9100925C1E /* Course.json in Resources */,
 				61BB7C5D267A057700990636 /* RankList.json in Resources */,
 				0046912E286A9933000B3C5E /* NavigationUrl.json in Resources */,
@@ -1317,6 +1316,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		352F1935B0A37DDDF9770A83 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		619EDB2F2660B7090056A3D9 /* R func script */ = {

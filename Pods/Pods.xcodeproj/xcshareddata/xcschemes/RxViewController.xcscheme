@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9A6219A2A8882CA77128A01A5357CB3E"
-               BuildableName = "RxViewController.framework"
+               BuildableName = "RxViewController"
                BlueprintName = "RxViewController"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9A6219A2A8882CA77128A01A5357CB3E"
-            BuildableName = "RxViewController.framework"
+            BuildableName = "RxViewController"
             BlueprintName = "RxViewController"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

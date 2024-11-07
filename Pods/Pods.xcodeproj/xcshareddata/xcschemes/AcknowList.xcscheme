@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "51691F4311958691BD98F5F26E2D77D4"
-               BuildableName = "AcknowList.framework"
+               BuildableName = "AcknowList"
                BlueprintName = "AcknowList"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "51691F4311958691BD98F5F26E2D77D4"
-            BuildableName = "AcknowList.framework"
+            BuildableName = "AcknowList"
             BlueprintName = "AcknowList"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

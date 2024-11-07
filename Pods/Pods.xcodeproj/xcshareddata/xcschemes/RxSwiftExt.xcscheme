@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ED7124602AA1B5C6A257912C7E8B793B"
-               BuildableName = "RxSwiftExt.framework"
+               BuildableName = "RxSwiftExt"
                BlueprintName = "RxSwiftExt"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ED7124602AA1B5C6A257912C7E8B793B"
-            BuildableName = "RxSwiftExt.framework"
+            BuildableName = "RxSwiftExt"
             BlueprintName = "RxSwiftExt"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

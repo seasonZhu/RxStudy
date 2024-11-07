@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E8022D22FAA6690B5E1C379C1BCE1491"
-               BuildableName = "Kingfisher.framework"
+               BuildableName = "Kingfisher"
                BlueprintName = "Kingfisher"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E8022D22FAA6690B5E1C379C1BCE1491"
-            BuildableName = "Kingfisher.framework"
+            BuildableName = "Kingfisher"
             BlueprintName = "Kingfisher"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

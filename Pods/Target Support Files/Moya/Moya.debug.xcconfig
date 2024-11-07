@@ -1,6 +1,6 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/Moya
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Alamofire" "${PODS_CONFIGURATION_BUILD_DIR}/RxSwift"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/Alamofire/5.9.0-02b77/dynamic_framework/Alamofire/Sled-Common-iphoneos" "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/Moya/15.0.0-138f0/dynamic_framework/Moya-Combine-Core-RxSwift/Sled-Common-iphoneos" "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/RxSwift/6.6.0-a4b44/dynamic_framework/RxSwift/Sled-Common-iphoneos"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LIBRARY_SEARCH_PATHS = $(inherited) "${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}" /usr/lib/swift
 OTHER_LDFLAGS = $(inherited) -framework "Alamofire" -framework "CFNetwork" -framework "Combine" -framework "Foundation" -framework "RxSwift"

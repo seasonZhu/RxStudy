@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "EAAA1AD3A8A1B59AB91319EE40752C6D"
-               BuildableName = "Alamofire.framework"
+               BuildableName = "Alamofire"
                BlueprintName = "Alamofire"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "EAAA1AD3A8A1B59AB91319EE40752C6D"
-            BuildableName = "Alamofire.framework"
+            BuildableName = "Alamofire"
             BlueprintName = "Alamofire"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

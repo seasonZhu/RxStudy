@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6038CE6006EFBE9D905454CF01909C42"
-               BuildableName = "SwiftDate.framework"
+               BuildableName = "SwiftDate"
                BlueprintName = "SwiftDate"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6038CE6006EFBE9D905454CF01909C42"
-            BuildableName = "SwiftDate.framework"
+            BuildableName = "SwiftDate"
             BlueprintName = "SwiftDate"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "401909D4FB2014BF539896BF0CCA48C2"
-               BuildableName = "RxDataSources.framework"
+               BuildableName = "RxDataSources"
                BlueprintName = "RxDataSources"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "401909D4FB2014BF539896BF0CCA48C2"
-            BuildableName = "RxDataSources.framework"
+            BuildableName = "RxDataSources"
             BlueprintName = "RxDataSources"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

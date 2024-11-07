@@ -1,5 +1,6 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/MBProgressHUD
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/MBProgressHUD/1.2.0-3ee5e/dynamic_framework/MBProgressHUD/Sled-Common-iphoneos"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 OTHER_LDFLAGS = $(inherited) -framework "CoreGraphics" -framework "QuartzCore"
 PODS_BUILD_DIR = ${BUILD_DIR}

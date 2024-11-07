@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E863A9A96F52A35F47491E7B41ECEF9A"
-               BuildableName = "JXSegmentedView.framework"
+               BuildableName = "JXSegmentedView"
                BlueprintName = "JXSegmentedView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
@@ -51,7 +51,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E863A9A96F52A35F47491E7B41ECEF9A"
-            BuildableName = "JXSegmentedView.framework"
+            BuildableName = "JXSegmentedView"
             BlueprintName = "JXSegmentedView"
             ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>

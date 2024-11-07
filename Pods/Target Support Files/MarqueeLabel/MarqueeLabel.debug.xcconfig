@@ -1,5 +1,6 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/MarqueeLabel
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/MarqueeLabel/4.5.0-4b46d/dynamic_framework/MarqueeLabel/Sled-Common-iphoneos"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LIBRARY_SEARCH_PATHS = $(inherited) "${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}" /usr/lib/swift
 OTHER_LDFLAGS = $(inherited) -framework "QuartzCore" -framework "UIKit"
