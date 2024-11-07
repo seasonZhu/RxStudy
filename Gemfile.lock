@@ -1,0 +1,14 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    cocoapods-sled (0.0.2)
+
+PLATFORMS
+  arm64-darwin-23
+  ruby
+
+DEPENDENCIES
+  cocoapods-sled
+
+BUNDLED WITH
+   2.5.23
