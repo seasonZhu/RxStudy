@@ -14,7 +14,7 @@ import RxGesture
 
 import Moya
 import SVProgressHUD
-import FunnyButton
+// import FunnyButton
 import LifetimeTracker
 
 class BaseViewController: UIViewController {
