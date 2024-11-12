@@ -1,0 +1,6 @@
+framework module JWNetAutoCache {
+  umbrella header "JWNetAutoCache-umbrella.h"
+
+  export *
+  module * { export * }
+}

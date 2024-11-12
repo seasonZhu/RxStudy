@@ -15,6 +15,7 @@ import MBProgressHUD
 import SVProgressHUD
 import MarqueeLabel
 import MJRefresh
+import JWNetAutoCache
 
 class WebViewController: BaseViewController {
     
@@ -101,10 +102,14 @@ class WebViewController: BaseViewController {
         if actionTag != 0, let type {
             collectActionRelay.accept(type)
         }
+        
+        /// 移除离线缓存监听
+//        JWCacheURLProtocol.cancelListeningNetWorking()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//        webViewCache()
         setupUI()
     }
     
@@ -307,6 +312,13 @@ extension WebViewController {
                 }
             })
             .disposed(by: rx.disposeBag)
+    }
+    
+    /// 掘金的网页对这个支持不友好,会自动重定向到返回首页,可能是怕被爬虫了
+    private func webViewCache() {
+        URLProtocol.wk_registerScheme("http")
+        URLProtocol.wk_registerScheme("https")
+        JWCacheURLProtocol.startListeningNetWorking()
     }
 }
 

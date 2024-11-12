@@ -96,6 +96,12 @@ target 'RxStudy' do
   
   # Keychain
   pod 'KeychainAccess'
+  
+  # SwiftLint
+  #pod 'SwiftLint', :configuration => 'Debug'
+  
+  # web缓存+离线缓存
+  pod 'JWNetAutoCache'
 
 end
 
