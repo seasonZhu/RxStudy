@@ -144,7 +144,7 @@ struct _R {
     var wan_android_placeholder: RswiftResources.ImageResource { .init(name: "wan_android_placeholder", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 32 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 35 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
@@ -234,6 +234,15 @@ struct _R {
 
     /// Resource file `Tree.json`.
     var treeJson: RswiftResources.FileResource { .init(name: "Tree", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `__UNI__11E9B73.wgt`.
+    var __UNI__11E9B73Wgt: RswiftResources.FileResource { .init(name: "__UNI__11E9B73", pathExtension: "wgt", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `__UNI__98AF8A0.wgt`.
+    var __UNI__98AF8A0Wgt: RswiftResources.FileResource { .init(name: "__UNI__98AF8A0", pathExtension: "wgt", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `__UNI__CBDCE04.wgt`.
+    var __UNI__CBDCE04Wgt: RswiftResources.FileResource { .init(name: "__UNI__CBDCE04", pathExtension: "wgt", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `appStore.js`.
     var appStoreJs: RswiftResources.FileResource { .init(name: "appStore", pathExtension: "js", bundle: bundle, locale: LocaleReference.none) }

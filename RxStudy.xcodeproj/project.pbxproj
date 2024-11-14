@@ -60,6 +60,9 @@
 		005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */; };
 		006029722888FF3B0024CC7F /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */; };
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
+		0063850F2CE5A54C0047528D /* __UNI__98AF8A0.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 0063850C2CE5A54C0047528D /* __UNI__98AF8A0.wgt */; };
+		006385102CE5A54C0047528D /* __UNI__11E9B73.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 0063850D2CE5A54C0047528D /* __UNI__11E9B73.wgt */; };
+		006385112CE5A54C0047528D /* __UNI__CBDCE04.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 0063850E2CE5A54C0047528D /* __UNI__CBDCE04.wgt */; };
 		006A358F2AD8E5FC00C9298E /* DefaultEnumCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
 		006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */; };
@@ -121,6 +124,7 @@
 		00E1904226D4C66200683BDE /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E1904126D4C66200683BDE /* Provider.swift */; };
 		00E9329A29C9499400A618FE /* CollectActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9329929C9499400A618FE /* CollectActionType.swift */; };
 		00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */; };
+		00FA6FA62CE5C75300D85AB2 /* UniMPUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FA6FA52CE5C75300D85AB2 /* UniMPUtils.swift */; };
 		00FE0DDA2869455500B9D48F /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DD92869455500B9D48F /* MessageViewModel.swift */; };
 		00FE0DDC28694BB600B9D48F /* MyMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDB28694BB600B9D48F /* MyMessageController.swift */; };
 		00FE0DDE28694D6500B9D48F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDD28694D6500B9D48F /* MessageCell.swift */; };
@@ -284,6 +288,9 @@
 		005BD7F528489494000B6885 /* ScriptMessageHandlerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandlerType.swift; sourceTree = "<group>"; };
 		006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+BlockingObservable.swift"; sourceTree = "<group>"; };
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
+		0063850C2CE5A54C0047528D /* __UNI__98AF8A0.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__98AF8A0.wgt; sourceTree = "<group>"; };
+		0063850D2CE5A54C0047528D /* __UNI__11E9B73.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__11E9B73.wgt; sourceTree = "<group>"; };
+		0063850E2CE5A54C0047528D /* __UNI__CBDCE04.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__CBDCE04.wgt; sourceTree = "<group>"; };
 		006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -347,6 +354,7 @@
 		00E1904126D4C66200683BDE /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		00E9329929C9499400A618FE /* CollectActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectActionType.swift; sourceTree = "<group>"; };
 		00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
+		00FA6FA52CE5C75300D85AB2 /* UniMPUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniMPUtils.swift; sourceTree = "<group>"; };
 		00FE0DD92869455500B9D48F /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		00FE0DDB28694BB600B9D48F /* MyMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageController.swift; sourceTree = "<group>"; };
 		00FE0DDD28694D6500B9D48F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -632,6 +640,25 @@
 			path = Enum;
 			sourceTree = "<group>";
 		};
+		0063850A2CE5A54C0047528D /* UniMP */ = {
+			isa = PBXGroup;
+			children = (
+				0063850B2CE5A54C0047528D /* Apps */,
+				00FA6FA52CE5C75300D85AB2 /* UniMPUtils.swift */,
+			);
+			path = UniMP;
+			sourceTree = "<group>";
+		};
+		0063850B2CE5A54C0047528D /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				0063850C2CE5A54C0047528D /* __UNI__98AF8A0.wgt */,
+				0063850D2CE5A54C0047528D /* __UNI__11E9B73.wgt */,
+				0063850E2CE5A54C0047528D /* __UNI__CBDCE04.wgt */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
 		006F5FFE2B4FDBF100CBB27A /* Plugin */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,6 +765,7 @@
 				61BB7C47267A057700990636 /* JSONS */,
 				0048E6D1277AAD9700F6C739 /* JavaScript */,
 				0008D71F2AF383AB006782E6 /* Log */,
+				0063850A2CE5A54C0047528D /* UniMP */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
 				003B6302278FBB5600EA265E /* ImportHeader.swift */,
@@ -1197,6 +1225,7 @@
 				612DBF56220022BA007F73CC /* Resources */,
 				0460F2413F12E891719D5EFC /* [CP] Embed Pods Frameworks */,
 				001EFFA02B020E9A00C8F8C9 /* SwiftLint Run Script */,
+				B896B6B15E01DBACB984EA6D /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1258,6 +1287,7 @@
 				003CA16D29384DE80094A1E0 /* grayMode.js in Resources */,
 				61BB7C63267A057700990636 /* PublicNumberList.json in Resources */,
 				612DBF66220022BE007F73CC /* LaunchScreen.storyboard in Resources */,
+				006385112CE5A54C0047528D /* __UNI__CBDCE04.wgt in Resources */,
 				612DBF63220022BE007F73CC /* Assets.xcassets in Resources */,
 				00469128286A8E58000B3C5E /* Friend.json in Resources */,
 				00CCD17F2865BE0F00925C1E /* Tools.json in Resources */,
@@ -1267,6 +1297,8 @@
 				61BB7C5C267A057700990636 /* MyCollectList.json in Resources */,
 				001EFFA22B020EE800C8F8C9 /* .swiftlint.yml in Resources */,
 				61BB7C66267A057700990636 /* MyCoinList.json in Resources */,
+				006385102CE5A54C0047528D /* __UNI__11E9B73.wgt in Resources */,
+				0063850F2CE5A54C0047528D /* __UNI__98AF8A0.wgt in Resources */,
 				6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */,
 				6194601126B12D2200A66F77 /* README.md in Resources */,
 				000139CA2877FE5B00683119 /* ToCodable.json in Resources */,
@@ -1352,6 +1384,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
 		};
+		B896B6B15E01DBACB984EA6D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		EF46B8D0F950D7802A4E4FE4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1384,6 +1433,7 @@
 				007AE7F628F3F91800AD6C72 /* TestViewModel.swift in Sources */,
 				00E042EB2A286EC30000C081 /* UIKitBridgeSwiftUI.swift in Sources */,
 				61B13D622680915400665A08 /* ThirdPartyDetailController.swift in Sources */,
+				00FA6FA62CE5C75300D85AB2 /* UniMPUtils.swift in Sources */,
 				00890D0128F56E9E00B3E72E /* View+ReceiveTimer.swift in Sources */,
 				001B4E1728E183BD003ADF95 /* CoinRankListPage.swift in Sources */,
 				6171E19F26661AAA0065C34D /* AccountBaseController.swift in Sources */,

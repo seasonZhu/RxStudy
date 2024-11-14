@@ -14,8 +14,6 @@ import NSObject_Rx
 import SnapKit
 import MJRefresh
 
-import FBRetainCycleDetector
-
 class CoinRankListController: BaseTableViewController {
         
     override func viewDidLoad() {
@@ -95,13 +93,5 @@ extension CoinRankListController {
     /// 此方法用于验证MLeaksFinder发现循环引用的问题
     func test() {
 
-    }
-    
-    /// 使用FBRetainCycleDetector寻找循环引用的环节,但是在这里例子中并没有发现
-    private func findRetainCycles() {
-        let detector = FBRetainCycleDetector()
-        detector.addCandidate(self)
-        let retainCycles = detector.findRetainCycles()
-        print(retainCycles)
     }
 }

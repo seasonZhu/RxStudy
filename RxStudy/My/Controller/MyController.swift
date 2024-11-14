@@ -21,6 +21,8 @@ import MJRefresh
 
 class MyController: BaseTableViewController {
     
+    let APPID1 = "__UNI__98AF8A0"
+    
     var cancelable: AnyCancellable?
     
     /// 如果定义为UIHostingController,会要求有个类型约束,与rootView.environmentObject(AppState())的不透明类型矛盾,导致编译问题
@@ -147,6 +149,11 @@ extension MyController {
                     self?.present(hostingVC, animated: true)
                     
                     WKWebView.clearWebsiteCache()
+                case .aUniApp:
+                    guard let self else {
+                        return
+                    }
+                    UniMPUtils.checkUniMPResoutceAndOpen(appid: self.APPID1)
                 default:
                     guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
                         return

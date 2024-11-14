@@ -1,19 +1,8 @@
 ${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources.sh
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/AcknowList/3.1.0-6a066/dynamic_framework/AcknowList/Sled-Common-iphoneos/AcknowListBundle.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/Alamofire/5.9.0-02b77/dynamic_framework/Alamofire/Sled-Common-iphoneos/Alamofire.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/CocoaLumberjack/3.8.5-6a459/dynamic_framework/CocoaLumberjack-Core-Swift/Sled-Common-iphoneos/CocoaLumberjackPrivacy.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/IQKeyboardManagerSwift/7.0.2-d338c/dynamic_framework/IQKeyboardManagerSwift/Sled-Common-iphoneos/IQKeyboardManagerSwift.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/KSCrash/1.17.0-593ec/dynamic_framework/17f28140fd4e0ea0401d982015295d3a/Sled-Common-iphoneos/KSCrashPrivacy.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/Kingfisher/7.11.0-b9c98/dynamic_framework/Kingfisher/Sled-Common-iphoneos/Kingfisher.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/LifetimeTracker/1.8.3-e6764/dynamic_framework/LifetimeTracker/Sled-Common-iphoneos/LifetimeTracker.bundle
-${PODS_ROOT}/LifetimeTracker/Sources/Resources/BarDashboard.storyboard
-${PODS_ROOT}/LifetimeTracker/Sources/Resources/CircularDashboard.storyboard
-${PODS_ROOT}/LifetimeTracker/Sources/Resources/DashboardTableView.storyboard
-${PODS_ROOT}/LifetimeTracker/Sources/Resources/DashboardTableViewCell.xib
-${PODS_ROOT}/LifetimeTracker/Sources/Resources/DashboardTableViewHeaderView.xib
-${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/MJRefresh/3.7.8-4e6e7/dynamic_framework/MJRefresh/Sled-Common-iphoneos/MJRefresh.Privacy.bundle
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/MarqueeLabel/4.5.0-4b46d/dynamic_framework/MarqueeLabel/Sled-Common-iphoneos/MarqueeLabel.bundle
-${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle
-${PODS_ROOT}/SVProgressHUD/SVProgressHUD/PrivacyInfo.xcprivacy
-${PODS_ROOT}/../../../../Library/Caches/CocoaPods/Frameworks/Release/SnapKit/5.7.1-d612e/dynamic_framework/SnapKit/Sled-Common-iphoneos/SnapKit_Privacy.bundle
+${PODS_ROOT}/unimp/UniMPSDK/Core/Resources/uni-jsframework-vue3.js
+${PODS_ROOT}/unimp/UniMPSDK/Core/Resources/uni-jsframework.js
+${PODS_ROOT}/unimp/UniMPSDK/Core/Resources/unincomponents.ttf
+${PODS_ROOT}/unimp/UniMPSDK/Core/Resources/weex-polyfill.js
+${PODS_ROOT}/unimp/UniMPSDK/Core/Resources/weexUniJs.js
+${PODS_ROOT}/unimp/UniMPSDK/Core/Resources/__uniappes6.js
+${PODS_ROOT}/unimp/UniMPSDK/Core/Resources/PandoraApi.bundle

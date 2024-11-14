@@ -41,14 +41,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #endif
         
         #if DEBUG
-            LifetimeTracker.setup(
-                onUpdate: LifetimeTrackerDashboardIntegration(
-                    visibility: .alwaysVisible,
-                    style: .circular,
-                    textColorForNoIssues: .systemGreen,
-                    textColorForLeakDetected: .systemRed
-                ).refreshUI
-            )
+//            LifetimeTracker.setup(
+//                onUpdate: LifetimeTrackerDashboardIntegration(
+//                    visibility: .alwaysVisible,
+//                    style: .circular,
+//                    textColorForNoIssues: .systemGreen,
+//                    textColorForLeakDetected: .systemRed
+//                ).refreshUI
+//            )
         #endif
         
         /// 背景色配置
@@ -64,6 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         })
         
         screenCapturedListen()
+        
+        /// UniApp初始化
+        let options = NSMutableDictionary.init(dictionary: launchOptions ?? [:])
+        options.setValue(NSNumber.init(value: true), forKey: "debug")
+        DCUniMPSDKEngine.initSDKEnvironment(launchOptions: options as! [AnyHashable: Any])
         
         return true
     }
