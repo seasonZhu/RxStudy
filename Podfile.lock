@@ -1,5 +1,5 @@
 PODS:
-  - AcknowList (3.1.0)
+  - AcknowList (3.2.0)
   - Alamofire (5.9.0)
   - CocoaDebug (1.7.7)
   - CocoaLumberjack/Core (3.8.5)
@@ -224,7 +224,7 @@ SPEC REPOS:
     - SwiftDate
 
 SPEC CHECKSUMS:
-  AcknowList: 6a066937eac273426b749e14172db23a9ca656df
+  AcknowList: bbe94f19c25efebcb1b7e6402f466ea8a4b04e62
   Alamofire: 02b772c9910e8eba1a079227c32fbd9e46c90a24
   CocoaDebug: b38d31464b91a9775928f8667d114db07b136565
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
