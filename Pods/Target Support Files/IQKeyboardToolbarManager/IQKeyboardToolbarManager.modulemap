@@ -1,0 +1,6 @@
+framework module IQKeyboardToolbarManager {
+  umbrella header "IQKeyboardToolbarManager-umbrella.h"
+
+  export *
+  module * { export * }
+}

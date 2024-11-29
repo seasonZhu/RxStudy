@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         logSetting()
         
         /// 键盘配置
-        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.isEnabled = true
         
         /// SVProgressHUD配置
         SVProgressHUD.setting()
