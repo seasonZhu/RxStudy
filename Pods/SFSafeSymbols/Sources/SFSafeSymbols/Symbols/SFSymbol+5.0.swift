@@ -5670,10 +5670,12 @@ public extension SFSymbol {
     static let pencilTipCropCircleBadgePlusFill = SFSymbol(rawValue: "pencil.tip.crop.circle.badge.plus.fill")
 
     /// 􁾛
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
+    /// - Multicolor (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s Markup feature.
     static let pencilTipCropCircleFill = SFSymbol(rawValue: "pencil.tip.crop.circle.fill")

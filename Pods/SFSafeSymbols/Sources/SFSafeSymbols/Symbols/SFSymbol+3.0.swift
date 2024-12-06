@@ -4268,11 +4268,12 @@ public extension SFSymbol {
     static let person2CropSquareStack = SFSymbol(rawValue: "person.2.crop.square.stack")
 
     /// 􀓦
-    /// Single Localization, 2 Layersets
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    /// - Multicolor (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
     static let person2CropSquareStackFill = SFSymbol(rawValue: "person.2.crop.square.stack.fill")
 
     /// 􀾌
@@ -4419,10 +4420,12 @@ public extension SFSymbol {
     static let personCropRectangleStack = SFSymbol(rawValue: "person.crop.rectangle.stack")
 
     /// 􀏼
-    /// Single Localization, Single Layerset
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
+    /// - Multicolor (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
     static let personCropRectangleStackFill = SFSymbol(rawValue: "person.crop.rectangle.stack.fill")
 
     /// 􀦎

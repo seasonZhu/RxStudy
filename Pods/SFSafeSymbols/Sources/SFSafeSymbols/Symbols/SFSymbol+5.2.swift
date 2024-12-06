@@ -4,16 +4,20 @@
 @available(iOS 17.2, macOS 14.2, tvOS 17.2, watchOS 10.2, visionOS 1.1, *)
 public extension SFSymbol {
     /// 􂋍
-    /// Single Localization, Single Layerset
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     static let squareAndArrowUpBadgeClock = SFSymbol(rawValue: "square.and.arrow.up.badge.clock")
 
     /// 􂋏
-    /// Single Localization, Single Layerset
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     static let squareAndArrowUpBadgeClockFill = SFSymbol(rawValue: "square.and.arrow.up.badge.clock.fill")
 }

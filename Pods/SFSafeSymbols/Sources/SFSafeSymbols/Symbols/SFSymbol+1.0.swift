@@ -11001,11 +11001,12 @@ public extension SFSymbol {
     static let person2SquareStack = SFSymbol(rawValue: "person.2.square.stack")
 
     /// 􀓦
-    /// Single Localization, 2 Layersets
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    /// - Multicolor (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
     @available(iOS, introduced: 13.0, deprecated: 15.0, renamed: "person2CropSquareStackFill")
     @available(macOS, introduced: 11.0, deprecated: 12.0, renamed: "person2CropSquareStackFill")
     @available(tvOS, introduced: 13.0, deprecated: 15.0, renamed: "person2CropSquareStackFill")
@@ -11214,10 +11215,12 @@ public extension SFSymbol {
     static let personCropRectangle = SFSymbol(rawValue: "person.crop.rectangle")
 
     /// 􀏐
-    /// Single Localization, Single Layerset
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
+    /// - Multicolor (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
     static let personCropRectangleFill = SFSymbol(rawValue: "person.crop.rectangle.fill")
 
     /// 􀉹
@@ -12440,10 +12443,12 @@ public extension SFSymbol {
     static let rectangleStackPersonCrop = SFSymbol(rawValue: "rectangle.stack.person.crop")
 
     /// 􀏼
-    /// Single Localization, Single Layerset
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
+    /// - Multicolor (iOS 17.1, macOS 14.1, tvOS 17.1, watchOS 10.1)
     @available(iOS, introduced: 13.0, deprecated: 15.0, renamed: "personCropRectangleStackFill")
     @available(macOS, introduced: 11.0, deprecated: 12.0, renamed: "personCropRectangleStackFill")
     @available(tvOS, introduced: 13.0, deprecated: 15.0, renamed: "personCropRectangleStackFill")

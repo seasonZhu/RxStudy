@@ -18,30 +18,34 @@ public extension SFSymbol {
     static let chevronCompactForward = SFSymbol(rawValue: "chevron.compact.forward")
 
     /// 􂉚
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     static let personCropSquareBadgeCamera = SFSymbol(rawValue: "person.crop.square.badge.camera")
 
     /// 􂉛
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     static let personCropSquareBadgeCameraFill = SFSymbol(rawValue: "person.crop.square.badge.camera.fill")
 
     /// 􂉜
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     static let personCropSquareBadgeVideo = SFSymbol(rawValue: "person.crop.square.badge.video")
 
     /// 􂉝
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     static let personCropSquareBadgeVideoFill = SFSymbol(rawValue: "person.crop.square.badge.video.fill")
 }
