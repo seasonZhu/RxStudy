@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 extension String {
     init(key: StaticString, tableName: String, source: StringResource.Source, developmentValue: String?, locale overrideLocale: Locale?, arguments: [CVarArg]) {
@@ -14,7 +13,7 @@ extension String {
         case let .hosting(bundle):
             // With fallback to developmentValue
             let format = NSLocalizedString(key.description, tableName: tableName, bundle: bundle, value: developmentValue ?? "", comment: "")
-            self = String(format: format, locale: overrideLocale, arguments: arguments)
+            self = String(format: format, locale: overrideLocale ?? Locale.current, arguments: arguments)
 
         case let .selected(bundle, locale):
             // Don't use developmentValue with selected bundle/locale
@@ -118,8 +117,10 @@ extension String {
     }
 }
 
+#if canImport(SwiftUI)
+import SwiftUI
 
-@available(macOS 10, iOS 13, tvOS 13, watchOS 6, *)
+@available(macOS 10, iOS 13, tvOS 13, watchOS 6, visionOS 1, *)
 extension Text {
     public init(_ resource: StringResource) {
         self.init(String(resource: resource))
@@ -161,6 +162,7 @@ extension Text {
         self.init(String(key: resource.key, tableName: resource.tableName, source: resource.source, developmentValue: resource.developmentValue, locale: nil, arguments: [arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9]))
     }
 }
+#endif
 
 extension StringResource.Source {
     public init(bundle: Bundle, tableName: String, preferredLanguages: [String]?, locale overrideLocale: Locale?) {
@@ -191,7 +193,7 @@ extension StringResource {
         String(resource: self, preferredLanguages: preferredLanguages)
     }
 
-    //    @available(macOS 13, iOS 16, tvOS 16, watchOS 9, *)
+    //    @available(macOS 13, iOS 16, tvOS 16, watchOS 9, visionOS 1, *)
     //    public var localizedStringResource: LocalizedStringResource {
     //        LocalizedStringResource(key, defaultValue: String.LocalizationValue(stringLiteral: defaultValue), bundle: bundle == .main ? .main : .atURL(bundle.bundleURL), comment: comment)
     //    }

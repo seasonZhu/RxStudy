@@ -137,7 +137,7 @@ PODS:
     - RxSwift (~> 6.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
-  - R.swift (7.3.2)
+  - R.swift (7.8.0)
   - RxBlocking (6.6.0):
     - RxSwift (= 6.6.0)
   - RxCocoa (6.6.0):
@@ -302,7 +302,7 @@ SPEC CHECKSUMS:
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
-  R.swift: 0af0d882f49f03711415cb4e5215daa977d8a480
+  R.swift: f573269ca45b2ab066c082e363dd4c2b297b0d71
   RxBlocking: fbd1f8501443024f686e556f36dac79b0d5f4d7c
   RxCocoa: 44a80de90e25b739b5aeaae3c8c371a32e3343cc
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
