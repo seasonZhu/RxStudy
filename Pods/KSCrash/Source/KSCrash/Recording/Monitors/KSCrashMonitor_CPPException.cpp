@@ -40,7 +40,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <typeinfo>
-
+#include <exception>
 
 #define STACKTRACE_BUFFER_LENGTH 30
 #define DESCRIPTION_BUFFER_LENGTH 1000
@@ -77,8 +77,12 @@ static KSStackCursor g_stackCursor;
 #pragma mark - Callbacks -
 // ============================================================================
 
-static void captureStackTrace(void*, std::type_info*, void (*)(void*))
+static void captureStackTrace(void*, std::type_info* tinfo, void (*)(void*))
 {
+    if (tinfo != nullptr && strcmp(tinfo->name(), "NSException") == 0)
+    {
+        return;
+    }
     if(g_captureNextStackTrace)
     {
         kssc_initSelfThread(&g_stackCursor, 2);
@@ -96,7 +100,7 @@ extern "C"
         static cxa_throw_type orig_cxa_throw = NULL;
         if (g_cxaSwapEnabled == false)
         {
-            captureStackTrace(NULL, NULL, NULL);
+            captureStackTrace(thrown_exception, tinfo, dest);
         }
         unlikely_if(orig_cxa_throw == NULL)
         {

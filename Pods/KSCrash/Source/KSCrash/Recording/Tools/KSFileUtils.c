@@ -477,7 +477,10 @@ bool ksfu_writeBufferedWriter(KSBufferedWriter* writer, const char* restrict con
 {
     if(length > writer->bufferLength - writer->position)
     {
-        ksfu_flushBufferedWriter(writer);
+        if (!ksfu_flushBufferedWriter(writer))
+        {
+            return false;
+        }
     }
     if(length > writer->bufferLength)
     {

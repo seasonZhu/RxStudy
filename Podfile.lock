@@ -56,49 +56,49 @@ PODS:
   - JXSegmentedView (1.4.1)
   - KeychainAccess (4.2.2)
   - Kingfisher (7.11.0)
-  - KSCrash (1.17.0):
-    - KSCrash/Installations (= 1.17.0)
-  - KSCrash/Installations (1.17.0):
+  - KSCrash (1.17.7):
+    - KSCrash/Installations (= 1.17.7)
+  - KSCrash/Installations (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting
-  - KSCrash/Recording (1.17.0):
-    - KSCrash/Recording/Tools (= 1.17.0)
-  - KSCrash/Recording/Tools (1.17.0)
-  - KSCrash/Reporting (1.17.0):
+  - KSCrash/Recording (1.17.7):
+    - KSCrash/Recording/Tools (= 1.17.7)
+  - KSCrash/Recording/Tools (1.17.7)
+  - KSCrash/Reporting (1.17.7):
     - KSCrash/Recording
-    - KSCrash/Reporting/Filters (= 1.17.0)
-    - KSCrash/Reporting/MessageUI (= 1.17.0)
-    - KSCrash/Reporting/Sinks (= 1.17.0)
-    - KSCrash/Reporting/Tools (= 1.17.0)
-  - KSCrash/Reporting/Filters (1.17.0):
+    - KSCrash/Reporting/Filters (= 1.17.7)
+    - KSCrash/Reporting/MessageUI (= 1.17.7)
+    - KSCrash/Reporting/Sinks (= 1.17.7)
+    - KSCrash/Reporting/Tools (= 1.17.7)
+  - KSCrash/Reporting/Filters (1.17.7):
     - KSCrash/Recording
-    - KSCrash/Reporting/Filters/Alert (= 1.17.0)
-    - KSCrash/Reporting/Filters/AppleFmt (= 1.17.0)
-    - KSCrash/Reporting/Filters/Base (= 1.17.0)
-    - KSCrash/Reporting/Filters/Basic (= 1.17.0)
-    - KSCrash/Reporting/Filters/GZip (= 1.17.0)
-    - KSCrash/Reporting/Filters/JSON (= 1.17.0)
-    - KSCrash/Reporting/Filters/Sets (= 1.17.0)
-    - KSCrash/Reporting/Filters/Stringify (= 1.17.0)
-    - KSCrash/Reporting/Filters/Tools (= 1.17.0)
-  - KSCrash/Reporting/Filters/Alert (1.17.0):
-    - KSCrash/Recording
-    - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/AppleFmt (1.17.0):
+    - KSCrash/Reporting/Filters/Alert (= 1.17.7)
+    - KSCrash/Reporting/Filters/AppleFmt (= 1.17.7)
+    - KSCrash/Reporting/Filters/Base (= 1.17.7)
+    - KSCrash/Reporting/Filters/Basic (= 1.17.7)
+    - KSCrash/Reporting/Filters/GZip (= 1.17.7)
+    - KSCrash/Reporting/Filters/JSON (= 1.17.7)
+    - KSCrash/Reporting/Filters/Sets (= 1.17.7)
+    - KSCrash/Reporting/Filters/Stringify (= 1.17.7)
+    - KSCrash/Reporting/Filters/Tools (= 1.17.7)
+  - KSCrash/Reporting/Filters/Alert (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Base (1.17.0):
-    - KSCrash/Recording
-  - KSCrash/Reporting/Filters/Basic (1.17.0):
+  - KSCrash/Reporting/Filters/AppleFmt (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/GZip (1.17.0):
+  - KSCrash/Reporting/Filters/Base (1.17.7):
+    - KSCrash/Recording
+  - KSCrash/Reporting/Filters/Basic (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/JSON (1.17.0):
+  - KSCrash/Reporting/Filters/GZip (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Sets (1.17.0):
+  - KSCrash/Reporting/Filters/JSON (1.17.7):
+    - KSCrash/Recording
+    - KSCrash/Reporting/Filters/Base
+  - KSCrash/Reporting/Filters/Sets (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/AppleFmt
     - KSCrash/Reporting/Filters/Base
@@ -106,18 +106,18 @@ PODS:
     - KSCrash/Reporting/Filters/GZip
     - KSCrash/Reporting/Filters/JSON
     - KSCrash/Reporting/Filters/Stringify
-  - KSCrash/Reporting/Filters/Stringify (1.17.0):
+  - KSCrash/Reporting/Filters/Stringify (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters/Base
-  - KSCrash/Reporting/Filters/Tools (1.17.0):
+  - KSCrash/Reporting/Filters/Tools (1.17.7):
     - KSCrash/Recording
-  - KSCrash/Reporting/MessageUI (1.17.0):
+  - KSCrash/Reporting/MessageUI (1.17.7):
     - KSCrash/Recording
-  - KSCrash/Reporting/Sinks (1.17.0):
+  - KSCrash/Reporting/Sinks (1.17.7):
     - KSCrash/Recording
     - KSCrash/Reporting/Filters
     - KSCrash/Reporting/Tools
-  - KSCrash/Reporting/Tools (1.17.0):
+  - KSCrash/Reporting/Tools (1.17.7):
     - KSCrash/Recording
   - LifetimeTracker (1.8.3)
   - LookinServer (1.2.7):
@@ -293,7 +293,7 @@ SPEC CHECKSUMS:
   JXSegmentedView: cd73555ce2134d1656db2cb383ba9c2f36fb5078
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
   Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
-  KSCrash: 593ec373759e4c1bce381421a627326a20d2dc66
+  KSCrash: ea6fc545b7dbb916a141aaadd4343fb891141290
   LifetimeTracker: e67647bf9130e4173e488689896f057a63de16ec
   LookinServer: 36f1a0ad280de34b9794cf8825867fcc2dd93e75
   MarqueeLabel: 4b46d196abd253448e830cbd976f9eacc3af0849
