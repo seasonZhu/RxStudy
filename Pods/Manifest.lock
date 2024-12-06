@@ -55,7 +55,7 @@ PODS:
   - JWNetAutoCache (0.0.2)
   - JXSegmentedView (1.4.1)
   - KeychainAccess (4.2.2)
-  - Kingfisher (7.11.0)
+  - Kingfisher (8.1.1)
   - KSCrash (1.17.7):
     - KSCrash/Installations (= 1.17.7)
   - KSCrash/Installations (1.17.7):
@@ -292,7 +292,7 @@ SPEC CHECKSUMS:
   JWNetAutoCache: 434f10855da06d29a381359552ae9d27ef35cad7
   JXSegmentedView: cd73555ce2134d1656db2cb383ba9c2f36fb5078
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
-  Kingfisher: b9c985d864d43515f404f1ef4a8ce7d802ace3ac
+  Kingfisher: fc2788e497306f97fdef6e4df49f02106cb57788
   KSCrash: ea6fc545b7dbb916a141aaadd4343fb891141290
   LifetimeTracker: e67647bf9130e4173e488689896f057a63de16ec
   LookinServer: 36f1a0ad280de34b9794cf8825867fcc2dd93e75
