@@ -125,7 +125,7 @@ PODS:
   - LookinServer/Core (1.2.8)
   - MarqueeLabel (4.5.0)
   - MBProgressHUD (1.2.0)
-  - MJRefresh (3.7.8)
+  - MJRefresh (3.7.9)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
   - Moya/Combine (15.0.0):
@@ -298,7 +298,7 @@ SPEC CHECKSUMS:
   LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
   MarqueeLabel: 4b46d196abd253448e830cbd976f9eacc3af0849
   MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
-  MJRefresh: 4e6e7ba77a6d5fab012426777e32b0a77127c50a
+  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
