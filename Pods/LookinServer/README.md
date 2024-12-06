@@ -9,7 +9,8 @@ Official Website：https://lookin.work/
 To use Lookin macOS app, you need to integrate LookinServer (iOS Framework of Lookin) into your iOS project.
 
 > **Warning**
-Never integrate LookinServer in Release building configuration.
+> 1. Never integrate LookinServer in Release building configuration.
+> 2. Do not use versions earlier than 1.0.6, as it contains a critical bug that could lead to online incidents in your project: https://qxh1ndiez2w.feishu.cn/wiki/Z9SpwT7zWiqvYvkBe7Lc6Disnab
 
 ## via CocoaPods:
 ### Swift Project
@@ -43,8 +44,9 @@ Lookin 可以查看与修改 iOS App 里的 UI 对象，类似于 Xcode 自带�
 如果这是你的 iOS 项目第一次使用 Lookin，则需要先把 LookinServer 这款 iOS Framework 集成到你的 iOS 项目中。
 
 > **Warning**
-记得不要在 AppStore 模式下集成 LookinServer。
-
+> 
+> 1. 不要在 AppStore 模式下集成 LookinServer。
+> 2. 不要使用早于 1.0.6 的版本，因为它包含一个严重 Bug，可能导致线上事故: https://qxh1ndiez2w.feishu.cn/wiki/Z9SpwT7zWiqvYvkBe7Lc6Disnab
 ## 通过 CocoaPods：
 
 ### Swift 项目

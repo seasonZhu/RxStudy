@@ -16,6 +16,7 @@
 #import "LookinIvarTrace.h"
 #import "LookinServerDefines.h"
 #import "LKS_GestureTargetActionsSearcher.h"
+#import "LKS_MultiplatformAdapter.h"
 
 @implementation LKS_EventHandlerMaker
 
@@ -97,6 +98,13 @@
         baseRecognizers = @[[UILongPressGestureRecognizer class],
                             [UIPanGestureRecognizer class],
                             [UISwipeGestureRecognizer class],
+                            [UITapGestureRecognizer class]];
+#elif TARGET_OS_VISION
+        baseRecognizers = @[[UILongPressGestureRecognizer class],
+                            [UIPanGestureRecognizer class],
+                            [UISwipeGestureRecognizer class],
+                            [UIRotationGestureRecognizer class],
+                            [UIPinchGestureRecognizer class],
                             [UITapGestureRecognizer class]];
 #else
         baseRecognizers = @[[UILongPressGestureRecognizer class],

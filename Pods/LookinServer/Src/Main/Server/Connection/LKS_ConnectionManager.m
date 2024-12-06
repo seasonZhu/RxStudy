@@ -15,6 +15,7 @@
 #import "LKS_ExportManager.h"
 #import "LookinServerDefines.h"
 #import "LKS_TraceManager.h"
+#import "LKS_MultiplatformAdapter.h"
 
 NSString *const LKS_ConnectionDidEndNotificationName = @"LKS_ConnectionDidEndNotificationName";
 
@@ -99,7 +100,15 @@ NSString *const LKS_ConnectionDidEndNotificationName = @"LKS_ConnectionDidEndNot
     return YES;
 #else
     if (@available(iOS 14.0, *)) {
-        return [NSProcessInfo processInfo].isiOSAppOnMac || [NSProcessInfo processInfo].isMacCatalystApp;
+        // isiOSAppOnMac 这个 API 看似在 iOS 14.0 上可用，但其实在 iOS 14 beta 上是不存在的、有 unrecognized selector 问题，因此这里要用 respondsToSelector 做一下保护
+        NSProcessInfo *info = [NSProcessInfo processInfo];
+        if ([info respondsToSelector:@selector(isiOSAppOnMac)]) {
+            return [info isiOSAppOnMac];
+        } else if ([info respondsToSelector:@selector(isMacCatalystApp)]) {
+            return [info isMacCatalystApp];
+        } else {
+            return NO;
+        }
     }
     if (@available(iOS 13.0, tvOS 13.0, *)) {
         return [NSProcessInfo processInfo].isMacCatalystApp;
@@ -224,8 +233,7 @@ NSString *const LKS_ConnectionDidEndNotificationName = @"LKS_ConnectionDidEndNot
     UIAlertController  *alertController = [UIAlertController  alertControllerWithTitle:@"Lookin" message:@"Failed to run local inspection. The feature has been removed. Please use the computer version of Lookin or consider SDKs like FLEX for similar functionality."  preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction  = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:nil];
     [alertController addAction:okAction];
-    UIApplication *app = [UIApplication  sharedApplication];
-    UIWindow *keyWindow = [app keyWindow];
+    UIWindow *keyWindow = [LKS_MultiplatformAdapter keyWindow];
     UIViewController *rootViewController = [keyWindow rootViewController];
     [rootViewController presentViewController:alertController animated:YES completion:nil];
     

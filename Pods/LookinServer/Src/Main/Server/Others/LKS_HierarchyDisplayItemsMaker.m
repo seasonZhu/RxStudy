@@ -19,6 +19,7 @@
 #import "LKS_CustomAttrGroupsMaker.h"
 #import "LKS_CustomDisplayItemsMaker.h"
 #import "LKS_CustomAttrSetterManager.h"
+#import "LKS_MultiplatformAdapter.h"
 
 @implementation LKS_HierarchyDisplayItemsMaker
 
@@ -26,7 +27,7 @@
     
     [[LKS_TraceManager sharedInstance] reload];
     
-    NSArray<UIWindow *> *windows = [[UIApplication sharedApplication].windows copy];
+    NSArray<UIWindow *> *windows = [LKS_MultiplatformAdapter allWindows];
     NSMutableArray *resultArray = [NSMutableArray arrayWithCapacity:windows.count];
     [windows enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
         LookinDisplayItem *item = [self _displayItemWithLayer:window.layer screenshots:hasScreenshots attrList:hasAttrList lowImageQuality:lowQuality readCustomInfo:readCustomInfo saveCustomSetter:saveCustomSetter];

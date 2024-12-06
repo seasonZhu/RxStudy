@@ -40,6 +40,7 @@
 #import "LKS_GestureTargetActionsSearcher.h"
 #import "LKS_Helper.h"
 #import "LKS_HierarchyDisplayItemsMaker.h"
+#import "LKS_MultiplatformAdapter.h"
 #import "LKS_ObjectRegistry.h"
 #import "LKS_TraceManager.h"
 #import "LookinServerDefines.h"

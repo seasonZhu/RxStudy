@@ -64,7 +64,6 @@
     if ([_validRequestTypes containsObject:@(requestType)]) {
         return YES;
     }
-    NSAssert(NO, @"");
     return NO;
 }
 
@@ -79,6 +78,10 @@
         
     } else if (requestType == LookinRequestTypeApp) {
         // 请求可用设备信息
+        if (![object isKindOfClass:[NSDictionary class]]) {
+            [self _submitResponseWithError:LookinErr_Inner requestType:requestType tag:tag];
+            return;
+        }
         NSDictionary<NSString *, id> *params = object;
         BOOL needImages = ((NSNumber *)params[@"needImages"]).boolValue;
         NSArray<NSNumber *> *localIdentifiers = params[@"local"];
@@ -177,6 +180,10 @@
         [self _submitResponseWithData:list requestType:LookinRequestTypeAllAttrGroups tag:tag];
         
     } else if (requestType == LookinRequestTypeAllSelectorNames) {
+        if (![object isKindOfClass:[NSDictionary class]]) {
+            [self _submitResponseWithError:LookinErr_Inner requestType:requestType tag:tag];
+            return;
+        }
         NSDictionary *params = object;
         Class targetClass = NSClassFromString(params[@"className"]);
         BOOL hasArg = [(NSNumber *)params[@"hasArg"] boolValue];
@@ -190,6 +197,10 @@
         [self _submitResponseWithData:selNames requestType:requestType tag:tag];
         
     } else if (requestType == LookinRequestTypeInvokeMethod) {
+        if (![object isKindOfClass:[NSDictionary class]]) {
+            [self _submitResponseWithError:LookinErr_Inner requestType:requestType tag:tag];
+            return;
+        }
         NSDictionary *param = object;
         unsigned long oid = [param[@"oid"] unsignedLongValue];
         NSString *text = param[@"text"];
@@ -252,6 +263,10 @@
         [self _submitResponseWithData:imageData requestType:requestType tag:tag];
     
     } else if (requestType == LookinRequestTypeModifyRecognizerEnable) {
+        if (![object isKindOfClass:[NSDictionary class]]) {
+            [self _submitResponseWithError:LookinErr_Inner requestType:requestType tag:tag];
+            return;
+        }
         NSDictionary<NSString *, NSNumber *> *params = object;
         unsigned long recognizerOid = ((NSNumber *)params[@"oid"]).unsignedLongValue;
         BOOL shouldBeEnabled = ((NSNumber *)params[@"enable"]).boolValue;

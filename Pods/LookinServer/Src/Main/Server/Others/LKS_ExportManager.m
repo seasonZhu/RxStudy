@@ -14,6 +14,7 @@
 #import "LookinHierarchyFile.h"
 #import "LookinAppInfo.h"
 #import "LookinServerDefines.h"
+#import "LKS_MultiplatformAdapter.h"
 
 @interface LKS_ExportManagerMaskView : UIView
 
@@ -170,7 +171,7 @@
             self.documentController = [UIDocumentInteractionController new];
         }
         self.documentController.URL = [NSURL fileURLWithPath:path];
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        if ([LKS_MultiplatformAdapter isiPad]) {
             [self.documentController presentOpenInMenuFromRect:CGRectMake(0, 0, 1, 1) inView:visibleVc.view animated:YES];
         } else {
             [self.documentController presentOpenInMenuFromRect:visibleVc.view.bounds inView:visibleVc.view animated:YES];

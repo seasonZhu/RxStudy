@@ -13,6 +13,7 @@
 #import "LookinIvarTrace.h"
 #import "LookinServerDefines.h"
 #import "LookinWeakContainer.h"
+#import "LKS_MultiplatformAdapter.h"
 
 #ifdef LOOKIN_SERVER_SWIFT_ENABLED
 
@@ -74,7 +75,7 @@
         [self _markIVarsInAllClassLevelsOfObject:obj.object];
     }];
     
-    [[[UIApplication sharedApplication].windows copy] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[LKS_MultiplatformAdapter allWindows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull window, NSUInteger idx, BOOL * _Nonnull stop) {
         [self _addTraceForLayersRootedByLayer:window.layer];
     }];
 }
