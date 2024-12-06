@@ -96,6 +96,7 @@
 		00A146742BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A146732BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift */; };
 		00AF63FD28FF9B96005821DA /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF63FC28FF9B96005821DA /* SafariActivity.swift */; };
 		00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */; };
+		00CA216E2D02A12400D1F9D2 /* 说明.md in Resources */ = {isa = PBXBuildFile; fileRef = 00CA216D2D02A12400D1F9D2 /* 说明.md */; };
 		00CC8000283B8A4400E92A6C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */; };
 		00CCD16B2865553F00925C1E /* Tool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16A2865553F00925C1E /* Tool.swift */; };
 		00CCD16D286555BC00925C1E /* ToolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD16C286555BC00925C1E /* ToolController.swift */; };
@@ -322,6 +323,7 @@
 		00A146732BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestLoggerPlugin.swift; sourceTree = "<group>"; };
 		00AF63FC28FF9B96005821DA /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
+		00CA216D2D02A12400D1F9D2 /* 说明.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "说明.md"; sourceTree = SOURCE_ROOT; };
 		00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
 		00CCD16A2865553F00925C1E /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		00CCD16C286555BC00925C1E /* ToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolController.swift; sourceTree = "<group>"; };
@@ -750,6 +752,7 @@
 				001EFFA12B020EE800C8F8C9 /* .swiftlint.yml */,
 				008598C127B4E0DA003E9EF7 /* InfoPlist.strings */,
 				6194601026B12D2200A66F77 /* README.md */,
+				00CA216D2D02A12400D1F9D2 /* 说明.md */,
 				6114ABF2267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist */,
 				612DBF62220022BE007F73CC /* Assets.xcassets */,
 			);
@@ -1269,6 +1272,7 @@
 				61BB7C66267A057700990636 /* MyCoinList.json in Resources */,
 				6114ABF3267AD8AB0082BA67 /* Pods-RxStudy-acknowledgements.plist in Resources */,
 				6194601126B12D2200A66F77 /* README.md in Resources */,
+				00CA216E2D02A12400D1F9D2 /* 说明.md in Resources */,
 				000139CA2877FE5B00683119 /* ToCodable.json in Resources */,
 				61BB7C61267A057700990636 /* PublicNumber.json in Resources */,
 				61BB7C5E267A057700990636 /* AMapLocation.json in Resources */,
