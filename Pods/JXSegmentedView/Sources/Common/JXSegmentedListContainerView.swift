@@ -428,7 +428,7 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.isTracking || scrollView.isDragging else {
+        guard scrollView.isTracking || scrollView.isDragging || scrollView.isDecelerating else {
             return
         }
         let percent = scrollView.contentOffset.x/scrollView.bounds.size.width
@@ -476,7 +476,7 @@ extension JXSegmentedListContainerView: UICollectionViewDataSource, UICollection
 
     public func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         //滑动到一半又取消滑动处理
-        if willAppearIndex != -1 || willDisappearIndex != -1 {
+        if willAppearIndex != -1 && willDisappearIndex != -1 {
             listWillDisappear(at: willAppearIndex)
             listWillAppear(at: willDisappearIndex)
             listDidDisappear(at: willAppearIndex)
