@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		000023F928E2909900E81BEC /* CoinRankListPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000023F828E2909900E81BEC /* CoinRankListPageCell.swift */; };
 		000139CA2877FE5B00683119 /* ToCodable.json in Resources */ = {isa = PBXBuildFile; fileRef = 000139C92877FE5B00683119 /* ToCodable.json */; };
+		000220602D0FDC53000182B5 /* Array+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0002205F2D0FDC53000182B5 /* Array+URLQueryItem.swift */; };
 		000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000301F5284E047800A41EA6 /* Collection+Extension.swift */; };
 		000666432BC51A15008FEE94 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 000666422BC51A15008FEE94 /* PrivacyInfo.xcprivacy */; };
 		0008D7212AF383E5006782E6 /* CustomLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */; };
@@ -232,6 +233,7 @@
 		000023F828E2909900E81BEC /* CoinRankListPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListPageCell.swift; sourceTree = "<group>"; };
 		000139C82877DC0F00683119 /* RxStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		000139C92877FE5B00683119 /* ToCodable.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = ToCodable.json; sourceTree = "<group>"; };
+		0002205F2D0FDC53000182B5 /* Array+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+URLQueryItem.swift"; sourceTree = "<group>"; };
 		000301F5284E047800A41EA6 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		000666422BC51A15008FEE94 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
 		0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogFormatter.swift; sourceTree = "<group>"; };
@@ -841,6 +843,7 @@
 				00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */,
 				00099E0229026BD7001FC753 /* ObserverType+Extension.swift */,
 				00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */,
+				0002205F2D0FDC53000182B5 /* Array+URLQueryItem.swift */,
 				004623632989F96A008F0676 /* ExBehaviorRelay.swift */,
 				00CE18092BDF978400310B24 /* AsyncRelay.swift */,
 				00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */,
@@ -1496,6 +1499,7 @@
 				00CCD177286590C900925C1E /* CourseService.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
 				00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */,
+				000220602D0FDC53000182B5 /* Array+URLQueryItem.swift in Sources */,
 				616EC970269E822E008FAFDF /* HUD.swift in Sources */,
 				001B4E3928E1A11A003ADF95 /* SimpleRefreshingView.swift in Sources */,
 				61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */,
