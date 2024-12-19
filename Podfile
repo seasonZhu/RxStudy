@@ -102,6 +102,9 @@ target 'RxStudy' do
   
   # web缓存+离线缓存
   pod 'JWNetAutoCache'
+  
+  # 考虑使用货拉拉的TheRouter
+  pod 'TheRouter'
 
 end
 

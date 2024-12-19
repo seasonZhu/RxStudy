@@ -177,6 +177,7 @@ PODS:
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftDate (7.0.0)
+  - TheRouter (1.1.8)
 
 DEPENDENCIES:
   - AcknowList
@@ -217,6 +218,7 @@ DEPENDENCIES:
   - SSZipArchive
   - SVProgressHUD
   - SwiftDate
+  - TheRouter
 
 SPEC REPOS:
   trunk:
@@ -268,6 +270,7 @@ SPEC REPOS:
     - SSZipArchive
     - SVProgressHUD
     - SwiftDate
+    - TheRouter
 
 SPEC CHECKSUMS:
   AcknowList: bbe94f19c25efebcb1b7e6402f466ea8a4b04e62
@@ -318,7 +321,8 @@ SPEC CHECKSUMS:
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
+  TheRouter: 1c7801e4f3df9a2598088d7c3cf4d2f6d3779c51
 
-PODFILE CHECKSUM: cd3ab2363baa18ef77a6c2cf0b51b04de7e4c5f4
+PODFILE CHECKSUM: fca7d89d68b42adc0c8d75a8ac90d41f51c009bb
 
 COCOAPODS: 1.16.2
