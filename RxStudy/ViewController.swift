@@ -13,6 +13,8 @@ import RxCocoa
 import RxGesture
 
 import Moya
+import Alamofire
+
 import SVProgressHUD
 
 class ViewController: UITabBarController {
@@ -32,6 +34,7 @@ class ViewController: UITabBarController {
         addPan()
         // addRxPan()
         testExBehaviorRelay()
+        networkListening()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -175,6 +178,32 @@ extension ViewController {
                 .drive(rx.selectedIndexChange)
                 .disposed(by: rx.disposeBag)
         }
+    }
+}
+
+extension ViewController {
+    private func networkListening() {
+        /// 保证第一次进入App的时候,接收网络权限后,自动网络请求
+        NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
+            let value = NetworkReachabilityManager.default?.isReachable == true
+            let isFirst = UserDefaults.standard.value(forKey: kIsFirst) as? Bool
+            if value && isFirst == nil {
+                self.refreshChildren()
+                UserDefaults.standard.setValue(false, forKey: kIsFirst)
+            }
+        })
+    }
+    
+    private func refreshChildren() {
+        guard let vcs = viewControllers as? [BaseViewController] else {
+            return
+        }
+        
+        guard let contentVCs = vcs as? [TabBarViewControllerChildrenRefreshProtocol] else {
+            return
+        }
+        
+        contentVCs.forEach { $0.dataRefresh() }
     }
 }
 

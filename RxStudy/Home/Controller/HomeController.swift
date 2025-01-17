@@ -242,6 +242,13 @@ extension HomeController {
     }
 }
 
+extension HomeController: TabBarViewControllerChildrenRefreshProtocol {
+    func dataRefresh() {
+        debugLog("\(className) dataRefresh")
+        tableView.mj_header?.beginRefreshing()
+    }
+}
+
 /**
  pagerView.rx.setDelegate(self).disposed(by: rx.disposeBag)
  pagerView.rx.didSelectItemAtIndex.subscribe { [weak self, weak pagerView] event in

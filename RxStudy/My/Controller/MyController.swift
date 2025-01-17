@@ -214,6 +214,13 @@ extension MyController: InnerEventResponsible {
     }
 }
 
+extension MyController: TabBarViewControllerChildrenRefreshProtocol {
+    func dataRefresh() {
+        debugLog("\(className) dataRefresh")
+        tableView.mj_header?.beginRefreshing()
+    }
+}
+
 #if DEBUG
 import SwiftUI
 

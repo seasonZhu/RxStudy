@@ -27,8 +27,11 @@ class TabsController: BaseViewController {
     
     var listVCArray = [SingleTabListController]()
     
+    let viewModel: TabsViewModel
+    
     init(type: TagType) {
         self.type = type
+        self.viewModel = TabsViewModel(type: type)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -152,8 +155,6 @@ extension TabsController {
     }
     
     func binding() {
-        let viewModel = TabsViewModel(type: type)
-        
         viewModel.inputs.loadData()
         
         viewModel.outputs.dataSource
@@ -239,3 +240,10 @@ extension TabsController: JXSegmentedViewDelegate {
 }
 
 extension TabsController: UIScrollViewDelegate {}
+
+extension TabsController: TabBarViewControllerChildrenRefreshProtocol {
+    func dataRefresh() {
+        debugLog("\(className) dataRefresh")
+        viewModel.inputs.loadData()
+    }
+}

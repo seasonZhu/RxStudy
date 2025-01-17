@@ -12,7 +12,9 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import RxDataSources
+
 import SnapKit
+import MJRefresh
 
 /// 使用tableView配合section即可完成需求
 class TreeController: BaseTableViewController {
@@ -129,6 +131,13 @@ extension TreeController {
         /// 绑定单元格数据
         items.bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: rx.disposeBag)
+    }
+}
+
+extension TreeController: TabBarViewControllerChildrenRefreshProtocol {
+    func dataRefresh() {
+        debugLog("\(className) dataRefresh")
+        tableView.mj_header?.beginRefreshing()
     }
 }
 
