@@ -155,11 +155,17 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 
 而RxSwift系列的一些框架已经在向大前端的实现了，可惜对原生的支持不够好的，学习成本也太高了。
 
-## Flutter版使用GetX重构wanandroid客户端
+## Swift版wanandroid客户端
 
-因为RxSwift的响应式学习，鼓起勇气学习了GetX，重构了Flutter版wanandroid客户端。也希望大家喜欢和支持。
+[项目地址](https://github.com/seasonZhu/RxStudy)
+
+## Flutter版wanandroid客户端
 
 [项目地址](https://github.com/seasonZhu/GetXStudy)
+
+## HarmonyOS版wanandroid客户端
+
+[项目地址](https://github.com/seasonZhu/HarmonyStudy)
 
 ## uni-app版wanandroid客户端
 
@@ -210,3 +216,7 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 没有组件化之前，虽然我也知道`public`修饰的重要性，结果进行组件化后，才更能理解，小心慎重的时候这些修饰符是多么的重要。
 
 如果大家有兴趣，可以切到`module`分支上面去看看。
+
+## UniApp接入
+
+在develop_uniapp分支上面，我进行了uni-app的接入。使用用的wgt文件就是通过uni-app版wanandroid客户端编译生成的。uni-app版本的写法与性能一般，大家看看就好。
