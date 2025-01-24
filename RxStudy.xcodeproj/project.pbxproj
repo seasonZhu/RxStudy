@@ -116,6 +116,12 @@
 		00CCD1852865BFAC00925C1E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1842865BFAC00925C1E /* Message.swift */; };
 		00CDD94F2910F02100027A81 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDD94E2910F02100027A81 /* Theme.swift */; };
 		00CE180A2BDF978400310B24 /* AsyncRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE18092BDF978400310B24 /* AsyncRelay.swift */; };
+		00D4C1A52D421EB500DDD5B3 /* CustomTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C19F2D421EB500DDD5B3 /* CustomTabItem.swift */; };
+		00D4C1A62D421EB500DDD5B3 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C1A02D421EB500DDD5B3 /* CustomTabBar.swift */; };
+		00D4C1A72D421EB500DDD5B3 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C1A12D421EB500DDD5B3 /* CustomExtensions.swift */; };
+		00D4C1A82D421EB500DDD5B3 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C1A22D421EB500DDD5B3 /* CustomTabBarController.swift */; };
+		00D4C1A92D421EB500DDD5B3 /* CustomItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C1A32D421EB500DDD5B3 /* CustomItemView.swift */; };
+		00D4C1AA2D421EB500DDD5B3 /* TypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C1A42D421EB500DDD5B3 /* TypeViewController.swift */; };
 		00D545732BB10CB9007B0325 /* NetworkActivityLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D545702BB10CB9007B0325 /* NetworkActivityLogger.swift */; };
 		00DBD3192A3C3BC400664246 /* ContentScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DBD3182A3C3BC400664246 /* ContentScrollView.swift */; };
 		00DC971028F26ADF002CC564 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DC970F28F26ADF002CC564 /* AppState.swift */; };
@@ -345,6 +351,12 @@
 		00CCD1842865BFAC00925C1E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		00CDD94E2910F02100027A81 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		00CE18092BDF978400310B24 /* AsyncRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncRelay.swift; sourceTree = "<group>"; };
+		00D4C19F2D421EB500DDD5B3 /* CustomTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabItem.swift; sourceTree = "<group>"; };
+		00D4C1A02D421EB500DDD5B3 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		00D4C1A12D421EB500DDD5B3 /* CustomExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
+		00D4C1A22D421EB500DDD5B3 /* CustomTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		00D4C1A32D421EB500DDD5B3 /* CustomItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomItemView.swift; sourceTree = "<group>"; };
+		00D4C1A42D421EB500DDD5B3 /* TypeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		00D545702BB10CB9007B0325 /* NetworkActivityLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkActivityLogger.swift; sourceTree = "<group>"; };
 		00DBD3182A3C3BC400664246 /* ContentScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentScrollView.swift; sourceTree = "<group>"; };
 		00DC970F28F26ADF002CC564 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
@@ -688,6 +700,19 @@
 			path = ACarousel;
 			sourceTree = "<group>";
 		};
+		00D4C19E2D421E7E00DDD5B3 /* CustomTabBarExample */ = {
+			isa = PBXGroup;
+			children = (
+				00D4C1A12D421EB500DDD5B3 /* CustomExtensions.swift */,
+				00D4C19F2D421EB500DDD5B3 /* CustomTabItem.swift */,
+				00D4C1A32D421EB500DDD5B3 /* CustomItemView.swift */,
+				00D4C1A02D421EB500DDD5B3 /* CustomTabBar.swift */,
+				00D4C1A22D421EB500DDD5B3 /* CustomTabBarController.swift */,
+				00D4C1A42D421EB500DDD5B3 /* TypeViewController.swift */,
+			);
+			path = CustomTabBarExample;
+			sourceTree = "<group>";
+		};
 		00D5456D2BB10CB9007B0325 /* AlamofireNetworkActivityLogger */ = {
 			isa = PBXGroup;
 			children = (
@@ -729,6 +754,7 @@
 				008759762B4F9451002A4CF8 /* InnerViewEvent */,
 				61B44A3C26B79A7500791859 /* Transform */,
 				617E44F1269574B800DA9EA2 /* ViewState */,
+				00D4C19E2D421E7E00DDD5B3 /* CustomTabBarExample */,
 				001B4E1828E191F1003ADF95 /* SwiftUIExample */,
 				61716A9D267B396C00F9DC25 /* RxSwiftExample */,
 				6171E1962665FE2D0065C34D /* Constant */,
@@ -1410,6 +1436,7 @@
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				0087597A2B4F94AA002A4CF8 /* InnerEventResponsible.swift in Sources */,
 				00890D0328F56E9E00B3E72E /* AppLifeCycleModifier.swift in Sources */,
+				00D4C1A72D421EB500DDD5B3 /* CustomExtensions.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
 				00CCD1712865857300925C1E /* OtherService.swift in Sources */,
@@ -1486,11 +1513,13 @@
 				006A358F2AD8E5FC00C9298E /* DefaultEnumCodable.swift in Sources */,
 				00890D0228F56E9E00B3E72E /* ACarouselAutoScroll.swift in Sources */,
 				6114ABF1267AD8450082BA67 /* R.generated.swift in Sources */,
+				00D4C1A52D421EB500DDD5B3 /* CustomTabItem.swift in Sources */,
 				6171E1912665D7640065C34D /* LoginController.swift in Sources */,
 				004623622989F209008F0676 /* ConstructorProtocol.swift in Sources */,
 				00CCD173286588D400925C1E /* Course.swift in Sources */,
 				6171E18F2665D4190065C34D /* MyController.swift in Sources */,
 				00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */,
+				00D4C1AA2D421EB500DDD5B3 /* TypeViewController.swift in Sources */,
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				00FE0DE02869833500B9D48F /* MessageReadyStatus.swift in Sources */,
@@ -1501,6 +1530,7 @@
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
 				00CCD177286590C900925C1E /* CourseService.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
+				00D4C1A92D421EB500DDD5B3 /* CustomItemView.swift in Sources */,
 				00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */,
 				000220602D0FDC53000182B5 /* Array+URLQueryItem.swift in Sources */,
 				616EC970269E822E008FAFDF /* HUD.swift in Sources */,
@@ -1526,6 +1556,7 @@
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
 				61BB7C462679C4F800990636 /* MyViewModel.swift in Sources */,
 				00D545732BB10CB9007B0325 /* NetworkActivityLogger.swift in Sources */,
+				00D4C1A62D421EB500DDD5B3 /* CustomTabBar.swift in Sources */,
 				003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */,
 				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
 				000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */,
@@ -1536,6 +1567,7 @@
 				611E2E0E266090C0001585AE /* SearchResultViewModel.swift in Sources */,
 				00890CFF28F56E9E00B3E72E /* ACarouselViewModel.swift in Sources */,
 				0008D7212AF383E5006782E6 /* CustomLogFormatter.swift in Sources */,
+				00D4C1A82D421EB500DDD5B3 /* CustomTabBarController.swift in Sources */,
 				00CDD94F2910F02100027A81 /* Theme.swift in Sources */,
 				619EDB352660BA920056A3D9 /* MBProgressHUD+Extension.swift in Sources */,
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
