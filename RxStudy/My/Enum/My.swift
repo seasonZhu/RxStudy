@@ -86,7 +86,7 @@ extension My {
         case .aSwiftUI:
             string = "aSwiftUI"
         case .appIcon:
-            string = "ApplconSelectController"
+            string = "AppIconSelectController"
         case .login:
             string = "LoginController"
         case .logout:

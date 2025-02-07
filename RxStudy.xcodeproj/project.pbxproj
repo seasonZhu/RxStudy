@@ -63,7 +63,8 @@
 		006029722888FF3B0024CC7F /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */; };
 		00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00634E8A26E9D4BD00B3350D /* Setter.swift */; };
 		006535E12D55D923006EFF50 /* AppIconType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006535E02D55D923006EFF50 /* AppIconType.swift */; };
-		006535E32D55DA77006EFF50 /* ApplconSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006535E22D55DA77006EFF50 /* ApplconSelectController.swift */; };
+		006535E32D55DA77006EFF50 /* AppIconSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006535E22D55DA77006EFF50 /* AppIconSelectController.swift */; };
+		006535E72D55EC5D006EFF50 /* UIApplication+SetAppIcon.m in Sources */ = {isa = PBXBuildFile; fileRef = 006535E62D55EC5D006EFF50 /* UIApplication+SetAppIcon.m */; };
 		006A358F2AD8E5FC00C9298E /* DefaultEnumCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */; };
 		006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */; };
 		006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */; };
@@ -298,7 +299,9 @@
 		006029712888FF3B0024CC7F /* Moya+BlockingObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+BlockingObservable.swift"; sourceTree = "<group>"; };
 		00634E8A26E9D4BD00B3350D /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		006535E02D55D923006EFF50 /* AppIconType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconType.swift; sourceTree = "<group>"; };
-		006535E22D55DA77006EFF50 /* ApplconSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplconSelectController.swift; sourceTree = "<group>"; };
+		006535E22D55DA77006EFF50 /* AppIconSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppIconSelectController.swift; sourceTree = "<group>"; };
+		006535E52D55EC5D006EFF50 /* UIApplication+SetAppIcon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIApplication+SetAppIcon.h"; sourceTree = "<group>"; };
+		006535E62D55EC5D006EFF50 /* UIApplication+SetAppIcon.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+SetAppIcon.m"; sourceTree = "<group>"; };
 		006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
 		006C5A6326F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		006C5A6526F4259A004998A9 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -640,6 +643,8 @@
 			children = (
 				0053B40D2A2D733C00457779 /* CrashController.h */,
 				0053B40E2A2D733C00457779 /* CrashController.m */,
+				006535E52D55EC5D006EFF50 /* UIApplication+SetAppIcon.h */,
+				006535E62D55EC5D006EFF50 /* UIApplication+SetAppIcon.m */,
 			);
 			path = CrashController;
 			sourceTree = "<group>";
@@ -1136,7 +1141,7 @@
 				0048E6CF277AAB6000F6C739 /* MyGitHubController.swift */,
 				00CCD16C286555BC00925C1E /* ToolController.swift */,
 				00FE0DDB28694BB600B9D48F /* MyMessageController.swift */,
-				006535E22D55DA77006EFF50 /* ApplconSelectController.swift */,
+				006535E22D55DA77006EFF50 /* AppIconSelectController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1545,7 +1550,7 @@
 				61B79952268193D00025EADE /* MyCollectionViewModel.swift in Sources */,
 				6186948E267C4DBC0086F051 /* UIScrollView+RxSwift.swift in Sources */,
 				61336C752656443A00FDEB2A /* Banner.swift in Sources */,
-				006535E32D55DA77006EFF50 /* ApplconSelectController.swift in Sources */,
+				006535E32D55DA77006EFF50 /* AppIconSelectController.swift in Sources */,
 				000023F928E2909900E81BEC /* CoinRankListPageCell.swift in Sources */,
 				0008D7232AF3847F006782E6 /* CustomLogFileManager.swift in Sources */,
 				001B4E3228E19BE1003ADF95 /* Refresh.swift in Sources */,
@@ -1559,6 +1564,7 @@
 				611E2E032660782C001585AE /* ConstraintArray+Extensions.swift in Sources */,
 				61336C732656433000FDEB2A /* BaseModel.swift in Sources */,
 				006F60042B4FDD6300CBB27A /* ResponseCachePlugin.swift in Sources */,
+				006535E72D55EC5D006EFF50 /* UIApplication+SetAppIcon.m in Sources */,
 				00CC8000283B8A4400E92A6C /* Codable+Extension.swift in Sources */,
 				006C5A6626F4259A004998A9 /* WebViewController+Rx.swift in Sources */,
 				61F2823C265F3D44009E16C9 /* PublicNumberService.swift in Sources */,
