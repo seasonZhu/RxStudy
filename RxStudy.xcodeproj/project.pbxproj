@@ -338,6 +338,8 @@
 		00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineSinkEvent.swift; sourceTree = "<group>"; };
 		00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
 		00A146732BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestLoggerPlugin.swift; sourceTree = "<group>"; };
+		00ADF91D2D55EED0004111AD /* LSApplicationProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSApplicationProxy.h; sourceTree = "<group>"; };
+		00ADF9202D55EEE1004111AD /* LSBundleProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSBundleProxy.h; sourceTree = "<group>"; };
 		00AF63FC28FF9B96005821DA /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
 		00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
 		00CA216D2D02A12400D1F9D2 /* 说明.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "说明.md"; sourceTree = SOURCE_ROOT; };
@@ -645,6 +647,8 @@
 				0053B40E2A2D733C00457779 /* CrashController.m */,
 				006535E52D55EC5D006EFF50 /* UIApplication+SetAppIcon.h */,
 				006535E62D55EC5D006EFF50 /* UIApplication+SetAppIcon.m */,
+				00ADF91D2D55EED0004111AD /* LSApplicationProxy.h */,
+				00ADF9202D55EEE1004111AD /* LSBundleProxy.h */,
 			);
 			path = CrashController;
 			sourceTree = "<group>";

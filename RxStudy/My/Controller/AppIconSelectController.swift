@@ -15,7 +15,13 @@ import MJRefresh
 // https://mp.weixin.qq.com/s?__biz=Mzg3MDk3NzUzNw==&mid=2247484414&idx=1&sn=6324639765e7abbabbcc44aa1cd4177f&chksm=ce84da90f9f3538692764048e313cdd03e609f81d7ef22fe090859385f948fb8adb1253c7d7d&scene=21#wechat_redirect
 // https://mp.weixin.qq.com/s?__biz=Mzg3MDk3NzUzNw==&mid=2247486755&idx=1&sn=44f178bc937a93412336a634042daa9c&chksm=ce84d44df9f35d5b7df6760cc94767a48e015073c930e45e5093554ddc070090d92e29a92082&scene=21#wechat_redirect
 
+// https://juejin.cn/post/7392066866078302217
+
 class AppIconSelectController: BaseTableViewController {
+    
+    let appProxy: LSApplicationProxy = LSBundleProxy.bundleProxyForCurrentProcess()
+    
+    var appIconName = AppIconType.swiftStyle.iconName
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,43 +65,43 @@ extension AppIconSelectController {
                 
                 let type = AppIconType.allCases[indexPath.row]
                 
-                guard UIApplication.shared.alternateIconName != type.iconName else {
-                    let alert = UIAlertController(title: "提示", message: "当前使用的正是这个图标，无需重复设置", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default))
-                    self?.present(alert, animated: true)
-                    return
-                }
-                
                 switch type {
                 case .onBackgroundTimer:
-                    break
+                    self?.startAnimation()
                 default:
-                    /// 1.通过自定义一个透明的控制器去拦截系统弹窗
-//                    let transparentVC = TransparentViewController()
-//                    transparentVC.modalPresentationStyle = .overFullScreen
-//                    self?.present(transparentVC, animated: false) {
-//                        UIApplication.shared
-//                            .setAlternateIconName(type.iconName) { error in
-//                            if let error {
-//                                print("设置 App Icon 出错： \(error)")
-//                            } else {
-//                                print("App Icon 设置成功")
-//                            }
-//                        }
-//                    }
+                    guard UIApplication.shared.alternateIconName != type.iconName else {
+                        let alert = UIAlertController(title: "提示", message: "当前使用的正是这个图标，无需重复设置", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default))
+                        self?.present(alert, animated: true)
+                        return
+                    }
                     
-                    /// 2.通过反射去调用系统的私有方法
-//                    self?.setApplicationIconName(type.iconName)
-                    
-                    /// 3.定义这个私有方法
-                    UIApplication.shared
-                        ._setAlternateIconName(type.iconName) { error in
+                    /// 1.通过自定义一个透明的控制器去拦截系统弹窗,推荐这个方法
+                    let transparentVC = TransparentViewController()
+                    transparentVC.modalPresentationStyle = .overFullScreen
+                    self?.present(transparentVC, animated: false) {
+                        UIApplication.shared
+                            .setAlternateIconName(type.iconName) { error in
                             if let error {
                                 print("设置 App Icon 出错： \(error)")
                             } else {
                                 print("App Icon 设置成功")
                             }
                         }
+                    }
+                    
+                    /// 2.通过反射去调用系统的私有方法
+//                    self?.setApplicationIconName(type.iconName)
+                    
+                    /// 3.定义这个私有方法
+//                    UIApplication.shared
+//                        ._setAlternateIconName(type.iconName) { error in
+//                            if let error {
+//                                print("设置 App Icon 出错： \(error)")
+//                            } else {
+//                                print("App Icon 设置成功")
+//                            }
+//                        }
                 }
 
             }
@@ -122,6 +128,30 @@ extension AppIconSelectController {
                 }
             })
         }
+    }
+}
+
+extension AppIconSelectController {
+    func startAnimation() {
+        UIApplication.shared.beginBackgroundTask()
+        Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
+            self.appProxy.setAlternateIconName(self.getLogoName()) { _, error  in
+                if let error {
+                    print("设置 App Icon 出错： \(error)")
+                } else {
+                    print("App Icon 设置成功")
+                }
+            }
+        }
+    }
+    
+    func getLogoName() -> String {
+        if appIconName == AppIconType.swiftStyle.iconName {
+            appIconName = AppIconType.flutterStyle.iconName
+        } else {
+            appIconName = AppIconType.swiftStyle.iconName
+        }
+        return appIconName
     }
 }
 
