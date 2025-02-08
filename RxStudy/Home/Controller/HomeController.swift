@@ -132,6 +132,15 @@ extension HomeController {
             }
             .disposed(by: rx.disposeBag)
         
+        /* 一种更为简单的数据绑定到cell的写法
+        viewModel.outputs.dataSource
+            .asDriver(onErrorJustReturn: [])
+            .drive(tableView.rx.items(cellIdentifier: InfoCell.className, cellType: InfoCell.self)) { (_, info, cell) in
+                cell.info = info
+            }
+            .disposed(by: rx.disposeBag)
+        */
+        
         viewModel.outputs.dataSource
             .map { $0.isEmpty }
             .bind(to: isEmptyRelay)
