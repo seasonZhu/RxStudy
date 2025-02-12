@@ -100,6 +100,7 @@
 		00A08EFD28FD3BFE00093FB4 /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */; };
 		00A146742BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A146732BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift */; };
 		00AF63FD28FF9B96005821DA /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00AF63FC28FF9B96005821DA /* SafariActivity.swift */; };
+		00B227112D59EBDB00604481 /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00B227102D59EBDB00604481 /* Eventable.swift */; };
 		00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */; };
 		00CA216E2D02A12400D1F9D2 /* 说明.md in Resources */ = {isa = PBXBuildFile; fileRef = 00CA216D2D02A12400D1F9D2 /* 说明.md */; };
 		00CC8000283B8A4400E92A6C /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */; };
@@ -341,6 +342,7 @@
 		00ADF91D2D55EED0004111AD /* LSApplicationProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSApplicationProxy.h; sourceTree = "<group>"; };
 		00ADF9202D55EEE1004111AD /* LSBundleProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LSBundleProxy.h; sourceTree = "<group>"; };
 		00AF63FC28FF9B96005821DA /* SafariActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
+		00B227102D59EBDB00604481 /* Eventable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eventable.swift; sourceTree = "<group>"; };
 		00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
 		00CA216D2D02A12400D1F9D2 /* 说明.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = "说明.md"; sourceTree = SOURCE_ROOT; };
 		00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
@@ -891,6 +893,7 @@
 				00DBD3182A3C3BC400664246 /* ContentScrollView.swift */,
 				006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */,
 				006C7C7A2C748243001F1DBC /* CustomImageView.swift */,
+				00B227102D59EBDB00604481 /* Eventable.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1511,6 +1514,7 @@
 				6114ABF5267ADF6E0082BA67 /* MyView.swift in Sources */,
 				006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */,
 				61336C8B2657581100FDEB2A /* BaseViewController.swift in Sources */,
+				00B227112D59EBDB00604481 /* Eventable.swift in Sources */,
 				002CCE6528AA263D0086110E /* ButtonRxTapBugController.swift in Sources */,
 				61336C812656667900FDEB2A /* Info.swift in Sources */,
 				6186948D267C4DBC0086F051 /* MJRefresh+RxSwift.swift in Sources */,

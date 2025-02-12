@@ -309,5 +309,13 @@ extension ViewController {
         
         textRelay.accept("soso")
         textRelay.accept("sola")
+        
+        EventType.addEvent.post()
+        
+        EventType.addEvent.rx().subscribe { _ in
+            print("addEvent")
+        }.disposed(by: rx.disposeBag)
+        
+        EventBus.post(event: EventType.addEvent)
     }
 }
