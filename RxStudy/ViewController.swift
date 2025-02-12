@@ -315,7 +315,5 @@ extension ViewController {
         EventType.addEvent.rx().subscribe { _ in
             print("addEvent")
         }.disposed(by: rx.disposeBag)
-        
-        EventBus.post(event: EventType.addEvent)
     }
 }

@@ -10,17 +10,32 @@ import Foundation
 
 import RxSwift
 
-/// 通过枚举完全封装通知事件
-final class EventBus {
+protocol Eventable: RawRepresentable where RawValue == String {
     
-    private init() {}
+    func post(object: AnyObject?, userInfo: [AnyHashable: AnyObject]?)
+
+    func rx(object: AnyObject?) -> Observable<Notification>
+}
+
+extension Eventable {
     
-    static func post<Event>(event: Event, center: NotificationCenter = NotificationCenter.default, object: AnyObject? = nil, userInfo: [AnyHashable: AnyObject]? = nil) where Event: RawRepresentable, Event.RawValue == String {
-        center.post(name: NSNotification.Name(rawValue: event.rawValue), object: object, userInfo: userInfo)
+    func post(object: AnyObject? = nil, userInfo: [AnyHashable: AnyObject]? = nil) {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: rawValue), object: object, userInfo: userInfo)
+    }
+    
+    func rx(object: AnyObject? = nil) -> Observable<Notification> {
+        return NotificationCenter.default.rx.notification(Notification.Name(rawValue: rawValue), object: object)
+    }
+}
+
+/// 这里其实是可以封装NotificationCenter.default.addObserver方法的,但是因为这个方法需要对应的NotificationCenter.default.removeObserver方法,所以这里就不推荐了
+private extension Eventable {
+    func addObserver(object obj: Any?, queue: OperationQueue?, using block: @escaping @Sendable (Notification) -> Void) -> NSObjectProtocol {
+        return NotificationCenter.default.addObserver(forName: Notification.Name(rawValue: rawValue), object: obj, queue: queue, using: block)
     }
 
-    static func rx<Event>(event: Event, center: NotificationCenter = NotificationCenter.default, object: AnyObject? = nil) -> Observable<Notification> where Event: RawRepresentable, Event.RawValue == String {
-        return center.rx.notification(Notification.Name(rawValue: event.rawValue), object: object)
+    func removeObserver(_ observer: Any, object anObject: Any? = nil) {
+        return NotificationCenter.default.removeObserver(observer, name: NSNotification.Name(rawValue), object: anObject)
     }
 }
 
@@ -33,32 +48,3 @@ enum EventType: String {
 }
 
 extension EventType: Eventable {}
-
-protocol Eventable: RawRepresentable where RawValue == String {
-    func post(center: NotificationCenter, object: AnyObject?, userInfo: [AnyHashable: AnyObject]?)
-
-    func rx(center: NotificationCenter, object: AnyObject?) -> Observable<Notification>
-    
-    func post(object: AnyObject?, userInfo: [AnyHashable: AnyObject]?)
-
-    func rx(object: AnyObject?) -> Observable<Notification>
-}
-
-extension Eventable {
-    func post(center: NotificationCenter = NotificationCenter.default, object: AnyObject? = nil, userInfo: [AnyHashable: AnyObject]? = nil) {
-        center.post(name: NSNotification.Name(rawValue: rawValue), object: object, userInfo: userInfo)
-    }
-    
-    func rx(center: NotificationCenter = NotificationCenter.default, object: AnyObject? = nil) -> Observable<Notification> {
-        return center.rx.notification(Notification.Name(rawValue: rawValue), object: object)
-    }
-    
-    func post(object: AnyObject?, userInfo: [AnyHashable: AnyObject]?) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: rawValue), object: object, userInfo: userInfo)
-    }
-
-    func rx(object: AnyObject?) -> Observable<Notification> {
-        return NotificationCenter.default.rx.notification(Notification.Name(rawValue: rawValue), object: object)
-    }
-}
-    
