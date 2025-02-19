@@ -15,6 +15,8 @@ protocol Eventable: RawRepresentable where RawValue == String {
     func post(object: AnyObject?, userInfo: [AnyHashable: AnyObject]?)
 
     func rx(object: AnyObject?) -> Observable<Notification>
+    
+    var rx: Observable<Notification> { get }
 }
 
 extension Eventable {
@@ -25,6 +27,10 @@ extension Eventable {
     
     func rx(object: AnyObject? = nil) -> Observable<Notification> {
         return NotificationCenter.default.rx.notification(Notification.Name(rawValue: rawValue), object: object)
+    }
+    
+    var rx: Observable<Notification> {
+        return NotificationCenter.default.rx.notification(Notification.Name(rawValue: rawValue))
     }
 }
 

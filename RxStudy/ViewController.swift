@@ -32,7 +32,7 @@ class ViewController: UITabBarController {
         super.viewDidLoad()
         setupUI()
         addPan()
-        // addRxPan()
+//        addRxPan()
         testExBehaviorRelay()
         networkListening()
     }
@@ -75,7 +75,27 @@ class ViewController: UITabBarController {
         addChildControllers()
         
         /// 我其实没有明白UIViewController中children与UITabBarViewController的viewControllers的区别
-        title = viewControllers?.first?.title
+        /*
+         UITabBarViewController的viewControllers是一个可选数组,而UIViewController的children是一个数组,但是里面的元素是一样的
+         (lldb) po self.children
+         ▿ 5 elements
+           ▿ 0 : <RxStudy.HomeController: 0x14017cf00>
+           ▿ 1 : <RxStudy.TabsController: 0x14017d400>
+           ▿ 2 : <RxStudy.TabsController: 0x14017d900>
+           ▿ 3 : <RxStudy.TreeController: 0x14022b800>
+           ▿ 4 : <RxStudy.MyController: 0x14017de00>
+         (lldb) po self.viewControllers
+         ▿ Optional<Array<UIViewController>>
+           ▿ some : 5 elements
+             ▿ 0 : <RxStudy.HomeController: 0x14017cf00>
+             ▿ 1 : <RxStudy.TabsController: 0x14017d400>
+             ▿ 2 : <RxStudy.TabsController: 0x14017d900>
+             ▿ 3 : <RxStudy.TreeController: 0x14022b800>
+             ▿ 4 : <RxStudy.MyController: 0x14017de00>
+         */
+        viewControllers?.first?.title
+        
+        children.first?.title
         
         bindGayMode()
     }
@@ -310,10 +330,14 @@ extension ViewController {
         textRelay.accept("soso")
         textRelay.accept("sola")
         
-        EventType.addEvent.post()
-        
         EventType.addEvent.rx().subscribe { _ in
-            print("addEvent")
+            print("rx() addEvent")
         }.disposed(by: rx.disposeBag)
+        
+        EventType.addEvent.rx.subscribe { _ in
+            print("rx addEvent")
+        }.disposed(by: rx.disposeBag)
+        
+        EventType.addEvent.post()
     }
 }

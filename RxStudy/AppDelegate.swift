@@ -13,6 +13,7 @@ import Alamofire
 import SVProgressHUD
 import KSCrash
 import LifetimeTracker
+import CocoaDebug
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,6 +39,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         #if DEBUG
         // NetworkActivityLogger.shared.level = .debug
         // NetworkActivityLogger.shared.startLogging()
+        #endif
+        
+        #if DEBUG
+            CocoaDebug.enable()
         #endif
         
         #if DEBUG

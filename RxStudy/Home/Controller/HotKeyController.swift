@@ -63,6 +63,27 @@ class HotKeyController: BaseViewController {
                 self?.pushToSearchResultController(keyword: $0)
             })
             .disposed(by: rx.disposeBag)
+        
+        /**
+         (lldb) po self.navigationController?.children
+         ▿ Optional<Array<UIViewController>>
+           ▿ some : 2 elements
+             ▿ 0 : <RxStudy.ViewController: 0x10c826800>
+             ▿ 1 : <RxStudy.HotKeyController: 0x10d407ce0>
+         (lldb) po self.navigationController?.viewControllers
+         ▿ Optional<Array<UIViewController>>
+           ▿ some : 2 elements
+             ▿ 0 : <RxStudy.ViewController: 0x10c826800>
+             ▿ 1 : <RxStudy.HotKeyController: 0x10d407ce0>
+         */
+        
+        navigationController?.viewControllers
+        
+        navigationController?.children
+        
+        children
+        
+        print(self)
     }
     
     private func binding() {
