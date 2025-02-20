@@ -6,6 +6,7 @@
 //
 
 #import "CrashController.h"
+#import "Rxstudy-bridging-Header.h"
 
 @interface CrashController ()
 
@@ -17,6 +18,8 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = UIColor.whiteColor;
+    /// 通过宏来完成OC的guard方法
+    guard(self.navigationController) else { return; }
     
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
     [button setTitle:@"Crash Button" forState:UIControlStateNormal];
