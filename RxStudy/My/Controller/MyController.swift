@@ -148,7 +148,7 @@ extension MyController {
                     
                     WKWebView.clearWebsiteCache()
                 default:
-                    guard let vc = self?.creatInstance(by: my.path) as? UIViewController else {
+                    guard let vc = creatInstance(className: my.path) as? UIViewController else {
                         return
                     }
                     self?.navigationController?.pushViewController(vc, animated: true)
@@ -158,19 +158,7 @@ extension MyController {
     }
 }
 
-extension MyController {
-    private func creatInstance<T: NSObject>(by className: String) -> T? {
-        guard let nameSpace = nameSpace else {
-            return nil
-        }
-        
-        guard let `class` = NSClassFromString(nameSpace + "." + className),
-              let typeClass = `class` as? T.Type else {
-            return nil
-        }
-        return typeClass.init()
-    }
-    
+extension MyController {    
     private func logoutAction(viewModel: MyViewModel) {
         let alertController = UIAlertController(title: "提示", message: "是否确定退出登录?", preferredStyle: .alert)
         let actionCancel = UIAlertAction(title: "取消", style: .destructive) { (_) in

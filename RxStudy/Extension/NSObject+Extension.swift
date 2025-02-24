@@ -42,3 +42,14 @@ extension DeinitPrintable where Self: NSObject {
 }
 
 extension NSObject: DeinitPrintable {}
+
+// MARK: - 通过命名空间或者模块名称,以及类名创建示例
+func creatInstance<T: NSObject>(moduleName: String? = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String, className: String) -> T? {
+    guard let moduleName = moduleName,
+          let `class` = NSClassFromString(moduleName + "." + className),
+          let typeClass = `class` as? T.Type else {
+        return nil
+    }
+
+    return typeClass.init()
+}
