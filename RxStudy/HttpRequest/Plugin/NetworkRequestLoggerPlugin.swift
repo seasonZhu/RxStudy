@@ -11,6 +11,8 @@ import Foundation
 import Alamofire
 import Moya
 
+import CocoaLumberjack
+
 public enum NetworkRequestLoggerLevel {
     case off
     
@@ -158,5 +160,16 @@ private extension NetworkRequestLoggerPlugin {
             print("  \(key): \(value)")
         }
         print("]")
+    }
+    
+    func logHeadersInSandBox(headers: [AnyHashable: Any]) {
+        
+        /// 优化在沙盒中的打印
+        let strings = headers.map({
+            return "  \($0.key): \($0.value)"
+        }).joined(separator: "\n")
+    
+        DDLogInfo("Headers: [ \(strings) ]")
+
     }
 }
