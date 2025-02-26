@@ -18,13 +18,13 @@ class SingleTabListController: BaseTableViewController {
     
     private let type: TagType
     
-    private let tab: Tab
+    private let tabModel: TabModel
     
     var cellSelected: ((WebLoadInfo) -> Void)?
     
-    init(type: TagType, tab: Tab, cellSelected: ((WebLoadInfo) -> Void)? = nil) {
+    init(type: TagType, tabModel: TabModel, cellSelected: ((WebLoadInfo) -> Void)? = nil) {
         self.type = type
-        self.tab = tab
+        self.tabModel = tabModel
         self.cellSelected = cellSelected
         super.init(nibName: nil, bundle: nil)
     }
@@ -53,7 +53,7 @@ class SingleTabListController: BaseTableViewController {
 extension SingleTabListController {
     private func setupUI() {
         
-        title = tab.name
+        title = tabModel.name
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
@@ -71,7 +71,7 @@ extension SingleTabListController {
     }
     
     private func binding() {
-        let viewModel = SingleTabListViewModel(type: type, tab: tab)
+        let viewModel = SingleTabListViewModel(type: type, tabModel: tabModel)
 
         tableView.mj_header?.rx.refresh
             .map { ScrollViewActionType.refresh }

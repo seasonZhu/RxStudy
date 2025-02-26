@@ -18,12 +18,12 @@ class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting
         
     private let type: TagType
     
-    private let tab: Tab
+    private let tabModel: TabModel
     
-    init(type: TagType, tab: Tab) {
+    init(type: TagType, tabModel: TabModel) {
         self.pageNum = type.pageNum
         self.type = type
-        self.tab = tab
+        self.tabModel = tabModel
         super.init()
     }
     
@@ -63,7 +63,7 @@ private extension SingleTabListViewModel {
     }
     
     func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
-        guard let id = tab.id else {
+        guard let id = tabModel.id else {
             return
         }
         let result: Single<Response>

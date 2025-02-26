@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '14.0'
+platform :ios, '15.6'
 #source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
@@ -68,7 +68,7 @@ target 'RxStudy' do
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
   pod 'FunnyButton', :configurations => ['Debug']
-  pod 'MLeaksFinder', :configurations => ['Debug']
+  #pod 'MLeaksFinder', :configurations => ['Debug'] # 在Xcode16.2下面会报错,暂时不使用
   pod 'LifetimeTracker'
   
   # 日志打印与跟踪

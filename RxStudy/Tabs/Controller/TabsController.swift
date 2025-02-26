@@ -175,7 +175,7 @@ extension TabsController {
 }
 
 extension TabsController {
-    private func settingSegmentedDataSource(tabs: [Tab]) {
+    private func settingSegmentedDataSource(tabs: [TabModel]) {
         segmentedDataSource.titles = tabs.map { $0.name?.replaceHtmlElement }.compactMap { $0 }
         // segmentedDataSource.titles = tabs.map{ self.getRealString(html: $0.name) }.compactMap{ $0 }
         segmentedView.defaultSelectedIndex = 0
@@ -187,7 +187,7 @@ extension TabsController {
         listVCArray.removeAll()
         
         _ = tabs.map { tab in
-            let vc = SingleTabListController(type: type, tab: tab) { [weak self] webLoadInfo in
+            let vc = SingleTabListController(type: type, tabModel: tab) { [weak self] webLoadInfo in
                 self?.pushToWebViewController(webLoadInfo: webLoadInfo)
             }
 

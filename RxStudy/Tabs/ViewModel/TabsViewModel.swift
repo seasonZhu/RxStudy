@@ -29,7 +29,7 @@ class TabsViewModel: BaseViewModel {
     }
     
     /// outputs    
-    let dataSource = BehaviorRelay<[Tab]>(value: [])
+    let dataSource = BehaviorRelay<[TabModel]>(value: [])
     
     /// 仅仅针对体系页面有用
     var refreshSubject: BehaviorSubject<MJRefreshAction>?
@@ -56,7 +56,7 @@ private extension TabsViewModel {
         }
         
         result
-            .map(BaseModel<[Tab]>.self)
+            .map(BaseModel<[TabModel]>.self)
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }

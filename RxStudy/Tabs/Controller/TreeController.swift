@@ -45,10 +45,10 @@ extension TreeController {
         tableView.mj_footer = nil
             
         /// 获取cell中的模型
-        tableView.rx.modelSelected(Tab.self)
+        tableView.rx.modelSelected(TabModel.self)
             .subscribe(onNext: { [weak self] tab in
                 guard let self else { return }
-                let vc = SingleTabListController(type: self.type, tab: tab)
+                let vc = SingleTabListController(type: self.type, tabModel: tab)
                 self.navigationController?.pushViewController(vc, animated: true)
             })
             .disposed(by: rx.disposeBag)
@@ -81,7 +81,7 @@ extension TreeController {
             .disposed(by: rx.disposeBag)
     }
     
-    fileprivate func tableViewSectionAndCellConfig(tabs: [Tab]) {
+    fileprivate func tableViewSectionAndCellConfig(tabs: [TabModel]) {
         guard tabs.isNotEmpty else {
             isEmptyRelay.accept(true)
             return
@@ -103,7 +103,7 @@ extension TreeController {
         /// If you are ok with this, try to set delegate (data source) to `nil` in front of this operation.
         tableView.dataSource = nil
 
-        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<Tab, Tab>>(
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<TabModel, TabModel>>(
             configureCell: { (ds, tv, indexPath, _) in
                 
                 let cell = tv.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
@@ -142,7 +142,7 @@ extension TreeController: TabBarViewControllerChildrenRefreshProtocol {
 }
 
 extension Reactive where Base == TreeController {
-    var tableViewSectionAndCellConfig: Binder<[Tab]> {
+    var tableViewSectionAndCellConfig: Binder<[TabModel]> {
         return Binder(base) { base, tabs in
             base.tableViewSectionAndCellConfig(tabs: tabs)
         }

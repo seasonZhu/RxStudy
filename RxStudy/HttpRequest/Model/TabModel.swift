@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct Tab: Codable {
+struct TabModel: Codable {
 
-    let children: [Tab]?
+    let children: [TabModel]?
     let courseId: Int?
     let id: Int?
     let name: String?
@@ -21,4 +21,4 @@ struct Tab: Codable {
 
 }
 
-extension Tab: TabAble {}
+extension TabModel: TabAble {}
