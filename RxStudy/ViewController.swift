@@ -15,6 +15,8 @@ import RxGesture
 import Moya
 import Alamofire
 
+import TheRouter
+
 import SVProgressHUD
 
 class ViewController: UITabBarController {
@@ -68,7 +70,8 @@ class ViewController: UITabBarController {
         navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { [weak self] _ in
             debugLog("点击事件")
             Haptics.success.feedback()
-            self?.navigationController?.pushViewController(HotKeyController(), animated: true)
+            // self?.navigationController?.pushViewController(HotKeyController(), animated: true)
+            TheRouter.openURL("wandroid://hotkey")
         })
         .disposed(by: rx.disposeBag)
         

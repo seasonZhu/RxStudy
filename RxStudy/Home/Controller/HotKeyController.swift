@@ -12,6 +12,8 @@ import RxSwift
 import RxSwiftExt
 import RxCocoa
 
+import TheRouter
+
 class HotKeyController: BaseViewController {
     
     private lazy var textField: UITextField = {
@@ -250,6 +252,14 @@ extension HotKeyController {
             print("controller disposeBag event:\($0)")
         })
         .disposed(by: disposeBag)
+    }
+}
+
+/// 为了保证运行时可以便利到TheRouterable协议,需要Xcode16需要Build Settings -> Build Options -> Enable Debug Dylib Support -> NO
+/// https://github.com/HuolalaTech/hll-wp-therouter-ios/issues/59
+extension HotKeyController: TheRouterable {
+    static var patternString: [String] {
+        return ["wandroid://hotkey"]
     }
 }
 

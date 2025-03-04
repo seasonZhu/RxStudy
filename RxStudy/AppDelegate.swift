@@ -29,6 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// 日志配置
         logSetting()
         
+        /// 路由配置
+        routerSetting()
+        
         /// 键盘配置
         IQKeyboardManager.shared.isEnabled = true
         
@@ -97,6 +100,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 extension AppDelegate {
+    /// 在Safari浏览器中输入wandroid://hotkey,可以跳转到热词搜索页
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
+        
+        let urlString = url.absoluteString
+        debugLog("urlString: \(urlString)")
+
+        /// 外部网页路由到App的逻辑
+        if urlString.contains("wandroid://") {
+            TheRouter.openURL(urlString)
+        }
+        
+        return true
+    }
+}
+
+extension AppDelegate {
     private func installCrashHandler() {
         let installation = makeEmailInstallation()
         installation.install()
@@ -105,6 +124,7 @@ extension AppDelegate {
             if completed {
                 print("Sent \(array?.count ?? 0) reports")
             } else {
+                KSCrash.sharedInstance().deleteAllReports()
                 print("Failed to send reports: \(error.debugDescription)")
             }
         }
@@ -210,5 +230,51 @@ extension AppDelegate {
                 print("屏幕没有被捕获，可以移除那个覆盖的视图")
             }
         }
+    }
+}
+
+import TheRouter
+
+/// 服务路由
+public let serivceHost = "scheme://services?"
+
+/// web跳转路由
+public let webRouterUrl = "scheme://webview/home"
+
+extension AppDelegate {
+    func routerSetting() {
+        // 日志回调，可以监控线上路由运行情况
+        TheRouter.logcat { url, logType, errorMsg in
+            debugLog("TheRouter: logMsg- \(url) \(logType.rawValue) \(errorMsg)")
+        }
+        
+        // 类似RDVTabBarControlle也没有继承UITabbarController，导航栈也不同，那么就需要自己实现各种跳转逻辑
+        // 实现的这个方法后,系统的跳转逻辑都不走了
+//        TheRouter.customJumpAction { _, _ in
+//
+//        }
+        
+        // 路由懒加载注册,
+        // - excludeCocoapods: 是否对Cocoapods生成的组件进行动态注册
+        // - excludeCocoapods = true 不对Cocoapods生成的组件进行动态注册， false 对Cocoapods生成的组件也进行遍历动态注册
+        // - useCache: 是否开启本地缓存功能
+        TheRouterManager.loadRouterClass(excludeCocoapods: true, useCache: true)
+        
+        TheRouter.lazyRegisterRouterHandle { url, userInfo in
+            TheRouterManager.injectRouterServiceConfig(webRouterUrl, serivceHost)
+            /// - Parameters:
+            ///   - excludeCocoapods: 排除一些非业务注册类，这里一般会将 "com.apple", "org.cocoapods" 进行过滤，但是如果组件化形式的，创建的BundleIdentifier也是
+            ///   org.cocoapods，这里需要手动改下，否则组件内的类将不会被获取。
+            ///   - urlPath: 将要打开的路由path
+            ///   - userInfo: 路由传递的参数
+            ///   - forceCheckEnable: 是否支持强制校验，强制校验要求Api声明与对应的类必须实现TheRouterAble协议
+            ///   - forceCheckEnable 强制打开TheRouterApi定义的便捷类与实现TheRouterAble协议类是否相同，打开的话，debug环境会自动检测，避免线上出问题，建议打开
+            ///   这里没有强制校验，因为我并没有整理路由表类
+            return TheRouterManager.addGloableRouter(true, url, userInfo, forceCheckEnable: false)
+        }
+            
+        // 动态注册服务
+        TheRouterManager.registerServices(excludeCocoapods: true)
+        
     }
 }
