@@ -258,9 +258,7 @@ extension HotKeyController {
 /// 为了保证运行时可以便利到TheRouterable协议,需要Xcode16需要Build Settings -> Build Options -> Enable Debug Dylib Support -> NO
 /// https://github.com/HuolalaTech/hll-wp-therouter-ios/issues/59
 extension HotKeyController: TheRouterable {
-    static var patternString: [String] {
-        return ["wandroid://hotkey"]
-    }
+    static var patternString: [String] = ["wandroid://hotkey"]
 }
 
 extension Reactive where Base == HotKeyController {
@@ -271,4 +269,15 @@ extension Reactive where Base == HotKeyController {
             base.tagLayout(hotKeys: hotKeys)
         }
     }
+}
+
+/// TheRouterApi 主要作用是做模块间解耦合，多个模块相互调用，抽出统一的Api，进行跨模块调用
+/// 这里必须继承NSObject,不然无法通过runtime获取到TheRouterApi的信息,我已经在TheRouter做了PR,其实可以不继承NSObject了
+public class TheRouterApi: NSObject, CustomRouterInfo {
+    
+    public static var patternString = "wandroid://hotkey"
+    /// 这里必须写带有命名空间的字符串,否则无法通过runtime找到
+    public static var routerClass = "RxStudy.HotKeyController"
+    public var params: [String: Any] { return [:] }
+    public var jumpType: LAJumpType = .push
 }

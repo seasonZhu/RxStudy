@@ -108,7 +108,8 @@ extension AppDelegate {
 
         /// 外部网页路由到App的逻辑
         if urlString.contains("wandroid://") {
-            TheRouter.openURL(urlString)
+            /// 如果你把项目玩崩溃了,然后又想测试从Safari浏览器跳转到App,目前仅注册了"wandroid://hotkey",然后崩溃弹窗会导致无法路由,这里传[LAJumpTypeKey: "4"]可以解决
+            TheRouter.openURL(urlString, userInfo: [LAJumpTypeKey: "4"])
         }
         
         return true
@@ -124,6 +125,7 @@ extension AppDelegate {
             if completed {
                 print("Sent \(array?.count ?? 0) reports")
             } else {
+                /// 如果你把App玩崩溃了,然后正好手机又没有配置邮箱,就把这里deleteAllReports
                 KSCrash.sharedInstance().deleteAllReports()
                 print("Failed to send reports: \(error.debugDescription)")
             }
@@ -270,7 +272,7 @@ extension AppDelegate {
             ///   - forceCheckEnable: 是否支持强制校验，强制校验要求Api声明与对应的类必须实现TheRouterAble协议
             ///   - forceCheckEnable 强制打开TheRouterApi定义的便捷类与实现TheRouterAble协议类是否相同，打开的话，debug环境会自动检测，避免线上出问题，建议打开
             ///   这里没有强制校验，因为我并没有整理路由表类
-            return TheRouterManager.addGloableRouter(true, url, userInfo, forceCheckEnable: false)
+            return TheRouterManager.addGloableRouter(true, url, userInfo, forceCheckEnable: true)
         }
             
         // 动态注册服务
