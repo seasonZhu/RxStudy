@@ -17,6 +17,18 @@ class BaseNavigationController: UINavigationController {
         // leftPanBankSettingAction()
     }
     
+//    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+//        if AccountManager.shared.isLoginRelay.value == true {
+//            if self.children.count >= 1 {
+//                viewController.hidesBottomBarWhenPushed = true
+//            }
+//            super.pushViewController(viewController, animated: animated)
+//        } else {
+//            super.pushViewController(LoginController(), animated: animated)
+//        }
+//        
+//    }
+    
 }
 
 extension BaseNavigationController: UIGestureRecognizerDelegate, UINavigationControllerDelegate {
