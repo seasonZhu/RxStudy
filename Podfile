@@ -17,6 +17,7 @@ target 'RxStudy' do
   
   # 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
   pod 'RxGesture'
+  
   # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,
   # 我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型,同时BlockingObservable的注释也说了,它用于测试与演示,并不适合用于App的生产环境,当你在程序逻辑中使用BlockingObservable,也许是该反省自己写的代码逻辑的时候了
   pod 'RxBlocking'
@@ -26,7 +27,7 @@ target 'RxStudy' do
 
   # Networking
   pod 'Moya/RxSwift'
-  # AlamofireNetworkActivityLogger的版本很久都没有升级,导致其绑定Alamofire无法升级,直接移除拖入,保证Alamofire和Moya可以向上升级
+  # AlamofireNetworkActivityLogger的版本很久都没有升级,导致其绑定Alamofire无法升级,直接移除拖入,保证Alamofire和Moya可以向上升级,然后直接改写为Moya插件
   #pod 'AlamofireNetworkActivityLogger'
 
   # Image
@@ -43,9 +44,6 @@ target 'RxStudy' do
   pod 'JXSegmentedView'
   pod 'MarqueeLabel'
   pod 'SVProgressHUD'
-  
-  # 被SVProgressHUD替代了
-  pod 'MBProgressHUD'
   
   # SFSymbols的安全引用
   pod 'SFSafeSymbols'
@@ -81,6 +79,8 @@ target 'RxStudy' do
   #pod 'Cache'
   #pod 'YYCache'
   
+  # 考虑使用货拉拉的TheRouter
+  pod 'TheRouter'
   
   # 注意,以下是没有使用的库
   
@@ -103,8 +103,8 @@ target 'RxStudy' do
   # web缓存+离线缓存
   pod 'JWNetAutoCache'
   
-  # 考虑使用货拉拉的TheRouter
-  pod 'TheRouter'
+  # 被SVProgressHUD替代了,目前没有使用
+  pod 'MBProgressHUD'
 
 end
 

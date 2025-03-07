@@ -96,6 +96,7 @@
 		0096956C2946C99F003B0236 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096956B2946C99F003B0236 /* ListViewModel.swift */; };
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
 		00982E57293DCAC100B6C960 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00982E56293DCAC100B6C960 /* MockService.swift */; };
+		00A06A9F2D7ACE94008AF223 /* TabType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A06A9E2D7ACE94008AF223 /* TabType.swift */; };
 		00A08EFB28FD3B1E00093FB4 /* CombineSinkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */; };
 		00A08EFD28FD3BFE00093FB4 /* Combine+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */; };
 		00A146742BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A146732BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift */; };
@@ -336,6 +337,7 @@
 		0096956B2946C99F003B0236 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		00982E56293DCAC100B6C960 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		00A06A9E2D7ACE94008AF223 /* TabType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabType.swift; sourceTree = "<group>"; };
 		00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineSinkEvent.swift; sourceTree = "<group>"; };
 		00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
 		00A146732BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestLoggerPlugin.swift; sourceTree = "<group>"; };
@@ -785,6 +787,7 @@
 				61BB7C47267A057700990636 /* JSONS */,
 				0048E6D1277AAD9700F6C739 /* JavaScript */,
 				0008D71F2AF383AB006782E6 /* Log */,
+				00A06A9E2D7ACE94008AF223 /* TabType.swift */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
 				003B6302278FBB5600EA265E /* ImportHeader.swift */,
@@ -1616,6 +1619,7 @@
 				007AE7F928F3FF1A00AD6C72 /* State.swift in Sources */,
 				619EDB372660BF820056A3D9 /* InfoViewCell.swift in Sources */,
 				61BF8340265B8CCA0063EE4E /* CoinRankViewModel.swift in Sources */,
+				00A06A9F2D7ACE94008AF223 /* TabType.swift in Sources */,
 				00A146742BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift in Sources */,
 				616EC96E269E8154008FAFDF /* SVProgressHUD+Extension.swift in Sources */,
 				0096956C2946C99F003B0236 /* ListViewModel.swift in Sources */,

@@ -23,7 +23,7 @@ class ViewController: UITabBarController {
     
     lazy var transform = Transform()
     
-    private var titles: [String] = []
+    private let titles = TabType.allCases.map { $0.title }
     
     let textRelay = ExBehaviorRelay(value: "season", isIgnoreInitValue: true, isIgnoreFirstAccept: true)
     
@@ -49,6 +49,8 @@ class ViewController: UITabBarController {
     }
     
     private func setupUI() {
+        title = titles.first
+        
         delegate = transform
         
         view.backgroundColor = .playAndroidBackground
@@ -96,55 +98,27 @@ class ViewController: UITabBarController {
              ▿ 3 : <RxStudy.TreeController: 0x14022b800>
              ▿ 4 : <RxStudy.MyController: 0x14017de00>
          */
-        viewControllers?.first?.title
-        
-        children.first?.title
         
         bindGayMode()
     }
     
     // MARK: - 添加子控制器
-    private func addSubviewController(subViewController: UIViewController, title: String, imageName: String, selectImageName: String) {
-        subViewController.tabBarItem.title = title
-        subViewController.tabBarItem.image = UIImage(named: imageName)
-        subViewController.tabBarItem.selectedImage = UIImage(named: selectImageName)
-        subViewController.title = title
+    private func addSubviewController(type: TabType) {
+        let subViewController = type.viewController
+        subViewController.tabBarItem.title = type.title
+        subViewController.tabBarItem.image = UIImage(named: type.imageName)
+        subViewController.tabBarItem.selectedImage = UIImage(named: type.selectImageName)
+        subViewController.title = type.title
         addChild(subViewController)
-        titles.append(title)
+        
     }
 
     // MARK: - 添加所有子控制器
     private func addChildControllers() {
-
-        let homeVC = HomeController()
-        addSubviewController(subViewController: homeVC,
-                             title: "首页",
-                             imageName: R.image.home.name,
-                             selectImageName: R.image.home_selected.name)
-
-        let projectVC = TabsController(type: .project)
-        addSubviewController(subViewController: projectVC,
-                             title: "项目",
-                             imageName: R.image.project.name,
-                             selectImageName: R.image.project_selected.name)
-
-        let publicNumberVC = TabsController(type: .publicNumber)
-        addSubviewController(subViewController: publicNumberVC,
-                             title: "公众号",
-                             imageName: R.image.publicNumber.name,
-                             selectImageName: R.image.publicNumber_selected.name)
-
-        let treeVC = TreeController(type: .tree)
-        addSubviewController(subViewController: treeVC,
-                             title: "体系",
-                             imageName: R.image.tree.name,
-                             selectImageName: R.image.tree_selected.name)
         
-        let myVC = MyController()
-        addSubviewController(subViewController: myVC,
-                             title: "我的",
-                             imageName: R.image.my.name,
-                             selectImageName: R.image.my_selected.name)
+        TabType.allCases.forEach { type in
+            addSubviewController(type: type)
+        }
     }
 }
 
