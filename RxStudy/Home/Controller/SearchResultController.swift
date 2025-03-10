@@ -32,8 +32,6 @@ class SearchResultController: BaseTableViewController {
         super.viewDidLoad()
         setupUI()
         binding()
-        /// push到这个页面后,再删除之前的页面
-//        navigationController?.removeViewControllerClassName(HotKeyController.className, animated: false)
     }
 }
 
@@ -47,6 +45,8 @@ extension SearchResultController {
             .subscribe(onNext: { [weak self] model in
                 guard let self else { return }
                 self.pushToWebViewController(webLoadInfo: model)
+                // let vc = WebViewController(webLoadInfo: model, isNeedShowCollection: true)
+                // pushViewController(vc, animated: true, removeViewControllerClassNameList: [HotKeyController.className], isRemoveSelf: true)
                 debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)

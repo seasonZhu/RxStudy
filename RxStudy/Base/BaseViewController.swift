@@ -200,17 +200,13 @@ extension BaseViewController {
     ///   - removeViewControllerClassNameList: 需要移除控制器名称的数组
     ///   - isRemoveSelf: 是否移除触发push方法的当前控制器
     func pushViewController(_ viewController: UIViewController, animated: Bool, removeViewControllerClassNameList: [String] = [], isRemoveSelf: Bool = true) {
+        
         navigationController?.pushViewController(viewController, animated: animated)
-        
-        if let viewControllers = navigationController?.viewControllers {
-            for vc in viewControllers where removeViewControllerClassNameList.contains(vc.className) {
-                navigationController?.removeViewController(vc, animated: false)
-            }
-        }
-        
+        var removeList = removeViewControllerClassNameList
         if isRemoveSelf {
-            navigationController?.removeViewController(self, animated: false)
+            removeList.append(self.className)
         }
+        navigationController?.removeViewControllerByClassNames(removeList, animated: false)
     }
     
     /// 用于通过类名进行定向pop

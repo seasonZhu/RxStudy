@@ -111,6 +111,10 @@ class WebViewController: BaseViewController {
         super.viewDidLoad()
 //        webViewCache()
         setupUI()
+        
+        // navigationController?.removeViewControllerByClassNames([SearchResultController.className, HotKeyController.className], animated: false)
+        
+        // navigationController?.removeViewControllerByTypes([SearchResultController.self, HotKeyController.self], animated: false)
     }
     
     @objc
