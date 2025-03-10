@@ -208,8 +208,10 @@ class HotKeyController: BaseViewController {
     }
     
     private func pushToSearchResultController(keyword: String) {
-        let vc = SearcResultController(keyword: keyword)
+        let vc = SearchResultController(keyword: keyword)
         navigationController?.pushViewController(vc, animated: true)
+        /// push完之后,对栈内进行清理
+        // self.pushViewController(vc, animated: true, isRemoveSelf: true)
     }
     
     @objc

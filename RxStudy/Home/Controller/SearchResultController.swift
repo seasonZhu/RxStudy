@@ -1,5 +1,5 @@
 //
-//  SearcResultController.swift
+//  SearchResultController.swift
 //  RxStudy
 //
 //  Created by season on 2021/5/28.
@@ -14,7 +14,7 @@ import NSObject_Rx
 import SnapKit
 import MJRefresh
 
-class SearcResultController: BaseTableViewController {
+class SearchResultController: BaseTableViewController {
     
     private let keyword: String
     
@@ -32,10 +32,12 @@ class SearcResultController: BaseTableViewController {
         super.viewDidLoad()
         setupUI()
         binding()
+        /// push到这个页面后,再删除之前的页面
+//        navigationController?.removeViewControllerClassName(HotKeyController.className, animated: false)
     }
 }
 
-extension SearcResultController {
+extension SearchResultController {
     private func setupUI() {
         
         title = keyword
@@ -48,7 +50,6 @@ extension SearcResultController {
                 debugLog("模型为:\(model)")
             })
             .disposed(by: rx.disposeBag)
-
     }
     
     private func binding() {

@@ -60,3 +60,116 @@ extension BaseNavigationController {
         }
     }
 }
+
+extension UINavigationController {
+    enum RemoveVCType {
+        case instance(UIViewController)
+        case classType(UIViewController.Type)
+        case className(String)
+        
+        func isFindController(_ controller: UIViewController) -> Bool {
+            switch self {
+            case .instance(let viewController):
+                return controller == viewController
+            case .classType(let type):
+                return controller.isKind(of: type)
+            case .className(let string):
+                return controller.className == string
+            }
+        }
+    }
+    
+    func removeViewController(_ type: RemoveVCType, animated flag: Bool) {
+        var controllers = viewControllers
+        var controllerToRemove: UIViewController?
+        
+        for controller in controllers where type.isFindController(controller) {
+            controllerToRemove = controller
+            break
+        }
+        
+        if let controllerToRemove = controllerToRemove,
+           let index = controllers.firstIndex(of: controllerToRemove) {
+            controllers.remove(at: index)
+            self.setViewControllers(controllers, animated: true)
+        }
+    }
+}
+
+extension UINavigationController {
+    
+    func removeViewController(_ controller: UIViewController, animated flag: Bool) {
+        var controllers = viewControllers
+        var controllerToRemove: UIViewController?
+        
+        for obj in controllers {
+            if obj == controller {
+                controllerToRemove = obj
+                break
+            }
+        }
+        
+        if let controllerToRemove = controllerToRemove {
+            if let index = controllers.firstIndex(of: controllerToRemove) {
+                controllers.remove(at: index)
+                setViewControllers(controllers, animated: true)
+            }
+        }
+    }
+    
+    func removeViewControllerByType(_ type: UIViewController.Type, animated flag: Bool) {
+        var controllers = viewControllers
+        var controllerToRemove: UIViewController?
+        
+        for obj in controllers {
+            if obj.isKind(of: type) {
+                controllerToRemove = obj
+                break
+            }
+        }
+        
+        if let controllerToRemove = controllerToRemove {
+            if let index = controllers.firstIndex(of: controllerToRemove) {
+                controllers.remove(at: index)
+                setViewControllers(controllers, animated: true)
+            }
+        }
+    }
+    
+    func removeViewControllerByClassName(_ className: String, animated flag: Bool) {
+        var controllers = viewControllers
+        var controllerToRemove: UIViewController?
+        
+        for obj in controllers {
+            if obj.className == className {
+                controllerToRemove = obj
+                break
+            }
+        }
+        
+        if let controllerToRemove = controllerToRemove {
+            if let index = controllers.firstIndex(of: controllerToRemove) {
+                controllers.remove(at: index)
+                self.setViewControllers(controllers, animated: true)
+            }
+        }
+    }
+    
+    
+    func removeViewControllerByClassNames(_ classNames: [String], animated flag: Bool) {
+        var controllers = viewControllers
+        var controllersToRemove: [UIViewController] = []
+        
+        for obj in controllers where classNames.contains(obj.className) {
+            controllersToRemove.append(obj)
+        }
+        
+        for removeVC in controllersToRemove {
+            if let index = controllers.firstIndex(of: removeVC) {
+                controllers.remove(at: index)
+            }
+        }
+        
+        self.setViewControllers(controllers, animated: true)
+    }
+}

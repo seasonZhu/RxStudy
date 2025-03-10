@@ -192,6 +192,49 @@ extension BaseViewController {
     }
 }
 
+extension BaseViewController {
+    /// push到目标控制器,并通过类名进行定向移除导航控制器中的栈内控制器
+    /// - Parameters:
+    ///   - viewController: 目标控制器
+    ///   - animated: 是否有动画效果
+    ///   - removeViewControllerClassNameList: 需要移除控制器名称的数组
+    ///   - isRemoveSelf: 是否移除触发push方法的当前控制器
+    func pushViewController(_ viewController: UIViewController, animated: Bool, removeViewControllerClassNameList: [String] = [], isRemoveSelf: Bool = true) {
+        navigationController?.pushViewController(viewController, animated: animated)
+        
+        if let viewControllers = navigationController?.viewControllers {
+            for vc in viewControllers where removeViewControllerClassNameList.contains(vc.className) {
+                navigationController?.removeViewController(vc, animated: false)
+            }
+        }
+        
+        if isRemoveSelf {
+            navigationController?.removeViewController(self, animated: false)
+        }
+    }
+    
+    /// 用于通过类名进行定向pop
+    /// - Parameters:
+    ///   - className: pop回退到的控制器名称
+    ///   - animated: 是否有动画效果
+    ///   - completion: pop完成后的回调
+    func popToViewController(className: String, animated: Bool, completion: ((Bool) -> Void)? = nil) {
+        
+        var isPoped = false
+        
+        for vc in self.navigationController?.viewControllers ?? [] where vc.className == className {
+            navigationController?.popToViewController(vc, animated: animated)
+            isPoped = true
+            break
+        }
+        
+        if !isPoped {
+            navigationController?.popViewController(animated: true)
+        }
+    }
+    
+}
+
 // MARK: - 绑定
 extension Reactive where Base: BaseViewController {
     
