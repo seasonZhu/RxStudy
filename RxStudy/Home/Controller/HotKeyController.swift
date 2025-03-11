@@ -48,24 +48,6 @@ class HotKeyController: BaseViewController {
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(rightBarButtonItemAction))
         
-        /// 状态可以组合
-        textField.rx.controlEvent([.editingDidEndOnExit])
-            .asObservable()
-            .subscribe(onNext: { [weak self] _ in
-                guard let self else { return }
-                self.pushToSearchResultController(keyword: self.textField.text!)
-            })
-            .disposed(by: rx.disposeBag)
-        
-        navigationItem.rightBarButtonItem?.rx.tap
-            .map { [weak self] in self?.textField.text }
-            .compactMap { $0 }
-            .subscribe(onNext: { [weak self] in
-                print("onNext event:\($0)")
-                self?.pushToSearchResultController(keyword: $0)
-            })
-            .disposed(by: rx.disposeBag)
-        
         /**
          (lldb) po self.navigationController?.children
          ▿ Optional<Array<UIViewController>>
@@ -89,6 +71,24 @@ class HotKeyController: BaseViewController {
     }
     
     private func binding() {
+        
+        /// 状态可以组合
+        textField.rx.controlEvent([.editingDidEndOnExit])
+            .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                guard let self else { return }
+                self.pushToSearchResultController(keyword: self.textField.text!)
+            })
+            .disposed(by: rx.disposeBag)
+        
+        navigationItem.rightBarButtonItem?.rx.tap
+            .map { [weak self] in self?.textField.text }
+            .compactMap { $0 }
+            .subscribe(onNext: { [weak self] in
+                print("onNext event:\($0)")
+                self?.pushToSearchResultController(keyword: $0)
+            })
+            .disposed(by: rx.disposeBag)
         
         let searchValid = textField.rx.text.orEmpty
                 .map { $0.isNotEmpty }

@@ -70,42 +70,6 @@ extension MyCollectionController {
     private func setupUI() {
         
         title = "我的收藏"
-        
-        /// 是否在编辑与tableView的编辑状态绑定
-        isEditedRelay.bind(to: tableView.rx.isShowEdit).disposed(by: rx.disposeBag)
-        
-        MyCollectionController.done.rx.tap
-            .map { [weak self] in
-                guard let self else {
-                    return true
-                }
-                return !self.isEditedRelay.value
-            }
-            .bind(to: isEditedRelay)
-            .disposed(by: rx.disposeBag)
-        
-        MyCollectionController.edit.rx.tap
-            .map { [weak self] in
-                guard let self else {
-                    return false
-                }
-                return !self.isEditedRelay.value
-            }
-            .bind(to: isEditedRelay)
-            .disposed(by: rx.disposeBag)
-        
-        isEditedRelay
-            .map { $0 ? MyCollectionController.done : MyCollectionController.edit }
-            .bind(to: navigationItem.rx.rightBarButtonItem)
-            .disposed(by: rx.disposeBag)
-        
-        /// 点击cell,获取cell中的模型
-        tableView.rx.modelSelected(Info.self)
-            .subscribe(onNext: { [weak self] model in
-                guard let self else { return }
-                self.pushToWebViewController(webLoadInfo: model)
-            })
-            .disposed(by: rx.disposeBag)
     }
     
     private func binding() {
@@ -165,6 +129,42 @@ extension MyCollectionController {
             .disposed(by: rx.disposeBag)
         
         self.viewModel = viewModel
+        
+        /// 是否在编辑与tableView的编辑状态绑定
+        isEditedRelay.bind(to: tableView.rx.isShowEdit).disposed(by: rx.disposeBag)
+        
+        MyCollectionController.done.rx.tap
+            .map { [weak self] in
+                guard let self else {
+                    return true
+                }
+                return !self.isEditedRelay.value
+            }
+            .bind(to: isEditedRelay)
+            .disposed(by: rx.disposeBag)
+        
+        MyCollectionController.edit.rx.tap
+            .map { [weak self] in
+                guard let self else {
+                    return false
+                }
+                return !self.isEditedRelay.value
+            }
+            .bind(to: isEditedRelay)
+            .disposed(by: rx.disposeBag)
+        
+        isEditedRelay
+            .map { $0 ? MyCollectionController.done : MyCollectionController.edit }
+            .bind(to: navigationItem.rx.rightBarButtonItem)
+            .disposed(by: rx.disposeBag)
+        
+        /// 点击cell,获取cell中的模型
+        tableView.rx.modelSelected(Info.self)
+            .subscribe(onNext: { [weak self] model in
+                guard let self else { return }
+                self.pushToWebViewController(webLoadInfo: model)
+            })
+            .disposed(by: rx.disposeBag)
     }
 }
 

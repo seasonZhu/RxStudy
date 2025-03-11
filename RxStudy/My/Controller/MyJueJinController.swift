@@ -52,6 +52,7 @@ class MyJueJinController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
     
     @objc
@@ -69,7 +70,7 @@ class MyJueJinController: BaseViewController {
 }
 
 extension MyJueJinController {
-    func setupUI() {
+    private func setupUI() {
         title = "作者的掘金"
         view.backgroundColor = .white
         view.addSubview(webView)
@@ -79,7 +80,9 @@ extension MyJueJinController {
             let request = URLRequest(url: url)
             webView.load(request)
         }
-        
+    }
+    
+    private func binding() {
         /// iOS 如何让WKWebView侧滑返回时html逐级返回，而不是直接返回到上级控制器?
         /// https://www.imooc.com/article/26158
         webView.rx.observeWeakly(Bool.self, "canGoBack")

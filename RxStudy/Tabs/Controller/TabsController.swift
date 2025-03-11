@@ -95,6 +95,35 @@ extension TabsController {
         // 禁用automaticallyInset
         contentScrollView.contentInsetAdjustmentBehavior = .never
         
+        view.addSubview(contentScrollView)
+
+        // 6、将contentScrollView和segmentedView.contentScrollView进行关联
+        segmentedView.contentScrollView = contentScrollView
+        contentScrollView.snp.makeConstraints { make in
+            make.top.equalTo(segmentedView.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view).offset(type.bottomOffset)
+        }
+    }
+    
+    private func binding() {
+        viewModel.inputs.loadData()
+        
+        viewModel.outputs.dataSource
+            .asDriver(onErrorJustReturn: [])
+            .drive { [weak self] tabs in
+                self?.settingSegmentedDataSource(tabs: tabs)
+            }
+            .disposed(by: rx.disposeBag)
+        
+        viewModel.outputs.networkError
+            .bind(to: rx.networkError)
+            .disposed(by: rx.disposeBag)
+        
+        errorRetry
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+        
         contentScrollView.rx.setDelegate(self)
             .disposed(by: rx.disposeBag)
         
@@ -142,35 +171,6 @@ extension TabsController {
             
         })
         .disposed(by: rx.disposeBag)
-        
-        view.addSubview(contentScrollView)
-
-        // 6、将contentScrollView和segmentedView.contentScrollView进行关联
-        segmentedView.contentScrollView = contentScrollView
-        contentScrollView.snp.makeConstraints { make in
-            make.top.equalTo(segmentedView.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(view).offset(type.bottomOffset)
-        }
-    }
-    
-    func binding() {
-        viewModel.inputs.loadData()
-        
-        viewModel.outputs.dataSource
-            .asDriver(onErrorJustReturn: [])
-            .drive { [weak self] tabs in
-                self?.settingSegmentedDataSource(tabs: tabs)
-            }
-            .disposed(by: rx.disposeBag)
-        
-        viewModel.outputs.networkError
-            .bind(to: rx.networkError)
-            .disposed(by: rx.disposeBag)
-        
-        errorRetry
-            .bind(onNext: viewModel.inputs.loadData)
-            .disposed(by: rx.disposeBag)
     }
 }
 

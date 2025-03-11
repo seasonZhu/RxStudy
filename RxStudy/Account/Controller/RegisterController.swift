@@ -35,6 +35,7 @@ class RegisterController: AccountBaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
     
     private func setupUI() {
@@ -55,7 +56,9 @@ class RegisterController: AccountBaseController {
             make.top.equalTo(repasswordField.snp.bottom).offset(16)
             make.leading.trailing.height.equalTo(usernameFiled)
         }
-        
+    }
+    
+    private func binding() {
         let usernameValid = usernameFiled.rx.text.orEmpty
             .map { [weak self] text -> Bool in
                 if text.count >= 11 {

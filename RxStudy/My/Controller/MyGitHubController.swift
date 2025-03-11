@@ -42,7 +42,7 @@ class MyGitHubController: BaseViewController {
 }
 
 extension MyGitHubController {
-    func setupUI() {
+    private func setupUI() {
         title = "作者的GitHub"
         view.backgroundColor = .white
         view.addSubview(webView)

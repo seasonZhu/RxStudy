@@ -54,20 +54,6 @@ extension SingleTabListController {
     private func setupUI() {
         
         title = tabModel.name
-        
-        /// 获取cell中的模型
-        tableView.rx.modelSelected(Info.self)
-            .subscribe(onNext: { [weak self] model in
-                guard let self else { return }
-                if self.type == .tree {
-                    self.pushToWebViewController(webLoadInfo: model)
-                } else {
-                    /// 嵌套页面无法push,回调到主控制器再push
-                    self.cellSelected?(model)
-                }
-                debugLog("模型为:\(model)")
-            })
-            .disposed(by: rx.disposeBag)
     }
     
     private func binding() {
@@ -81,6 +67,20 @@ extension SingleTabListController {
         tableView.mj_footer?.rx.refresh
             .map { ScrollViewActionType.loadMore }
             .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+        
+        /// 获取cell中的模型
+        tableView.rx.modelSelected(Info.self)
+            .subscribe(onNext: { [weak self] model in
+                guard let self else { return }
+                if self.type == .tree {
+                    self.pushToWebViewController(webLoadInfo: model)
+                } else {
+                    /// 嵌套页面无法push,回调到主控制器再push
+                    self.cellSelected?(model)
+                }
+                debugLog("模型为:\(model)")
+            })
             .disposed(by: rx.disposeBag)
         
         errorRetry

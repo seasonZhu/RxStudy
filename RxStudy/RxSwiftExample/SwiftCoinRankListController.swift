@@ -143,7 +143,8 @@ extension SwiftCoinRankListController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
         cell.textLabel?.text = coinRank.username
         cell.detailTextLabel?.text = coinRank.coinCount?.toString
-            return cell
+        
+        return cell
     }
 }
 

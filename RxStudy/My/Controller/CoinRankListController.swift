@@ -33,14 +33,6 @@ extension CoinRankListController {
         // tableView.register(UITableViewCell.self, forCellReuseIdentifier: UITableViewCell.className)
         
         title = "积分排名"
-        
-        /// 获取cell中的模型
-        tableView.rx.modelSelected(CoinRank.self)
-            .subscribe { model in
-                debugLog("模型为:\(model)")
-                // self.test()
-            }
-            .disposed(by: rx.disposeBag)
     }
     
     private func binding() {
@@ -56,6 +48,14 @@ extension CoinRankListController {
         tableView.mj_footer?.rx.refresh
             .map { ScrollViewActionType.loadMore }
             .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+        
+        /// 获取cell中的模型
+        tableView.rx.modelSelected(CoinRank.self)
+            .subscribe { model in
+                debugLog("模型为:\(model)")
+                // self.test()
+            }
             .disposed(by: rx.disposeBag)
         
         errorRetry

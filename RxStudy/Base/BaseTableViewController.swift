@@ -42,6 +42,8 @@ class BaseTableViewController: BaseViewController {
 extension BaseTableViewController {
     private func setupTableView() {
         
+        // MARK: - UI布局
+        
         /// 注册Cell之后,就可以直接在数据源中进行强制与复用,而不用再写if 与 else了
         _ = BaseTableViewController.allClass.map { tableView.register($0, forCellReuseIdentifier: $0.className) }
         
@@ -53,14 +55,6 @@ extension BaseTableViewController {
         
         /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
-        /// 获取indexPath 基类中取消点击cell的动画效果
-        tableView.rx.itemSelected
-            .bind { [weak self] (indexPath) in
-                self?.tableView.deselectRow(at: indexPath, animated: false)
-                debugLog(indexPath)
-            }
-            .disposed(by: rx.disposeBag)
         
         /// 简单布局
         gcdMainAsyncLayout()
@@ -80,6 +74,16 @@ extension BaseTableViewController {
         /// 设置DZNEmptyDataSet的数据源和代理
         tableView.emptyDataSetSource = self
         tableView.emptyDataSetDelegate = self
+        
+        // MARK: - 逻辑
+        
+        /// 获取indexPath 基类中取消点击cell的动画效果
+        tableView.rx.itemSelected
+            .bind { [weak self] (indexPath) in
+                self?.tableView.deselectRow(at: indexPath, animated: false)
+                debugLog(indexPath)
+            }
+            .disposed(by: rx.disposeBag)
         
         /// 订阅点击了数据为空，请重试的行为，里面没有用状态去绑定tableView是因为没有ViewModel
         emptyDataSetButtonTap.subscribe(onNext: { [weak self] _ in
@@ -106,6 +110,9 @@ extension BaseTableViewController {
         }
         .disposed(by: rx.disposeBag)
     }
+}
+
+extension BaseTableViewController {
     
     /// 会报错Warning once only: UITableView was told to layout its visible cells and other contents without being in the view hierarchy
     /// 用GCD就不会报错了,也不知道为什么

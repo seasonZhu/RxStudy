@@ -14,7 +14,7 @@ class BaseNavigationController: UINavigationController {
         super.viewDidLoad()
         interactivePopGestureRecognizer?.delegate = self
         delegate = self
-        // leftPanBankSettingAction()
+        // rightToLeftPanBackSettingAction()
     }
     
 //    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
@@ -41,9 +41,9 @@ extension BaseNavigationController: UIGestureRecognizerDelegate, UINavigationCon
     }
 }
 
-/// 之前看一个视频说iOS没有向左滑返回,导致大屏手机从左向右滑的边缘侧滑手势非常的尴尬
+/// 之前看一个视频说iOS没有从右向左滑返回,导致大屏手机从左向右滑的边缘侧滑手势非常的尴尬
 extension BaseNavigationController {
-    private func leftPanBankSettingAction() {
+    private func rightToLeftPanBackSettingAction() {
         let pan = UIPanGestureRecognizer()
         view.addGestureRecognizer(pan)
         pan.addTarget(self, action: #selector(panAction(_ :)))

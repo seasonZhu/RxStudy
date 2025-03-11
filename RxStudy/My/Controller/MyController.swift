@@ -37,6 +37,20 @@ class MyController: BaseTableViewController {
 
 extension MyController {
     private func setupUI() {
+        
+        tableView.mj_footer = nil
+        
+        tableView.emptyDataSetSource = nil
+        tableView.emptyDataSetDelegate = nil
+        
+        tableView.rowHeight = 44
+        
+        let myView = MyView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
+        tableView.tableHeaderView = myView
+    }
+    
+    private func binding() {
+        
         AccountManager.shared.isLoginRelay.subscribe { [weak self] event in
             switch event {
                 
@@ -51,19 +65,6 @@ extension MyController {
             }
         }
         .disposed(by: rx.disposeBag)
-        
-        tableView.mj_footer = nil
-        
-        tableView.emptyDataSetSource = nil
-        tableView.emptyDataSetDelegate = nil
-        
-        tableView.rowHeight = 44
-        
-        let myView = MyView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
-        tableView.tableHeaderView = myView
-    }
-    
-    private func binding() {
         
         if let myView = tableView.tableHeaderView as? MyView {
             AccountManager.shared.myCoinRelay

@@ -74,8 +74,7 @@ class EditTableViewController: UIViewController {
         navigationItem.rightBarButtonItems = [addButton, refreshButton]
          
         // 创建一个重用的单元格
-        tableView.register(UITableViewCell.self,
-                                 forCellReuseIdentifier: "Cell")
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
         view.addSubview(self.tableView)
          
         // 表格模型
@@ -128,8 +127,7 @@ class EditTableViewController: UIViewController {
  
 extension EditTableViewController {
     // 创建表格数据源
-    static func dataSource() -> RxTableViewSectionedAnimatedDataSource
-        <AnimatableSectionModel<String, String>> {
+    static func dataSource() -> RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<String, String>> {
         return RxTableViewSectionedAnimatedDataSource(
             // 设置插入、删除、移动单元格的动画效果
             animationConfiguration: AnimationConfiguration(insertAnimation: .top,
@@ -140,13 +138,13 @@ extension EditTableViewController {
                 let cell = tv.dequeueReusableCell(withIdentifier: "Cell")!
                 cell.textLabel?.text = "条目\(indexPath.row)：\(element)"
                 return cell
-        },
+            },
             canEditRowAtIndexPath: { _, _ in
                 return true // 单元格可删除
-        },
+            },
             canMoveRowAtIndexPath: { _, _ in
                 return true // 单元格可移动
-        }
+            }
         )
     }
 }

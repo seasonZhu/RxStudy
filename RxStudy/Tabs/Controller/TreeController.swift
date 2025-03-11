@@ -43,15 +43,6 @@ extension TreeController {
         title = type.title
         
         tableView.mj_footer = nil
-            
-        /// 获取cell中的模型
-        tableView.rx.modelSelected(TabModel.self)
-            .subscribe(onNext: { [weak self] tab in
-                guard let self else { return }
-                let vc = SingleTabListController(type: self.type, tabModel: tab)
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
-            .disposed(by: rx.disposeBag)
     }
     
     private func binding() {
@@ -59,6 +50,15 @@ extension TreeController {
         
         tableView.mj_header?.rx.refresh
             .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+        
+        /// 获取cell中的模型
+        tableView.rx.modelSelected(TabModel.self)
+            .subscribe(onNext: { [weak self] tab in
+                guard let self else { return }
+                let vc = SingleTabListController(type: self.type, tabModel: tab)
+                self.navigationController?.pushViewController(vc, animated: true)
+            })
             .disposed(by: rx.disposeBag)
 
         /// 绑定数据

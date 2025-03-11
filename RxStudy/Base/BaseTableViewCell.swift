@@ -25,12 +25,12 @@ class BaseTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    /// 构建UI
+    /// 构建UI,子类重写
     func setupUI() {
         
     }
     
-    /// 逻辑绑定
+    /// 逻辑绑定,子类重写
     func binding() {
         
     }

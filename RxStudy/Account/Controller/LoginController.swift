@@ -26,6 +26,7 @@ class LoginController: AccountBaseController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
         inputTextFieldRxSubscribe()
     }
     
@@ -45,7 +46,9 @@ class LoginController: AccountBaseController {
             make.top.equalTo(toRegisterButton.snp.bottom).offset(16)
             make.leading.trailing.height.equalTo(usernameFiled)
         }
-        
+    }
+    
+    private func binding() {
         let usernameValid = usernameFiled.rx.text.orEmpty
             .map { [weak self] text -> Bool in
                 if text.count >= 11 {

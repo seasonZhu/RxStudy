@@ -21,10 +21,11 @@ class RxSwiftCoinRankListController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTableView()
+        setupUI()
+        binding()
     }
     
-    private func setupTableView() {
+    private func setupUI() {
         
         /// 设置tableFooterView
         tableView.tableFooterView = UIView()
@@ -32,11 +33,13 @@ class RxSwiftCoinRankListController: BaseViewController {
         /// 设置代理
         tableView.rx.setDelegate(self).disposed(by: rx.disposeBag)
         
-        /// 创建vm
-        let vm = RxSwiftCoinRankListViewModel()
-        
         /// 设置头部刷新控件
         tableView.mj_header = MJRefreshNormalHeader()
+    }
+    
+    private func binding() {
+        /// 创建vm
+        let vm = RxSwiftCoinRankListViewModel()
         
         tableView.mj_header?.rx.refresh
             .subscribe(onNext: vm.refreshAction)

@@ -69,6 +69,20 @@ extension HomeController {
             make.leading.trailing.bottom.equalTo(pagerView)
             make.height.equalTo(40)
         }
+    }
+    
+    private func binding() {
+        let viewModel = HomeViewModel()
+
+        tableView.mj_header?.rx.refresh
+            .map { ScrollViewActionType.refresh }
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+
+        tableView.mj_footer?.rx.refresh
+            .map { ScrollViewActionType.loadMore }
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
         
         /// 获取cell中的模型
         tableView.rx.modelSelected(Info.self)
@@ -89,20 +103,6 @@ extension HomeController {
                     self?.pushToWebViewController(webLoadInfo: model)
                 }
             })
-            .disposed(by: rx.disposeBag)
-    }
-    
-    private func binding() {
-        let viewModel = HomeViewModel()
-
-        tableView.mj_header?.rx.refresh
-            .map { ScrollViewActionType.refresh }
-            .bind(onNext: viewModel.inputs.loadData)
-            .disposed(by: rx.disposeBag)
-
-        tableView.mj_footer?.rx.refresh
-            .map { ScrollViewActionType.loadMore }
-            .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
         
         errorRetry

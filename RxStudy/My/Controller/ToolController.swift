@@ -28,13 +28,6 @@ extension ToolController {
         title = "工具列表"
         
         tableView.mj_footer = nil
-        
-        tableView.rx.modelSelected(Tool.self)
-            .subscribe(onNext: { [weak self] model in
-                guard let self else { return }
-                self.pushToWebViewController(webLoadInfo: model, isNeedShowCollection: false)
-            })
-            .disposed(by: rx.disposeBag)
     }
     
     private func binding() {
@@ -42,6 +35,13 @@ extension ToolController {
 
         tableView.mj_header?.rx.refresh
             .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+        
+        tableView.rx.modelSelected(Tool.self)
+            .subscribe(onNext: { [weak self] model in
+                guard let self else { return }
+                self.pushToWebViewController(webLoadInfo: model, isNeedShowCollection: false)
+            })
             .disposed(by: rx.disposeBag)
         
         errorRetry

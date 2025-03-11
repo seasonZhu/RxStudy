@@ -34,16 +34,6 @@ extension MyMessageController {
     private func setupUI() {
         
         title = status.title
-        
-        /// 获取cell中的模型
-        tableView.rx.modelSelected(Message.self)
-            .subscribe(onNext: { [weak self] model in
-                guard let self else { return }
-                let info = MessageLoadInfo(id: model.id, originId: model.id, title: model.title, link: model.fullLink)
-                self.pushToWebViewController(webLoadInfo: info, isNeedShowCollection: false)
-                debugLog("模型为:\(model)")
-            })
-            .disposed(by: rx.disposeBag)
     }
     
     private func binding() {
@@ -57,6 +47,16 @@ extension MyMessageController {
         tableView.mj_footer?.rx.refresh
             .map { ScrollViewActionType.loadMore }
             .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+        
+        /// 获取cell中的模型
+        tableView.rx.modelSelected(Message.self)
+            .subscribe(onNext: { [weak self] model in
+                guard let self else { return }
+                let info = MessageLoadInfo(id: model.id, originId: model.id, title: model.title, link: model.fullLink)
+                self.pushToWebViewController(webLoadInfo: info, isNeedShowCollection: false)
+                debugLog("模型为:\(model)")
+            })
             .disposed(by: rx.disposeBag)
         
         errorRetry

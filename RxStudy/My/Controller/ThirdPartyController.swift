@@ -20,6 +20,7 @@ class ThirdPartyController: BaseTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        binding()
     }
 }
 
@@ -34,7 +35,10 @@ extension ThirdPartyController {
         tableView.emptyDataSetDelegate = nil
         
         tableView.rowHeight = 44
-        
+
+    }
+    
+    private func binding() {
         let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []// AcknowParser(plistPath: defaultAcknowledgementsPlistPath()!).parseAcknowledgements()
         
         dataSource.accept(list)

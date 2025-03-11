@@ -109,11 +109,11 @@ class WebViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        webViewCache()
         setupUI()
+        binding()
         
+        // webViewCache()
         // navigationController?.removeViewControllerByClassNames([SearchResultController.className, HotKeyController.className], animated: false)
-        
         // navigationController?.removeViewControllerByTypes([SearchResultController.self, HotKeyController.self], animated: false)
     }
     
@@ -142,10 +142,7 @@ extension WebViewController {
         
         /// 刷新页面
         webView.scrollView.mj_header = MJRefreshNormalHeader()
-        webView.scrollView.mj_header?.rx.refresh
-            .bind(to: rx.reload)
-            .disposed(by: rx.disposeBag)
-        
+
         /// 页面布局
         view.addSubview(webView)
         webView.navigationDelegate = self
@@ -160,6 +157,32 @@ extension WebViewController {
             make.top.equalToSuperview().offset(kTopMargin)
             make.height.equalTo(2)
         }
+        
+        /// 加载url
+        guard let link = webLoadInfo.link,
+              let url = URL(string: link) else {
+            return
+        }
+        
+        let request = URLRequest(url: url)
+        webView.load(request)
+        
+    }
+    
+    private func binding() {
+        webView.scrollView.mj_header?.rx.refresh
+            .bind(to: rx.reload)
+            .disposed(by: rx.disposeBag)
+        
+        webView.rx.observeWeakly(Bool.self, "canGoBack")
+            .subscribe(onNext: { [weak self] newValue in
+                print("新的值: \(newValue)")
+                
+                if let canGoBack = newValue {
+                    self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = !canGoBack
+                }
+            })
+            .disposed(by: rx.disposeBag)
         
         webView.rx.observe(Double.self, #keyPath(WKWebView.estimatedProgress)).subscribe { [weak self] event in
             switch event {
@@ -185,15 +208,6 @@ extension WebViewController {
             }
         }
         .disposed(by: rx.disposeBag)
-        
-        /// 加载url
-        guard let link = webLoadInfo.link,
-              let url = URL(string: link) else {
-            return
-        }
-        
-        let request = URLRequest(url: url)
-        webView.load(request)
         
         /// 分享
         let toShare = UIBarButtonItem(barButtonSystemItem: .action, target: nil, action: nil)
@@ -306,16 +320,6 @@ extension WebViewController {
                 self.type = .unCollect(self.webLoadInfo)
             }
         }).disposed(by: rx.disposeBag)
-        
-        webView.rx.observeWeakly(Bool.self, "canGoBack")
-            .subscribe(onNext: { [weak self] newValue in
-                print("新的值: \(newValue)")
-                
-                if let canGoBack = newValue {
-                    self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = !canGoBack
-                }
-            })
-            .disposed(by: rx.disposeBag)
     }
     
     /// 掘金的网页对这个支持不友好,会自动重定向到返回首页,可能是怕被爬虫了

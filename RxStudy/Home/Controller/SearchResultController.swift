@@ -39,17 +39,6 @@ extension SearchResultController {
     private func setupUI() {
         
         title = keyword
-        
-        /// 获取cell中的模型
-        tableView.rx.modelSelected(Info.self)
-            .subscribe(onNext: { [weak self] model in
-                guard let self else { return }
-                self.pushToWebViewController(webLoadInfo: model)
-                // let vc = WebViewController(webLoadInfo: model, isNeedShowCollection: true)
-                // pushViewController(vc, animated: true, removeViewControllerClassNameList: [HotKeyController.className], isRemoveSelf: true)
-                debugLog("模型为:\(model)")
-            })
-            .disposed(by: rx.disposeBag)
     }
     
     private func binding() {
@@ -64,6 +53,17 @@ extension SearchResultController {
         tableView.mj_footer?.rx.refresh
             .map { ScrollViewActionType.loadMore }
             .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+        
+        /// 获取cell中的模型
+        tableView.rx.modelSelected(Info.self)
+            .subscribe(onNext: { [weak self] model in
+                guard let self else { return }
+                self.pushToWebViewController(webLoadInfo: model)
+                // let vc = WebViewController(webLoadInfo: model, isNeedShowCollection: true)
+                // pushViewController(vc, animated: true, removeViewControllerClassNameList: [HotKeyController.className], isRemoveSelf: true)
+                debugLog("模型为:\(model)")
+            })
             .disposed(by: rx.disposeBag)
         
         errorRetry
