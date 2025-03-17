@@ -81,7 +81,7 @@
 		007AE7FB28F4FBF800AD6C72 /* BasePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AE7FA28F4FBF800AD6C72 /* BasePageViewModel.swift */; };
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
 		0081ECB42CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 0081ECB32CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.m */; };
-		0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* DebugLog.swift */; };
+		0082108D26E1FF3300525CE4 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* LogUtils.swift */; };
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
 		0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */; };
 		008598BF27B4E0DA003E9EF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 008598C127B4E0DA003E9EF7 /* InfoPlist.strings */; };
@@ -322,7 +322,7 @@
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
 		0081ECB22CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebVIew.h"; sourceTree = "<group>"; };
 		0081ECB32CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebVIew.m"; sourceTree = "<group>"; };
-		0082108C26E1FF3300525CE4 /* DebugLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugLog.swift; sourceTree = "<group>"; };
+		0082108C26E1FF3300525CE4 /* LogUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
 		0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
 		0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		008598C027B4E0DA003E9EF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -506,6 +506,7 @@
 		0008D71F2AF383AB006782E6 /* Log */ = {
 			isa = PBXGroup;
 			children = (
+				0082108C26E1FF3300525CE4 /* LogUtils.swift */,
 				0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */,
 				0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */,
 			);
@@ -1007,7 +1008,6 @@
 			isa = PBXGroup;
 			children = (
 				6171E1972665FE570065C34D /* Constant.swift */,
-				0082108C26E1FF3300525CE4 /* DebugLog.swift */,
 			);
 			path = Constant;
 			sourceTree = "<group>";
@@ -1513,7 +1513,7 @@
 				001B4E2F28E19BE1003ADF95 /* Utilities.swift in Sources */,
 				61716AA1267B3EEA00F9DC25 /* RxSwiftCoinRankListController.swift in Sources */,
 				61F28245265F4A23009E16C9 /* TreeController.swift in Sources */,
-				0082108D26E1FF3300525CE4 /* DebugLog.swift in Sources */,
+				0082108D26E1FF3300525CE4 /* LogUtils.swift in Sources */,
 				001B4E3828E1A11A003ADF95 /* SimplePullToRefreshView.swift in Sources */,
 				00CE180A2BDF978400310B24 /* AsyncRelay.swift in Sources */,
 				0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */,

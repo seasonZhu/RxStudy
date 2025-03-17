@@ -73,6 +73,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         screenCapturedListen()
         
+        LogUtils.debug("哈哈", "呵呵")
+        
         return true
     }
 
