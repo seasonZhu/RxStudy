@@ -34,9 +34,10 @@ class ViewController: UITabBarController {
         super.viewDidLoad()
         setupUI()
         addPan()
-//        addRxPan()
-        testExBehaviorRelay()
         networkListening()
+//        addRxPan()
+//        testExBehaviorRelay()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,6 +101,15 @@ class ViewController: UITabBarController {
          */
         
         bindGayMode()
+        
+        /// https://mp.weixin.qq.com/s/i5ydTkzlyxcgdQQ39b7lnA
+        /// 一行代码解决iOS 18 iPad TabBar位置变化，还你熟悉的底部导航
+        if #available(iOS 18.0, *) {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                // 这行魔法代码就是解决问题的关键！
+                traitOverrides.horizontalSizeClass = .compact
+            }
+        }
     }
     
     // MARK: - 添加子控制器
