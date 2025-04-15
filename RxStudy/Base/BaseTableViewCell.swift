@@ -66,3 +66,28 @@ class BaseGenericsDisposeBagCell<T: Codable>: BaseGenericsCell<T> {
         disposeBag = DisposeBag()
     }
 }
+
+/// 这个类主要是为了避免使用cell的子类,直接使用UIView来作为cell的子类
+/// https://dev.srdanstanic.com/how-to-get-rid-of-cell-subclasses/?utm_source=substack&utm_medium=email
+class EmbeddingTableViewCell<EmbeddedView: UIView>: BaseTableViewCell {
+    public let embeddedView: EmbeddedView = {
+        let view = EmbeddedView(frame: .zero)
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        contentView.addSubview(embeddedView)
+        NSLayoutConstraint.activate([
+            embeddedView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            embeddedView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            embeddedView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            embeddedView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
+    }
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
