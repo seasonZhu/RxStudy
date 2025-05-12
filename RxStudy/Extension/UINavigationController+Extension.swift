@@ -45,7 +45,7 @@ extension UINavigationController {
             }
         }
         
-        self.setViewControllers(controllers, animated: true)
+        setViewControllers(controllers, animated: true)
     }
     
     func removeViewControllerByClassNames(_ classNames: [String], animated flag: Bool) {
@@ -62,6 +62,6 @@ extension UINavigationController {
             }
         }
         
-        self.setViewControllers(controllers, animated: true)
+        setViewControllers(controllers, animated: true)
     }
 }

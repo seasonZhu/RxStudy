@@ -12,7 +12,7 @@ import CryptoKit
 
 extension String {
     var SHA256: String {
-        guard let data = self.data(using: .utf8) else {
+        guard let data = data(using: .utf8) else {
             return ""
         }
         var hash = [UInt8](repeating: 0, count: Int(CC_SHA256_DIGEST_LENGTH))
@@ -36,6 +36,7 @@ protocol ResponseCacheConvertible {
         
     func clearAllData()
 
+    func clearData(by key: String)
 }
 
 // MARK: - 使用Cache作为缓存
@@ -48,7 +49,7 @@ private let responseCacheMemoryConfig = MemoryConfig(expiry: .never, countLimit:
 let responseCacheStorage = try! Storage<String, Data>(
     diskConfig: responseCacheDiskConfig,
     memoryConfig: responseCacheMemoryConfig,
-  transformer: TransformerFactory.forData()
+    transformer: TransformerFactory.forData()
 )
 
 extension Storage: ResponseCacheConvertible where Value == Data, Key == String {
@@ -62,6 +63,10 @@ extension Storage: ResponseCacheConvertible where Value == Data, Key == String {
     
     func clearAllData() {
         try? removeAll()
+    }
+    
+    func clearData(by key: String) {
+        removeObject(forKey: key)
     }
 }
 #endif
@@ -86,6 +91,10 @@ extension YYCache: ResponseCacheConvertible {
     func clearAllData() {
         return removeAllObjects()
     }
+    
+    func clearData(by key: String) {
+        removeObject(forKey: key)
+    }
 }
 #endif
 
@@ -106,6 +115,10 @@ extension UserDefaults: ResponseCacheConvertible {
         for key in dict.keys {
             removeObject(forKey: key)
         }
+    }
+    
+    func clearData(by key: String) {
+        removeObject(forKey: key)
     }
 }
 
