@@ -8,6 +8,8 @@
 
 import UIKit
 
+import Kingfisher
+
 class InfoCell: UITableViewCell {
 
     var info: Info! {
@@ -26,7 +28,9 @@ class InfoCell: UITableViewCell {
             if let imageString = info.envelopePic,
                let url = URL(string: imageString) {
                 picView.isHidden = false
-                picView.kf.setImage(with: url, placeholder: R.image.wan_android_placeholder())
+                picView.kf.setImage(with: url, placeholder: R.image.wan_android_placeholder(), options: [.transition(.fade(0.25)),
+                                                                                                         .scaleFactor(UIScreen.main.scale),
+                                                                                                         .cacheSerializer(FormatIndicatedCacheSerializer.png)])
                 
                 /// 这个地方显示了remake与update区别
                 /// remake是重新定义该控件相对其他控件的依赖,其他控件是可以更换的

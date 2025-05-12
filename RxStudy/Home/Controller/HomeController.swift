@@ -199,7 +199,9 @@ extension HomeController: FSPagerViewDataSource {
         let cell = pagerView.dequeueReusableCell(withReuseIdentifier: FSPagerViewCell.className, at: index)
         if let imagePath = itmes[index].imagePath,
            let url = URL(string: imagePath) {
-            cell.imageView?.kf.setImage(with: url)
+            cell.imageView?.kf.setImage(with: url, options: [.transition(.fade(0.25)),
+                                                             .scaleFactor(UIScreen.main.scale),
+                                                             .cacheSerializer(FormatIndicatedCacheSerializer.png)])
         }
         return cell
     }
