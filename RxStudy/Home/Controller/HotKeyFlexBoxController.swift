@@ -140,12 +140,19 @@ extension HotKeyFlexBoxController {
             return button
         }
         
-        rootFlexContainer.flex.define { flex in
-            /// 1.在根容器里面创建一个row的wrap进行布局
-            flex.addItem().direction(.row).wrap(.wrap).marginTop(20).marginHorizontal(10).define { flex in
-                buttons.forEach {
-                    flex.addItem($0).height(30).marginRight(20).marginBottom(20).paddingHorizontal(10)
-                }
+//        rootFlexContainer.flex.define { flex in
+//            /// 1.在根容器里面创建一个row的wrap进行布局
+//            flex.addItem().direction(.row).wrap(.wrap).marginTop(20).marginHorizontal(10).define { flex in
+//                buttons.forEach {
+//                    flex.addItem($0).height(30).marginRight(20).marginBottom(20).paddingHorizontal(10)
+//                }
+//            }
+//        }
+        
+        /// 1.5 将根Flex作为一个横向的wrap进行布局,只是设置的margin无法生效,但是可以退一步使用padding
+        rootFlexContainer.flex.direction(.row).wrap(.wrap).paddingTop(20).paddingHorizontal(10).define { flex in
+            buttons.forEach {
+                flex.addItem($0).height(30).marginRight(20).marginBottom(20).paddingHorizontal(10)
             }
         }
         
