@@ -137,6 +137,7 @@
 		00E9329A29C9499400A618FE /* CollectActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E9329929C9499400A618FE /* CollectActionType.swift */; };
 		00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */; };
 		00EC66C42DAF3E3C0084CBA3 /* BaseRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC66C32DAF3E3C0084CBA3 /* BaseRequestable.swift */; };
+		00FC0EFF2DD1C96A00AC798F /* HotKeyFlexBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FC0EFE2DD1C96A00AC798F /* HotKeyFlexBoxController.swift */; };
 		00FE0DDA2869455500B9D48F /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DD92869455500B9D48F /* MessageViewModel.swift */; };
 		00FE0DDC28694BB600B9D48F /* MyMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDB28694BB600B9D48F /* MyMessageController.swift */; };
 		00FE0DDE28694D6500B9D48F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDD28694D6500B9D48F /* MessageCell.swift */; };
@@ -382,6 +383,7 @@
 		00E9329929C9499400A618FE /* CollectActionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectActionType.swift; sourceTree = "<group>"; };
 		00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		00EC66C32DAF3E3C0084CBA3 /* BaseRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestable.swift; sourceTree = "<group>"; };
+		00FC0EFE2DD1C96A00AC798F /* HotKeyFlexBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyFlexBoxController.swift; sourceTree = "<group>"; };
 		00FE0DD92869455500B9D48F /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		00FE0DDB28694BB600B9D48F /* MyMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageController.swift; sourceTree = "<group>"; };
 		00FE0DDD28694D6500B9D48F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -1067,6 +1069,7 @@
 			children = (
 				61A6ED0F265C9D2A00E3CA9D /* HomeController.swift */,
 				611E2E0526607869001585AE /* HotKeyController.swift */,
+				00FC0EFE2DD1C96A00AC798F /* HotKeyFlexBoxController.swift */,
 				611E2E0B26608E00001585AE /* SearchResultController.swift */,
 			);
 			path = Controller;
@@ -1634,6 +1637,7 @@
 				611E2E0626607869001585AE /* HotKeyController.swift in Sources */,
 				006029722888FF3B0024CC7F /* Moya+BlockingObservable.swift in Sources */,
 				007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */,
+				00FC0EFF2DD1C96A00AC798F /* HotKeyFlexBoxController.swift in Sources */,
 				61A6ED0A265C963900E3CA9D /* ViewModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
 				0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */,

@@ -74,7 +74,8 @@ class ViewController: UITabBarController {
             debugLog("点击事件")
             Haptics.success.feedback()
             // self?.navigationController?.pushViewController(HotKeyController(), animated: true)
-            TheRouter.openURL("wandroid://hotkey")
+            self?.navigationController?.pushViewController(HotKeyFlexBoxController(), animated: true)
+            // TheRouter.openURL("wandroid://hotkey")
         })
         .disposed(by: rx.disposeBag)
         
