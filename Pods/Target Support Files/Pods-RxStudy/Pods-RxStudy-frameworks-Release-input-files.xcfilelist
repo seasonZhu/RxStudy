@@ -7,6 +7,7 @@ ${BUILT_PRODUCTS_DIR}/CombineExt/CombineExt.framework
 ${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework
 ${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework
 ${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework
+${BUILT_PRODUCTS_DIR}/FlexLayout/FlexLayout.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardCore/IQKeyboardCore.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework
 ${BUILT_PRODUCTS_DIR}/IQKeyboardNotification/IQKeyboardNotification.framework
@@ -26,6 +27,7 @@ ${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework
 ${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework
 ${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
 ${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework
+${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework
 ${BUILT_PRODUCTS_DIR}/R.swift/RswiftResources.framework
 ${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework
 ${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
@@ -42,3 +44,4 @@ ${BUILT_PRODUCTS_DIR}/SSZipArchive/SSZipArchive.framework
 ${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework
 ${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
 ${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework
+${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework

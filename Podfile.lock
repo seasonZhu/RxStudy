@@ -9,6 +9,8 @@ PODS:
   - CombineExt (1.8.0)
   - Differentiator (5.0.0)
   - DZNEmptyDataSet (1.8.1)
+  - FlexLayout (2.2.0):
+    - Yoga (= 3.2.1)
   - FSPagerView (0.8.3)
   - FunnyButton (0.1.5)
   - IQKeyboardCore (1.0.5)
@@ -134,6 +136,7 @@ PODS:
     - RxSwift (~> 6.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
+  - PinLayout (1.10.5)
   - R.swift (7.8.0)
   - RxBlocking (6.8.0):
     - RxSwift (= 6.8.0)
@@ -175,6 +178,7 @@ PODS:
   - SVProgressHUD/Core (2.3.1)
   - SwiftDate (7.0.0)
   - TheRouter (1.1.8)
+  - Yoga (3.2.1)
 
 DEPENDENCIES:
   - AcknowList
@@ -183,6 +187,7 @@ DEPENDENCIES:
   - CombineCocoa
   - CombineExt
   - DZNEmptyDataSet
+  - FlexLayout
   - FSPagerView
   - FunnyButton
   - IQKeyboardManagerSwift
@@ -199,6 +204,7 @@ DEPENDENCIES:
   - Moya/Combine
   - Moya/RxSwift
   - "NSObject+Rx"
+  - PinLayout
   - R.swift
   - RxBlocking
   - RxCocoa
@@ -226,6 +232,7 @@ SPEC REPOS:
     - CombineExt
     - Differentiator
     - DZNEmptyDataSet
+    - FlexLayout
     - FSPagerView
     - FunnyButton
     - IQKeyboardCore
@@ -248,6 +255,7 @@ SPEC REPOS:
     - MJRefresh
     - Moya
     - "NSObject+Rx"
+    - PinLayout
     - R.swift
     - RxBlocking
     - RxCocoa
@@ -265,6 +273,7 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftDate
     - TheRouter
+    - Yoga
 
 SPEC CHECKSUMS:
   AcknowList: bbe94f19c25efebcb1b7e6402f466ea8a4b04e62
@@ -275,6 +284,7 @@ SPEC CHECKSUMS:
   CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FlexLayout: a8947ca2446760b5203ba5a3d862023c92a82fce
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   FunnyButton: e8202ece176aaa5f7ead1e5c8eb0f29d28fc5ad4
   IQKeyboardCore: 28c8bf3bcd8ba5aa1570b318cbc4da94b861711e
@@ -297,6 +307,7 @@ SPEC CHECKSUMS:
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  PinLayout: f6c2b63a5a5b24864064e1d15c67de41b4e74748
   R.swift: f573269ca45b2ab066c082e363dd4c2b297b0d71
   RxBlocking: a8b634fba6850913bc3df40bb73fd08b2dbf0f01
   RxCocoa: 2d33c1e1e5d66492052ad46b11024ae287572880
@@ -314,7 +325,8 @@ SPEC CHECKSUMS:
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
   TheRouter: 1c7801e4f3df9a2598088d7c3cf4d2f6d3779c51
+  Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: e740b5fabb262e453e7de6efee272dee37b25102
+PODFILE CHECKSUM: 9b3f97be63a42564de8862e4ddbc9677acf14602
 
 COCOAPODS: 1.16.2

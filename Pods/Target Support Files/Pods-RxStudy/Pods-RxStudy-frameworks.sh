@@ -185,6 +185,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FlexLayout/FlexLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FunnyButton/FunnyButton.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardCore/IQKeyboardCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
@@ -206,6 +207,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/R.swift/RswiftResources.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
@@ -222,6 +224,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework"
@@ -232,6 +235,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FSPagerView/FSPagerView.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/FlexLayout/FlexLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardCore/IQKeyboardCore.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardNotification/IQKeyboardNotification.framework"
@@ -251,6 +255,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/MarqueeLabel/MarqueeLabel.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Moya/Moya.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/NSObject+Rx/NSObject_Rx.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/PinLayout/PinLayout.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/R.swift/RswiftResources.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxBlocking/RxBlocking.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework"
@@ -267,6 +272,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftDate/SwiftDate.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Yoga/yoga.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait

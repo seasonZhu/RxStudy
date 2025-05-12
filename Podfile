@@ -54,6 +54,10 @@ target 'RxStudy' do
   # Auto Layout
   pod 'SnapKit'
   
+  # Yoga Layout
+  pod 'FlexLayout'
+  pod 'PinLayout'
+  
   # Combine 学习
   pod 'Moya/Combine'
   pod 'CombineExt'
