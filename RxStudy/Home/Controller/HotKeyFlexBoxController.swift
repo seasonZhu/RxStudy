@@ -83,9 +83,8 @@ class HotKeyFlexBoxController: BaseViewController {
         let viewModel = HotKeyViewModel()
         
         viewModel.inputs.loadData()
-        
-        /// 最终优化的写法
-        /// 这里的dataSource是一个BehaviorRelay,最好将一次的空数据跳过,减少不必要的layout
+    
+        /// 3.这里的dataSource是一个BehaviorRelay,最好将一次的空数据跳过,减少不必要的layout
         viewModel.outputs.dataSource.skip(1)
             .subscribe(onNext: { [weak self] in
                 self?.flexLayoutWrap(hotKeys: $0)
@@ -132,7 +131,6 @@ extension HotKeyFlexBoxController {
             button.layer.cornerRadius = 4
             button.layer.masksToBounds = true
             
-            /// 使用RxSwiftExt中的ObservableType+Weak,来避免循环引用,但是三重闭包不是很好看清楚
             button.rx.tap
                 .map { title }
                 .subscribeNext(weak: self) { (self) in { self.pushToSearchResultController(keyword: $0) }}
@@ -149,7 +147,7 @@ extension HotKeyFlexBoxController {
 //            }
 //        }
         
-        /// 1.5 将根Flex作为一个横向的wrap进行布局,只是设置的margin无法生效,但是可以退一步使用padding
+        /// 1. 将根Flex作为一个横向的wrap进行布局,只是设置的margin无法生效,但是可以退一步使用padding
         rootFlexContainer.flex.direction(.row).wrap(.wrap).paddingTop(20).paddingHorizontal(10).define { flex in
             buttons.forEach {
                 flex.addItem($0).height(30).marginRight(20).marginBottom(20).paddingHorizontal(10)
