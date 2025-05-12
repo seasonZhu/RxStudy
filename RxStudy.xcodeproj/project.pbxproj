@@ -138,6 +138,7 @@
 		00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */; };
 		00EC66C42DAF3E3C0084CBA3 /* BaseRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC66C32DAF3E3C0084CBA3 /* BaseRequestable.swift */; };
 		00FC0EFF2DD1C96A00AC798F /* HotKeyFlexBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FC0EFE2DD1C96A00AC798F /* HotKeyFlexBoxController.swift */; };
+		00FC0F022DD1EB2000AC798F /* Flex+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FC0F012DD1EB2000AC798F /* Flex+Extension.swift */; };
 		00FE0DDA2869455500B9D48F /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DD92869455500B9D48F /* MessageViewModel.swift */; };
 		00FE0DDC28694BB600B9D48F /* MyMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDB28694BB600B9D48F /* MyMessageController.swift */; };
 		00FE0DDE28694D6500B9D48F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDD28694D6500B9D48F /* MessageCell.swift */; };
@@ -384,6 +385,7 @@
 		00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		00EC66C32DAF3E3C0084CBA3 /* BaseRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestable.swift; sourceTree = "<group>"; };
 		00FC0EFE2DD1C96A00AC798F /* HotKeyFlexBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyFlexBoxController.swift; sourceTree = "<group>"; };
+		00FC0F012DD1EB2000AC798F /* Flex+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flex+Extension.swift"; sourceTree = "<group>"; };
 		00FE0DD92869455500B9D48F /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		00FE0DDB28694BB600B9D48F /* MyMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageController.swift; sourceTree = "<group>"; };
 		00FE0DDD28694D6500B9D48F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -745,6 +747,24 @@
 			path = AlamofireNetworkActivityLogger;
 			sourceTree = "<group>";
 		};
+		00FC0F002DD1EAC500AC798F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				616EC96F269E822E008FAFDF /* HUD.swift */,
+				0016CE2A286E838F0002501A /* TypeNameProtocol.swift */,
+				0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */,
+				00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */,
+				004623632989F96A008F0676 /* ExBehaviorRelay.swift */,
+				00CE18092BDF978400310B24 /* AsyncRelay.swift */,
+				00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */,
+				00DBD3182A3C3BC400664246 /* ContentScrollView.swift */,
+				006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */,
+				006C7C7A2C748243001F1DBC /* CustomImageView.swift */,
+				00B227102D59EBDB00604481 /* Eventable.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		611E2E002660782B001585AE /* SnapKitExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -868,9 +888,10 @@
 		61336C792656493700FDEB2A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				0081ECB12CE2FD0E00AB3E8C /* NSURLProtocol+WKWebVIew */,
+				00FC0F002DD1EAC500AC798F /* Utils */,
 				00D5456D2BB10CB9007B0325 /* AlamofireNetworkActivityLogger */,
 				0053B40C2A2D733C00457779 /* CrashController */,
+				0081ECB12CE2FD0E00AB3E8C /* NSURLProtocol+WKWebVIew */,
 				00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */,
 				6186948A267C4DBB0086F051 /* MJRefresh+RxSwift */,
 				611E2E002660782B001585AE /* SnapKitExtension */,
@@ -882,8 +903,6 @@
 				611E2E0F266096E9001585AE /* String+Extension.swift */,
 				611471CB26B106AC00E298F5 /* UIColor+Extension.swift */,
 				0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */,
-				616EC96F269E822E008FAFDF /* HUD.swift */,
-				0016CE2A286E838F0002501A /* TypeNameProtocol.swift */,
 				619EDB342660BA920056A3D9 /* MBProgressHUD+Extension.swift */,
 				616EC96D269E8154008FAFDF /* SVProgressHUD+Extension.swift */,
 				0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */,
@@ -891,20 +910,12 @@
 				00BD699826EF1C2E00C5C04B /* Rx+Operators.swift */,
 				00CC7FFF283B8A4400E92A6C /* Codable+Extension.swift */,
 				000301F5284E047800A41EA6 /* Collection+Extension.swift */,
-				0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */,
-				00A08EFA28FD3B1E00093FB4 /* CombineSinkEvent.swift */,
 				00A08EFC28FD3BFE00093FB4 /* Combine+Extension.swift */,
 				00099E0229026BD7001FC753 /* ObserverType+Extension.swift */,
 				00E96CE6291C8BAF00A68B48 /* ObservableType+Extension.swift */,
 				0002205F2D0FDC53000182B5 /* Array+URLQueryItem.swift */,
-				004623632989F96A008F0676 /* ExBehaviorRelay.swift */,
-				00CE18092BDF978400310B24 /* AsyncRelay.swift */,
-				00E042EA2A286EC30000C081 /* UIKitBridgeSwiftUI.swift */,
-				00DBD3182A3C3BC400664246 /* ContentScrollView.swift */,
-				006A358E2AD8E5FC00C9298E /* DefaultEnumCodable.swift */,
-				006C7C7A2C748243001F1DBC /* CustomImageView.swift */,
-				00B227102D59EBDB00604481 /* Eventable.swift */,
 				001C000B2D7EDCDB00718399 /* UINavigationController+Extension.swift */,
+				00FC0F012DD1EB2000AC798F /* Flex+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1553,6 +1564,7 @@
 				00E96CE7291C8BAF00A68B48 /* ObservableType+Extension.swift in Sources */,
 				00D4C1AA2D421EB500DDD5B3 /* TypeViewController.swift in Sources */,
 				611E2E042660782C001585AE /* ConstraintArrayDSL.swift in Sources */,
+				00FC0F022DD1EB2000AC798F /* Flex+Extension.swift in Sources */,
 				61990340265F2DBB002C8A1A /* SingleTabListController.swift in Sources */,
 				00FE0DE02869833500B9D48F /* MessageReadyStatus.swift in Sources */,
 				00890D0028F56E9E00B3E72E /* ACarousel.swift in Sources */,
