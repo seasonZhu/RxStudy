@@ -48,8 +48,8 @@ target 'RxStudy' do
   # SFSymbols的安全引用
   pod 'SFSafeSymbols'
   
-  # Keyboard
-  pod 'IQKeyboardManagerSwift'
+  # Keyboard,目前不要使用超过7.1.1之后的版本,键盘上的工具栏弹不出来,iOS18.3.2上测试发现的
+  pod 'IQKeyboardManagerSwift', '7.1.1'
 
   # Auto Layout
   pod 'SnapKit'

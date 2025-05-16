@@ -1,77 +1,19 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hackiftekhar/IQKeyboardManager/master/Screenshot/Social.png" alt="Icon"/>
+  <img src="https://raw.githubusercontent.com/hackiftekhar/IQKeyboardManager/master/Demo/Resources/icon.png" alt="Icon"/>
 </p>
+<H1 align="center">IQKeyboardManager</H1>
+<p align="center">
+  <img src="https://img.shields.io/github/license/hackiftekhar/IQKeyboardManager.svg"
+  alt="GitHub license"/>
 
-[![LICENSE.md](https://img.shields.io/github/license/hackiftekhar/IQKeyboardManager.svg)]([https://travis-ci.org/hackiftekhar/IQKeyboardManager](https://github.com/hackiftekhar/IQKeyboardManager/blob/master/LICENSE.md))
+
 [![Build Status](https://travis-ci.org/hackiftekhar/IQKeyboardManager.svg)](https://travis-ci.org/hackiftekhar/IQKeyboardManager)
-![Platform iOS](https://img.shields.io/badge/Platform-iOS-blue.svg?style=fla)
-[![CocoaPods](https://img.shields.io/cocoapods/v/IQKeyboardManagerSwift.svg)](http://cocoadocs.org/docsets/IQKeyboardManagerSwift)
-[![Github tag](https://img.shields.io/github/tag/hackiftekhar/iqkeyboardmanager.svg)](https://github.com/hackiftekhar/IQKeyboardManager/tags)
 
-## Big updates are coming soon!
 
-#### First of all, Thank You for using IQKeyboardManager!
-It's been 11 years since it's first release in 2013. The library has grown a lot and we have added many new features since then.
-
-#### Motivation
-Recently while working on bug fixes, I realized that in 2013 there were only 2 files IQKeyboardManager.{h,m} in Objective-C version, while now in Swift version there are 50+ files which makes the debugging a lot difficult than before. Also some of the features are rarely used in apps.
-
-#### New Idea
-I realized that some of the features are not tightly linked to each other and can be moved out of the library easily. For Example:-
-- `IQTextView` class
-- `IQKeyboardListener` class
-- `IQTextFieldViewListener` class
-- `IQReturnKeyHandler` class
-- Toolbar related features like `IQToolbar` and `IQBarButtonItem` and their support classes.
-- ...
-
-Moving above things out will make the library more lightweight and user can plug in/out features as per their needs.
-
-#### Action Plan
-I have decided to move loosly linked features out, and publish them to their separate github repo, and use them as dependencies as per requirements.
-
-Below are the action plans
-- [x] Publish [IQKeyboardCore](https://github.com/hackiftekhar/IQKeyboardCore)
- - This contains necessary classes and functions to be used by IQKeyboardManager related libraries. Please note that you shouldn't directly install this as dependency
-- [x] Publish [IQTextView](https://github.com/hackiftekhar/IQTextView)
- - This is purely separated a separated library now.
- - This usually used for showing placeholder in UITextView 
-- [x] Publish [IQKeyboardReturnManager](https://github.com/hackiftekhar/IQKeyboardReturnManager)
- - This is a renamed of `IQReturnKeyHandler`. This is also separated from the library and can be used independently.
- - This depends on `IQKeyboardCore` for `TextInputView` type confirmation.
-- [x] Publish [IQTextInputViewNotification](https://github.com/hackiftekhar/IQTextInputViewNotification)
- - This is a renamed of `IQTextFieldViewListener`. This can be used independently to subscribe/unsubscribe for UITextView/UITextField beginEditing/endEditing events.
- - This depends on the `IQKeyboardCore` to add some additional customized features for UITextView/UITextField.
-- [x] Publish [IQKeyboardToolbar](https://github.com/hackiftekhar/IQKeyboardToolbar)
- - This contains toolbar related classes like IQKeyboardToolbar, IQBarButtonItem, IQTitleBarButtonItems, their configuration classes and other useful functions to add toolbar in keyboard. This can be used independently to add toolbar in keyboard.
- - This depends on the `IQKeyboardCore` to add some additional customized features for UITextView/UITextField.
-- [x] Publish [IQKeyboardToolbarManager](https://github.com/hackiftekhar/IQKeyboardToolbarManager)
- - This is something similar to IQKeyboardManager. This has been moved out of the library as a huge update. 
- - This depends on the `IQTextInputViewNotification` to know which textField is currently in focus.
- - This depends on the `IQKeyboardToolbar` to add/remove toolbars over keyboard.
-- [x] Publish [IQKeyboardNotification](https://github.com/hackiftekhar/IQKeyboardNotification)
- - This is a renamed of `IQKeyboardListener`. This can be used independently to subscribe/unsubscribe for keyboard events.
-- [ ] Publish [IQKeyboardManager](https://github.com/hackiftekhar/IQKeyboardManager) 7.2.0 for all the current support without any compilation error but by deprecating most of the things which are moved out of the library.
- - This now only contains functions for handling distance between UITextView/UITextField and their useful functions.
- - This depends on the `IQKeyboardNotification` to get keyboard notification callbacks.
- - This depends on the `IQTextInputViewNotification` to know which textField is currently in focus.
- - Now there are also subspecs for now as of 7.2.0, but some of them will be removed in 8.0.0 because we already have separate library for this.
-  - `IQKeyboardManagerSwift/Appearance`
-  - `IQKeyboardManagerSwift/IQKeyboardReturnKeyHandler`
-  - `IQKeyboardManagerSwift/IQKeyboardToolbarManager`
-  - `IQKeyboardManagerSwift/IQKeyboardToolbarManager/IQKeyboardToolbar`
-  - `IQKeyboardManagerSwift/IQTextView`
-  - `IQKeyboardManagerSwift/Resign`
-- [ ] Bug fixes which may have arrived due to the library segregation.
- - We need your support on this one.
-- [ ] Publish [IQKeyboardManager](https://github.com/hackiftekhar/IQKeyboardManager) 8.0.0 by marking deprecated classes as unavailable.
- - In this release we will be removing all the deprecated classes and marking some of them as unavailable for easier migration.
-
-## Introduction
 While developing iOS apps, we often run into issues where the iPhone keyboard slides up and covers the `UITextField/UITextView`. `IQKeyboardManager` allows you to prevent this issue of keyboard sliding up and covering `UITextField/UITextView` without needing you to write any code or make any additional setup. To use `IQKeyboardManager` you simply need to add source files to your project.
 
 
-## Key Features
+#### Key Features
 
 1) `One Lines of Code`
 
@@ -118,10 +60,11 @@ https://www.youtube.com/playlist?list=PL_csAAO9PQ8aTL87XnueOXi3RpWE2m_8v
 - If **IQKeyboardManager** conflicts with other **third-party library**, then it's **developer responsibility** to **enable/disable IQKeyboardManager** when **presenting/dismissing** third-party library UI. Third-party libraries are not responsible to handle IQKeyboardManager.
 
 ## Requirements
+[![Platform iOS](https://img.shields.io/badge/Platform-iOS-blue.svg?style=fla)]()
 
 |                        | Language | Minimum iOS Target | Minimum Xcode Version |
 |------------------------|----------|--------------------|-----------------------|
-| IQKeyboardManager      | Obj-C    | iOS 13.0            | Xcode 13             |
+| IQKeyboardManager      | Obj-C    | iOS 11.0            | Xcode 13             |
 | IQKeyboardManagerSwift | Swift    | iOS 13.0            | Xcode 13             |
 | Demo Project           |          |                     | Xcode 15             |
 
@@ -145,6 +88,8 @@ Installation
 ==========================
 
 #### Installation with CocoaPods
+
+[![CocoaPods](https://img.shields.io/cocoapods/v/IQKeyboardManager.svg)](http://cocoadocs.org/docsets/IQKeyboardManager)
 
 ***IQKeyboardManager (Objective-C):*** IQKeyboardManager is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile: ([#9](https://github.com/hackiftekhar/IQKeyboardManager/issues/9))
@@ -208,6 +153,10 @@ Run `carthage` to build the frameworks and drag the appropriate framework (`IQKe
 
 
 #### Installation with Source Code
+
+[![Github tag](https://img.shields.io/github/tag/hackiftekhar/iqkeyboardmanager.svg)]()
+
+
 
 ***IQKeyboardManager (Objective-C):*** Just ***drag and drop*** `IQKeyboardManager` directory from demo project to your project. That's it.
 

@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         routerSetting()
         
         /// 键盘配置
-        IQKeyboardManager.shared.isEnabled = true
+        IQKeyboardManager.shared.enable = true
         
         /// SVProgressHUD配置
         SVProgressHUD.setting()
