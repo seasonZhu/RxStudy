@@ -60,7 +60,7 @@ let responseInterceptorPlugin = ResponseInterceptorPlugin()
 let responseCachePlugin = ResponseCachePlugin()
 
 /// 插件集合
-let plugins: [PluginType] = [activityPlugin, networkRequestLoggerPlugin, responseInterceptorPlugin, responseCachePlugin]
+let plugins: [PluginType] = [activityPlugin, responseInterceptorPlugin, responseCachePlugin]
 
 /// 集中管理provider
 /// StubBehavior的默认值就是never,所以不用特地去写

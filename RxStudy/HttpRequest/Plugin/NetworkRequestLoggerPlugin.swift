@@ -27,6 +27,7 @@ public enum NetworkRequestLoggerLevel {
     case fatal
 }
 
+/// 该插件弃用
 public class NetworkRequestLoggerPlugin: PluginType {
 
     public var level: NetworkRequestLoggerLevel
@@ -43,6 +44,7 @@ public class NetworkRequestLoggerPlugin: PluginType {
         queue.async {
             self.startTime = CFAbsoluteTimeGetCurrent()
             
+            /// Moya更新了,此时的request是RequestTypeWrapper类型,不再是DataRequest,导致转换失败,无法正常打印日志,直接使用AlamofireNetworkActivityLogger就可以了
             guard let dataRequest = request as? DataRequest,
                 let task = dataRequest.task,
                 let request = task.originalRequest,
