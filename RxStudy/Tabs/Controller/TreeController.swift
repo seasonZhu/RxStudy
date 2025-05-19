@@ -64,7 +64,8 @@ extension TreeController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(rx.tableViewSectionAndCellConfig)
+            // .drive(rx.tableViewSectionAndCellConfig)
+            .drive(rx.tableViewSectionAndFlexLayoutCell)
             .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView
@@ -80,7 +81,9 @@ extension TreeController {
             .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
     }
-    
+}
+
+extension TreeController {
     fileprivate func tableViewSectionAndCellConfig(tabs: [TabModel]) {
         guard tabs.isNotEmpty else {
             isEmptyRelay.accept(true)
@@ -134,6 +137,51 @@ extension TreeController {
     }
 }
 
+extension TreeController {
+    fileprivate func tableViewSectionAndFlexLayoutCell(tabs: [TabModel]) {
+        guard tabs.isNotEmpty else {
+            isEmptyRelay.accept(true)
+            return
+        }
+        
+        /// 这种带有section的tableView,不能通过一级菜单确定是否有数据,需要将二维数组进行降维打击
+        let children = tabs.compactMap { $0.children }
+        let deepChildren = children.flatMap { $0 }.compactMap { $0.children }.flatMap { $0 }
+        isEmptyRelay.accept(deepChildren.isEmpty)
+        
+        let sectionModels = tabs.map { tab in
+            return SectionModel(model: tab, items: [tab])
+        }
+
+        let items = Observable.just(sectionModels)
+        
+        tableView.dataSource = nil
+
+        let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<TabModel, TabModel>>(
+            configureCell: { (ds, tv, indexPath, _) in
+                
+                let cell = tv.dequeueReusableCell(withIdentifier: TreeCell.className) as! TreeCell
+                cell.model = ds.sectionModels[indexPath.section].model
+                cell.buttonTap.subscribe(onNext: { [weak self] model in
+                    guard let self else { return }
+                    let vc = SingleTabListController(type: self.type, tabModel: model)
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }).disposed(by: cell.disposeBag)
+                
+                return cell
+            
+            },
+            titleForHeaderInSection: { ds, index in
+                /// 这里是顶部悬停
+                return ds.sectionModels[index].model.name
+            })
+
+        /// 绑定单元格数据
+        items.bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: rx.disposeBag)
+    }
+}
+
 extension TreeController: TabBarViewControllerChildrenRefreshProtocol {
     func dataRefresh() {
         debugLog("\(className) dataRefresh")
@@ -145,6 +193,12 @@ extension Reactive where Base == TreeController {
     var tableViewSectionAndCellConfig: Binder<[TabModel]> {
         return Binder(base) { base, tabs in
             base.tableViewSectionAndCellConfig(tabs: tabs)
+        }
+    }
+    
+    var tableViewSectionAndFlexLayoutCell: Binder<[TabModel]> {
+        return Binder(base) { base, tabs in
+            base.tableViewSectionAndFlexLayoutCell(tabs: tabs)
         }
     }
 }

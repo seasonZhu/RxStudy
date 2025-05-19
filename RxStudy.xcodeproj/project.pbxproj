@@ -42,6 +42,7 @@
 		002CCE6528AA263D0086110E /* ButtonRxTapBugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */; };
 		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
 		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
+		003572D42DDB0F6300810FD6 /* TreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003572D32DDB0F6300810FD6 /* TreeCell.swift */; };
 		0038326826F5821E0071EE7E /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0038326726F5821E0071EE7E /* InfoCell.swift */; };
 		003B6303278FBB5600EA265E /* ImportHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003B6302278FBB5600EA265E /* ImportHeader.swift */; };
 		003CA16C29384D0A0094A1E0 /* grayMode.js in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16B29384D0A0094A1E0 /* grayMode.js */; };
@@ -282,6 +283,7 @@
 		002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRxTapBugController.swift; sourceTree = "<group>"; };
 		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
 		00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
+		003572D32DDB0F6300810FD6 /* TreeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeCell.swift; sourceTree = "<group>"; };
 		0038326726F5821E0071EE7E /* InfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
 		003B6302278FBB5600EA265E /* ImportHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportHeader.swift; sourceTree = "<group>"; };
 		003B6307278FBDA900EA265E /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -1217,6 +1219,7 @@
 		61C97933265E2A6000E7A1BC /* View */ = {
 			isa = PBXGroup;
 			children = (
+				003572D32DDB0F6300810FD6 /* TreeCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1466,6 +1469,7 @@
 				6171E19F26661AAA0065C34D /* AccountBaseController.swift in Sources */,
 				0048E6D0277AAB6000F6C739 /* MyGitHubController.swift in Sources */,
 				61336C78265644DC00FDEB2A /* HomeService.swift in Sources */,
+				003572D42DDB0F6300810FD6 /* TreeCell.swift in Sources */,
 				0075943C28E422E5005AC9E0 /* LoginPageViewModel.swift in Sources */,
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */,

@@ -91,3 +91,26 @@ class EmbeddingTableViewCell<EmbeddedView: UIView>: BaseTableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
 }
+
+/// 在控制器中要使用cell里面的某个Rxlay,需要Cell继承这个类,并这样使用cell.xxRelay.subscribe(onNext: { [weak self] _ in 业务代码 }).disposed(by: cell.disposeBag)
+/// 详细例子看TreeCell的使用
+class BaseDisposeBagCell: UITableViewCell {
+    
+    private(set) var disposeBag = DisposeBag()
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        selectionStyle = .none
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+}

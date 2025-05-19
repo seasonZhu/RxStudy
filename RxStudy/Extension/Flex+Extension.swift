@@ -36,4 +36,42 @@ extension Flex {
             return isIncludedInLayout && (self.view?.isHidden ?? false)
         }
     }
+    
+    func removeAllElement() {
+        view?.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
+    var yoga: YGLayout? {
+        view?.yoga
+    }
+    
+    var display: Flex.Display {
+        guard let display = yoga?.display else {
+            return .flex
+        }
+        
+        switch display {
+            
+        case .flex:
+            return .flex
+        case .none:
+            return .none
+        case .contents:
+            return .contents
+        @unknown default:
+            fatalError()
+        }
+    }
+    
+    var displayIsNone: Bool {
+        display == .none
+    }
+    
+    var displayIsFlex: Bool {
+        display == .flex
+    }
+    
+    var displayIsContents: Bool {
+        display == .contents
+    }
 }
