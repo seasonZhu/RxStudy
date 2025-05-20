@@ -80,6 +80,10 @@ extension TreeController {
         errorRetry
             .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
+        
+        NotificationCenter.default.rx.notification(.Layout.typeChange).subscribe(onNext: { [weak self] _ in
+            self?.tableView.reloadData()
+        }).disposed(by: rx.disposeBag)
     }
 }
 
@@ -150,7 +154,13 @@ extension TreeController {
         isEmptyRelay.accept(deepChildren.isEmpty)
         
         let sectionModels = tabs.map { tab in
-            return SectionModel(model: tab, items: [tab])
+            switch AccountManager.shared.layoutType {
+            case .list:
+                return SectionModel(model: tab, items: tab.children ?? [])
+            case .wrap:
+                return SectionModel(model: tab, items: [tab])
+            }
+            
         }
 
         let items = Observable.just(sectionModels)
@@ -160,15 +170,23 @@ extension TreeController {
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<TabModel, TabModel>>(
             configureCell: { (ds, tv, indexPath, _) in
                 
-                let cell = tv.dequeueReusableCell(withIdentifier: TreeCell.className) as! TreeCell
-                cell.model = ds.sectionModels[indexPath.section].model
-                cell.buttonTap.subscribe(onNext: { [weak self] model in
-                    guard let self else { return }
-                    let vc = SingleTabListController(type: self.type, tabModel: model)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }).disposed(by: cell.disposeBag)
-                
-                return cell
+                switch AccountManager.shared.layoutType {
+                case .list:
+                    let cell = tv.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                    cell.textLabel?.text = ds.sectionModels[indexPath.section].model.children?[indexPath.row].name
+                    cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
+                    cell.accessoryType = .disclosureIndicator
+                    return cell
+                case .wrap:
+                    let cell = tv.dequeueReusableCell(withIdentifier: TreeCell.className) as! TreeCell
+                    cell.model = ds.sectionModels[indexPath.section].model
+                    cell.buttonTap.subscribe(onNext: { [weak self] model in
+                        guard let self else { return }
+                        let vc = SingleTabListController(type: self.type, tabModel: model)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }).disposed(by: cell.disposeBag)
+                    return cell
+                }
             
             },
             titleForHeaderInSection: { ds, index in

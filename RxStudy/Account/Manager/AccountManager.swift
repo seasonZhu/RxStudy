@@ -35,7 +35,11 @@ final class AccountManager {
     @UserDefault(key: kPassword, defaultValue: nil)
     var password: String?
     
+    /// 悼念模式
     var isGrayModeRelay = BehaviorRelay(value: false)
+    
+    /// 体系Cell的布局模式
+    var layoutType: LayoutType = .wrap
     
     /// 单例
     static let shared = AccountManager()

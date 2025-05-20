@@ -95,6 +95,9 @@
 		00890D0328F56E9E00B3E72E /* AppLifeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890CFE28F56E9E00B3E72E /* AppLifeCycleModifier.swift */; };
 		00890D0528F56EFF00B3E72E /* ClassBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00890D0428F56EFF00B3E72E /* ClassBanner.swift */; };
 		008B1FA628E6C85500A8B009 /* ALayoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B1FA528E6C85500A8B009 /* ALayoutPage.swift */; };
+		00924F3C2DDC0E0200C44073 /* LayoutType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00924F3B2DDC0E0200C44073 /* LayoutType.swift */; };
+		00924F3E2DDC0F6900C44073 /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00924F3D2DDC0F6900C44073 /* Notification.Name.swift */; };
+		00924F402DDC163000C44073 /* TreeCellStyleChangeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00924F3F2DDC163000C44073 /* TreeCellStyleChangeController.swift */; };
 		0096956C2946C99F003B0236 /* ListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0096956B2946C99F003B0236 /* ListViewModel.swift */; };
 		009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 009723D126EC4B8D00A77EAC /* EditTableViewController.swift */; };
 		00982E57293DCAC100B6C960 /* MockService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00982E56293DCAC100B6C960 /* MockService.swift */; };
@@ -341,6 +344,9 @@
 		00890CFE28F56E9E00B3E72E /* AppLifeCycleModifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppLifeCycleModifier.swift; sourceTree = "<group>"; };
 		00890D0428F56EFF00B3E72E /* ClassBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassBanner.swift; sourceTree = "<group>"; };
 		008B1FA528E6C85500A8B009 /* ALayoutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALayoutPage.swift; sourceTree = "<group>"; };
+		00924F3B2DDC0E0200C44073 /* LayoutType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutType.swift; sourceTree = "<group>"; };
+		00924F3D2DDC0F6900C44073 /* Notification.Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
+		00924F3F2DDC163000C44073 /* TreeCellStyleChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeCellStyleChangeController.swift; sourceTree = "<group>"; };
 		0096956B2946C99F003B0236 /* ListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
 		009723D126EC4B8D00A77EAC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
 		00982E56293DCAC100B6C960 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
@@ -918,6 +924,7 @@
 				0002205F2D0FDC53000182B5 /* Array+URLQueryItem.swift */,
 				001C000B2D7EDCDB00718399 /* UINavigationController+Extension.swift */,
 				00FC0F012DD1EB2000AC798F /* Flex+Extension.swift */,
+				00924F3D2DDC0F6900C44073 /* Notification.Name.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1174,6 +1181,7 @@
 				00CCD16C286555BC00925C1E /* ToolController.swift */,
 				00FE0DDB28694BB600B9D48F /* MyMessageController.swift */,
 				006535E22D55DA77006EFF50 /* AppIconSelectController.swift */,
+				00924F3F2DDC163000C44073 /* TreeCellStyleChangeController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1228,6 +1236,7 @@
 			isa = PBXGroup;
 			children = (
 				61C97935265E2AB400E7A1BC /* TagType.swift */,
+				00924F3B2DDC0E0200C44073 /* LayoutType.swift */,
 			);
 			path = Enum;
 			sourceTree = "<group>";
@@ -1576,6 +1585,7 @@
 				61336C7B2656494900FDEB2A /* Int+Extension.swift in Sources */,
 				0026AB88290A6AF20023BC6B /* OtherApp.swift in Sources */,
 				61F28247265F84F8009E16C9 /* WebLoadInfo.swift in Sources */,
+				00924F3C2DDC0E0200C44073 /* LayoutType.swift in Sources */,
 				00CCD177286590C900925C1E /* CourseService.swift in Sources */,
 				6114ABF7267AECE30082BA67 /* MyCoinController.swift in Sources */,
 				00D4C1A92D421EB500DDD5B3 /* CustomItemView.swift in Sources */,
@@ -1609,6 +1619,7 @@
 				00D545732BB10CB9007B0325 /* NetworkActivityLogger.swift in Sources */,
 				00D4C1A62D421EB500DDD5B3 /* CustomTabBar.swift in Sources */,
 				003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */,
+				00924F3E2DDC0F6900C44073 /* Notification.Name.swift in Sources */,
 				005BD7F628489494000B6885 /* ScriptMessageHandlerType.swift in Sources */,
 				000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */,
 				0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */,
@@ -1658,6 +1669,7 @@
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
 				0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */,
 				61716A9F267B3A4A00F9DC25 /* SwiftCoinRankListController.swift in Sources */,
+				00924F402DDC163000C44073 /* TreeCellStyleChangeController.swift in Sources */,
 				0075943E28E42A4E005AC9E0 /* LoginPage.swift in Sources */,
 				6171E1A3266623D10065C34D /* AccountManager.swift in Sources */,
 			);

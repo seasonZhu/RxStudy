@@ -24,7 +24,7 @@ class MyViewModel: BaseViewModel {
         /// 单例的isLogin通过map后,与VM的currentDataSource进行绑定
         AccountManager.shared.isLoginRelay
             .map { isLogin in
-                isLogin ? MyViewModel.loginDataSource : MyViewModel.logoutDataSource
+                isLogin ? My.loginDataSource : My.logoutDataSource
             }
             .bind(to: currentDataSource)
             .disposed(by: disposeBag)
@@ -76,12 +76,6 @@ extension MyViewModel {
         accountProvider.rx.request(AccountService.logout)
             .map(BaseModel<String>.self)
     }
-}
-
-extension MyViewModel {
-    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .login]
-    
-    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .myCoin, .myCollect, .myMessage, .logout]
 }
 
 import RxBlocking

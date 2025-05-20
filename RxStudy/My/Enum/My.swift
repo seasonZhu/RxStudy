@@ -20,6 +20,7 @@ enum My: CaseIterable {
     case myMessage
     case aSwiftUI
     case appIcon
+    case treeCellStyleChange
     case login
     case logout
 }
@@ -50,6 +51,8 @@ extension My {
             string = "一个SwiftUI的简单例子"
         case .appIcon:
             string = "更换App图标"
+        case .treeCellStyleChange:
+            string = "更换体系Cell布局"
         case .login:
             string = "登录"
         case .logout:
@@ -87,6 +90,8 @@ extension My {
             string = "aSwiftUI"
         case .appIcon:
             string = "AppIconSelectController"
+        case .treeCellStyleChange:
+            string = "TreeCellStyleChangeController"
         case .login:
             string = "LoginController"
         case .logout:
@@ -96,7 +101,7 @@ extension My {
     }
 }
 
-// MARK: - 这个分类的属性从这里开始就不纯粹了,和UI有关系了,这么设计不知道是
+// MARK: - 这个分类的属性从这里开始就不纯粹了,和UI有关系了,这么设计不知道是好还是坏
 extension My {
     var accessoryType: UITableViewCell.AccessoryType {
         switch self {
@@ -106,4 +111,10 @@ extension My {
             return .disclosureIndicator
         }
     }
+}
+
+extension My {
+    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .login]
+    
+    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .myCoin, .myCollect, .myMessage, .logout]
 }
