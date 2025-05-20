@@ -45,6 +45,12 @@ struct _R {
 
   struct project {
     let developmentRegion = "en"
+    struct knownAssetTags: Sequence {
+      let apiKeys = "APIKeys"
+      func makeIterator() -> IndexingIterator<[String]> {
+        [apiKeys].makeIterator()
+      }
+    }
   }
 
   /// This `_R.string` struct is generated, and contains static references to 1 localization tables.
@@ -144,7 +150,7 @@ struct _R {
     var wan_android_placeholder: RswiftResources.ImageResource { .init(name: "wan_android_placeholder", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 33 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 34 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
@@ -153,6 +159,9 @@ struct _R {
 
     /// Resource file `AMapLocation.json`.
     var aMapLocationJson: RswiftResources.FileResource { .init(name: "AMapLocation", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `APIKeys.json`.
+    var apiKeysJson: RswiftResources.FileResource { .init(name: "APIKeys", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `ArticleNormalList.json`.
     var articleNormalListJson: RswiftResources.FileResource { .init(name: "ArticleNormalList", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }

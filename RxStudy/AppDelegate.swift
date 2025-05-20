@@ -73,6 +73,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         screenCapturedListen()
         
+        /// 通过这种方式对第三方服务的key进行复制,保证安全
+        KeyConstants.loadAPIKeys { result in
+            switch result {
+            case .success(let success):
+                print("myServiceXKey:\(KeyConstants.APIKeys.myServiceXKey)")
+                print("myServiceYKey:\(KeyConstants.APIKeys.myServiceYKey)")
+            case .failure(let failure):
+                break
+            }
+        }
+        
         LogUtils.debug("哈哈", "呵呵")
         
         return true
