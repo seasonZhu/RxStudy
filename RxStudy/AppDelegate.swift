@@ -84,6 +84,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         
+        print("testKey:\(testKey)")
+        
         LogUtils.debug("哈哈", "呵呵")
         
         return true

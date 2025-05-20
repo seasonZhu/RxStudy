@@ -147,3 +147,10 @@ post_install do |installer|
         end
     end
 end
+
+plugin 'cocoapods-keys', {
+  :project => "RxStudy",
+  :keys => [
+    "TEST_KEY"
+  ]
+}

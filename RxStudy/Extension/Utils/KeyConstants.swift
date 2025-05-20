@@ -46,3 +46,9 @@ enum KeyConstants {
         static var myServiceYKey = storage["MyServiceY"] ?? ""
   }
 }
+
+/// 这里使用的方案五
+
+import Keys
+
+let testKey = RxStudyKeys().tEST_KEY

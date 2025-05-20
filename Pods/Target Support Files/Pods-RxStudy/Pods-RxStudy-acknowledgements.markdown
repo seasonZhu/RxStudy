@@ -1,6 +1,10 @@
 # Acknowledgements
 This application makes use of the following third party libraries:
 
+## Keys
+
+MIT LICENSE Found in the repo
+
 ## AcknowList
 
 Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)

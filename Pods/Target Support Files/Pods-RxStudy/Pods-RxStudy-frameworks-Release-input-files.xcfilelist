@@ -1,4 +1,5 @@
 ${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Keys-framework/Keys.framework
 ${BUILT_PRODUCTS_DIR}/AcknowList/AcknowList.framework
 ${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
 ${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework

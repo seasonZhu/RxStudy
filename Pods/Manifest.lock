@@ -17,6 +17,7 @@ PODS:
   - JWNetAutoCache (0.0.2)
   - JXSegmentedView (1.4.1)
   - KeychainAccess (4.2.2)
+  - Keys (1.0.1)
   - Kingfisher (8.1.1)
   - KSCrash (1.17.7):
     - KSCrash/Installations (= 1.17.7)
@@ -155,6 +156,7 @@ DEPENDENCIES:
   - JWNetAutoCache
   - JXSegmentedView
   - KeychainAccess
+  - Keys (from `Pods/CocoaPodsKeys`)
   - Kingfisher
   - KSCrash
   - LifetimeTracker
@@ -229,6 +231,10 @@ SPEC REPOS:
     - TheRouter
     - Yoga
 
+EXTERNAL SOURCES:
+  Keys:
+    :path: Pods/CocoaPodsKeys
+
 SPEC CHECKSUMS:
   AcknowList: bbe94f19c25efebcb1b7e6402f466ea8a4b04e62
   Alamofire: 7193b3b92c74a07f85569e1a6c4f4237291e7496
@@ -245,6 +251,7 @@ SPEC CHECKSUMS:
   JWNetAutoCache: 434f10855da06d29a381359552ae9d27ef35cad7
   JXSegmentedView: cd73555ce2134d1656db2cb383ba9c2f36fb5078
   KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   Kingfisher: fc2788e497306f97fdef6e4df49f02106cb57788
   KSCrash: ea6fc545b7dbb916a141aaadd4343fb891141290
   LifetimeTracker: e67647bf9130e4173e488689896f057a63de16ec
@@ -274,6 +281,6 @@ SPEC CHECKSUMS:
   TheRouter: 1c7801e4f3df9a2598088d7c3cf4d2f6d3779c51
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: 00292bc27154801d222eef214c0e766c2f877ea0
+PODFILE CHECKSUM: 024ece016e91552ff3d8affb6bdf9809a07c550c
 
 COCOAPODS: 1.16.2
