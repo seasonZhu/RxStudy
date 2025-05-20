@@ -82,7 +82,7 @@ extension TreeController {
             .disposed(by: rx.disposeBag)
         
         NotificationCenter.default.rx.notification(.Layout.typeChange).subscribe(onNext: { [weak self] _ in
-            self?.tableView.mj_header?.beginRefreshing()
+            self?.tableView.reloadData()
         }).disposed(by: rx.disposeBag)
     }
 }
@@ -147,6 +147,9 @@ extension TreeController {
             isEmptyRelay.accept(true)
             return
         }
+        
+        /// 过滤掉子节点为空的数据
+        let tabs = tabs.filter { $0.children?.isNotEmpty == true }
         
         /// 这种带有section的tableView,不能通过一级菜单确定是否有数据,需要将二维数组进行降维打击
         let children = tabs.compactMap { $0.children }

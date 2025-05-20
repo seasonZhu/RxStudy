@@ -96,7 +96,8 @@ extension TreeCell {
             }
         }
         
-        contentView.flex.markDirty()
+        /// 这里可能会导致奔溃
+        // contentView.flex.markDirty()
         
         /// 因为是在网络请求之后进行布局,所以需要进行布局更新,可以认为是Flutter里面的setState
         layout()
