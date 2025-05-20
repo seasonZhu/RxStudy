@@ -82,7 +82,7 @@ extension TreeController {
             .disposed(by: rx.disposeBag)
         
         NotificationCenter.default.rx.notification(.Layout.typeChange).subscribe(onNext: { [weak self] _ in
-            self?.tableView.reloadData()
+            self?.tableView.mj_header?.beginRefreshing()
         }).disposed(by: rx.disposeBag)
     }
 }
