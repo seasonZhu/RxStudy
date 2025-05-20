@@ -153,6 +153,37 @@ struct UserDefault<T> {
     }
 }
 
+@propertyWrapper
+struct CodableUserDefault<T: Codable> {
+    let key: String
+    
+    let defaultValue: T
+  
+    var wrappedValue: T {
+        get {
+            let value: T
+            if let data = UserDefaults.standard.data(forKey: key) {
+                value = (try? JSONDecoder().decode(T.self, from: data)) ?? defaultValue
+            } else {
+                value = defaultValue
+            }
+            return value
+            
+        } set {
+            let data = try? JSONEncoder().encode(newValue)
+            UserDefaults.standard.set(data, forKey: key)
+        }
+    }
+    
+    /// 这里如果不定义projectedValue,那么外部要获取UserDefault<T> 类型,只能使用_some,定义了就可以使用$some
+    var projectedValue: Self { self }
+    
+    /// 移除
+    func remove() {
+        UserDefaults.standard.removeObject(forKey: key)
+    }
+}
+
 protocol Copyable: AnyObject {
     func copy() -> Self
 }

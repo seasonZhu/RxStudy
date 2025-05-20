@@ -23,3 +23,5 @@ extension LayoutType {
         }
     }
 }
+
+extension LayoutType: Codable { }

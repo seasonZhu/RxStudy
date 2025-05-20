@@ -39,7 +39,8 @@ final class AccountManager {
     var isGrayModeRelay = BehaviorRelay(value: false)
     
     /// 体系Cell的布局模式
-    var layoutType: LayoutType = .wrap
+    @CodableUserDefault(key: "kLayoutType", defaultValue: .wrap)
+    var layoutType: LayoutType
     
     /// 单例
     static let shared = AccountManager()
