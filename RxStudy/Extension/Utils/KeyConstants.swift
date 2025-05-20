@@ -26,21 +26,23 @@ enum KeyConstants {
                 let url = Bundle.main.url(forResource: "APIKeys", withExtension: "json")!
                 
                 if let data = try? Data(contentsOf: url),
-                    let dict =  try? JSONDecoder().decode([String: String].self, from: data) {
+                   let dict =  try? JSONDecoder().decode([String: String].self, from: data) {
+                    
                     APIKeys.storage = dict
                     callback(.success(void))
                 }
-
+                
                 request.endAccessingResources()
             }
         }
-  }
+    }
 
     enum APIKeys {
+        
         static fileprivate(set) var storage = [String: String]()
     
-        static var myServiceXKey: String { storage["MyServiceX"] ?? "" }
+        static let myServiceXKey = storage["MyServiceX"] ?? ""
     
-        static var myServiceYKey: String { storage["MyServiceY"] ?? "" }
+        static var myServiceYKey = storage["MyServiceY"] ?? ""
   }
 }
