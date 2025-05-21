@@ -86,6 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("testKey:\(testKey)")
         
+        if let amapApiKey = Bundle.main.object(forInfoDictionaryKey: "AMAP_API_KEY") as? String {
+            print("方法一:\(amapApiKey)")
+        }
+        
+        if let umApiKey = Bundle.main.object(forInfoDictionaryKey: "UM_API_KEY") as? String {
+            print("方法一:\(umApiKey)")
+        }
+        
         LogUtils.debug("哈哈", "呵呵")
         
         return true

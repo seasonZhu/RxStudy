@@ -55,5 +55,9 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+    <key>AMAP_API_KEY</key>
+    <string>$(AMAP_API_KEY)</string>
+    <key>UM_API_KEY</key>
+    <string>$(UM_API_KEY)</string>
 </dict>
 </plist>

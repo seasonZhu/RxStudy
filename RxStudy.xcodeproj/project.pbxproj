@@ -1841,6 +1841,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */;
 			buildSettings = {
+				AMAP_API_KEY = RxStudy_amap_api_key;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1864,6 +1865,7 @@
 				SWIFT_OPTIMIZE_OBJECT_LIFETIME = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				UM_API_KEY = RxStudy_um_api_key;
 			};
 			name = Debug;
 		};
@@ -1871,6 +1873,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */;
 			buildSettings = {
+				AMAP_API_KEY = RxStudy_amap_api_key;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
@@ -1893,6 +1896,7 @@
 				SWIFT_OPTIMIZE_OBJECT_LIFETIME = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				UM_API_KEY = RxStudy_um_api_key;
 			};
 			name = Release;
 		};
