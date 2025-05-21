@@ -52,7 +52,9 @@ extension MyCoinController {
             .drive(tableView.rx.items) { (tableView, _, myHistoryCoin) in
 
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
-                cell.textLabel?.text = myHistoryCoin.desc
+                cell.textLabel?.text = myHistoryCoin.desc?.replacingOccurrences(of: " , ", with: "\n\n")
+                cell.textLabel?.numberOfLines = 0
+                /// detailTextLabel不会显示出来,因为UITableViewCell的样式不对
                 cell.detailTextLabel?.text = myHistoryCoin.reason
                 return cell
             }
