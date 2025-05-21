@@ -44,13 +44,15 @@ class WebViewController: BaseViewController {
             config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: type.rawValue)
         }
         
+        config.userContentController.addUserScript(adaptsDeviceWidthJS())
+        
         /// 获取js,并添加到webView中,在这一步,其实我们只是将js注入了某个页面,实际上还并没有执行js
         if let js = getJS() {
             config.userContentController.addUserScript(js)
         }
         
-        if let grayModeJS = getGrayMode(), AccountManager.shared.isGrayModeRelay.value {
-            config.userContentController.addUserScript(grayModeJS)
+        if AccountManager.shared.isGrayModeRelay.value {
+            config.userContentController.addUserScript(getGrayModeJS())
         }
         
         let preferences = WKPreferences()
@@ -557,20 +559,23 @@ extension WebViewController {
         return userScript
     }
     
-    private func getGrayMode() -> WKUserScript? {
+    private func adaptsDeviceWidthJS() -> WKUserScript {
+        /// 适配设备宽度的js
+        let js = """
+        var script = document.createElement('meta');
+        script.name = 'viewport';
+        script.content="width=device-width, user-scalable=no";
+        document.getElementsByTagName('head')[0].appendChild(script);
+        """
+        let scr = WKUserScript(source: js, injectionTime: .atDocumentEnd, forMainFrameOnly: true)
+        
+        return scr
+    }
+    
+    /// 悼念模式js
+    private func getGrayModeJS() -> WKUserScript {
         let jsString = "var filter = '-webkit-filter:grayscale(100%);-moz-filter:grayscale(100%); -ms-filter:grayscale(100%); -o-filter:grayscale(100%) filter:grayscale(100%);';document.getElementsByTagName('html')[0].style.filter = 'grayscale(100%)';"
         
-        /*
-        guard let url = R.file.grayModeJs() else {
-            return nil
-        }
-        
-        guard let string = try? String(contentsOf: url, encoding: .utf8) else {
-            return nil
-        }
-        
-        debugLog(string)
-        */
         let userScript = WKUserScript(source: jsString, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
         
         return userScript
