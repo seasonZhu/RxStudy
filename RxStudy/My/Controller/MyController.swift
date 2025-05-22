@@ -19,6 +19,8 @@ import MBProgressHUD
 import SVProgressHUD
 import MJRefresh
 
+import Flutter
+
 class MyController: BaseTableViewController {
     
     var cancelable: AnyCancellable?
@@ -121,6 +123,7 @@ extension MyController {
                     self?.logoutAction(viewModel: viewModel)
                 case .myMessage:
                     self?.toMyMessageController()
+                    //self?.toFlutterViewController()
                 case .myGitHub:
                     /// 尝试使用了SFSafariViewController而非WebView进行加载,对于一个纯粹的展示性Web,SFSafariViewController体验效果更好
                     let sfsVC = SFSafariViewController(url: URL(string: "https://github.com/seasonZhu")!)
@@ -190,6 +193,25 @@ extension MyController {
     private func toMyMessageController() {
         let status = AccountManager.shared.myUnreadMessageCountRelay.value.greaterThanZero ? MessageReadyStatus.unread : MessageReadyStatus.read
         navigationController?.pushViewController(MyMessageController(status: status), animated: true)
+    }
+}
+
+extension MyController {
+    private func toFlutterViewController() {
+        /**
+         The supplied FlutterEngine <FlutterEngine: 0x10a93e2b0> is already used with FlutterViewController instance <FlutterViewController: 0x11300da00>. One instance of the FlutterEngine can only be attached to one FlutterViewController at a time. Set FlutterEngine.viewController to nil before attaching it to another FlutterViewController.
+         */
+        let engine = UIApplication.appDelegate!.getFlutterEngine
+        engine.viewController = nil
+        let flutterViewController = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
+        
+        // self.eventChannel = NativeEventChannel(name: "userLocation", binaryMessenger: flutterViewController.binaryMessenger, sendMessage: "这是从Native传递过来的消息")
+        
+        flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController] in
+            print("FlutterViewController did render")
+        }
+        navigationController?.pushViewController(flutterViewController, animated: true)
+            
     }
 }
 

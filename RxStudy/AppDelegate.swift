@@ -22,9 +22,17 @@ import FlutterPluginRegistrant
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    lazy var lifeCycleDelegate = FlutterPluginAppLifeCycleDelegate()
+
+    private var flutterEngine: FlutterEngine?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        /// 初始化Flutter模块
+        initFlutterEngine()
+        GeneratedPluginRegistrant.register(with: self.flutterEngine!)
         
         /// 崩溃配置
         installCrashHandler()
@@ -305,4 +313,36 @@ extension AppDelegate {
         TheRouterManager.registerServices(excludeCocoapods: true)
         
     }
+}
+
+// MARK: - 原生页面跳转跳转到指定Flutter页面
+extension AppDelegate: FlutterAppLifeCycleProvider {
+    func add(_ delegate: FlutterApplicationLifeCycleDelegate) {
+        lifeCycleDelegate.add(delegate)
+    }
+}
+
+extension AppDelegate {
+    func initFlutterEngine() {
+        flutterEngine = FlutterEngine(name: "com.season.www.Template")
+        flutterEngine?.run()
+    
+    }
+    
+    var getFlutterEngine: FlutterEngine {
+        if let flutterEngine {
+            return flutterEngine
+        } else {
+            initFlutterEngine()
+            return self.flutterEngine!
+        }
+    }
+    
+    func setFlutterEngineToNil() {
+        self.flutterEngine = nil
+    }
+}
+
+extension UIApplication {
+    static var appDelegate: AppDelegate? { UIApplication.shared.delegate as? AppDelegate }
 }
