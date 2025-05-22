@@ -15,6 +15,9 @@ import KSCrash
 import LifetimeTracker
 import CocoaDebug
 
+import Flutter
+import FlutterPluginRegistrant
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

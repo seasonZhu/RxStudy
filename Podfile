@@ -3,6 +3,9 @@ platform :ios, '15.6'
 #source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
+flutter_application_path = 'flutter_module'
+load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+
 target 'RxStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
@@ -109,6 +112,9 @@ target 'RxStudy' do
   
   # 被SVProgressHUD替代了,目前没有使用
   pod 'MBProgressHUD'
+  
+  # 添加flutter模块
+  install_all_flutter_pods(flutter_application_path)
 
 end
 
@@ -146,6 +152,8 @@ post_install do |installer|
             end
         end
     end
+    
+    flutter_post_install(installer) if defined?(flutter_post_install)
 end
 
 plugin 'cocoapods-keys', {

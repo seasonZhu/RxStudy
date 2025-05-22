@@ -11,6 +11,9 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - FlexLayout (2.2.0):
     - Yoga (= 3.2.1)
+  - Flutter (1.0.0)
+  - FlutterPluginRegistrant (0.0.1):
+    - Flutter
   - FSPagerView (0.8.3)
   - FunnyButton (0.1.5)
   - IQKeyboardManagerSwift (7.1.1)
@@ -150,6 +153,8 @@ DEPENDENCIES:
   - CombineExt
   - DZNEmptyDataSet
   - FlexLayout
+  - Flutter (from `flutter_module/.ios/Flutter`)
+  - FlutterPluginRegistrant (from `flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
   - FSPagerView
   - FunnyButton
   - IQKeyboardManagerSwift (= 7.1.1)
@@ -232,6 +237,10 @@ SPEC REPOS:
     - Yoga
 
 EXTERNAL SOURCES:
+  Flutter:
+    :path: flutter_module/.ios/Flutter
+  FlutterPluginRegistrant:
+    :path: flutter_module/.ios/Flutter/FlutterPluginRegistrant
   Keys:
     :path: Pods/CocoaPodsKeys
 
@@ -245,6 +254,8 @@ SPEC CHECKSUMS:
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FlexLayout: a8947ca2446760b5203ba5a3d862023c92a82fce
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  FlutterPluginRegistrant: 31c463909264601dccf8080d30b71b19413ad188
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   FunnyButton: e8202ece176aaa5f7ead1e5c8eb0f29d28fc5ad4
   IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
@@ -281,6 +292,6 @@ SPEC CHECKSUMS:
   TheRouter: 1c7801e4f3df9a2598088d7c3cf4d2f6d3779c51
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: 024ece016e91552ff3d8affb6bdf9809a07c550c
+PODFILE CHECKSUM: 8db2b61d0e0e5209eb598815680bcc35a01107e7
 
 COCOAPODS: 1.16.2
