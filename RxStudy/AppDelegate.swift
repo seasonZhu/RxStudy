@@ -16,7 +16,6 @@ import LifetimeTracker
 import CocoaDebug
 
 import Flutter
-import FlutterPluginRegistrant
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -25,14 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     lazy var lifeCycleDelegate = FlutterPluginAppLifeCycleDelegate()
 
-    private var flutterEngine: FlutterEngine?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         /// 初始化Flutter模块
-        initFlutterEngine()
-        GeneratedPluginRegistrant.register(with: self.flutterEngine!)
+        FlutterManager.shared()
         
         /// 崩溃配置
         installCrashHandler()
@@ -320,29 +316,4 @@ extension AppDelegate: FlutterAppLifeCycleProvider {
     func add(_ delegate: FlutterApplicationLifeCycleDelegate) {
         lifeCycleDelegate.add(delegate)
     }
-}
-
-extension AppDelegate {
-    func initFlutterEngine() {
-        flutterEngine = FlutterEngine(name: "com.season.www.Template")
-        flutterEngine?.run()
-    
-    }
-    
-    var getFlutterEngine: FlutterEngine {
-        if let flutterEngine {
-            return flutterEngine
-        } else {
-            initFlutterEngine()
-            return self.flutterEngine!
-        }
-    }
-    
-    func setFlutterEngineToNil() {
-        self.flutterEngine = nil
-    }
-}
-
-extension UIApplication {
-    static var appDelegate: AppDelegate? { UIApplication.shared.delegate as? AppDelegate }
 }

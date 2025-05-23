@@ -204,7 +204,9 @@ extension MyController {
         /**
          The supplied FlutterEngine <FlutterEngine: 0x10a93e2b0> is already used with FlutterViewController instance <FlutterViewController: 0x11300da00>. One instance of the FlutterEngine can only be attached to one FlutterViewController at a time. Set FlutterEngine.viewController to nil before attaching it to another FlutterViewController.
          */
-        let engine = UIApplication.appDelegate!.getFlutterEngine
+        guard let engine = FlutterManager.shared().flutterEngine else {
+            return
+        }
         engine.viewController = nil
         let flutterViewController = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
         

@@ -81,6 +81,11 @@
 		007AE7F928F3FF1A00AD6C72 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AE7F828F3FF1A00AD6C72 /* State.swift */; };
 		007AE7FB28F4FBF800AD6C72 /* BasePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007AE7FA28F4FBF800AD6C72 /* BasePageViewModel.swift */; };
 		007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */; };
+		007F88152DE047870075844B /* NativeEventChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F88142DE047870075844B /* NativeEventChannel.swift */; };
+		007F88172DE047E00075844B /* InvokeMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F88162DE047E00075844B /* InvokeMethodType.swift */; };
+		007F88192DE04EC20075844B /* FlutterMethodChannelPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F88182DE04EC20075844B /* FlutterMethodChannelPlugin.swift */; };
+		007F881B2DE04FDB0075844B /* FlutterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F881A2DE04FDB0075844B /* FlutterManager.swift */; };
+		007F881D2DE0526F0075844B /* FlutterMethodCallType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007F881C2DE0526F0075844B /* FlutterMethodCallType.swift */; };
 		0081ECB42CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.m in Sources */ = {isa = PBXBuildFile; fileRef = 0081ECB32CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.m */; };
 		0082108D26E1FF3300525CE4 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* LogUtils.swift */; };
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
@@ -330,6 +335,11 @@
 		007AE7F828F3FF1A00AD6C72 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		007AE7FA28F4FBF800AD6C72 /* BasePageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasePageViewModel.swift; sourceTree = "<group>"; };
 		007ED6F426A50EB500D2EE94 /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
+		007F88142DE047870075844B /* NativeEventChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEventChannel.swift; sourceTree = "<group>"; };
+		007F88162DE047E00075844B /* InvokeMethodType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InvokeMethodType.swift; sourceTree = "<group>"; };
+		007F88182DE04EC20075844B /* FlutterMethodChannelPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterMethodChannelPlugin.swift; sourceTree = "<group>"; };
+		007F881A2DE04FDB0075844B /* FlutterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterManager.swift; sourceTree = "<group>"; };
+		007F881C2DE0526F0075844B /* FlutterMethodCallType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterMethodCallType.swift; sourceTree = "<group>"; };
 		0081ECB22CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebVIew.h"; sourceTree = "<group>"; };
 		0081ECB32CE2FD5D00AB3E8C /* NSURLProtocol+WKWebVIew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebVIew.m"; sourceTree = "<group>"; };
 		0082108C26E1FF3300525CE4 /* LogUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
@@ -708,6 +718,18 @@
 			path = State;
 			sourceTree = "<group>";
 		};
+		007F88132DE047470075844B /* FlutterManager */ = {
+			isa = PBXGroup;
+			children = (
+				007F88142DE047870075844B /* NativeEventChannel.swift */,
+				007F88162DE047E00075844B /* InvokeMethodType.swift */,
+				007F881C2DE0526F0075844B /* FlutterMethodCallType.swift */,
+				007F88182DE04EC20075844B /* FlutterMethodChannelPlugin.swift */,
+				007F881A2DE04FDB0075844B /* FlutterManager.swift */,
+			);
+			path = FlutterManager;
+			sourceTree = "<group>";
+		};
 		0081ECB12CE2FD0E00AB3E8C /* NSURLProtocol+WKWebVIew */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,6 +846,7 @@
 				61F28248265F895E009E16C9 /* WebView */,
 				61336C792656493700FDEB2A /* Extension */,
 				61336C6D265640D100FDEB2A /* HttpRequest */,
+				007F88132DE047470075844B /* FlutterManager */,
 				61BB7C47267A057700990636 /* JSONS */,
 				0048E6D1277AAD9700F6C739 /* JavaScript */,
 				0008D71F2AF383AB006782E6 /* Log */,
@@ -1521,6 +1544,7 @@
 				001B4E3328E19BE1003ADF95 /* Header.swift in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				0087597A2B4F94AA002A4CF8 /* InnerEventResponsible.swift in Sources */,
+				007F881B2DE04FDB0075844B /* FlutterManager.swift in Sources */,
 				00890D0328F56E9E00B3E72E /* AppLifeCycleModifier.swift in Sources */,
 				00D4C1A72D421EB500DDD5B3 /* CustomExtensions.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
@@ -1554,11 +1578,13 @@
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				001B4E1A28E19229003ADF95 /* ClassCoinRank.swift in Sources */,
 				0038326826F5821E0071EE7E /* InfoCell.swift in Sources */,
+				007F88192DE04EC20075844B /* FlutterMethodChannelPlugin.swift in Sources */,
 				00CCD17B2865BDB300925C1E /* Message.json in Sources */,
 				001B4E1C28E1926E003ADF95 /* CoinRankListPageViewModel.swift in Sources */,
 				00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */,
 				61F2824C265F8996009E16C9 /* WeakScriptMessageDelegate.swift in Sources */,
 				61B539002678863A00EEFE1F /* My.swift in Sources */,
+				007F881D2DE0526F0075844B /* FlutterMethodCallType.swift in Sources */,
 				6171E19D266615850065C34D /* AccountInfo.swift in Sources */,
 				00E1904226D4C66200683BDE /* Provider.swift in Sources */,
 				617AAA3B265CC7BF0029A83F /* BaseViewModel.swift in Sources */,
@@ -1579,6 +1605,7 @@
 				0082108D26E1FF3300525CE4 /* LogUtils.swift in Sources */,
 				001B4E3828E1A11A003ADF95 /* SimplePullToRefreshView.swift in Sources */,
 				00CE180A2BDF978400310B24 /* AsyncRelay.swift in Sources */,
+				007F88152DE047870075844B /* NativeEventChannel.swift in Sources */,
 				0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */,
 				6114ABF5267ADF6E0082BA67 /* MyView.swift in Sources */,
 				006C5A6426F423EF004998A9 /* RxWebViewControllerDelegateProxy.swift in Sources */,
@@ -1636,6 +1663,7 @@
 				001B4E3228E19BE1003ADF95 /* Refresh.swift in Sources */,
 				001B4E3128E19BE1003ADF95 /* Footer.swift in Sources */,
 				00DC971028F26ADF002CC564 /* AppState.swift in Sources */,
+				007F88172DE047E00075844B /* InvokeMethodType.swift in Sources */,
 				001B4E3028E19BE1003ADF95 /* FooterKey.swift in Sources */,
 				61336C882657537100FDEB2A /* CoinRankListController.swift in Sources */,
 				61C9792F265E282C00E7A1BC /* ProjectService.swift in Sources */,
