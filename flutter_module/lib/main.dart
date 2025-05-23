@@ -37,13 +37,13 @@ run(List<String> args) async {
 
   if (args.isNotEmpty) {
     logger.d("有参数{$args}");
-    final arg = args[0];
-    Map<String, dynamic> map = jsonDecode(arg);
+    final jsonString = args[0];
+    final password = args[1];
+    Map<String, dynamic> map = jsonDecode(jsonString);
     final info = AccountInfoEntity.fromJson(map);
-    accountService.save(info: info, isLogin: true, password: '');
+    accountService.save(info: info, isLogin: true, password: password);
   } else {
     logger.d("没有参数");
-    
   }
 
   /// 玩安卓App的进这个

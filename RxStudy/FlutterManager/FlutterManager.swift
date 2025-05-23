@@ -28,7 +28,6 @@ final class FlutterManager {
     
     private init() {
         initFlutterEngine()
-        listenFlutterToNativeMessage()
     }
     
     func destoryInstance() {
@@ -39,12 +38,20 @@ final class FlutterManager {
         flutterEngine = nil
     }
     
-    func updateFlutterEngine(withEntrypoint: String? = nil, libraryURI: String? = nil, initialRoute: String? = nil, entrypointArgs: [String] = []) -> Bool {
+    @discardableResult
+    func runFlutterEngine(withEntrypoint: String? = nil, libraryURI: String? = nil, initialRoute: String? = nil, entrypointArgs: [String] = []) -> Bool {
         guard let flutterEngine else {
             return false
         }
         
-        return flutterEngine.run(withEntrypoint: withEntrypoint, libraryURI: libraryURI, initialRoute: initialRoute, entrypointArgs: entrypointArgs)
+        let result = flutterEngine.run(withEntrypoint: withEntrypoint, libraryURI: libraryURI, initialRoute: initialRoute, entrypointArgs: entrypointArgs)
+        
+        /// 这两个方法,必须再run之后再进行配置
+        listenFlutterToNativeMessage()
+        
+        GeneratedPluginRegistrant.register(with: flutterEngine)
+        
+        return result
     }
     
     func nativeNotifyToFlutter(type: InvokeMethodType, jsonString: String) {
@@ -65,9 +72,8 @@ extension FlutterManager {
             return
         }
         
-        flutterEngine.run()
-        
-        GeneratedPluginRegistrant.register(with: flutterEngine)
+        // 注意一个flutterEngine只能run一次,要么就把传参传好,要么就需要将flutterEngine置空重新再run!
+        // flutterEngine.run()
     }
     
     private func listenFlutterToNativeMessage() {

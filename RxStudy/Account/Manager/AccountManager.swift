@@ -77,6 +77,10 @@ extension AccountManager {
         
         /// 需要注意赋值顺序,将info赋值给单例后,再改变isLogin的状态才能获取正确的请求头
         isLoginRelay.accept(true)
+        
+        if let json = info.toJson {
+            FlutterManager.shared().runFlutterEngine(entrypointArgs: [json, password])
+        }
     }
     
     /// 登出成功,清理登录信息
@@ -166,9 +170,6 @@ extension AccountManager {
                     self.myCoinRelay.accept(myCoin)
                     self.myUnreadMessageCountRelay.accept(count)
                     
-                    if let json = AccountManager.shared.accountInfo?.toJson {
-                        FlutterManager.shared().updateFlutterEngine(entrypointArgs: [json])
-                    }
                 case .failure:
                     self.myCoinRelay.accept(nil)
                     self.myUnreadMessageCountRelay.accept(0)
