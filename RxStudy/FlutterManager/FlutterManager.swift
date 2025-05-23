@@ -88,11 +88,95 @@ extension FlutterManager {
             
             switch methodCallType {
             case .pop:
-                print("收到从Flutter要求返回的通信")
+                FlutterManager.shared().currentVC()?.dismiss(animated: true)
                 result("收到从Flutter要求返回的通信,并且已经执行")
             case .tokenOverdue:
                 print("token过期")
             }
         })
+    }
+}
+
+extension FlutterManager {
+    func currentNC() -> UINavigationController? {
+        return getCurrentNav()
+    }
+    
+    func currentVC() -> UIViewController? {
+        let nav = currentNC()
+        guard let nav else {
+            return nil
+        }
+        
+        let array = nav.viewControllers
+        if array.count == 0 {
+            return nil
+        }
+        
+        return array.last
+    }
+    
+    private func getCurrentNav() -> UINavigationController? {
+        var rootVc: UIViewController?
+
+        if #available(iOS 13.0, *) {
+            let scene = UIApplication.shared.connectedScenes.first
+            guard let windowScene = scene as? UIWindowScene else {
+                return nil
+            }
+            guard let window = windowScene.windows.last, window.isKind(of: UIWindow.self) else { return nil }
+
+            if #available(iOS 15.0, *) {
+                rootVc = windowScene.keyWindow?.rootViewController
+            } else {
+                rootVc = window.rootViewController
+            }
+        } else {
+            if UIApplication.shared.windows.last?.isKind(of: UIWindow.self) == false {
+                return nil
+            }
+            rootVc = UIApplication.shared.keyWindow?.rootViewController
+        }
+        guard let rootVc else { return nil }
+        
+        if rootVc.isKind(of: UITabBarController.self) {
+            return getCurrentNCFrom(vc: rootVc)
+        } else if rootVc.isKind(of: UINavigationController.self) {
+            return rootVc as? UINavigationController
+        } else {
+            var tabVc: UITabBarController?
+            
+            for vc in rootVc.children {
+                if vc.isKind(of: UITabBarController.self) {
+                    tabVc = vc as? UITabBarController
+                    break
+                }
+            }
+            if tabVc == nil {
+                return nil
+            }
+            return getCurrentNCFrom(vc: tabVc)
+        }
+    }
+    
+    private func getCurrentNCFrom(vc: UIViewController?) -> UINavigationController? {
+        guard let vc else { return nil }
+        if vc.isKind(of: UITabBarController.self),
+           let tab = vc as? UITabBarController,
+           let nav = tab.selectedViewController as? UINavigationController {
+            return getCurrentNCFrom(vc: nav)
+        } else if vc.isKind(of: UINavigationController.self) {
+            if let pre = (vc as? UINavigationController)?.presentedViewController {
+                return getCurrentNCFrom(vc: pre as? UINavigationController)
+            }
+            return getCurrentNCFrom(vc: (vc as? UINavigationController)?.topViewController)
+        } else if vc.isKind(of: UIViewController.self) {
+            if vc.presentedViewController != nil {
+                return getCurrentNCFrom(vc: vc.presentedViewController)
+            }
+            return vc.navigationController
+        } else {
+            return nil
+        }
     }
 }

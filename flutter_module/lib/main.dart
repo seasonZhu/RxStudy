@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:flutter_module/my_app.dart';
 import 'package:flutter_module/app_service/account_service.dart';
@@ -10,12 +12,13 @@ import 'package:flutter_module/example_app/stream_app.dart';
 import 'package:flutter_module/example_app/get_x_app.dart';
 import 'package:flutter_module/example_app/rx_dart_app.dart';
 import 'package:flutter_module/example_app/h5_js_channel_app.dart';
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:flutter_module/entity/account_info_entity.dart';
 import 'package:flutter_module/app_service/theme_service.dart';
+import 'package:flutter_module/logger/logger.dart';
 
-void main() => run();
+void main(List<String> args) => run(args);
 
-run() async {
+run(List<String> args) async {
   WidgetsFlutterBinding.ensureInitialized();
 
   SystemChrome.setPreferredOrientations([
@@ -31,6 +34,17 @@ run() async {
   final isFirst = await accountService.getIsFirstLaunch();
 
   await themeService.getThemeType();
+
+  if (args.isNotEmpty) {
+    logger.d("有参数{$args}");
+    final arg = args[0];
+    Map<String, dynamic> map = jsonDecode(arg);
+    final info = AccountInfoEntity.fromJson(map);
+    accountService.save(info: info, isLogin: true, password: '');
+  } else {
+    logger.d("没有参数");
+    
+  }
 
   /// 玩安卓App的进这个
   runApp(MyApp(isFirst: isFirst));

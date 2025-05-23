@@ -37,6 +37,10 @@ class MyPage extends GetView<MyController> {
                           child: Icon(icon),
                         ),
                         Text(controller.rxUserInfo.value),
+                        ElevatedButton(
+                          onPressed: controller.flutterCallbackPopMethod,
+                          child: const Text("返回Native"),
+                        ),
                       ],
                     ),
                   );

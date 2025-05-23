@@ -204,6 +204,10 @@ extension MyController {
         /**
          The supplied FlutterEngine <FlutterEngine: 0x10a93e2b0> is already used with FlutterViewController instance <FlutterViewController: 0x11300da00>. One instance of the FlutterEngine can only be attached to one FlutterViewController at a time. Set FlutterEngine.viewController to nil before attaching it to another FlutterViewController.
          */
+//        if let json = AccountManager.shared.accountInfo?.toJson {
+//            FlutterManager.shared().updateFlutterEngine(entrypointArgs: [json])
+//        }
+        
         guard let engine = FlutterManager.shared().flutterEngine else {
             return
         }
@@ -215,19 +219,20 @@ extension MyController {
         flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController] in
             print("FlutterViewController did render")
         }
-        navigationController?.pushViewController(flutterViewController, animated: true)
-        
-//        flutterViewController.modalPresentationStyle = .fullScreen
-//        present(flutterViewController, animated: true)
+
+        flutterViewController.modalPresentationStyle = .fullScreen
+        present(flutterViewController, animated: true)
         
         /// 通过以下方式,避免present而增加其他逻辑,保证原生导航栏的逻辑
-        flutterViewController.rx.viewWillAppear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
-            flutterViewController?.navigationController?.navigationBar.isHidden = true
-        }).disposed(by: rx.disposeBag)
-        
-        flutterViewController.rx.viewWillDisappear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
-            self?.navigationController?.navigationBar.isHidden = false
-        }).disposed(by: rx.disposeBag)
+//        navigationController?.pushViewController(flutterViewController, animated: true)
+//        
+//        flutterViewController.rx.viewWillAppear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+//            flutterViewController?.navigationController?.navigationBar.isHidden = true
+//        }).disposed(by: rx.disposeBag)
+//        
+//        flutterViewController.rx.viewWillDisappear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+//            self?.navigationController?.navigationBar.isHidden = false
+//        }).disposed(by: rx.disposeBag)
             
     }
 }

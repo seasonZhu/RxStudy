@@ -166,6 +166,9 @@ extension AccountManager {
                     self.myCoinRelay.accept(myCoin)
                     self.myUnreadMessageCountRelay.accept(count)
                     
+                    if let json = AccountManager.shared.accountInfo?.toJson {
+                        FlutterManager.shared().updateFlutterEngine(entrypointArgs: [json])
+                    }
                 case .failure:
                     self.myCoinRelay.accept(nil)
                     self.myUnreadMessageCountRelay.accept(0)
