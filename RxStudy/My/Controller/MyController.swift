@@ -21,6 +21,8 @@ import MJRefresh
 
 import Flutter
 
+import RxViewController
+
 class MyController: BaseTableViewController {
     
     var cancelable: AnyCancellable?
@@ -122,7 +124,8 @@ extension MyController {
                 case .logout:
                     self?.logoutAction(viewModel: viewModel)
                 case .myMessage:
-                    // self?.toMyMessageController()
+                    self?.toMyMessageController()
+                case .flutterModule:
                     self?.toFlutterViewController()
                 case .myGitHub:
                     /// 尝试使用了SFSafariViewController而非WebView进行加载,对于一个纯粹的展示性Web,SFSafariViewController体验效果更好
@@ -210,9 +213,19 @@ extension MyController {
         flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController] in
             print("FlutterViewController did render")
         }
-        // navigationController?.pushViewController(flutterViewController, animated: true)
-        flutterViewController.modalPresentationStyle = .fullScreen
-        present(flutterViewController, animated: true)
+        navigationController?.pushViewController(flutterViewController, animated: true)
+        
+//        flutterViewController.modalPresentationStyle = .fullScreen
+//        present(flutterViewController, animated: true)
+        
+        /// 通过以下方式,避免present而增加其他逻辑,保证原生导航栏的逻辑
+        flutterViewController.rx.viewWillAppear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+            flutterViewController?.navigationController?.navigationBar.isHidden = true
+        }).disposed(by: rx.disposeBag)
+        
+        flutterViewController.rx.viewWillDisappear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+            self?.navigationController?.navigationBar.isHidden = false
+        }).disposed(by: rx.disposeBag)
             
     }
 }
