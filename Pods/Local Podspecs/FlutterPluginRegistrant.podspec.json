@@ -26,6 +26,18 @@
     "DEFINES_MODULE": "YES"
   },
   "dependencies": {
-    "Flutter": []
+    "Flutter": [],
+    "device_info_plus": [],
+    "image_gallery_saver": [],
+    "image_picker_ios": [],
+    "open_file_ios": [],
+    "package_info_plus": [],
+    "path_provider_foundation": [],
+    "permission_handler_apple": [],
+    "share": [],
+    "shared_preferences_foundation": [],
+    "sqflite_darwin": [],
+    "url_launcher_ios": [],
+    "webview_flutter_wkwebview": []
   }
 }

@@ -7,15 +7,36 @@ PODS:
     - CocoaLumberjack/Core
   - CombineCocoa (0.4.1)
   - CombineExt (1.8.0)
+  - cupertino_http (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - device_info_plus (0.0.1):
+    - Flutter
   - Differentiator (5.0.0)
   - DZNEmptyDataSet (1.8.1)
   - FlexLayout (2.2.0):
     - Yoga (= 3.2.1)
   - Flutter (1.0.0)
   - FlutterPluginRegistrant (0.0.1):
+    - device_info_plus
     - Flutter
+    - image_gallery_saver
+    - image_picker_ios
+    - open_file_ios
+    - package_info_plus
+    - path_provider_foundation
+    - permission_handler_apple
+    - share
+    - shared_preferences_foundation
+    - sqflite_darwin
+    - url_launcher_ios
+    - webview_flutter_wkwebview
   - FSPagerView (0.8.3)
   - FunnyButton (0.1.5)
+  - image_gallery_saver (2.0.2):
+    - Flutter
+  - image_picker_ios (0.0.1):
+    - Flutter
   - IQKeyboardManagerSwift (7.1.1)
   - JWNetAutoCache (0.0.2)
   - JXSegmentedView (1.4.1)
@@ -101,6 +122,17 @@ PODS:
     - RxSwift (~> 6.0)
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
+  - objective_c (0.0.1):
+    - Flutter
+  - open_file_ios (0.0.1):
+    - Flutter
+  - package_info_plus (0.4.5):
+    - Flutter
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - permission_handler_apple (9.1.1):
+    - Flutter
   - PinLayout (1.10.5)
   - R.swift (7.8.0)
   - RxBlocking (6.8.0):
@@ -136,13 +168,26 @@ PODS:
     - RxCocoa (~> 6.0)
     - RxSwift (~> 6.0)
   - SFSafeSymbols (5.3.0)
+  - share (0.0.1):
+    - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - SnapKit (5.7.1)
+  - sqflite_darwin (0.0.4):
+    - Flutter
+    - FlutterMacOS
   - SSZipArchive (2.4.3)
   - SVProgressHUD (2.3.1):
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftDate (7.0.0)
   - TheRouter (1.1.8)
+  - url_launcher_ios (0.0.1):
+    - Flutter
+  - webview_flutter_wkwebview (0.0.1):
+    - Flutter
+    - FlutterMacOS
   - Yoga (3.2.1)
 
 DEPENDENCIES:
@@ -151,12 +196,16 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift
   - CombineCocoa
   - CombineExt
+  - cupertino_http (from `flutter_module/.ios/.symlinks/plugins/cupertino_http/darwin`)
+  - device_info_plus (from `flutter_module/.ios/.symlinks/plugins/device_info_plus/ios`)
   - DZNEmptyDataSet
   - FlexLayout
   - Flutter (from `flutter_module/.ios/Flutter`)
   - FlutterPluginRegistrant (from `flutter_module/.ios/Flutter/FlutterPluginRegistrant`)
   - FSPagerView
   - FunnyButton
+  - image_gallery_saver (from `flutter_module/.ios/.symlinks/plugins/image_gallery_saver/ios`)
+  - image_picker_ios (from `flutter_module/.ios/.symlinks/plugins/image_picker_ios/ios`)
   - IQKeyboardManagerSwift (= 7.1.1)
   - JWNetAutoCache
   - JXSegmentedView
@@ -172,6 +221,11 @@ DEPENDENCIES:
   - Moya/Combine
   - Moya/RxSwift
   - "NSObject+Rx"
+  - objective_c (from `flutter_module/.ios/.symlinks/plugins/objective_c/ios`)
+  - open_file_ios (from `flutter_module/.ios/.symlinks/plugins/open_file_ios/ios`)
+  - package_info_plus (from `flutter_module/.ios/.symlinks/plugins/package_info_plus/ios`)
+  - path_provider_foundation (from `flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin`)
+  - permission_handler_apple (from `flutter_module/.ios/.symlinks/plugins/permission_handler_apple/ios`)
   - PinLayout
   - R.swift
   - RxBlocking
@@ -184,11 +238,16 @@ DEPENDENCIES:
   - RxTheme
   - RxViewController
   - SFSafeSymbols
+  - share (from `flutter_module/.ios/.symlinks/plugins/share/ios`)
+  - shared_preferences_foundation (from `flutter_module/.ios/.symlinks/plugins/shared_preferences_foundation/darwin`)
   - SnapKit
+  - sqflite_darwin (from `flutter_module/.ios/.symlinks/plugins/sqflite_darwin/darwin`)
   - SSZipArchive
   - SVProgressHUD
   - SwiftDate
   - TheRouter
+  - url_launcher_ios (from `flutter_module/.ios/.symlinks/plugins/url_launcher_ios/ios`)
+  - webview_flutter_wkwebview (from `flutter_module/.ios/.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
 SPEC REPOS:
   trunk:
@@ -237,12 +296,40 @@ SPEC REPOS:
     - Yoga
 
 EXTERNAL SOURCES:
+  cupertino_http:
+    :path: flutter_module/.ios/.symlinks/plugins/cupertino_http/darwin
+  device_info_plus:
+    :path: flutter_module/.ios/.symlinks/plugins/device_info_plus/ios
   Flutter:
     :path: flutter_module/.ios/Flutter
   FlutterPluginRegistrant:
     :path: flutter_module/.ios/Flutter/FlutterPluginRegistrant
+  image_gallery_saver:
+    :path: flutter_module/.ios/.symlinks/plugins/image_gallery_saver/ios
+  image_picker_ios:
+    :path: flutter_module/.ios/.symlinks/plugins/image_picker_ios/ios
   Keys:
     :path: Pods/CocoaPodsKeys
+  objective_c:
+    :path: flutter_module/.ios/.symlinks/plugins/objective_c/ios
+  open_file_ios:
+    :path: flutter_module/.ios/.symlinks/plugins/open_file_ios/ios
+  package_info_plus:
+    :path: flutter_module/.ios/.symlinks/plugins/package_info_plus/ios
+  path_provider_foundation:
+    :path: flutter_module/.ios/.symlinks/plugins/path_provider_foundation/darwin
+  permission_handler_apple:
+    :path: flutter_module/.ios/.symlinks/plugins/permission_handler_apple/ios
+  share:
+    :path: flutter_module/.ios/.symlinks/plugins/share/ios
+  shared_preferences_foundation:
+    :path: flutter_module/.ios/.symlinks/plugins/shared_preferences_foundation/darwin
+  sqflite_darwin:
+    :path: flutter_module/.ios/.symlinks/plugins/sqflite_darwin/darwin
+  url_launcher_ios:
+    :path: flutter_module/.ios/.symlinks/plugins/url_launcher_ios/ios
+  webview_flutter_wkwebview:
+    :path: flutter_module/.ios/.symlinks/plugins/webview_flutter_wkwebview/darwin
 
 SPEC CHECKSUMS:
   AcknowList: bbe94f19c25efebcb1b7e6402f466ea8a4b04e62
@@ -251,13 +338,17 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 6a459bc897d6d80bd1b8c78482ec7ad05dffc3f0
   CombineCocoa: e5210dbfb480ff251078929459ac17e750e7af1d
   CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
+  cupertino_http: 94ac07f5ff090b8effa6c5e2c47871d48ab7c86c
+  device_info_plus: 335f3ce08d2e174b9fdc3db3db0f4e3b1f66bd89
   Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   FlexLayout: a8947ca2446760b5203ba5a3d862023c92a82fce
   Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
-  FlutterPluginRegistrant: 31c463909264601dccf8080d30b71b19413ad188
+  FlutterPluginRegistrant: 4828c3df0ad9024b6ba50aa419eeb2b2270c5f22
   FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
   FunnyButton: e8202ece176aaa5f7ead1e5c8eb0f29d28fc5ad4
+  image_gallery_saver: 14711d79da40581063e8842a11acf1969d781ed7
+  image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
   IQKeyboardManagerSwift: d7f3d3a562c237a0e7335e657cd598c452f57f1b
   JWNetAutoCache: 434f10855da06d29a381359552ae9d27ef35cad7
   JXSegmentedView: cd73555ce2134d1656db2cb383ba9c2f36fb5078
@@ -272,6 +363,11 @@ SPEC CHECKSUMS:
   MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  objective_c: 89e720c30d716b036faf9c9684022048eee1eee2
+  open_file_ios: 5ff7526df64e4394b4fe207636b67a95e83078bb
+  package_info_plus: af8e2ca6888548050f16fa2f1938db7b5a5df499
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  permission_handler_apple: 3787117e48f80715ff04a3830ca039283d6a4f29
   PinLayout: f6c2b63a5a5b24864064e1d15c67de41b4e74748
   R.swift: f573269ca45b2ab066c082e363dd4c2b297b0d71
   RxBlocking: a8b634fba6850913bc3df40bb73fd08b2dbf0f01
@@ -285,11 +381,16 @@ SPEC CHECKSUMS:
   RxTheme: be60cb14e0544b3cbd574cc37fed35ba9d61aa1f
   RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
   SFSafeSymbols: c0244d55ef543c7b2c01f3af2d3d2dd9e26dd00c
+  share: a34936589f3090d59481bcdc5c30cc9dd47c75f6
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
   SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
   SSZipArchive: fe6a26b2a54d5a0890f2567b5cc6de5caa600aef
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
   TheRouter: 1c7801e4f3df9a2598088d7c3cf4d2f6d3779c51
+  url_launcher_ios: 694010445543906933d732453a59da0a173ae33d
+  webview_flutter_wkwebview: 1821ceac936eba6f7984d89a9f3bcb4dea99ebb2
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
 PODFILE CHECKSUM: 8db2b61d0e0e5209eb598815680bcc35a01107e7

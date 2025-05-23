@@ -122,8 +122,8 @@ extension MyController {
                 case .logout:
                     self?.logoutAction(viewModel: viewModel)
                 case .myMessage:
-                    self?.toMyMessageController()
-                    //self?.toFlutterViewController()
+                    // self?.toMyMessageController()
+                    self?.toFlutterViewController()
                 case .myGitHub:
                     /// 尝试使用了SFSafariViewController而非WebView进行加载,对于一个纯粹的展示性Web,SFSafariViewController体验效果更好
                     let sfsVC = SFSafariViewController(url: URL(string: "https://github.com/seasonZhu")!)
@@ -210,7 +210,9 @@ extension MyController {
         flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController] in
             print("FlutterViewController did render")
         }
-        navigationController?.pushViewController(flutterViewController, animated: true)
+        // navigationController?.pushViewController(flutterViewController, animated: true)
+        flutterViewController.modalPresentationStyle = .fullScreen
+        present(flutterViewController, animated: true)
             
     }
 }

@@ -1,0 +1,42 @@
+{
+  "name": "sqflite_darwin",
+  "version": "0.0.4",
+  "summary": "An iOS and macOS implementation for the sqflite plugin.",
+  "description": "An iOS and macOS implementation of the Flutter sqflite plugin to\nAccess SQLite database.",
+  "homepage": "https://github.com/tekartik/sqflite/tree/master/sqflite_darwin",
+  "license": {
+    "type": "BSD",
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Tekartik": "alex@tekartik.com"
+  },
+  "source": {
+    "http": "https://github.com/tekartik/sqflite/tree/master/sqflite_darwin"
+  },
+  "source_files": "sqflite_darwin/Sources/sqflite_darwin/**/*.{h,m}",
+  "public_header_files": "sqflite_darwin/Sources/sqflite_darwin/include/**/*.{h,m}",
+  "ios": {
+    "dependencies": {
+      "Flutter": []
+    }
+  },
+  "osx": {
+    "dependencies": {
+      "FlutterMacOS": []
+    }
+  },
+  "platforms": {
+    "ios": "12.0",
+    "osx": "10.14"
+  },
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES",
+    "EXCLUDED_ARCHS[sdk=iphonesimulator*]": "i386"
+  },
+  "resource_bundles": {
+    "sqflite_darwin_privacy": [
+      "sqflite_darwin/Sources/sqflite_darwin/Resources/PrivacyInfo.xcprivacy"
+    ]
+  }
+}

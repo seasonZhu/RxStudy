@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body style="display: flex;align-items: center;justify-content: center;height: 100vh;">
+    <button onclick="openApp()">测试按钮</button>
+    <div id="logo"> <a href="dna://home?appPage=1">超链接跳转</a></div>
+  </body>
+  <script>
+    function openApp() {
+      var appUrl = null; // 替换成需要打开的 APP 的 URL 地址
+      var u = navigator.userAgent;
+      var isAndroid = navigator.userAgent.indexOf('Android') > -1 || navigator.userAgent.indexOf('Adr') > -1;
+      var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/); //ios终端
+        if(isiOS)  appUrl = 'iosScheme://home?appPage=1';
+        if(isAndroid)  appUrl = 'androidScheme://home?appPage=1';
+      alert(`我触发了打开，链接是${appUrl}`)
+      var fallbackUrl = 'https://www.example.com/'; // 如果 APP 不存在，则跳转到备选 URL 地址
+
+      // 尝试打开 APP
+      window.location.href = appUrl;
+
+      // 检查是否打开成功
+      setTimeout(function () {
+        if (document.hidden) {
+          // 成功打开 APP
+        } else {
+            alert('好像没成功')
+          // APP 未安装或无法打开，跳转到备选 URL 地址
+        //   window.location.href = fallbackUrl;
+        }
+      }, 1000);
+    }
+  </script>
+</html>

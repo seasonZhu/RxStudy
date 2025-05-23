@@ -1,0 +1,29 @@
+{
+  "name": "device_info_plus",
+  "version": "0.0.1",
+  "summary": "Flutter Device Info Plus",
+  "description": "Get current device information from within the Flutter application.\nDownloaded by pub (not CocoaPods).",
+  "homepage": "https://github.com/fluttercommunity/plus_plugins",
+  "license": {
+    "type": "BSD",
+    "file": "../LICENSE"
+  },
+  "authors": {
+    "Flutter Community Team": "authors@fluttercommunity.dev"
+  },
+  "source": {
+    "http": "https://github.com/fluttercommunity/plus_plugins/tree/main/packages/device_info_plus"
+  },
+  "documentation_url": "https://pub.dev/packages/device_info_plus",
+  "source_files": "Classes/**/*",
+  "public_header_files": "Classes/**/*.h",
+  "dependencies": {
+    "Flutter": []
+  },
+  "platforms": {
+    "ios": "11.0"
+  },
+  "pod_target_xcconfig": {
+    "DEFINES_MODULE": "YES"
+  }
+}

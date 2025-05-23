@@ -1,0 +1,6 @@
+framework module objective_c {
+  umbrella header "objective_c-umbrella.h"
+
+  export *
+  module * { export * }
+}
