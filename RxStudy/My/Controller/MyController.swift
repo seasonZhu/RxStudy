@@ -215,6 +215,10 @@ extension MyController {
         
         flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController] in
             print("FlutterViewController did render")
+            // flutterViewController?.navigationController?.setNavigationBarHidden(true, animated: false)
+            
+            /// 发送一个Native事件并传参到Flutter侧
+            FlutterManager.shared().nativeNotifyToFlutter(type: .notifyUserLocation, jsonString: "湖北武汉")
         }
 
         flutterViewController.modalPresentationStyle = .fullScreen

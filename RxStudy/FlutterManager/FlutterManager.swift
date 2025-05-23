@@ -54,8 +54,9 @@ final class FlutterManager {
         return result
     }
     
-    func nativeNotifyToFlutter(type: InvokeMethodType, jsonString: String) {
+    func nativeNotifyToFlutter(type: InvokeMethodType, jsonString: String, flutterReturnMessageCallback: ((Any?) -> Void)? = nil) {
         methodChannel.invokeMethod(type.rawValue, arguments: jsonString) { flutterReturnMessage in
+            flutterReturnMessageCallback?(flutterReturnMessage)
             guard let message = flutterReturnMessage as? String else {
                 return
             }
