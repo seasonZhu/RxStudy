@@ -117,7 +117,7 @@ extension FlutterManager {
                 /// Flutter侧进行登录后,如果回到Native侧,点击会卡住不动,需要将engine移除重新创建才行
                 print("接收到Flutter登录的消息")
                 FlutterManager.shared().setFlutterEngineToNil()
-                return
+                
                 guard let jsonString = call.arguments as? String else {
                     return
                 }
@@ -129,8 +129,9 @@ extension FlutterManager {
                 guard let username = accountInfo.username, let password = accountInfo.password else {
                     return
                 }
-                
-                AccountManager.shared.saveFlutterLoginUsernameAndPassword(info: accountInfo, username: username, password: password)
+                AccountManager.shared.username = username
+                AccountManager.shared.password = password
+                AccountManager.shared.autoLogin()
             }
         })
     }
