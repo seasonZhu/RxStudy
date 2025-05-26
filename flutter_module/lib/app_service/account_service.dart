@@ -1,9 +1,13 @@
 import 'dart:convert';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:flutter_module/entity/account_info_entity.dart';
 import 'package:flutter_module/enum/theme_type.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'package:flutter_module/logger/logger.dart';
+import 'package:flutter_module/channel/channel.dart';
 
 /// 这个类就像一个 "GetxController"，它共享相同的生命周期 （"onInit()"、"onReady()"、"onClose()"） 。 但里面没有 "逻辑"。它只是通知GetX的依赖注入系统，这个子类不能从内存中删除。
 /// 所以这对保持你的 "服务 "总是可以被Get.find()获取到并保持运行是超级有用的。比如 ApiService，StorageService，CacheService。
@@ -56,6 +60,8 @@ class AccountService extends GetxService {
     // 本来想尝试保存一个字典的,结果没这个方法,只有List<String>,但是我可以将Map转为String在存呀
     final infoJsonString = json.encode(info.toJson());
     userDefine.setString(_kAccountInfo, infoJsonString);
+
+    flutterCallbackLoginMethod(infoJsonString);
   }
 
   Future<bool> saveLastThemeSettingIndex(int index) async {
@@ -121,5 +127,16 @@ class AccountService extends GetxService {
     final userDefine = await this.userDefine;
     userDefine.remove(_kLastLoginUserName);
     userDefine.remove(_kLastLoginPassword);
+  }
+
+  Future<void> flutterCallbackLoginMethod(String arguments) async {
+    try {
+      // 约定好返回参数的类型,便于进行交互
+      logger.d("flutterCallbackLoginMethod");
+      var _ = await methodChannel.invokeMethod('login', arguments);
+    } on PlatformException catch (e) {
+      //抛出异常
+      logger.d(e.toString());
+    }
   }
 }

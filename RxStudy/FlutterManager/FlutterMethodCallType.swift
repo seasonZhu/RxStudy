@@ -12,4 +12,8 @@ enum FlutterMethodCallType: String {
     case pop
     
     case tokenOverdue
+    
+    case logout
+    
+    case login
 }

@@ -18,6 +18,8 @@ final class FlutterManager {
     
     private var methodChannel: FlutterMethodChannel!
     
+    var isFlutterEngineRun: Bool = false
+    
     static func shared() -> FlutterManager {
         guard  let shared = _shared else {
             _shared = FlutterManager()
@@ -31,6 +33,9 @@ final class FlutterManager {
     }
     
     func destoryInstance() {
+        flutterEngine = nil
+        methodChannel = nil
+        isFlutterEngineRun = false
         FlutterManager._shared = nil
     }
     
@@ -45,6 +50,8 @@ final class FlutterManager {
         }
         
         let result = flutterEngine.run(withEntrypoint: withEntrypoint, libraryURI: libraryURI, initialRoute: initialRoute, entrypointArgs: entrypointArgs)
+        
+        FlutterManager.shared().isFlutterEngineRun = result
         
         /// 这两个方法,必须再run之后再进行配置
         listenFlutterToNativeMessage()
@@ -99,6 +106,24 @@ extension FlutterManager {
                 result("收到从Flutter要求返回的通信,并且已经执行")
             case .tokenOverdue:
                 print("token过期")
+            case .logout:
+                AccountManager.shared.clearAccountInfo()
+                FlutterManager.shared().currentVC()?.dismiss(animated: true)
+                FlutterManager.shared().destoryInstance()
+            case .login:
+                guard let jsonString = call.arguments as? String else {
+                    return
+                }
+                
+                guard let data = jsonString.data(using: .utf8), let accountInfo = try? JSONDecoder().decode(AccountInfo.self, from: data) else {
+                    return
+                }
+                
+                guard let username = accountInfo.username, let password = accountInfo.password else {
+                    return
+                }
+                
+                AccountManager.shared.saveFlutterLoginUsernameAndPassword(info: accountInfo, username: username, password: password)
             }
         })
     }

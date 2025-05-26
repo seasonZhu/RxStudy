@@ -20,6 +20,8 @@ class MyController
 
   final rxUserInfo = AccountService.find.userInfo.obs;
 
+  static MyController get find => Get.find<MyController>();
+
   @override
   void onInit() {
     super.onInit();
@@ -32,6 +34,7 @@ class MyController
     if (response.isSuccess) {
       message = "登出成功";
       AccountService.find.clear();
+      flutterCallbackLogoutMethod();
     } else {
       message = "登出失败";
     }
@@ -77,6 +80,17 @@ class MyController
       // 约定好返回参数的类型,便于进行交互
       logger.d("flutterCallbackPopMethod");
       var _ = await methodChannel.invokeMethod('pop', null);
+    } on PlatformException catch (e) {
+      //抛出异常
+      logger.d(e.toString());
+    }
+  }
+
+  Future<void> flutterCallbackLogoutMethod() async {
+    try {
+      // 约定好返回参数的类型,便于进行交互
+      logger.d("flutterCallbackLogoutMethod");
+      var _ = await methodChannel.invokeMethod('logout', null);
     } on PlatformException catch (e) {
       //抛出异常
       logger.d(e.toString());

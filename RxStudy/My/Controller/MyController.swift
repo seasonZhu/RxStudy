@@ -182,6 +182,12 @@ extension MyController {
                         AccountManager.shared.clearAccountInfo()
                         DispatchQueue.main.async {
                             SVProgressHUD.showText("退出登录成功")
+                            FlutterManager.shared().nativeNotifyToFlutter(type: .nativeLogout, jsonString: "退出登录成功") { value in
+                                guard let message = value as? String else {
+                                    return
+                                }
+                                print(message)
+                            }
                         }
                     }
                 }
@@ -208,6 +214,15 @@ extension MyController {
         guard let engine = FlutterManager.shared().flutterEngine else {
             return
         }
+        
+        if !FlutterManager.shared().isFlutterEngineRun {
+            if let json = AccountManager.shared.accountInfo?.toJson, let password = AccountManager.shared.accountInfo?.password {
+                FlutterManager.shared().runFlutterEngine(entrypointArgs: [json, password])
+            } else {
+                FlutterManager.shared().runFlutterEngine()
+           }
+        }
+        
         engine.viewController = nil
         let flutterViewController = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
         
@@ -218,7 +233,7 @@ extension MyController {
             // flutterViewController?.navigationController?.setNavigationBarHidden(true, animated: false)
             
             /// 发送一个Native事件并传参到Flutter侧
-            FlutterManager.shared().nativeNotifyToFlutter(type: .notifyUserLocation, jsonString: "湖北武汉")
+            // FlutterManager.shared().nativeNotifyToFlutter(type: .userLocationUpdate, jsonString: "湖北武汉")
         }
 
         flutterViewController.modalPresentationStyle = .fullScreen

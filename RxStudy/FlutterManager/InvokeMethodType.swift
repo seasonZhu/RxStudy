@@ -9,5 +9,9 @@
 import Foundation
 
 enum InvokeMethodType: String {
-    case notifyUserLocation
+    case userLocationUpdate
+    
+    case nativeLogin
+    
+    case nativeLogout
 }
