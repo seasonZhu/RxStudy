@@ -32,6 +32,19 @@ final class FlutterManager {
         initFlutterEngine()
     }
     
+    @discardableResult
+    func initFlutterEngine() -> FlutterEngine {
+        flutterEngine = FlutterEngine(name: "com.season.www.Template")
+        
+        return flutterEngine!
+        
+//        guard let flutterEngine else {
+//            return
+//        }
+        // 注意一个flutterEngine只能run一次,要么就把传参传好,要么就需要将flutterEngine置空重新再run!
+        // flutterEngine.run()
+    }
+    
     func destoryInstance() {
         flutterEngine = nil
         methodChannel = nil
@@ -73,17 +86,6 @@ final class FlutterManager {
 }
 
 extension FlutterManager {
-    private func initFlutterEngine() {
-        flutterEngine = FlutterEngine(name: "com.season.www.Template")
-        
-        guard let flutterEngine else {
-            return
-        }
-        
-        // 注意一个flutterEngine只能run一次,要么就把传参传好,要么就需要将flutterEngine置空重新再run!
-        // flutterEngine.run()
-    }
-    
     private func listenFlutterToNativeMessage() {
         guard let flutterEngine else {
             return
@@ -108,9 +110,11 @@ extension FlutterManager {
                 print("token过期")
             case .logout:
                 AccountManager.shared.clearAccountInfo()
-                FlutterManager.shared().currentVC()?.dismiss(animated: true)
                 FlutterManager.shared().destoryInstance()
             case .login:
+                /// Flutter侧进行登录后,如果回到Native侧,点击会卡住不动,需要将engine移除重新创建才行
+                FlutterManager.shared().setFlutterEngineToNil()
+                return
                 guard let jsonString = call.arguments as? String else {
                     return
                 }

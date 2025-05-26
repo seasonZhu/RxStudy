@@ -38,6 +38,9 @@ class RegisterController extends LoginController {
           .save(info: response.data!, isLogin: true, password: password);
       await getUserCoinInfo();
       message = "注册成功";
+      
+      final arguments = await AccountService.find.getLastAccountInfo();
+      AccountService.find.flutterCallbackLoginMethod(arguments);
     } else {
       message = "注册失败";
     }

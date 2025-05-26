@@ -60,8 +60,6 @@ class AccountService extends GetxService {
     // 本来想尝试保存一个字典的,结果没这个方法,只有List<String>,但是我可以将Map转为String在存呀
     final infoJsonString = json.encode(info.toJson());
     userDefine.setString(_kAccountInfo, infoJsonString);
-
-    flutterCallbackLoginMethod(infoJsonString);
   }
 
   Future<bool> saveLastThemeSettingIndex(int index) async {

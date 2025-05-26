@@ -77,6 +77,14 @@ extension AccountManager {
         
         /// 需要注意赋值顺序,将info赋值给单例后,再改变isLogin的状态才能获取正确的请求头
         isLoginRelay.accept(true)
+        
+        if !FlutterManager.shared().isFlutterEngineRun {
+            if let json = AccountManager.shared.accountInfo?.toJson, let password = AccountManager.shared.accountInfo?.password {
+                FlutterManager.shared().runFlutterEngine(entrypointArgs: [json, password])
+            } else {
+                /// 发消息到Flutter侧
+           }
+        }
     }
     
     func saveFlutterLoginUsernameAndPassword(info: AccountInfo?, username: String, password: String) {
@@ -116,6 +124,7 @@ extension AccountManager {
     func autoLogin() {
         guard let username = self.username,
               let password = self.password else {
+            FlutterManager.shared().runFlutterEngine()
             return
         }
         optimizeLogin(username: username, password: password, showLoading: false)

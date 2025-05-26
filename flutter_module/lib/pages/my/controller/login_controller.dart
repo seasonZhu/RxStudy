@@ -44,6 +44,9 @@ class LoginController
           .save(info: response.data!, isLogin: true, password: password);
       await getUserCoinInfo();
       message = "登录成功";
+
+      final arguments = await AccountService.find.getLastAccountInfo();
+      AccountService.find.flutterCallbackLoginMethod(arguments);
     } else {
       message = "登录失败";
     }

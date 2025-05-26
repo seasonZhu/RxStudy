@@ -210,17 +210,12 @@ extension MyController {
         /**
          The supplied FlutterEngine <FlutterEngine: 0x10a93e2b0> is already used with FlutterViewController instance <FlutterViewController: 0x11300da00>. One instance of the FlutterEngine can only be attached to one FlutterViewController at a time. Set FlutterEngine.viewController to nil before attaching it to another FlutterViewController.
          */
-        
-        guard let engine = FlutterManager.shared().flutterEngine else {
-            return
-        }
-        
-        if !FlutterManager.shared().isFlutterEngineRun {
-            if let json = AccountManager.shared.accountInfo?.toJson, let password = AccountManager.shared.accountInfo?.password {
-                FlutterManager.shared().runFlutterEngine(entrypointArgs: [json, password])
-            } else {
-                FlutterManager.shared().runFlutterEngine()
-           }
+        let engine: FlutterEngine!
+        if let e = FlutterManager.shared().flutterEngine {
+            engine = e
+        } else {
+            engine = FlutterManager.shared().initFlutterEngine()
+            FlutterManager.shared().runFlutterEngine()
         }
         
         engine.viewController = nil
