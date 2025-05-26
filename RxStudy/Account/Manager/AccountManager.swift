@@ -81,10 +81,12 @@ extension AccountManager {
         if !FlutterManager.shared().isFlutterEngineRun {
             if let json = AccountManager.shared.accountInfo?.toJson, let password = AccountManager.shared.accountInfo?.password {
                 FlutterManager.shared().runFlutterEngine(entrypointArgs: [json, password])
-            } else {
-                /// 发消息到Flutter侧
-           }
-        }
+            }
+        } else {
+            /// 发消息到Flutter侧
+            print("发消息到Flutter侧")
+            FlutterManager.shared().nativeNotifyToFlutter(type: .nativeLogin, jsonString: accountInfo?.toJson ?? "")
+       }
     }
     
     func saveFlutterLoginUsernameAndPassword(info: AccountInfo?, username: String, password: String) {
@@ -130,7 +132,7 @@ extension AccountManager {
         optimizeLogin(username: username, password: password, showLoading: false)
     }
     
-    /// 调用登录接口
+    /// 调用登录接口,该接口目前没有使用
     func login(username: String, password: String, showLoading: Bool = true) {
         accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .map(BaseModel<AccountInfo>.self)
