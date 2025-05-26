@@ -50,7 +50,10 @@ class MainController extends GetxController {
           MyController.find.autoLogin();
           return Future.value("收到从Native传来的原生登录信息,Flutter侧执行登录逻辑成功");
         case "nativeLogout":
-          AccountService.find.clear();
+          MyController.find.logout().then((result) {
+            MyController.find.rxUserInfo.value = AccountService.find.userInfo;
+            MyController.find.isLogin.value = result;
+          });
           return Future.value("收到从Native传来的原生登出信息,Flutter侧执行登出逻辑成功");
         default:
           logger.w("未知的方法: $method");
