@@ -34,7 +34,7 @@ class MyController
     if (response.isSuccess) {
       message = "登出成功";
       AccountService.find.clear();
-      //flutterCallbackLogoutMethod();
+      flutterCallbackLogoutMethod();
     } else {
       message = "登出失败";
     }

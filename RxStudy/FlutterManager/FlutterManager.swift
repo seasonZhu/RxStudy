@@ -109,10 +109,13 @@ extension FlutterManager {
             case .tokenOverdue:
                 print("token过期")
             case .logout:
+                print("接收到Flutter登出的消息")
+                FlutterManager.shared().setFlutterEngineToNil()
+                
                 AccountManager.shared.clearAccountInfo()
-                FlutterManager.shared().destoryInstance()
             case .login:
                 /// Flutter侧进行登录后,如果回到Native侧,点击会卡住不动,需要将engine移除重新创建才行
+                print("接收到Flutter登录的消息")
                 FlutterManager.shared().setFlutterEngineToNil()
                 return
                 guard let jsonString = call.arguments as? String else {
