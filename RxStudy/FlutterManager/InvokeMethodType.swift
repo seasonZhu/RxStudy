@@ -9,6 +9,7 @@
 import Foundation
 
 enum InvokeMethodType: String {
+    /// 这个是一个测试方法
     case userLocationUpdate
     
     case nativeLogin

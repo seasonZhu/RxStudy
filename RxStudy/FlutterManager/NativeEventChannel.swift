@@ -10,13 +10,14 @@ import Foundation
 
 import Flutter
 
-/// 原生通信到Flutter侧
+/// 原生Event通信到Flutter侧
 class NativeEventChannel: NSObject {
+    
+    /// 这个对外暴露,方便持续传值到Flutter侧
+    var eventSink: FlutterEventSink?
     
     private var channel: FlutterEventChannel?
 
-    private var events: FlutterEventSink?
-    
     private var sendMessage: Any?
     
     convenience init(name: String, binaryMessenger: FlutterBinaryMessenger, sendMessage: Any? = nil) {
@@ -29,13 +30,13 @@ class NativeEventChannel: NSObject {
 
 extension NativeEventChannel: FlutterStreamHandler {
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
-        self.events = events
-        self.events?(sendMessage)
+        self.eventSink = events
+        self.eventSink?(sendMessage)
         return nil
     }
     
     func onCancel(withArguments arguments: Any?) -> FlutterError? {
-        self.events = nil
+        self.eventSink = nil
         return nil
     }
 }

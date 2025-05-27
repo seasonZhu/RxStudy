@@ -16,6 +16,7 @@ class MainController extends GetxController {
   void onInit() {
     super.onInit();
     _listenMethodChannel();
+    _listenEventChannel();
   }
 
   void onItemTapped(int index) {
@@ -60,5 +61,13 @@ class MainController extends GetxController {
           return Future.value("未知的方法: $method");
       }
     });
+  }
+
+  void _listenEventChannel() {
+    eventChannel.receiveBroadcastStream().listen((event) {
+      logger.d('received event: $event');
+    }, onError: (dynamic error) {
+      logger.d('received error: ${error.message}');
+    }, cancelOnError: true);
   }
 }

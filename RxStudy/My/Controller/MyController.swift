@@ -30,6 +30,10 @@ class MyController: BaseTableViewController {
     /// 如果定义为UIHostingController,会要求有个类型约束,与rootView.environmentObject(AppState())的不透明类型矛盾,导致编译问题
     var hostingVC: UIViewController?
     
+    var eventChannel: NativeEventChannel?
+    
+    private var eventSink: FlutterEventSink?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -219,32 +223,43 @@ extension MyController {
         }
         
         engine.viewController = nil
+        
         let flutterViewController = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
         
-        // self.eventChannel = NativeEventChannel(name: "userLocation", binaryMessenger: flutterViewController.binaryMessenger, sendMessage: "这是从Native传递过来的消息")
+//        let eventChannel = FlutterEventChannel(name: "nativeEvent", binaryMessenger: flutterViewController.binaryMessenger)
+//        eventChannel.setStreamHandler(self)
         
-        flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController] in
+        self.eventChannel = NativeEventChannel(name: "nativeEvent", binaryMessenger: flutterViewController.binaryMessenger, sendMessage: "这是从Native传递过来的消息")
+        
+        flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController, weak self] in
             print("FlutterViewController did render")
             // flutterViewController?.navigationController?.setNavigationBarHidden(true, animated: false)
             
             /// 发送一个Native事件并传参到Flutter侧
             // FlutterManager.shared().nativeNotifyToFlutter(type: .userLocationUpdate, jsonString: "湖北武汉")
+            
+            self?.eventChannel?.eventSink?("这是从Native持续传过来来的消息")
         }
 
+        presentToFlutterModule(flutterViewController: flutterViewController)
+    }
+    
+    private func presentToFlutterModule(flutterViewController: FlutterViewController) {
         flutterViewController.modalPresentationStyle = .fullScreen
         present(flutterViewController, animated: true)
-        
+    }
+    
+    private func pushToFlutterModule(flutterViewController: FlutterViewController) {
         /// 通过以下方式,避免present而增加其他逻辑,保证原生导航栏的逻辑
-//        navigationController?.pushViewController(flutterViewController, animated: true)
-//        
-//        flutterViewController.rx.viewWillAppear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
-//            flutterViewController?.navigationController?.navigationBar.isHidden = true
-//        }).disposed(by: rx.disposeBag)
-//        
-//        flutterViewController.rx.viewWillDisappear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
-//            self?.navigationController?.navigationBar.isHidden = false
-//        }).disposed(by: rx.disposeBag)
-            
+        navigationController?.pushViewController(flutterViewController, animated: true)
+
+        flutterViewController.rx.viewWillAppear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+            flutterViewController?.navigationController?.navigationBar.isHidden = true
+        }).disposed(by: rx.disposeBag)
+
+        flutterViewController.rx.viewWillDisappear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+            self?.navigationController?.navigationBar.isHidden = false
+        }).disposed(by: rx.disposeBag)
     }
 }
 
@@ -262,6 +277,21 @@ extension MyController: TabBarViewControllerChildrenRefreshProtocol {
     func dataRefresh() {
         debugLog("\(className) dataRefresh")
         tableView.mj_header?.beginRefreshing()
+    }
+}
+
+extension MyController: FlutterStreamHandler {
+    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        self.eventSink = events
+        // 例如：模拟发送位置数据
+        events(["lat": 39.9, "lng": 116.3])
+        // 你可以定时或在收到原生事件时调用 self.eventSink?(data)
+        return nil
+    }
+
+    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        self.eventSink = nil
+        return nil
     }
 }
 
