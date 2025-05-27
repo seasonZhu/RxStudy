@@ -10,6 +10,7 @@ enum My {
   myCoin,
   myCollect,
   themeSetting,
+  toNative,
   login,
   logout;
 }
@@ -19,22 +20,24 @@ extension Extension on My {
     switch (this) {
       case My.header:
         return "";
-      case My.login:
-        return "登录";
-      case My.logout:
-        return "登出";
+      case My.ranking:
+        return "积分排名";
+      case My.myGitHub:
+        return "我的GitHub";
+      case My.myJueJin:
+        return "我的掘金";
       case My.myCoin:
         return "我的积分";
       case My.myCollect:
         return "我的收藏";
       case My.themeSetting:
         return "主题颜色";
-      case My.myGitHub:
-        return "我的GitHub";
-      case My.myJueJin:
-        return "我的掘金";
-      case My.ranking:
-        return "积分排名";
+      case My.toNative:
+        return "返回Native";
+      case My.login:
+        return "登录";
+      case My.logout:
+        return "登出";
     }
   }
 
@@ -42,22 +45,24 @@ extension Extension on My {
     switch (this) {
       case My.header:
         return "";
-      case My.login:
-        return Routes.login;
-      case My.logout:
-        return Routes.unknown;
+      case My.ranking:
+        return Routes.coinRink;
+      case My.myGitHub:
+        return Routes.web;
+      case My.myJueJin:
+        return Routes.web;
       case My.myCoin:
         return Routes.myCoinHistory;
       case My.myCollect:
         return Routes.myCollect;
       case My.themeSetting:
         return Routes.themeSetting;
-      case My.myGitHub:
-        return Routes.web;
-      case My.myJueJin:
-        return Routes.web;
-      case My.ranking:
-        return Routes.coinRink;
+      case My.toNative:
+        return Routes.unknown;
+      case My.login:
+        return Routes.login;
+      case My.logout:
+        return Routes.unknown;
     }
   }
 
@@ -76,22 +81,24 @@ extension Extension on My {
     switch (this) {
       case My.header:
         return Icons.usb;
-      case My.login:
-        return Icons.login;
-      case My.logout:
-        return Icons.logout;
+      case My.ranking:
+        return Icons.poll;
+      case My.myGitHub:
+        return Icons.link;
+      case My.myJueJin:
+        return Icons.looks;
       case My.myCoin:
         return Icons.trending_up;
       case My.myCollect:
         return Icons.local_offer;
       case My.themeSetting:
         return Icons.color_lens;
-      case My.myGitHub:
-        return Icons.link;
-      case My.myJueJin:
-        return Icons.looks;
-      case My.ranking:
-        return Icons.poll;
+      case My.toNative:
+        return Icons.apple;
+      case My.login:
+        return Icons.login;
+      case My.logout:
+        return Icons.logout;
     }
   }
 
@@ -101,6 +108,7 @@ extension Extension on My {
     My.myJueJin,
     My.ranking,
     My.themeSetting,
+    My.toNative,
     My.login,
   ];
 
@@ -112,6 +120,7 @@ extension Extension on My {
     My.myCoin,
     My.myCollect,
     My.themeSetting,
+    My.toNative,
     My.logout,
   ];
 }

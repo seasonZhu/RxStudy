@@ -37,10 +37,6 @@ class MyPage extends GetView<MyController> {
                           child: Icon(icon),
                         ),
                         Text(controller.rxUserInfo.value),
-                        ElevatedButton(
-                          onPressed: controller.flutterCallbackPopMethod,
-                          child: const Text("返回Native"),
-                        ),
                       ],
                     ),
                   );
@@ -95,6 +91,8 @@ class MyPage extends GetView<MyController> {
                             );
                           }),
                         );
+                      } else if (model == my.My.toNative) {
+                        controller.flutterCallbackPopMethod();
                       } else {
                         if (model.entity != null) {
                           Get.toNamed(model.path, arguments: model.entity);
