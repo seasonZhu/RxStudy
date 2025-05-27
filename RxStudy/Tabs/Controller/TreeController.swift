@@ -82,7 +82,8 @@ extension TreeController {
             .disposed(by: rx.disposeBag)
         
         NotificationCenter.default.rx.notification(.Layout.typeChange).subscribe(onNext: { [weak self] _ in
-            self?.tableView.reloadData()
+            /// 使用reloadData,并不能更改数据源的结构,需要直接调用这个方法才行
+            self?.tableViewSectionAndFlexLayoutCell(tabs: viewModel.outputs.dataSource.value)
         }).disposed(by: rx.disposeBag)
     }
 }
