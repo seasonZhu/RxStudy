@@ -1,0 +1,1 @@
+../../../unimp/UniMPSDK/Core/Headers/weexHeader/WXComponent.h

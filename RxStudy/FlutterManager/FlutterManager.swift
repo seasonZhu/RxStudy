@@ -20,6 +20,7 @@ final class FlutterManager {
     
     var isFlutterEngineRun: Bool = false
     
+    @discardableResult
     static func shared() -> FlutterManager {
         guard  let shared = _shared else {
             _shared = FlutterManager()

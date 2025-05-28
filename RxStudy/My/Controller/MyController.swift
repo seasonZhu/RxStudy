@@ -131,6 +131,8 @@ extension MyController {
                     self?.toMyMessageController()
                 case .flutterModule:
                     self?.toFlutterViewController()
+                case .uniMPModule:
+                    UniMPManager.shared.openUniApp(appid: "__UNI__98AF8A0")
                 case .myGitHub:
                     /// 尝试使用了SFSafariViewController而非WebView进行加载,对于一个纯粹的展示性Web,SFSafariViewController体验效果更好
                     let sfsVC = SFSafariViewController(url: URL(string: "https://github.com/seasonZhu")!)

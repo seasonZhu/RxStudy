@@ -22,6 +22,7 @@ enum My: CaseIterable {
     case appIcon
     case treeCellStyleChange
     case flutterModule
+    case uniMPModule
     case login
     case logout
 }
@@ -56,6 +57,8 @@ extension My {
             string = "更换体系Cell布局"
         case .flutterModule:
             string = "Flutter玩安卓模块"
+        case .uniMPModule:
+            string = "UniApp玩安卓模块"
         case .login:
             string = "登录"
         case .logout:
@@ -97,6 +100,8 @@ extension My {
             string = "TreeCellStyleChangeController"
         case .flutterModule:
             string = "FlutterViewController"
+        case .uniMPModule:
+            string = "uniMPModule"
         case .login:
             string = "LoginController"
         case .logout:
@@ -119,7 +124,7 @@ extension My {
 }
 
 extension My {
-    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .flutterModule, .login]
+    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .flutterModule, .uniMPModule, .login]
     
-    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .flutterModule, .myCoin, .myCollect, .myMessage, .logout]
+    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .flutterModule, .uniMPModule, .myCoin, .myCollect, .myMessage, .logout]
 }

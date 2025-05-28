@@ -11,4 +11,7 @@
 #import "LSApplicationProxy.h"
 #import "LSBundleProxy.h"
 
+/// 添加uniApp库
+#import "DCUniMP.h"
+
 #define guard(wish) if (wish);

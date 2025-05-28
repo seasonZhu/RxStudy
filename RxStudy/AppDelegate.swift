@@ -26,9 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        
+                
         /// 初始化Flutter模块
         FlutterManager.shared()
+        
+        /// 初始化UniApp模块
+        UniMPManager.shared.initDCUniMPSDKEngineEnvironment(launchOptions: launchOptions)
         
         /// 崩溃配置
         installCrashHandler()
