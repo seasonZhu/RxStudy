@@ -188,6 +188,7 @@ PODS:
   - TheRouter (1.1.8)
   - unimp/Core (4.36):
     - SDWebImage (= 5.19.2)
+  - unimp/File (4.36)
   - url_launcher_ios (0.0.1):
     - Flutter
   - webview_flutter_wkwebview (0.0.1):
@@ -252,6 +253,7 @@ DEPENDENCIES:
   - SwiftDate
   - TheRouter
   - unimp/Core (= 4.36)
+  - unimp/File (= 4.36)
   - url_launcher_ios (from `flutter_module/.ios/.symlinks/plugins/url_launcher_ios/ios`)
   - webview_flutter_wkwebview (from `flutter_module/.ios/.symlinks/plugins/webview_flutter_wkwebview/darwin`)
 
@@ -403,6 +405,6 @@ SPEC CHECKSUMS:
   webview_flutter_wkwebview: 1821ceac936eba6f7984d89a9f3bcb4dea99ebb2
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: c433d497a08914c4cdda299f5ec3f2cea3178435
+PODFILE CHECKSUM: d8b6adfc7d00f5b52920e3d4aad7b957ce08e933
 
 COCOAPODS: 1.16.2

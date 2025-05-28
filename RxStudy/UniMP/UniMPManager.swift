@@ -17,12 +17,22 @@ final class UniMPManager: NSObject {
     private override init() {
         super.init()
         DCUniMPSDKEngine.setDelegate(self)
+        
+        /// 默认配置了创建按钮
+        let item1 = DCUniMPMenuActionSheetItem(title: "Item 1", identifier: "item1")
+        let item2 = DCUniMPMenuActionSheetItem(title: "Item 2", identifier: "item2")
+        /// 默认添加到全局配置
+        DCUniMPSDKEngine.setDefaultMenuItems([item1, item2])
     }
     
     func initDCUniMPSDKEngineEnvironment(launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         let options = NSMutableDictionary.init(dictionary: launchOptions ?? [:])
         options.setValue(NSNumber.init(value: true), forKey: "debug")
         DCUniMPSDKEngine.initSDKEnvironment(launchOptions: options as! [AnyHashable: Any])
+        
+        /// 这里是初始化的模块,可以在Uni中进行调用
+        WXSDKEngine.registerModule("TestModule", with: NSClassFromString("TestModule"))
+        WXSDKEngine.registerComponent("testmap", with: NSClassFromString("TestMapComponent"))
     }
     
     func openUniApp(appid: String, callback: ((Result<DCUniMPInstance, Error>) -> Void)? = nil) {
@@ -79,10 +89,10 @@ extension UniMPManager: DCUniMPSDKEngineDelegate {
         uniMPInstance?.sendUniMPEvent("NativeEvent", data: ["msg": "native message"])
     }
     
-//    func splashView(forApp appid: String) -> UIView {
-//        /// 这里是加载小程序的loading动画,通过appid可以做差异化处理
-//        return LoadingView()
-//    }
+    func splashView(forApp appid: String) -> UIView {
+        /// 这里是加载小程序的loading动画,通过appid可以做差异化处理
+        return LoadingView()
+    }
     
     func uniMP(onClose appid: String) {
         print("小程序：\(appid) closed")

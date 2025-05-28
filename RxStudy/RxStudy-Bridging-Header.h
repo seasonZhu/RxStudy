@@ -13,5 +13,6 @@
 
 /// 添加uniApp库
 #import "DCUniMP.h"
+#import "WeexSDK.h"
 
 #define guard(wish) if (wish);

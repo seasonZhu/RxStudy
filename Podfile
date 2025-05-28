@@ -127,7 +127,7 @@ target 'RxStudy' do
 #        'Contacts',           ##通讯录
 #        'Audio',              ##音频
 #        'Camera&Gallery',     ##相机&相册
-#        'File',               ##文件
+        'File',               ##文件
 #        'Video',              ##视频播放
 #        'LivePusher',         ##直播推流
 #        'NativeJS',           ##JS Reflection call Native

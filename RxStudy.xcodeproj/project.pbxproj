@@ -41,6 +41,9 @@
 		002A0055290152F500A872E0 /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002A0054290152F500A872E0 /* SubscriptionToken.swift */; };
 		002CCE6528AA263D0086110E /* ButtonRxTapBugController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */; };
 		002F9F3E2DE6EE430079DCB7 /* __UNI__C0D30A1.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 002F9F3D2DE6EE430079DCB7 /* __UNI__C0D30A1.wgt */; };
+		002F9F402DE6F7A30079DCB7 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 002F9F3F2DE6F7A30079DCB7 /* LoadingView.swift */; };
+		002F9F462DE6F96C0079DCB7 /* TestModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 002F9F442DE6F96C0079DCB7 /* TestModule.m */; };
+		002F9F472DE6F96C0079DCB7 /* TestMapComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 002F9F422DE6F96C0079DCB7 /* TestMapComponent.m */; };
 		00306C5B26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */; };
 		00306C5D26F0A63400BB04E1 /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */; };
 		003572D42DDB0F6300810FD6 /* TreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003572D32DDB0F6300810FD6 /* TreeCell.swift */; };
@@ -295,6 +298,11 @@
 		002A0054290152F500A872E0 /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		002CCE6428AA263D0086110E /* ButtonRxTapBugController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonRxTapBugController.swift; sourceTree = "<group>"; };
 		002F9F3D2DE6EE430079DCB7 /* __UNI__C0D30A1.wgt */ = {isa = PBXFileReference; lastKnownFileType = file; path = __UNI__C0D30A1.wgt; sourceTree = "<group>"; };
+		002F9F3F2DE6F7A30079DCB7 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		002F9F412DE6F96C0079DCB7 /* TestMapComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestMapComponent.h; sourceTree = "<group>"; };
+		002F9F422DE6F96C0079DCB7 /* TestMapComponent.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestMapComponent.m; sourceTree = "<group>"; };
+		002F9F432DE6F96C0079DCB7 /* TestModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestModule.h; sourceTree = "<group>"; };
+		002F9F442DE6F96C0079DCB7 /* TestModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestModule.m; sourceTree = "<group>"; };
 		00306C5A26F095D400BB04E1 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
 		00306C5C26F0A63400BB04E1 /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
 		003572D32DDB0F6300810FD6 /* TreeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeCell.swift; sourceTree = "<group>"; };
@@ -636,6 +644,17 @@
 			path = Apps;
 			sourceTree = "<group>";
 		};
+		002F9F452DE6F96C0079DCB7 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				002F9F412DE6F96C0079DCB7 /* TestMapComponent.h */,
+				002F9F422DE6F96C0079DCB7 /* TestMapComponent.m */,
+				002F9F432DE6F96C0079DCB7 /* TestModule.h */,
+				002F9F442DE6F96C0079DCB7 /* TestModule.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		00306C5926F0956D00BB04E1 /* FSPagerView+RxSwift */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,7 +798,9 @@
 			isa = PBXGroup;
 			children = (
 				002F9F3C2DE6EE290079DCB7 /* Apps */,
+				002F9F452DE6F96C0079DCB7 /* Extension */,
 				00C568AC2DE6E6490032B04C /* UniMPManager.swift */,
+				002F9F3F2DE6F7A30079DCB7 /* LoadingView.swift */,
 			);
 			path = UniMP;
 			sourceTree = "<group>";
@@ -1587,6 +1608,8 @@
 				00AF63FD28FF9B96005821DA /* SafariActivity.swift in Sources */,
 				612DBF5E220022BA007F73CC /* ViewController.swift in Sources */,
 				001B4E3328E19BE1003ADF95 /* Header.swift in Sources */,
+				002F9F462DE6F96C0079DCB7 /* TestModule.m in Sources */,
+				002F9F472DE6F96C0079DCB7 /* TestMapComponent.m in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				0087597A2B4F94AA002A4CF8 /* InnerEventResponsible.swift in Sources */,
 				007F881B2DE04FDB0075844B /* FlutterManager.swift in Sources */,
@@ -1743,6 +1766,7 @@
 				611E2E0826607929001585AE /* HotKey.swift in Sources */,
 				001B4E3B28E1A12C003ADF95 /* ActivityIndicator.swift in Sources */,
 				0053B40F2A2D733C00457779 /* CrashController.m in Sources */,
+				002F9F402DE6F7A30079DCB7 /* LoadingView.swift in Sources */,
 				003CA16C29384D0A0094A1E0 /* grayMode.js in Sources */,
 				0015F8E82D3A34B600069B13 /* TabBarViewControllerChildrenRefreshProtocol.swift in Sources */,
 				00DBD3192A3C3BC400664246 /* ContentScrollView.swift in Sources */,
