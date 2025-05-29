@@ -9,10 +9,20 @@
 import Foundation
 
 final class UniMPManager: NSObject {
-    
-    var uniMPInstance: DCUniMPInstance?
-    
+        
     static let shared = UniMPManager()
+    
+    private(set) var uniMPInstance: DCUniMPInstance?
+    
+    var closeButtonClickedCallback: ((_ appId: String) -> Void)?
+    
+    var defaultMenuItemClickedCallback: ((_ appid: String, _ identifier: String) -> Void)?
+    
+    var customSplashViewCallback: ((_ appId: String) -> UIView)?
+    
+    var uniMPOnCloseCallback: ((_ appId: String) -> Void)?
+    
+    var onUniMPEventReceiveCallback: ((_ appid: String, _ event: String, _ data: Any, _ callback: @escaping DCUniMPKeepAliveCallback) -> Void)?
     
     private override init() {
         super.init()
@@ -82,20 +92,27 @@ extension UniMPManager: DCUniMPSDKEngineDelegate {
         uniMPInstance?.close(completion: { [weak self] _, _ in
             self?.uniMPInstance = nil
         })
+        closeButtonClickedCallback?(appid)
     }
     
     func defaultMenuItemClicked(_ appid: String, identifier: String) {
         print("defaultMenuItemClicked：\(appid) \(identifier)")
         uniMPInstance?.sendUniMPEvent("NativeEvent", data: ["msg": "native message"])
+        defaultMenuItemClickedCallback?(appid, identifier)
     }
     
     func splashView(forApp appid: String) -> UIView {
         /// 这里是加载小程序的loading动画,通过appid可以做差异化处理
-        return LoadingView()
+        if let customSplashViewCallback {
+            return customSplashViewCallback(appid)
+        } else {
+            return LoadingView()
+        }
     }
     
     func uniMP(onClose appid: String) {
         print("小程序：\(appid) closed")
+        uniMPOnCloseCallback?(appid)
     }
     
     func onUniMPEventReceive(_ appid: String, event: String, data: Any, callback: @escaping DCUniMPKeepAliveCallback) {
@@ -104,5 +121,7 @@ extension UniMPManager: DCUniMPSDKEngineDelegate {
         // 回传数据给小程序
         // DCUniMPKeepAliveCallback 用法请查看定义说明
         callback("native callback message", false)
+        
+        onUniMPEventReceiveCallback?(appid, event, data, callback)
     }
 }
