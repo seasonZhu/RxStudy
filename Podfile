@@ -73,8 +73,9 @@ target 'RxStudy' do
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
   pod 'FunnyButton', :configurations => ['Debug']
-  #pod 'MLeaksFinder', :configurations => ['Debug'] # 在Xcode16.2下面会报错,暂时不使用
-  pod 'LifetimeTracker'
+  # 在Xcode16.2下面会报错,暂时不使用
+  #pod 'MLeaksFinder', :configurations => ['Debug']
+  pod 'LifetimeTracker', :configurations => ['Debug']
   
   # 日志打印与跟踪
   pod 'CocoaLumberjack/Swift'

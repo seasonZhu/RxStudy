@@ -108,7 +108,7 @@ extension FlutterManager {
                 FlutterManager.shared().currentVC()?.dismiss(animated: true)
                 result("收到从Flutter要求返回的通信,并且已经执行")
                 /// Flutter模块pop时,可以考虑将其engine置为nil,减少内存常驻开销,同时这样就没有办法将Native事件传递到Flutter侧了
-                //FlutterManager.shared().setFlutterEngineToNil()
+                // FlutterManager.shared().setFlutterEngineToNil()
             case .tokenOverdue:
                 print("token过期")
             case .logout:

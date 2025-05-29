@@ -12,10 +12,13 @@ import IQKeyboardManagerSwift
 import Alamofire
 import SVProgressHUD
 import KSCrash
-import LifetimeTracker
-import CocoaDebug
 
 import Flutter
+
+#if DEBUG
+import CocoaDebug
+import LifetimeTracker
+#endif
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

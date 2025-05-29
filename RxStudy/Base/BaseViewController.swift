@@ -14,8 +14,11 @@ import RxGesture
 
 import Moya
 import SVProgressHUD
+
+#if DEBUG
 import FunnyButton
 import LifetimeTracker
+#endif
 
 class BaseViewController: UIViewController {
     
@@ -32,7 +35,10 @@ class BaseViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        trackLifetime()
+        #if DEBUG
+            trackLifetime()
+        #endif
+        
     }
     
     required init?(coder: NSCoder) {
@@ -109,26 +115,33 @@ class BaseViewController: UIViewController {
 }
 
 // MARK: - FunnyButton的使用
-// extension BaseViewController {
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        replaceFunnyAction {
-//            print("点我干森莫")
-//        }
-//    }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        removeFunnyActions()
-//    }
-// }
+ extension BaseViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+    #if DEBUG
+        replaceFunnyAction {
+            print("点我干森莫")
+        }
+    #endif
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+    #if DEBUG
+        removeFunnyActions()
+    #endif
+        
+    }
+ }
 
 // MARK: - LifetimeTracker的使用
+#if DEBUG
 extension BaseViewController: LifetimeTrackable {
     class var lifetimeConfiguration: LifetimeConfiguration {
         return LifetimeConfiguration(maxCount: 1, groupName: "VC")
     }
 }
+#endif
 
 // MARK: - 网络请求错误页面的配置
 extension BaseViewController {
