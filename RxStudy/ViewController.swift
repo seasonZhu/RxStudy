@@ -111,6 +111,8 @@ class ViewController: UITabBarController {
                 traitOverrides.horizontalSizeClass = .compact
             }
         }
+        
+        // beginSplashView()
     }
     
     // MARK: - 添加子控制器
@@ -212,6 +214,25 @@ extension ViewController {
         }
         
         contentVCs.forEach { $0.dataRefresh() }
+    }
+}
+
+extension ViewController {
+    private func beginSplashView() {
+        let revealingSplashView = RevealingSplashView(iconImage: R.image.saber()!, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: R.image.launchImagePlayAndroid()!)
+        
+        (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(revealingSplashView)
+        
+        revealingSplashView.duration = 4.0
+        
+        revealingSplashView.iconColor = UIColor.red
+        revealingSplashView.useCustomIconColor = false
+        
+        revealingSplashView.animationType = SplashAnimationType.swingAndZoomOut
+    
+        revealingSplashView.startAnimation {
+            print("Completed")
+        }
     }
 }
 

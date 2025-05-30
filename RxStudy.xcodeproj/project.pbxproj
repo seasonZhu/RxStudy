@@ -55,6 +55,10 @@
 		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
 		004623622989F209008F0676 /* ConstructorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623612989F209008F0676 /* ConstructorProtocol.swift */; };
 		004623642989F96A008F0676 /* ExBehaviorRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623632989F96A008F0676 /* ExBehaviorRelay.swift */; };
+		0046299B2DE837F700EA0E7A /* SplashAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004629992DE837F700EA0E7A /* SplashAnimationType.swift */; };
+		0046299C2DE837F700EA0E7A /* SplashAnimatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004629982DE837F700EA0E7A /* SplashAnimatable.swift */; };
+		0046299D2DE837F700EA0E7A /* RevealingSplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004629972DE837F700EA0E7A /* RevealingSplashView.swift */; };
+		0046299E2DE837F700EA0E7A /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004629942DE837F700EA0E7A /* Animations.swift */; };
 		00469128286A8E58000B3C5E /* Friend.json in Resources */ = {isa = PBXBuildFile; fileRef = 00469127286A8E58000B3C5E /* Friend.json */; };
 		0046912A286A8F0D000B3C5E /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00469129286A8F0D000B3C5E /* Friend.swift */; };
 		0046912C286A94C0000B3C5E /* NavigationUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0046912B286A94C0000B3C5E /* NavigationUrl.swift */; };
@@ -315,6 +319,10 @@
 		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
 		004623612989F209008F0676 /* ConstructorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorProtocol.swift; sourceTree = "<group>"; };
 		004623632989F96A008F0676 /* ExBehaviorRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExBehaviorRelay.swift; sourceTree = "<group>"; };
+		004629942DE837F700EA0E7A /* Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		004629972DE837F700EA0E7A /* RevealingSplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RevealingSplashView.swift; sourceTree = "<group>"; };
+		004629982DE837F700EA0E7A /* SplashAnimatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimatable.swift; sourceTree = "<group>"; };
+		004629992DE837F700EA0E7A /* SplashAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashAnimationType.swift; sourceTree = "<group>"; };
 		00469127286A8E58000B3C5E /* Friend.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Friend.json; sourceTree = "<group>"; };
 		00469129286A8F0D000B3C5E /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0046912B286A94C0000B3C5E /* NavigationUrl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationUrl.swift; sourceTree = "<group>"; };
@@ -664,6 +672,17 @@
 			path = "FSPagerView+RxSwift";
 			sourceTree = "<group>";
 		};
+		0046299A2DE837F700EA0E7A /* RevealingSplashView */ = {
+			isa = PBXGroup;
+			children = (
+				004629942DE837F700EA0E7A /* Animations.swift */,
+				004629972DE837F700EA0E7A /* RevealingSplashView.swift */,
+				004629982DE837F700EA0E7A /* SplashAnimatable.swift */,
+				004629992DE837F700EA0E7A /* SplashAnimationType.swift */,
+			);
+			path = RevealingSplashView;
+			sourceTree = "<group>";
+		};
 		0048E6D1277AAD9700F6C739 /* JavaScript */ = {
 			isa = PBXGroup;
 			children = (
@@ -970,6 +989,7 @@
 		61336C792656493700FDEB2A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0046299A2DE837F700EA0E7A /* RevealingSplashView */,
 				00FC0F002DD1EAC500AC798F /* Utils */,
 				00D5456D2BB10CB9007B0325 /* AlamofireNetworkActivityLogger */,
 				0053B40C2A2D733C00457779 /* CrashController */,
@@ -1782,6 +1802,10 @@
 				61336C8326574C4D00FDEB2A /* MyService.swift in Sources */,
 				00CCD16B2865553F00925C1E /* Tool.swift in Sources */,
 				00FE0DDA2869455500B9D48F /* MessageViewModel.swift in Sources */,
+				0046299B2DE837F700EA0E7A /* SplashAnimationType.swift in Sources */,
+				0046299C2DE837F700EA0E7A /* SplashAnimatable.swift in Sources */,
+				0046299D2DE837F700EA0E7A /* RevealingSplashView.swift in Sources */,
+				0046299E2DE837F700EA0E7A /* Animations.swift in Sources */,
 				6171E1982665FE570065C34D /* Constant.swift in Sources */,
 				6114ABF9267AED660082BA67 /* MyCollectionController.swift in Sources */,
 				61B799542681B5760025EADE /* WebViewModel.swift in Sources */,
