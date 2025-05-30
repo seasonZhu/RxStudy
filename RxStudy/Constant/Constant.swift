@@ -52,3 +52,5 @@ let nameSpace = Bundle.main.infoDictionary?["CFBundleExecutable"] as? String
 
 /// 是否是第一次进入App
 let kIsFirst = "IsFirst"
+
+typealias ValueCallback<T> = (T) -> Void
