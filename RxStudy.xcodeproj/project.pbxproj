@@ -160,6 +160,7 @@
 		00EC66C42DAF3E3C0084CBA3 /* BaseRequestable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00EC66C32DAF3E3C0084CBA3 /* BaseRequestable.swift */; };
 		00FC0EFF2DD1C96A00AC798F /* HotKeyFlexBoxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FC0EFE2DD1C96A00AC798F /* HotKeyFlexBoxController.swift */; };
 		00FC0F022DD1EB2000AC798F /* Flex+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FC0F012DD1EB2000AC798F /* Flex+Extension.swift */; };
+		00FCF3952DEE92BF009CE6BD /* AnyConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FCF3942DEE92BF009CE6BD /* AnyConvertible.swift */; };
 		00FE0DDA2869455500B9D48F /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DD92869455500B9D48F /* MessageViewModel.swift */; };
 		00FE0DDC28694BB600B9D48F /* MyMessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDB28694BB600B9D48F /* MyMessageController.swift */; };
 		00FE0DDE28694D6500B9D48F /* MessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FE0DDD28694D6500B9D48F /* MessageCell.swift */; };
@@ -430,6 +431,7 @@
 		00EC66C32DAF3E3C0084CBA3 /* BaseRequestable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRequestable.swift; sourceTree = "<group>"; };
 		00FC0EFE2DD1C96A00AC798F /* HotKeyFlexBoxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyFlexBoxController.swift; sourceTree = "<group>"; };
 		00FC0F012DD1EB2000AC798F /* Flex+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Flex+Extension.swift"; sourceTree = "<group>"; };
+		00FCF3942DEE92BF009CE6BD /* AnyConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyConvertible.swift; sourceTree = "<group>"; };
 		00FE0DD92869455500B9D48F /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		00FE0DDB28694BB600B9D48F /* MyMessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMessageController.swift; sourceTree = "<group>"; };
 		00FE0DDD28694D6500B9D48F /* MessageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
@@ -860,6 +862,7 @@
 				006C7C7A2C748243001F1DBC /* CustomImageView.swift */,
 				00B227102D59EBDB00604481 /* Eventable.swift */,
 				00DFA2AB2DDC70AF0034A91A /* KeyConstants.swift */,
+				00FCF3942DEE92BF009CE6BD /* AnyConvertible.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1630,6 +1633,7 @@
 				001B4E3328E19BE1003ADF95 /* Header.swift in Sources */,
 				002F9F462DE6F96C0079DCB7 /* TestModule.m in Sources */,
 				002F9F472DE6F96C0079DCB7 /* TestMapComponent.m in Sources */,
+				00FCF3952DEE92BF009CE6BD /* AnyConvertible.swift in Sources */,
 				61CE1D97265E51BC0039E288 /* TabsViewModel.swift in Sources */,
 				0087597A2B4F94AA002A4CF8 /* InnerEventResponsible.swift in Sources */,
 				007F881B2DE04FDB0075844B /* FlutterManager.swift in Sources */,
