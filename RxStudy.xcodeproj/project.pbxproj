@@ -141,6 +141,7 @@
 		00CCD1852865BFAC00925C1E /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CCD1842865BFAC00925C1E /* Message.swift */; };
 		00CDD94F2910F02100027A81 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CDD94E2910F02100027A81 /* Theme.swift */; };
 		00CE180A2BDF978400310B24 /* AsyncRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00CE18092BDF978400310B24 /* AsyncRelay.swift */; };
+		00D1B42D2DF035D9000540BD /* PollingNetworkRequester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D1B42C2DF035D9000540BD /* PollingNetworkRequester.swift */; };
 		00D4C1A52D421EB500DDD5B3 /* CustomTabItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C19F2D421EB500DDD5B3 /* CustomTabItem.swift */; };
 		00D4C1A62D421EB500DDD5B3 /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C1A02D421EB500DDD5B3 /* CustomTabBar.swift */; };
 		00D4C1A72D421EB500DDD5B3 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00D4C1A12D421EB500DDD5B3 /* CustomExtensions.swift */; };
@@ -412,6 +413,7 @@
 		00CCD1842865BFAC00925C1E /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		00CDD94E2910F02100027A81 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		00CE18092BDF978400310B24 /* AsyncRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncRelay.swift; sourceTree = "<group>"; };
+		00D1B42C2DF035D9000540BD /* PollingNetworkRequester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PollingNetworkRequester.swift; sourceTree = "<group>"; };
 		00D4C19F2D421EB500DDD5B3 /* CustomTabItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabItem.swift; sourceTree = "<group>"; };
 		00D4C1A02D421EB500DDD5B3 /* CustomTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
 		00D4C1A12D421EB500DDD5B3 /* CustomExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
@@ -863,6 +865,7 @@
 				00B227102D59EBDB00604481 /* Eventable.swift */,
 				00DFA2AB2DDC70AF0034A91A /* KeyConstants.swift */,
 				00FCF3942DEE92BF009CE6BD /* AnyConvertible.swift */,
+				00D1B42C2DF035D9000540BD /* PollingNetworkRequester.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1667,6 +1670,7 @@
 				617E44F3269574CF00DA9EA2 /* ViewState.swift in Sources */,
 				00634E8B26E9D4BD00B3350D /* Setter.swift in Sources */,
 				61B13D6026808DC100665A08 /* ThirdPartyController.swift in Sources */,
+				00D1B42D2DF035D9000540BD /* PollingNetworkRequester.swift in Sources */,
 				61C97936265E2AB400E7A1BC /* TagType.swift in Sources */,
 				001B4E1A28E19229003ADF95 /* ClassCoinRank.swift in Sources */,
 				0038326826F5821E0071EE7E /* InfoCell.swift in Sources */,
@@ -1994,6 +1998,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6Q5RKSB5N;
 				ENABLE_BITCODE = NO;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -2003,6 +2008,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lostsakura.www.RxStudy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -2026,6 +2032,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B6Q5RKSB5N;
 				ENABLE_BITCODE = NO;
 				ENABLE_DEBUG_DYLIB = NO;
@@ -2035,6 +2042,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.lostsakura.www.RxStudy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";

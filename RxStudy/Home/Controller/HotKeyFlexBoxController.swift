@@ -36,11 +36,19 @@ class HotKeyFlexBoxController: BaseViewController {
     }()
     
     private lazy var rootFlexContainer = UIView()
+    
+    let requester = PollingNetworkRequester(
+        interval: .seconds(1),
+        maxPollingTime: .seconds(20),
+        requestClosure: {
+            return homeProvider.rx.request(.hotKey)
+        })
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         binding()
+        polling()
     }
     
     private func setupUI() {
@@ -103,6 +111,24 @@ class HotKeyFlexBoxController: BaseViewController {
     private func pushToSearchResultController(keyword: String) {
         let vc = SearchResultController(keyword: keyword)
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func polling() {
+        
+        requester.startListening()
+        
+        requester.onPollingEnd = { reason in
+            switch reason {
+            case .success:
+                print("网络请求成功，轮询结束")
+            case .failure(let error):
+                print("网络请求失败，轮询结束，错误：\(error)")
+            case .timeout:
+                print("轮询超时结束")
+            }
+        }
+        
+        requester.action()
     }
     
     @objc
