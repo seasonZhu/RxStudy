@@ -51,26 +51,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// SVProgressHUD配置
         SVProgressHUD.setting()
         
+        /// 网络状态监听
+        networkListening()
+        
         /// 网络请求日志打印配置
-        #if DEBUG
-         NetworkActivityLogger.shared.level = .debug
-         NetworkActivityLogger.shared.startLogging()
-        #endif
+        networkActivityLogSetting()
         
-        #if DEBUG
-            CocoaDebug.enable()
-        #endif
+        /// CocoaDebug配置
+        cocoaDebugSetting()
         
-        #if DEBUG
-            LifetimeTracker.setup(
-                onUpdate: LifetimeTrackerDashboardIntegration(
-                    visibility: .alwaysVisible,
-                    style: .circular,
-                    textColorForNoIssues: .systemGreen,
-                    textColorForLeakDetected: .systemRed
-                ).refreshUI
-            )
-        #endif
+        /// 生命周期跟踪
+        lifetimeTrackerSetting()
+        
+        /// 屏幕截图\录屏监听
+        screenCapturedListen()
         
         /// 背景色配置
         window?.backgroundColor = .playAndroidBackground
@@ -78,36 +72,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         /// 自动登录
         AccountManager.shared.autoLogin()
         
-        /// 网络状态监听
-        NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
-            let value = NetworkReachabilityManager.default?.isReachable == true
-            AccountManager.shared.networkIsReachableRelay.accept(value)
-        })
+        /// APIKey安全读取
+        apiKeySafeLoad()
         
-        screenCapturedListen()
-        
-        /// 通过这种方式对第三方服务的key进行复制,保证安全
-        KeyConstants.loadAPIKeys { result in
-            switch result {
-            case .success(let success):
-                print("myServiceXKey:\(KeyConstants.APIKeys.myServiceXKey)")
-                print("myServiceYKey:\(KeyConstants.APIKeys.myServiceYKey)")
-            case .failure(let failure):
-                break
-            }
-        }
-        
-        print("testKey:\(testKey)")
-        
-        if let amapApiKey = Bundle.main.object(forInfoDictionaryKey: "AMAP_API_KEY") as? String {
-            print("方法一:\(amapApiKey)")
-        }
-        
-        if let umApiKey = Bundle.main.object(forInfoDictionaryKey: "UM_API_KEY") as? String {
-            print("方法一:\(umApiKey)")
-        }
-        
+        /// LogUtils的简单使用
         LogUtils.debug("哈哈", "呵呵")
+        
+        LogUtils.debug("kStatusBarHeight\(kStatusBarHeight)")
+        
+        LogUtils.debug("kSafeBottomMargin\(kSafeBottomMargin)")
         
         return true
     }
@@ -135,6 +108,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// MARK: - 通过Safari跳转到App
 extension AppDelegate {
     /// 在Safari浏览器中输入wandroid://hotkey,可以跳转到热词搜索页
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
@@ -152,6 +126,52 @@ extension AppDelegate {
     }
 }
 
+// MARK: - 网络日志打印
+extension AppDelegate {
+    private func networkActivityLogSetting() {
+        #if DEBUG
+            NetworkActivityLogger.shared.level = .debug
+            NetworkActivityLogger.shared.startLogging()
+        #endif
+    }
+}
+
+// MARK: - 网络状态监听
+extension AppDelegate {
+    private func networkListening() {
+        NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
+            let value = NetworkReachabilityManager.default?.isReachable == true
+            AccountManager.shared.networkIsReachableRelay.accept(value)
+        })
+    }
+}
+
+// MARK: - CocoaDebug配置
+extension AppDelegate {
+    private func cocoaDebugSetting() {
+        #if DEBUG
+            CocoaDebug.enable()
+        #endif
+    }
+}
+
+// MARK: - 生命周期跟踪
+extension AppDelegate {
+    private func lifetimeTrackerSetting() {
+        #if DEBUG
+            LifetimeTracker.setup(
+                onUpdate: LifetimeTrackerDashboardIntegration(
+                    visibility: .alwaysVisible,
+                    style: .circular,
+                    textColorForNoIssues: .systemGreen,
+                    textColorForLeakDetected: .systemRed
+                ).refreshUI
+            )
+        #endif
+    }
+}
+
+// MARK: - 崩溃配置
 extension AppDelegate {
     private func installCrashHandler() {
         let installation = makeEmailInstallation()
@@ -185,11 +205,13 @@ extension AppDelegate {
     }
 }
 
+// MARK: - 本地日志与上传
+
 import CocoaLumberjack
 import SSZipArchive
 
 extension AppDelegate {
-    func logSetting() {
+    private func logSetting() {
         #if DEBUG
         dynamicLogLevel = .verbose
         #else
@@ -214,7 +236,7 @@ extension AppDelegate {
         print("sortedLogFilePaths: \(fileLogger.logFileManager.sortedLogFilePaths)")
     }
     
-    func logsUpload() {
+    private func logsUpload() {
         let fileLogger = DDFileLogger()
         
         let filePaths = fileLogger.logFileManager.sortedLogFilePaths
@@ -250,6 +272,7 @@ extension AppDelegate {
     }
 }
 
+// MARK: - 屏幕截图\录屏监听
 extension AppDelegate {
     private func screenCapturedListen() {
         /// 监听截屏
@@ -270,6 +293,8 @@ extension AppDelegate {
         }
     }
 }
+
+// MARK: - 路由配置
 
 import TheRouter
 
@@ -321,5 +346,33 @@ extension AppDelegate {
 extension AppDelegate: FlutterAppLifeCycleProvider {
     func add(_ delegate: FlutterApplicationLifeCycleDelegate) {
         lifeCycleDelegate.add(delegate)
+    }
+}
+
+// MARK: - APIKey安全读取
+extension AppDelegate {
+    func apiKeySafeLoad() {
+        /// 方案一：使用配置文件（.xcconfig）,这里不要被文章搞混淆了,直接使用Build Setting,User-Defined配置,再到Info.plist中设置即可
+        if let amapApiKey = Bundle.main.object(forInfoDictionaryKey: "AMAP_API_KEY") as? String {
+            print("amapApiKey:\(amapApiKey)")
+        }
+        
+        if let umApiKey = Bundle.main.object(forInfoDictionaryKey: "UM_API_KEY") as? String {
+            print("umApiKey:\(umApiKey)")
+        }
+        
+        /// 方案二：通过按需资源（On-Demand Resources）保护API密钥,在Resource Tags进行配置
+        KeyConstants.loadAPIKeys { result in
+            switch result {
+            case .success(let success):
+                print("myServiceXKey:\(KeyConstants.APIKeys.myServiceXKey)")
+                print("myServiceYKey:\(KeyConstants.APIKeys.myServiceYKey)")
+            case .failure(let failure):
+                break
+            }
+        }
+        
+        /// 方案五：混淆技术保护密钥,这里我查了一下,这里并不是混淆
+        print("testKey:\(testKey)")
     }
 }
