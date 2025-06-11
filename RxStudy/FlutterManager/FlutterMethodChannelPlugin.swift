@@ -6,6 +6,7 @@
 //  Copyright © 2025 season. All rights reserved.
 //
 
+#if canImport(Flutter)
 import Foundation
 
 import Flutter
@@ -34,3 +35,4 @@ extension FlutterMethodChannelPlugin: FlutterPlugin {
         }
     }
 }
+#endif

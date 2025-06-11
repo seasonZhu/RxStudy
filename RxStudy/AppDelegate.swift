@@ -13,7 +13,9 @@ import Alamofire
 import SVProgressHUD
 import KSCrash
 
+#if canImport(Flutter)
 import Flutter
+#endif
 
 #if DEBUG
 import CocoaDebug
@@ -25,13 +27,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    #if canImport(Flutter)
     lazy var lifeCycleDelegate = FlutterPluginAppLifeCycleDelegate()
+    #endif
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
                 
+        #if canImport(Flutter)
         /// 初始化Flutter模块
         FlutterManager.shared()
+        #endif
         
         /// 初始化UniApp模块
         UniMPManager.shared.initDCUniMPSDKEngineEnvironment(launchOptions: launchOptions)
@@ -354,12 +360,14 @@ extension AppDelegate {
     }
 }
 
+#if canImport(Flutter)
 // MARK: - 原生页面跳转跳转到指定Flutter页面
 extension AppDelegate: FlutterAppLifeCycleProvider {
     func add(_ delegate: FlutterApplicationLifeCycleDelegate) {
         lifeCycleDelegate.add(delegate)
     }
 }
+#endif
 
 // MARK: - APIKey安全读取
 extension AppDelegate {

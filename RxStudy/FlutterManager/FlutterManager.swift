@@ -6,6 +6,7 @@
 //  Copyright © 2025 season. All rights reserved.
 //
 
+#if canImport(Flutter) && canImport(FlutterPluginRegistrant)
 import Foundation
 
 import Flutter
@@ -223,3 +224,4 @@ extension FlutterManager {
         }
     }
 }
+#endif

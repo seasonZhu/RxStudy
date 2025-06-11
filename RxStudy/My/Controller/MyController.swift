@@ -19,7 +19,9 @@ import MBProgressHUD
 import SVProgressHUD
 import MJRefresh
 
+#if canImport(Flutter)
 import Flutter
+#endif
 
 import RxViewController
 
@@ -30,9 +32,11 @@ class MyController: BaseTableViewController {
     /// 如果定义为UIHostingController,会要求有个类型约束,与rootView.environmentObject(AppState())的不透明类型矛盾,导致编译问题
     var hostingVC: UIViewController?
     
+#if canImport(Flutter)
     var eventChannel: NativeEventChannel?
     
     private var eventSink: FlutterEventSink?
+#endif
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,7 +134,11 @@ extension MyController {
                 case .myMessage:
                     self?.toMyMessageController()
                 case .flutterModule:
+                    #if canImport(Flutter)
                     self?.toFlutterViewController()
+                    #else
+                    break
+                    #endif
                 case .uniMPModule:
                     UniMPManager.shared.openUniApp(appid: "__UNI__98AF8A0")
                 case .myGitHub:
@@ -188,12 +196,14 @@ extension MyController {
                         AccountManager.shared.clearAccountInfo()
                         DispatchQueue.main.async {
                             SVProgressHUD.showText("退出登录成功")
+                            #if canImport(Flutter)
                             FlutterManager.shared().nativeNotifyToFlutter(type: .nativeLogout, jsonString: "退出登录成功") { value in
                                 guard let message = value as? String else {
                                     return
                                 }
                                 print(message)
                             }
+                            #endif
                         }
                     }
                 }
@@ -211,6 +221,24 @@ extension MyController {
     }
 }
 
+extension MyController: InnerEventResponsible {
+    func innerEventHandle(event: any InnerEventConvertible) {
+        guard let type = event as? InnerViewEvent else { return }
+        switch type {
+        case .custom(let dictionary):
+            print(dictionary)
+        }
+    }
+}
+
+extension MyController: TabBarViewControllerChildrenRefreshProtocol {
+    func dataRefresh() {
+        debugLog("\(className) dataRefresh")
+        tableView.mj_header?.beginRefreshing()
+    }
+}
+
+#if canImport(Flutter)
 extension MyController {
     private func toFlutterViewController() {
         /**
@@ -265,23 +293,6 @@ extension MyController {
     }
 }
 
-extension MyController: InnerEventResponsible {
-    func innerEventHandle(event: any InnerEventConvertible) {
-        guard let type = event as? InnerViewEvent else { return }
-        switch type {
-        case .custom(let dictionary):
-            print(dictionary)
-        }
-    }
-}
-
-extension MyController: TabBarViewControllerChildrenRefreshProtocol {
-    func dataRefresh() {
-        debugLog("\(className) dataRefresh")
-        tableView.mj_header?.beginRefreshing()
-    }
-}
-
 extension MyController: FlutterStreamHandler {
     func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
         self.eventSink = events
@@ -296,6 +307,7 @@ extension MyController: FlutterStreamHandler {
         return nil
     }
 }
+#endif
 
 #if DEBUG
 import SwiftUI
