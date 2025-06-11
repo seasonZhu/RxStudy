@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
                 
-        #if canImport(Flutter)
+        #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
         /// 初始化Flutter模块
         FlutterManager.shared()
         #endif

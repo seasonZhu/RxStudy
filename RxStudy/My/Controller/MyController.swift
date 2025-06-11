@@ -134,10 +134,10 @@ extension MyController {
                 case .myMessage:
                     self?.toMyMessageController()
                 case .flutterModule:
-                    #if canImport(Flutter)
+                    #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
                     self?.toFlutterViewController()
                     #else
-                    break
+                    SVProgressHUD.showText("请在Podfile解除Flutter模块安装注释,pod install之后再试")
                     #endif
                 case .uniMPModule:
                     UniMPManager.shared.openUniApp(appid: "__UNI__98AF8A0")
@@ -196,7 +196,7 @@ extension MyController {
                         AccountManager.shared.clearAccountInfo()
                         DispatchQueue.main.async {
                             SVProgressHUD.showText("退出登录成功")
-                            #if canImport(Flutter)
+                            #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
                             FlutterManager.shared().nativeNotifyToFlutter(type: .nativeLogout, jsonString: "退出登录成功") { value in
                                 guard let message = value as? String else {
                                     return
@@ -238,7 +238,7 @@ extension MyController: TabBarViewControllerChildrenRefreshProtocol {
     }
 }
 
-#if canImport(Flutter)
+#if canImport(Flutter) && canImport(FlutterPluginRegistrant)
 extension MyController {
     private func toFlutterViewController() {
         /**
