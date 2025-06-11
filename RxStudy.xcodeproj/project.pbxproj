@@ -18,6 +18,7 @@
 		000D937326DCAC190099A749 /* open.js in Resources */ = {isa = PBXBuildFile; fileRef = 000D937226DCAC190099A749 /* open.js */; };
 		0010655F2CDAFD9D0014F95E /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0010655E2CDAFD9D0014F95E /* BaseTableViewCell.swift */; };
 		001065612CDB04320014F95E /* InfoGenericsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 001065602CDB04320014F95E /* InfoGenericsCell.swift */; };
+		0010A34E2DF92672005F18E9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0010A34D2DF92672005F18E9 /* SceneDelegate.swift */; };
 		0011D5882908C5000041F4FD /* CopyActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0011D5872908C5000041F4FD /* CopyActivity.swift */; };
 		0015F8E82D3A34B600069B13 /* TabBarViewControllerChildrenRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0015F8E72D3A34B600069B13 /* TabBarViewControllerChildrenRefreshProtocol.swift */; };
 		0016CE2B286E838F0002501A /* TypeNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0016CE2A286E838F0002501A /* TypeNameProtocol.swift */; };
@@ -281,6 +282,7 @@
 		000D937226DCAC190099A749 /* open.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
 		0010655E2CDAFD9D0014F95E /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
 		001065602CDB04320014F95E /* InfoGenericsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGenericsCell.swift; sourceTree = "<group>"; };
+		0010A34D2DF92672005F18E9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		0011D5872908C5000041F4FD /* CopyActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyActivity.swift; sourceTree = "<group>"; };
 		0015F8E72D3A34B600069B13 /* TabBarViewControllerChildrenRefreshProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerChildrenRefreshProtocol.swift; sourceTree = "<group>"; };
 		0016CE2A286E838F0002501A /* TypeNameProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeNameProtocol.swift; sourceTree = "<group>"; };
@@ -923,6 +925,7 @@
 				0008D71F2AF383AB006782E6 /* Log */,
 				00A06A9E2D7ACE94008AF223 /* TabType.swift */,
 				612DBF5B220022BA007F73CC /* AppDelegate.swift */,
+				0010A34D2DF92672005F18E9 /* SceneDelegate.swift */,
 				612DBF5D220022BA007F73CC /* ViewController.swift */,
 				003B6302278FBB5600EA265E /* ImportHeader.swift */,
 				003B6307278FBDA900EA265E /* RxStudy-Bridging-Header.h */,
@@ -1522,9 +1525,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1539,9 +1546,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1573,7 +1584,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputPaths = (
+			);
 			name = "[CP-User] Embed Flutter Build flutter_module Script";
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/flutter_module/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh embed_and_thin";
@@ -1583,7 +1598,11 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputPaths = (
+			);
 			name = "[CP-User] Run Flutter Build flutter_module Script";
+			outputPaths = (
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\nset -u\nsource \"${SRCROOT}/flutter_module/.ios/Flutter/flutter_export_environment.sh\"\nexport VERBOSE_SCRIPT_LOGGING=1 && \"$FLUTTER_ROOT\"/packages/flutter_tools/bin/xcode_backend.sh build";
@@ -1661,6 +1680,7 @@
 				6171E1A126661EC60065C34D /* RegisterController.swift in Sources */,
 				001B4E3528E19BE1003ADF95 /* Modifier.swift in Sources */,
 				0070157D2918A85500B8E386 /* ShareType.swift in Sources */,
+				0010A34E2DF92672005F18E9 /* SceneDelegate.swift in Sources */,
 				00CCD1852865BFAC00925C1E /* Message.swift in Sources */,
 				008759782B4F9475002A4CF8 /* InnerViewEvent.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
