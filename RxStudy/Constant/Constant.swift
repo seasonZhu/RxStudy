@@ -9,12 +9,7 @@
 import UIKit
 
 /// 状态栏的高度(竖屏限定)
-let kStatusBarHeight: CGFloat = if #available(iOS 13.0, *) {
-    UIApplication.shared.MainWindow?.windowScene?.statusBarManager?.statusBarFrame.height ?? 24
-} else {
-    UIApplication.shared.statusBarFrame.height
-}
-
+let kStatusBarHeight: CGFloat = 47
 /// 导航栏的高度(竖屏限定)
 let kNavigationBarHeight: CGFloat = 44.0
 
