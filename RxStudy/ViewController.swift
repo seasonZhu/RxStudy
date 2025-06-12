@@ -339,14 +339,21 @@ extension ViewController {
         textRelay.accept("soso")
         textRelay.accept("sola")
         
-        EventType.addEvent.rx().subscribe { _ in
-            print("rx() addEvent")
+        EventBus.User.login.rx().subscribe { notification in
+            print("rx() login")
+            guard let userInfo = notification.userInfo as? [String: String] else {
+                return
+            }
+            
+            let name = userInfo["name"]
+            print(name)
+            
         }.disposed(by: rx.disposeBag)
         
-        EventType.addEvent.rx.subscribe { _ in
-            print("rx addEvent")
+        EventBus.User.login.rx.subscribe { _ in
+            print("rx login")
         }.disposed(by: rx.disposeBag)
         
-        EventType.addEvent.post()
+        EventBus.User.login.post(userInfo: ["name": "season"])
     }
 }
