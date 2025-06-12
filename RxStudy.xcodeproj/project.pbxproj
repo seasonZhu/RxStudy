@@ -99,6 +99,7 @@
 		0082108D26E1FF3300525CE4 /* LogUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108C26E1FF3300525CE4 /* LogUtils.swift */; };
 		0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */; };
 		00834D802DF9654F00D9F07E /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00834D7F2DF9654F00D9F07E /* UIViewController+Extension.swift */; };
+		00834D9D2DFA632700D9F07E /* LiquidGlass .swift in Sources */ = {isa = PBXBuildFile; fileRef = 00834D9C2DFA632700D9F07E /* LiquidGlass .swift */; };
 		0084DC9028B89A95003C7E3D /* PropertyWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */; };
 		008598BF27B4E0DA003E9EF7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 008598C127B4E0DA003E9EF7 /* InfoPlist.strings */; };
 		008759782B4F9475002A4CF8 /* InnerViewEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008759772B4F9475002A4CF8 /* InnerViewEvent.swift */; };
@@ -370,6 +371,7 @@
 		0082108C26E1FF3300525CE4 /* LogUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
 		0082108E26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
 		00834D7F2DF9654F00D9F07E /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		00834D9C2DFA632700D9F07E /* LiquidGlass .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiquidGlass .swift"; sourceTree = "<group>"; };
 		0084DC8F28B89A95003C7E3D /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		008598C027B4E0DA003E9EF7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		008598C227B4E0ED003E9EF7 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
@@ -618,6 +620,7 @@
 				001B4E3A28E1A12C003ADF95 /* ActivityIndicator.swift */,
 				000023F828E2909900E81BEC /* CoinRankListPageCell.swift */,
 				00DC971128F27335002CC564 /* View+OnLoad.swift */,
+				00834D9C2DFA632700D9F07E /* LiquidGlass .swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1665,6 +1668,7 @@
 				00890D0328F56E9E00B3E72E /* AppLifeCycleModifier.swift in Sources */,
 				00D4C1A72D421EB500DDD5B3 /* CustomExtensions.swift in Sources */,
 				619BA35C26895DDF007C7135 /* BaseNavigationController.swift in Sources */,
+				00834D9D2DFA632700D9F07E /* LiquidGlass .swift in Sources */,
 				611471CC26B106AC00E298F5 /* UIColor+Extension.swift in Sources */,
 				00CCD1712865857300925C1E /* OtherService.swift in Sources */,
 				61B44A4126B79CA500791859 /* Transform.swift in Sources */,
