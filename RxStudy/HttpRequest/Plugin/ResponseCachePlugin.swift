@@ -10,6 +10,8 @@ import Foundation
 import CommonCrypto
 import CryptoKit
 
+import Moya
+
 extension String {
     var SHA256: String {
         guard let data = data(using: .utf8) else {
@@ -122,26 +124,39 @@ extension UserDefaults: ResponseCacheConvertible {
     }
 }
 
-import Moya
-
 // MARK: - 响应缓存插件
 class ResponseCachePlugin: PluginType {
     
     private let cache: any ResponseCacheConvertible
     
-    init(cache: any ResponseCacheConvertible = userDefaultsCache) {
+    /// 白名单判断闭包
+    private let shouldCache: (TargetType) -> Bool
+    
+    /// 默认7天
+    private let cacheDuration: TimeInterval
+
+    private let queue = DispatchQueue(label: "com.network.cache.plugin")
+    
+    init(cache: any ResponseCacheConvertible = userDefaultsCache,
+         shouldCache: @escaping (TargetType) -> Bool = { _ in true },
+         cacheDuration: TimeInterval = 86400 * 7) {
         self.cache = cache
+        self.shouldCache = shouldCache
+        self.cacheDuration = cacheDuration
     }
     
     func process(_ result: Swift.Result<Moya.Response, MoyaError>, target: TargetType) -> Swift.Result<Moya.Response, MoyaError> {
+        
+        guard shouldCache(target) else {
+            return result
+        }
 
         switch result {
         case .success(let response):
-            try? cache.saveData(response.data, forKey: "\(target.path)\(target.task.parametersString)")
+            saveResponse(response: response, target: target)
             return result
         case .failure:
-            if let data = try? cache.loadData(forKey: "\(target.path)\(target.task.parametersString)") {
-                let respone = Moya.Response(statusCode: 600, data: data)
+            if let respone = getResponse(target: target) {
                 return .success(respone)
             }
             
@@ -151,6 +166,60 @@ class ResponseCachePlugin: PluginType {
     
     func clearResponseCache() {
         cache.clearAllData()
+    }
+    
+    private func saveResponse(response: Response, target: TargetType) {
+        queue.async { [weak self] in
+            /// 白名单二次校验
+            guard self?.shouldCache(target) == true else { return }
+            
+            let cacheObject = CacheObject(
+                data: response.data,
+                statusCode: response.statusCode,
+                headers: response.response?.allHeaderFields as? [String: String],
+                timestamp: Date().timeIntervalSince1970
+            )
+            
+            if let data = try? JSONEncoder().encode(cacheObject) {
+                try? self?.cache.saveData(data, forKey: "\(target.path)\(target.task.parametersString)")
+            }
+        }
+    }
+    
+    private func getResponse(target: TargetType) -> Moya.Response? {
+        /// 白名单二次校验
+        guard shouldCache(target) else { return nil }
+        
+        let key = "\(target.path)\(target.task.parametersString)"
+        guard let data = try? cache.loadData(forKey: key),
+              let cacheObject = try? JSONDecoder().decode(CacheObject.self, from: data) else {
+            return nil
+        }
+
+        /// 检查缓存是否过期
+        if Date().timeIntervalSince1970 - cacheObject.timestamp > cacheDuration {
+            cache.clearData(by: key)
+            return nil
+        }
+
+        return Response(statusCode: cacheObject.statusCode,
+                        data: cacheObject.data,
+                        response: HTTPURLResponse(url: target.baseURL.appendingPathComponent(target.path),
+                                                  statusCode: cacheObject.statusCode,
+                                                  httpVersion: nil,
+                                                  headerFields: cacheObject.headers
+                                                 )
+        )
+    }
+}
+
+extension ResponseCachePlugin {
+    // 缓存数据模型
+    struct CacheObject: Codable {
+        let data: Data
+        let statusCode: Int
+        let headers: [String: String]?
+        let timestamp: TimeInterval
     }
 }
 
