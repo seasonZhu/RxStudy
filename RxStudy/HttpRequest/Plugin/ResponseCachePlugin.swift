@@ -125,6 +125,7 @@ extension UserDefaults: ResponseCacheConvertible {
 }
 
 // MARK: - 响应缓存插件
+// 我更新了这个缓存插件,功能得到了提升,因为同时集成了Flutter与UniApp的模块,在Debug模式离线缓存会闪退,在Release模式下无异常
 class ResponseCachePlugin: PluginType {
     
     private let cache: any ResponseCacheConvertible
