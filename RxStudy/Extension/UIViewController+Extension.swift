@@ -30,3 +30,21 @@ extension UIViewController {
         }
     }
 }
+
+extension UIView {
+    
+    /// 解决UI边框为0.5时,绘制不均匀的问题, fillColor不为nil时,可能会盖住view里面内容 https://juejin.cn/post/7534671606074114063
+    /// - Parameters:
+    ///   - cornerRadius: 倒角
+    ///   - strokeColor: 线的颜色
+    ///   - lineWidth: 线的宽度
+    ///   - fillColor: 填充颜色
+    func addShapeLayer(cornerRadius: CGFloat = 8, strokeColor: UIColor, lineWidth: CGFloat = 0.5, fillColor: UIColor? = nil) {
+        let shapeLayer = CAShapeLayer()
+        shapeLayer.path = UIBezierPath(roundedRect: bounds, cornerRadius: cornerRadius).cgPath
+        shapeLayer.strokeColor = strokeColor.cgColor
+        shapeLayer.lineWidth = lineWidth
+        shapeLayer.fillColor = fillColor?.cgColor
+        layer.addSublayer(shapeLayer)
+    }
+}

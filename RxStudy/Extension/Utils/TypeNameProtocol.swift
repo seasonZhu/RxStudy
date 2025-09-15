@@ -49,10 +49,12 @@ extension TypeNameProtocol where Self: AnyObject {
     }
 }
 
+extension NSObject: TypeNameProtocol {}
+
+// MARK: -  测试使用
+
 class Student {}
 
 class Teacher: NSObject {}
 
 extension Student: TypeNameProtocol {}
-
-extension NSObject: TypeNameProtocol {}
