@@ -51,10 +51,24 @@ extension TypeNameProtocol where Self: AnyObject {
 
 extension NSObject: TypeNameProtocol {}
 
-// MARK: -  测试使用
+// MARK: - 测试使用
 
 class Student {}
 
 class Teacher: NSObject {}
 
 extension Student: TypeNameProtocol {}
+
+/// https://mp.weixin.qq.com/s/h17dwmKSCNLQdWHUe_pYDQ
+@DebugDescription
+struct Book {
+    let title: String
+    let author: String
+    let pageCount: Int
+}
+
+extension Book: CustomDebugStringConvertible {
+    var debugDescription: String {
+        "《\(title)》- \(author) [\(pageCount)页]"
+    }
+}

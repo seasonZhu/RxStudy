@@ -136,7 +136,7 @@ class SnapKitLayoutAnimationController: UIViewController {
         box.backgroundColor = UIColor.orange
         view.addSubview(box)
          
-        box.snp.makeConstraints { (make) -> Void in
+        box.snp.makeConstraints { (make) in
             make.center.equalTo(view)
             /// 初始宽、高为100（优先级低）
             make.width.height.equalTo(100 * self.scacle).priority(.low)
@@ -148,7 +148,7 @@ class SnapKitLayoutAnimationController: UIViewController {
      
     // 视图约束更新
     override func updateViewConstraints() {
-        self.box.snp.updateConstraints { (make) -> Void in
+        self.box.snp.updateConstraints { (make) in
             /// 放大尺寸（优先级低）
             make.width.height.equalTo(100 * self.scacle).priority(.low)
         }
