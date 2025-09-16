@@ -17,6 +17,9 @@ let networkRequestLoggerPlugin = NetworkRequestLoggerPlugin(level: .debug)
 /// 官方的打印日志插件,没有AlamofireNetworkActivityLogger好用,AlamofireNetworkActivityLogger打印的更为清晰
 let loggerPlugin = NetworkLoggerPlugin.verbose
 
+/// 从RxNetworks改造过来的打印插件
+let debuggingPlugin = NetworkDebuggingPlugin()
+
 /// 在黑名单的Api,不进行loading操作
 let blackList = [Api.Home.banner, Api.Home.topArticle, Api.My.unreadCount]
 
