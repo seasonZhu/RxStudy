@@ -49,9 +49,6 @@ extension NetworkDebuggingPlugin {
         if options.logOptions.contains(.requestHeaders) {
             return true
         }
-        if options.logOptions.contains(.requestPlugins) {
-            return true
-        }
         if options.logOptions.contains(.requestParameters) {
             return true
         }
@@ -60,12 +57,10 @@ extension NetworkDebuggingPlugin {
     
     /// Turn on printing the response result.
     var openDebugResponse: Bool {
-        if options.logOptions.contains(.successResponseBody) {
+        if options.logOptions.contains(.responseBody) {
             return true
         }
-        if options.logOptions.contains(.errorResponseBody) {
-            return true
-        }
+
         return false
     }
 }
@@ -86,24 +81,20 @@ extension NetworkDebuggingPlugin.Options {
         public static let requestHeaders: LogOptions = LogOptions(rawValue: 1 << 3)
         /// The request's parameters will be logged.
         public static let requestParameters: LogOptions = LogOptions(rawValue: 1 << 4)
-        /// The request's plugins will be logged.
-        public static let requestPlugins: LogOptions = LogOptions(rawValue: 1 << 5)
         
         /// The body of a response that is a success will be logged.
-        public static let successResponseBody: LogOptions = LogOptions(rawValue: 1 << 87)
-        /// The body of a response that is an error will be logged.
-        public static let errorResponseBody: LogOptions = LogOptions(rawValue: 1 << 88)
+        public static let responseBody: LogOptions = LogOptions(rawValue: 1 << 87)
         
         /// Enable print request information.
-        public static let request: LogOptions = [requestMethod, requestBodyStream, requestHeaders, requestParameters, requestPlugins]
+        public static let request: LogOptions = [requestMethod, requestBodyStream, requestHeaders, requestParameters]
         /// Turn on printing the response result.
-        public static let response: LogOptions = [successResponseBody, errorResponseBody]
+        public static let response: LogOptions = [responseBody]
         /// Open the request log and response log at the same time.
         public static let all: LogOptions = [request, response]
         /// Concise printing log.
-        public static let concise: LogOptions = [requestPlugins, successResponseBody, errorResponseBody]
+        public static let concise: LogOptions = [responseBody]
         /// Diversity printing log.
-        public static let diversity: LogOptions = [requestPlugins, requestHeaders, requestParameters, successResponseBody, errorResponseBody]
+        public static let diversity: LogOptions = [requestHeaders, requestParameters, responseBody]
     }
 }
 
@@ -126,7 +117,7 @@ extension NetworkDebuggingPlugin {
     
     private var dateString: String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
         formatter.locale = Locale.current
         return formatter.string(from: Date())
     }

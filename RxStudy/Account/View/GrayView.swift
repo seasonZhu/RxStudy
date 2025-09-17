@@ -53,7 +53,7 @@ extension UIViewController {
     
     /// 一刀切所有页面变灰的方案
     func windowGrayMode(isGrayMode: Bool) {
-        if let keyWindow = UIApplication.shared.keyWindow {
+        if let keyWindow = UIApplication.shared.mainWindow {
             if isGrayMode {
                 let overlay = GrayView(frame: keyWindow.bounds)
                 keyWindow.addSubview(overlay)

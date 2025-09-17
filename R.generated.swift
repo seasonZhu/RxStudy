@@ -89,7 +89,7 @@ struct _R {
     var mainTheme: RswiftResources.ColorResource { .init(name: "mainTheme", path: [], bundle: bundle) }
   }
 
-  /// This `_R.image` struct is generated, and contains static references to 20 images.
+  /// This `_R.image` struct is generated, and contains static references to 32 images.
   struct image {
     let bundle: Foundation.Bundle
 
@@ -113,6 +113,42 @@ struct _R {
 
     /// Image `home_selected`.
     var home_selected: RswiftResources.ImageResource { .init(name: "home_selected", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_01`.
+    var loading_01: RswiftResources.ImageResource { .init(name: "loading_01", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_02`.
+    var loading_02: RswiftResources.ImageResource { .init(name: "loading_02", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_03`.
+    var loading_03: RswiftResources.ImageResource { .init(name: "loading_03", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_04`.
+    var loading_04: RswiftResources.ImageResource { .init(name: "loading_04", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_05`.
+    var loading_05: RswiftResources.ImageResource { .init(name: "loading_05", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_06`.
+    var loading_06: RswiftResources.ImageResource { .init(name: "loading_06", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_07`.
+    var loading_07: RswiftResources.ImageResource { .init(name: "loading_07", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_08`.
+    var loading_08: RswiftResources.ImageResource { .init(name: "loading_08", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_09`.
+    var loading_09: RswiftResources.ImageResource { .init(name: "loading_09", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_10`.
+    var loading_10: RswiftResources.ImageResource { .init(name: "loading_10", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_11`.
+    var loading_11: RswiftResources.ImageResource { .init(name: "loading_11", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
+
+    /// Image `loading_12`.
+    var loading_12: RswiftResources.ImageResource { .init(name: "loading_12", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
 
     /// Image `my`.
     var my: RswiftResources.ImageResource { .init(name: "my", path: [], bundle: bundle, locale: nil, onDemandResourceTags: nil) }
