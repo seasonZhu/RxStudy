@@ -44,8 +44,8 @@ class ViewController: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        /// 这段代码必须写在这里,写在viewDidLoad中,items还没有,无法正确赋值
-        for (index, _) in children.enumerated() {
+        /// 这段代码必须写在这里,写在viewDidLoad中,items还没有,无法正确赋值        
+        for index in children.indices {
             tabBar.items?[index].tag = index
         }
     }

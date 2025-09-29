@@ -53,6 +53,8 @@
 		003CA16C29384D0A0094A1E0 /* grayMode.js in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16B29384D0A0094A1E0 /* grayMode.js */; };
 		003CA16D29384DE80094A1E0 /* grayMode.js in Resources */ = {isa = PBXBuildFile; fileRef = 003CA16B29384D0A0094A1E0 /* grayMode.js */; };
 		003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16E29385AFA0094A1E0 /* GrayView.swift */; };
+		003CFE6D2E8938C700216C16 /* NetworkGZipPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CFE6C2E8938C700216C16 /* NetworkGZipPlugin.swift */; };
+		003CFE6F2E8A197A00216C16 /* NetworkActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CFE6E2E8A197A00216C16 /* NetworkActivityManager.swift */; };
 		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
 		004623622989F209008F0676 /* ConstructorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623612989F209008F0676 /* ConstructorProtocol.swift */; };
 		004623642989F96A008F0676 /* ExBehaviorRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623632989F96A008F0676 /* ExBehaviorRelay.swift */; };
@@ -324,6 +326,8 @@
 		003C4A0D2876B39F00AB3BC1 /* CodableTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CodableTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		003CA16B29384D0A0094A1E0 /* grayMode.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = grayMode.js; sourceTree = "<group>"; };
 		003CA16E29385AFA0094A1E0 /* GrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayView.swift; sourceTree = "<group>"; };
+		003CFE6C2E8938C700216C16 /* NetworkGZipPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGZipPlugin.swift; sourceTree = "<group>"; };
+		003CFE6E2E8A197A00216C16 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityManager.swift; sourceTree = "<group>"; };
 		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
 		004623612989F209008F0676 /* ConstructorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorProtocol.swift; sourceTree = "<group>"; };
 		004623632989F96A008F0676 /* ExBehaviorRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExBehaviorRelay.swift; sourceTree = "<group>"; };
@@ -774,6 +778,8 @@
 				006F60032B4FDD6300CBB27A /* ResponseCachePlugin.swift */,
 				00A146732BE9F817006DB558 /* NetworkRequestLoggerPlugin.swift */,
 				00AB70AF2E79384700219F04 /* NetworkDebuggingPlugin.swift */,
+				003CFE6C2E8938C700216C16 /* NetworkGZipPlugin.swift */,
+				003CFE6E2E8A197A00216C16 /* NetworkActivityManager.swift */,
 			);
 			path = Plugin;
 			sourceTree = "<group>";
@@ -1660,6 +1666,7 @@
 				0075943C28E422E5005AC9E0 /* LoginPageViewModel.swift in Sources */,
 				61336C702656415000FDEB2A /* Api.swift in Sources */,
 				61A6ED10265C9D2A00E3CA9D /* HomeController.swift in Sources */,
+				003CFE6F2E8A197A00216C16 /* NetworkActivityManager.swift in Sources */,
 				00BD699926EF1C2E00C5C04B /* Rx+Operators.swift in Sources */,
 				61B79950268190F40025EADE /* MyCoinViewModel.swift in Sources */,
 				00AF63FD28FF9B96005821DA /* SafariActivity.swift in Sources */,
@@ -1749,6 +1756,7 @@
 				61B5390226789F4D00EEFE1F /* MyHistoryCoin.swift in Sources */,
 				006F60022B4FDD2400CBB27A /* ResponseInterceptorPlugin.swift in Sources */,
 				002A0055290152F500A872E0 /* SubscriptionToken.swift in Sources */,
+				003CFE6D2E8938C700216C16 /* NetworkGZipPlugin.swift in Sources */,
 				0059B4C828699743006C22D7 /* MessageContentCell.swift in Sources */,
 				6171E18C2664B08C0065C34D /* BaseTableViewController.swift in Sources */,
 				00FE0DDE28694D6500B9D48F /* MessageCell.swift in Sources */,
