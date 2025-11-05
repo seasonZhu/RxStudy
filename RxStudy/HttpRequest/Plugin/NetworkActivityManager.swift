@@ -9,6 +9,8 @@
 import Foundation
 import Moya
 
+import SVProgressHUD
+
 final class NetworkActivityManager {
     private static var activityCount = 0
     

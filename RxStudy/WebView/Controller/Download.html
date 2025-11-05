@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下载协议模板</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .download-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            border: none;
+        }
+        .download-button:hover {
+            background-color: #45a049;
+        }
+        .download-button:active {
+            background-color: #3d8b40;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>协议模板下载</h1>
+        <!-- 使用按钮和JavaScript触发下载 -->
+<!--        <button class="download-button" onclick="downloadPdf()">下载协议模板</button>-->
+        
+        <!-- 或者使用a标签直接下载（两种方式任选其一） -->
+         <a href="https://ossapp.wulingnev.com/wl-app/common/import-template/协议模板.pdf" class="download-button" download="协议模板.pdf">下载协议模板</a> 
+    </div>
+
+    <script>
+        function downloadPdf() {
+            // 创建一个临时的a标签
+            const link = document.createElement('a');
+            // 设置PDF文件的URL
+            link.href = 'https://ossapp.wulingnev.com/wl-app/common/import-template/协议模板.pdf';
+            // 设置下载的文件名
+            link.download = '协议模板.pdf';
+            // 将a标签添加到文档中
+            document.body.appendChild(link);
+            // 触发点击事件
+            link.click();
+            // 从文档中移除a标签
+            document.body.removeChild(link);
+        }
+    </script>
+</body>
+</html>

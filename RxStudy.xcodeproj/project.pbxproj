@@ -12,6 +12,8 @@
 		000220602D0FDC53000182B5 /* Array+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0002205F2D0FDC53000182B5 /* Array+URLQueryItem.swift */; };
 		000301F6284E047800A41EA6 /* Collection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000301F5284E047800A41EA6 /* Collection+Extension.swift */; };
 		000666432BC51A15008FEE94 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 000666422BC51A15008FEE94 /* PrivacyInfo.xcprivacy */; };
+		000748342EBAFD54007BE340 /* DownloadWebController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000748332EBAFD54007BE340 /* DownloadWebController.swift */; };
+		000748362EBB370C007BE340 /* Download.html in Resources */ = {isa = PBXBuildFile; fileRef = 000748352EBB36F9007BE340 /* Download.html */; };
 		0008D7212AF383E5006782E6 /* CustomLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */; };
 		0008D7232AF3847F006782E6 /* CustomLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */; };
 		00099E0329026BD7001FC753 /* ObserverType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00099E0229026BD7001FC753 /* ObserverType+Extension.swift */; };
@@ -282,6 +284,8 @@
 		0002205F2D0FDC53000182B5 /* Array+URLQueryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+URLQueryItem.swift"; sourceTree = "<group>"; };
 		000301F5284E047800A41EA6 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		000666422BC51A15008FEE94 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = SOURCE_ROOT; };
+		000748332EBAFD54007BE340 /* DownloadWebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWebController.swift; sourceTree = "<group>"; };
+		000748352EBB36F9007BE340 /* Download.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Download.html; sourceTree = "<group>"; };
 		0008D7202AF383E5006782E6 /* CustomLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogFormatter.swift; sourceTree = "<group>"; };
 		0008D7222AF3847F006782E6 /* CustomLogFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLogFileManager.swift; sourceTree = "<group>"; };
 		00099E0229026BD7001FC753 /* ObserverType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObserverType+Extension.swift"; sourceTree = "<group>"; };
@@ -734,6 +738,8 @@
 			children = (
 				61F2824A265F8996009E16C9 /* WeakScriptMessageDelegate.swift */,
 				61F28249265F8996009E16C9 /* WebViewController.swift */,
+				000748332EBAFD54007BE340 /* DownloadWebController.swift */,
+				000748352EBB36F9007BE340 /* Download.html */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1494,6 +1500,7 @@
 				61BB7C5A267A057700990636 /* LoginAndRegister.json in Resources */,
 				61BB7C62267A057700990636 /* ArticleTopList.json in Resources */,
 				61BB7C68267A057700990636 /* ProjectClassifyList.json in Resources */,
+				000748362EBB370C007BE340 /* Download.html in Resources */,
 				61BB7C65267A057700990636 /* ProjectClassify.json in Resources */,
 				00DFA2AA2DDC70320034A91A /* APIKeys.json in Resources */,
 				61BB7C60267A057700990636 /* CollectArticleAction.json in Resources */,
@@ -1872,6 +1879,7 @@
 				006029722888FF3B0024CC7F /* Moya+BlockingObservable.swift in Sources */,
 				007ED6F526A50EB600D2EE94 /* SnapKitLayoutController.swift in Sources */,
 				00FC0EFF2DD1C96A00AC798F /* HotKeyFlexBoxController.swift in Sources */,
+				000748342EBAFD54007BE340 /* DownloadWebController.swift in Sources */,
 				61A6ED0A265C963900E3CA9D /* ViewModelProtocol.swift in Sources */,
 				612DBF5C220022BA007F73CC /* AppDelegate.swift in Sources */,
 				0082108F26E20AC000525CE4 /* UIPanGestureRecognizer+Extension.swift in Sources */,

@@ -239,7 +239,7 @@ struct _R {
     }
   }
 
-  /// This `_R.file` struct is generated, and contains static references to 36 resource files.
+  /// This `_R.file` struct is generated, and contains static references to 37 resource files.
   struct file {
     let bundle: Foundation.Bundle
 
@@ -269,6 +269,9 @@ struct _R {
 
     /// Resource file `CourseDetail.json`.
     var courseDetailJson: RswiftResources.FileResource { .init(name: "CourseDetail", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
+
+    /// Resource file `Download.html`.
+    var downloadHtml: RswiftResources.FileResource { .init(name: "Download", pathExtension: "html", bundle: bundle, locale: LocaleReference.none) }
 
     /// Resource file `Friend.json`.
     var friendJson: RswiftResources.FileResource { .init(name: "Friend", pathExtension: "json", bundle: bundle, locale: LocaleReference.none) }
