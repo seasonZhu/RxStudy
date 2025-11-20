@@ -53,3 +53,10 @@ func creatInstance<T: NSObject>(moduleName: String? = Bundle.main.infoDictionary
 
     return typeClass.init()
 }
+
+// MARK: - 获取NSObject的引用计数
+extension NSObject {
+    var retainCount: Int {
+        CFGetRetainCount(self)
+    }
+}
