@@ -126,6 +126,7 @@ private extension HomeViewModel {
     func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
         let result = homeProvider.rx.request(HomeService.normalArticle(page))
             .map(BaseModel<Page<Info>>.self)
+            .catchAndReturn(BaseModel<Page<Info>>(data: nil, errorCode: nil, errorMsg: nil))
         
         return result
     }
@@ -136,6 +137,7 @@ private extension HomeViewModel {
         let result = homeProvider.rx.request(HomeService.topArticle)
             .map(BaseModel<[Info]>.self)
             .compactMap { $0.data }
+            .catchAndReturn([])
             .asObservable()
             .asSingle()
         
@@ -148,6 +150,7 @@ private extension HomeViewModel {
         let result = homeProvider.rx.request(HomeService.banner)
             .map(BaseModel<[Banner]>.self)
             .compactMap { $0.data }
+            .catchAndReturn([])
             .asObservable()
             .asSingle()
 

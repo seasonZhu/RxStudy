@@ -59,6 +59,7 @@ extension MyViewModel {
             .map(BaseModel<CoinRank>.self)
             .map { $0.data }
             .compactMap { $0 }
+            .catchAndReturn(CoinRank())
             .asObservable()
             .asSingle()
     }
@@ -68,6 +69,7 @@ extension MyViewModel {
             .map(BaseModel<Int>.self)
             .map { $0.data }
             .compactMap { $0 }
+            .catchAndReturn(0)
             .asObservable()
             .asSingle()
     }

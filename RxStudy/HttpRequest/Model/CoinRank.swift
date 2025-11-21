@@ -17,6 +17,15 @@ struct CoinRank: Codable {
     let userId: Int?
     let username: String?
     
+    init(coinCount: Int? = nil, level: Int? = nil, nickname: String? = nil, rank: String? = nil, userId: Int? = nil, username: String? = nil) {
+        self.coinCount = coinCount
+        self.level = level
+        self.nickname = nickname
+        self.rank = rank
+        self.userId = userId
+        self.username = username
+    }
+    
     var myInfo: String {
         guard let rank,
               let level,
