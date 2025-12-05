@@ -220,3 +220,6 @@ SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成�
 ## UniApp接入
 
 在develop_uniapp分支上面，我进行了uni-app的接入。使用用的wgt文件就是通过uni-app版wanandroid客户端编译生成的。uni-app版本的写法与性能一般，大家看看就好。
+
+## Flutter接入
+在develop_flutter分支上面，需要运行的时候，需要先把flutter_module文件夹下面的单独运行进行pub get,然后再回到iOS的根目录下进行pod install。
