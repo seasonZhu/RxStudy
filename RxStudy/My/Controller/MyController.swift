@@ -137,7 +137,7 @@ extension MyController {
                     #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
                     self?.toFlutterViewController()
                     #else
-                    SVProgressHUD.showText("请在Podfile解除Flutter模块安装注释,pod install之后再试")
+                    SVProgressHUD.showText("请在Podfile解除Flutter模块安装注释,flutter_module文件夹下面的单独运行进行pub get,pod install之后再试")
                     #endif
                 case .uniMPModule:
                     UniMPManager.shared.openUniApp(appid: "__UNI__98AF8A0")

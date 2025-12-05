@@ -1,6 +1,0 @@
-framework module cupertino_http {
-  umbrella header "cupertino_http-umbrella.h"
-
-  export *
-  module * { export * }
-}

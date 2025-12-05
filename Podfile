@@ -115,7 +115,7 @@ target 'RxStudy' do
   pod 'MBProgressHUD'
   
   # 添加flutter模块
-  install_all_flutter_pods(flutter_application_path)
+  #install_all_flutter_pods(flutter_application_path)
   
   # 添加UniApp模块
   ## 判断需要引用哪些模块请参考文档:https://nativesupport.dcloud.net.cn/AppDocs/usemodule/iOSModuleConfig/common.html#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9D%97-%E4%B8%89%E6%96%B9sdk
@@ -210,7 +210,7 @@ post_install do |installer|
         end
     end
     
-    flutter_post_install(installer) if defined?(flutter_post_install)
+    #flutter_post_install(installer) if defined?(flutter_post_install)
 end
 
 plugin 'cocoapods-keys', {
