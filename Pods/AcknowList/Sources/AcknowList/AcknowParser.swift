@@ -1,7 +1,7 @@
 //
 // AcknowParser.swift
 //
-// Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)
+// Copyright (c) 2015-2025 Vincent Tourraine (https://www.vtourraine.net)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -109,6 +109,7 @@ open class AcknowParser {
      - Returns: The first link found, or `nil` if no link can be found.
      */
     class func firstLink(in text: String) -> URL? {
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS) || os(visionOS)
         let types: NSTextCheckingResult.CheckingType = [.link]
 
         guard let linkDetector = try? NSDataDetector(types: types.rawValue),
@@ -117,6 +118,9 @@ open class AcknowParser {
         }
 
         return firstLink.url
+#else
+        return nil
+#endif
     }
 
     /**

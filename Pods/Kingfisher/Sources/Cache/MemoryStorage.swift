@@ -51,7 +51,7 @@ public enum MemoryStorage {
     /// The `MemoryStorage` also includes a scheduled self-cleaning task to evict expired items from memory.
     ///
     /// > This class is thready safe.
-    public class Backend<T: CacheCostCalculable>: @unchecked Sendable {
+    public final class Backend<T: CacheCostCalculable>: @unchecked Sendable where T: Sendable {
         
         let storage = NSCache<NSString, StorageObject<T>>()
 
@@ -75,6 +75,11 @@ public enum MemoryStorage {
             didSet {
                 storage.totalCostLimit = config.totalCostLimit
                 storage.countLimit = config.countLimit
+                cleanTimer?.invalidate()
+                cleanTimer = .scheduledTimer(withTimeInterval: config.cleanInterval, repeats: true) { [weak self] _ in
+                    guard let self = self else { return }
+                    self.removeExpired()
+                }
             }
         }
 

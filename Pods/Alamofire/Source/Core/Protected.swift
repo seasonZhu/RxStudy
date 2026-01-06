@@ -81,7 +81,6 @@ extension NSLock: Lock {}
 #endif
 
 /// A thread-safe wrapper around a value.
-@dynamicMemberLookup
 final class Protected<Value> {
     #if canImport(Darwin)
     private let lock = UnfairLock()
@@ -90,11 +89,8 @@ final class Protected<Value> {
     #else
     #error("This platform needs a Lock-conforming type without Foundation.")
     #endif
-    #if compiler(>=6)
+
     private nonisolated(unsafe) var value: Value
-    #else
-    private var value: Value
-    #endif
 
     init(_ value: Value) {
         self.value = value
@@ -125,21 +121,10 @@ final class Protected<Value> {
     func write(_ value: Value) {
         write { $0 = value }
     }
-
-    subscript<Property>(dynamicMember keyPath: WritableKeyPath<Value, Property>) -> Property {
-        get { lock.around { value[keyPath: keyPath] } }
-        set { lock.around { value[keyPath: keyPath] = newValue } }
-    }
-
-    subscript<Property>(dynamicMember keyPath: KeyPath<Value, Property>) -> Property {
-        lock.around { value[keyPath: keyPath] }
-    }
 }
 
 #if compiler(>=6)
 extension Protected: Sendable {}
-#else
-extension Protected: @unchecked Sendable {}
 #endif
 
 extension Protected where Value == Request.MutableState {

@@ -43,7 +43,7 @@ public enum DiskStorage {
     /// ``DiskStorage/Config`` value or by modifying the ``DiskStorage/Backend/config`` property after it has been
     /// created. The ``DiskStorage/Backend`` will use the file's attributes to keep track of a file for its expiration
     /// or size limitation.
-    public class Backend<T: DataTransformable>: @unchecked Sendable {
+    public final class Backend<T: DataTransformable>: @unchecked Sendable where T: Sendable {
         
         private let propertyQueue = DispatchQueue(label: "com.onevcat.kingfisher.DiskStorage.Backend.propertyQueue")
         
@@ -100,17 +100,19 @@ public enum DiskStorage {
         }
 
         private func setupCacheChecking() {
-            maybeCachedCheckingQueue.async {
+            DispatchQueue.global(qos: .default).async {
                 do {
-                    self.maybeCached = Set()
-                    try self.config.fileManager.contentsOfDirectory(atPath: self.directoryURL.path).forEach { 
-                        fileName in
-                        self.maybeCached?.insert(fileName)
+                    let allFiles = try self.config.fileManager.contentsOfDirectory(atPath: self.directoryURL.path)
+                    let maybeCached = Set(allFiles)
+                    self.maybeCachedCheckingQueue.async {
+                        self.maybeCached = maybeCached
                     }
                 } catch {
-                    // Just disable the functionality if we fail to initialize it properly. This will just revert to
-                    // the behavior which is to check file existence on disk directly.
-                    self.maybeCached = nil
+                    self.maybeCachedCheckingQueue.async {
+                        // Just disable the functionality if we fail to initialize it properly. This will just revert to
+                        // the behavior which is to check file existence on disk directly.
+                        self.maybeCached = nil
+                    }
                 }
             }
         }
@@ -370,22 +372,25 @@ public enum DiskStorage {
         }
         
         func cacheFileName(forKey key: String, forcedExtension: String? = nil) -> String {
-            // TODO: Bad code... Consider refactoring.
-            if config.usesHashedFileName {
-                let hashedKey = key.kf.sha256
-                if let ext = forcedExtension ?? config.pathExtension {
-                    return "\(hashedKey).\(ext)"
-                } else if config.autoExtAfterHashedFileName,
-                          let ext = forcedExtension ?? key.kf.ext {
-                    return "\(hashedKey).\(ext)"
-                }
-                return hashedKey
-            } else {
-                if let ext = forcedExtension ?? config.pathExtension {
-                    return "\(key).\(ext)"
-                }
-                return key
+            let baseName = config.usesHashedFileName ? key.kf.sha256 : key
+            
+            if let ext = fileExtension(key: key, forcedExtension: forcedExtension) {
+                return "\(baseName).\(ext)"
             }
+            
+            return baseName
+        }
+        
+        func fileExtension(key: String, forcedExtension: String?) -> String? {
+            if let ext = forcedExtension ?? config.pathExtension {
+                return ext
+            }
+        
+            if config.usesHashedFileName && config.autoExtAfterHashedFileName {
+                return key.kf.ext
+            }
+        
+            return nil
         }
 
         func allFileURLs(for propertyKeys: [URLResourceKey]) throws -> [URL] {

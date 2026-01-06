@@ -1151,11 +1151,10 @@ public extension SFSymbol {
     static let figureSeatedSeatbeltAndAirbagOn = SFSymbol(rawValue: "figure.seated.seatbelt.and.airbag.on")
 
     /// 􁁶
-    /// Single Localization, 2 Layersets
+    /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
-    /// - Hierarchical
     @available(iOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionLower")
     @available(macOS, introduced: 13.0, deprecated: 14.0, renamed: "figureSeatedSideAirDistributionLower")
     @available(tvOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionLower")
@@ -1164,11 +1163,10 @@ public extension SFSymbol {
     static let figureSeatedSideAirLower = SFSymbol(rawValue: "figure.seated.side.air.lower")
 
     /// 􁁵
-    /// Single Localization, 2 Layersets
+    /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
-    /// - Hierarchical
     @available(iOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionMiddle")
     @available(macOS, introduced: 13.0, deprecated: 14.0, renamed: "figureSeatedSideAirDistributionMiddle")
     @available(tvOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionMiddle")
@@ -1177,11 +1175,10 @@ public extension SFSymbol {
     static let figureSeatedSideAirUpper = SFSymbol(rawValue: "figure.seated.side.air.upper")
 
     /// 􁁸
-    /// Single Localization, 2 Layersets
+    /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
-    /// - Hierarchical
     @available(iOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionMiddleAndLower")
     @available(macOS, introduced: 13.0, deprecated: 14.0, renamed: "figureSeatedSideAirDistributionMiddleAndLower")
     @available(tvOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionMiddleAndLower")
@@ -1190,11 +1187,10 @@ public extension SFSymbol {
     static let figureSeatedSideAirUpperAndLower = SFSymbol(rawValue: "figure.seated.side.air.upper.and.lower")
 
     /// 􁁷
-    /// Single Localization, 2 Layersets
+    /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
-    /// - Hierarchical
     @available(iOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionUpper")
     @available(macOS, introduced: 13.0, deprecated: 14.0, renamed: "figureSeatedSideAirDistributionUpper")
     @available(tvOS, introduced: 16.1, deprecated: 17.0, renamed: "figureSeatedSideAirDistributionUpper")
@@ -1209,6 +1205,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOff")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureSeatedSideLeftAirbagOff")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOff")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "figureSeatedSideLeftAirbagOff")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureSeatedSideLeftAirbagOff")
     static let figureSeatedSideAirbagOff = SFSymbol(rawValue: "figure.seated.side.airbag.off")
 
     /// 􁉻
@@ -1218,6 +1219,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOff2")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureSeatedSideLeftAirbagOff2")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOff2")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "figureSeatedSideLeftAirbagOff2")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureSeatedSideLeftAirbagOff2")
     static let figureSeatedSideAirbagOff2 = SFSymbol(rawValue: "figure.seated.side.airbag.off.2")
 
     /// 􀿧
@@ -1227,6 +1233,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOn")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureSeatedSideLeftAirbagOn")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOn")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "figureSeatedSideLeftAirbagOn")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureSeatedSideLeftAirbagOn")
     static let figureSeatedSideAirbagOn = SFSymbol(rawValue: "figure.seated.side.airbag.on")
 
     /// 􁞚
@@ -1236,6 +1247,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOn2")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureSeatedSideLeftAirbagOn2")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftAirbagOn2")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "figureSeatedSideLeftAirbagOn2")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureSeatedSideLeftAirbagOn2")
     static let figureSeatedSideAirbagOn2 = SFSymbol(rawValue: "figure.seated.side.airbag.on.2")
 
     /// 􁁹
@@ -1244,6 +1260,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftWindshieldFrontAndHeatWaves")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureSeatedSideLeftWindshieldFrontAndHeatWaves")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "figureSeatedSideLeftWindshieldFrontAndHeatWaves")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "figureSeatedSideLeftWindshieldFrontAndHeatWaves")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureSeatedSideLeftWindshieldFrontAndHeatWaves")
     static let figureSeatedSideWindshieldFrontAndHeatWaves = SFSymbol(rawValue: "figure.seated.side.windshield.front.and.heat.waves")
 
     /// 􁞱
@@ -1269,6 +1290,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "flagPatternCheckeredCircle")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "flagPatternCheckeredCircle")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "flagPatternCheckeredCircle")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "flagPatternCheckeredCircle")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "flagPatternCheckeredCircle")
     static let flagCheckeredCircle = SFSymbol(rawValue: "flag.checkered.circle")
 
     /// 􁝽
@@ -1278,6 +1304,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "flagPatternCheckeredCircleFill")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "flagPatternCheckeredCircleFill")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "flagPatternCheckeredCircleFill")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "flagPatternCheckeredCircleFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "flagPatternCheckeredCircleFill")
     static let flagCheckeredCircleFill = SFSymbol(rawValue: "flag.checkered.circle.fill")
 
     /// 􁠴
@@ -1481,6 +1512,11 @@ public extension SFSymbol {
     /// - Hierarchical
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad and iPhone.
+    @available(iOS, introduced: 16.1, deprecated: 18.0, renamed: "ipadLandscapeAndIphoneSlash")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "ipadLandscapeAndIphoneSlash")
+    @available(tvOS, introduced: 16.1, deprecated: 18.0, renamed: "ipadLandscapeAndIphoneSlash")
+    @available(watchOS, introduced: 9.1, deprecated: 11.0, renamed: "ipadLandscapeAndIphoneSlash")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "ipadLandscapeAndIphoneSlash")
     static let ipadAndIphoneSlash = SFSymbol(rawValue: "ipad.and.iphone.slash")
 
     /// 􀟟
@@ -1987,31 +2023,35 @@ public extension SFSymbol {
     static let laptopcomputerSlash = SFSymbol(rawValue: "laptopcomputer.slash")
 
     /// 􁋋
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let lightOverheadLeft = SFSymbol(rawValue: "light.overhead.left")
 
     /// 􁣇
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let lightOverheadLeftFill = SFSymbol(rawValue: "light.overhead.left.fill")
 
     /// 􁋊
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let lightOverheadRight = SFSymbol(rawValue: "light.overhead.right")
 
     /// 􁣆
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let lightOverheadRightFill = SFSymbol(rawValue: "light.overhead.right.fill")
 
     /// 􀑚
@@ -2029,7 +2069,7 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     ///
-    /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
+    /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s MacBook and iPad.
     static let macbookAndIpad = SFSymbol(rawValue: "macbook.and.ipad")
 
     /// 􀬩
@@ -2040,15 +2080,16 @@ public extension SFSymbol {
     /// - Hierarchical
     /// - Multicolor
     ///
-    /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPhone.
+    /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s MacBook and iPhone.
     static let macbookAndIphone = SFSymbol(rawValue: "macbook.and.iphone")
 
     /// 􁠄
-    /// Single Localization, 2 Layersets
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
     /// - Multicolor (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let minusPlusAndFluidBatteryblock = SFSymbol(rawValue: "minus.plus.and.fluid.batteryblock")
 
     /// 􁠿
@@ -2088,11 +2129,12 @@ public extension SFSymbol {
     static let minusPlusBatteryblockSlashFill = SFSymbol(rawValue: "minus.plus.batteryblock.slash.fill")
 
     /// 􁡁
-    /// Single Localization, 2 Layersets
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
     /// - Multicolor (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let minusPlusBatteryblockStack = SFSymbol(rawValue: "minus.plus.batteryblock.stack")
 
     /// 􁡃
@@ -2114,11 +2156,12 @@ public extension SFSymbol {
     static let minusPlusBatteryblockStackExclamationmarkFill = SFSymbol(rawValue: "minus.plus.batteryblock.stack.exclamationmark.fill")
 
     /// 􁡂
-    /// Single Localization, 2 Layersets
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
     /// - Multicolor (iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0)
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let minusPlusBatteryblockStackFill = SFSymbol(rawValue: "minus.plus.batteryblock.stack.fill")
 
     /// 􁉵

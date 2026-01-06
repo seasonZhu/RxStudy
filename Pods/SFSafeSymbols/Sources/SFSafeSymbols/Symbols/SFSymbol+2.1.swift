@@ -82,7 +82,7 @@ public extension SFSymbol {
     static let cartCircleFill = SFSymbol(rawValue: "cart.circle.fill")
 
     /// 􀅏
-    /// 8 Localizations, Single Layerset
+    /// 20 Localizations, Single Layerset
     ///
     /// Localizations:
     /// - Latin
@@ -93,10 +93,22 @@ public extension SFSymbol {
     /// - Japanese
     /// - Korean
     /// - Thai
+    /// - Bengali (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Gujarati (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Kannada (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Malayalam (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Manipuri (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Maranthi (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Oriya (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Punjabi (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Santali (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Sinhala (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Tamil (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Telugu (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     ///
     /// Layersets:
     /// - Monochrome
-    static let character = SymbolWith7Localizations<Ar, He, Hi, Ja, Ko, Th, Zh>(rawValue: "character")
+    static let character = SymbolWith19Localizations<Ar, Bn_v6, Gu_v6, He, Hi, Ja, Kn_v6, Ko, Ml_v6, Mni_v6, Mr_v6, Or_v6, Pa_v6, Sat_v6, Si_v6, Ta_v6, Te_v6, Th, Zh>(rawValue: "character")
 
     /// 􀫕
     /// 8 Localizations, Single Layerset
@@ -138,6 +150,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
+    @available(iOS, introduced: 14.2, deprecated: 18.0, renamed: "clockArrowTrianglehead2CounterclockwiseRotate90")
+    @available(macOS, introduced: 11.0, deprecated: 15.0, renamed: "clockArrowTrianglehead2CounterclockwiseRotate90")
+    @available(tvOS, introduced: 14.2, deprecated: 18.0, renamed: "clockArrowTrianglehead2CounterclockwiseRotate90")
+    @available(watchOS, introduced: 7.1, deprecated: 11.0, renamed: "clockArrowTrianglehead2CounterclockwiseRotate90")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "clockArrowTrianglehead2CounterclockwiseRotate90")
     static let clockArrow2Circlepath = SFSymbol(rawValue: "clock.arrow.2.circlepath")
 
     /// 􀯝
@@ -288,6 +305,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPod touch.
+    @available(iOS, introduced: 14.2, deprecated: 18.0, renamed: "ipodTouchLandscape")
+    @available(macOS, introduced: 11.0, deprecated: 15.0, renamed: "ipodTouchLandscape")
+    @available(tvOS, introduced: 14.2, deprecated: 18.0, renamed: "ipodTouchLandscape")
+    @available(watchOS, introduced: 7.1, deprecated: 11.0, renamed: "ipodTouchLandscape")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "ipodTouchLandscape")
     static let ipodtouchLandscape = SFSymbol(rawValue: "ipodtouch.landscape")
 
     /// 􀵅
@@ -428,7 +450,7 @@ public extension SFSymbol {
     static let shuffleCircleFill = SFSymbol(rawValue: "shuffle.circle.fill")
 
     /// 􀵿
-    /// 8 Localizations, Single Layerset
+    /// 19 Localizations, Single Layerset
     ///
     /// Localizations:
     /// - Latin
@@ -439,13 +461,24 @@ public extension SFSymbol {
     /// - Japanese
     /// - Korean
     /// - Thai
+    /// - Bengali (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Gujarati (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Kannada (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Malayalam (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Manipuri (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Maranthi (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Oriya (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Punjabi (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Santali (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Tamil (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Telugu (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     ///
     /// Layersets:
     /// - Monochrome
-    static let textformatSizeLarger = SymbolWith7Localizations<Ar, He, Hi, Ja, Ko, Th, Zh>(rawValue: "textformat.size.larger")
+    static let textformatSizeLarger = SymbolWith18Localizations<Ar, Bn_v6, Gu_v6, He, Hi, Ja, Kn_v6, Ko, Ml_v6, Mni_v6, Mr_v6, Or_v6, Pa_v6, Sat_v6, Ta_v6, Te_v6, Th, Zh>(rawValue: "textformat.size.larger")
 
     /// 􀵷
-    /// 8 Localizations, Single Layerset
+    /// 19 Localizations, Single Layerset
     ///
     /// Localizations:
     /// - Latin
@@ -456,10 +489,21 @@ public extension SFSymbol {
     /// - Japanese
     /// - Korean
     /// - Thai
+    /// - Bengali (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Gujarati (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Kannada (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Malayalam (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Manipuri (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Maranthi (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Oriya (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Punjabi (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Santali (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Tamil (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    /// - Telugu (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     ///
     /// Layersets:
     /// - Monochrome
-    static let textformatSizeSmaller = SymbolWith7Localizations<Ar, He, Hi, Ja, Ko, Th, Zh>(rawValue: "textformat.size.smaller")
+    static let textformatSizeSmaller = SymbolWith18Localizations<Ar, Bn_v6, Gu_v6, He, Hi, Ja, Kn_v6, Ko, Ml_v6, Mni_v6, Mr_v6, Or_v6, Pa_v6, Sat_v6, Ta_v6, Te_v6, Th, Zh>(rawValue: "textformat.size.smaller")
 
     /// 􀴌
     /// Single Localization, Single Layerset

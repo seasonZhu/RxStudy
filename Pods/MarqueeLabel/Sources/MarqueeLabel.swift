@@ -540,14 +540,42 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
         self.init(frame: frame, duration:7.0, fadeLength:0.0)
     }
     
+    #if MARQUEELABEL_DEBUG
+    private var leadingView = UIView()
+    private var trailingView = UIView()
+    #endif
+    
     private func setup() {
         // Create sublabel
         sublabel = UILabel(frame: self.bounds)
         sublabel.tag = 700
-        sublabel.layer.anchorPoint = CGPoint.zero
+        
+        // View Structure
+        self.addSubview(sublabel)
+        
+        #if MARQUEELABEL_DEBUG
+        let labelMask = UIView()
+        labelMask.translatesAutoresizingMaskIntoConstraints = false
+        sublabel.addSubview(labelMask)
 
-        // Add sublabel
-        addSubview(sublabel)
+        NSLayoutConstraint.activate([
+            labelMask.leadingAnchor.constraint(equalTo: sublabel.leadingAnchor),
+            labelMask.trailingAnchor.constraint(equalTo: sublabel.trailingAnchor),
+            labelMask.topAnchor.constraint(equalTo: sublabel.topAnchor),
+            labelMask.bottomAnchor.constraint(equalTo: sublabel.bottomAnchor)
+        ])
+        labelMask.alpha = 0.2
+        labelMask.backgroundColor = .orange
+        
+        leadingView.alpha = 0.3
+        leadingView.backgroundColor = .blue
+        leadingView.tag = 710
+        trailingView.alpha = 0.3
+        trailingView.backgroundColor = .red
+        trailingView.tag = 720
+        self.addSubview(leadingView)
+        self.addSubview(trailingView)
+        #endif
         
         // Configure self
         super.clipsToBounds = true
@@ -657,12 +685,25 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
             sublabel.adjustsFontSizeToFitWidth = super.adjustsFontSizeToFitWidth
             sublabel.minimumScaleFactor = super.minimumScaleFactor
             
+            #if MARQUEELABEL_DEBUG
+            trailingView.removeFromSuperview()
+            self.addSubview(trailingView)
+            #endif
+            
             let labelFrame: CGRect
             switch type {
             case .continuousReverse, .rightLeft:
                 labelFrame = bounds.divided(atDistance: leadingBuffer, from: CGRectEdge.maxXEdge).remainder.integral
+                #if MARQUEELABEL_DEBUG
+                leadingView.frame = bounds.divided(atDistance: leadingBuffer, from: CGRectEdge.maxXEdge).slice.integral
+                trailingView.frame = bounds.divided(atDistance: trailingBuffer, from: CGRectEdge.minXEdge).slice.integral
+                #endif
             default:
                 labelFrame = CGRect(x: leadingBuffer, y: 0.0, width: bounds.size.width - leadingBuffer, height: bounds.size.height).integral
+                #if MARQUEELABEL_DEBUG
+                leadingView.frame = CGRect(x: 0.0, y: 0.0, width: leadingBuffer, height: bounds.size.height).integral
+                trailingView.frame = bounds.divided(atDistance: trailingBuffer, from: CGRectEdge.maxXEdge).slice.integral
+                #endif
             }
             
             homeLabelFrame = labelFrame
@@ -694,12 +735,24 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
         
         switch type {
         case .continuous, .continuousReverse:
+            #if MARQUEELABEL_DEBUG
+            trailingView.removeFromSuperview()
+            sublabel.addSubview(trailingView)
+            #endif
             if type == .continuous {
                 homeLabelFrame = CGRect(x: leadingBuffer, y: 0.0, width: expectedLabelSize.width, height: bounds.size.height).integral
                 awayOffset = -(homeLabelFrame.size.width + minTrailing)
+                #if MARQUEELABEL_DEBUG
+                leadingView.frame = CGRect(x: 0.0, y: 0.0, width: leadingBuffer, height: bounds.size.height)
+                trailingView.frame = CGRect(x: -awayOffset - minTrailing, y: 0.0, width: trailingBuffer, height: bounds.size.height)
+                #endif
             } else { // .ContinuousReverse
                 homeLabelFrame = CGRect(x: bounds.size.width - (expectedLabelSize.width + leadingBuffer), y: 0.0, width: expectedLabelSize.width, height: bounds.size.height).integral
                 awayOffset = (homeLabelFrame.size.width + minTrailing)
+                #if MARQUEELABEL_DEBUG
+                leadingView.frame = bounds.divided(atDistance: leadingBuffer, from: CGRectEdge.maxXEdge).slice.integral
+                trailingView.frame = CGRect(x: -trailingBuffer, y: 0.0, width: trailingBuffer, height: bounds.size.height)
+                #endif
             }
             
             // Find when the lead label will be totally offscreen
@@ -731,16 +784,28 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
             repliLayer?.instanceTransform = CATransform3DMakeTranslation(-awayOffset, 0.0, 0.0)
             
         case .leftRight, .left, .rightLeft, .right:
+            #if MARQUEELABEL_DEBUG
+            trailingView.removeFromSuperview()
+            self.addSubview(trailingView)
+            #endif
             if type == .leftRight || type == .left {
                 homeLabelFrame = CGRect(x: leadingBuffer, y: 0.0, width: expectedLabelSize.width, height: bounds.size.height).integral
                 awayOffset = bounds.size.width - (expectedLabelSize.width + leadingBuffer + trailingBuffer)
                 // Enforce text alignment for this type
                 sublabel.textAlignment = NSTextAlignment.left
-            } else {
+                #if MARQUEELABEL_DEBUG
+                leadingView.frame = CGRect(x: 0.0, y: 0.0, width: leadingBuffer, height: bounds.size.height)
+                trailingView.frame = bounds.divided(atDistance: trailingBuffer, from: CGRectEdge.maxXEdge).slice.integral
+                #endif
+            } else { // .right, rightLeft
                 homeLabelFrame = CGRect(x: bounds.size.width - (expectedLabelSize.width + leadingBuffer), y: 0.0, width: expectedLabelSize.width, height: bounds.size.height).integral
                 awayOffset = (expectedLabelSize.width + trailingBuffer + leadingBuffer) - bounds.size.width
                 // Enforce text alignment for this type
                 sublabel.textAlignment = NSTextAlignment.right
+                #if MARQUEELABEL_DEBUG
+                leadingView.frame = bounds.divided(atDistance: leadingBuffer, from: CGRectEdge.maxXEdge).slice.integral
+                trailingView.frame = CGRect(x: 0.0, y: 0.0, width: trailingBuffer, height: bounds.height)
+                #endif
             }
             // Set frame and text
             sublabel.frame = homeLabelFrame
@@ -1001,8 +1066,8 @@ open class MarqueeLabel: UILabel, CAAnimationDelegate {
     
     private func generateScrollAnimation(_ sequence: [MarqueeStep]) -> MLAnimation {
         // Create scroller, which defines the animation to perform
-        let homeOrigin = homeLabelFrame.origin
-        let awayOrigin = offsetCGPoint(homeLabelFrame.origin, offset: awayOffset)
+        let homeOrigin = sublabel.layer.position
+        let awayOrigin = CGPoint(x: homeOrigin.x + awayOffset, y: homeOrigin.y)
         
         let scrollSteps = sequence.filter({ $0 is ScrollStep }) as! [ScrollStep]
         let totalDuration = scrollSteps.reduce(0.0) { $0 + $1.timeStep }

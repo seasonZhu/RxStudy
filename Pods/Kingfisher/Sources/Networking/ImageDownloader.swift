@@ -43,6 +43,9 @@ public struct ImageLoadingResult: Sendable {
 
     /// The raw data received from the downloader.
     public let originalData: Data
+    
+    /// The network metrics collected during the download process.
+    public let metrics: NetworkMetrics?
 
     /// Creates an `ImageDownloadResult` object.
     ///
@@ -50,10 +53,12 @@ public struct ImageLoadingResult: Sendable {
     ///   - image: The image of the download result.
     ///   - url: The URL from which the image was downloaded.
     ///   - originalData: The binary data of the image.
-    public init(image: KFCrossPlatformImage, url: URL? = nil, originalData: Data) {
+    ///   - metrics: The network metrics collected during the download.
+    public init(image: KFCrossPlatformImage, url: URL? = nil, originalData: Data, metrics: NetworkMetrics? = nil) {
         self.image = image
         self.url = url
         self.originalData = originalData
+        self.metrics = metrics
     }
 }
 
@@ -82,7 +87,7 @@ public final class DownloadTask: @unchecked Sendable {
     /// When you call ``DownloadTask/cancel()``, this ``SessionDataTask`` and its cancellation token will be passed
     /// along. You can use them to identify the cancelled task.
     public private(set) var sessionTask: SessionDataTask? {
-        get { propertyQueue.sync { _sessionTask! } }
+        get { propertyQueue.sync { _sessionTask } }
         set { propertyQueue.sync { _sessionTask = newValue } }
     }
 
@@ -243,6 +248,8 @@ open class ImageDownloader: @unchecked Sendable {
     // The session bound to the downloader.
     private var session: URLSession
 
+    private let lock = NSLock()
+
     // MARK: Initializers
 
     /// Creates a downloader with a given name.
@@ -370,6 +377,9 @@ open class ImageDownloader: @unchecked Sendable {
         callback: SessionDataTask.TaskCallback
     ) -> DownloadTask
     {
+        lock.lock()
+        defer { lock.unlock() }
+
         // Ready to start download. Add it to session task manager (`sessionHandler`)
         let downloadTask: DownloadTask
         if let existingTask = sessionDelegate.task(for: context.url) {
@@ -422,7 +432,7 @@ open class ImageDownloader: @unchecked Sendable {
             return downloadTask
         }
 
-        sessionTask.onTaskDone.delegate(on: self) { (self, done) in
+        sessionTask.onTaskDone.delegate(on: self) { [weak sessionTask] (self, done) in
             // Underlying downloading finishes.
             // result: Result<(Data, URLResponse?)>, callbacks: [TaskCallback]
             let (result, callbacks) = done
@@ -444,7 +454,7 @@ open class ImageDownloader: @unchecked Sendable {
 
                     self.reportDidProcessImage(result: result, url: context.url, response: response)
 
-                    let imageResult = result.map { ImageLoadingResult(image: $0, url: context.url, originalData: data) }
+                    let imageResult = result.map { ImageLoadingResult(image: $0, url: context.url, originalData: data, metrics: sessionTask?.metrics) }
                     let queue = callback.options.callbackQueue
                     queue.execute { callback.onCompleted?.call(imageResult) }
                 }

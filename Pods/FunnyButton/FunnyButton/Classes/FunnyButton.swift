@@ -6,24 +6,8 @@
 //
 
 public class FunnyButton: UIButton {
+    // MARK: - 静态属性
     public static let shared = FunnyButton()
-    
-    /// 普通状态
-    public static var normalEmoji = "😛"
-    
-    /// 点击状态
-    public static var touchingEmoji = "😝"
-    
-    /// 毛玻璃样式（nil为无毛玻璃）
-    public static var effect: UIVisualEffect? = {
-        if #available(iOS 13, *) {
-            return UIBlurEffect(style: .systemThinMaterial)
-        }
-        return UIBlurEffect(style: .prominent)
-    }()
-    
-    /// 背景色
-    public static var bgColor: UIColor? = UIColor(red: 200.0 / 255.0, green: 100.0 / 255.0, blue: 100.0 / 255.0, alpha: 0.2)
     
     /// 初始点（想`靠右/靠下`的话，`x/y`的值就设置大一点，最后会靠在安全区域的边上）
     public static var startPoint: CGPoint = CGPoint(x: 600, y: 100)
@@ -34,11 +18,46 @@ public class FunnyButton: UIButton {
     /// 自定义可支持的屏幕方向（nil为系统默认）
     public static var orientationMask: UIInterfaceOrientationMask? = nil
     
+    /// 是否允许截屏和录屏
+    public static var isScreenCaptureAllowed: Bool = true
+    
+    // MARK: - 公开属性
+    /// 普通状态
+    public var normalEmoji = "😛" {
+        didSet {
+            guard !_isTouching else { return }
+            emojiLabel.text = normalEmoji
+        }
+    }
+    
+    /// 点击状态
+    public var touchingEmoji = "😝" {
+        didSet {
+            guard _isTouching else { return }
+            emojiLabel.text = touchingEmoji
+        }
+    }
+    
+    /// 毛玻璃样式（nil为无毛玻璃）
+    public var effect: UIVisualEffect? = {
+        if #available(iOS 13, *) {
+            return UIBlurEffect(style: .systemThinMaterial)
+        }
+        return UIBlurEffect(style: .prominent)
+    }() { didSet { bgView.effect = effect } }
+    
+    /// 背景色
+    public var bgColor: UIColor? = UIColor(
+        red: 200.0 / 255.0,
+        green: 100.0 / 255.0,
+        blue: 100.0 / 255.0,
+        alpha: 0.2
+    ) { didSet { bgView.backgroundColor = bgColor } }
     
     /// 点击`Action`（单个直接执行，多个则弹出系统Sheet选择执行）
     public var actions: [FunnyAction]?
     
-    
+    // MARK: - 私有属性
     private var _safeFrame: CGRect = .zero
     private var _isPanning: Bool = false
     private var _isTouching: Bool = false
@@ -51,11 +70,12 @@ public class FunnyButton: UIButton {
         get { _isTouching }
     }
     
-    private let bgView = UIVisualEffectView(effect: FunnyButton.effect)
+    private lazy var bgView = UIVisualEffectView(effect: effect)
     private let emojiLabel = UILabel()
+    
     private lazy var impactFeedbacker = UIImpactFeedbackGenerator(style: .light)
     
-    
+    // MARK: - 生命周期
     init() {
         let scale = min(min(UIScreen.main.bounds.width, UIScreen.main.bounds.height) / 375.0, 1.7)
         let wh = 55 * scale
@@ -68,6 +88,7 @@ public class FunnyButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - 父类方法
     public override var isHighlighted: Bool {
         set {}
         get { super.isHighlighted }
@@ -76,19 +97,29 @@ public class FunnyButton: UIButton {
 
 private extension FunnyButton {
     func _setupUI() {
+        backgroundColor = .clear
+        
+        let contentView = Self.isScreenCaptureAllowed ? self : {
+            let s = SecureView()
+            s.frame = bounds
+            s.isUserInteractionEnabled = false
+            addSubview(s)
+            return s
+        }()
+        
         bgView.frame = bounds
         bgView.layer.cornerRadius = bounds.height * 0.5
         bgView.layer.borderWidth = 0
         bgView.layer.masksToBounds = true
-        bgView.backgroundColor = Self.bgColor
+        bgView.backgroundColor = bgColor
         bgView.isUserInteractionEnabled = false
-        addSubview(bgView)
+        contentView.addSubview(bgView)
         
-        emojiLabel.text = Self.normalEmoji
+        emojiLabel.text = normalEmoji
         emojiLabel.font = .systemFont(ofSize: bounds.height * 0.9)
         emojiLabel.textAlignment = .center
         emojiLabel.frame = bounds
-        addSubview(emojiLabel)
+        contentView.addSubview(emojiLabel)
         emojiLabel.transform = CGAffineTransform(scaleX: 0.65, y: 0.65)
     }
     
@@ -129,14 +160,14 @@ private extension FunnyButton {
         let emojiLabelTransform: CGAffineTransform
         
         if _isTouching {
-            emojiLabel.text = Self.touchingEmoji
+            emojiLabel.text = touchingEmoji
             bgViewTransform = CGAffineTransform(scaleX: 0.8, y: 0.8)
             emojiLabelTransform = CGAffineTransform(scaleX: 1.15, y: 1.15)
             
             impactFeedbacker.prepare()
             impactFeedbacker.impactOccurred()
         } else {
-            emojiLabel.text = Self.normalEmoji
+            emojiLabel.text = normalEmoji
             bgViewTransform = CGAffineTransform(scaleX: 1, y: 1)
             emojiLabelTransform = CGAffineTransform(scaleX: 0.65, y: 0.65)
         }
@@ -249,6 +280,76 @@ internal extension FunnyButton {
             self.frame = frame
         } completion: { _ in
             self.isUserInteractionEnabled = true
+        }
+    }
+}
+
+private extension FunnyButton {
+    class SecureView: UITextField {
+        private var isInitialized = false
+        
+        private weak var _container: UIView? = nil
+        private var container: UIView? {
+            let container = _container ?? {
+                guard let c = subviews.first else { return nil }
+                c.isUserInteractionEnabled = true
+                _container = c
+                return c
+            }()
+            container?.frame = bounds
+            return container
+        }
+        
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+            _setup()
+        }
+        
+        required init?(coder: NSCoder) {
+            super.init(coder: coder)
+            _setup()
+        }
+        
+        private func _setup() {
+            borderStyle = .none
+            isSecureTextEntry = true
+            isInitialized = true
+        }
+        
+        override var canBecomeFirstResponder: Bool {
+            false
+        }
+        
+        override func addSubview(_ view: UIView) {
+            guard isInitialized else {
+                super.addSubview(view)
+                return
+            }
+            container?.addSubview(view)
+        }
+        
+        override func insertSubview(_ view: UIView, at index: Int) {
+            guard isInitialized else {
+                super.insertSubview(view, at: index)
+                return
+            }
+            container?.insertSubview(view, at: index)
+        }
+        
+        override func insertSubview(_ view: UIView, aboveSubview siblingSubview: UIView) {
+            guard isInitialized else {
+                super.insertSubview(view, aboveSubview: siblingSubview)
+                return
+            }
+            container?.insertSubview(view, aboveSubview: siblingSubview)
+        }
+        
+        override func insertSubview(_ view: UIView, belowSubview siblingSubview: UIView) {
+            guard isInitialized else {
+                super.insertSubview(view, belowSubview: siblingSubview)
+                return
+            }
+            container?.insertSubview(view, belowSubview: siblingSubview)
         }
     }
 }

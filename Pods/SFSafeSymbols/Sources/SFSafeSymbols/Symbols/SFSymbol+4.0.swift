@@ -1802,6 +1802,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "documentBadgeArrowUp")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "documentBadgeArrowUp")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "documentBadgeArrowUp")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "documentBadgeArrowUp")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "documentBadgeArrowUp")
     static let docBadgeArrowUp = SFSymbol(rawValue: "doc.badge.arrow.up")
 
     /// 􁙢
@@ -1811,6 +1816,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "documentBadgeArrowUpFill")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "documentBadgeArrowUpFill")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "documentBadgeArrowUpFill")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "documentBadgeArrowUpFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "documentBadgeArrowUpFill")
     static let docBadgeArrowUpFill = SFSymbol(rawValue: "doc.badge.arrow.up.fill")
 
     /// 􁎢
@@ -1826,6 +1836,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "dollarsignArrowTriangleheadCounterclockwiseRotate90")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "dollarsignArrowTriangleheadCounterclockwiseRotate90")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "dollarsignArrowTriangleheadCounterclockwiseRotate90")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "dollarsignArrowTriangleheadCounterclockwiseRotate90")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "dollarsignArrowTriangleheadCounterclockwiseRotate90")
     static let dollarsignArrowCirclepath = SFSymbol(rawValue: "dollarsign.arrow.circlepath")
 
     /// 􁑈
@@ -2542,6 +2557,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "figureStandDressLineVerticalFigure")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureStandDressLineVerticalFigure")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "figureStandDressLineVerticalFigure")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "figureStandDressLineVerticalFigure")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureStandDressLineVerticalFigure")
     static let figureDressLineVerticalFigure = SFSymbol(rawValue: "figure.dress.line.vertical.figure")
 
     /// 􁌌
@@ -2758,10 +2778,11 @@ public extension SFSymbol {
     static let figureRacquetball = SFSymbol(rawValue: "figure.racquetball")
 
     /// 􁌈
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let figureRollRunningpace = SFSymbol(rawValue: "figure.roll.runningpace")
 
     /// 􁔺
@@ -2776,6 +2797,11 @@ public extension SFSymbol {
     ///
     /// Layersets:
     /// - Monochrome
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "figureIndoorRowing")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureIndoorRowing")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "figureIndoorRowing")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "figureIndoorRowing")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureIndoorRowing")
     static let figureRower = SFSymbol(rawValue: "figure.rower")
 
     /// 􁔻
@@ -2821,6 +2847,11 @@ public extension SFSymbol {
     ///
     /// Layersets:
     /// - Monochrome
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "figureSkateboarding")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureSkateboarding")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "figureSkateboarding")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "figureSkateboarding")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureSkateboarding")
     static let figureSkating = SFSymbol(rawValue: "figure.skating")
 
     /// 􁔡
@@ -2849,6 +2880,11 @@ public extension SFSymbol {
     ///
     /// Layersets:
     /// - Monochrome
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "figureIndoorSoccer")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "figureIndoorSoccer")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "figureIndoorSoccer")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "figureIndoorSoccer")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "figureIndoorSoccer")
     static let figureSoccer = SFSymbol(rawValue: "figure.soccer")
 
     /// 􁕀
@@ -3082,6 +3118,11 @@ public extension SFSymbol {
     ///
     /// Layersets:
     /// - Monochrome
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "flagPatternCheckered")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "flagPatternCheckered")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "flagPatternCheckered")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "flagPatternCheckered")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "flagPatternCheckered")
     static let flagCheckered = SFSymbol(rawValue: "flag.checkered")
 
     /// 􁜔
@@ -3090,6 +3131,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical (iOS 16.1, macOS 13.0, tvOS 16.1, watchOS 9.1)
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "flagPatternCheckered2Crossed")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "flagPatternCheckered2Crossed")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "flagPatternCheckered2Crossed")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "flagPatternCheckered2Crossed")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "flagPatternCheckered2Crossed")
     static let flagCheckered2Crossed = SFSymbol(rawValue: "flag.checkered.2.crossed")
 
     /// 􁓯
@@ -3126,6 +3172,11 @@ public extension SFSymbol {
     ///
     /// Layersets:
     /// - Monochrome
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootball")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "americanFootball")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootball")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "americanFootball")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "americanFootball")
     static let football = SFSymbol(rawValue: "football")
 
     /// 􁚿
@@ -3134,6 +3185,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootballCircle")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "americanFootballCircle")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootballCircle")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "americanFootballCircle")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "americanFootballCircle")
     static let footballCircle = SFSymbol(rawValue: "football.circle")
 
     /// 􁛀
@@ -3143,6 +3199,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootballCircleFill")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "americanFootballCircleFill")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootballCircleFill")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "americanFootballCircleFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "americanFootballCircleFill")
     static let footballCircleFill = SFSymbol(rawValue: "football.circle.fill")
 
     /// 􁗌
@@ -3150,6 +3211,11 @@ public extension SFSymbol {
     ///
     /// Layersets:
     /// - Monochrome
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootballFill")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "americanFootballFill")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "americanFootballFill")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "americanFootballFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "americanFootballFill")
     static let footballFill = SFSymbol(rawValue: "football.fill")
 
     /// 􁋰
@@ -3290,6 +3356,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "gearshapeArrowTrianglehead2ClockwiseRotate90")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "gearshapeArrowTrianglehead2ClockwiseRotate90")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "gearshapeArrowTrianglehead2ClockwiseRotate90")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "gearshapeArrowTrianglehead2ClockwiseRotate90")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "gearshapeArrowTrianglehead2ClockwiseRotate90")
     static let gearshapeArrowTriangle2Circlepath = SFSymbol(rawValue: "gearshape.arrow.triangle.2.circlepath")
 
     /// 􁇲
@@ -3739,7 +3810,7 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     ///
-    /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
+    /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s MacBook and iPad.
     @available(iOS, introduced: 16.0, deprecated: 16.1, renamed: "macbookAndIpad")
     @available(macOS, introduced: 13.0, deprecated: 13.0, renamed: "macbookAndIpad")
     @available(tvOS, introduced: 16.0, deprecated: 16.1, renamed: "macbookAndIpad")
@@ -4045,25 +4116,28 @@ public extension SFSymbol {
     static let listBulletClipboard = SFSymbol(rawValue: "list.bullet.clipboard")
 
     /// 􀼐
-    /// Single Localization, Single Layerset
-    ///
-    /// Layersets:
-    /// - Monochrome
-    static let listBulletClipboardFill = SFSymbol(rawValue: "list.bullet.clipboard.fill")
-
-    /// 􁕜
     /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
-    /// - Multicolor (iOS 16.4, macOS 13.3, tvOS 16.4, watchOS 9.4)
-    static let listClipboard = SFSymbol(rawValue: "list.clipboard")
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    static let listBulletClipboardFill = SFSymbol(rawValue: "list.bullet.clipboard.fill")
 
-    /// 􁕝
-    /// Single Localization, Single Layerset
+    /// 􁕜
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Multicolor (iOS 16.4, macOS 13.3, tvOS 16.4, watchOS 9.4)
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
+    static let listClipboard = SFSymbol(rawValue: "list.clipboard")
+
+    /// 􁕝
+    /// Single Localization, 2 Layersets
+    ///
+    /// Layersets:
+    /// - Monochrome
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let listClipboardFill = SFSymbol(rawValue: "list.clipboard.fill")
 
     /// 􁗛
@@ -4269,6 +4343,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneAndSignalMeter")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "microphoneAndSignalMeter")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneAndSignalMeter")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "microphoneAndSignalMeter")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "microphoneAndSignalMeter")
     static let micAndSignalMeter = SFSymbol(rawValue: "mic.and.signal.meter")
 
     /// 􁎓
@@ -4278,6 +4357,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneAndSignalMeterFill")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "microphoneAndSignalMeterFill")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneAndSignalMeterFill")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "microphoneAndSignalMeterFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "microphoneAndSignalMeterFill")
     static let micAndSignalMeterFill = SFSymbol(rawValue: "mic.and.signal.meter.fill")
 
     /// 􁙃
@@ -4287,6 +4371,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneBadgeXmark")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "microphoneBadgeXmark")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneBadgeXmark")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "microphoneBadgeXmark")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "microphoneBadgeXmark")
     static let micBadgeXmark = SFSymbol(rawValue: "mic.badge.xmark")
 
     /// 􁙄
@@ -4296,6 +4385,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneBadgeXmarkFill")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "microphoneBadgeXmarkFill")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "microphoneBadgeXmarkFill")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "microphoneBadgeXmarkFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "microphoneBadgeXmarkFill")
     static let micFillBadgeXmark = SFSymbol(rawValue: "mic.fill.badge.xmark")
 
     /// 􁈹
@@ -4719,6 +4813,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "person2ArrowTriangleheadCounterclockwise")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "person2ArrowTriangleheadCounterclockwise")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "person2ArrowTriangleheadCounterclockwise")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "person2ArrowTriangleheadCounterclockwise")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "person2ArrowTriangleheadCounterclockwise")
     static let person2Gobackward = SFSymbol(rawValue: "person.2.gobackward")
 
     /// 􁝞
@@ -5633,10 +5732,11 @@ public extension SFSymbol {
     static let rectanglePortraitAndArrowForward = SFSymbol(rawValue: "rectangle.portrait.and.arrow.forward")
 
     /// 􁚡
-    /// Single Localization, Single Layerset
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical (iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 11.0)
     static let rectanglePortraitAndArrowForwardFill = SFSymbol(rawValue: "rectangle.portrait.and.arrow.forward.fill")
 
     /// 􁉕
@@ -5777,6 +5877,11 @@ public extension SFSymbol {
     /// - Hierarchical
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s Shared With You feature.
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "sharedwithyou")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "sharedwithyou")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "sharedwithyou")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "sharedwithyou")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "sharedwithyou")
     static let sharedWithYou = SFSymbol(rawValue: "shared.with.you")
 
     /// 􁇦
@@ -5787,6 +5892,11 @@ public extension SFSymbol {
     /// - Hierarchical
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s Shared With You feature.
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "sharedwithyouSlash")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "sharedwithyouSlash")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "sharedwithyouSlash")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "sharedwithyouSlash")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "sharedwithyouSlash")
     static let sharedWithYouSlash = SFSymbol(rawValue: "shared.with.you.slash")
 
     /// 􁈴
@@ -5914,6 +6024,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "sliderHorizontal2ArrowTriangleheadCounterclockwise")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "sliderHorizontal2ArrowTriangleheadCounterclockwise")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "sliderHorizontal2ArrowTriangleheadCounterclockwise")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "sliderHorizontal2ArrowTriangleheadCounterclockwise")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "sliderHorizontal2ArrowTriangleheadCounterclockwise")
     static let sliderHorizontal2Gobackward = SFSymbol(rawValue: "slider.horizontal.2.gobackward")
 
     /// 􁚋
@@ -6270,6 +6385,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledBottomthirdSquare")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "insetFilledBottomthirdSquare")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledBottomthirdSquare")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "insetFilledBottomthirdSquare")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "insetFilledBottomthirdSquare")
     static let squareBottomthirdInsetFilled = SFSymbol(rawValue: "square.bottomthird.inset.filled")
 
     /// 􁊓
@@ -6285,6 +6405,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledLeadingthirdSquare")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "insetFilledLeadingthirdSquare")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledLeadingthirdSquare")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "insetFilledLeadingthirdSquare")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "insetFilledLeadingthirdSquare")
     static let squareLeadingthirdInsetFilled = SFSymbol(rawValue: "square.leadingthird.inset.filled")
 
     /// 􁒢
@@ -6293,6 +6418,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledLeftthirdSquare")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "insetFilledLeftthirdSquare")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledLeftthirdSquare")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "insetFilledLeftthirdSquare")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "insetFilledLeftthirdSquare")
     static let squareLeftthirdInsetFilled = SFSymbol(rawValue: "square.leftthird.inset.filled")
 
     /// 􁙰
@@ -6328,6 +6458,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledRightthirdSquare")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "insetFilledRightthirdSquare")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledRightthirdSquare")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "insetFilledRightthirdSquare")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "insetFilledRightthirdSquare")
     static let squareRightthirdInsetFilled = SFSymbol(rawValue: "square.rightthird.inset.filled")
 
     /// 􁒠
@@ -6336,6 +6471,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledTopthirdSquare")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "insetFilledTopthirdSquare")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledTopthirdSquare")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "insetFilledTopthirdSquare")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "insetFilledTopthirdSquare")
     static let squareTopthirdInsetFilled = SFSymbol(rawValue: "square.topthird.inset.filled")
 
     /// 􁒥
@@ -6344,6 +6484,11 @@ public extension SFSymbol {
     /// Layersets:
     /// - Monochrome
     /// - Hierarchical
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledTrailingthirdSquare")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "insetFilledTrailingthirdSquare")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "insetFilledTrailingthirdSquare")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "insetFilledTrailingthirdSquare")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "insetFilledTrailingthirdSquare")
     static let squareTrailingthirdInsetFilled = SFSymbol(rawValue: "square.trailingthird.inset.filled")
 
     /// 􁚬
@@ -6723,6 +6868,11 @@ public extension SFSymbol {
     ///
     /// Layersets:
     /// - Monochrome
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "textformatNumbers")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "textformatNumbers")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "textformatNumbers")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "textformatNumbers")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "textformatNumbers")
     static let textformat12 = SymbolWith4Localizations<Ar, Hi, Km_v5, My_v5>(rawValue: "textformat.12")
 
     /// 􁔘
@@ -7063,6 +7213,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "waterWavesAndArrowTriangleheadDown")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "waterWavesAndArrowTriangleheadDown")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "waterWavesAndArrowTriangleheadDown")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "waterWavesAndArrowTriangleheadDown")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "waterWavesAndArrowTriangleheadDown")
     static let waterWavesAndArrowDown = SFSymbol(rawValue: "water.waves.and.arrow.down")
 
     /// 􁜰
@@ -7072,6 +7227,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "waterWavesAndArrowTriangleheadDownTrianglebadgeExclamationmark")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "waterWavesAndArrowTriangleheadDownTrianglebadgeExclamationmark")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "waterWavesAndArrowTriangleheadDownTrianglebadgeExclamationmark")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "waterWavesAndArrowTriangleheadDownTrianglebadgeExclamationmark")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "waterWavesAndArrowTriangleheadDownTrianglebadgeExclamationmark")
     static let waterWavesAndArrowDownTrianglebadgeExclamationmark = SFSymbol(rawValue: "water.waves.and.arrow.down.trianglebadge.exclamationmark")
 
     /// 􁎅
@@ -7081,6 +7241,11 @@ public extension SFSymbol {
     /// - Monochrome
     /// - Hierarchical
     /// - Multicolor
+    @available(iOS, introduced: 16.0, deprecated: 18.0, renamed: "waterWavesAndArrowTriangleheadUp")
+    @available(macOS, introduced: 13.0, deprecated: 15.0, renamed: "waterWavesAndArrowTriangleheadUp")
+    @available(tvOS, introduced: 16.0, deprecated: 18.0, renamed: "waterWavesAndArrowTriangleheadUp")
+    @available(watchOS, introduced: 9.0, deprecated: 11.0, renamed: "waterWavesAndArrowTriangleheadUp")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "waterWavesAndArrowTriangleheadUp")
     static let waterWavesAndArrowUp = SFSymbol(rawValue: "water.waves.and.arrow.up")
 
     /// 􁗃

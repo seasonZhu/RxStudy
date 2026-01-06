@@ -154,6 +154,7 @@ import Foundation
          serializationQueue: DispatchQueue,
          eventMonitor: (any EventMonitor)?,
          interceptor: (any RequestInterceptor)?,
+         shouldAutomaticallyResume: Bool?,
          delegate: any RequestDelegate) {
         self.convertible = convertible
         self.configuration = configuration
@@ -163,6 +164,7 @@ import Foundation
                    serializationQueue: serializationQueue,
                    eventMonitor: eventMonitor,
                    interceptor: interceptor,
+                   shouldAutomaticallyResume: shouldAutomaticallyResume,
                    delegate: delegate)
     }
 
@@ -377,7 +379,7 @@ import Foundation
         on queue: DispatchQueue = .main,
         handler: @escaping @Sendable (_ event: Event<Serializer.Output, Serializer.Failure>) -> Void
     ) -> Self where Serializer: WebSocketMessageSerializer, Serializer.Failure == any Error {
-        forIncomingEvent(on: queue) { incomingEvent in
+        forIncomingEvent(on: queue) { [unowned self] incomingEvent in
             let event: Event<Serializer.Output, Serializer.Failure>
             switch incomingEvent {
             case let .connected(`protocol`):
@@ -429,7 +431,7 @@ import Foundation
         on queue: DispatchQueue = .main,
         handler: @escaping @Sendable (_ event: Event<URLSessionWebSocketTask.Message, Never>) -> Void
     ) -> Self {
-        forIncomingEvent(on: queue) { incomingEvent in
+        forIncomingEvent(on: queue) { [unowned self] incomingEvent in
             let event: Event<URLSessionWebSocketTask.Message, Never> = switch incomingEvent {
             case let .connected(`protocol`):
                 .init(socket: self, kind: .connected(protocol: `protocol`))
@@ -458,8 +460,8 @@ import Foundation
 
     func forIncomingEvent(on queue: DispatchQueue, handler: @escaping @Sendable (IncomingEvent) -> Void) -> Self {
         socketMutableState.write { state in
-            state.handlers.append((queue: queue, handler: { incomingEvent in
-                self.serializationQueue.async {
+            state.handlers.append((queue: queue, handler: { [unowned self] incomingEvent in
+                serializationQueue.async {
                     handler(incomingEvent)
                 }
             }))
@@ -526,9 +528,9 @@ extension WebSocketMessageSerializer {
 
 @available(macOS 10.15, iOS 13, tvOS 13, watchOS 6, *)
 struct PassthroughWebSocketMessageDecoder: WebSocketMessageSerializer {
-    public typealias Failure = Never
+    typealias Failure = Never
 
-    public func decode(_ message: URLSessionWebSocketTask.Message) -> URLSessionWebSocketTask.Message {
+    func decode(_ message: URLSessionWebSocketTask.Message) -> URLSessionWebSocketTask.Message {
         message
     }
 }

@@ -193,22 +193,24 @@ extension AppDelegate {
 extension AppDelegate {
     private func installCrashHandler() {
         let installation = makeEmailInstallation()
-        installation.install()
-        KSCrash.sharedInstance().deleteBehaviorAfterSendAll = KSCDeleteBehavior(rawValue: 0)
-        installation.sendAllReports { array, completed, error in
-            if completed {
+        let config = KSCrashConfiguration()
+        try? installation.install(with: config)
+        installation.sendAllReports { array, error in
+            if array?.isNotEmpty == true {
                 print("Sent \(array?.count ?? 0) reports")
             } else {
                 /// 如果你把App玩崩溃了,然后正好手机又没有配置邮箱,就把这里deleteAllReports
-                KSCrash.sharedInstance().deleteAllReports()
+                /// KSCrashReportStore
+                let store = try? CrashReportStore.init(configuration: CrashReportStoreConfiguration())
+                store?.deleteAllReports()
                 print("Failed to send reports: \(error.debugDescription)")
             }
         }
     }
     
-    private func makeEmailInstallation() -> KSCrashInstallation {
+    private func makeEmailInstallation() -> CrashInstallation {
         let emailAddress = "zhujilong1987@163.com"
-        let email = KSCrashInstallationEmail.sharedInstance()!
+        let email = CrashInstallationEmail.shared
         email.recipients = [emailAddress]
         email.subject = "Crash Report"
         email.message = "This is a crash report"
@@ -216,7 +218,7 @@ extension AppDelegate {
         
         email.addConditionalAlert(withTitle: "Crash Detected", message: "The app crashed last time it was launched. Send a crash report?", yesAnswer: "Sure!", noAnswer: "No thanks")
         
-        email.setReportStyle(KSCrashEmailReportStyle(rawValue: 1), useDefaultFilenameFormat: true)
+        email.setReportStyle(.JSON, useDefaultFilenameFormat: true)
         
         return email
         

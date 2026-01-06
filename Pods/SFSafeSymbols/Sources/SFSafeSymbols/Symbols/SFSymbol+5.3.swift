@@ -3,191 +3,222 @@
 // 5.3 Symbols
 @available(iOS 17.4, macOS 14.4, tvOS 17.4, watchOS 10.4, visionOS 1.1, *)
 public extension SFSymbol {
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􁂙
+    /// Single Localization, 2 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s Meditation in Fitness+.
     static let appleMeditate = SFSymbol(rawValue: "apple.meditate")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􁟾
+    /// Single Localization, 2 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s Meditation in Fitness+.
     static let appleMeditateSquareStack = SFSymbol(rawValue: "apple.meditate.square.stack")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􁟿
+    /// Single Localization, 2 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s Meditation in Fitness+.
     static let appleMeditateSquareStackFill = SFSymbol(rawValue: "apple.meditate.square.stack.fill")
 
-    /// No preview available
-    /// Single Localization, Single Layerset
+    /// 􂝕
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     static let appleTerminalCircle = SFSymbol(rawValue: "apple.terminal.circle")
 
-    /// No preview available
-    /// Single Localization, Single Layerset
+    /// 􂝖
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     static let appleTerminalCircleFill = SFSymbol(rawValue: "apple.terminal.circle.fill")
 
-    /// No preview available
-    /// Single Localization, Single Layerset
+    /// 􂞹
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     static let arrowDownAppDashed = SFSymbol(rawValue: "arrow.down.app.dashed")
 
-    /// No preview available
-    /// Single Localization, Single Layerset
+    /// 􂞺
+    /// Single Localization, 3 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     static let arrowDownAppDashedTrianglebadgeExclamationmark = SFSymbol(rawValue: "arrow.down.app.dashed.trianglebadge.exclamationmark")
 
-    /// No preview available
+    /// 􂛍
     /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
     static let audioJackMono = SFSymbol(rawValue: "audio.jack.mono")
 
-    /// No preview available
+    /// 􂛋
     /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
     static let audioJackStereo = SFSymbol(rawValue: "audio.jack.stereo")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕙
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
     static let ipadBadgeExclamationmark = SFSymbol(rawValue: "ipad.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕑
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
     static let ipadGen1BadgeExclamationmark = SFSymbol(rawValue: "ipad.gen1.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕓
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
     static let ipadGen1LandscapeBadgeExclamationmark = SFSymbol(rawValue: "ipad.gen1.landscape.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕕
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
     static let ipadGen2BadgeExclamationmark = SFSymbol(rawValue: "ipad.gen2.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕗
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
     static let ipadGen2LandscapeBadgeExclamationmark = SFSymbol(rawValue: "ipad.gen2.landscape.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕛
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPad.
     static let ipadLandscapeBadgeExclamationmark = SFSymbol(rawValue: "ipad.landscape.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕏
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPhone.
     static let iphoneBadgeExclamationmark = SFSymbol(rawValue: "iphone.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂓻
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPhone.
     static let iphoneGen1BadgeExclamationmark = SFSymbol(rawValue: "iphone.gen1.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕋
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPhone.
     static let iphoneGen2BadgeExclamationmark = SFSymbol(rawValue: "iphone.gen2.badge.exclamationmark")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􂕍
+    /// Single Localization, 3 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
+    /// - Multicolor
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s iPhone.
     static let iphoneGen3BadgeExclamationmark = SFSymbol(rawValue: "iphone.gen3.badge.exclamationmark")
 
-    /// No preview available
+    /// 􂙣
     /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
     static let medalStar = SFSymbol(rawValue: "medal.star")
 
-    /// No preview available
+    /// 􂙤
     /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
     static let medalStarFill = SFSymbol(rawValue: "medal.star.fill")
 
-    /// No preview available
-    /// Single Localization, Single Layerset
+    /// 􂞶
+    /// Single Localization, 2 Layersets
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     static let plusCircleDashed = SFSymbol(rawValue: "plus.circle.dashed")
 
-    /// No preview available
-    /// Single Localization, Single Layerset, ⚠️ Restricted
+    /// 􀮙
+    /// Single Localization, 2 Layersets, ⚠️ Restricted
     ///
     /// Layersets:
     /// - Monochrome
+    /// - Hierarchical
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s translation features.
     static let translate = SFSymbol(rawValue: "translate")

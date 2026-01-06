@@ -1,7 +1,7 @@
 //
 // AcknowListSwiftUI.swift
 //
-// Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)
+// Copyright (c) 2015-2025 Vincent Tourraine (https://www.vtourraine.net)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -21,13 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#if canImport(SwiftUI)
 import SwiftUI
 
 extension Acknow: Identifiable {
     public var id: String {
-        get {
-            title
-        }
+        title
     }
 }
 
@@ -43,6 +42,19 @@ public struct AcknowListSwiftUIView: View {
 
     /// Footer text to be displayed below the list of the acknowledgements.
     public var footerText: String?
+
+    public init() {
+        if let acknowList = AcknowParser.defaultAcknowList() {
+            self.init(acknowList: acknowList)
+        }
+        else {
+            print(
+                "** AcknowList Warning **\n" +
+                "No acknowledgements found.\n" +
+                "Please take a look at https://github.com/vtourraine/AcknowList for instructions.", terminator: "\n")
+            self.init(acknowledgements: [])
+        }
+    }
 
     public init(acknowList: AcknowList) {
         acknowledgements = acknowList.acknowledgements
@@ -87,26 +99,23 @@ public struct AcknowListSwiftUIView: View {
         }
     }
 
+    private var acknowListContent: some View {
+        List {
+            Section(header: HeaderFooter(text: headerText), footer: HeaderFooter(text: footerText)) {
+                ForEach(acknowledgements) { acknowledgement in
+                    AcknowListRowSwiftUIView(acknowledgement: acknowledgement)
+                }
+            }
+        }
+    }
+    
     public var body: some View {
-        #if os(iOS) || os(tvOS)
-        List {
-            Section(header: HeaderFooter(text: headerText), footer: HeaderFooter(text: footerText)) {
-                ForEach (acknowledgements) { acknowledgement in
-                    AcknowListRowSwiftUIView(acknowledgement: acknowledgement)
-                }
-            }
-        }
-        .listStyle(GroupedListStyle())
-        .navigationBarTitle(Text(AcknowLocalization.localizedTitle()))
-        #else
-        List {
-            Section(header: HeaderFooter(text: headerText), footer: HeaderFooter(text: footerText)) {
-                ForEach (acknowledgements) { acknowledgement in
-                    AcknowListRowSwiftUIView(acknowledgement: acknowledgement)
-                }
-            }
-        }
-        #endif
+#if os(iOS) || os(tvOS)
+        acknowListContent
+            .navigationBarTitle(Text(AcknowLocalization.localizedTitle()))
+#else
+        acknowListContent
+#endif
     }
 }
 
@@ -162,7 +171,7 @@ public struct AcknowListRowSwiftUIView: View {
 @available(iOS 13.0.0, macOS 10.15.0, watchOS 7.0.0, tvOS 13.0.0, visionOS 1.0.0, *)
 struct AcknowListSwiftUI_Previews: PreviewProvider {
     static let license = """
-        Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)
+        Copyright (c) 2015-2025 Vincent Tourraine (https://www.vtourraine.net)
 
         Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
@@ -170,9 +179,11 @@ struct AcknowListSwiftUI_Previews: PreviewProvider {
 
         THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     """
-    static let acks = [Acknow(title: "Title 1", text: license),
-                       Acknow(title: "Title 2", text: license),
-                       Acknow(title: "Title 3", text: license)]
+    static let acks = [
+        Acknow(title: "Title 1", text: license),
+        Acknow(title: "Title 2", text: license),
+        Acknow(title: "Title 3", text: license),
+    ]
 
     static var previews: some View {
         NavigationView {
@@ -184,7 +195,7 @@ struct AcknowListSwiftUI_Previews: PreviewProvider {
             AcknowListSwiftUIView(acknowledgements: acks, headerText: "Test Header", footerText: "Test Footer")
         }
         .previewDevice(PreviewDevice(rawValue: "iPhone 12"))
-        
+
         NavigationView {
             AcknowListSwiftUIView(acknowledgements: acks, headerText: "Test Header", footerText: "Test Footer")
         }
@@ -201,3 +212,4 @@ struct AcknowListSwiftUI_Previews: PreviewProvider {
         .previewDevice(PreviewDevice(rawValue: "Mac"))
     }
 }
+#endif

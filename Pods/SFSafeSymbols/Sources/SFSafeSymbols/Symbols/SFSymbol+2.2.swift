@@ -11,6 +11,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s AirPods Max.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "airpodsMax")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "airpodsMax")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "airpodsMax")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "airpodsMax")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "airpodsMax")
     static let airpodsmax = SFSymbol(rawValue: "airpodsmax")
 
     /// 􀸎
@@ -104,6 +109,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "hifispeakerAndHomepodMini")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "hifispeakerAndHomepodMini")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "hifispeakerAndHomepodMini")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "hifispeakerAndHomepodMini")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "hifispeakerAndHomepodMini")
     static let hifispeakerAndHomepodmini = SFSymbol(rawValue: "hifispeaker.and.homepodmini")
 
     /// 􀷮
@@ -114,6 +124,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "hifispeakerAndHomepodMiniFill")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "hifispeakerAndHomepodMiniFill")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "hifispeakerAndHomepodMiniFill")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "hifispeakerAndHomepodMiniFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "hifispeakerAndHomepodMiniFill")
     static let hifispeakerAndHomepodminiFill = SFSymbol(rawValue: "hifispeaker.and.homepodmini.fill")
 
     /// 􀷫
@@ -124,6 +139,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod and HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodAndHomepodMini")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "homepodAndHomepodMini")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodAndHomepodMini")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "homepodAndHomepodMini")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "homepodAndHomepodMini")
     static let homepodAndHomepodmini = SFSymbol(rawValue: "homepod.and.homepodmini")
 
     /// 􀷬
@@ -134,6 +154,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod and HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodAndHomepodMiniFill")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "homepodAndHomepodMiniFill")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodAndHomepodMiniFill")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "homepodAndHomepodMiniFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "homepodAndHomepodMiniFill")
     static let homepodAndHomepodminiFill = SFSymbol(rawValue: "homepod.and.homepodmini.fill")
 
     /// 􀷧
@@ -144,6 +169,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMini")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "homepodMini")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMini")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "homepodMini")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "homepodMini")
     static let homepodmini = SFSymbol(rawValue: "homepodmini")
 
     /// 􀷩
@@ -154,6 +184,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMini2")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "homepodMini2")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMini2")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "homepodMini2")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "homepodMini2")
     static let homepodmini2 = SFSymbol(rawValue: "homepodmini.2")
 
     /// 􀷪
@@ -164,6 +199,11 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMini2Fill")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "homepodMini2Fill")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMini2Fill")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "homepodMini2Fill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "homepodMini2Fill")
     static let homepodmini2Fill = SFSymbol(rawValue: "homepodmini.2.fill")
 
     /// 􀷨
@@ -174,14 +214,18 @@ public extension SFSymbol {
     /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     ///
     /// - Warning: ⚠️ This symbol may not be modified and may only be used to refer to Apple’s HomePod mini.
+    @available(iOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMiniFill")
+    @available(macOS, introduced: 11.3, deprecated: 15.0, renamed: "homepodMiniFill")
+    @available(tvOS, introduced: 14.5, deprecated: 18.0, renamed: "homepodMiniFill")
+    @available(watchOS, introduced: 7.4, deprecated: 11.0, renamed: "homepodMiniFill")
+    @available(visionOS, introduced: 1.0, deprecated: 2.0, renamed: "homepodMiniFill")
     static let homepodminiFill = SFSymbol(rawValue: "homepodmini.fill")
 
     /// 􀴊
-    /// Single Localization, 2 Layersets
+    /// Single Localization, Single Layerset
     ///
     /// Layersets:
     /// - Monochrome
-    /// - Hierarchical (iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0)
     @available(iOS, introduced: 14.5, deprecated: 15.0, renamed: "rectangleTopthirdInsetFilled")
     @available(macOS, introduced: 11.3, deprecated: 12.0, renamed: "rectangleTopthirdInsetFilled")
     @available(tvOS, introduced: 14.5, deprecated: 15.0, renamed: "rectangleTopthirdInsetFilled")

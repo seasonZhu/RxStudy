@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '15.6'
+platform :ios, '17.6'
 #source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
@@ -196,21 +196,56 @@ post_install do |installer|
 end
 =end
 
-# 通过打印RxSwift.Resources.total表示当前的RxSwift中资源使用情况
-# https://juejin.cn/post/7088692280852217887
-# https://www.jianshu.com/p/671a68870bdf
+
 post_install do |installer|
-    installer.pods_project.targets.each do |target|
-        if target.name == 'RxSwift'
-            target.build_configurations.each do |config|
-                if config.name == 'Debug'
-                    config.build_settings['OTHER_SWIFT_FLAGS'] ||= ['-D', 'TRACE_RESOURCES']
-                end
-            end
+  # 1) Ensure pods have a minimum deployment target of iOS 17.6 when they declare a lower one
+  installer.pods_project.targets.each do |target|
+    target.build_configurations.each do |config|
+      if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
+        begin
+          current = Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
+          if current < Gem::Version.new('17.6')
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.6'
+          end
+        rescue
+          # if parsing fails, be conservative and set to 17.6
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.6'
         end
+      else
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.6'
+      end
+
+      # 2) Disable Bitcode for pod targets to avoid bitcode-related override issues
+      config.build_settings['ENABLE_BITCODE'] = 'NO'
     end
-    
-    #flutter_post_install(installer) if defined?(flutter_post_install)
+  end
+
+  # 3) Prevent "Target overrides the 'ENABLE_BITCODE' build setting" warnings by making
+  # app/user project targets use $(inherited) for ENABLE_BITCODE (so CocoaPods xcconfigs are authoritative)
+  installer.aggregate_targets.each do |aggregate|
+    project = aggregate.user_project
+    project.targets.each do |user_target|
+      user_target.build_configurations.each do |config|
+        config.build_settings['ENABLE_BITCODE'] = '$(inherited)'
+      end
+    end
+  end
+  
+  # 通过打印RxSwift.Resources.total表示当前的RxSwift中资源使用情况
+  # https://juejin.cn/post/7088692280852217887
+  # https://www.jianshu.com/p/671a68870bdf
+  # Preserve existing behavior for RxSwift tracing flag
+  installer.pods_project.targets.each do |target|
+    if target.name == 'RxSwift'
+      target.build_configurations.each do |config|
+        if config.name == 'Debug'
+          config.build_settings['OTHER_SWIFT_FLAGS'] ||= ['-D', 'TRACE_RESOURCES']
+        end
+      end
+    end
+  end
+
+  flutter_post_install(installer) if defined?(flutter_post_install)
 end
 
 plugin 'cocoapods-keys', {

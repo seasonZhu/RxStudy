@@ -80,6 +80,37 @@ public struct RetrieveImageResult: Sendable {
     /// - Note: Retrieving this data can be a time-consuming operation, so it is advisable to store it if you need to 
     /// use it multiple times and avoid frequent calls to this method.
     public let data: @Sendable () -> Data?
+    
+    /// The network metrics collected during the download process.
+    ///
+    /// This property contains network performance metrics when the image was downloaded from the network
+    /// (`cacheType == .none`). For cached images (`cacheType == .memory` or `.disk`), this will be `nil`.
+    public let metrics: NetworkMetrics?
+    
+    /// Creates a RetrieveImageResult.
+    ///
+    /// - Parameters:
+    ///   - image: The retrieved image.
+    ///   - cacheType: The cache source type.
+    ///   - source: The source of the image.
+    ///   - originalSource: The original source that initiated the retrieval.
+    ///   - data: A closure that provides the image data.
+    ///   - metrics: The network metrics collected during download. Defaults to nil for cached images.
+    public init(
+        image: KFCrossPlatformImage,
+        cacheType: CacheType,
+        source: Source,
+        originalSource: Source,
+        data: @escaping @Sendable () -> Data?,
+        metrics: NetworkMetrics? = nil
+    ) {
+        self.image = image
+        self.cacheType = cacheType
+        self.source = source
+        self.originalSource = originalSource
+        self.data = data
+        self.metrics = metrics
+    }
 }
 
 /// A structure that stores related information about a ``KingfisherError``. It provides contextual information
@@ -250,8 +281,9 @@ public class KingfisherManager: @unchecked Sendable {
     func retrieveImage(
         with source: Source,
         options: KingfisherParsedOptionsInfo,
-        progressBlock: DownloadProgressBlock? = nil,
+        progressBlock: DownloadProgressBlock?,
         downloadTaskUpdated: DownloadTaskUpdatedBlock? = nil,
+        progressiveImageSetter: ((KFCrossPlatformImage?) -> Void)? = nil,
         completionHandler: (@Sendable (Result<RetrieveImageResult, KingfisherError>) -> Void)?) -> DownloadTask?
     {
         var info = options
@@ -262,7 +294,7 @@ public class KingfisherManager: @unchecked Sendable {
             with: source,
             options: info,
             downloadTaskUpdated: downloadTaskUpdated,
-            progressiveImageSetter: nil,
+            progressiveImageSetter: progressiveImageSetter,
             completionHandler: completionHandler)
     }
 
@@ -276,12 +308,13 @@ public class KingfisherManager: @unchecked Sendable {
     {
         var options = options
         let retryStrategy = options.retryStrategy
-        
+
+        let progressiveJPEG = options.progressiveJPEG
         if let provider = ImageProgressiveProvider(options: options, refresh: { image in
             guard let setter = progressiveImageSetter else {
                 return
             }
-            guard let strategy = options.progressiveJPEG?.onImageUpdated(image) else {
+            guard let strategy = progressiveJPEG?.onImageUpdated(image) else {
                 setter(image)
                 return
             }
@@ -473,7 +506,8 @@ public class KingfisherManager: @unchecked Sendable {
                 cacheType: .none,
                 source: source,
                 originalSource: context.originalSource,
-                data: {  value.originalData }
+                data: { value.originalData },
+                metrics: value.metrics
             )
             // Add image to cache.
             let targetCache = options.targetCache ?? self.cache
@@ -601,8 +635,8 @@ public class KingfisherManager: @unchecked Sendable {
                 // TODO: Optimize it when we can use async across all the project.
                 @Sendable func checkResultImageAndCallback(_ inputImage: KFCrossPlatformImage) {
                     var image = inputImage
-                    if image.kf.imageFrameCount != nil && image.kf.imageFrameCount != 1, let data = image.kf.animatedImageData {
-                        // Always recreate animated image representation since it is possible to be loaded in different options.
+                    if image.kf.imageFrameCount != nil && image.kf.imageFrameCount != 1, options.imageCreatingOptions != image.kf.imageCreatingOptions, let data = image.kf.animatedImageData {
+                        // Recreate animated image representation when loaded in different options.
                         // https://github.com/onevcat/Kingfisher/issues/1923
                         image = options.processor.process(item: .data(data), options: options) ?? .init()
                     }
@@ -648,7 +682,7 @@ public class KingfisherManager: @unchecked Sendable {
                     }
                 } onFailure: { error in
                     options.callbackQueue.execute {
-                        completionHandler(.failure(KingfisherError.cacheError(reason: .imageNotExisting(key: key))))
+                        completionHandler(.failure(error))
                     }
                 }
             }
@@ -727,13 +761,11 @@ public class KingfisherManager: @unchecked Sendable {
                             }
                         }
                     },
-                    onFailure: { _ in
+                    onFailure: { error in
                         // This should not happen actually, since we already confirmed `originalImageCached` is `true`.
                         // Just in case...
-                        options.callbackQueue.execute {
-                            completionHandler?(
-                                .failure(KingfisherError.cacheError(reason: .imageNotExisting(key: key)))
-                            )
+                        if let completionHandler = completionHandler {
+                            options.callbackQueue.execute { completionHandler(.failure(error)) }
                         }
                     }
                 )
@@ -830,9 +862,37 @@ extension KingfisherManager {
         referenceTaskIdentifierChecker: (() -> Bool)? = nil
     ) async throws -> RetrieveImageResult
     {
+        // Early cancellation check
+        if Task.isCancelled {
+            throw CancellationError()
+        }
+        
         let task = CancellationDownloadTask()
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
+                // Use an actor to ensure continuation is only resumed once in a Swift 6 compatible way
+                actor ContinuationState {
+                    var isResumed = false
+                    
+                    func tryResume() -> Bool {
+                        if !isResumed {
+                            isResumed = true
+                            return true
+                        }
+                        return false
+                    }
+                }
+                
+                let state = ContinuationState()
+                
+                @Sendable func safeResume(with result: Result<RetrieveImageResult, KingfisherError>) {
+                    Task {
+                        if await state.tryResume() {
+                            continuation.resume(with: result)
+                        }
+                    }
+                }
+                
                 let downloadTask = retrieveImage(
                     with: source,
                     options: options,
@@ -844,11 +904,20 @@ extension KingfisherManager {
                     progressiveImageSetter: progressiveImageSetter,
                     referenceTaskIdentifierChecker: referenceTaskIdentifierChecker,
                     completionHandler: { result in
-                        continuation.resume(with: result)
+                        safeResume(with: result)
                     }
                 )
+                
+                // Check for cancellation that may have occurred during setup
                 if Task.isCancelled {
                     downloadTask?.cancel()
+                    let error: KingfisherError
+                    if let sessionTask = downloadTask?.sessionTask, let cancelToken = downloadTask?.cancelToken {
+                        error = .requestError(reason: .taskCancelled(task: sessionTask, token: cancelToken))
+                    } else {
+                        error = .requestError(reason: .asyncTaskContextCancelled)
+                    }
+                    safeResume(with: .failure(error))
                 } else {
                     Task {
                         await task.setTask(downloadTask)

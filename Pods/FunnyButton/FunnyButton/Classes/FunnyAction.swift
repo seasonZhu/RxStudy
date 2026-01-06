@@ -5,6 +5,7 @@
 //  Created by aa on 2022/9/17.
 //
 //  点击FunnyButton可执行的Action
+//
 
 @objcMembers
 public class FunnyAction: NSObject {

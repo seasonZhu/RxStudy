@@ -29,7 +29,7 @@ public class DataRequest: Request, @unchecked Sendable {
     /// `URLRequestConvertible` value used to create `URLRequest`s for this instance.
     public let convertible: any URLRequestConvertible
     /// `Data` read from the server so far.
-    public var data: Data? { dataMutableState.data }
+    public var data: Data? { dataMutableState.read(\.data) }
 
     private struct DataMutableState {
         var data: Data?
@@ -57,6 +57,7 @@ public class DataRequest: Request, @unchecked Sendable {
          serializationQueue: DispatchQueue,
          eventMonitor: (any EventMonitor)?,
          interceptor: (any RequestInterceptor)?,
+         shouldAutomaticallyResume: Bool?,
          delegate: any RequestDelegate) {
         self.convertible = convertible
 
@@ -65,6 +66,7 @@ public class DataRequest: Request, @unchecked Sendable {
                    serializationQueue: serializationQueue,
                    eventMonitor: eventMonitor,
                    interceptor: interceptor,
+                   shouldAutomaticallyResume: shouldAutomaticallyResume,
                    delegate: delegate)
     }
 
@@ -148,7 +150,9 @@ public class DataRequest: Request, @unchecked Sendable {
 
             let result = validation(request, response, data)
 
-            if case let .failure(error) = result { self.error = error.asAFError(or: .responseValidationFailed(reason: .customValidationFailed(error: error))) }
+            if case let .failure(error) = result {
+                self.error = error.asAFError(or: .responseValidationFailed(reason: .customValidationFailed(error: error)))
+            }
 
             eventMonitor?.request(self,
                                   didValidateRequest: request,

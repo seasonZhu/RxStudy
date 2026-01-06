@@ -1,7 +1,7 @@
 //
 // AcknowListViewController.swift
 //
-// Copyright (c) 2015-2024 Vincent Tourraine (https://www.vtourraine.net)
+// Copyright (c) 2015-2025 Vincent Tourraine (https://www.vtourraine.net)
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -135,6 +135,7 @@ open class AcknowListViewController: UITableViewController {
 
     // MARK: - View life cycle
 
+#if !os(visionOS)
     /// Prepares the receiver for service after it has been loaded from an Interface Builder archive, or nib file.
     override open func awakeFromNib() {
         super.awakeFromNib()
@@ -149,6 +150,7 @@ open class AcknowListViewController: UITableViewController {
             configure(with: defaultAcknowList)
         }
     }
+#endif
 
     /// Called after the controller's view is loaded into memory.
     open override func viewDidLoad() {
@@ -161,8 +163,19 @@ open class AcknowListViewController: UITableViewController {
 
         if let navigationController = navigationController {
             if presentingViewController != nil && navigationController.viewControllers.first == self {
+#if os(iOS)
+                if #available(iOS 13.0, *) {
+                    let item = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(AcknowListViewController.dismissViewController(_:)))
+                    navigationItem.leftBarButtonItem = item
+                }
+                else {
+                    let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(AcknowListViewController.dismissViewController(_:)))
+                    navigationItem.leftBarButtonItem = item
+                }
+#else
                 let item = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(AcknowListViewController.dismissViewController(_:)))
                 navigationItem.leftBarButtonItem = item
+#endif
             }
         }
     }
