@@ -8,18 +8,10 @@
 
 import UIKit
 
-import IQKeyboardManagerSwift
-import Alamofire
 import SVProgressHUD
-import KSCrash
 
 #if canImport(Flutter)
 import Flutter
-#endif
-
-#if DEBUG
-import CocoaDebug
-import LifetimeTracker
 #endif
 
 @UIApplicationMain
@@ -52,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         routerSetting()
         
         /// 键盘配置
-        IQKeyboardManager.shared.enable = true
+        IQKeyboardManagerSetting()
         
         /// SVProgressHUD配置
         SVProgressHUD.setting()
@@ -155,6 +147,9 @@ extension AppDelegate {
 }
 
 // MARK: - 网络状态监听
+import Alamofire
+import Network
+
 extension AppDelegate {
     private func networkListening() {
         NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
@@ -165,6 +160,10 @@ extension AppDelegate {
 }
 
 // MARK: - CocoaDebug配置
+#if DEBUG
+import CocoaDebug
+#endif
+
 extension AppDelegate {
     private func cocoaDebugSetting() {
         #if DEBUG
@@ -174,6 +173,10 @@ extension AppDelegate {
 }
 
 // MARK: - 生命周期跟踪
+#if DEBUG
+import LifetimeTracker
+#endif
+
 extension AppDelegate {
     private func lifetimeTrackerSetting() {
         #if DEBUG
@@ -190,6 +193,8 @@ extension AppDelegate {
 }
 
 // MARK: - 崩溃配置
+import KSCrash
+
 extension AppDelegate {
     private func installCrashHandler() {
         let installation = makeEmailInstallation()
@@ -359,6 +364,32 @@ extension AppDelegate {
         // 动态注册服务
         TheRouterManager.registerServices(excludeCocoapods: true)
         
+    }
+}
+
+// MARK: - IQKeyboardManager配置
+import IQKeyboardManagerSwift
+import IQKeyboardToolbarManager
+
+extension AppDelegate {
+    private func IQKeyboardManagerSetting() {
+        // Core functionality
+        IQKeyboardManager.shared.isEnabled = true
+        // IQKeyboardManager.shared.keyboardDistance = 20.0
+        
+        // Toolbar (if using IQKeyboardToolbarManager subspec)
+        // 更新到8.0.0之后,键盘上面工具栏需要单独开启
+        IQKeyboardToolbarManager.shared.isEnabled = true
+        
+        // Tap to resign (if using Resign subspec)
+        // 点击其他区域是否收起键盘
+        IQKeyboardManager.shared.resignOnTouchOutside = false
+        
+        // Appearance (if using Appearance subspec)
+        // 键盘样式,可以切换白天与黑暗模式
+        IQKeyboardManager.shared.keyboardConfiguration.overrideAppearance = false
+        
+        IQKeyboardManager.shared.keyboardConfiguration.appearance = .default
     }
 }
 

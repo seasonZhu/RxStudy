@@ -1,8 +1,10 @@
 CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = NO
 CONFIGURATION_BUILD_DIR = ${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardManagerSwift
+ENABLE_USER_SCRIPT_SANDBOXING = NO
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardCore" "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardNotification" "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardReturnManager" "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardToolbar" "${PODS_CONFIGURATION_BUILD_DIR}/IQKeyboardToolbarManager" "${PODS_CONFIGURATION_BUILD_DIR}/IQTextInputViewNotification" "${PODS_CONFIGURATION_BUILD_DIR}/IQTextView"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-LIBRARY_SEARCH_PATHS = $(inherited) "${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}" /usr/lib/swift $(SDKROOT)/usr/lib/swift
-OTHER_LDFLAGS = $(inherited) -l"swiftCoreGraphics" -framework "CoreGraphics" -framework "Foundation" -framework "QuartzCore" -framework "UIKit"
+LIBRARY_SEARCH_PATHS = $(inherited) "${TOOLCHAIN_DIR}/usr/lib/swift/${PLATFORM_NAME}" /usr/lib/swift
+OTHER_LDFLAGS = $(inherited) -framework "Combine" -framework "IQKeyboardNotification" -framework "IQKeyboardReturnManager" -framework "IQKeyboardToolbarManager" -framework "IQTextInputViewNotification" -framework "IQTextView" -framework "UIKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

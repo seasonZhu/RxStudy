@@ -52,7 +52,7 @@ target 'RxStudy' do
   pod 'SFSafeSymbols'
   
   # Keyboard,目前不要使用超过7.1.1之后的版本,键盘上的工具栏弹不出来,iOS18.3.2上测试发现的
-  pod 'IQKeyboardManagerSwift', '7.1.1'
+  pod 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git', :tag => '8.0.2'
 
   # Auto Layout
   pod 'SnapKit'
