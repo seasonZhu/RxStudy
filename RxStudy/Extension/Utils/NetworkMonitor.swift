@@ -62,8 +62,51 @@ public final class NetworkMonitor {
     public var isConnectedObservable: Observable<Bool> { statusRelay.map { $0.isConnected }.distinctUntilChanged() }
 
     /// Current status snapshot
-    public private(set) var currentStatus: NetworkStatus {
+    public var currentStatus: NetworkStatus {
         statusSubject.value
+    }
+
+    // MARK: - Callback/listener support
+    /// Backwards-compatible single callback property (optional)
+    private var callback: ((NetworkStatus) -> Void)?
+
+    /// Internal storage for multiple listeners (UUID -> callback)
+    private var listeners: [UUID: (NetworkStatus) -> Void] = [:]
+    private let listenersQueue = DispatchQueue(label: "com.rxstudy.network.monitor.listeners", attributes: .concurrent)
+
+    /// Token returned by `addListener` — call `cancel()` to remove the listener.
+    public final class ListenerToken {
+        private let cancelBlock: () -> Void
+        private var cancelled = false
+        public init(cancel: @escaping () -> Void) { self.cancelBlock = cancel }
+        public func cancel() {
+            guard !cancelled else { return }
+            cancelled = true
+            cancelBlock()
+        }
+        deinit { cancel() }
+    }
+
+    /// Add a callback-style listener. The returned `ListenerToken` should be `cancel()`ed to remove the listener.
+    @discardableResult
+    public func addListener(_ listener: @escaping (NetworkStatus) -> Void) -> ListenerToken {
+        let id = UUID()
+        listenersQueue.async(flags: .barrier) {
+            self.listeners[id] = listener
+        }
+        // immediately deliver the current status on main
+        DispatchQueue.main.async {
+            self.callback = listener
+        }
+        return ListenerToken { [weak self] in
+            self?.removeListener(id)
+        }
+    }
+
+    private func removeListener(_ id: UUID) {
+        listenersQueue.async(flags: .barrier) {
+            self.listeners.removeValue(forKey: id)
+        }
     }
 
     // MARK: - Private
@@ -107,6 +150,15 @@ public final class NetworkMonitor {
             DispatchQueue.main.async {
                 self.statusSubject.send(newStatus)
                 self.statusRelay.accept(newStatus)
+
+                // call single callback for backwards compatibility
+                self.callback?(newStatus)
+
+                // snapshot and invoke multi listeners
+                let listenersSnapshot = self.listenersQueue.sync { Array(self.listeners.values) }
+                for l in listenersSnapshot {
+                    l(newStatus)
+                }
             }
         }
         monitor.start(queue: monitorQueue)
@@ -118,6 +170,7 @@ public final class NetworkMonitor {
             let seed = NetworkStatus(isConnected: isConnected, interface: ifType, rawStatus: currentPath.status)
             statusSubject.send(seed)
             statusRelay.accept(seed)
+            callback?(seed)
         }
     }
 
@@ -132,7 +185,7 @@ private extension NWPathMonitor {
     func currentPathIfAvailable() -> NWPath? {
         // NWPathMonitor doesn't provide a stable "current path" accessor, but `currentPath` is available on macOS/iOS.
         // use key-value access with caution — this is defensive and best-effort.
-        return self.value(forKey: "currentPath") as? NWPath
+        return currentPath
     }
 }
 

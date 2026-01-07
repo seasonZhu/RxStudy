@@ -148,7 +148,6 @@ extension AppDelegate {
 
 // MARK: - 网络状态监听
 import Alamofire
-import Network
 
 extension AppDelegate {
     private func networkListening() {
@@ -156,6 +155,26 @@ extension AppDelegate {
             let value = NetworkReachabilityManager.default?.isReachable == true
             AccountManager.shared.networkIsReachableRelay.accept(value)
         })
+    }
+    
+    /// iOS17.4+ 可以使用原生的NWPathMonitor进行监听
+    /// 同时使用Rx的可能效果优化会更好
+    private func networkMonitorListening() {
+        NetworkMonitor.shared.addListener { status in
+            print("isConnected=\(status.isConnected), interface=\(status.interface)")
+            let value = status.isConnected
+            AccountManager.shared.networkIsReachableRelay.accept(value)
+        }
+        
+        NetworkMonitor.shared.start()
+        
+        NetworkMonitor.shared.statusObservable
+            .distinctUntilChanged()
+            .subscribe(onNext: { status in
+                print("Rx: isConnected=\(status.isConnected), interface=\(status.interface)")
+                let value = status.isConnected
+                AccountManager.shared.networkIsReachableRelay.accept(value)
+        }).disposed(by: rx.disposeBag)
     }
 }
 
