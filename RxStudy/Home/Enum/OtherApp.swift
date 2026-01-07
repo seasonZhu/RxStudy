@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 enum  OtherApp: String {
     case alipay
     case weixin

@@ -135,11 +135,13 @@ extension AppIconSelectController {
     func startAnimation() {
         UIApplication.shared.beginBackgroundTask()
         Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-            self.appProxy.setAlternateIconName(self.getLogoName()) { _, error  in
-                if let error {
-                    print("设置 App Icon 出错： \(error)")
-                } else {
-                    print("App Icon 设置成功")
+            DispatchQueue.main.async {
+                self.appProxy.setAlternateIconName(self.getLogoName()) { _, error  in
+                    if let error {
+                        print("设置 App Icon 出错： \(error)")
+                    } else {
+                        print("App Icon 设置成功")
+                    }
                 }
             }
         }

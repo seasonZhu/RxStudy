@@ -53,7 +53,7 @@ public class NetworkActivityLogger {
     // MARK: - Properties
     
     /// The shared network activity logger for the system.
-    public static let shared = NetworkActivityLogger()
+    @MainActor public static let shared = NetworkActivityLogger()
     
     /// The level of logging detail. See NetworkActivityLoggerLevel enum for possible values. .info by default.
     public var level: NetworkActivityLoggerLevel

@@ -13,12 +13,13 @@ import RxCocoa
 import Moya
 
 // MARK: - 列表服务
+@MainActor
 enum ListService {
     case coinRank(_ page: Int)
     case myCoinList(_ page: Int)
 }
-
-extension ListService: TargetType {
+@MainActor
+extension ListService: @preconcurrency TargetType {
     var baseURL: URL {
         return URL(string: Api.baseUrl)!
     }
@@ -89,7 +90,8 @@ extension ListModel: TargetType {
 }
 
 // MARK: - 通用型的ListViewModel
-class ListViewModel<M: Codable, T: PageProtocol&TargetType>: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class ListViewModel<M: Codable, T: PageProtocol&TargetType>: BaseViewModel, @preconcurrency VMInputs, @preconcurrency VMOutputs, @preconcurrency PageVMSetting {
 
     var pageNum: Int
     

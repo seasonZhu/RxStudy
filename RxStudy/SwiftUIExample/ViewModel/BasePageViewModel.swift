@@ -21,7 +21,7 @@ extension BasePageViewModelProtocol {
     }
 }
 
-class BasePageViewModel: BasePageViewModelProtocol {
+class BasePageViewModel: BasePageViewModelProtocol, @unchecked Sendable {
     var cancellables: Set<AnyCancellable> = []
     
     deinit {

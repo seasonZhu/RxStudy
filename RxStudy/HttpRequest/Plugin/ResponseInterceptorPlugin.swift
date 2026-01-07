@@ -19,7 +19,9 @@ class ResponseInterceptorPlugin: PluginType {
                let message = dictionary["errorMsg"] as? String,
                message.isNotEmpty {
                 
-                SVProgressHUD.showText(message)
+                DispatchQueue.main.async {
+                    SVProgressHUD.showText(message)
+                }
                 
                 /// 注意,这里我自认为是statusCode导致的错误
                 return .failure(.statusCode(response))

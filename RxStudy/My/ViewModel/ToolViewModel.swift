@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
+@MainActor
 class ToolViewModel<T: Codable>: BaseViewModel {
     
     /// outputs

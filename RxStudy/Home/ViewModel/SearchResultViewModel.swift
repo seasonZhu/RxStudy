@@ -12,7 +12,8 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class SearchResultViewModel: BaseViewModel, @preconcurrency VMInputs, @preconcurrency VMOutputs, @preconcurrency PageVMSetting {
     /// 搜索结果的首页是从0开始的
     var pageNum: Int
     

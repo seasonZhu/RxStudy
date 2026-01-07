@@ -47,7 +47,7 @@ extension TagType {
         if self == .course {
             return 0
         } else {
-            return -kBottomMargin
+            return -82
         }
     }
 }

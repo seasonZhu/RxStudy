@@ -191,6 +191,7 @@ extension MyCollectionController {
     }
 }
 
+@MainActor
 extension Reactive where Base: UITableView {
     var isShowEdit: Binder<Bool> {
         return Binder(base) { base, isEdit in
@@ -199,6 +200,7 @@ extension Reactive where Base: UITableView {
     }
 }
 
+@MainActor
 extension Reactive where Base: UINavigationItem {
     var rightBarButtonItem: Binder<UIBarButtonItem> {
         return Binder(base) { base, item in

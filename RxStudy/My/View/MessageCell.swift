@@ -61,6 +61,7 @@ extension MessageCell {
     }
 }
 
+@MainActor
 extension Reactive where Base == MessageCell {
     var count: Binder<Int> {
         return Binder(base) { cell, count in

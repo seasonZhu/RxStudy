@@ -101,7 +101,7 @@ extension YYCache: ResponseCacheConvertible {
 #endif
 
 // MARK: - 使用系统自带的UserDefaults也可以做缓存
-let userDefaultsCache = UserDefaults(suiteName: "userDefaultsCache")!
+@MainActor let userDefaultsCache = UserDefaults(suiteName: "userDefaultsCache")!
 
 extension UserDefaults: ResponseCacheConvertible {
     func loadData(forKey key: String) throws -> Data? {
@@ -126,8 +126,7 @@ extension UserDefaults: ResponseCacheConvertible {
 
 // MARK: - 响应缓存插件
 // 我更新了这个缓存插件,功能得到了提升,因为同时集成了Flutter与UniApp的模块,在Debug模式离线缓存会闪退,在Release模式下无异常
-class ResponseCachePlugin: PluginType {
-    
+final class ResponseCachePlugin: PluginType {
     private let cache: any ResponseCacheConvertible
     
     /// 白名单判断闭包
@@ -138,7 +137,7 @@ class ResponseCachePlugin: PluginType {
 
     private let queue = DispatchQueue(label: "com.network.cache.plugin")
     
-    init(cache: any ResponseCacheConvertible = userDefaultsCache,
+    init(cache: any ResponseCacheConvertible = UserDefaults(suiteName: "userDefaultsCache")!,
          shouldCache: @escaping (TargetType) -> Bool = { _ in true },
          cacheDuration: TimeInterval = 86400 * 7) {
         self.cache = cache

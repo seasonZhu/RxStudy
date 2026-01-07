@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol InnerEventConvertible {}
+protocol InnerEventConvertible: Sendable {}
 
 /// 响应子View的外层View去实现这个具体方法
 protocol InnerEventResponsible: UIResponder {
@@ -16,10 +16,11 @@ protocol InnerEventResponsible: UIResponder {
 }
 
 protocol BubbleEventProtocol {
-    func bubbleEvent(_ event: any InnerEventConvertible)
+    func bubbleEvent(_ event: any InnerEventConvertible) async
 }
 
 /// 冒泡方法在内层子View中实现
+@MainActor
 extension UIView: BubbleEventProtocol {
     /// 一个沿着响应链向上传递事件的方法，bubble=冒泡
     func bubbleEvent(_ eventType: any InnerEventConvertible) {

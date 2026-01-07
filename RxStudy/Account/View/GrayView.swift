@@ -8,6 +8,7 @@
 
 import UIKit
 
+@MainActor
 class GrayView: UIView {
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -78,6 +79,7 @@ extension UIViewController {
 import RxSwift
 import RxCocoa
 
+@MainActor
 extension Reactive where Base: UIViewController {
     var isGrayMode: Binder<Bool> {
         Binder(base) { base, isGrayMode in

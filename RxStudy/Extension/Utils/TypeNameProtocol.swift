@@ -28,7 +28,8 @@ extension TypeNameProtocol {
         if self is NSObject {
             return className
         } else {
-            return className.replacingOccurrences(of: "\(nameSpace ?? "").", with: "")
+            //return className.replacingOccurrences(of: "\(nameSpace ?? "").", with: "")
+            return ""
         }
     }
     
@@ -36,7 +37,8 @@ extension TypeNameProtocol {
         if self is NSObject.Type {
             return className
         } else {
-            return className.replacingOccurrences(of: "\(nameSpace ?? "").", with: "")
+            //return className.replacingOccurrences(of: "\(nameSpace ?? "").", with: "")
+            return ""
         }
     }
     

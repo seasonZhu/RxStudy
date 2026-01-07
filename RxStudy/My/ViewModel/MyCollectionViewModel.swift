@@ -12,9 +12,10 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
-
-    var pageNum: Int
+@MainActor
+class MyCollectionViewModel: BaseViewModel, @preconcurrency VMInputs, @preconcurrency VMOutputs, @preconcurrency PageVMSetting {
+    
+    nonisolated(unsafe) var pageNum: Int
 
     init(pageNum: Int = 0) {
         self.pageNum = pageNum

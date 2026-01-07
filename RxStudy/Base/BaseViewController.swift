@@ -136,7 +136,8 @@ class BaseViewController: UIViewController {
 
 // MARK: - LifetimeTracker的使用
 #if DEBUG
-extension BaseViewController: LifetimeTrackable {
+@MainActor
+extension BaseViewController: @preconcurrency LifetimeTrackable {
     class var lifetimeConfiguration: LifetimeConfiguration {
         return LifetimeConfiguration(maxCount: 1, groupName: "VC")
     }
@@ -245,6 +246,7 @@ extension BaseViewController {
 }
 
 // MARK: - 绑定
+@MainActor
 extension Reactive where Base: BaseViewController {
     
     /// 显示网络错误

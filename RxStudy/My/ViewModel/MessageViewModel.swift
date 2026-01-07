@@ -12,7 +12,8 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class MessageViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class MessageViewModel: BaseViewModel, @preconcurrency VMInputs, @preconcurrency VMOutputs, @preconcurrency PageVMSetting {
     /// 站内消息是从1开始的
     var pageNum: Int
     

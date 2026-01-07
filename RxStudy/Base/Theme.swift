@@ -43,9 +43,10 @@ extension ThemeType: ThemeProvider {
 }
 
 /// 主题服务
-let themeService = ThemeType.service(initial: .light)
+@MainActor let themeService = ThemeType.service(initial: .light)
 
 /// 主题反转
+@MainActor
 func themeTriggered() {
     switch themeService.type {
     case .light:
@@ -56,6 +57,7 @@ func themeTriggered() {
 }
 
 /// 触控反馈
+@MainActor
 enum Haptics {
     case success
     case warning

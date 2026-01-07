@@ -9,8 +9,8 @@
 import CocoaLumberjack
 
 /// 创建一个自定义的 log 文件管理器类
-class CustomLogFileManager: NSObject, DDLogFileManager {
-
+final class CustomLogFileManager: NSObject, DDLogFileManager, @unchecked Sendable {
+    
     var maximumNumberOfLogFiles: UInt = 7
     
     var logFilesDiskQuota: UInt64 = 10 * 1024 * 1024

@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 import Moya
 
+@MainActor
 class WebViewModel: BaseViewModel {
     
     let collectRelay = PublishRelay<Bool>()

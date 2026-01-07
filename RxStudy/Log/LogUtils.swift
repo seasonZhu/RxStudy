@@ -9,6 +9,7 @@
 import Foundation
 import CocoaLumberjack
 
+@MainActor
 enum LogUtils {
     enum LogType {
         case debug

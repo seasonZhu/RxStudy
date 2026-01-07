@@ -65,7 +65,7 @@ class MyJueJinController: BaseViewController {
     }
     
     deinit {
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: ScriptMessageHandlerType.wanAndroid.rawValue)
+        //webView.configuration.userContentController.removeScriptMessageHandler(forName: ScriptMessageHandlerType.wanAndroid.rawValue)
     }
 }
 

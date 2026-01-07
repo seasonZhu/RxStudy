@@ -10,6 +10,7 @@ import Foundation
 
 import UIKit
 
+@MainActor
 enum TabType: CaseIterable {
     case home
     case project

@@ -73,13 +73,13 @@ import class Foundation.NSObject
 /// Extend NSObject with `setter` proxy.
 extension NSObject: SetterCompatible { }
 
-let view: UIView =
-    UIView()
-    .setter
-    .backgroundColor(.white)
-    .alpha(0.5)
-    .frame(CGRect(x: 0, y: 0, width: 100, height: 500))
-    .this
+//let view: UIView =
+//    UIView()
+//    .setter
+//    .backgroundColor(.white)
+//    .alpha(0.5)
+//    .frame(CGRect(x: 0, y: 0, width: 100, height: 500))
+//    .this
 
 final class Box<T> {
     /// 声明一个别名

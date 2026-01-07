@@ -11,6 +11,7 @@ import RxCocoa
 import NSObject_Rx
 import Moya
 
+@MainActor
 class HotKeyViewModel: BaseViewModel {
     
     /// outputs
@@ -45,43 +46,43 @@ private extension HotKeyViewModel {
             .disposed(by: disposeBag)
     }
 }
-
-extension HotKeyViewModel: HotKeyRequest {
-    func getData() {
-        requestHotKey()
-            .map(BaseModel<[HotKey]>.self)
-            .map { $0.data }
-            /// 去掉其中为nil的值
-            .compactMap { $0 }
-            .asObservable()
-            .asSingle()
-            .subscribe { event in
-                switch event {
-                case .success(let items):
-                    self.dataSource.accept(items)
-                case .failure:
-                    break
-                }
-                self.processRxMoyaRequestEvent(event: event)
-            }
-            .disposed(by: disposeBag)
-        
-        Repository.requestHotKey()
-            .map(BaseModel<[HotKey]>.self)
-            .map { $0.data }
-            /// 去掉其中为nil的值
-            .compactMap { $0 }
-            .asObservable()
-            .asSingle()
-            .subscribe { event in
-                switch event {
-                case .success(let items):
-                    self.dataSource.accept(items)
-                case .failure:
-                    break
-                }
-                self.processRxMoyaRequestEvent(event: event)
-            }
-            .disposed(by: disposeBag)
-    }
-}
+//
+//extension HotKeyViewModel: HotKeyRequest {
+//    func getData() {
+//        requestHotKey()
+//            .map(BaseModel<[HotKey]>.self)
+//            .map { $0.data }
+//            /// 去掉其中为nil的值
+//            .compactMap { $0 }
+//            .asObservable()
+//            .asSingle()
+//            .subscribe { event in
+//                switch event {
+//                case .success(let items):
+//                    self.dataSource.accept(items)
+//                case .failure:
+//                    break
+//                }
+//                self.processRxMoyaRequestEvent(event: event)
+//            }
+//            .disposed(by: disposeBag)
+//        
+//        Repository.requestHotKey()
+//            .map(BaseModel<[HotKey]>.self)
+//            .map { $0.data }
+//            /// 去掉其中为nil的值
+//            .compactMap { $0 }
+//            .asObservable()
+//            .asSingle()
+//            .subscribe { event in
+//                switch event {
+//                case .success(let items):
+//                    self.dataSource.accept(items)
+//                case .failure:
+//                    break
+//                }
+//                self.processRxMoyaRequestEvent(event: event)
+//            }
+//            .disposed(by: disposeBag)
+//    }
+//}

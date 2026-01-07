@@ -81,6 +81,7 @@ class MyView: UIView {
 }
 
 /// 由于我这次使用的Rx,所以是通过这种绑定方式进行,我想正是这种需要自己手写的绑定,所以才限制了iOS中MVVM的困难吧
+@MainActor
 extension Reactive where Base: MyView {
     var myInfo: Binder<CoinRank?> {
         return Binder(base) { myView, model in

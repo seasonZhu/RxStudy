@@ -20,11 +20,11 @@ extension EnvironmentValues {
 extension Refresh {
     
     struct FooterAnchorKey {
-        static var defaultValue: Value = []
+        nonisolated(unsafe) static var defaultValue: Value = []
     }
     
     struct FooterUpdateKey {
-        static var defaultValue: Value = .init(enable: false)
+        nonisolated(unsafe) static var defaultValue: Value = .init(enable: false)
     }
 }
 

@@ -8,6 +8,7 @@
 
 import Foundation
 
+@MainActor
 final class UniMPManager: NSObject {
         
     static let shared = UniMPManager()
@@ -77,7 +78,7 @@ final class UniMPManager: NSObject {
 }
 
 // MARK: - DCUniMPSDKEngineDelegate
-extension UniMPManager: DCUniMPSDKEngineDelegate {
+extension UniMPManager: @preconcurrency DCUniMPSDKEngineDelegate {
     /// 这个两个实现了就,就把小程序菜单与关闭按钮的实现要自己写了
 //    func hookCapsuleMenuButtonClicked(_ appid: String) {
 //

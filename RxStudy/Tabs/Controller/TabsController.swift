@@ -229,7 +229,7 @@ extension TabsController {
     }
 }
 
-extension TabsController: JXSegmentedViewDelegate {
+extension TabsController: @preconcurrency JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
         if tagSelectRefreshIndexs.contains(index) {
             return
@@ -241,7 +241,7 @@ extension TabsController: JXSegmentedViewDelegate {
 
 extension TabsController: UIScrollViewDelegate {}
 
-extension TabsController: TabBarViewControllerChildrenRefreshProtocol {
+extension TabsController: @preconcurrency TabBarViewControllerChildrenRefreshProtocol {
     func dataRefresh() {
         debugLog("\(className) dataRefresh")
         viewModel.inputs.loadData()

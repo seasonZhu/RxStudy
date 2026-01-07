@@ -12,7 +12,8 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class MyCoinViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class MyCoinViewModel: BaseViewModel, @preconcurrency VMInputs, @preconcurrency VMOutputs, @preconcurrency PageVMSetting {
 
     var pageNum: Int
     

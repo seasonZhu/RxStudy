@@ -14,6 +14,7 @@ import NSObject_Rx
 import MBProgressHUD
 import SVProgressHUD
 
+@MainActor
 final class AccountManager {
     
     /// 默认是有联网的

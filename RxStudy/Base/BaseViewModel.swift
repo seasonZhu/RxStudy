@@ -27,7 +27,7 @@ class BaseViewModel {
     let isLoading = BehaviorRelay<Bool>(value: false)
     
     /// 模型名称
-    var className: String { String(describing: self) }
+    nonisolated var className: String { String(describing: self) }
     
     /// 重试次数设置
     let maxRetryCount = 3

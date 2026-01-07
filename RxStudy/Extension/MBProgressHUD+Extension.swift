@@ -8,7 +8,8 @@
 
 import MBProgressHUD
 
-extension MBProgressHUD: HUD {
+@MainActor
+extension MBProgressHUD: @preconcurrency HUD {
     
     static let keyWindow: UIWindow = UIApplication.shared.mainWindow!
     
@@ -120,19 +121,19 @@ extension MBProgressHUD {
         hud.label.text = "加载进度"
         
         // 模拟进度更新
-        DispatchQueue.global(qos: .default).async {
-            var progress: Float = 0.0
-            while progress < 1.0 {
-                progress += 0.01
-                DispatchQueue.main.async {
-                    hud.progress = progress
-                    if progress == 1.0 {
-                        hud.hide(animated: true)
-                    }
-                }
-                usleep(50000) // 50毫秒
-            }
-        }
+//        DispatchQueue.global(qos: .default).async {
+//            var progress: Float = 0.0
+//            while progress < 1.0 {
+//                progress += 0.01
+//                DispatchQueue.main.async {
+//                    hud.progress = progress
+//                    if progress == 1.0 {
+//                        hud.hide(animated: true)
+//                    }
+//                }
+//                usleep(50000) // 50毫秒
+//            }
+//        }
     }
     
     // 显示带有完全自定义样式的 HUD

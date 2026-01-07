@@ -107,7 +107,8 @@ extension ACarousel where ID == Data.Element.ID, Data.Element: Identifiable {
 }
 
 @available(iOS 14.0, OSX 11.0, *)
-struct ACarousel_LibraryContent: LibraryContentProvider {
+@MainActor
+struct ACarousel_LibraryContent: @preconcurrency LibraryContentProvider {
     let Datas = Array(repeating: _Item(color: .red), count: 3)
     @LibraryContentBuilder
     var views: [LibraryItem] {

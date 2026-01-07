@@ -7,6 +7,7 @@ extension String {
     }
 }
 
+@MainActor
 extension Array where Element: ConstraintView {
     
     public var snp: ConstraintArrayDSL {

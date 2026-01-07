@@ -130,7 +130,7 @@ class WebViewController: BaseViewController {
     
     deinit {
         for type in ScriptMessageHandlerType.allCases {
-            webView.configuration.userContentController.removeScriptMessageHandler(forName: type.rawValue)
+            //webView.configuration.userContentController.removeScriptMessageHandler(forName: type.rawValue)
         }
     }
 }
@@ -591,10 +591,11 @@ public protocol WebViewControllerDelegate: AnyObject {
     @objc optional func webViewControllerActionSuccess()
 }
  
-extension WebViewController: HasDelegate {
+extension WebViewController: @preconcurrency HasDelegate {
     typealias Delegate = WebViewControllerDelegate
 }
 
+@MainActor
 extension Reactive where Base == WebViewController {
     var reload: Binder<Void> {
         return Binder(base) { base, _ in

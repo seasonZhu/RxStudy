@@ -68,6 +68,7 @@ struct _R {
       .init(source: .init(bundle: bundle, tableName: "InfoPlist", preferredLanguages: preferredLanguages, locale: locale))
     }
 
+
     /// This `_R.string.infoPlist` struct is generated, and contains static references to 1 localization keys.
     struct infoPlist {
       let source: RswiftResources.StringResource.Source
@@ -374,6 +375,7 @@ struct _R {
       try self.launchScreen.validate()
       try self.main.validate()
     }
+
 
     /// Storyboard `LaunchScreen`.
     struct launchScreen: RswiftResources.StoryboardReference, RswiftResources.InitialControllerContainer {

@@ -96,6 +96,7 @@ extension RxSwiftCoinRankListController: UITableViewDelegate {
     }
 }
 
+@MainActor
 class RxSwiftCoinRankListViewModel {
     /// 初始化page为1
     private var page: Int = 1
@@ -224,6 +225,7 @@ extension RxSwiftCoinRankListViewModel: HasDisposeBag {}
 import Combine
 import CombineExt
 
+@MainActor
 class CombineCoinRankListViewModel {
     var cancellable: AnyCancellable?
     
@@ -245,7 +247,9 @@ class CombineCoinRankListViewModel {
     }
     
     deinit {
-        cancellable?.cancel()
+        DispatchQueue.main.async {
+            self.cancellable?.cancel()
+        }
     }
 }
 
@@ -273,16 +277,16 @@ extension CombineCoinRankListViewModel {
     }
     
     func futureTest() async {
-        let vm = CombineCoinRankListViewModel()
-        let response = vm.requestMyCoinList(page: 1)
-        if #available(iOS 15.0, *) {
-            do {
-                let value = try await response.value
-            } catch let moyaError {
-                print(moyaError)
-            }
-        } else {
-            
-        }
+//        let vm = CombineCoinRankListViewModel()
+//        let response = vm.requestMyCoinList(page: 1)
+//        if #available(iOS 15.0, *) {
+//            do {
+//                let value = try await response.value
+//            } catch let moyaError {
+//                print(moyaError)
+//            }
+//        } else {
+//            
+//        }
     }
 }

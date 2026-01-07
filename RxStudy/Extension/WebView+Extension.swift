@@ -8,7 +8,9 @@
 
 import WebKit
 
+@MainActor
 extension WKWebView {
+    @MainActor
     enum RunJavaScriptError: Error {
         case runJavaScriptFailed(Error)
         case genericConversionsFailed(Any?)

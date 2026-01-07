@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 enum CustomTabItem: String {
     case profile
     case search

@@ -43,17 +43,18 @@ import Moya
                                 
  
  */
-protocol BaseRequestable {}
+protocol BaseRequestable: Sendable {}
 
 protocol HotKeyRequest: BaseRequestable {
     func requestHotKey() -> Single<Moya.Response>
 }
 
-extension HotKeyRequest {
-    func requestHotKey() -> Single<Moya.Response> {
-        homeProvider.rx.request(HomeService.hotKey)
-    }
-}
+//@MainActor
+//extension HotKeyRequest {
+//    @MainActor func requestHotKey() -> Single<Moya.Response> {
+//        homeProvider.rx.request(HomeService.hotKey)
+//    }
+//}
 
 /**
  这里是一个协议,用来定义所有请求的接口,或者不通过协议,直接将请求写在一个enum中也可以
@@ -64,22 +65,22 @@ extension HotKeyRequest {
  当然这种思路,其实在前端的网络请求中,还有如Android的Retrofit中也很常见
  */
 
-protocol RepositoryProtocol {
+protocol RepositoryProtocol: Sendable {
     static func requestHotKey() -> Single<Moya.Response>
     
     static func requestBanner() -> Single<Moya.Response>
 }
 
 extension RepositoryProtocol {
-    static func requestHotKey() -> Single<Moya.Response> {
+    @MainActor static func requestHotKey() -> Single<Moya.Response> {
         homeProvider.rx.request(HomeService.hotKey)
     }
     
-    static func requestBanner() -> Single<Moya.Response> {
+    @MainActor static func requestBanner() -> Single<Moya.Response> {
         homeProvider.rx.request(HomeService.banner)
     }
 }
 
-enum Repository: RepositoryProtocol {
+enum Repository: @preconcurrency RepositoryProtocol {
     
 }

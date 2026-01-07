@@ -204,13 +204,15 @@ extension TreeController {
     }
 }
 
-extension TreeController: TabBarViewControllerChildrenRefreshProtocol {
+@MainActor
+extension TreeController: @preconcurrency TabBarViewControllerChildrenRefreshProtocol {
     func dataRefresh() {
         debugLog("\(className) dataRefresh")
         tableView.mj_header?.beginRefreshing()
     }
 }
 
+@MainActor
 extension Reactive where Base == TreeController {
     var tableViewSectionAndCellConfig: Binder<[TabModel]> {
         return Binder(base) { base, tabs in

@@ -8,7 +8,8 @@
 
 import SVProgressHUD
 
-extension SVProgressHUD: HUD {
+@MainActor
+extension SVProgressHUD: @preconcurrency HUD {
     
     static func beginLoading() {
         SVProgressHUD.show()

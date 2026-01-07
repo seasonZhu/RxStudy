@@ -13,7 +13,8 @@ import RxCocoa
 import Moya
 
 /// 进击的ViewModel
-class CoinRankViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class CoinRankViewModel: BaseViewModel, @preconcurrency VMInputs, @preconcurrency VMOutputs, @preconcurrency PageVMSetting {
 
     var pageNum: Int
     

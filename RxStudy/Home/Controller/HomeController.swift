@@ -19,6 +19,7 @@ import FSPagerView
 import SVProgressHUD
 
 /// 需要非常小心循环引用
+@MainActor
 class HomeController: BaseTableViewController {
         
     private var itmes: [Banner] = [] {
@@ -169,10 +170,12 @@ extension HomeController {
                     collectionView.isPagingEnabled = false
                     let interval: TimeInterval = 1.0/6.0
                     Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-                        let x = collectionView.contentOffset.x
-                        
-                        let contentOffset = CGPoint(x: x + 2, y: 0)
-                        collectionView.setContentOffset(contentOffset, animated: true)
+                        DispatchQueue.main.async {
+                            let x = collectionView.contentOffset.x
+                            
+                            let contentOffset = CGPoint(x: x + 2, y: 0)
+                            collectionView.setContentOffset(contentOffset, animated: true)
+                        }
                     }
                     
                     pagerView.panGestureRecognizer.rx.event.subscribe(onNext: { _ in
@@ -190,7 +193,7 @@ extension HomeController {
 }
 
 // MARK: - FSPagerViewDataSource
-extension HomeController: FSPagerViewDataSource {
+extension HomeController: @preconcurrency FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return itmes.count
     }
@@ -208,7 +211,8 @@ extension HomeController: FSPagerViewDataSource {
 }
 
 // MARK: - FSPagerViewDelegate
-extension HomeController: FSPagerViewDelegate {
+@MainActor
+extension HomeController: @preconcurrency FSPagerViewDelegate {
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: false)
         let item = itmes[index]
@@ -253,7 +257,7 @@ extension HomeController {
     }
 }
 
-extension HomeController: TabBarViewControllerChildrenRefreshProtocol {
+extension HomeController: @preconcurrency TabBarViewControllerChildrenRefreshProtocol {
     func dataRefresh() {
         debugLog("\(className) dataRefresh")
         tableView.mj_header?.beginRefreshing()

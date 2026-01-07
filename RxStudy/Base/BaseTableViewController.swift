@@ -136,7 +136,7 @@ extension BaseTableViewController {
 extension BaseTableViewController: UITableViewDelegate {}
 
 // MARK: - DZNEmptyDataSetSource
-extension BaseTableViewController: DZNEmptyDataSetSource {
+extension BaseTableViewController: @preconcurrency DZNEmptyDataSetSource {
 
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: "暂无数据")
@@ -156,7 +156,7 @@ extension BaseTableViewController: DZNEmptyDataSetSource {
 }
 
 // MARK: - DZNEmptyDataSetSource
-extension BaseTableViewController: DZNEmptyDataSetDelegate {
+extension BaseTableViewController: @preconcurrency DZNEmptyDataSetDelegate {
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         return isEmptyRelay.value

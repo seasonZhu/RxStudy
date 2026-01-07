@@ -8,6 +8,7 @@
 
 import Combine
 
+@MainActor
 class CoinRankListPageViewModel: ObservableObject {
     
     /// 初始化page为1

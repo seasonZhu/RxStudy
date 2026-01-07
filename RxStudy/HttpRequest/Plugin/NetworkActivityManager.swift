@@ -12,6 +12,8 @@ import Moya
 import SVProgressHUD
 
 /// 这个的用法就是有多个请求并行请求时,最初一个请求开始的时候loading,所有网络请求结束结束loading
+
+@MainActor
 final class NetworkActivityManager {
     private static var activityCount = 0
     
@@ -75,7 +77,7 @@ final class NetworkActivityManager {
     }
 }
 
-let activityManagerPlugin = NetworkActivityManager.plugin { targetType in
+@MainActor let activityManagerPlugin = NetworkActivityManager.plugin { targetType in
     /// 添加无网络拦截
     if AccountManager.shared.networkIsReachableRelay.value == false {
         if plugins.contains(where: {

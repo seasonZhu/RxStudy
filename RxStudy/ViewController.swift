@@ -197,10 +197,12 @@ extension ViewController {
         /// 保证第一次进入App的时候,接收网络权限后,自动网络请求
         NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
             let value = NetworkReachabilityManager.default?.isReachable == true
-            let isFirst = UserDefaults.standard.value(forKey: kIsFirst) as? Bool
-            if value && isFirst == nil {
-                self.refreshChildren()
-                UserDefaults.standard.setValue(false, forKey: kIsFirst)
+            //let isFirst = UserDefaults.standard.value(forKey: kIsFirst) as? Bool
+            if value {
+                DispatchQueue.main.async {
+                    self.refreshChildren()
+                    //UserDefaults.standard.setValue(false, forKey: kIsFirst)
+                }
             }
         })
     }
@@ -220,20 +222,20 @@ extension ViewController {
 
 extension ViewController {
     private func beginSplashView() {
-        let revealingSplashView = RevealingSplashView(iconImage: R.image.saber()!, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: R.image.launchImagePlayAndroid()!)
-        
-        (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(revealingSplashView)
-        
-        revealingSplashView.duration = 4.0
-        
-        revealingSplashView.iconColor = UIColor.red
-        revealingSplashView.useCustomIconColor = false
-        
-        revealingSplashView.animationType = SplashAnimationType.swingAndZoomOut
-    
-        revealingSplashView.startAnimation {
-            print("Completed")
-        }
+//        let revealingSplashView = RevealingSplashView(iconImage: R.image.saber()!, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: R.image.launchImagePlayAndroid()!)
+//        
+//        (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(revealingSplashView)
+//        
+//        revealingSplashView.duration = 4.0
+//        
+//        revealingSplashView.iconColor = UIColor.red
+//        revealingSplashView.useCustomIconColor = false
+//        
+//        revealingSplashView.animationType = SplashAnimationType.swingAndZoomOut
+//    
+//        revealingSplashView.startAnimation {
+//            print("Completed")
+//        }
     }
 }
 
@@ -257,6 +259,7 @@ extension ViewController.Direction: CustomStringConvertible {
     }
 }
 
+@MainActor
 extension Reactive where Base: ViewController {
     var selectedIndexChange: Binder<ViewController.Direction> {
         return Binder(base) { vc, direction in

@@ -12,7 +12,8 @@ import RxSwift
 import RxCocoa
 import Moya
 
-class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting {
+@MainActor
+class SingleTabListViewModel: BaseViewModel, @preconcurrency VMInputs, @preconcurrency VMOutputs, @preconcurrency PageVM2Setting {
 
     var pageNum: Int
         

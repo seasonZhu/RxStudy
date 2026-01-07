@@ -57,6 +57,7 @@ private final class MJRefreshTarget<Component: MJRefreshComponent>: Target {
     }
 }
 
+@MainActor
 extension Reactive where Base: MJRefreshComponent {
     
     /// 刷新

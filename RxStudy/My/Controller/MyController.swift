@@ -231,7 +231,8 @@ extension MyController: InnerEventResponsible {
     }
 }
 
-extension MyController: TabBarViewControllerChildrenRefreshProtocol {
+@MainActor
+extension MyController: @preconcurrency TabBarViewControllerChildrenRefreshProtocol {
     func dataRefresh() {
         debugLog("\(className) dataRefresh")
         tableView.mj_header?.beginRefreshing()

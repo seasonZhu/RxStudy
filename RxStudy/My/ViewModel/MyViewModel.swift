@@ -12,9 +12,10 @@ import RxSwift
 import RxCocoa
 import Moya
 
+@MainActor
 class MyViewModel: BaseViewModel {
     
-    let currentDataSource = BehaviorRelay<[My]>(value: [])
+    var currentDataSource = BehaviorRelay<[My]>(value: [])
     
     let refreshSubject = PublishSubject<MJRefreshAction>()
     
@@ -22,12 +23,7 @@ class MyViewModel: BaseViewModel {
         super.init()
 
         /// 单例的isLogin通过map后,与VM的currentDataSource进行绑定
-        AccountManager.shared.isLoginRelay
-            .map { isLogin in
-                isLogin ? My.loginDataSource : My.logoutDataSource
-            }
-            .bind(to: currentDataSource)
-            .disposed(by: disposeBag)
+
     }
     
     func loadData() {

@@ -12,6 +12,7 @@ import Foundation
 /// https://mp.weixin.qq.com/s/uRRDFTg8K8yGc9ef1oYaPw
 /// 这里使用的方案三
 
+@MainActor
 enum KeyConstants {
     
     static func loadAPIKeys(callback: @escaping ((Result<Void, Error>) -> Void)) {
@@ -29,7 +30,9 @@ enum KeyConstants {
                    let dict =  try? JSONDecoder().decode([String: String].self, from: data) {
                     
                     APIKeys.storage = dict
-                    callback(.success(void))
+                    DispatchQueue.main.async {
+                        callback(.success(void))
+                    }
                 }
                 
                 request.endAccessingResources()
@@ -39,11 +42,11 @@ enum KeyConstants {
 
     enum APIKeys {
         
-        static fileprivate(set) var storage = [String: String]()
+        static nonisolated(unsafe) fileprivate(set) var storage = [String: String]()
     
         static let myServiceXKey = storage["MyServiceX"] ?? ""
     
-        static var myServiceYKey = storage["MyServiceY"] ?? ""
+        nonisolated(unsafe) static var myServiceYKey = storage["MyServiceY"] ?? ""
   }
 }
 

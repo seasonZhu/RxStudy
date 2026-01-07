@@ -13,6 +13,7 @@ import MBProgressHUD
 import SVProgressHUD
 
 /// 在wanandroid客户端中,针对登录后状态,在请求头中塞进cookie
+@MainActor
 extension TargetType {
     var loginHeader: [String: String]? {
         AccountManager.shared.isLoginRelay.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : nil

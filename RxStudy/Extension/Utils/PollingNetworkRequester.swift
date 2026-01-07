@@ -47,7 +47,7 @@ class PollingNetworkRequester {
         self.requestClosure = requestClosure
     }
 
-    func startListening() {
+    @MainActor func startListening() {
         disposeBag = DisposeBag()
 
         trigger
@@ -74,12 +74,12 @@ class PollingNetworkRequester {
         trigger.onNext(())
     }
     
-    func stop() {
+    @MainActor func stop() {
         SVProgressHUD.dismiss()
         disposeBag = DisposeBag()
     }
 
-    private func pollingObservable() -> Observable<PollingEndReason> {
+    @MainActor private func pollingObservable() -> Observable<PollingEndReason> {
         SVProgressHUD.setDefaultMaskType(.black)
         SVProgressHUD.show()
 

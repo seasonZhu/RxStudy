@@ -29,6 +29,7 @@ enum MJRefreshAction {
 }
 
 // MARK: - Refresh
+@MainActor
 extension Reactive where Base: UIScrollView {
     
     /// 执行的操作类型
