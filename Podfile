@@ -1,5 +1,8 @@
+# 定义全局变量
+IOS_DEPLOYMENT_TARGET = '17.6'
+
 # Uncomment the next line to define a global platform for your project
-platform :ios, '17.6'
+platform :ios, IOS_DEPLOYMENT_TARGET
 #source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
@@ -207,15 +210,15 @@ post_install do |installer|
       if config.build_settings['IPHONEOS_DEPLOYMENT_TARGET']
         begin
           current = Gem::Version.new(config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'])
-          if current < Gem::Version.new('17.6')
-            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.6'
+          if current < Gem::Version.new(IOS_DEPLOYMENT_TARGET)
+            config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = IOS_DEPLOYMENT_TARGET
           end
         rescue
           # if parsing fails, be conservative and set to 17.6
-          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.6'
+          config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = IOS_DEPLOYMENT_TARGET
         end
       else
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.6'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = IOS_DEPLOYMENT_TARGET
       end
 
       # 2) Disable Bitcode for pod targets to avoid bitcode-related override issues
