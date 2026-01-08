@@ -30,7 +30,7 @@ target 'RxStudy' do
 
   # Networking
   pod 'Moya/RxSwift'
-  # AlamofireNetworkActivityLogger的版本很久都没有升级,导致其绑定Alamofire无法升级,直接移除拖入,保证Alamofire和Moya可以向上升级,然后直接改写为Moya插件
+  # AlamofireNetworkActivityLogger的版本很久都没有升级,导致其绑定Alamofire无法升级,直接移除拖入,保证Alamofire和Moya可以向上升级,然后直接改写为Moya插件,因为Alamofire的升级,改写的Moya插件也无法正常工作了
   #pod 'AlamofireNetworkActivityLogger'
 
   # Image
@@ -51,7 +51,7 @@ target 'RxStudy' do
   # SFSymbols的安全引用
   pod 'SFSafeSymbols'
   
-  # Keyboard,目前不要使用超过7.1.1之后的版本,键盘上的工具栏弹不出来,iOS18.3.2上测试发现的
+  # Keyboard,弹不出来的原因是8.0.0之后拆分为不同的模块,需要分别进行配置
   pod 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git', :tag => '8.0.2'
 
   # Auto Layout
@@ -66,13 +66,14 @@ target 'RxStudy' do
   pod 'CombineExt'
   pod 'CombineCocoa'
   
-  # Bug&Crash
+  # 微软 Bug&Crash
   pod 'KSCrash'
   
   # 调试
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
   pod 'FunnyButton', :configurations => ['Debug']
+  
   # 在Xcode16.2下面会报错,暂时不使用
   #pod 'MLeaksFinder', :configurations => ['Debug']
   pod 'LifetimeTracker', :configurations => ['Debug']
@@ -90,7 +91,7 @@ target 'RxStudy' do
   # 考虑使用货拉拉的TheRouter
   pod 'TheRouter'
   
-  # 注意,以下是没有使用的库
+  ### 注意,以下是没有使用的库
   
   # Rx Extensions
   
@@ -113,6 +114,8 @@ target 'RxStudy' do
   
   # 被SVProgressHUD替代了,目前没有使用
   pod 'MBProgressHUD'
+  
+  ### 跨端模块
   
   # 添加flutter模块
   #install_all_flutter_pods(flutter_application_path)
