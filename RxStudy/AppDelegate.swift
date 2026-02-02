@@ -77,6 +77,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         LogUtils.debug("kSafeBottomMargin\(kSafeBottomMargin)")
         
+        logger.log("this log is OSLog, RxStudy")
+        
         return true
     }
 

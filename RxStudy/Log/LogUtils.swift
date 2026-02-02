@@ -84,3 +84,7 @@ public func swiftPrint(_ items: Any..., separator: String = " ", terminator: Str
         print(items, separator: separator, terminator: terminator)
     #endif
 }
+
+import OSLog
+
+let logger = Logger(subsystem: "season", category: "debug")
