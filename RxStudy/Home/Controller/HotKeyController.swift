@@ -76,8 +76,10 @@ class HotKeyController: BaseViewController {
         textField.rx.controlEvent([.editingDidEndOnExit])
             .asObservable()
             .subscribe(onNext: { [weak self] _ in
-                guard let self else { return }
-                self.pushToSearchResultController(keyword: self.textField.text!)
+                guard let self, let keyword = self.textField.text, !keyword.isEmpty else {
+                    return
+                }
+                self.pushToSearchResultController(keyword: keyword)
             })
             .disposed(by: rx.disposeBag)
         

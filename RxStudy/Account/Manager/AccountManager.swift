@@ -32,6 +32,8 @@ final class AccountManager {
     var username: String?
     
     /// 本地保存密码
+    /// ⚠️ 安全警告：密码以明文形式存储在 UserDefaults 中
+    /// TODO: 考虑使用 Keychain 存储敏感信息，或使用 KeychainAccess 等安全库
     @UserDefault(key: kPassword, defaultValue: nil)
     var password: String?
     

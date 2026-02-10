@@ -534,8 +534,8 @@ extension WebViewController {
         }
         */
         
-        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe(onNext: { _ in
-            self.webView.scrollView.mj_header?.endRefreshing()
+        Observable<Void>.just(void).delaySubscription(.seconds(2), scheduler: MainScheduler.instance).subscribe(onNext: { [weak self] _ in
+            self?.webView.scrollView.mj_header?.endRefreshing()
         })
         .disposed(by: rx.disposeBag)
     }
