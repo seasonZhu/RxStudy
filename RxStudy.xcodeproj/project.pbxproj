@@ -58,6 +58,14 @@
 		003CA16F29385AFA0094A1E0 /* GrayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CA16E29385AFA0094A1E0 /* GrayView.swift */; };
 		003CFE6D2E8938C700216C16 /* NetworkGZipPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CFE6C2E8938C700216C16 /* NetworkGZipPlugin.swift */; };
 		003CFE6F2E8A197A00216C16 /* NetworkActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003CFE6E2E8A197A00216C16 /* NetworkActivityManager.swift */; };
+		003D5EBE2F3C236100CAF48F /* AppDelegate+SecurityConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EBC2F3C236100CAF48F /* AppDelegate+SecurityConfig.swift */; };
+		003D5EBF2F3C236100CAF48F /* AppDelegate+ScreenCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EBB2F3C236100CAF48F /* AppDelegate+ScreenCapture.swift */; };
+		003D5EC02F3C236100CAF48F /* AppDelegate+RouterConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EBA2F3C236100CAF48F /* AppDelegate+RouterConfig.swift */; };
+		003D5EC12F3C236100CAF48F /* AppDelegate+NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EB92F3C236100CAF48F /* AppDelegate+NetworkConfig.swift */; };
+		003D5EC22F3C236100CAF48F /* AppDelegate+CrashConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EB72F3C236100CAF48F /* AppDelegate+CrashConfig.swift */; };
+		003D5EC32F3C236100CAF48F /* AppDelegate+LogConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EB82F3C236100CAF48F /* AppDelegate+LogConfig.swift */; };
+		003D5EC42F3C236100CAF48F /* AppDelegate+AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EB62F3C236100CAF48F /* AppDelegate+AppConfig.swift */; };
+		003D5EC62F3C24E000CAF48F /* AppDelegate+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003D5EC52F3C24D400CAF48F /* AppDelegate+Debug.swift */; };
 		0041309927B3A16B0083A313 /* UITraitCollection+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */; };
 		004623622989F209008F0676 /* ConstructorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623612989F209008F0676 /* ConstructorProtocol.swift */; };
 		004623642989F96A008F0676 /* ExBehaviorRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 004623632989F96A008F0676 /* ExBehaviorRelay.swift */; };
@@ -335,6 +343,14 @@
 		003CA16E29385AFA0094A1E0 /* GrayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrayView.swift; sourceTree = "<group>"; };
 		003CFE6C2E8938C700216C16 /* NetworkGZipPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGZipPlugin.swift; sourceTree = "<group>"; };
 		003CFE6E2E8A197A00216C16 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityManager.swift; sourceTree = "<group>"; };
+		003D5EB62F3C236100CAF48F /* AppDelegate+AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AppConfig.swift"; sourceTree = "<group>"; };
+		003D5EB72F3C236100CAF48F /* AppDelegate+CrashConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+CrashConfig.swift"; sourceTree = "<group>"; };
+		003D5EB82F3C236100CAF48F /* AppDelegate+LogConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+LogConfig.swift"; sourceTree = "<group>"; };
+		003D5EB92F3C236100CAF48F /* AppDelegate+NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+NetworkConfig.swift"; sourceTree = "<group>"; };
+		003D5EBA2F3C236100CAF48F /* AppDelegate+RouterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RouterConfig.swift"; sourceTree = "<group>"; };
+		003D5EBB2F3C236100CAF48F /* AppDelegate+ScreenCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+ScreenCapture.swift"; sourceTree = "<group>"; };
+		003D5EBC2F3C236100CAF48F /* AppDelegate+SecurityConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SecurityConfig.swift"; sourceTree = "<group>"; };
+		003D5EC52F3C24D400CAF48F /* AppDelegate+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Debug.swift"; sourceTree = "<group>"; };
 		0041309827B3A16B0083A313 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
 		004623612989F209008F0676 /* ConstructorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorProtocol.swift; sourceTree = "<group>"; };
 		004623632989F96A008F0676 /* ExBehaviorRelay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExBehaviorRelay.swift; sourceTree = "<group>"; };
@@ -699,6 +715,21 @@
 			path = "FSPagerView+RxSwift";
 			sourceTree = "<group>";
 		};
+		003D5EBD2F3C236100CAF48F /* AppDelegate+Extension */ = {
+			isa = PBXGroup;
+			children = (
+				003D5EB62F3C236100CAF48F /* AppDelegate+AppConfig.swift */,
+				003D5EB72F3C236100CAF48F /* AppDelegate+CrashConfig.swift */,
+				003D5EC52F3C24D400CAF48F /* AppDelegate+Debug.swift */,
+				003D5EB82F3C236100CAF48F /* AppDelegate+LogConfig.swift */,
+				003D5EB92F3C236100CAF48F /* AppDelegate+NetworkConfig.swift */,
+				003D5EBA2F3C236100CAF48F /* AppDelegate+RouterConfig.swift */,
+				003D5EBB2F3C236100CAF48F /* AppDelegate+ScreenCapture.swift */,
+				003D5EBC2F3C236100CAF48F /* AppDelegate+SecurityConfig.swift */,
+			);
+			path = "AppDelegate+Extension";
+			sourceTree = "<group>";
+		};
 		0046299A2DE837F700EA0E7A /* RevealingSplashView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1025,6 +1056,7 @@
 		61336C792656493700FDEB2A /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				003D5EBD2F3C236100CAF48F /* AppDelegate+Extension */,
 				0046299A2DE837F700EA0E7A /* RevealingSplashView */,
 				00FC0F002DD1EAC500AC798F /* Utils */,
 				00D5456D2BB10CB9007B0325 /* AlamofireNetworkActivityLogger */,
@@ -1684,6 +1716,13 @@
 				001B4E3528E19BE1003ADF95 /* Modifier.swift in Sources */,
 				0070157D2918A85500B8E386 /* ShareType.swift in Sources */,
 				0010A34E2DF92672005F18E9 /* SceneDelegate.swift in Sources */,
+				003D5EBE2F3C236100CAF48F /* AppDelegate+SecurityConfig.swift in Sources */,
+				003D5EBF2F3C236100CAF48F /* AppDelegate+ScreenCapture.swift in Sources */,
+				003D5EC02F3C236100CAF48F /* AppDelegate+RouterConfig.swift in Sources */,
+				003D5EC12F3C236100CAF48F /* AppDelegate+NetworkConfig.swift in Sources */,
+				003D5EC22F3C236100CAF48F /* AppDelegate+CrashConfig.swift in Sources */,
+				003D5EC32F3C236100CAF48F /* AppDelegate+LogConfig.swift in Sources */,
+				003D5EC42F3C236100CAF48F /* AppDelegate+AppConfig.swift in Sources */,
 				00CCD1852865BFAC00925C1E /* Message.swift in Sources */,
 				008759782B4F9475002A4CF8 /* InnerViewEvent.swift in Sources */,
 				61C97938265E2B0400E7A1BC /* TabsController.swift in Sources */,
@@ -1710,6 +1749,7 @@
 				006535E12D55D923006EFF50 /* AppIconType.swift in Sources */,
 				009723D226EC4B8D00A77EAC /* EditTableViewController.swift in Sources */,
 				61A6ED12265C9D6800E3CA9D /* HomeViewModel.swift in Sources */,
+				003D5EC62F3C24E000CAF48F /* AppDelegate+Debug.swift in Sources */,
 				00381B092F0E04C4003C5B05 /* NetworkMonitor.swift in Sources */,
 				007AE7FB28F4FBF800AD6C72 /* BasePageViewModel.swift in Sources */,
 				61336C7D2656499100FDEB2A /* Dictionary+Extension.swift in Sources */,
