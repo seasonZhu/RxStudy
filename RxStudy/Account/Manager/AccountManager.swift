@@ -14,7 +14,8 @@ import NSObject_Rx
 import MBProgressHUD
 import SVProgressHUD
 
-final class AccountManager {
+/// 账户管理器（遵循 AccountManageable 协议，支持依赖注入）
+final class AccountManager: AccountManageable {
     
     /// 默认是有联网的
     let networkIsReachableRelay = BehaviorRelay(value: true)
