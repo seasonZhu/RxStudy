@@ -11,7 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
-import ReactiveMoya
+import RxMoya
 
 class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 

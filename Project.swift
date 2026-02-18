@@ -22,7 +22,7 @@ let project = Project(
         .package(url: "https://github.com/RxSwiftCommunity/RxTheme.git", from: "6.0.0"),
         .package(url: "https://github.com/RxSwiftCommunity/RxSwiftExt.git", from: "6.0.0"),
         .package(url: "https://github.com/RxSwiftCommunity/RxOptional.git", from: "5.0.0"),
-        // 使用 Moya 15.0.0 + ReactiveSwift + ReactiveMoya
+        // 使用 Moya 15.0.0 + RxMoya（仅使用 RxSwift，不使用 ReactiveSwift）
         .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.8.0"),
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.10.0"),
