@@ -112,6 +112,8 @@ let project = Project(
             ],
             resources: [
                 "RxStudy/Assets.xcassets/**",
+                "RxStudy/Base.lproj/LaunchScreen.storyboard",
+                "RxStudy/Base.lproj/Main.storyboard",
                 "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**",
                 "Packages/ThirdParty/MJRefresh/Sources/MJRefresh/MJRefresh.bundle/**"
             ],
