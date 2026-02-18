@@ -1,0 +1,174 @@
+//
+//  MyJueJinController.swift
+//  RxStudy
+//
+//  Created by dy on 2021/12/28.
+//  Copyright © 2021 season. All rights reserved.
+//
+
+import UIKit
+import WebKit
+
+import RxCocoa
+
+/// 我的掘金页面
+class MyJueJinController: BaseViewController {
+    
+    private let juejinAppUrl = "https://apps.apple.com/cn/app/%E6%8E%98%E9%87%91/id987739104"
+
+    private var url: String
+        
+    init() {
+        self.url = "https://juejin.cn/user/4353721778057997"
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    @available(*, unavailable)
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    private lazy var webView: WKWebView = {
+        let config = WKWebViewConfiguration()
+        config.userContentController.add(WeakScriptMessageDelegate(scriptDelegate: self), name: ScriptMessageHandlerType.wanAndroid.rawValue)
+        
+        /// 获取js,并添加到webView中,在这一步,其实我们只是将js注入了某个页面,实际上还并没有执行js
+        if let js = getJS() {
+            config.userContentController.addUserScript(js)
+        }
+        
+        let preferences = WKPreferences()
+        preferences.javaScriptCanOpenWindowsAutomatically = true
+        config.preferences = preferences
+        
+        let webView = WKWebView(frame: view.bounds, configuration: config)
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        webView.allowsBackForwardNavigationGestures = true
+        webView.scrollView.isScrollEnabled = true
+        return webView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        binding()
+    }
+    
+    @objc
+    override func leftBarButtonItemAction(_ item: UIBarButtonItem) {
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            super.leftBarButtonItemAction(item)
+        }
+    }
+    
+    deinit {
+        webView.configuration.userContentController.removeScriptMessageHandler(forName: ScriptMessageHandlerType.wanAndroid.rawValue)
+    }
+}
+
+extension MyJueJinController {
+    private func setupUI() {
+        title = "作者的掘金"
+        view.backgroundColor = .white
+        view.addSubview(webView)
+        
+        /// 调用输入框的网址
+        if let url = URL(string: url) {
+            let request = URLRequest(url: url)
+            webView.load(request)
+        }
+    }
+    
+    private func binding() {
+        /// iOS 如何让WKWebView侧滑返回时html逐级返回，而不是直接返回到上级控制器?
+        /// https://www.imooc.com/article/26158
+        webView.rx.observeWeakly(Bool.self, "canGoBack")
+            .subscribe(onNext: { [weak self] newValue in
+                print("新的值: \(newValue)")
+                
+                if let canGoBack = newValue {
+                    self?.navigationController?.interactivePopGestureRecognizer?.isEnabled = !canGoBack
+                }
+            })
+            .disposed(by: rx.disposeBag)
+    }
+}
+
+extension MyJueJinController {
+    /// 获取js方法,转成iOS的WKWebView可以识别的对象
+    private func getJS() -> WKUserScript? {
+        guard let url = R.file.appStoreJs() else {
+            return nil
+        }
+        
+        guard let string = try? String(contentsOf: url, encoding: .utf8) else {
+            return nil
+        }
+        
+        let userScript = WKUserScript(source: string, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        debugLog(string)
+        
+        return userScript
+    }
+}
+
+// MARK: - 协议类专门用来处理监听JavaScript方法从而调用原生方法，和WKUserContentController搭配使用
+extension MyJueJinController: WKScriptMessageHandler {
+    
+    /// 原生界面监听JS运行,截取JS中的对应在userContentController注册过的方法
+    ///
+    /// - Parameters:
+    ///   - userContentController: WKUserContentController
+    ///   - message: WKScriptMessage 其中包含方法名称已经传递的参数,WKScriptMessage,其中body可以接收的类型是Allowed types are NSNumber, NSString, NSDate, NSArray, NSDictionary, and NSNull
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        debugLog("方法名:\(message.name)")
+        debugLog("参数:\(message.body)")
+         
+        guard let msg = message.body as? String else { return }
+        
+        if msg == "download",
+            let url = URL(string: juejinAppUrl),
+            UIApplication.shared.canOpenURL(url) {
+            
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            
+        }
+    }
+}
+
+extension MyJueJinController: WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        if webView.url?.absoluteString.contains("zlink") == true {
+            webView.runJavaScript("downloadInject()") { (result: Result<String, WKWebView.RunJavaScriptError>) in
+                switch result {
+                case .success(let string):
+                    print(string)
+                case .failure(let error):
+                    switch error {
+                    case .runJavaScriptFailed(let error):
+                        print("运行JavaScript脚本错误:\(error)")
+                    case .genericConversionsFailed(let any):
+                        print("运行成功,泛型转换失败, any的实际值是:\(any)")
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+
+extension MyJueJinController: WKUIDelegate {
+    func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
+        
+        if navigationAction.targetFrame == nil
+            || navigationAction.targetFrame?.isMainFrame == false {
+            webView.load(navigationAction.request)
+        }
+         
+        return nil
+    }
+}

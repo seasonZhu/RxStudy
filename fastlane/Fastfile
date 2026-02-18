@@ -1,0 +1,175 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+# 蒲公英的apiKey与userKey
+api_key=""
+user_key=""
+
+platform :ios do
+  #开始之前的统一操作
+  before_all do
+    # 针对于上传 TestFlight 双重认证问题
+    # 专用密码
+    ENV["FASTLANE_APPLE_APPLICATION_SPECIFIC_PASSWORD"] = ""
+    # session cookies
+    ENV["FASTLANE_SESSION"] = ""
+  end
+
+  desc "集成到蒲公英,预生产环境与生产环境,打包命令:fastlane pg version:1.0.0 mode:Debug/Release env:test/pre/pro changelog:引号加上内容"
+  lane :pg do |options|
+    # 拉代码
+    git_pull
+
+    # 获取版本号
+    version = options[:version]
+
+    # 在项目工程中配置版本号
+    build_version = increment_version_number_in_xcodeproj(
+      version_number: version,
+      target: "RxStudy"
+    )
+
+    # 在 Info.plist 中配置版本号
+    increment_version_number_in_plist(
+      version_number: version,
+      target: "RxStudy"
+    )
+
+    puts("build_version:#{build_version}")
+
+    # build号加1提交代码
+    build_number = increment_build_number()
+    puts("build_number:#{build_number}")
+
+    # 环境配置test/pre/pro
+    env = options[:env] || 'pre'
+    set_info_plist_value(
+      path: "./RxStudy/Info.plist",
+      key: "CFBundleGetInfoString",
+      value: env
+    )
+
+    #完整的版本信息version+"_"+build
+    full_version = version + '_' + build_number
+
+    #scheme
+    scheme = "RxStudy"
+
+    #mode Debug or Release
+    mode = options[:mode]
+    
+    #更新说明
+    changelog = options[:changelog]
+    
+    #打包时间
+	  date = Time.new.strftime("%Y%m%d-%H%M")
+
+    #选择对应的Xcode版本进行编译
+    xcode_select("/Applications/Xcode.app")
+    
+    gym({
+      scheme: "#{scheme}",
+      #隐藏没有必要的文件
+      silent: true,
+      # 编译前执行 clean，可减少 ipa 文件大小
+      clean: true,
+      # 指定打包方式，Release 或者 Debug
+      configuration: "#{mode}",
+      # 指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development
+      export_method: "ad-hoc",
+      # 指定输出文件夹
+      output_directory:"./fastlane/build/pgyer",
+      #指定输出名称 这个地方使用scheme还是displayName随意
+      output_name: "#{scheme}_#{full_version}_#{mode}_#{env}_#{date}.ipa",
+      # Xcode9将不会允许你访问钥匙串里的内容，除非设置allowProvisioningUpdates
+      export_xcargs: "-allowProvisioningUpdates",
+      # 使用自动管理证书就不需要进行证书的配置了
+    })
+
+    pgyer(api_key: "#{api_key}", update_description: "#{changelog}")
+
+    notification(title:"fastlane提示",subtitle: "IPA上传蒲公英成功", message: "自动打包完成！")
+  end
+
+  desc "集成到testflight测试,用于上架前的冒烟,生产环境,注意version需要在Xcode里面手动写好,build号会自动在当前的build上面+1,比如你想要打build为1,那么Xcode中就填写0,打包命令:fastlane beta showSDKInfo:true changelog:引号加上内容"
+  lane :beta do |options|
+
+    #scheme
+    scheme = "RxStudy"
+
+    # 获取从xcode工程中的version号,切记大版本更新,请手动修改version的版本号,指定获取版本号的工程名
+    version = get_version_number(xcodeproj: "RxStudy.xcodeproj",target: "RxStudy")
+    puts("version:#{version}")
+
+    # 获取自增的build号
+    build = increment_build_number()
+    puts("build:#{build}")
+
+    #完整的版本信息version+"_"+build
+    full_version = "#{version}" + "_" + "#{build}"
+    
+    #打包时间
+	  date = Time.new.strftime("%Y%m%d-%H%M")
+
+    #变更日志
+    changelog = options[:changelog]
+
+    gym({
+      scheme: "#{scheme}",
+      #隐藏没有必要的文件
+      silent: true,
+      # 编译前执行 clean，可减少 ipa 文件大小
+      clean: true,
+      # 指定打包方式，Release 或者 Debug
+      configuration: "Release",
+      # 指定打包所使用的输出方式，目前支持app-store, package, ad-hoc, enterprise, development
+      export_method: "app-store",
+      # 指定输出文件夹
+      output_directory:"./fastlane/build/testflight",
+      #指定输出名称
+      output_name: "#{scheme}_#{full_version}_#{date}_tf.ipa",
+      # Xcode9将不会允许你访问钥匙串里的内容，除非设置allowProvisioningUpdates
+      export_xcargs: "-allowProvisioningUpdates",
+    })
+
+    # 配置环境变量, 使用Aspera协议进行上传 虽然在上传的过程中可能会报错 The session's status is FAILED and the error description is 'failed to authenticate (19)' 但是不要惊慌,还是可以上传成功的
+    ENV["DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS"] = "-t Aspera"
+
+    pilot(
+    	distribute_external: true,
+    	notify_external_testers: true,
+      groups: ["CUSC"],
+    	changelog: changelog
+    )
+
+    notification(title:"fastlane提示",subtitle: "IPA上传TestFight成功", message: "自动打包完成！")
+  end
+
+  # 添加异常处理提示
+  # Fastlane 的 slack action 可以在打包出错时自动发消息到 Slack。
+  # 但你需要先在 Slack 里创建一个 Incoming WebHook（即一个可以接收消息的 URL）。
+  # 然后把这个 WebHook 的 URL 配置到 Fastfile 里（通常是 slack_url: "https://hooks.slack.com/services/..."）。
+  error do |lane, exception|
+    slack(
+      slack_url: "https://hooks.slack.com/services/你的/webhook/url",
+      message: "Something went wrong with the deployment.",
+      success: false,
+      payload: { "Error Info" => exception.error_info.to_s } 
+    )
+  end
+  
+end

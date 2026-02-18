@@ -1,0 +1,321 @@
+//
+//  MyController.swift
+//  RxStudy
+//
+//  Created by season on 2021/6/1.
+//  Copyright © 2021 season. All rights reserved.
+//
+
+import UIKit
+import Combine
+import SwiftUI
+
+import WebKit
+import SafariServices
+
+import RxSwift
+import RxCocoa
+import MBProgressHUD
+import SVProgressHUD
+import MJRefresh
+
+#if canImport(Flutter)
+import Flutter
+#endif
+
+import RxViewController
+
+class MyController: BaseTableViewController {
+    
+    var cancelable: AnyCancellable?
+    
+    /// 如果定义为UIHostingController,会要求有个类型约束,与rootView.environmentObject(AppState())的不透明类型矛盾,导致编译问题
+    var hostingVC: UIViewController?
+    
+#if canImport(Flutter)
+    var eventChannel: NativeEventChannel?
+    
+    private var eventSink: FlutterEventSink?
+#endif
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupUI()
+        binding()
+        /// 将自动登录放在AppDelegate中的didFinishLaunchingWithOptions中,加快获取数据,getMyCoin这个接口返回数据是有点慢
+        // AccountManager.shared.autoLogin()
+    }
+}
+
+extension MyController {
+    private func setupUI() {
+        
+        tableView.mj_footer = nil
+        
+        tableView.emptyDataSetSource = nil
+        tableView.emptyDataSetDelegate = nil
+        
+        tableView.rowHeight = 44
+        
+        let myView = MyView(frame: CGRect(x: 0, y: 0, width: kScreenWidth, height: kScreenWidth_9_16))
+        tableView.tableHeaderView = myView
+    }
+    
+    private func binding() {
+        
+        AccountManager.shared.isLoginRelay.subscribe { [weak self] event in
+            switch event {
+                
+            case .next(let value):
+                if value {
+                    self?.tableView.mj_header = MJRefreshNormalHeader()
+                } else {
+                    self?.tableView.mj_header = nil
+                }
+            default:
+                break
+            }
+        }
+        .disposed(by: rx.disposeBag)
+        
+        if let myView = tableView.tableHeaderView as? MyView {
+            AccountManager.shared.myCoinRelay
+                .bind(to: myView.rx.myInfo)
+                .disposed(by: rx.disposeBag)
+        }
+        
+        let viewModel = MyViewModel()
+        
+        tableView.mj_header?.rx.refresh
+            .bind(onNext: viewModel.inputs.loadData)
+            .disposed(by: rx.disposeBag)
+
+        viewModel.outputs.currentDataSource.asDriver()
+            .drive(tableView.rx.items) { [weak self] (tableView, _, my) in
+                if my == .logout {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: LogoutCell.className) as! LogoutCell
+                    cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
+                    return cell
+                } else if my == .myMessage {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: MessageCell.className) as! MessageCell
+                    cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
+                    
+                    if let self {
+                        AccountManager.shared.myUnreadMessageCountRelay
+                            .bind(to: cell.rx.count)
+                            .disposed(by: self.rx.disposeBag)
+                    }
+                    
+                    return cell
+                } else {
+                    let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                    cell.textLabel?.text = my.title
+                    cell.accessoryType = my.accessoryType
+                    return cell
+                }
+            }
+            .disposed(by: rx.disposeBag)
+                
+        /// 下拉与上拉状态绑定到tableView
+        viewModel.outputs.refreshSubject
+            .bind(to: tableView.rx.refreshAction)
+            .disposed(by: rx.disposeBag)
+        
+        /// 这里相当于重写
+        tableView.rx.itemSelected
+            .bind { [weak self] (indexPath) in
+                self?.tableView.deselectRow(at: indexPath, animated: false)
+                let my = viewModel.outputs.currentDataSource.value[indexPath.row]
+                switch my {
+                case .logout:
+                    self?.logoutAction(viewModel: viewModel)
+                case .myMessage:
+                    self?.toMyMessageController()
+                case .flutterModule:
+                    #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
+                    self?.toFlutterViewController()
+                    #else
+                    SVProgressHUD.showText("请在Podfile解除Flutter模块安装注释,flutter_module文件夹下面的单独运行进行pub get,pod install之后再试")
+                    #endif
+                case .uniMPModule:
+                    UniMPManager.shared.openUniApp(appid: "__UNI__98AF8A0")
+                case .myGitHub:
+                    /// 尝试使用了SFSafariViewController而非WebView进行加载,对于一个纯粹的展示性Web,SFSafariViewController体验效果更好
+                    let sfsVC = SFSafariViewController(url: URL(string: "https://github.com/seasonZhu")!)
+                    /// 左侧返回按钮无法自定义,只能使用三个枚举
+                    sfsVC.dismissButtonStyle = .close
+                    /// 如果这里声明了modalPresentationStyle,又变成了present
+                    // sfsVC.modalPresentationStyle = .automatic
+                    /// 这里我明明使用的是present,但是在App中还是push的效果,倒是如果使用pushViewController,页面会感觉非常奇葩
+                    self?.present(sfsVC, animated: true)
+                    // self?.navigationController?.pushViewController(sfsVC, animated: true)
+                case .aSwiftUI:
+                    /// 这里MLeaksFinder会说有内存泄漏,但是具体怎么解决,还没有找到方法
+                    let rootView = CoinRankListPage()
+                    self?.cancelable = rootView.publisher.sink { _ in
+                        self?.hostingVC?.dismiss(animated: true)
+                    }
+                    
+                    self?.hostingVC = UIHostingController(rootView: rootView.environmentObject(AppState()))
+                    self?.hostingVC?.modalPresentationStyle = .fullScreen
+                    
+                    guard let hostingVC = self?.hostingVC else {
+                        return
+                    }
+                    
+                    self?.present(hostingVC, animated: true)
+                    
+                    WKWebView.clearWebsiteCache()
+                default:
+                    guard let vc = creatInstance(className: my.path) as? UIViewController else {
+                        return
+                    }
+                    self?.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
+            .disposed(by: rx.disposeBag)
+    }
+}
+
+extension MyController {    
+    private func logoutAction(viewModel: MyViewModel) {
+        let alertController = UIAlertController(title: "提示", message: "是否确定退出登录?", preferredStyle: .alert)
+        let actionCancel = UIAlertAction(title: "取消", style: .destructive) { (_) in
+            
+        }
+        let actionOK = UIAlertAction(title: "确定", style: .default) { (_) in
+            
+            Haptics.success.feedback()
+            
+            viewModel.inputs.logout()
+                .asDriver(onErrorJustReturn: BaseModel(data: nil, errorCode: nil, errorMsg: nil))
+                .drive { baseModel in
+                    if baseModel.isSuccess {
+                        AccountManager.shared.clearAccountInfo()
+                        DispatchQueue.main.async {
+                            SVProgressHUD.showText("退出登录成功")
+                            #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
+                            FlutterManager.shared().nativeNotifyToFlutter(type: .nativeLogout, jsonString: "退出登录成功") { value in
+                                guard let message = value as? String else {
+                                    return
+                                }
+                                print(message)
+                            }
+                            #endif
+                        }
+                    }
+                }
+                .disposed(by: self.rx.disposeBag)
+        }
+        alertController.addAction(actionCancel)
+        alertController.addAction(actionOK)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    private func toMyMessageController() {
+        let status = AccountManager.shared.myUnreadMessageCountRelay.value.greaterThanZero ? MessageReadyStatus.unread : MessageReadyStatus.read
+        navigationController?.pushViewController(MyMessageController(status: status), animated: true)
+    }
+}
+
+extension MyController: InnerEventResponsible {
+    func innerEventHandle(event: any InnerEventConvertible) {
+        guard let type = event as? InnerViewEvent else { return }
+        switch type {
+        case .custom(let dictionary):
+            print(dictionary)
+        }
+    }
+}
+
+extension MyController: TabBarViewControllerChildrenRefreshProtocol {
+    func dataRefresh() {
+        debugLog("\(className) dataRefresh")
+        tableView.mj_header?.beginRefreshing()
+    }
+}
+
+#if canImport(Flutter) && canImport(FlutterPluginRegistrant)
+extension MyController {
+    private func toFlutterViewController() {
+        /**
+         The supplied FlutterEngine <FlutterEngine: 0x10a93e2b0> is already used with FlutterViewController instance <FlutterViewController: 0x11300da00>. One instance of the FlutterEngine can only be attached to one FlutterViewController at a time. Set FlutterEngine.viewController to nil before attaching it to another FlutterViewController.
+         */
+        let engine: FlutterEngine!
+        if let e = FlutterManager.shared().flutterEngine {
+            engine = e
+        } else {
+            engine = FlutterManager.shared().initFlutterEngine()
+            FlutterManager.shared().runFlutterEngine()
+        }
+        
+        engine.viewController = nil
+        
+        let flutterViewController = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
+        
+//        let eventChannel = FlutterEventChannel(name: "nativeEvent", binaryMessenger: flutterViewController.binaryMessenger)
+//        eventChannel.setStreamHandler(self)
+        
+        self.eventChannel = NativeEventChannel(name: "nativeEvent", binaryMessenger: flutterViewController.binaryMessenger, sendMessage: "这是从Native传递过来的消息")
+        
+        flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController, weak self] in
+            print("FlutterViewController did render")
+            // flutterViewController?.navigationController?.setNavigationBarHidden(true, animated: false)
+            
+            /// 发送一个Native事件并传参到Flutter侧
+            // FlutterManager.shared().nativeNotifyToFlutter(type: .userLocationUpdate, jsonString: "湖北武汉")
+            
+            self?.eventChannel?.eventSink?("这是从Native持续传过来来的消息")
+        }
+
+        presentToFlutterModule(flutterViewController: flutterViewController)
+    }
+    
+    private func presentToFlutterModule(flutterViewController: FlutterViewController) {
+        flutterViewController.modalPresentationStyle = .fullScreen
+        present(flutterViewController, animated: true)
+    }
+    
+    private func pushToFlutterModule(flutterViewController: FlutterViewController) {
+        /// 通过以下方式,避免present而增加其他逻辑,保证原生导航栏的逻辑
+        navigationController?.pushViewController(flutterViewController, animated: true)
+
+        flutterViewController.rx.viewWillAppear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+            flutterViewController?.navigationController?.navigationBar.isHidden = true
+        }).disposed(by: rx.disposeBag)
+
+        flutterViewController.rx.viewWillDisappear.subscribe(onNext: { [weak self, weak flutterViewController] _ in
+            self?.navigationController?.navigationBar.isHidden = false
+        }).disposed(by: rx.disposeBag)
+    }
+}
+
+extension MyController: FlutterStreamHandler {
+    func onListen(withArguments arguments: Any?, eventSink events: @escaping FlutterEventSink) -> FlutterError? {
+        self.eventSink = events
+        // 例如：模拟发送位置数据
+        events(["lat": 39.9, "lng": 116.3])
+        // 你可以定时或在收到原生事件时调用 self.eventSink?(data)
+        return nil
+    }
+
+    func onCancel(withArguments arguments: Any?) -> FlutterError? {
+        self.eventSink = nil
+        return nil
+    }
+}
+#endif
+
+#if DEBUG
+import SwiftUI
+
+@available(iOS 13, *)
+struct ViewController_Preview: PreviewProvider {
+    static var previews: some View {
+        MyController().showPreview()
+    }
+}
+#endif

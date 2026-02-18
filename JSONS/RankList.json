@@ -1,0 +1,21 @@
+{
+    "data": {
+        "curPage": 1,
+        "datas": [
+            {
+                "coinCount": 12159,
+                "level": 122,
+                "rank": 1,
+                "userId": 20382,
+                "username": "g**eii"
+            }
+        ],
+        "offset": 0,
+        "over": false,
+        "pageCount": 1070,
+        "size": 30,
+        "total": 32082
+    },
+    "errorCode": 0,
+    "errorMsg": ""
+}

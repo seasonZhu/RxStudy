@@ -1,0 +1,4 @@
+enum CollectActionType {
+  collect,
+  unCollect;
+}

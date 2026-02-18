@@ -1,0 +1,315 @@
+PODS:
+  - AcknowList (3.4.0)
+  - Alamofire (5.11.0)
+  - CocoaDebug (1.7.7)
+  - CocoaLumberjack/Core (3.9.0)
+  - CocoaLumberjack/Swift (3.9.0):
+    - CocoaLumberjack/Core
+  - CombineCocoa (0.4.1)
+  - CombineExt (1.8.0)
+  - Differentiator (5.0.0)
+  - DZNEmptyDataSet (1.8.1)
+  - FlexLayout (2.2.3):
+    - Yoga (= 3.2.1)
+  - FSPagerView (0.8.3)
+  - FunnyButton (0.1.6)
+  - IQKeyboardCore (1.0.8)
+  - IQKeyboardManagerSwift (8.0.2):
+    - IQKeyboardManagerSwift/Appearance (= 8.0.2)
+    - IQKeyboardManagerSwift/Core (= 8.0.2)
+    - IQKeyboardManagerSwift/IQKeyboardReturnManager (= 8.0.2)
+    - IQKeyboardManagerSwift/IQKeyboardToolbarManager (= 8.0.2)
+    - IQKeyboardManagerSwift/IQTextView (= 8.0.2)
+    - IQKeyboardManagerSwift/Resign (= 8.0.2)
+  - IQKeyboardManagerSwift/Appearance (8.0.2):
+    - IQTextInputViewNotification
+  - IQKeyboardManagerSwift/Core (8.0.2):
+    - IQKeyboardNotification
+    - IQTextInputViewNotification
+  - IQKeyboardManagerSwift/IQKeyboardReturnManager (8.0.2):
+    - IQKeyboardReturnManager
+  - IQKeyboardManagerSwift/IQKeyboardToolbarManager (8.0.2):
+    - IQKeyboardToolbarManager
+  - IQKeyboardManagerSwift/IQTextView (8.0.2):
+    - IQTextView
+  - IQKeyboardManagerSwift/Resign (8.0.2):
+    - IQTextInputViewNotification
+  - IQKeyboardNotification (1.0.6)
+  - IQKeyboardReturnManager (1.0.6):
+    - IQKeyboardCore
+  - IQKeyboardToolbar (1.1.3):
+    - IQKeyboardToolbar/Core (= 1.1.3)
+  - IQKeyboardToolbar/Core (1.1.3):
+    - IQKeyboardCore
+    - IQKeyboardToolbar/Placeholderable
+  - IQKeyboardToolbar/Placeholderable (1.1.3)
+  - IQKeyboardToolbarManager (1.1.4):
+    - IQKeyboardToolbar
+    - IQTextInputViewNotification
+  - IQTextInputViewNotification (1.0.9):
+    - IQKeyboardCore
+  - IQTextView (1.0.5):
+    - IQKeyboardToolbar/Placeholderable
+  - JWNetAutoCache (0.0.2)
+  - JXSegmentedView (1.4.1)
+  - KeychainAccess (4.2.2)
+  - Keys (1.0.1)
+  - Kingfisher (8.6.2)
+  - KSCrash (2.5.0):
+    - KSCrash/Installations (= 2.5.0)
+  - KSCrash/Core (2.5.0)
+  - KSCrash/DemangleFilter (2.5.0):
+    - KSCrash/Recording
+  - KSCrash/Filters (2.5.0):
+    - KSCrash/Recording
+    - KSCrash/RecordingCore
+    - KSCrash/ReportingCore
+  - KSCrash/Installations (2.5.0):
+    - KSCrash/DemangleFilter
+    - KSCrash/Filters
+    - KSCrash/Recording
+    - KSCrash/Sinks
+  - KSCrash/Recording (2.5.0):
+    - KSCrash/RecordingCore
+  - KSCrash/RecordingCore (2.5.0):
+    - KSCrash/Core
+  - KSCrash/ReportingCore (2.5.0):
+    - KSCrash/Core
+  - KSCrash/Sinks (2.5.0):
+    - KSCrash/Filters
+    - KSCrash/Recording
+  - LifetimeTracker (1.8.5)
+  - LookinServer (1.2.8):
+    - LookinServer/Core (= 1.2.8)
+  - LookinServer/Core (1.2.8)
+  - MarqueeLabel (4.5.3)
+  - MBProgressHUD (1.2.0)
+  - MJRefresh (3.7.9)
+  - Moya/Combine (15.0.0):
+    - Moya/Core
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
+  - Moya/RxSwift (15.0.0):
+    - Moya/Core
+    - RxSwift (~> 6.0)
+  - "NSObject+Rx (5.2.2)":
+    - RxSwift (~> 6.2)
+  - PinLayout (1.10.6)
+  - R.swift (7.8.0)
+  - RxBlocking (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxCocoa (6.9.0):
+    - RxRelay (= 6.9.0)
+    - RxSwift (= 6.9.0)
+  - RxDataSources (5.0.0):
+    - Differentiator (~> 5.0)
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxGesture (4.0.4):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxOptional (5.0.6):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxRelay (6.9.0):
+    - RxSwift (= 6.9.0)
+  - RxSwift (6.9.0)
+  - RxSwiftExt (6.2.1):
+    - RxSwiftExt/Core (= 6.2.1)
+    - RxSwiftExt/RxCocoa (= 6.2.1)
+  - RxSwiftExt/Core (6.2.1):
+    - RxSwift (~> 6.0)
+  - RxSwiftExt/RxCocoa (6.2.1):
+    - RxCocoa (~> 6.0)
+    - RxSwiftExt/Core
+  - RxTheme (6.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - RxViewController (2.0.0):
+    - RxCocoa (~> 6.0)
+    - RxSwift (~> 6.0)
+  - SDWebImage (5.19.2):
+    - SDWebImage/Core (= 5.19.2)
+  - SDWebImage/Core (5.19.2)
+  - SFSafeSymbols (6.2.0)
+  - SnapKit (5.7.1)
+  - SSZipArchive (2.6.0)
+  - SVProgressHUD (2.3.1):
+    - SVProgressHUD/Core (= 2.3.1)
+  - SVProgressHUD/Core (2.3.1)
+  - SwiftDate (7.0.0)
+  - TheRouter (1.1.8)
+  - unimp/Core (4.36):
+    - SDWebImage (= 5.19.2)
+  - unimp/File (4.36)
+  - Yoga (3.2.1)
+
+DEPENDENCIES:
+  - AcknowList
+  - CocoaDebug
+  - CocoaLumberjack/Swift
+  - CombineCocoa
+  - CombineExt
+  - DZNEmptyDataSet
+  - FlexLayout
+  - FSPagerView
+  - FunnyButton
+  - IQKeyboardManagerSwift (from `https://github.com/hackiftekhar/IQKeyboardManager.git`, tag `8.0.2`)
+  - JWNetAutoCache
+  - JXSegmentedView
+  - KeychainAccess
+  - Keys (from `Pods/CocoaPodsKeys`)
+  - Kingfisher
+  - KSCrash
+  - LifetimeTracker
+  - LookinServer
+  - MarqueeLabel
+  - MBProgressHUD
+  - MJRefresh
+  - Moya/Combine
+  - Moya/RxSwift
+  - "NSObject+Rx"
+  - PinLayout
+  - R.swift
+  - RxBlocking
+  - RxCocoa
+  - RxDataSources
+  - RxGesture
+  - RxOptional
+  - RxSwift
+  - RxSwiftExt
+  - RxTheme
+  - RxViewController
+  - SFSafeSymbols
+  - SnapKit
+  - SSZipArchive
+  - SVProgressHUD
+  - SwiftDate
+  - TheRouter
+  - unimp/Core (= 4.36)
+  - unimp/File (= 4.36)
+
+SPEC REPOS:
+  trunk:
+    - AcknowList
+    - Alamofire
+    - CocoaDebug
+    - CocoaLumberjack
+    - CombineCocoa
+    - CombineExt
+    - Differentiator
+    - DZNEmptyDataSet
+    - FlexLayout
+    - FSPagerView
+    - FunnyButton
+    - IQKeyboardCore
+    - IQKeyboardNotification
+    - IQKeyboardReturnManager
+    - IQKeyboardToolbar
+    - IQKeyboardToolbarManager
+    - IQTextInputViewNotification
+    - IQTextView
+    - JWNetAutoCache
+    - JXSegmentedView
+    - KeychainAccess
+    - Kingfisher
+    - KSCrash
+    - LifetimeTracker
+    - LookinServer
+    - MarqueeLabel
+    - MBProgressHUD
+    - MJRefresh
+    - Moya
+    - "NSObject+Rx"
+    - PinLayout
+    - R.swift
+    - RxBlocking
+    - RxCocoa
+    - RxDataSources
+    - RxGesture
+    - RxOptional
+    - RxRelay
+    - RxSwift
+    - RxSwiftExt
+    - RxTheme
+    - RxViewController
+    - SDWebImage
+    - SFSafeSymbols
+    - SnapKit
+    - SSZipArchive
+    - SVProgressHUD
+    - SwiftDate
+    - TheRouter
+    - unimp
+    - Yoga
+
+EXTERNAL SOURCES:
+  IQKeyboardManagerSwift:
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
+    :tag: 8.0.2
+  Keys:
+    :path: Pods/CocoaPodsKeys
+
+CHECKOUT OPTIONS:
+  IQKeyboardManagerSwift:
+    :git: https://github.com/hackiftekhar/IQKeyboardManager.git
+    :tag: 8.0.2
+
+SPEC CHECKSUMS:
+  AcknowList: b48c755bf9595c8c6065fffe6fa3b1061ae96fbf
+  Alamofire: bd5e7b23a1a750975288482c1831d71e74415f86
+  CocoaDebug: b38d31464b91a9775928f8667d114db07b136565
+  CocoaLumberjack: 5644158777912b7de7469fa881f8a3f259c2512a
+  CombineCocoa: e5210dbfb480ff251078929459ac17e750e7af1d
+  CombineExt: c4daa97ef75754d8ef319bd79edeef82652f3eea
+  Differentiator: e8497ceab83c1b10ca233716d547b9af21b9344d
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FlexLayout: 03779b91426f4867652866c06a57a848edda2c91
+  FSPagerView: 670405b2f18e2a87fa37f20b00de783e562c25a8
+  FunnyButton: f5748645b7f50f2caa157795d52925c0379978b9
+  IQKeyboardCore: 8652977ec919cf5351aa2977fedd1a6546476fbc
+  IQKeyboardManagerSwift: cd9c2cf68a12b6ab17462d0dab3ee78be39261b4
+  IQKeyboardNotification: eb4910401f5a0e68f97e71c62f8a0c5b7e9d535c
+  IQKeyboardReturnManager: fcbf51fc68d7536fc1fbcca5231c4e82576b12ac
+  IQKeyboardToolbar: 9fe900f8e7def414be4025af0ca098df764d4fe3
+  IQKeyboardToolbarManager: c8a575e8b5fffe5873d0e75312244498a0759473
+  IQTextInputViewNotification: 3b9fb27a16e7ee8958cc9092cfb07a1a9e1fd559
+  IQTextView: ae13b4922f22e6f027f62c557d9f4f236b19d5c7
+  JWNetAutoCache: 434f10855da06d29a381359552ae9d27ef35cad7
+  JXSegmentedView: cd73555ce2134d1656db2cb383ba9c2f36fb5078
+  KeychainAccess: c0c4f7f38f6fc7bbe58f5702e25f7bd2f65abf51
+  Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
+  Kingfisher: 23d18f54677d973b713e54ce6a8f5eef6e7056ba
+  KSCrash: 80e1e24eaefbe5134934ae11ca8d7746586bc2ed
+  LifetimeTracker: e53352c120da5ab365767f27bbbbcf0c249de3d1
+  LookinServer: 1b2b61c6402ae29fa22182d48f5cd067b4e99e80
+  MarqueeLabel: 0c57d4c6634e04a6d015af79f7c9a175b2309525
+  MBProgressHUD: 3ee5efcc380f6a79a7cc9b363dd669c5e1ae7406
+  MJRefresh: ff9e531227924c84ce459338414550a05d2aea78
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
+  PinLayout: e2fceb4cbfdf49f3569fc242a7dfa0da4fb9aa06
+  R.swift: f573269ca45b2ab066c082e363dd4c2b297b0d71
+  RxBlocking: 5d2b26d019b6ba9eb3f58638611f124609c44822
+  RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
+  RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
+  RxGesture: f3efb47ed2d26a8082f7b660d4a59970e275a7f8
+  RxOptional: 337ba615992ffdeffea02d6a5a242358757bbfcd
+  RxRelay: 6b0c930e5cef57d5fe2032571e5e65b78e3cbdb1
+  RxSwift: 31649ace6aceeb422e16ff71c60804f9c3281ed9
+  RxSwiftExt: 43aaacb6a4d3c69c55e9d1cf4f79920043d13583
+  RxTheme: be60cb14e0544b3cbd574cc37fed35ba9d61aa1f
+  RxViewController: 56486fa0afd629a1d6b5ba077f3b8cd9dc31b5d2
+  SDWebImage: dfe95b2466a9823cf9f0c6d01217c06550d7b29a
+  SFSafeSymbols: 7b53f8cb36f20b06b820a805d064a4ee4db658ad
+  SnapKit: d612e99e678a2d3b95bf60b0705ed0a35c03484a
+  SSZipArchive: 8a6ee5677c8e304bebc109e39cf0da91ccef22ea
+  SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
+  SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
+  TheRouter: 1c7801e4f3df9a2598088d7c3cf4d2f6d3779c51
+  unimp: 87da0aee56ad553397e84570674e9f11fe76e188
+  Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
+
+PODFILE CHECKSUM: 186632a6196e695dc36ab7b5c719efe8130fc2a8
+
+COCOAPODS: 1.16.2

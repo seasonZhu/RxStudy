@@ -1,0 +1,242 @@
+Found API Categories:
+- NSPrivacyAccessedAPICategoryUserDefaults
+  ResponseCachePlugin.swift: Line 92
+  ResponseCachePlugin.swift: Line 93
+  ResponseCachePlugin.swift: Line 95
+  ACarouselViewModel.swift: Line 190
+  ACarouselViewModel.swift: Line 191
+  ACarouselViewModel.swift: Line 324
+  ACarouselViewModel.swift: Line 332
+  ACarouselViewModel.swift: Line 335
+  MJRefreshHeader.m: Line 132
+  MJRefreshHeader.m: Line 133
+  MJRefreshHeader.m: Line 288
+  MJRefreshStateHeader.m: Line 75
+  CrashStoreManager.swift: Line 43
+  CrashStoreManager.swift: Line 44
+  CrashStoreManager.swift: Line 45
+  CrashStoreManager.swift: Line 59
+  CrashStoreManager.swift: Line 60
+  CrashStoreManager.swift: Line 61
+  CrashStoreManager.swift: Line 66
+  AppInfoViewController.swift: Line 82
+  CocoaDebug+Extensions.swift: Line 364
+  CocoaDebug+Extensions.swift: Line 374
+  CocoaDebugSettings.swift: Line 27
+  CocoaDebugSettings.swift: Line 28
+  CocoaDebugSettings.swift: Line 34
+  CocoaDebugSettings.swift: Line 35
+  CocoaDebugSettings.swift: Line 40
+  CocoaDebugSettings.swift: Line 41
+  CocoaDebugSettings.swift: Line 53
+  CocoaDebugSettings.swift: Line 54
+  CocoaDebugSettings.swift: Line 59
+  CocoaDebugSettings.swift: Line 60
+  CocoaDebugSettings.swift: Line 65
+  CocoaDebugSettings.swift: Line 66
+  CocoaDebugSettings.swift: Line 71
+  CocoaDebugSettings.swift: Line 72
+  CocoaDebugSettings.swift: Line 77
+  CocoaDebugSettings.swift: Line 78
+  CocoaDebugSettings.swift: Line 83
+  CocoaDebugSettings.swift: Line 84
+  CocoaDebugSettings.swift: Line 89
+  CocoaDebugSettings.swift: Line 90
+  CocoaDebugSettings.swift: Line 95
+  CocoaDebugSettings.swift: Line 96
+  CocoaDebugSettings.swift: Line 101
+  CocoaDebugSettings.swift: Line 102
+  CocoaDebugSettings.swift: Line 107
+  CocoaDebugSettings.swift: Line 108
+  CocoaDebugSettings.swift: Line 135
+  CocoaDebugSettings.swift: Line 136
+  CocoaDebugSettings.swift: Line 141
+  CocoaDebugSettings.swift: Line 142
+  CocoaDebugSettings.swift: Line 147
+  CocoaDebugSettings.swift: Line 148
+  CocoaDebugSettings.swift: Line 153
+  CocoaDebugSettings.swift: Line 154
+  CocoaDebugSettings.swift: Line 159
+  CocoaDebugSettings.swift: Line 160
+  CocoaDebugSettings.swift: Line 165
+  CocoaDebugSettings.swift: Line 166
+  CocoaDebugSettings.swift: Line 171
+  CocoaDebugSettings.swift: Line 172
+  CocoaDebugSettings.swift: Line 177
+  CocoaDebugSettings.swift: Line 178
+  CocoaDebugSettings.swift: Line 183
+  CocoaDebugSettings.swift: Line 184
+  CocoaDebugSettings.swift: Line 189
+  CocoaDebugSettings.swift: Line 190
+  CocoaDebugSettings.swift: Line 195
+  CocoaDebugSettings.swift: Line 196
+  CocoaDebugSettings.swift: Line 238
+  CocoaDebugSettings.swift: Line 239
+  CocoaDebugSettings.swift: Line 240
+  CocoaDebugSettings.swift: Line 241
+  CocoaDebugSettings.swift: Line 242
+  CocoaDebugSettings.swift: Line 243
+  CocoaDebugSettings.swift: Line 244
+  CocoaDebugSettings.swift: Line 245
+  CocoaDebugSettings.swift: Line 246
+  CocoaDebugSettings.swift: Line 247
+  CocoaDebugSettings.swift: Line 248
+  CocoaDebugSettings.swift: Line 249
+  CocoaDebugSettings.swift: Line 250
+  CocoaDebugSettings.swift: Line 251
+  CocoaDebugSettings.swift: Line 252
+  CocoaDebugSettings.swift: Line 253
+  CocoaDebugSettings.swift: Line 254
+  CocoaDebugSettings.swift: Line 255
+  CocoaDebugSettings.swift: Line 256
+  CocoaDebugSettings.swift: Line 257
+  CocoaDebugSettings.swift: Line 258
+  CocoaDebugSettings.swift: Line 273
+  CocoaDebugSettings.swift: Line 274
+  CocoaDebugSettings.swift: Line 275
+  ACarouselViewModel.swift: Line 190
+  ACarouselViewModel.swift: Line 191
+  ACarouselViewModel.swift: Line 324
+  ACarouselViewModel.swift: Line 332
+  ACarouselViewModel.swift: Line 335
+  _WKWebView+Swizzling.m: Line 23
+  KSCrashReportSinkQuincyHockey.m: Line 184
+  KSCrashReportSinkQuincyHockey.m: Line 194
+  KSCrashReportSinkQuincyHockey.m: Line 195
+  PropertyWrapper.swift: Line 131
+  PropertyWrapper.swift: Line 140
+  PropertyWrapper.swift: Line 143
+  PropertyWrapper.swift: Line 152
+  UserDefault.swift: Line 10
+  UserDefault.swift: Line 19
+  UserDefault.swift: Line 22
+  UserDefault.swift: Line 31
+  _NSLogHook.m: Line 54
+  _NSLogHook.m: Line 66
+  _CustomHTTPProtocol.m: Line 916
+- NSPrivacyAccessedAPICategorySystemBootTime
+  DataRequest.swift: Line 244
+  DataRequest.swift: Line 254
+  ResponseSerialization.swift: Line 220
+  ResponseSerialization.swift: Line 230
+  ResponseSerialization.swift: Line 357
+  ResponseSerialization.swift: Line 366
+  AuthenticationInterceptor.swift: Line 337
+  AuthenticationInterceptor.swift: Line 358
+  WebSocketRequest.swift: Line 283
+  WebSocketRequest.swift: Line 293
+  DownloadRequest.swift: Line 368
+  DownloadRequest.swift: Line 377
+  ResponseSerialization.swift: Line 220
+  ResponseSerialization.swift: Line 230
+  ResponseSerialization.swift: Line 357
+  ResponseSerialization.swift: Line 366
+  AuthenticationInterceptor.swift: Line 337
+  AuthenticationInterceptor.swift: Line 358
+  AuthenticationInterceptor.swift: Line 336
+  AuthenticationInterceptor.swift: Line 357
+- NSPrivacyAccessedAPICategoryFileTimestamp
+  DiskStorage.swift: Line 172
+  DiskStorage.swift: Line 174
+  DiskStorage.swift: Line 230
+  DiskStorage.swift: Line 230
+  DiskStorage.swift: Line 371
+  DiskStorage.swift: Line 407
+  DiskStorage.swift: Line 527
+  DiskStorage.swift: Line 568
+  DiskStorage.swift: Line 569
+  DiskStorage.swift: Line 573
+  DiskStorage.swift: Line 574
+  Keychain.swift: Line 341
+  Keychain.swift: Line 344
+  DDFileLogger.h: Line 542
+  DDFileLogger.h: Line 543
+  DDFileLogger.m: Line 415
+  DDFileLogger.m: Line 426
+  DDFileLogger.m: Line 833
+  DDFileLogger.m: Line 1455
+  DDFileLogger.m: Line 1456
+  DDFileLogger.m: Line 1476
+  DDFileLogger.m: Line 1477
+  DDFileLogger.m: Line 1523
+  DDFileLogger.m: Line 1524
+  DDFileLogger.m: Line 1525
+  DDFileLogger.m: Line 1528
+  DDFileLogger.m: Line 1531
+  DDFileLogger.m: Line 1532
+  DDFileLogger.m: Line 1533
+  DDFileLogger.m: Line 1536
+  DDFileLogger.m: Line 1548
+  DDFileLogger.m: Line 1559
+  DDFileLogger.m: Line 1560
+  DDFileLogger.m: Line 1589
+  DDFileLogger.m: Line 1590
+  DDFileLogger.m: Line 1832
+  DDFileLogger.m: Line 1836
+  _FileInfo.m: Line 34
+  _FileInfo.m: Line 34
+  _FileInfo.m: Line 42
+  _FileInfo.m: Line 42
+  _FileInfo.m: Line 47
+  _FileInfo.m: Line 48
+  DiskStorage.swift: Line 158
+  DiskStorage.swift: Line 160
+  DiskStorage.swift: Line 215
+  DiskStorage.swift: Line 215
+  DiskStorage.swift: Line 355
+  DiskStorage.swift: Line 391
+  DiskStorage.swift: Line 508
+  DiskStorage.swift: Line 547
+  DiskStorage.swift: Line 548
+  DiskStorage.swift: Line 552
+  DiskStorage.swift: Line 553
+  _SandboxerHelper.h: Line 13
+  _DirectoryContentsTableViewController.m: Line 573
+  _DirectoryContentsTableViewController.m: Line 578
+  _FileInfo.h: Line 44
+  _SandboxerHelper.m: Line 13
+  _SandboxerHelper.m: Line 14
+  _SandboxerHelper.m: Line 15
+  _SandboxerHelper.m: Line 16
+  _SandboxerHelper.m: Line 17
+  _SandboxerHelper.m: Line 20
+  _SandboxerHelper.m: Line 34
+  _SandboxerHelper.m: Line 36
+
+Found Dependencies:
+
+- RxCocoa
+ - No,GitHub:https://github.com/ReactiveX/RxSwift/issues/2567
+
+- RxRelay
+ - No,GitHub:https://github.com/ReactiveX/RxSwift/issues/2567
+
+- Alamofire
+ - https://raw.githubusercontent.com/Alamofire/Alamofire/master/Source/PrivacyInfo.xcprivacy
+
+- RxSwift
+ - No,GitHub:https://github.com/ReactiveX/RxSwift/issues/2567
+
+- MBProgressHUD
+ - https://raw.githubusercontent.com/jdg/MBProgressHUD/master/PrivacyInfo.xcprivacy
+
+- SnapKit
+ - https://raw.githubusercontent.com/SnapKit/SnapKit/develop/Sources/PrivacyInfo.xcprivacy
+
+- Kingfisher
+ - https://raw.githubusercontent.com/onevcat/Kingfisher/master/Sources/PrivacyInfo.xcprivacy
+
+- SVProgressHUD
+ - https://raw.githubusercontent.com/SVProgressHUD/SVProgressHUD/master/SVProgressHUD/PrivacyInfo.xcprivacy
+
+- Protobuf
+ - https://raw.githubusercontent.com/protocolbuffers/protobuf/main/PrivacyInfo.xcprivacy
+
+- IQKeyboardManager
+ - https://raw.githubusercontent.com/hackiftekhar/IQKeyboardManager/master/IQKeyboardManager/PrivacyInfo.xcprivacy
+
+- IQKeyboardManagerSwift
+ - https://raw.githubusercontent.com/hackiftekhar/IQKeyboardManager/master/IQKeyboardManagerSwift/PrivacyInfo.xcprivacy
+
+- CocoaLumberjack
+ - https://raw.githubusercontent.com/CocoaLumberjack/CocoaLumberjack/master/Sources/CocoaLumberjack/PrivacyInfo.xcprivacy
