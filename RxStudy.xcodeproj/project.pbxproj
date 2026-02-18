@@ -258,6 +258,7 @@
 		A70C1B824FF663E1F6C456A2 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B61006D947FFB1C0765999F /* Provider.swift */; };
 		A7269F7910B86728495547EC /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1D9A001FCA2122FE00B3CF /* WebViewModel.swift */; };
 		A853305F3D3BD170358061C4 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E39E7E79722250B0C060CBC6 /* CustomImageView.swift */; };
+		A8FEAD5B37BBAFFB243A360F /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 9BCC4F234DD41AF206DA14FA /* SVProgressHUD.bundle */; };
 		AA8A40724FAFAFC09284D9C2 /* JXSegmentedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8191BEB52E33A8AEF34B0065 /* JXSegmentedCollectionView.swift */; };
 		AAB08772DE242B365BE04651 /* List+Refresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC8FE21B2361D5AF5D0F4216 /* List+Refresh.swift */; };
 		AAEB7C7265974A99808D0411 /* TheRouterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB32FFC594985651A3FA54C5 /* TheRouterable.swift */; };
@@ -647,6 +648,7 @@
 		98317625FDDD8AE32AA5EFA0 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		99878A31EA8A475D9FF66A91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		9B61006D947FFB1C0765999F /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		9BCC4F234DD41AF206DA14FA /* SVProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = SVProgressHUD.bundle; sourceTree = "<group>"; };
 		9BDDED9CEEBEDDD7EAD0A364 /* TheRouter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TheRouter+Convenience.swift"; sourceTree = "<group>"; };
 		9C31553899BCD496161AA76A /* CombineSinkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineSinkEvent.swift; sourceTree = "<group>"; };
 		9C9D741EBBC1692EB19E126C /* WebViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
@@ -1181,6 +1183,7 @@
 			children = (
 				E860E5457E154A0AECD9C2F1 /* SVIndefiniteAnimatedView.m */,
 				926AD137BE3B0B26CD389802 /* SVProgressAnimatedView.m */,
+				9BCC4F234DD41AF206DA14FA /* SVProgressHUD.bundle */,
 				C5321B6B4D55A52AD3BD8E54 /* SVProgressHUD.m */,
 				8E2224F2D96BB6CA8B909F3B /* SVRadialGradientLayer.m */,
 			);
@@ -2124,6 +2127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A8FEAD5B37BBAFFB243A360F /* SVProgressHUD.bundle in Resources */,
 				BF9E1E2FD34C9AD4C7C5F847 /* Assets.xcassets in Resources */,
 				A2760D8B2F187A24E1A18D45 /* Alamofire_Alamofire.bundle in Resources */,
 				2DBA92FFEE1DEC1C21B83491 /* CocoaLumberjack_CocoaLumberjack.bundle in Resources */,

@@ -111,7 +111,8 @@ let project = Project(
                 "Packages/ThirdParty/DZNEmptyDataSet/Sources/**"
             ],
             resources: [
-                "RxStudy/Assets.xcassets/**"
+                "RxStudy/Assets.xcassets/**",
+                "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**"
             ],
             dependencies: [
                 // ========== RxSwift 生态 ==========
