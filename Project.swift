@@ -126,8 +126,8 @@ let project = Project(
                 .external(name: "RxBlocking"),
 
                 // ========== 网络层 ==========
-                // 只使用 RxSwift，不使用 ReactiveSwift
-                .external(name: "Moya"),
+                // 使用 Moya 的 RxMoya 模块（SPM 自带，不需要自定义扩展）
+                .external(name: "RxMoya"),
                 .external(name: "Alamofire"),
 
                 // ========== 图片加载 ==========

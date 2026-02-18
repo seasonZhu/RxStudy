@@ -238,6 +238,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5023327BBF6D14FE88DF5B24"
+               BuildableName = "RxMoya.framework"
+               BlueprintName = "RxMoya"
+               ReferencedContainer = "container:.build/tuist-derived/Moya/Moya.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "502BB9FC9921FFEB1C9BABB6"
                BuildableName = "RxOptional.framework"
                BlueprintName = "RxOptional"
