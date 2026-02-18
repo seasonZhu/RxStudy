@@ -81,7 +81,7 @@ private extension SingleTabListViewModel {
         
         result
             /// Response转Model
-            .map(BaseModel<Page<Info>>.self)
+            .map { try $0.map(BaseModel<Page<Info>>.self) }
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .compactMap { $0.data }
             /// 转换操作

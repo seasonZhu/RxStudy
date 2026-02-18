@@ -12,7 +12,6 @@ import UIKit
 import Flutter
 #endif
 
-import TheRouter
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -62,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FlutterManager.shared()
         #endif
 
-        UniMPManager.shared.initDCUniMPSDKEngineEnvironment(launchOptions: launchOptions)
+        // UniMP 库已移除 - 暂时注释
+        // UniMPManager.shared.initDCUniMPSDKEngineEnvironment(launchOptions: launchOptions)
     }
 
     // MARK: - UIApplication Lifecycle

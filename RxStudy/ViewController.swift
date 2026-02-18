@@ -15,10 +15,7 @@ import RxGesture
 import Moya
 import Alamofire
 
-import TheRouter
 
-import SVProgressHUD
-import MBProgressHUD
 
 class ViewController: UITabBarController {
     
@@ -74,8 +71,8 @@ class ViewController: UITabBarController {
         navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { [weak self] _ in
             debugLog("点击事件")
             Haptics.success.feedback()
-            // self?.navigationController?.pushViewController(HotKeyController(), animated: true)
-            self?.navigationController?.pushViewController(HotKeyFlexBoxController(), animated: true)
+            // HotKeyFlexBoxController (FlexLayout) 已移除，使用 HotKeyController
+            self?.navigationController?.pushViewController(HotKeyController(), animated: true)
             // TheRouter.openURL("wandroid://hotkey")
         })
         .disposed(by: rx.disposeBag)
@@ -220,7 +217,10 @@ extension ViewController {
 
 extension ViewController {
     private func beginSplashView() {
-        let revealingSplashView = RevealingSplashView(iconImage: R.image.saber()!, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: R.image.launchImagePlayAndroid()!)
+        /// R.image 已移除，使用系统图标
+        let saberImage = UIImage(systemName: "star.circle.fill") ?? UIImage()
+        let launchImage = UIImage(systemName: "app.fill") ?? UIImage()
+        let revealingSplashView = RevealingSplashView(iconImage: saberImage, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: launchImage)
         
         (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(revealingSplashView)
         

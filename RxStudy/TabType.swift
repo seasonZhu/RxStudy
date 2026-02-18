@@ -52,30 +52,30 @@ extension TabType {
     var imageName: String {
         switch self {
         case .home:
-            return R.image.home.name
+            return "home"
         case .project:
-            return R.image.project.name
+            return "project"
         case .publicNumber:
-            return R.image.publicNumber.name
+            return "publicNumber"
         case .tree:
-            return R.image.tree.name
+            return "tree"
         case .my:
-            return R.image.my.name
+            return "my"
         }
     }
-    
+
     var selectImageName: String {
         switch self {
         case .home:
-            return R.image.home_selected.name
+            return "home_selected"
         case .project:
-            return R.image.project_selected.name
+            return "project_selected"
         case .publicNumber:
-            return R.image.publicNumber_selected.name
+            return "publicNumber_selected"
         case .tree:
-            return R.image.tree_selected.name
+            return "tree_selected"
         case .my:
-            return R.image.my_selected.name
+            return "my_selected"
         }
     }
 }

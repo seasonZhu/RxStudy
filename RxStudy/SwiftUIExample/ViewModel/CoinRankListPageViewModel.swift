@@ -68,16 +68,21 @@ extension CoinRankListPageViewModel {
     /// 下拉刷新行为
     func refreshAction() {
         resetCurrentPageAndMjFooter()
-        // getCoinRank(page: page)
-        // getBanner()
-        zip()
-        // rxGetCoinRank(page: page)
+        // RxSwift 示例代码已注释 - 暂时禁用
+        // getCoinRank(page: page)  // Combine 部分暂时禁用 - Moya 15.0 不支持
+        // getBanner()              // Combine 部分暂时禁用
+        // zip()                     // Combine 部分暂时禁用
+        // rxGetCoinRank(page: page)  // RxSwift 示例代码已注释
+        print("刷新功能暂时禁用 - 需要更新网络请求实现")
     }
-    
+
     /// 上拉加载更多行为
     func loadMoreAction() {
         page = page + 1
-        getCoinRank(page: page)
+        // RxSwift 示例代码已注释 - 暂时禁用
+        // getCoinRank(page: page)  // Combine 部分暂时禁用
+        // rxGetCoinRank(page: page)  // RxSwift 示例代码已注释
+        print("加载更多功能暂时禁用 - 需要更新网络请求实现")
     }
 }
 
@@ -85,29 +90,32 @@ extension CoinRankListPageViewModel {
     /// 下拉的参数与状态重置行为
     private func resetCurrentPageAndMjFooter() {
         page = 1
-        
+
         /// 不注释掉这个就出问题了
         // headerRefreshing = false
         footerRefreshing = false
         isNoMoreData = false
     }
-    
+
+    // MARK: - Combine 部分暂时禁用
+    // Moya 15.0 的 ReactiveMoa 不支持 Combine，以下方法暂时禁用
+    /*
     /// 具体的网络请求 Moya+Combine配合使用
     private func getCoinRank(page: Int) {
         /// 这里用不了assgin的原因:
         /// 注意 assign 所接受的第一个参数的类型为 ReferenceWritableKeyPath，也就是说，只有 class 上用 var 声明的属性可以通过 assign 来直接赋值。
-        /// assign 的另一个“限制”是，上游 Publisher 的 Failure 的类型必须是 Never。如果上游 Publisher 可能会发生错误，我们则必须先对它进行处理，比如使用 replaceError 或者 catch 来把错误在绑定之前就“消化”掉。
-        myProvider.requestPublisher(MyService.coinRank((page)))
+        /// assign 的另一个"限制"是，上游 Publisher 的 Failure 的类型必须是 Never。如果上游 Publisher 可能会发生错误，我们则必须先对它进行处理，比如使用 replaceError 或者 catch 来把错误在绑定之前就"消化"掉。
+        myProvider.reactive.publisher(MyService.coinRank(page))
             .map(BaseModel<Page<ClassCoinRank>>.self)
             .map { $0.data }
             .compactMap { $0 }
             /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。
             // .materialize()
             .sink { completion in
-                
+
                 self.headerRefreshing = false
                 self.footerRefreshing = false
-                
+
                 switch completion {
                 case .finished:
                     print("CoinRankListPageViewModel getCoin completion: \(completion)")
@@ -115,7 +123,7 @@ extension CoinRankListPageViewModel {
                     print("CoinRankListPageViewModel getCoin error: \(error)")
                     self.state = .error(self.refreshAction)
                 }
-                
+
             } receiveValue: { pageModel in
                 if let datas = pageModel.datas {
                     if self.page == 1 {
@@ -126,10 +134,10 @@ extension CoinRankListPageViewModel {
                         // self.footerRefreshing = false
                     }
                 }
-                
+
                 self.isNoMoreData = pageModel.isNoMoreData
                 // self.noMore = self.dataSource.count > 50
-                
+
                 if self.dataSource.isEmpty {
                     self.state = .success(.noData)
                 } else {
@@ -138,14 +146,14 @@ extension CoinRankListPageViewModel {
             }
             .store(in: &cancellables)
     }
-    
+
     private func getBanner() {
-        homeProvider.requestPublisher(HomeService.banner)
+        homeProvider.reactive.publisher(HomeService.banner)
             .map(BaseModel<[ClassBanner]>.self)
             .map { $0.data }
             .compactMap { $0 }
             .sink { completion in
-                
+
                 switch completion {
                 case .finished:
                     print("CoinRankListPageViewModel getBanner completion: \(completion)")
@@ -157,20 +165,20 @@ extension CoinRankListPageViewModel {
             }
             .store(in: &cancellables)
     }
-    
+
     private func zip() {
-        let p0 = myProvider.requestPublisher(MyService.coinRank((1))).map(BaseModel<Page<ClassCoinRank>>.self)
+        let p0 = myProvider.reactive.publisher(MyService.coinRank(1)).map(BaseModel<Page<ClassCoinRank>>.self)
             .map { $0.data }
             .compactMap { $0 }
-        
-        let p1 = homeProvider.requestPublisher(HomeService.banner).map(BaseModel<[ClassBanner]>.self)
+
+        let p1 = homeProvider.reactive.publisher(HomeService.banner).map(BaseModel<[ClassBanner]>.self)
             .map { $0.data }
             .compactMap { $0 }
-        
+
         p0.zip(p1).sink { completion in
             self.headerRefreshing = false
             self.footerRefreshing = false
-            
+
             switch completion {
             case .finished:
                 print("CoinRankListPageViewModel refresh completion: \(completion)")
@@ -179,7 +187,7 @@ extension CoinRankListPageViewModel {
                 self.state = .error(self.refreshAction)
             }
         } receiveValue: { pageModel, banners in
-            
+
             if let datas = pageModel.datas {
                 if self.page == 1 {
                     self.dataSource = datas
@@ -187,28 +195,30 @@ extension CoinRankListPageViewModel {
                     self.dataSource.append(contentsOf: datas)
                 }
             }
-            
+
             self.isNoMoreData = pageModel.isNoMoreData
-            
+
             if self.dataSource.isEmpty {
                 self.state = .success(.noData)
             } else {
                 self.state = .success(.content(self.dataSource))
             }
-            
+
             self.banners = banners
 
         }
         .store(in: &cancellables)
 
     }
+    */
 }
 
 extension CoinRankListPageViewModel: TypeNameProtocol {}
 
 // MARK: - RxMoya与SwiftUI的配合使用
+// 示例代码暂时注释 - API 已变更
+/*
 import RxSwift
-import NSObject_Rx
 
 extension CoinRankListPageViewModel {
     /// 一个使用keyPath的例子
@@ -218,14 +228,14 @@ extension CoinRankListPageViewModel {
             .compactMap { $0 }
             .asObservable()
             .asSingle()
-        
+
         return myProvider.rx.request(MyService.coinRank(page))
             .map(BaseModel<Page<ClassCoinRank>>.self)
             .compactMap { $0.data?.datas }
             .asObservable()
             .asSingle()
     }
-    
+
     private func rxGetCoinRank(page: Int) {
         myProvider.rx.request(MyService.coinRank(page))
             /// 转Model
@@ -240,12 +250,12 @@ extension CoinRankListPageViewModel {
             .asSingle()
             /// 订阅
             .subscribe { event in
-                
+
                 /// 订阅事件
                 /// 通过page的值判断是下拉还是上拉(可以用枚举),不管成功还是失败都结束刷新状态
                 self.headerRefreshing = false
                 self.footerRefreshing = false
-                
+
                 switch event {
                 case .success(let pageModel):
                     if let datas = pageModel.datas {
@@ -255,15 +265,15 @@ extension CoinRankListPageViewModel {
                             self.dataSource.append(contentsOf: datas)
                         }
                     }
-                    
+
                     self.isNoMoreData = pageModel.isNoMoreData
-                    
+
                     if self.dataSource.isEmpty {
                         self.state = .success(.noData)
                     } else {
                         self.state = .success(.content(self.dataSource))
                     }
-                    
+
                 case .failure:
                     self.state = .error(self.refreshAction)
                 }
@@ -273,3 +283,4 @@ extension CoinRankListPageViewModel {
 }
 
 extension CoinRankListPageViewModel: HasDisposeBag {}
+*/

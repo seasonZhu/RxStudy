@@ -7,7 +7,6 @@
 //
 
 import Moya
-import SVProgressHUD
 
 // MARK: - 响应异常拦截器插件
 class ResponseInterceptorPlugin: PluginType {

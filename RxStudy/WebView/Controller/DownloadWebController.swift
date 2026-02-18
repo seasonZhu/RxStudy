@@ -9,7 +9,6 @@
 import UIKit
 import WebKit
 
-import SVProgressHUD
 
 class DownloadWebController: UIViewController {
     

@@ -34,7 +34,7 @@ extension My {
         case .ranking:
             string = "积分排名"
         case .openSource:
-            string = "\(R.string.infoPlist.wanandroid())开源框架引用"
+            string = "玩安卓开源框架引用"
         case .myGitHub:
             string = "作者的GitHub"
         case .myJueJin:

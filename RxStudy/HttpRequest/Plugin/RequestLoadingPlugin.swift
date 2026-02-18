@@ -7,8 +7,6 @@
 //
 
 import Moya
-import MBProgressHUD
-import SVProgressHUD
          
 /// 可以认为是请求和响应的拦截器,这里做的是在请求时loading,请求完毕后结束loading,用了官方的NetworkActivityPlugin插件,这个插件就不香了
 class RequestLoadingPlugin: PluginType {

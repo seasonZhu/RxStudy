@@ -12,7 +12,7 @@ import RxSwift
 import RxBlocking
 
 extension BlockingObservable {
-    
+
     /// 将Single序列转为只有单元素的Result类型
     var toSingleResult: Result<Element, Swift.Error> {
         do {
@@ -22,7 +22,7 @@ extension BlockingObservable {
             return .failure(error)
         }
     }
-    
+
     /// 将Observable序列转为包含数组的Result类型
     var toArrayResult: Result<[Element], Swift.Error> {
         do {
@@ -36,18 +36,19 @@ extension BlockingObservable {
 
 extension Reactive where Base: MoyaProviderType {
 
-    func blockingRequest(_ token: Base.Target, callbackQueue: DispatchQueue? = nil) -> Result<Response, Moya.MoyaError> {
-        
-        let blocking = request(token, callbackQueue: callbackQueue).asObservable().toBlocking()
-        
-        do {
-            let response = try blocking.single()
-            return .success(response)
-        } catch {
-            let moyaError = error as! MoyaError
-            return .failure(moyaError)
-        }
-    }
+    // Moya API 变化 - 暂时注释此函数
+    // func blockingRequest(_ token: Base.Target, callbackQueue: DispatchQueue? = nil) -> Result<Response, Moya.MoyaError> {
+    //
+    //     let blocking = request(token, callbackQueue: callbackQueue).asObservable().toBlocking()
+    //
+    //     do {
+    //         let response = try blocking.single()
+    //         return .success(response)
+    //     } catch {
+    //         let moyaError = error as! MoyaError
+    //         return .failure(moyaError)
+    //     }
+    // }
 
 }
 
@@ -55,39 +56,39 @@ extension Reactive where Base: MoyaProviderType {
 extension Result where Success == Moya.Response, Failure == MoyaError {
     func map<Model: Codable>() -> Result<Model, Failure> {
         switch self {
-            case .success(let response):
-                do {
-                    let model = try JSONDecoder().decode(Model.self, from: response.data)
-                    return .success(model)
-                } catch {
-                    let error = MoyaError.objectMapping(error, response)
-                    return .failure(error)
-                }
-                
-            case .failure(let error):
+        case .success(let response):
+            do {
+                let model = try JSONDecoder().decode(Model.self, from: response.data)
+                return .success(model)
+            } catch {
+                let error = MoyaError.objectMapping(error, response)
                 return .failure(error)
+            }
+
+        case .failure(let error):
+            return .failure(error)
         }
     }
-    
+
     func map<D: Decodable>(_ type: D.Type) -> Result<D, MoyaError> {
         switch self {
-            case .success(let response):
-                do {
-                    let model = try JSONDecoder().decode(D.self, from: response.data)
-                    return .success(model)
-                } catch {
-                    let error = MoyaError.objectMapping(error, response)
-                    return .failure(error)
-                }
-                
-            case .failure(let error):
+        case .success(let response):
+            do {
+                let model = try JSONDecoder().decode(D.self, from: response.data)
+                return .success(model)
+            } catch {
+                let error = MoyaError.objectMapping(error, response)
                 return .failure(error)
+            }
+
+        case .failure(let error):
+            return .failure(error)
         }
     }
 }
 
 extension Result where Success == Any?, Failure == Moya.MoyaError {
-    
+
     /// Result类型为Optional的去除nil普通写法
     /// - Returns: Result
     func filterNil() -> Result<Any, Moya.MoyaError> {
@@ -103,7 +104,7 @@ extension Result where Success == Any?, Failure == Moya.MoyaError {
             return .failure(error)
         }
     }
-    
+
     /// Result类型为Optional,需要显示写出Result的数据类型,去除nil的写法
     /// - Returns: Result
     func filterNil<T>() -> Result<T, Moya.MoyaError> {
@@ -118,13 +119,13 @@ extension Result where Success == Any?, Failure == Moya.MoyaError {
                 } else {
                     return .failure(.jsonMapping(emptyDataResponse))
                 }
-                
+
             }
         case .failure(let error):
             return .failure(error)
         }
     }
-    
+
     /// Result类型为Optional,需要在入参中明确Wrapped的类型,去除nil的写法
     /// - Parameter type: Wrapped的类型
     /// - Returns: Result
@@ -146,7 +147,7 @@ extension Result where Success == Any?, Failure == Moya.MoyaError {
             return .failure(error)
         }
     }
-    
+
     var emptyDataResponse: Moya.Response {
         Response(statusCode: 200, data: Data())
     }

@@ -37,7 +37,8 @@ extension DeinitPrintable where Self: NSObject {
     }
     
     func deinitDDLog() {
-        DDLogDebug("\(className)被销毁了")
+        // CocoaLumberjack API changed - temporarily commented
+        // DDLog.debug("\(className)被销毁了")
     }
 }
 

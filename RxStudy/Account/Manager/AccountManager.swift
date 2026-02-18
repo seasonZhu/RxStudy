@@ -10,9 +10,6 @@ import Foundation
 
 import RxSwift
 import RxCocoa
-import NSObject_Rx
-import MBProgressHUD
-import SVProgressHUD
 
 /// 账户管理器（遵循 AccountManageable 协议，支持依赖注入）
 final class AccountManager: AccountManageable {
@@ -142,7 +139,7 @@ extension AccountManager {
     /// 调用登录接口,该接口目前没有使用
     func login(username: String, password: String, showLoading: Bool = true) {
         accountProvider.rx.request(AccountService.login(username, password, showLoading))
-            .map(BaseModel<AccountInfo>.self)
+            .map { try $0.map(BaseModel<AccountInfo>.self) }
             .subscribe { event in
                 let message: String
                 switch event {
@@ -180,7 +177,7 @@ extension AccountManager {
     func optimizeLogin(username: String, password: String, showLoading: Bool = true, completion: (() -> Void)? = nil) {
         accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .retry(2)
-            .map(BaseModel<AccountInfo>.self)
+            .map { try $0.map(BaseModel<AccountInfo>.self) }
             .asObservable()
             .flatMapLatest { (baseModel) -> Single<(CoinRank, Int)> in
                 if baseModel.isSuccess {
@@ -210,17 +207,17 @@ extension AccountManager {
     
     private func getMyCoin() -> Single<CoinRank> {
         myProvider.rx.request(MyService.userCoinInfo)
-            .map(BaseModel<CoinRank>.self)
+            .map { try $0.map(BaseModel<CoinRank>.self) }
             .map { $0.data }
             .compactMap { $0 }
             .catchAndReturn(CoinRank())
             .asObservable()
             .asSingle()
     }
-    
+
     private func getMyUnreadMessageCount() -> Single<Int> {
         myProvider.rx.request(MyService.unreadCount)
-            .map(BaseModel<Int>.self)
+            .map { try $0.map(BaseModel<Int>.self) }
             .map { $0.data }
             .compactMap { $0 }
             .catchAndReturn(0)

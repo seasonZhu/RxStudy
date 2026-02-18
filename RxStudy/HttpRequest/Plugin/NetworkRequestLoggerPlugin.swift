@@ -171,7 +171,8 @@ private extension NetworkRequestLoggerPlugin {
             return "  \($0.key): \($0.value)"
         }).joined(separator: "\n")
     
-        DDLogInfo("Headers: [ \(strings) ]")
+        // DDLogInfo not available - CocoaLumberjack API changed
+        print("Headers: [ \(strings) ]")
 
     }
 }

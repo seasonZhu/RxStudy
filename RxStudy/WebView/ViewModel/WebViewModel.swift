@@ -24,7 +24,7 @@ extension WebViewModel {
     
     func collectAction(collectId: Int) {
         myProvider.rx.request(MyService.collectArticle(collectId))
-            .map(BaseModel<String>.self)
+            .map { try $0.map(BaseModel<String>.self) }
             .map { $0.isSuccess }
             .subscribe { event in
                 switch event {
@@ -48,7 +48,7 @@ extension WebViewModel {
     
     func unCollectAction(collectId: Int) {
         myProvider.rx.request(MyService.unCollectArticle(collectId))
-            .map(BaseModel<String>.self)
+            .map { try $0.map(BaseModel<String>.self) }
             .map { $0.isSuccess }
             .subscribe { event in
                 switch event {

@@ -10,7 +10,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import MJRefresh
 
 // https://mp.weixin.qq.com/s?__biz=Mzg3MDk3NzUzNw==&mid=2247484414&idx=1&sn=6324639765e7abbabbcc44aa1cd4177f&chksm=ce84da90f9f3538692764048e313cdd03e609f81d7ef22fe090859385f948fb8adb1253c7d7d&scene=21#wechat_redirect
 // https://mp.weixin.qq.com/s?__biz=Mzg3MDk3NzUzNw==&mid=2247486755&idx=1&sn=44f178bc937a93412336a634042daa9c&chksm=ce84d44df9f35d5b7df6760cc94767a48e015073c930e45e5093554ddc070090d92e29a92082&scene=21#wechat_redirect

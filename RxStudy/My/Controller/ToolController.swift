@@ -10,9 +10,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import NSObject_Rx
 import SnapKit
-import MJRefresh
 
 class ToolController: BaseTableViewController {
 

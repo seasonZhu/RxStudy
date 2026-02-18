@@ -10,9 +10,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import NSObject_Rx
 import Moya
-import MJRefresh
 
 class RxSwiftCoinRankListController: BaseViewController {
     
@@ -176,7 +174,7 @@ class RxSwiftCoinRankListViewModel {
     private func getCoinRank(page: Int) {
         myProvider.rx.request(MyService.coinRank(page))
             /// 转Model
-            .map(BaseModel<Page<CoinRank>>.self)
+            .map { try $0.map(BaseModel<Page<CoinRank>>.self) }
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .map { $0.data }
             /// 解包,这一步Single变成了Maybe
@@ -220,69 +218,65 @@ class RxSwiftCoinRankListViewModel {
 extension RxSwiftCoinRankListViewModel: HasDisposeBag {}
 
 // MARK: - Moya + Combine进行网络请求
+// Combine Moya 示例代码 - requestPublisher 需要 ReactiveMoya 或 CombineCocoa Moya 扩展
+// 已暂时注释，如需使用请添加相应的依赖
 
-import Combine
-import CombineExt
-
-class CombineCoinRankListViewModel {
-    var cancellable: AnyCancellable?
-    
-    func getMyCoinList(page: Int) {
-        cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
-            .map(BaseModel<Page<CoinRank>>.self)
-            .map { $0.data }
-            .compactMap { $0 }
-            /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。
-            // .materialize()
-            .sink { completion in
-                print(completion)
-                guard case let .failure(error) = completion else { return }
-                print(error)
-            } receiveValue: { pageModel in
-                print(pageModel)
-            }
-
-    }
-    
-    deinit {
-        cancellable?.cancel()
-    }
-}
-
-/// Future的简单实战
-extension CombineCoinRankListViewModel {
-    func requestMyCoinList(page: Int) -> Future<Page<CoinRank>, MoyaError> {
-        
-        Future { promise in
-            self.cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
-                .map(BaseModel<Page<CoinRank>>.self)
-                .map { $0.data }
-                .compactMap { $0 }
-                /// 将事件从 Publisher<Output, MoyaError> 转换为 Publisher<Event<Output, MoyaError>, Never> 从而避免了错误发生,进而整个订阅会被结束掉，后续新的通知并不会被转化为请求。
-                // .materialize()
-                .sink { completion in
-                    print(completion)
-                    guard case let .failure(error) = completion else { return }
-                    promise(.failure(error))
-                } receiveValue: { pageModel in
-                    print(pageModel)
-                    promise(.success(pageModel))
-                }
-        }
-        
-    }
-    
-    func futureTest() async {
-        let vm = CombineCoinRankListViewModel()
-        let response = vm.requestMyCoinList(page: 1)
-        if #available(iOS 15.0, *) {
-            do {
-                let value = try await response.value
-            } catch let moyaError {
-                print(moyaError)
-            }
-        } else {
-            
-        }
-    }
-}
+// import Combine
+//
+// class CombineCoinRankListViewModel {
+//     var cancellable: AnyCancellable?
+//
+//     func getMyCoinList(page: Int) {
+//         cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
+//             .map { try $0.map(BaseModel<Page<CoinRank>>.self) }
+//             .map { $0.data }
+//             .compactMap { $0 }
+//             .sink { completion in
+//                 print(completion)
+//                 guard case let .failure(error) = completion else { return }
+//                 print(error)
+//             } receiveValue: { pageModel in
+//                 print(pageModel)
+//             }
+//     }
+//
+//     deinit {
+//         cancellable?.cancel()
+//     }
+// }
+//
+// /// Future的简单实战
+// extension CombineCoinRankListViewModel {
+//     func requestMyCoinList(page: Int) -> Future<Page<CoinRank>, MoyaError> {
+//
+//         Future { promise in
+//             self.cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
+//                 .map { try $0.map(BaseModel<Page<CoinRank>>.self) }
+//                 .map { $0.data }
+//                 .compactMap { $0 }
+//                 .sink { completion in
+//                     print(completion)
+//                     guard case let .failure(error) = completion else { return }
+//                     promise(.failure(error))
+//                 } receiveValue: { pageModel in
+//                     print(pageModel)
+//                     promise(.success(pageModel))
+//                 }
+//         }
+//
+//     }
+//
+//     func futureTest() async {
+//         let vm = CombineCoinRankListViewModel()
+//         let response = vm.requestMyCoinList(page: 1)
+//         if #available(iOS 15.0, *) {
+//             do {
+//                 let value = try await response.value
+//             } catch let moyaError {
+//                 print(moyaError)
+//             }
+//         } else {
+//
+//         }
+//     }
+// }

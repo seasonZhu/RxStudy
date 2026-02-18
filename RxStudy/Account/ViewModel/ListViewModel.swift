@@ -11,6 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+// Moya 14.x 自带 RxSwift 支持
 
 // MARK: - 列表服务
 enum ListService {
@@ -136,7 +137,7 @@ private extension ListViewModel {
     func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         target.page = page
         provider.rx.request(MultiTarget(target))
-            .map(BaseModel<Page<M>>.self)
+            .map { try $0.map(BaseModel<Page<M>>.self) }
             /// 解包,由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .compactMap { $0.data }
             /// 转换操作

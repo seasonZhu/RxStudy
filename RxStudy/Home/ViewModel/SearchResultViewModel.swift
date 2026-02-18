@@ -56,7 +56,7 @@ private extension SearchResultViewModel {
     
     func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         homeProvider.rx.request(HomeService.queryKeyword(keyword, page))
-            .map(BaseModel<Page<Info>>.self)
+            .map { try $0.map(BaseModel<Page<Info>>.self) }
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .compactMap { $0.data }
             /// 转换操作

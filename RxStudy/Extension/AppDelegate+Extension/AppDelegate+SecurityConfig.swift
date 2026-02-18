@@ -46,6 +46,5 @@ extension AppDelegate {
     // MARK: - 方案五：混淆技术
 
     private func loadObfuscatedKeys() {
-        print("testKey:\(testKey)")
     }
 }

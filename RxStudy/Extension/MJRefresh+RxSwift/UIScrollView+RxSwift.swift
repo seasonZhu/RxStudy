@@ -10,7 +10,6 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-import MJRefresh
 
 /// 供ViewModel使用
 enum MJRefreshAction {

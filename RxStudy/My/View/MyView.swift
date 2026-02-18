@@ -13,9 +13,9 @@ import RxCocoa
 import RxGesture
 
 class MyView: UIView {
-    
-    private lazy var imageView = UIImageView(image: R.image.user())
-    
+
+    private lazy var imageView = UIImageView(image: UIImage(systemName: "person.circle"))
+
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -29,13 +29,13 @@ class MyView: UIView {
         set {
             _myCoin = newValue
             if let text = newValue?.myInfo {
-                imageView.image = R.image.android()
+                imageView.image = UIImage(systemName: "star.circle.fill")
                 infoLabel.text = text
             } else {
-                imageView.image = R.image.user()
+                imageView.image = UIImage(systemName: "person.circle")
                 infoLabel.text = "排名: -- 等级: -- 积分: --"
             }
-            
+
         }
         get {
             return _myCoin

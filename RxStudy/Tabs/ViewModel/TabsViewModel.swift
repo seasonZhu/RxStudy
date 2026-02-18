@@ -56,7 +56,7 @@ private extension TabsViewModel {
         }
         
         result
-            .map(BaseModel<[TabModel]>.self)
+            .map { try $0.map(BaseModel<[TabModel]>.self) }
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }

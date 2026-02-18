@@ -13,20 +13,19 @@ import RxCocoa
 import RxGesture
 
 import Moya
-import SVProgressHUD
 
 #if DEBUG
-import FunnyButton
-import LifetimeTracker
 #endif
 
 class BaseViewController: UIViewController {
-    
+
     private lazy var errorImage: UIImageView = {
-        let imageView = UIImageView(image: R.image.notFound())
+        // R.swift 库已移除 - 使用系统占位图
+        let imageView = UIImageView(image: UIImage(systemName: "exclamationmark.triangle"))
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = .playAndroidBackground
+        imageView.tintColor = .gray
         return imageView
     }()
     
@@ -35,10 +34,10 @@ class BaseViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        #if DEBUG
-            trackLifetime()
-        #endif
-        
+        // LifetimeTracker 库已移除 - 暂时注释
+        // #if DEBUG
+        //     trackLifetime()
+        // #endif
     }
     
     required init?(coder: NSCoder) {
@@ -49,7 +48,8 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         /// 最简单的设置统一返回按钮的方法,所有的控制器继承该基类即可
-        let leftBarButtonItem = UIBarButtonItem(image: R.image.back(), style: .plain, target: self, action: #selector(leftBarButtonItemAction(_:)))
+        // R.swift 库已移除 - 使用系统返回图标
+        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(leftBarButtonItemAction(_:)))
         navigationItem.leftBarButtonItem = (navigationController?.viewControllers.count ?? 0) > 1 ? leftBarButtonItem : nil
         navigationItem.hidesBackButton = true
         
@@ -115,6 +115,8 @@ class BaseViewController: UIViewController {
 }
 
 // MARK: - FunnyButton的使用
+// FunnyButton 库已移除 - 暂时注释整个 extension
+/*
  extension BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -124,17 +126,20 @@ class BaseViewController: UIViewController {
         }
     #endif
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     #if DEBUG
         removeFunnyActions()
     #endif
-        
+
     }
  }
+ */
 
 // MARK: - LifetimeTracker的使用
+// LifetimeTracker 库已移除 - 暂时注释整个 extension
+/*
 #if DEBUG
 extension BaseViewController: LifetimeTrackable {
     class var lifetimeConfiguration: LifetimeConfiguration {
@@ -142,6 +147,7 @@ extension BaseViewController: LifetimeTrackable {
     }
 }
 #endif
+*/
 
 // MARK: - 网络请求错误页面的配置
 extension BaseViewController {

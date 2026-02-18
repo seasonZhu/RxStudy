@@ -11,6 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+import ReactiveMoya
 
 class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
@@ -125,9 +126,9 @@ private extension HomeViewModel {
     /// - Returns: Single<BaseModel<Page<Info>>>
     func requestData(page: Int) -> Single<BaseModel<Page<Info>>> {
         let result = homeProvider.rx.request(HomeService.normalArticle(page))
-            .map(BaseModel<Page<Info>>.self)
+            .map { try $0.map(BaseModel<Page<Info>>.self) }
             .catchAndReturn(BaseModel<Page<Info>>(data: nil, errorCode: nil, errorMsg: nil))
-        
+
         return result
     }
     
@@ -135,12 +136,12 @@ private extension HomeViewModel {
     /// - Returns: Single<[Info]>
     func topArticleData() -> Single<[Info]> {
         let result = homeProvider.rx.request(HomeService.topArticle)
-            .map(BaseModel<[Info]>.self)
+            .map { try $0.map(BaseModel<[Info]>.self) }
             .compactMap { $0.data }
             .catchAndReturn([])
             .asObservable()
             .asSingle()
-        
+
         return result
     }
     
@@ -148,7 +149,7 @@ private extension HomeViewModel {
     /// - Returns: Single<[Banner]>
     func bannerData() -> Single<[Banner]> {
         let result = homeProvider.rx.request(HomeService.banner)
-            .map(BaseModel<[Banner]>.self)
+            .map { try $0.map(BaseModel<[Banner]>.self) }
             .compactMap { $0.data }
             .catchAndReturn([])
             .asObservable()
@@ -174,7 +175,7 @@ extension HomeViewModel {
 extension HomeViewModel {
     private func mock() {
         mockProvider.rx.request(.mourn)
-            .map(BaseModel<Bool>.self)
+            .map { try $0.map(BaseModel<Bool>.self) }
             .compactMap { $0.data }
             .asObservable()
             .asSingle()

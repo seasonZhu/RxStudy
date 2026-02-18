@@ -29,7 +29,7 @@ class ToolViewModel<T: Codable>: BaseViewModel {
 private extension ToolViewModel {
     func requestData() {
         otherProvider.rx.request(OtherService.tools)
-            .map(BaseModel<[T]>.self)
+            .map { try $0.map(BaseModel<[T]>.self) }
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }

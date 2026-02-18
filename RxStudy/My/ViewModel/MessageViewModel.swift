@@ -58,7 +58,7 @@ private extension MessageViewModel {
         let service = status.requestService(page)
         
         myProvider.rx.request(service)
-            .map(BaseModel<Page<Message>>.self)
+            .map { try $0.map(BaseModel<Page<Message>>.self) }
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .compactMap { $0.data }
             /// 转换操作

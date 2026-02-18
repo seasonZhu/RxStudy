@@ -11,11 +11,7 @@ import WebKit
 
 import RxSwift
 import RxCocoa
-import MBProgressHUD
-import SVProgressHUD
 import MarqueeLabel
-import MJRefresh
-import JWNetAutoCache
 
 class WebViewController: BaseViewController {
     
@@ -81,8 +77,9 @@ class WebViewController: BaseViewController {
     
     private lazy var collectionButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(R.image.collect(), for: .normal)
-        button.setImage(R.image.collect_selected(), for: .selected)
+        // R.swift 库已移除 - 使用系统图标
+        button.setImage(UIImage(systemName: "star"), for: .normal)
+        button.setImage(UIImage(systemName: "star.fill"), for: .selected)
         return button
     }()
     
@@ -325,10 +322,11 @@ extension WebViewController {
     }
     
     /// 掘金的网页对这个支持不友好,会自动重定向到返回首页,可能是怕被爬虫了
+    /// JWCacheURLProtocol (JWNetAutoCache) 已移除 - 功能暂时禁用
     private func webViewCache() {
-        URLProtocol.wk_registerScheme("http")
-        URLProtocol.wk_registerScheme("https")
-        JWCacheURLProtocol.startListeningNetWorking()
+        // URLProtocol.wk_registerScheme("http")
+        // URLProtocol.wk_registerScheme("https")
+        // JWCacheURLProtocol.startListeningNetWorking()
     }
 }
 
@@ -544,10 +542,11 @@ extension WebViewController {
 extension WebViewController {
     /// 获取js方法,转成iOS的WKWebView可以识别的对象
     private func getJS() -> WKUserScript? {
-        guard let url = R.file.openJs() else {
+        // R.swift 库已移除 - 使用硬编码路径
+        guard let url = Bundle.main.url(forResource: "open", withExtension: "js") else {
             return nil
         }
-        
+
         guard let string = try? String(contentsOf: url, encoding: .utf8) else {
             return nil
         }

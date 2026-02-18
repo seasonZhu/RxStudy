@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import FSPagerView
 
 extension FSPagerView: HasDelegate {
     public typealias Delegate = FSPagerViewDelegate

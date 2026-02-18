@@ -63,3 +63,23 @@ fastlane/test_output
 iOSInjectionProject/
 
 .DS_Store
+
+# Tuist
+.build/
+.tuist-supported-version
+Derived/
+
+# Swift Package Manager
+.package.resolved
+Package.resolved
+.swiftpm/
+
+# Development Pods (已废弃，改用 SPM)
+DevelopmentPods/
+
+# CocoaPods (已废弃)
+Pods/
+Podfile.lock
+
+# Claude Code
+.claude/

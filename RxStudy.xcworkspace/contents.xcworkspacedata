@@ -4,7 +4,53 @@
    <FileRef
       location = "group:RxStudy.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:Pods/Pods.xcodeproj">
-   </FileRef>
+   <Group
+      location = "container:"
+      name = "Dependencies">
+      <FileRef
+         location = "group:.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/KeychainAccess/KeychainAccess.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/MarqueeLabel/MarqueeLabel.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/Moya/Moya.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/RxDataSources/RxDataSources.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/RxGesture/RxGesture.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/RxOptional/RxOptional.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/RxSwiftExt/RxSwiftExt.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/RxTheme/RxTheme.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/SFSafeSymbols/SFSafeSymbols.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
+      </FileRef>
+   </Group>
 </Workspace>

@@ -9,7 +9,6 @@
 import Foundation
 
 import Moya
-import SVProgressHUD
 
 /// 将AlamofireNetworkActivityLogger改造成Moya插件进行使用
 let networkRequestLoggerPlugin = NetworkRequestLoggerPlugin(level: .debug)

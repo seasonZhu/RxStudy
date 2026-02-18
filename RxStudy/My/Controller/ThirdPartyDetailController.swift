@@ -8,36 +8,40 @@
 
 import UIKit
 
-import AcknowList
 
 class ThirdPartyDetailController: BaseViewController {
 
     /// The main text view.
     open var textView: UITextView?
 
-    /// The represented acknowledgement.
-    var acknowledgement: Acknow?
+    /// The represented acknowledgement - AcknowList library removed
+    // var acknowledgement: Acknow?
+
+    /// Title for the detail view
+    var detailTitle: String?
+    var detailText: String?
 
     /**
-     Initializes the `AcknowViewController` instance with an acknowledgement.
+     Initializes the `ThirdPartyDetailController` instance with a title and text.
 
-     - parameter acknowledgement: The represented acknowledgement.
+     - parameter title: The title of the detail.
+     - parameter text: The text content.
 
-     - returns: The new `AcknowViewController` instance.
+     - returns: The new `ThirdPartyDetailController` instance.
      */
-    public init(acknowledgement: Acknow) {
+    public init(title: String, text: String) {
         super.init(nibName: nil, bundle: nil)
 
-        self.title = acknowledgement.title
-        self.acknowledgement = acknowledgement
+        self.detailTitle = title
+        self.detailText = text
     }
 
     /**
-     Initializes the `AcknowViewController` instance with a coder.
+     Initializes the `ThirdPartyDetailController` instance with a coder.
 
      - parameter aDecoder: The archive coder.
 
-     - returns: The new `AcknowViewController` instance.
+     - returns: The new `ThirdPartyDetailController` instance.
      */
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -52,6 +56,8 @@ class ThirdPartyDetailController: BaseViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = detailTitle ?? "详情"
+
         let textView = UITextView(frame: view.bounds)
         textView.alwaysBounceVertical = true
         textView.font = .preferredFont(forTextStyle: .body)
@@ -64,6 +70,7 @@ class ThirdPartyDetailController: BaseViewController {
             textView.panGestureRecognizer.allowedTouchTypes = [NSNumber(value: UITouch.TouchType.indirect.rawValue)]
         #endif
         textView.textContainerInset = UIEdgeInsets(top: DefaultMarginTopBottom, left: DefaultMarginLeftRight, bottom: DefaultMarginTopBottom, right: DefaultMarginLeftRight)
+        textView.text = detailText ?? "暂无内容"
         view.addSubview(textView)
 
         self.textView = textView
@@ -78,9 +85,9 @@ class ThirdPartyDetailController: BaseViewController {
         }
 
         // Need to set the textView text after the layout is completed, so that the content inset and offset properties can be adjusted automatically.
-        if let acknowledgement {
-            textView?.text = acknowledgement.text
-        }
+        // if let acknowledgement {
+        //     textView?.text = acknowledgement.text
+        // }
     }
 
     @available(iOS 11.0, tvOS 11.0, *) open override func viewLayoutMarginsDidChange() {

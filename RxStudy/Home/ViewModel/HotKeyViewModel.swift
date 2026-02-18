@@ -8,7 +8,6 @@
 
 import RxSwift
 import RxCocoa
-import NSObject_Rx
 import Moya
 
 class HotKeyViewModel: BaseViewModel {
@@ -27,7 +26,7 @@ private extension HotKeyViewModel {
     func requestData() {
         // fakeProvider
         homeProvider.rx.request(HomeService.hotKey)
-            .map(BaseModel<[HotKey]>.self)
+            .map { try $0.map(BaseModel<[HotKey]>.self) }
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }
@@ -49,7 +48,7 @@ private extension HotKeyViewModel {
 extension HotKeyViewModel: HotKeyRequest {
     func getData() {
         requestHotKey()
-            .map(BaseModel<[HotKey]>.self)
+            .map { try $0.map(BaseModel<[HotKey]>.self) }
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }
@@ -67,7 +66,7 @@ extension HotKeyViewModel: HotKeyRequest {
             .disposed(by: disposeBag)
         
         Repository.requestHotKey()
-            .map(BaseModel<[HotKey]>.self)
+            .map { try $0.map(BaseModel<[HotKey]>.self) }
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }

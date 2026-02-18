@@ -1,6 +1,5 @@
 import RxSwift
 import RxCocoa
-import NSObject_Rx
 
 import SwiftUI
 

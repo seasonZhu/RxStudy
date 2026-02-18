@@ -12,7 +12,6 @@ import RxSwift
 import RxSwiftExt
 import RxCocoa
 
-import TheRouter
 
 class HotKeyController: BaseViewController {
     
