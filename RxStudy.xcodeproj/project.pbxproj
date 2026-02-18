@@ -98,6 +98,7 @@
 		45577CBC07B15E894C48F018 /* MJRefreshAutoNormalFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 048F5FE21A3FC58C510B40E2 /* MJRefreshAutoNormalFooter.m */; };
 		4612E1029BCC422B6F7EDC54 /* JXSegmentedIndicatorProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4C5BC267D3492731B1B88E /* JXSegmentedIndicatorProtocol.swift */; };
 		478A578091BEA8338155109F /* LoginPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677090F9C6DE9024EFFC1ECD /* LoginPageViewModel.swift */; };
+		47D8F59F418ABD5299FF939D /* MJRefresh.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2F3152E4DCBAE7CC99022652 /* MJRefresh.bundle */; };
 		482D36CEBD5B4FF1D3F16299 /* JXSegmentedTitleAttributeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD1544F788E6FC7EE1AFF1A /* JXSegmentedTitleAttributeDataSource.swift */; };
 		487D815020DF9F6B7266D6F9 /* WebViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9D741EBBC1692EB19E126C /* WebViewController+Rx.swift */; };
 		4AADEEB721A1F239D2E82C43 /* MJRefresh+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F0C1B2C3C40C0F971D7B9BF /* MJRefresh+RxSwift.swift */; };
@@ -491,6 +492,7 @@
 		2D032DEF88375B44209AB3BD /* TuistBundle+RxStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+RxStudy.swift"; sourceTree = "<group>"; };
 		2E5CFA678970E97FEAA51E06 /* LogUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
 		2EF778508FCFBF64C58B6DF5 /* JXSegmentedDotCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedDotCell.swift; sourceTree = "<group>"; };
+		2F3152E4DCBAE7CC99022652 /* MJRefresh.bundle */ = {isa = PBXFileReference; lastKnownFileType = wrapper.cfbundle; path = MJRefresh.bundle; sourceTree = "<group>"; };
 		2F6E96BE193C15C7DEB7DB1D /* TreeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeService.swift; sourceTree = "<group>"; };
 		30CCB8F05057F9521EBD188D /* CocoaLumberjack.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CocoaLumberjack.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30E53204F2FCB7F7AF10AD1B /* UICollectionViewLayout+MJRefresh.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UICollectionViewLayout+MJRefresh.m"; sourceTree = "<group>"; };
@@ -1114,6 +1116,7 @@
 			children = (
 				852425EB164DA46BC3AAD395 /* Base */,
 				D39A2CB331631EDB5C8F5393 /* Custom */,
+				2F3152E4DCBAE7CC99022652 /* MJRefresh.bundle */,
 				66EE47E2B78535A610017877 /* MJRefreshConfig.m */,
 				210506922B35FC13528DEBB0 /* MJRefreshConst.m */,
 				38801B4D475B8FA7BEE8337F /* NSBundle+MJRefresh.m */,
@@ -2127,6 +2130,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47D8F59F418ABD5299FF939D /* MJRefresh.bundle in Resources */,
 				A8FEAD5B37BBAFFB243A360F /* SVProgressHUD.bundle in Resources */,
 				BF9E1E2FD34C9AD4C7C5F847 /* Assets.xcassets in Resources */,
 				A2760D8B2F187A24E1A18D45 /* Alamofire_Alamofire.bundle in Resources */,

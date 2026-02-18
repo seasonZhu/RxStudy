@@ -112,7 +112,8 @@ let project = Project(
             ],
             resources: [
                 "RxStudy/Assets.xcassets/**",
-                "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**"
+                "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**",
+                "Packages/ThirdParty/MJRefresh/Sources/MJRefresh/MJRefresh.bundle/**"
             ],
             dependencies: [
                 // ========== RxSwift 生态 ==========
