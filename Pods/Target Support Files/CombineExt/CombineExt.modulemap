@@ -1,6 +1,0 @@
-framework module CombineExt {
-  umbrella header "CombineExt-umbrella.h"
-
-  export *
-  module * { export * }
-}

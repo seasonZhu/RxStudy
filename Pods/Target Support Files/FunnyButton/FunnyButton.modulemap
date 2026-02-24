@@ -1,6 +1,0 @@
-framework module FunnyButton {
-  umbrella header "FunnyButton-umbrella.h"
-
-  export *
-  module * { export * }
-}

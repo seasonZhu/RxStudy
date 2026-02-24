@@ -1,7 +1,0 @@
-retain_objc_accessible: true
-retain_public: true
-schemes:
-- RxStudy
-targets:
-- RxStudy
-workspace: RxStudy.xcworkspace

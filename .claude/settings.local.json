@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "mcp__web-search-prime__webSearchPrime",
-      "mcp__web-reader__webReader"
+      "mcp__web-reader__webReader",
+      "mcp__zread__read_file"
     ]
   }
 }

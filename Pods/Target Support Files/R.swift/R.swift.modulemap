@@ -1,6 +1,0 @@
-framework module RswiftResources {
-  umbrella header "R.swift-umbrella.h"
-
-  export *
-  module * { export * }
-}

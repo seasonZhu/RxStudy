@@ -1,6 +1,0 @@
-framework module IQKeyboardNotification {
-  umbrella header "IQKeyboardNotification-umbrella.h"
-
-  export *
-  module * { export * }
-}

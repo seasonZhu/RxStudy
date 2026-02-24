@@ -1,6 +1,5 @@
 import ProjectDescription
 
-/// Team ID - 河南灵动汽车销售服务有限公司
 /// 这样每次 tuist generate 后就不需要手动设置了
 /// https://developer.apple.com/account
 let teamId = "GZKK4Y45D3"

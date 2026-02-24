@@ -1,6 +1,0 @@
-framework module IQTextInputViewNotification {
-  umbrella header "IQTextInputViewNotification-umbrella.h"
-
-  export *
-  module * { export * }
-}
