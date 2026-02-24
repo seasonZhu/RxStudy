@@ -1,0 +1,42 @@
+# SwiftGen 配置文件
+# 文档: https://github.com/SwiftGen/SwiftGen
+
+# 字符串配置 - 只使用一个语言的文件作为模板源
+strings:
+  # 输入路径（仅使用中文作为模板）
+  inputs:
+    - RxStudy/zh-Hans.lproj
+  # 过滤器：只处理 Localizable.strings，排除 InfoPlist.strings
+  filter: Localizable\.strings$
+  # 输出配置
+  outputs:
+    - templateName: structured-swift5
+      output: RxStudy/Generated/Strings+SwiftGen.swift
+      params:
+        enumName: L10n
+        publicAccess: true
+
+# Assets 配置 (使用 xcassets parser)
+xcassets:
+  # 输入路径（Assets.xcassets）
+  inputs:
+    - RxStudy/Assets.xcassets
+  # 输出配置
+  outputs:
+    - templateName: swift5
+      output: RxStudy/Generated/Assets+SwiftGen.swift
+      params:
+        enumName: Asset
+        publicAccess: true
+
+# 注意：如果需要添加字体支持，先创建 RxStudy/Resources/Fonts 目录
+# 然后取消下面的注释
+# fonts:
+#   inputs:
+#     - RxStudy/Resources/Fonts
+#   outputs:
+#     - templateName: swift5
+#       output: RxStudy/Generated/Fonts+SwiftGen.swift
+#       params:
+#         enumName: FontFamily
+#         publicAccess: true

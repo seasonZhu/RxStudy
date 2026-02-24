@@ -1,0 +1,12 @@
+// Home
+"home.welcome" = "Welcome to WanAndroid";
+"home.title" = "Home";
+
+// Project
+"project.title" = "Project";
+"project.list" = "Project List";
+
+// Common
+"common.confirm" = "Confirm";
+"common.cancel" = "Cancel";
+"common.loading" = "Loading...";

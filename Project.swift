@@ -95,6 +95,8 @@ let project = Project(
             ),
             sources: [
                 "RxStudy/**",
+                // ========== SwiftGen 生成的代码 ==========
+                "RxStudy/Generated/**/*.swift",
                 // ========== 第三方库源码（不支持SPM）直接引入 ==========
                 "Packages/ThirdParty/NSObject+Rx/Sources/**",
                 "Packages/ThirdParty/TheRouter/Sources/**",

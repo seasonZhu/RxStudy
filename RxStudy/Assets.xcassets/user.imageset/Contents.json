@@ -1,10 +1,6 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x"
-    },
-    {
       "filename" : "user@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
@@ -15,6 +11,9 @@
       "scale" : "3x"
     }
   ],
+  "properties" : {
+    "preserves-vector-representation" : false
+  },
   "info" : {
     "author" : "xcode",
     "version" : 1

@@ -117,11 +117,12 @@ class ViewController: UITabBarController {
     private func addSubviewController(type: TabType) {
         let subViewController = type.viewController
         subViewController.tabBarItem.title = type.title
-        subViewController.tabBarItem.image = UIImage(named: type.imageName)
-        subViewController.tabBarItem.selectedImage = UIImage(named: type.selectImageName)
+        // ✅ 使用 SwiftGen 生成的类型安全图片资源
+        subViewController.tabBarItem.image = type.image
+        subViewController.tabBarItem.selectedImage = type.selectedImage
         subViewController.title = type.title
         addChild(subViewController)
-        
+
     }
 
     // MARK: - 添加所有子控制器

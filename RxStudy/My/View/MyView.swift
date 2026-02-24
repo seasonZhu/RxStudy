@@ -29,9 +29,11 @@ class MyView: UIView {
         set {
             _myCoin = newValue
             if let text = newValue?.myInfo {
-                imageView.image = UIImage(named: "android")
+                // ✅ 使用 SwiftGen 生成的类型安全图片资源
+                imageView.image = Asset.android.image
             } else {
-                imageView.image = UIImage(named: "user")
+                // ✅ 使用 SwiftGen 生成的用户头像
+                imageView.image = Asset.user.image
                 infoLabel.text = "排名: -- 等级: -- 积分: --"
             }
 

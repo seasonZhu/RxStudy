@@ -33,7 +33,7 @@ extension TabType {
             return MyController()
         }
     }
-    
+
     var title: String {
         switch self {
         case .home:
@@ -48,34 +48,36 @@ extension TabType {
             return "我的"
         }
     }
-    
-    var imageName: String {
+
+    /// ✅ 使用 SwiftGen 生成的类型安全图片资源
+    var image: UIImage {
         switch self {
         case .home:
-            return "home"
+          return Asset.home.image
         case .project:
-            return "project"
+            return Asset.project.image
         case .publicNumber:
-            return "publicNumber"
+            return Asset.publicNumber.image
         case .tree:
-            return "tree"
+            return Asset.tree.image
         case .my:
-            return "my"
+            return Asset.my.image
         }
     }
 
-    var selectImageName: String {
+    /// ✅ 使用 SwiftGen 生成的类型安全选中图片资源
+    var selectedImage: UIImage {
         switch self {
         case .home:
-            return "home_selected"
+            return Asset.homeSelected.image
         case .project:
-            return "project_selected"
+            return Asset.projectSelected.image
         case .publicNumber:
-            return "publicNumber_selected"
+            return Asset.publicNumberSelected.image
         case .tree:
-            return "tree_selected"
+            return Asset.treeSelected.image
         case .my:
-            return "my_selected"
+            return Asset.mySelected.image
         }
     }
 }

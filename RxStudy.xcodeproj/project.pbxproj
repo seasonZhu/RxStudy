@@ -29,6 +29,7 @@
 		0E71EE80C2A797280A4D1FAE /* RequestLoadingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F40C786AC7BFB1311CAE49 /* RequestLoadingPlugin.swift */; };
 		0E7D74E9A2DF8644AAB8CBAE /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E5457E154A0AECD9C2F1 /* SVIndefiniteAnimatedView.m */; };
 		100E052630AC22A3652E5309 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2530D6360B454D04C77FA /* MyViewModel.swift */; };
+		11A043DE530B5E8C4BB28070 /* Assets+SwiftGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766B1D80DDF982D05523CC6 /* Assets+SwiftGen.swift */; };
 		1291E1125E62FC4A6C00FDF1 /* JXSegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E33344E4A18C8BD4922DFF9 /* JXSegmentedView.swift */; };
 		12FAEAF8102BE65BB0FFB478 /* WebLoadInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7206D95C463960D376EF45F9 /* WebLoadInfo.swift */; };
 		13D425F022967A7E78FE21FB /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4269C59C690E95E413193197 /* SafariActivity.swift */; };
@@ -52,6 +53,7 @@
 		2491F562C1CB4DF947F891C6 /* TypeNameProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB912557A3FE56AC69B954 /* TypeNameProtocol.swift */; };
 		24B1F936117A60F5D8E52F24 /* CocoaLumberjack.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30CCB8F05057F9521EBD188D /* CocoaLumberjack.framework */; };
 		2518A4276290352D2CFA9113 /* JXSegmentedTitleItemModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E4C070DD5CE58263ED7A641 /* JXSegmentedTitleItemModel.swift */; };
+		25E7153FE64314F012A499B0 /* Strings+SwiftGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BCF1E9D5E8B3BB4F83A1FBF /* Strings+SwiftGen.swift */; };
 		26161093E771FB30423A1F0A /* BasePageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63CA0044ED98ABF4840ADBF0 /* BasePageViewModel.swift */; };
 		29E2CF6255A580FB6D578625 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D40F73763F6CA535650B4 /* UIApplication+Extension.swift */; };
 		2A3F1D45C618AFC3978E3054 /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B51B8B382F0F4184122CFFA /* MJRefreshFooter.m */; };
@@ -537,6 +539,7 @@
 		441C6CE8F6D140BD0A407C00 /* TheRouterPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterPattern.swift; sourceTree = "<group>"; };
 		442D21B42EDFCFB81F60D772 /* InnerEventResponsible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InnerEventResponsible.swift; sourceTree = "<group>"; };
 		46586C2D9A974570E57AD5C7 /* ResponseInterceptorPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseInterceptorPlugin.swift; sourceTree = "<group>"; };
+		4766B1D80DDF982D05523CC6 /* Assets+SwiftGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Assets+SwiftGen.swift"; sourceTree = "<group>"; };
 		4788061A42ED690A0A899598 /* CodableTest.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = CodableTest.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		478F306E5D39BA80AF0B6CEB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A0C21EBC449D33987FD350B /* CustomTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
@@ -594,6 +597,7 @@
 		6AEAD20F32FE81D4E5D22E85 /* TabAble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabAble.swift; sourceTree = "<group>"; };
 		6B53494C5115AF7D3150FDD2 /* TypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		6B677E87AF26700C6D4010B7 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		6BCF1E9D5E8B3BB4F83A1FBF /* Strings+SwiftGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+SwiftGen.swift"; sourceTree = "<group>"; };
 		6C1D9A001FCA2122FE00B3CF /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
 		6CB2EFA8A886AD6414699A95 /* FSPageViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		6CE901A55440AFB8543C4AC0 /* Moya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Moya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1663,6 +1667,15 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		A3A4924DDCBCD0F0314B1AA9 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				4766B1D80DDF982D05523CC6 /* Assets+SwiftGen.swift */,
+				6BCF1E9D5E8B3BB4F83A1FBF /* Strings+SwiftGen.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
 		A49D32D54BFD931192EA9438 /* Enum */ = {
 			isa = PBXGroup;
 			children = (
@@ -2069,6 +2082,7 @@
 				15D3C5C4818A0F00CA5E5233 /* Extension */,
 				AB73EE81BC8D54B9B9ADB279 /* Extensions */,
 				1E55F717A9C39F0155828DA7 /* FlutterManager */,
+				A3A4924DDCBCD0F0314B1AA9 /* Generated */,
 				5EC5140A22CFACCE5F775AED /* Home */,
 				9F715F1F44A722474265B8B4 /* HttpRequest */,
 				EB5C9FC4B55C7F02891FFD5F /* InnerViewEvent */,
@@ -2448,6 +2462,8 @@
 				CBCFFC3FB1FF6D0FD9DE2895 /* FlutterMethodChannelPlugin.swift in Sources */,
 				C2160CF3A9C8F751755F355E /* InvokeMethodType.swift in Sources */,
 				810F9A6F629C92AC6F670BAD /* NativeEventChannel.swift in Sources */,
+				11A043DE530B5E8C4BB28070 /* Assets+SwiftGen.swift in Sources */,
+				25E7153FE64314F012A499B0 /* Strings+SwiftGen.swift in Sources */,
 				4137C68864DB98B02E92C194 /* HomeController.swift in Sources */,
 				F920C6E934F6A7D2573CFD64 /* HotKeyController.swift in Sources */,
 				03839F2DEC2731821F9AEF3F /* SearchResultController.swift in Sources */,
