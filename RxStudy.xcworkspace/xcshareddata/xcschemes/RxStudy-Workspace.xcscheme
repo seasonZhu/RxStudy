@@ -17,7 +17,7 @@
                BlueprintIdentifier = "2A717419231F3C0B8A3E0F06"
                BuildableName = "Alamofire.framework"
                BlueprintName = "Alamofire"
-               ReferencedContainer = "container:.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -31,7 +31,7 @@
                BlueprintIdentifier = "87EA802785C2DA6B58134CC2"
                BuildableName = "Alamofire_Alamofire.bundle"
                BlueprintName = "Alamofire_Alamofire"
-               ReferencedContainer = "container:.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -45,7 +45,7 @@
                BlueprintIdentifier = "DADC25129367332388128FB8"
                BuildableName = "CocoaLumberjack.framework"
                BlueprintName = "CocoaLumberjack"
-               ReferencedContainer = "container:.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -59,7 +59,7 @@
                BlueprintIdentifier = "7CA76501511FF51861BE142E"
                BuildableName = "CocoaLumberjack_CocoaLumberjack.bundle"
                BlueprintName = "CocoaLumberjack_CocoaLumberjack"
-               ReferencedContainer = "container:.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -73,7 +73,7 @@
                BlueprintIdentifier = "C451FEEB6A08950C17216EE4"
                BuildableName = "Differentiator.framework"
                BlueprintName = "Differentiator"
-               ReferencedContainer = "container:.build/tuist-derived/RxDataSources/RxDataSources.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxDataSources/RxDataSources.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -87,7 +87,7 @@
                BlueprintIdentifier = "FC8983B65BEFA93EC9015ECE"
                BuildableName = "KeychainAccess.framework"
                BlueprintName = "KeychainAccess"
-               ReferencedContainer = "container:.build/tuist-derived/KeychainAccess/KeychainAccess.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/KeychainAccess/KeychainAccess.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -101,7 +101,7 @@
                BlueprintIdentifier = "B3B395FD6136F57D630138BD"
                BuildableName = "Kingfisher.framework"
                BlueprintName = "Kingfisher"
-               ReferencedContainer = "container:.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -115,7 +115,7 @@
                BlueprintIdentifier = "F6E2F8C3B7D9EB13105F5694"
                BuildableName = "Kingfisher_Kingfisher.bundle"
                BlueprintName = "Kingfisher_Kingfisher"
-               ReferencedContainer = "container:.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -129,7 +129,7 @@
                BlueprintIdentifier = "3F021E77926999B111A8E16D"
                BuildableName = "MarqueeLabel.framework"
                BlueprintName = "MarqueeLabel"
-               ReferencedContainer = "container:.build/tuist-derived/MarqueeLabel/MarqueeLabel.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/MarqueeLabel/MarqueeLabel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -143,7 +143,7 @@
                BlueprintIdentifier = "5473759C32D6E86EEBB18533"
                BuildableName = "MarqueeLabel_MarqueeLabel.bundle"
                BlueprintName = "MarqueeLabel_MarqueeLabel"
-               ReferencedContainer = "container:.build/tuist-derived/MarqueeLabel/MarqueeLabel.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/MarqueeLabel/MarqueeLabel.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -157,7 +157,7 @@
                BlueprintIdentifier = "A4DFF0D3EE507E4032CBEC48"
                BuildableName = "Moya.framework"
                BlueprintName = "Moya"
-               ReferencedContainer = "container:.build/tuist-derived/Moya/Moya.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/Moya/Moya.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -171,7 +171,7 @@
                BlueprintIdentifier = "05A313C12DA1CF00E6841C80"
                BuildableName = "RxBlocking.framework"
                BlueprintName = "RxBlocking"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -185,7 +185,7 @@
                BlueprintIdentifier = "B8553AE058E48CADF8895B28"
                BuildableName = "RxCocoa.framework"
                BlueprintName = "RxCocoa"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -199,7 +199,7 @@
                BlueprintIdentifier = "8A30B8272F02FD2827613749"
                BuildableName = "RxCocoaRuntime.framework"
                BlueprintName = "RxCocoaRuntime"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -213,7 +213,7 @@
                BlueprintIdentifier = "72918849A6EB06A3E91AE81F"
                BuildableName = "RxDataSources.framework"
                BlueprintName = "RxDataSources"
-               ReferencedContainer = "container:.build/tuist-derived/RxDataSources/RxDataSources.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxDataSources/RxDataSources.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -227,7 +227,7 @@
                BlueprintIdentifier = "F4D69314A2DAFB5C43673E2C"
                BuildableName = "RxGesture.framework"
                BlueprintName = "RxGesture"
-               ReferencedContainer = "container:.build/tuist-derived/RxGesture/RxGesture.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxGesture/RxGesture.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -241,7 +241,7 @@
                BlueprintIdentifier = "5023327BBF6D14FE88DF5B24"
                BuildableName = "RxMoya.framework"
                BlueprintName = "RxMoya"
-               ReferencedContainer = "container:.build/tuist-derived/Moya/Moya.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/Moya/Moya.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -255,7 +255,7 @@
                BlueprintIdentifier = "502BB9FC9921FFEB1C9BABB6"
                BuildableName = "RxOptional.framework"
                BlueprintName = "RxOptional"
-               ReferencedContainer = "container:.build/tuist-derived/RxOptional/RxOptional.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxOptional/RxOptional.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -269,7 +269,7 @@
                BlueprintIdentifier = "95C3C64AA50990FE5F757F3A"
                BuildableName = "RxRelay.framework"
                BlueprintName = "RxRelay"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -297,7 +297,7 @@
                BlueprintIdentifier = "8347C3C08CE16ABDA172FCE3"
                BuildableName = "RxSwift.framework"
                BlueprintName = "RxSwift"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -311,7 +311,7 @@
                BlueprintIdentifier = "31B4817B3A3D43C828309F9D"
                BuildableName = "RxSwiftExt.framework"
                BlueprintName = "RxSwiftExt"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwiftExt/RxSwiftExt.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwiftExt/RxSwiftExt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -325,7 +325,7 @@
                BlueprintIdentifier = "2A716AC6042520C31893B492"
                BuildableName = "RxSwift_RxCocoa.bundle"
                BlueprintName = "RxSwift_RxCocoa"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -339,7 +339,7 @@
                BlueprintIdentifier = "6AB32C6E7E7F89A792B0C025"
                BuildableName = "RxSwift_RxCocoaRuntime.bundle"
                BlueprintName = "RxSwift_RxCocoaRuntime"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -353,7 +353,21 @@
                BlueprintIdentifier = "9C944164385AC104C793F7E3"
                BuildableName = "RxSwift_RxRelay.bundle"
                BlueprintName = "RxSwift_RxRelay"
-               ReferencedContainer = "container:.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "230063EB03DD4B931C0816BD"
+               BuildableName = "RxSwift_RxSwift.bundle"
+               BlueprintName = "RxSwift_RxSwift"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -367,7 +381,7 @@
                BlueprintIdentifier = "148B92DB28D602D43D9F80B5"
                BuildableName = "RxTheme.framework"
                BlueprintName = "RxTheme"
-               ReferencedContainer = "container:.build/tuist-derived/RxTheme/RxTheme.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/RxTheme/RxTheme.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -381,7 +395,7 @@
                BlueprintIdentifier = "791D9FF2389B440F5A561D16"
                BuildableName = "SFSafeSymbols.framework"
                BlueprintName = "SFSafeSymbols"
-               ReferencedContainer = "container:.build/tuist-derived/SFSafeSymbols/SFSafeSymbols.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/SFSafeSymbols/SFSafeSymbols.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -395,7 +409,7 @@
                BlueprintIdentifier = "8A043024BB190898066F1729"
                BuildableName = "SnapKit.framework"
                BlueprintName = "SnapKit"
-               ReferencedContainer = "container:.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -409,7 +423,7 @@
                BlueprintIdentifier = "6373C89B0415733128F88C67"
                BuildableName = "SnapKit_SnapKit.bundle"
                BlueprintName = "SnapKit_SnapKit"
-               ReferencedContainer = "container:.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -423,7 +437,7 @@
                BlueprintIdentifier = "C299693B66300B062EDECFE0"
                BuildableName = "ZipArchive.framework"
                BlueprintName = "ZipArchive"
-               ReferencedContainer = "container:.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -437,7 +451,7 @@
                BlueprintIdentifier = "77B9BB3E606F30FB513E50DB"
                BuildableName = "ZipArchive_ZipArchive.bundle"
                BlueprintName = "ZipArchive_ZipArchive"
-               ReferencedContainer = "container:.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -466,7 +480,7 @@
             BlueprintIdentifier = "2A717419231F3C0B8A3E0F06"
             BuildableName = "Alamofire.framework"
             BlueprintName = "Alamofire"
-            ReferencedContainer = "container:.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+            ReferencedContainer = "container:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -482,7 +496,7 @@
             BlueprintIdentifier = "2A717419231F3C0B8A3E0F06"
             BuildableName = "Alamofire.framework"
             BlueprintName = "Alamofire"
-            ReferencedContainer = "container:.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+            ReferencedContainer = "container:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>

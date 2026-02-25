@@ -13,25 +13,6 @@ let project = Project(
             tabWidth: 2
         )
     ),
-    packages: [
-        // ========== 远程 SPM Package ==========
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.7.0"),
-        .package(url: "https://github.com/RxSwiftCommunity/RxDataSources.git", from: "5.0.0"),
-        .package(url: "https://github.com/RxSwiftCommunity/RxGesture.git", from: "4.0.0"),
-        .package(url: "https://github.com/RxSwiftCommunity/RxTheme.git", from: "6.0.0"),
-        .package(url: "https://github.com/RxSwiftCommunity/RxSwiftExt.git", from: "6.0.0"),
-        .package(url: "https://github.com/RxSwiftCommunity/RxOptional.git", from: "5.0.0"),
-        // 使用 Moya 15.0.0 + RxMoya（仅使用 RxSwift，不使用 ReactiveSwift）
-        .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.8.0"),
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.10.0"),
-        .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.6.0"),
-        .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2"),
-        .package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: "3.8.0"),
-        .package(url: "https://github.com/cbpowell/MarqueeLabel.git", from: "4.0.0"),
-        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", from: "2.1.3"),
-        .package(url: "https://github.com/ZipArchive/ZipArchive.git", from: "2.5.0"),
-    ],
     settings: .settings(
         base: [
             "IPHONEOS_DEPLOYMENT_TARGET": "17.6",
@@ -120,33 +101,33 @@ let project = Project(
             ],
             dependencies: [
                 // ========== RxSwift 生态 ==========
-                .external(name: "RxSwift"),
-                .external(name: "RxCocoa"),
-                .external(name: "RxRelay"),
-                .external(name: "RxDataSources"),
-                .external(name: "RxGesture"),
-                .external(name: "RxTheme"),
-                .external(name: "RxSwiftExt"),
-                .external(name: "RxOptional"),
-                .external(name: "RxBlocking"),
+                TargetDependency.external(name: "RxSwift"),
+                TargetDependency.external(name: "RxCocoa"),
+                TargetDependency.external(name: "RxRelay"),
+                TargetDependency.external(name: "RxDataSources"),
+                TargetDependency.external(name: "RxGesture"),
+                TargetDependency.external(name: "RxTheme"),
+                TargetDependency.external(name: "RxSwiftExt"),
+                TargetDependency.external(name: "RxOptional"),
+                TargetDependency.external(name: "RxBlocking"),
 
                 // ========== 网络层 ==========
                 // 使用 Moya 的 RxMoya 模块（SPM 自带，不需要自定义扩展）
-                .external(name: "RxMoya"),
-                .external(name: "Alamofire"),
+                TargetDependency.external(name: "RxMoya"),
+                TargetDependency.external(name: "Alamofire"),
 
                 // ========== 图片加载 ==========
-                .external(name: "Kingfisher"),
+                TargetDependency.external(name: "Kingfisher"),
 
                 // ========== 布局 ==========
-                .external(name: "SnapKit"),
+                TargetDependency.external(name: "SnapKit"),
 
                 // ========== 工具 ==========
-                .external(name: "KeychainAccess"),
-                .external(name: "CocoaLumberjack"),
-                .external(name: "MarqueeLabel"),
-                .external(name: "SFSafeSymbols"),
-                .external(name: "ZipArchive"),
+                TargetDependency.external(name: "KeychainAccess"),
+                TargetDependency.external(name: "CocoaLumberjack"),
+                TargetDependency.external(name: "MarqueeLabel"),
+                TargetDependency.external(name: "SFSafeSymbols"),
+                TargetDependency.external(name: "ZipArchive"),
             ],
             settings: .settings(
                 base: [
