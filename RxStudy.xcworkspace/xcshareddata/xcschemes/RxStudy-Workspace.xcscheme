@@ -434,6 +434,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "34DAA287EC5DF247179D5B35"
+               BuildableName = "SwiftUIStudy.app"
+               BlueprintName = "SwiftUIStudy"
+               ReferencedContainer = "container:RxStudy.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C299693B66300B062EDECFE0"
                BuildableName = "ZipArchive.framework"
                BlueprintName = "ZipArchive"

@@ -168,6 +168,65 @@ let project = Project(
                 defaultSettings: .recommended
             )
         ),
+
+        // ========== SwiftUI Study Target（UIKit → SwiftUI 迁移专用）==========
+        .target(
+            name: "SwiftUIStudy",
+            destinations: .iOS,
+            product: .app,
+            bundleId: "com.lostsakura.RxStudy.SwiftUIStudy",
+            deploymentTargets: .iOS("17.6"),
+            infoPlist: .extendingDefault(
+                with: [
+                    "CFBundleDisplayName": "玩安卓(SwiftUI)",
+                    "CFBundleShortVersionString": "1.0.0",
+                    "CFBundleVersion": "1",
+                    "UILaunchScreen": [
+                        "UIColorName": "",
+                        "UIImageName": "",
+                    ],
+                    "NSAppTransportSecurity": [
+                        "NSAllowsArbitraryLoads": true
+                    ],
+                    "NSPhotoLibraryUsageDescription": "访问相册用于选择图片",
+                    "NSCameraUsageDescription": "访问相机用于拍摄图片",
+                    "NSPhotoLibraryAddUsageDescription": "保存图片到相册"
+                ]
+            ),
+            sources: [
+                // ========== SwiftUIApp 独立代码（与 RxStudy 同级）==========
+                "SwiftUIApp/**/*.swift",
+                // ========== SwiftUI 入口文件 ==========
+                "RxStudy/SwiftUIExample/SwiftUIStudyApp.swift",
+                // ========== 资源（共享主项目的 Assets）==========
+                "RxStudy/Assets.xcassets/**",
+            ],
+            resources: [],
+            dependencies: [
+                // ========== 网络层（使用 async/await）==========
+                TargetDependency.external(name: "Moya"),
+                TargetDependency.external(name: "Alamofire"),
+
+                // ========== 图片加载 ==========
+                TargetDependency.external(name: "Kingfisher"),
+            ],
+            settings: .settings(
+                base: [
+                    "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
+                    "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
+                    "ENABLE_PREVIEWS": "YES",
+                    "DEVELOPMENT_TEAM": .string(teamId),
+                    "CODE_SIGN_STYLE": "Automatic",
+                    "CODE_SIGN_IDENTITY": "Apple Development",
+                    "PRODUCT_BUNDLE_IDENTIFIER": "com.lostsakura.RxStudy.SwiftUIStudy",
+                ],
+                configurations: [
+                    .debug(name: .debug),
+                    .release(name: .release)
+                ],
+                defaultSettings: .recommended
+            )
+        ),
     ],
     schemes: [
         .scheme(
@@ -175,6 +234,15 @@ let project = Project(
             shared: true,
             buildAction: .buildAction(targets: ["RxStudy"]),
             runAction: .runAction(executable: "RxStudy"),
+            archiveAction: .archiveAction(configuration: .release),
+            profileAction: .profileAction(configuration: .release),
+            analyzeAction: .analyzeAction(configuration: .debug)
+        ),
+        .scheme(
+            name: "SwiftUIStudy",
+            shared: true,
+            buildAction: .buildAction(targets: ["SwiftUIStudy"]),
+            runAction: .runAction(executable: "SwiftUIStudy"),
             archiveAction: .archiveAction(configuration: .release),
             profileAction: .profileAction(configuration: .release),
             analyzeAction: .analyzeAction(configuration: .debug)
