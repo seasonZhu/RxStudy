@@ -7,6 +7,16 @@
 
 import Foundation
 
+// MARK: - 热词模型
+
+struct HotKeyModel: Codable, Identifiable {
+    let id: Int?
+    let link: String?
+    let name: String?
+    let order: Int?
+    let visible: Int?
+}
+
 // MARK: - 通用文章模型（用于首页、项目、公众号、体系、搜索等）
 
 struct InfoModel: Codable, Identifiable {

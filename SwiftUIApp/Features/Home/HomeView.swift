@@ -28,7 +28,11 @@ struct HomeView: View {
                 }
             }
         }
-        .navigationBar("首页")
+        .navigationBar("首页") {} trailing: {
+            NavigationLink(destination: HotKeyView()) {
+                Image(systemName: "magnifyingglass")
+            }
+        }
         .task {
             // 首次加载数据
             if viewModel.articles.isEmpty {

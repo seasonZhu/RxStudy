@@ -60,29 +60,32 @@ struct AppNavigationBar: View {
     var body: some View {
         VStack(spacing: 0) {
             // 导航栏内容
-            HStack(spacing: 0) {
-                // 左侧区域
-                if let leading = leading {
-                    leading
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                } else {
-                    Spacer()
-                        .frame(minWidth: 56, alignment: .leading)
-                }
-
-                // 中间区域
+            ZStack {
+                // 中间区域（居中）
                 if let center = center {
                     center
                         .frame(maxWidth: .infinity)
                 }
 
-                // 右侧区域
-                if let trailing = trailing {
-                    trailing
-                        .frame(maxWidth: .infinity, alignment: .trailing)
-                } else {
+                // 两侧区域（左右对齐）
+                HStack {
+                    // 左侧区域
+                    if let leading = leading {
+                        leading
+                    } else {
+                        Spacer()
+                            .frame(minWidth: 56)
+                    }
+
                     Spacer()
-                        .frame(minWidth: 56, alignment: .trailing)
+
+                    // 右侧区域
+                    if let trailing = trailing {
+                        trailing
+                    } else {
+                        Spacer()
+                            .frame(minWidth: 56)
+                    }
                 }
             }
             .frame(height: height)
