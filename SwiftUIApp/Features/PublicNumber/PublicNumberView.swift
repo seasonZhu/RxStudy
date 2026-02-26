@@ -14,6 +14,7 @@ struct PublicNumberView: View {
 
     var body: some View {
         contentView
+            .navigationBar("公众号")
     }
 
     // MARK: - 内容视图
@@ -61,7 +62,7 @@ struct PublicNumberView: View {
                 }
             }
         }
-        .background(Color(.systemGroupedBackground))
+        .background(Color.systemGroupedBackground)
     }
 
     // MARK: - 文章列表

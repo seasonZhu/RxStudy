@@ -185,6 +185,7 @@ let project = Project(
                         "UIColorName": "",
                         "UIImageName": "",
                     ],
+                    "UILaunchStoryboardName": "LaunchScreen",
                     "NSAppTransportSecurity": [
                         "NSAllowsArbitraryLoads": true
                     ],
@@ -202,6 +203,7 @@ let project = Project(
             resources: [
                 // ========== 资源（共享主项目的 Assets）==========
                 "RxStudy/Assets.xcassets/**",
+                "RxStudy/Base.lproj/LaunchScreen.storyboard",
             ],
             dependencies: [
                 // ========== 网络层（使用 async/await）==========

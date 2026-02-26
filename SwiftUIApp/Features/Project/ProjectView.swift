@@ -14,6 +14,7 @@ struct ProjectView: View {
 
     var body: some View {
         contentView
+            .navigationBar("项目")
     }
 
     // MARK: - 内容视图
@@ -61,7 +62,7 @@ struct ProjectView: View {
                 }
             }
         }
-        .background(Color(.systemGroupedBackground))
+        .background(Color.systemGroupedBackground)
     }
 
     // MARK: - 文章列表

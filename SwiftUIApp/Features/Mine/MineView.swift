@@ -18,6 +18,7 @@ struct MineView: View {
 
     var body: some View {
         contentView
+            .navigationBar("我的")
             .onAppear {
                 viewModel.refreshUserInfo()
                 // 尝试自动加载用户信息
@@ -43,7 +44,7 @@ struct MineView: View {
                 functionList
             }
         }
-        .background(Color(.systemGroupedBackground))
+        .background(Color.systemGroupedBackground)
     }
 
     // MARK: - 用户信息卡片
@@ -103,7 +104,7 @@ struct MineView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 32)
-        .background(Color(.systemBackground))
+        .background(Color.systemBackground)
     }
 
     // MARK: - 功能列表
@@ -163,7 +164,7 @@ struct FunctionRow: View {
                 .foregroundColor(.secondary)
         }
         .padding(16)
-        .background(Color(.systemBackground))
+        .background(Color.systemBackground)
     }
 }
 

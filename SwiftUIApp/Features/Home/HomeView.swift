@@ -28,6 +28,7 @@ struct HomeView: View {
                 }
             }
         }
+        .navigationBar("首页")
         .task {
             // 首次加载数据
             if viewModel.articles.isEmpty {
@@ -215,7 +216,7 @@ struct ArticleCellView: View {
             }
         }
         .padding(16)
-        .background(Color(.systemBackground))
+        .background(Color.systemBackground)
     }
 }
 

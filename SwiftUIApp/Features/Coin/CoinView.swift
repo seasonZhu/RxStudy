@@ -104,7 +104,7 @@ struct CoinView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 24)
-        .background(Color(.systemBackground))
+        .background(Color.systemBackground)
     }
 
     // MARK: - 积分记录列表视图
@@ -190,7 +190,7 @@ struct MyCoinCellView: View {
             .foregroundColor(.primary)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(16)
-            .background(Color(.systemBackground))
+            .background(Color.systemBackground)
     }
 }
 

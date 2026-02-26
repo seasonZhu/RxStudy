@@ -74,8 +74,6 @@ struct SwiftUIApp: App {
 struct TabBarView: View {
     @State private var selectedTab = 0
 
-    private let tabTitles = ["首页", "项目", "公众号", "体系", "我的"]
-
     var body: some View {
         // NavigationView 在外层，保证 push 时 TabBar 自动隐藏
         NavigationView {
@@ -117,7 +115,6 @@ struct TabBarView: View {
             }
             .accentColor(.blue)
         }
-        .navigationTitle(tabTitles[selectedTab])
         .navigationBarTitleDisplayMode(.inline)
         .navigationViewStyle(.stack)
         .tint(.blue)

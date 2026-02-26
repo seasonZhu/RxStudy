@@ -14,6 +14,7 @@ struct TreeView: View {
 
     var body: some View {
         contentView
+            .navigationBar("体系")
     }
 
     // MARK: - 内容视图
@@ -45,7 +46,7 @@ struct TreeView: View {
                                 .padding(.horizontal, 16)
                                 .padding(.top, 16)
                                 .padding(.bottom, 8)
-                                .background(Color(.systemGroupedBackground))
+                                .background(Color.systemGroupedBackground)
                         ) {
                             // 子分类列表
                             ForEach(children) { child in
@@ -62,7 +63,7 @@ struct TreeView: View {
                 }
             }
         }
-        .background(Color(.systemGroupedBackground))
+        .background(Color.systemGroupedBackground)
     }
 
     // MARK: - 辅助视图
@@ -110,7 +111,7 @@ struct TreeCategoryRow: View {
                 .foregroundColor(.secondary)
         }
         .padding(16)
-        .background(Color(.systemBackground))
+        .background(Color.systemBackground)
     }
 }
 

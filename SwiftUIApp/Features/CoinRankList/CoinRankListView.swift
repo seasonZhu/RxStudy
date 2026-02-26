@@ -122,7 +122,7 @@ struct CoinRankListCellView: View {
                 .padding(.trailing, 15)
         }
         .padding(.vertical, 12)
-        .background(Color(.systemBackground))
+        .background(Color.systemBackground)
     }
 }
 
