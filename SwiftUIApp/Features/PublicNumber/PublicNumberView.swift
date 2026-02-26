@@ -14,13 +14,14 @@ struct PublicNumberView: View {
 
     var body: some View {
         contentView
+            .navigationTitle("公众号")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("公众号")
                         .font(.system(size: 17, weight: .semibold))
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
     }
 
     // MARK: - 内容视图

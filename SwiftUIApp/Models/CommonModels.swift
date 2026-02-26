@@ -67,33 +67,11 @@ struct ProjectChildTagModel: Codable, Identifiable {
     let name: String?
 }
 
-struct ProjectPageModel: Codable {
-    let curPage: Int?
-    let pageCount: Int?
-    let datas: [InfoModel]?
-
-    var hasMore: Bool {
-        guard let cur = curPage, let total = pageCount else { return false }
-        return cur < total
-    }
-}
-
 // MARK: - 公众号相关模型
 
 struct PublicNumberTagModel: Codable, Identifiable {
     let id: Int?
     let name: String?
-}
-
-struct PublicNumberPageModel: Codable {
-    let curPage: Int?
-    let pageCount: Int?
-    let datas: [InfoModel]?
-
-    var hasMore: Bool {
-        guard let cur = curPage, let total = pageCount else { return false }
-        return cur < total
-    }
 }
 
 // MARK: - 账号相关模型
@@ -126,18 +104,10 @@ struct TreeChildTagModel: Codable, Identifiable {
     let name: String?
 }
 
-struct TreeArticlePageModel: Codable {
-    let curPage: Int?
-    let pageCount: Int?
-    let datas: [InfoModel]?
+// MARK: - 兼容性别名
 
-    var hasMore: Bool {
-        guard let cur = curPage, let total = pageCount else { return false }
-        return cur < total
-    }
-}
-
-// 保留兼容性别名
+// 文章模型别名
 typealias TreeArticleModel = InfoModel
 typealias ProjectArticleModel = InfoModel
 typealias PublicNumberArticleModel = InfoModel
+typealias HomeArticleModel = InfoModel

@@ -18,6 +18,7 @@ struct SwiftUIApp: App {
 
     init() {
         configureTabBarAppearance()
+        configureNavigationBarAppearance()
     }
 
     private func configureTabBarAppearance() {
@@ -36,6 +37,35 @@ struct SwiftUIApp: App {
         if #available(iOS 15.0, *) {
             UITabBar.appearance().scrollEdgeAppearance = appearance
         }
+    }
+
+    private func configureNavigationBarAppearance() {
+        // 配置 NavigationBar 外观，防止透明问题
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+
+        // 设置大标题和标准标题的属性
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+
+        // 设置背景色
+        appearance.backgroundColor = .systemBackground
+        appearance.shadowColor = .separator
+
+        // 应用到所有状态
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
+        }
+
+        // 设置导航栏标题颜色
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = .systemBlue
+
+        // 强制所有导航栏使用 inline 模式（关键！）
+        UINavigationBar.appearance().prefersLargeTitles = false
     }
 }
 

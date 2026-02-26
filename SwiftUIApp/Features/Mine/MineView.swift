@@ -17,13 +17,14 @@ struct MineView: View {
 
     var body: some View {
         contentView
+            .navigationTitle("我的")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("我的")
                         .font(.system(size: 17, weight: .semibold))
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
             .onAppear {
                 viewModel.refreshUserInfo()
                 // 尝试自动加载用户信息
@@ -149,7 +150,6 @@ struct MineView: View {
         .padding(.top, 12)
     }
 }
-
 // MARK: - 功能行
 
 struct FunctionRow: View {

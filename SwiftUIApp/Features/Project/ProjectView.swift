@@ -14,13 +14,14 @@ struct ProjectView: View {
 
     var body: some View {
         contentView
+            .navigationTitle("项目")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("项目")
                         .font(.system(size: 17, weight: .semibold))
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
     }
 
     // MARK: - 内容视图

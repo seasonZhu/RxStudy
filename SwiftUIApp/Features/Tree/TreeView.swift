@@ -14,13 +14,14 @@ struct TreeView: View {
 
     var body: some View {
         contentView
+            .navigationTitle("体系")
+            .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .principal) {
                     Text("体系")
                         .font(.system(size: 17, weight: .semibold))
                 }
             }
-            .navigationBarTitleDisplayMode(.inline)
     }
 
     // MARK: - 内容视图

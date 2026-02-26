@@ -25,8 +25,8 @@ extension TreeAPI: TargetType {
         switch self {
         case .tags:
             return "/tree/json"
-        case .tagList(let id, let page):
-            return "/article/list/\(page)/json?cid=\(id)"
+        case .tagList(_, let page):
+            return "/article/list/\(page)/json"
         }
     }
 
@@ -35,7 +35,12 @@ extension TreeAPI: TargetType {
     }
 
     var task: Task {
-        return .requestPlain
+        switch self {
+        case .tags:
+            return .requestPlain
+        case .tagList(let id, _):
+            return .requestParameters(parameters: ["cid": "\(id)"], encoding: URLEncoding.default)
+        }
     }
 
     var headers: [String: String]? {

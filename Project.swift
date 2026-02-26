@@ -196,12 +196,13 @@ let project = Project(
             sources: [
                 // ========== SwiftUIApp 独立代码（与 RxStudy 同级）==========
                 "SwiftUIApp/**/*.swift",
-                // ========== SwiftUI 入口文件 ==========
-                "RxStudy/SwiftUIExample/SwiftUIStudyApp.swift",
+                // ========== SwiftGen 生成的代码 ==========
+                "RxStudy/Generated/**/*.swift",
+            ],
+            resources: [
                 // ========== 资源（共享主项目的 Assets）==========
                 "RxStudy/Assets.xcassets/**",
             ],
-            resources: [],
             dependencies: [
                 // ========== 网络层（使用 async/await）==========
                 TargetDependency.external(name: "Moya"),

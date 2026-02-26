@@ -85,7 +85,7 @@ final class TreeArticleListViewModel {
         errorMessage = nil
 
         do {
-            currentPage = isRefresh ? 1 : currentPage + 1
+            currentPage = isRefresh ? 0 : currentPage + 1
             let pageResult = try await apiService.fetchArticleList(tagId: tagId, page: currentPage)
 
             await MainActor.run {

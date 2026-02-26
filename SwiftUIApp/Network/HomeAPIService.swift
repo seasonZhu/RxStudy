@@ -69,7 +69,7 @@ final class HomeAPIService {
     }
 
     /// 获取文章列表
-    func fetchArticleList(page: Int) async throws -> HomeArticlePageModel {
-        return try await provider.requestDecoded(.articleList(page: page), responseType: StandardResponse<HomeArticlePageModel>.self)
+    func fetchArticleList(page: Int) async throws -> HomePageModel {
+        return try await provider.requestDecoded(.articleList(page: page), responseType: StandardResponse<HomePageModel>.self)
     }
 }

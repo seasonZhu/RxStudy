@@ -27,13 +27,14 @@ struct HomeView: View {
                 }
             }
         }
+        .navigationTitle("首页")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .principal) {
                 Text("首页")
                     .font(.system(size: 17, weight: .semibold))
             }
         }
-        .navigationBarTitleDisplayMode(.inline)
         .task {
             // 首次加载数据
             if viewModel.articles.isEmpty {
