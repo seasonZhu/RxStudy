@@ -57,7 +57,7 @@ private struct TreeArticleListContentView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.articles) { article in
-                    TreeArticleCellView(article: article)
+                    ArticleCellView(article: article)
                         .onAppear {
                             Task {
                                 await viewModel.loadMoreIfNeeded(article)

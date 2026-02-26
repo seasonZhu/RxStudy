@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 // MARK: - 我的页面视图
 
@@ -17,14 +18,6 @@ struct MineView: View {
 
     var body: some View {
         contentView
-            .navigationTitle("我的")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("我的")
-                        .font(.system(size: 17, weight: .semibold))
-                }
-            }
             .onAppear {
                 viewModel.refreshUserInfo()
                 // 尝试自动加载用户信息
@@ -58,26 +51,17 @@ struct MineView: View {
     private var userInfoCard: some View {
         VStack(spacing: 16) {
             // 头像
-            AsyncImage(url: URL(string: viewModel.userInfo?.icon ?? "")) { phase in
-                switch phase {
-                case .empty:
+            KFImage(URL(string: viewModel.userInfo?.icon ?? ""))
+                .placeholder {
                     Image(systemName: "person.circle.fill")
                         .font(.system(size: 60))
                         .foregroundColor(.gray)
-                case .success(let image):
-                    image
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                case .failure:
-                    Image(systemName: "person.circle.fill")
-                        .font(.system(size: 60))
-                        .foregroundColor(.gray)
-                @unknown default:
-                    EmptyView()
                 }
-            }
-            .frame(width: 80, height: 80)
-            .clipShape(Circle())
+                .retry(maxCount: 2, interval: .seconds(1))
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 80, height: 80)
+                .clipShape(Circle())
 
             // 用户名
             if let username = viewModel.userInfo?.nickname {

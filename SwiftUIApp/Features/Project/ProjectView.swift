@@ -14,14 +14,6 @@ struct ProjectView: View {
 
     var body: some View {
         contentView
-            .navigationTitle("项目")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("项目")
-                        .font(.system(size: 17, weight: .semibold))
-                }
-            }
     }
 
     // MARK: - 内容视图
@@ -90,7 +82,7 @@ struct ProjectView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.articles) { article in
-                    ProjectArticleCellView(article: article)
+                    ArticleCellView(article: article)
                         .onAppear {
                             // 预加载：接近底部时加载更多
                             Task {
@@ -178,45 +170,6 @@ struct CategoryCell: View {
             .background(isSelected ? Color.blue : Color.clear)
         }
         .buttonStyle(.plain)
-    }
-}
-
-// MARK: - 项目文章单元格
-
-struct ProjectArticleCellView: View {
-    let article: InfoModel
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // 标题
-            Text(article.title ?? "")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.primary)
-                .lineLimit(2)
-
-            // 描述
-            if let desc = article.desc, !desc.isEmpty {
-                Text(desc)
-                    .font(.system(size: 14))
-                    .foregroundColor(.secondary)
-                    .lineLimit(2)
-            }
-
-            // 底部信息
-            HStack(spacing: 8) {
-                if let author = article.author {
-                    Text(author)
-                        .font(.system(size: 12))
-                        .foregroundColor(.secondary)
-                }
-
-                Text(article.niceDate ?? "")
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding(16)
-        .background(Color(.systemBackground))
     }
 }
 

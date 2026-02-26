@@ -14,14 +14,6 @@ struct TreeView: View {
 
     var body: some View {
         contentView
-            .navigationTitle("体系")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("体系")
-                        .font(.system(size: 17, weight: .semibold))
-                }
-            }
     }
 
     // MARK: - 内容视图
@@ -116,48 +108,6 @@ struct TreeCategoryRow: View {
             Image(systemName: "chevron.right")
                 .font(.system(size: 14))
                 .foregroundColor(.secondary)
-        }
-        .padding(16)
-        .background(Color(.systemBackground))
-    }
-}
-
-// MARK: - 体系文章单元格（用于文章列表页面）
-
-struct TreeArticleCellView: View {
-    let article: InfoModel
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // 标题
-            Text(article.title ?? "")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.primary)
-                .lineLimit(2)
-
-            // 作者
-            if let author = article.author {
-                Text(author)
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-            }
-
-            // 底部信息
-            HStack(spacing: 8) {
-                if let chapterName = article.chapterName {
-                    Text(chapterName)
-                        .font(.system(size: 11))
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(.blue)
-                        .cornerRadius(4)
-                }
-
-                Text(article.niceDate ?? "")
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-            }
         }
         .padding(16)
         .background(Color(.systemBackground))

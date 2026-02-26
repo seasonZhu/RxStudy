@@ -46,7 +46,7 @@ struct CollectView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.articles) { article in
-                    CollectArticleCellView(article: article)
+                    ArticleCellView(article: article)
                         .onAppear {
                             Task {
                                 await viewModel.loadMoreIfNeeded(article)
@@ -121,55 +121,6 @@ struct CollectView: View {
         Task {
             await viewModel.loadData()
         }
-    }
-}
-
-// MARK: - 收藏文章单元格
-
-struct CollectArticleCellView: View {
-    let article: CollectArticleModel
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // 标题
-            Text(article.title ?? "")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.primary)
-                .lineLimit(2)
-
-            // 描述
-            if let desc = article.desc, !desc.isEmpty {
-                Text(desc)
-                    .font(.system(size: 14))
-                    .foregroundColor(.secondary)
-                    .lineLimit(2)
-            }
-
-            // 底部信息
-            HStack(spacing: 8) {
-                if let author = article.author {
-                    Text(author)
-                        .font(.system(size: 12))
-                        .foregroundColor(.secondary)
-                }
-
-                if let chapterName = article.chapterName {
-                    Text(chapterName)
-                        .font(.system(size: 11))
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(.blue)
-                        .cornerRadius(4)
-                }
-
-                Text(article.niceDate ?? article.niceShareDate ?? "")
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding(16)
-        .background(Color(.systemBackground))
     }
 }
 

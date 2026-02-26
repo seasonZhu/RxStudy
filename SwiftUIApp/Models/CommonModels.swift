@@ -111,3 +111,4 @@ typealias TreeArticleModel = InfoModel
 typealias ProjectArticleModel = InfoModel
 typealias PublicNumberArticleModel = InfoModel
 typealias HomeArticleModel = InfoModel
+typealias CollectArticleModel = InfoModel

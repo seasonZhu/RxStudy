@@ -94,15 +94,3 @@ struct CollectPageModel: Codable {
         return cur < total
     }
 }
-
-struct CollectArticleModel: Codable, Identifiable {
-    let id: Int?
-    let author: String?
-    let chapterName: String?
-    let niceDate: String?
-    let title: String?
-    let link: String?
-    let desc: String?
-    let envelopePic: String?
-    let niceShareDate: String?
-}

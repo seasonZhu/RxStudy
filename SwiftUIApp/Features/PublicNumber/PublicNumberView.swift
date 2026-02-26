@@ -14,14 +14,6 @@ struct PublicNumberView: View {
 
     var body: some View {
         contentView
-            .navigationTitle("公众号")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .principal) {
-                    Text("公众号")
-                        .font(.system(size: 17, weight: .semibold))
-                }
-            }
     }
 
     // MARK: - 内容视图
@@ -90,7 +82,7 @@ struct PublicNumberView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.articles) { article in
-                    PublicNumberArticleCellView(article: article)
+                    ArticleCellView(article: article)
                         .onAppear {
                             // 预加载：接近底部时加载更多
                             Task {
@@ -178,48 +170,6 @@ struct PublicNumberCell: View {
             .background(isSelected ? Color.blue : Color.clear)
         }
         .buttonStyle(.plain)
-    }
-}
-
-// MARK: - 公众号文章单元格
-
-struct PublicNumberArticleCellView: View {
-    let article: InfoModel
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            // 标题
-            Text(article.title ?? "")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(.primary)
-                .lineLimit(2)
-
-            // 作者
-            if let author = article.author {
-                Text(author)
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-            }
-
-            // 底部信息
-            HStack(spacing: 8) {
-                if let chapterName = article.chapterName {
-                    Text(chapterName)
-                        .font(.system(size: 11))
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(Color.blue.opacity(0.1))
-                        .foregroundColor(.blue)
-                        .cornerRadius(4)
-                }
-
-                Text(article.niceDate ?? "")
-                    .font(.system(size: 12))
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding(16)
-        .background(Color(.systemBackground))
     }
 }
 

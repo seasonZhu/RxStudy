@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 // MARK: - 首页视图
 
@@ -25,14 +26,6 @@ struct HomeView: View {
                         .font(.system(size: 14))
                         .foregroundColor(.secondary)
                 }
-            }
-        }
-        .navigationTitle("首页")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .principal) {
-                Text("首页")
-                    .font(.system(size: 17, weight: .semibold))
             }
         }
         .task {
@@ -129,22 +122,14 @@ struct BannerCarouselView: View {
     var body: some View {
         TabView(selection: $currentIndex) {
             ForEach(Array(banners.enumerated()), id: \.element.id) { index, banner in
-                AsyncImage(url: URL(string: banner.imagePath ?? "")) { phase in
-                    switch phase {
-                    case .empty:
+                KFImage(URL(string: banner.imagePath ?? ""))
+                    .placeholder {
                         ProgressView()
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    case .failure:
-                        Image(systemName: "photo")
-                            .foregroundColor(.gray)
-                    @unknown default:
-                        EmptyView()
                     }
-                }
-                .tag(index)
+                    .retry(maxCount: 2, interval: .seconds(1))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .tag(index)
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .always))
@@ -217,23 +202,16 @@ struct ArticleCellView: View {
 
             // 缩略图
             if let envelopePic = article.envelopePic, !envelopePic.isEmpty {
-                AsyncImage(url: URL(string: envelopePic)) { phase in
-                    switch phase {
-                    case .empty:
+                KFImage(URL(string: envelopePic))
+                    .placeholder {
                         ProgressView()
                             .frame(width: 80, height: 60)
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 80, height: 60)
-                            .cornerRadius(6)
-                    case .failure:
-                        EmptyView()
-                    @unknown default:
-                        EmptyView()
                     }
-                }
+                    .retry(maxCount: 2, interval: .seconds(1))
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 80, height: 60)
+                    .cornerRadius(6)
             }
         }
         .padding(16)
