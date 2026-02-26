@@ -21,10 +21,12 @@ struct HomeView: View {
             // 加载指示器
             if viewModel.isLoading && viewModel.articles.isEmpty {
                 VStack {
+                    Spacer()
                     ProgressView()
                     Text("加载中...")
                         .font(.system(size: 14))
                         .foregroundColor(.secondary)
+                    Spacer()
                 }
             }
         }

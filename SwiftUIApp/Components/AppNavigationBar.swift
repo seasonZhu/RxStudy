@@ -176,6 +176,7 @@ extension View {
 
             self
         }
+        .frame(height: .infinity, alignment: .top)
         .background(Color.systemGroupedBackground)
     }
 }
