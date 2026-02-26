@@ -67,13 +67,16 @@ struct HomeView: View {
 
                 // 文章列表
                 ForEach(viewModel.articles) { article in
-                    ArticleCellView(article: article)
-                        .onAppear {
-                            // 预加载：接近底部时加载更多
-                            Task {
-                                await viewModel.loadMoreIfNeeded(article)
-                            }
+                    NavigationLink(destination: WebUIController(article: article)) {
+                        ArticleCellView(article: article)
+                    }
+                    .buttonStyle(.plain)
+                    .onAppear {
+                        // 预加载：接近底部时加载更多
+                        Task {
+                            await viewModel.loadMoreIfNeeded(article)
                         }
+                    }
                 }
 
                 // 加载更多指示器
@@ -127,14 +130,28 @@ struct BannerCarouselView: View {
     var body: some View {
         TabView(selection: $currentIndex) {
             ForEach(Array(banners.enumerated()), id: \.element.id) { index, banner in
-                KFImage(URL(string: banner.imagePath ?? ""))
-                    .placeholder {
-                        ProgressView()
+                if let url = banner.url {
+                    NavigationLink(destination: URLWebViewController(url: url, title: banner.title)) {
+                        KFImage(URL(string: banner.imagePath ?? ""))
+                            .placeholder {
+                                ProgressView()
+                            }
+                            .retry(maxCount: 2, interval: .seconds(1))
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .tag(index)
                     }
-                    .retry(maxCount: 2, interval: .seconds(1))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .tag(index)
+                    .buttonStyle(.plain)
+                } else {
+                    KFImage(URL(string: banner.imagePath ?? ""))
+                        .placeholder {
+                            ProgressView()
+                        }
+                        .retry(maxCount: 2, interval: .seconds(1))
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .tag(index)
+                }
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .always))

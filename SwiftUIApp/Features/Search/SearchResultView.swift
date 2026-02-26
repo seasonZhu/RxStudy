@@ -62,7 +62,7 @@ struct SearchResultView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.articles) { article in
-                    NavigationLink(destination: WebViewController(webLoadInfo: article)) {
+                    NavigationLink(destination: WebUIController(article: article)) {
                         ArticleCellView(article: article)
                     }
                     .buttonStyle(.plain)
@@ -149,31 +149,7 @@ extension SearchResultViewModel {
     }
 }
 
-// MARK: - 文章详情 WebViewController
-
-struct WebViewController: View {
-    let webLoadInfo: InfoModel
-
-    var body: some View {
-        VStack {
-            Text("文章详情: \((webLoadInfo.title ?? "").swiftUIReplaceHtmlElement)")
-                .font(.title)
-            Text("链接: \(webLoadInfo.link ?? "")")
-                .foregroundColor(.secondary)
-        }
-        .navigationTitle("文章详情")
-        .navigationBarTitleDisplayMode(.inline)
-    }
-}
-
-// MARK: - 预览
-
-#Preview {
-    NavigationView {
-        SearchResultView(keyword: "Android")
-    }
-}
-
+// MARK: - HTML 字符串扩展
 extension String {
   var swiftUIReplaceHtmlElement: String {
       // 先使用正则表达式移除所有 HTML 标签
@@ -199,5 +175,13 @@ extension String {
           .replacingOccurrences(of: "&amp;", with: "&")
           .replacingOccurrences(of: "&quot;", with: "\"")
           .replacingOccurrences(of: "&yen;", with: "¥")
+    }
+}
+
+// MARK: - 预览
+
+#Preview {
+    NavigationView {
+        SearchResultView(keyword: "Android")
     }
 }

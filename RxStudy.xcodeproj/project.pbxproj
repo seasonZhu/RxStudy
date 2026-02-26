@@ -205,6 +205,7 @@
 		78346A26D95BEF160A2FB9FF /* CoinRankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0F15025CB95C109A46FEBC3 /* CoinRankViewModel.swift */; };
 		785AEB2BD4FBE9D6B1A03A0F /* MarqueeLabel_MarqueeLabel.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = B16F70475AF9986838013D6C /* MarqueeLabel_MarqueeLabel.bundle */; };
 		78F8B2527ACA2751B461F246 /* TabBarViewControllerChildrenRefreshProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2941EA0F70960025B1FEFB5A /* TabBarViewControllerChildrenRefreshProtocol.swift */; };
+		79FD63615FD04A3C2C12695F /* WebUIController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25012730D8554FF6AF546BE1 /* WebUIController.swift */; };
 		7A5DBC180B11DC5D76AB8E7C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BFA792A9324794D98D0FE3 /* HomeViewModel.swift */; };
 		7AC292A0AF762887C1772AEB /* HotKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC386B7DE5EFE024142F8671 /* HotKey.swift */; };
 		7BC07D37DBE4F927B27A77E7 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA73CCC5A764652F6E0FB36 /* Kingfisher.framework */; };
@@ -403,6 +404,7 @@
 		E79BB04A63BEB4E3BB2C4D00 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0019E24E32FF51972123301 /* Info.swift */; };
 		E7ECE31E793A6D4019C38562 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A2BF5B8074B323A4D6C11BEA /* Main.storyboard */; };
 		E83017ACAA9A57634FF86299 /* Assets+SwiftGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766B1D80DDF982D05523CC6 /* Assets+SwiftGen.swift */; };
+		E8E8B1A93D5DF8FD9C24B064 /* WebUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130427DF45366A65FB942E36 /* WebUI.framework */; };
 		E9183D91DBB13BF07BE904C1 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE6D1DF328F07F5D06006B /* Friend.swift */; };
 		E9FEEFD2EAD1C9604C61885A /* CoinRankListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AB32F5DBCC75BF472C8B7 /* CoinRankListPage.swift */; };
 		EA0486418EB60F54CE7CBD2B /* FSPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0980FAA00503954A67E52F2A /* FSPagerViewCell.swift */; };
@@ -534,6 +536,7 @@
 		108F69A1F97843705E1BB1B9 /* TuistBundle+SwiftUIStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+SwiftUIStudy.swift"; sourceTree = "<group>"; };
 		115344D603DA2EA015BAB8DF /* Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
 		11CA80DEC6EF5EF1A562EF39 /* AccountManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManageable.swift; sourceTree = "<group>"; };
+		130427DF45366A65FB942E36 /* WebUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13307D95BC09D60911588581 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
 		13A25228198DDC7EB09783F5 /* PublicNumberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNumberService.swift; sourceTree = "<group>"; };
 		13D287B42E3BDF1C5BC3E2C7 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
@@ -566,6 +569,7 @@
 		235895F4D46901B4D79F4536 /* SingleTabListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
 		24461AA048A2FD8FD7C39BFE /* JXSegmentedIndicatorImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedIndicatorImageView.swift; sourceTree = "<group>"; };
 		24F40C786AC7BFB1311CAE49 /* RequestLoadingPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLoadingPlugin.swift; sourceTree = "<group>"; };
+		25012730D8554FF6AF546BE1 /* WebUIController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebUIController.swift; sourceTree = "<group>"; };
 		252B6DC0C8E8CFE5276EB1F5 /* JXSegmentedTitleDynamicConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedTitleDynamicConfiguration.swift; sourceTree = "<group>"; };
 		26A9A5A4AB544253B261FB6F /* CoinCollectModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectModels.swift; sourceTree = "<group>"; };
 		284354A70B6D6F22D4921D5F /* TreeCellStyleChangeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeCellStyleChangeController.swift; sourceTree = "<group>"; };
@@ -978,6 +982,7 @@
 				31D675DBA2F21D7970BCE2BA /* Alamofire.framework in Frameworks */,
 				8882E4D2ADDC6621AD078525 /* Kingfisher.framework in Frameworks */,
 				13DA8B76D64BD3552962B980 /* Moya.framework in Frameworks */,
+				E8E8B1A93D5DF8FD9C24B064 /* WebUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1469,6 +1474,7 @@
 				E5BD51E952443367C425E143 /* SnapKit_SnapKit.bundle */,
 				6416528ED87B6E932514B5F2 /* SnapKit.framework */,
 				B3B8FC1FA612E31E389EA15A /* SwiftUIStudy.app */,
+				130427DF45366A65FB942E36 /* WebUI.framework */,
 				5C5B7D3353187D748A743840 /* ZipArchive_ZipArchive.bundle */,
 				7808543956421577B7B422D3 /* ZipArchive.framework */,
 			);
@@ -2250,6 +2256,7 @@
 			children = (
 				489DA24DB3C33423F9236F05 /* AppNavigationBar.swift */,
 				8312EA72AD7969FE373FFF67 /* AppNavigationBarExamples.swift */,
+				25012730D8554FF6AF546BE1 /* WebUIController.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -2843,6 +2850,7 @@
 				98CB6E7CB3A1CFE66F768024 /* Strings+SwiftGen.swift in Sources */,
 				1566005386AA40E76D5BBE52 /* AppNavigationBar.swift in Sources */,
 				C880418576DBA2E50C870944 /* AppNavigationBarExamples.swift in Sources */,
+				79FD63615FD04A3C2C12695F /* WebUIController.swift in Sources */,
 				35736053AED7A507E58CCD79 /* ColorExtensions.swift in Sources */,
 				7DC3DC59C93FA2DE485CFEF1 /* CoinView.swift in Sources */,
 				ADAA5145602C1998799E8427 /* CoinViewModel.swift in Sources */,

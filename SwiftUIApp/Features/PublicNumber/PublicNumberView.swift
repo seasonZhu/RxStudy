@@ -83,13 +83,16 @@ struct PublicNumberView: View {
         ScrollView {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.articles) { article in
-                    ArticleCellView(article: article)
-                        .onAppear {
-                            // 预加载：接近底部时加载更多
-                            Task {
-                                await viewModel.loadMoreIfNeeded(article)
-                            }
+                    NavigationLink(destination: WebUIController(article: article)) {
+                        ArticleCellView(article: article)
+                    }
+                    .buttonStyle(.plain)
+                    .onAppear {
+                        // 预加载：接近底部时加载更多
+                        Task {
+                            await viewModel.loadMoreIfNeeded(article)
                         }
+                    }
                 }
 
                 if viewModel.isLoadingMore {

@@ -26,7 +26,8 @@ import PackageDescription
             "CocoaLumberjack": .staticFramework,
             "MarqueeLabel": .staticFramework,
             "SFSafeSymbols": .staticFramework,
-            "ZipArchive": .staticFramework
+            "ZipArchive": .staticFramework,
+            "WebUI": .staticFramework
         ]
     )
 #endif
@@ -58,5 +59,8 @@ let package = Package(
         .package(url: "https://github.com/cbpowell/MarqueeLabel.git", from: "4.0.0"),
         .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", from: "2.1.3"),
         .package(url: "https://github.com/ZipArchive/ZipArchive.git", from: "2.5.0"),
+
+        // ========== WebView ==========
+        .package(url: "https://github.com/cybozu/WebUI.git", from: "4.0.0"),
     ]
 )

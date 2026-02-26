@@ -212,6 +212,9 @@ let project = Project(
 
                 // ========== 图片加载 ==========
                 TargetDependency.external(name: "Kingfisher"),
+
+                // ========== WebView ==========
+                TargetDependency.external(name: "WebUI"),
             ],
             settings: .settings(
                 base: [

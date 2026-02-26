@@ -448,6 +448,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8BA9986FC66F2CE5F5604E75"
+               BuildableName = "WebUI.framework"
+               BlueprintName = "WebUI"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/WebUI/WebUI.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "C299693B66300B062EDECFE0"
                BuildableName = "ZipArchive.framework"
                BlueprintName = "ZipArchive"
