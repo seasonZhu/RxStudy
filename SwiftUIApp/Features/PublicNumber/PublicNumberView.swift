@@ -54,7 +54,7 @@ struct PublicNumberView: View {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.publicNumbers) { number in
                     PublicNumberCell(
-                        name: number.name ?? "",
+                        name: number.name?.swiftUIReplaceHtmlElement ?? "",
                         isSelected: viewModel.selectedPublicNumber?.id == number.id
                     ) {
                         viewModel.selectPublicNumber(number)

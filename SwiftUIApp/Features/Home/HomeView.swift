@@ -172,14 +172,14 @@ struct ArticleCellView: View {
                 }
 
                 // 标题
-                Text(article.title ?? "无标题")
+                Text((article.title ?? "无标题").swiftUIReplaceHtmlElement)
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.primary)
                     .lineLimit(2)
 
                 // 描述
                 if let desc = article.desc, !desc.isEmpty {
-                    Text(desc)
+                    Text(desc.swiftUIReplaceHtmlElement)
                         .font(.system(size: 14))
                         .foregroundColor(.secondary)
                         .lineLimit(2)
@@ -188,7 +188,7 @@ struct ArticleCellView: View {
                 // 底部信息
                 HStack(spacing: 8) {
                     if let chapterName = article.chapterName {
-                        Text(chapterName)
+                        Text(chapterName.swiftUIReplaceHtmlElement)
                             .font(.system(size: 11))
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
