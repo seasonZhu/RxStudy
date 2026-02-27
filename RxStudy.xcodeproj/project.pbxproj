@@ -31,6 +31,7 @@
 		0E71EE80C2A797280A4D1FAE /* RequestLoadingPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F40C786AC7BFB1311CAE49 /* RequestLoadingPlugin.swift */; };
 		0E7D74E9A2DF8644AAB8CBAE /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = E860E5457E154A0AECD9C2F1 /* SVIndefiniteAnimatedView.m */; };
 		100E052630AC22A3652E5309 /* MyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2530D6360B454D04C77FA /* MyViewModel.swift */; };
+		1191C68C693B0717F925708E /* SecureInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 075D97053AF3D2307C2621D7 /* SecureInputField.swift */; };
 		11A043DE530B5E8C4BB28070 /* Assets+SwiftGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766B1D80DDF982D05523CC6 /* Assets+SwiftGen.swift */; };
 		1291E1125E62FC4A6C00FDF1 /* JXSegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E33344E4A18C8BD4922DFF9 /* JXSegmentedView.swift */; };
 		12FAEAF8102BE65BB0FFB478 /* WebLoadInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7206D95C463960D376EF45F9 /* WebLoadInfo.swift */; };
@@ -527,6 +528,7 @@
 		05BE5D6F21458E12A5F32FA2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0601661C9EEC256A04BFDA44 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		07302E2DBEE3BC724AA40C2A /* MyBaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseWebViewController.swift; sourceTree = "<group>"; };
+		075D97053AF3D2307C2621D7 /* SecureInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInputField.swift; sourceTree = "<group>"; };
 		076934084D138E0209B5AC13 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
 		07A771C09278DDE9514E8746 /* PublicNumberAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNumberAPIService.swift; sourceTree = "<group>"; };
 		083F7F68AE158433BC27349F /* TheRouterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterRequest.swift; sourceTree = "<group>"; };
@@ -2272,6 +2274,7 @@
 				489DA24DB3C33423F9236F05 /* AppNavigationBar.swift */,
 				8312EA72AD7969FE373FFF67 /* AppNavigationBarExamples.swift */,
 				05843CA52A585ADB297C902B /* BannerCarouselView.swift */,
+				075D97053AF3D2307C2621D7 /* SecureInputField.swift */,
 				86EB63052CB5368CDDEBD9A0 /* ShareSheet.swift */,
 				25012730D8554FF6AF546BE1 /* WebUIController.swift */,
 			);
@@ -2873,6 +2876,7 @@
 				1566005386AA40E76D5BBE52 /* AppNavigationBar.swift in Sources */,
 				C880418576DBA2E50C870944 /* AppNavigationBarExamples.swift in Sources */,
 				A6590DBCEBC5D893FB72D8E7 /* BannerCarouselView.swift in Sources */,
+				1191C68C693B0717F925708E /* SecureInputField.swift in Sources */,
 				243F8753AE27C4DACF088EB5 /* ShareSheet.swift in Sources */,
 				79FD63615FD04A3C2C12695F /* WebUIController.swift in Sources */,
 				35736053AED7A507E58CCD79 /* ColorExtensions.swift in Sources */,

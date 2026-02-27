@@ -93,12 +93,18 @@ struct LoginView: View {
                 .textInputAutocapitalization(.never)
                 .autocorrectionDisabled()
 
-            // 密码
-            SecureField("密码", text: $form.password)
+            // 密码（支持明文/密文切换）
+            SecureInputField(
+                title: "密码",
+                text: $form.password
+            )
 
             // 确认密码（仅注册模式）
             if formData.isRegisterMode {
-                SecureField("确认密码", text: $form.confirmPassword)
+                SecureInputField(
+                    title: "确认密码",
+                    text: $form.confirmPassword
+                )
             }
         } header: {
             Text("账号信息")
