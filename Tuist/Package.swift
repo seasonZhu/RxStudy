@@ -47,7 +47,7 @@ let package = Package(
 
         // ========== 网络层 ==========
         .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.11.0"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.8.0"),
 
         // ========== 图片加载 ==========
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.6.3"),
