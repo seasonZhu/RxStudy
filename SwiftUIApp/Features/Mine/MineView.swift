@@ -124,17 +124,13 @@ struct MineView: View {
                 CoinView()
             }
 
-            // 积分排名 - 需要登录
-            FunctionRow(
-                icon: "list.number",
-                title: "积分排名",
-                color: .orange
-            )
-            .loginGuard(
-                isLoggedIn: viewModel.isLoggedIn,
-                showLogin: $showLogin
-            ) {
-                CoinRankListView()
+            // 积分排名 - 直接跳转
+            NavigationLink(destination: CoinRankListView()) {
+                FunctionRow(
+                    icon: "list.number",
+                    title: "积分排名",
+                    color: .orange
+                )
             }
 
             // 收藏 - 需要登录
