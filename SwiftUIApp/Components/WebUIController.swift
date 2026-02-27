@@ -8,6 +8,8 @@
 
 import SwiftUI
 import WebUI
+import ProgressHUD
+import WebKit
 
 // MARK: - 分享配置
 
@@ -25,6 +27,8 @@ struct WebUIController: View {
     var body: some View {
         if let link = article.link, let url = URL(string: link) {
             WebView(request: URLRequest(url: url))
+                .uiDelegate(MyUIDelegate())
+                .navigationDelegate(MyNavigationDelegate())
                 .refreshable {
                     // 下拉刷新
                 }
@@ -44,6 +48,7 @@ struct WebUIController: View {
                         .presentationDragIndicator(.visible)
                 }
                 .hideTabBar()
+                .progressHUD()
         } else {
             Text("无效的链接")
                 .foregroundColor(.secondary)
@@ -57,6 +62,7 @@ struct URLWebViewController: View {
     let url: String
     let title: String?
     @State private var shareConfig: ShareConfiguration?
+    @State private var isLoading = false
 
     init(url: String, title: String? = nil) {
         self.url = url
@@ -93,5 +99,30 @@ struct URLWebViewController: View {
             Text("无效的链接")
                 .foregroundColor(.secondary)
         }
+    }
+}
+
+final class MyUIDelegate: NSObject, WKUIDelegate {}
+
+final class MyNavigationDelegate: NSObject, WKNavigationDelegate {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+        decisionHandler(.allow)
+        return
+    }
+    
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        ProgressHUD.animate()
+    }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        ProgressHUD.dismiss()
+    }
+    
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        ProgressHUD.dismiss()
+    }
+    
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        ProgressHUD.dismiss()
     }
 }

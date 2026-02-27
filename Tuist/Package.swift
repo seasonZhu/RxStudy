@@ -28,7 +28,8 @@ import PackageDescription
             "SFSafeSymbols": .staticFramework,
             "ZipArchive": .staticFramework,
             "WebUI": .staticFramework,
-            "PagerTabStripView": .staticFramework
+            "PagerTabStripView": .staticFramework,
+            "ProgressHUD": .staticFramework,
         ]
     )
 #endif
@@ -37,7 +38,7 @@ let package = Package(
     name: "RxStudy",
     dependencies: [
         // ========== RxSwift 生态 ==========
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.7.0"),
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.9.0"),
         .package(url: "https://github.com/RxSwiftCommunity/RxDataSources.git", from: "5.0.0"),
         .package(url: "https://github.com/RxSwiftCommunity/RxGesture.git", from: "4.0.0"),
         .package(url: "https://github.com/RxSwiftCommunity/RxTheme.git", from: "6.0.0"),
@@ -46,19 +47,19 @@ let package = Package(
 
         // ========== 网络层 ==========
         .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
-        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.8.0"),
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.11.0"),
 
         // ========== 图片加载 ==========
-        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "7.10.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.6.3"),
 
         // ========== 布局 ==========
-        .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.6.0"),
+        .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.7.1"),
 
         // ========== 工具 ==========
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2"),
-        .package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: "3.8.0"),
-        .package(url: "https://github.com/cbpowell/MarqueeLabel.git", from: "4.0.0"),
-        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", from: "2.1.3"),
+        .package(url: "https://github.com/CocoaLumberjack/CocoaLumberjack.git", from: "3.9.0"),
+        .package(url: "https://github.com/cbpowell/MarqueeLabel.git", from: "4.5.3"),
+        .package(url: "https://github.com/SFSafeSymbols/SFSafeSymbols.git", from: "6.2.0"),
         .package(url: "https://github.com/ZipArchive/ZipArchive.git", from: "2.5.0"),
 
         // ========== WebView ==========
@@ -66,5 +67,8 @@ let package = Package(
 
         // ========== TabView 组件 ==========
         .package(url: "https://github.com/xmartlabs/PagerTabStripView.git", from: "3.0.0"),
+        
+        // ========== UI 工具 ==========
+        .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "15.0.1"),
     ]
 )

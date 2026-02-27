@@ -220,6 +220,9 @@ let project = Project(
 
                 // ========== TabView 组件 ==========
                 TargetDependency.external(name: "PagerTabStripView"),
+
+                // ========== UI 工具 ==========
+                TargetDependency.external(name: "ProgressHUD"),
             ],
             settings: .settings(
                 base: [

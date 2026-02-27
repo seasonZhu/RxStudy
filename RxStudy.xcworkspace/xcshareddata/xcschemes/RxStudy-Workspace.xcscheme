@@ -182,6 +182,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D90F1A36325E58D2CE1D2A42"
+               BuildableName = "ProgressHUD.framework"
+               BlueprintName = "ProgressHUD"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/ProgressHUD/ProgressHUD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4934D1C0345001C747A5CC87"
+               BuildableName = "ProgressHUD_ProgressHUD.bundle"
+               BlueprintName = "ProgressHUD_ProgressHUD"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/ProgressHUD/ProgressHUD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "05A313C12DA1CF00E6841C80"
                BuildableName = "RxBlocking.framework"
                BlueprintName = "RxBlocking"
