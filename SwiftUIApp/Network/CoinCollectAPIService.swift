@@ -92,8 +92,8 @@ final class CoinAPIService {
     private init() {}
 
     /// 获取积分排名
-    func fetchCoinRank(page: Int) async throws -> CoinRankPageModel {
-        return try await provider.requestDecoded(.coinRank(page: page), responseType: StandardResponse<CoinRankPageModel>.self)
+    func fetchCoinRank(page: Int) async throws -> PagedResult<CoinRankModel> {
+        return try await provider.requestDecoded(.coinRank(page: page), responseType: StandardResponse<PagedResult<CoinRankModel>>.self)
     }
 
     /// 获取个人积分信息
@@ -102,8 +102,8 @@ final class CoinAPIService {
     }
 
     /// 获取我的积分记录列表
-    func fetchMyCoinList(page: Int) async throws -> MyCoinPageModel {
-        return try await provider.requestDecoded(.myCoinList(page: page), responseType: StandardResponse<MyCoinPageModel>.self)
+    func fetchMyCoinList(page: Int) async throws -> PagedResult<MyHistoryCoin> {
+        return try await provider.requestDecoded(.myCoinList(page: page), responseType: StandardResponse<PagedResult<MyHistoryCoin>>.self)
     }
 }
 
@@ -118,7 +118,7 @@ final class CollectAPIService {
     private init() {}
 
     /// 获取收藏列表
-    func fetchCollectList(page: Int) async throws -> CollectPageModel {
-        return try await provider.requestDecoded(.collectList(page: page), responseType: StandardResponse<CollectPageModel>.self)
+    func fetchCollectList(page: Int) async throws -> PagedResult<InfoModel> {
+        return try await provider.requestDecoded(.collectList(page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
     }
 }

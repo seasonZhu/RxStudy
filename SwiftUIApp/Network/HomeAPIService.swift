@@ -85,8 +85,8 @@ final class HomeAPIService {
     }
 
     /// 获取文章列表
-    func fetchArticleList(page: Int) async throws -> HomePageModel {
-        return try await provider.requestDecoded(.articleList(page: page), responseType: StandardResponse<HomePageModel>.self)
+    func fetchArticleList(page: Int) async throws -> PagedResult<InfoModel> {
+        return try await provider.requestDecoded(.articleList(page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
     }
 
     /// 获取热词

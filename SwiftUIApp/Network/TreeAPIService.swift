@@ -66,7 +66,7 @@ final class TreeAPIService {
     }
 
     /// 获取体系文章列表
-    func fetchArticleList(tagId: Int, page: Int) async throws -> TreeArticlePageModel {
-        return try await provider.requestDecoded(.tagList(id: tagId, page: page), responseType: StandardResponse<TreeArticlePageModel>.self)
+    func fetchArticleList(tagId: Int, page: Int) async throws -> PagedResult<InfoModel> {
+        return try await provider.requestDecoded(.tagList(id: tagId, page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
     }
 }

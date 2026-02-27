@@ -33,17 +33,3 @@ extension PagedResult {
         return curPage == pageCount
     }
 }
-
-// MARK: - 常用分页类型别名
-
-/// 首页文章分页
-typealias HomePageModel = PagedResult<InfoModel>
-
-/// 项目文章分页
-typealias ProjectPageModel = PagedResult<InfoModel>
-
-/// 公众号文章分页
-typealias PublicNumberPageModel = PagedResult<InfoModel>
-
-/// 体系文章分页
-typealias TreeArticlePageModel = PagedResult<InfoModel>

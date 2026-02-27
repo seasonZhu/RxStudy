@@ -61,7 +61,7 @@ final class PublicNumberAPIService {
     }
 
     /// 获取公众号文章列表
-    func fetchArticleList(accountId: Int, page: Int) async throws -> PublicNumberPageModel {
-        return try await provider.requestDecoded(.tagList(id: accountId, page: page), responseType: StandardResponse<PublicNumberPageModel>.self)
+    func fetchArticleList(accountId: Int, page: Int) async throws -> PagedResult<InfoModel> {
+        return try await provider.requestDecoded(.tagList(id: accountId, page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
     }
 }

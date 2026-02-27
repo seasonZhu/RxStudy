@@ -66,7 +66,7 @@ final class ProjectAPIService {
     }
 
     /// 获取项目列表
-    func fetchProjectList(tagId: Int, page: Int) async throws -> ProjectPageModel {
-        return try await provider.requestDecoded(.tagList(id: tagId, page: page), responseType: StandardResponse<ProjectPageModel>.self)
+    func fetchProjectList(tagId: Int, page: Int) async throws -> PagedResult<InfoModel> {
+        return try await provider.requestDecoded(.tagList(id: tagId, page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
     }
 }
