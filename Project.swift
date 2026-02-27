@@ -217,6 +217,9 @@ let project = Project(
 
                 // ========== WebView ==========
                 TargetDependency.external(name: "WebUI"),
+
+                // ========== TabView 组件 ==========
+                TargetDependency.external(name: "PagerTabStripView"),
             ],
             settings: .settings(
                 base: [

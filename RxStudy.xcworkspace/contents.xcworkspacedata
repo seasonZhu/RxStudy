@@ -26,6 +26,9 @@
          location = "group:Tuist/.build/tuist-derived/Moya/Moya.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Tuist/.build/tuist-derived/PagerTabStripView/PagerTabStripView.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Tuist/.build/tuist-derived/RxDataSources/RxDataSources.xcodeproj">
       </FileRef>
       <FileRef

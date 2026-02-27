@@ -161,6 +161,7 @@
 		5D3396EC5790D12F3CF81B2F /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F7D04F4ADF9201645D822 /* FSPagerView+Rx.swift */; };
 		5DE3C1008D6D980378B2B284 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71450D40A59CFCEACE7443FB /* Alamofire.framework */; };
 		5ECA5A953B945341661121D7 /* SFSafeSymbols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E75D6457701EAF6FCB08339 /* SFSafeSymbols.framework */; };
+		5F3ECBA2787038E53CBDA5A2 /* PagerTabStripView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5E4FBFBF5A5329B12A7566 /* PagerTabStripView.framework */; };
 		5FD5315EA33BC041DDFB17A2 /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715526EC9D34D24852700D6 /* Moya+BlockingObservable.swift */; };
 		60447C8F97BDB92F83A46E3C /* InfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82574D925572F14B92DE38 /* InfoViewCell.swift */; };
 		6113D87E80BF2F3E3216FF74 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7F53C005EC35889C38D87B /* Page.swift */; };
@@ -810,6 +811,7 @@
 		A79F91DC2A3AD54BE30080C9 /* LSBundleProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSBundleProxy.m; sourceTree = "<group>"; };
 		A89EF5877FA7C21C23A9CD38 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		AA2069328EC3BED2E2FB3AE8 /* InfoGenericsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGenericsCell.swift; sourceTree = "<group>"; };
+		AB5E4FBFBF5A5329B12A7566 /* PagerTabStripView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PagerTabStripView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC72CB6E345D0FB72D2C937 /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
 		AC8D815A1D0768C406620A00 /* CoinRankListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListView.swift; sourceTree = "<group>"; };
 		AD08F64EC924E9BB5C9E5E07 /* JXSegmentedBaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JXSegmentedBaseCell.swift; sourceTree = "<group>"; };
@@ -997,6 +999,7 @@
 				31D675DBA2F21D7970BCE2BA /* Alamofire.framework in Frameworks */,
 				8882E4D2ADDC6621AD078525 /* Kingfisher.framework in Frameworks */,
 				13DA8B76D64BD3552962B980 /* Moya.framework in Frameworks */,
+				5F3ECBA2787038E53CBDA5A2 /* PagerTabStripView.framework in Frameworks */,
 				E8E8B1A93D5DF8FD9C24B064 /* WebUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1471,6 +1474,7 @@
 				B16F70475AF9986838013D6C /* MarqueeLabel_MarqueeLabel.bundle */,
 				0DD2878B5A76030894284BDC /* MarqueeLabel.framework */,
 				6CE901A55440AFB8543C4AC0 /* Moya.framework */,
+				AB5E4FBFBF5A5329B12A7566 /* PagerTabStripView.framework */,
 				9C9F01AECD32934E0C73309B /* RxBlocking.framework */,
 				2ADC3C72153D24AEB8307276 /* RxCocoa.framework */,
 				7AFB203062CF4AAA3DE02295 /* RxCocoaRuntime.framework */,

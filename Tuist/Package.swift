@@ -27,7 +27,8 @@ import PackageDescription
             "MarqueeLabel": .staticFramework,
             "SFSafeSymbols": .staticFramework,
             "ZipArchive": .staticFramework,
-            "WebUI": .staticFramework
+            "WebUI": .staticFramework,
+            "PagerTabStripView": .staticFramework
         ]
     )
 #endif
@@ -62,5 +63,8 @@ let package = Package(
 
         // ========== WebView ==========
         .package(url: "https://github.com/cybozu/WebUI.git", from: "4.0.0"),
+
+        // ========== TabView 组件 ==========
+        .package(url: "https://github.com/xmartlabs/PagerTabStripView.git", from: "3.0.0"),
     ]
 )
