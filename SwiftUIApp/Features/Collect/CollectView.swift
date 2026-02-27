@@ -11,7 +11,6 @@ import SwiftUI
 
 struct CollectView: View {
     @State private var viewModel = CollectViewModel()
-    @State private var showLogin = false
 
     var body: some View {
         contentView
@@ -19,10 +18,10 @@ struct CollectView: View {
             .navigationBarTitleDisplayMode(.inline)
             .hideTabBar()
             .onAppear {
-                checkLoginAndLoad()
-            }
-            .sheet(isPresented: $showLogin) {
-                LoginView()
+                // 页面出现时加载数据（已在入口处验证登录）
+                Task {
+                    await viewModel.loadData()
+                }
             }
     }
 
@@ -30,9 +29,7 @@ struct CollectView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        if !viewModel.isLoggedIn {
-            notLoginView
-        } else if !viewModel.articles.isEmpty {
+        if !viewModel.articles.isEmpty {
             articlesListView
         } else if viewModel.isLoading {
             loadingView
@@ -72,23 +69,6 @@ struct CollectView: View {
 
     // MARK: - 辅助视图
 
-    private var notLoginView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "person.crop.circle.badge.xmark")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text("未登录")
-                .font(.system(size: 17))
-
-            Button("立即登录") {
-                showLogin = true
-            }
-            .buttonStyle(.borderedProminent)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
     private var loadingView: some View {
         ProgressView("加载中...")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -114,17 +94,6 @@ struct CollectView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
-    // MARK: - 私有方法
-
-    private func checkLoginAndLoad() {
-        guard viewModel.isLoggedIn else {
-            return
-        }
-        Task {
-            await viewModel.loadData()
-        }
     }
 }
 

@@ -11,7 +11,6 @@ import SwiftUI
 
 struct CoinView: View {
     @State private var viewModel = CoinViewModel()
-    @State private var showLogin = false
 
     var body: some View {
         contentView
@@ -19,10 +18,10 @@ struct CoinView: View {
             .navigationBarTitleDisplayMode(.inline)
             .hideTabBar()
             .onAppear {
-                checkLoginAndLoad()
-            }
-            .sheet(isPresented: $showLogin) {
-                LoginView()
+                // 页面出现时加载数据（已在入口处验证登录）
+                Task {
+                    await viewModel.loadData()
+                }
             }
     }
 
@@ -30,9 +29,7 @@ struct CoinView: View {
 
     @ViewBuilder
     private var contentView: some View {
-        if !viewModel.isLoggedIn {
-            notLoginView
-        } else if viewModel.userInfo != nil || !viewModel.coins.isEmpty {
+        if viewModel.userInfo != nil || !viewModel.coins.isEmpty {
             coinContentView
         } else if viewModel.isLoading {
             loadingView
@@ -125,23 +122,6 @@ struct CoinView: View {
 
     // MARK: - 辅助视图
 
-    private var notLoginView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "person.crop.circle.badge.xmark")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text("未登录")
-                .font(.system(size: 17))
-
-            Button("立即登录") {
-                showLogin = true
-            }
-            .buttonStyle(.borderedProminent)
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
     private var loadingView: some View {
         ProgressView("加载中...")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -165,17 +145,6 @@ struct CoinView: View {
             .buttonStyle(.borderedProminent)
         }
         .padding()
-    }
-
-    // MARK: - 私有方法
-
-    private func checkLoginAndLoad() {
-        guard viewModel.isLoggedIn else {
-            return
-        }
-        Task {
-            await viewModel.loadData()
-        }
     }
 }
 

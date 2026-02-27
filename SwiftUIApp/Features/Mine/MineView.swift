@@ -111,25 +111,43 @@ struct MineView: View {
 
     private var functionList: some View {
         VStack(spacing: 12) {
-            // 积分
-            NavigationLink(destination: CoinView()) {
-                FunctionRow(icon: "star.fill", title: "我的积分", color: .yellow) {
-                    // 不需要 action，NavigationLink 处理导航
-                }
+            // 积分 - 需要登录
+            FunctionRow(
+                icon: "star.fill",
+                title: "我的积分",
+                color: .yellow
+            )
+            .loginGuard(
+                isLoggedIn: viewModel.isLoggedIn,
+                showLogin: $showLogin
+            ) {
+                CoinView()
             }
 
-            // 积分排名
-            NavigationLink(destination: CoinRankListView()) {
-                FunctionRow(icon: "list.number", title: "积分排名", color: .orange) {
-                    // 不需要 action，NavigationLink 处理导航
-                }
+            // 积分排名 - 需要登录
+            FunctionRow(
+                icon: "list.number",
+                title: "积分排名",
+                color: .orange
+            )
+            .loginGuard(
+                isLoggedIn: viewModel.isLoggedIn,
+                showLogin: $showLogin
+            ) {
+                CoinRankListView()
             }
 
-            // 收藏
-            NavigationLink(destination: CollectView()) {
-                FunctionRow(icon: "bookmark.fill", title: "我的收藏", color: .blue) {
-                    // 不需要 action，NavigationLink 处理导航
-                }
+            // 收藏 - 需要登录
+            FunctionRow(
+                icon: "bookmark.fill",
+                title: "我的收藏",
+                color: .blue
+            )
+            .loginGuard(
+                isLoggedIn: viewModel.isLoggedIn,
+                showLogin: $showLogin
+            ) {
+                CollectView()
             }
         }
         .padding(.top, 12)
@@ -141,7 +159,6 @@ struct FunctionRow: View {
     let icon: String
     let title: String
     let color: Color
-    let action: () -> Void
 
     var body: some View {
         HStack(spacing: 16) {

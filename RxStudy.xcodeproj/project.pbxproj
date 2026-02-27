@@ -66,6 +66,7 @@
 		277BDBE80D13FF4CDAC95963 /* Alamofire_Alamofire.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DFB53D9494BFE951D2300C99 /* Alamofire_Alamofire.bundle */; };
 		29E2CF6255A580FB6D578625 /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 811D40F73763F6CA535650B4 /* UIApplication+Extension.swift */; };
 		2A3F1D45C618AFC3978E3054 /* MJRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B51B8B382F0F4184122CFFA /* MJRefreshFooter.m */; };
+		2A4904626021A9BD2441DAE1 /* View+LoginGuard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14DA6A6D63169C1FF383908C /* View+LoginGuard.swift */; };
 		2A97AFEE808C052B86AEF4F4 /* UIScrollView+RxSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD8B382A3ABD7F2CE30FBA4 /* UIScrollView+RxSwift.swift */; };
 		2AC5A5F1B6156D43CBC843CD /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5B57EB10E4CF3E9DC9EE899 /* RxDataSources.framework */; };
 		2B43BC479BD1913C4EE55CE5 /* AppDelegate+AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD8ABFC935B10E0AE741A375 /* AppDelegate+AppConfig.swift */; };
@@ -550,6 +551,7 @@
 		13A25228198DDC7EB09783F5 /* PublicNumberService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNumberService.swift; sourceTree = "<group>"; };
 		13D287B42E3BDF1C5BC3E2C7 /* HomeModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeModels.swift; sourceTree = "<group>"; };
 		141511ED0989FD7923F90FC4 /* ShareType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
+		14DA6A6D63169C1FF383908C /* View+LoginGuard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+LoginGuard.swift"; sourceTree = "<group>"; };
 		14E2C0879D6A57CDD7838047 /* BaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
 		152422C6D07C5F977A2D3514 /* ConstructorProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstructorProtocol.swift; sourceTree = "<group>"; };
 		15AA3AEEDFAADA399EB08B9C /* ResponseCachePlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseCachePlugin.swift; sourceTree = "<group>"; };
@@ -1360,6 +1362,7 @@
 			isa = PBXGroup;
 			children = (
 				17A25CE017B529D2B1726278 /* ColorExtensions.swift */,
+				14DA6A6D63169C1FF383908C /* View+LoginGuard.swift */,
 				7B5A9A9A2468262734410C4D /* View+Navigation.swift */,
 			);
 			path = Extensions;
@@ -2873,6 +2876,7 @@
 				243F8753AE27C4DACF088EB5 /* ShareSheet.swift in Sources */,
 				79FD63615FD04A3C2C12695F /* WebUIController.swift in Sources */,
 				35736053AED7A507E58CCD79 /* ColorExtensions.swift in Sources */,
+				2A4904626021A9BD2441DAE1 /* View+LoginGuard.swift in Sources */,
 				D00E73BE9559E37FE99118BD /* View+Navigation.swift in Sources */,
 				7DC3DC59C93FA2DE485CFEF1 /* CoinView.swift in Sources */,
 				ADAA5145602C1998799E8427 /* CoinViewModel.swift in Sources */,
