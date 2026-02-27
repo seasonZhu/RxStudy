@@ -933,5 +933,396 @@ struct WebUIController: View {
 
 ---
 
+# 第三天工作总结 (2026-02-27)
+
+## 一、工作概述
+
+第三天主要完成了以下核心功能优化与架构改进：
+
+1. **分页模型优化** - 移除所有 typealias，直接使用 `PagedResult<T>` 泛型
+2. **网络层优化** - 简化 API 调用，使用 Moya 的 map 方法
+3. **登录拦截优化** - 实现 `.loginGuard()` modifier，优化用户体验
+4. **密码输入框组件** - 创建 SecureInputField，支持明文/密文切换
+5. **TreeView 显示模式切换** - 支持列表/流式布局两种显示方式
+6. **ProgressHUD 集成** - WebView 加载状态提示
+
+> **注：** ProjectView/PublicNumberView 的侧边栏布局由用户自行实现，不在本次总结范围内。
+
+---
+
+## 二、详细实现内容
+
+### 1. 分页模型优化
+
+#### 优化内容
+移除所有分页相关的 typealias，直接使用 `PagedResult<T>` 泛型。
+
+**优化前：**
+```swift
+// PageModels.swift
+typealias HomePageModel = PagedResult<InfoModel>
+typealias ProjectPageModel = PagedResult<InfoModel>
+typealias CoinRankPageModel = PagedResult<CoinRankModel>
+// ... 更多别名
+```
+
+**优化后：**
+```swift
+// 直接使用泛型，无需别名
+func fetchArticleList(page: Int) async throws -> PagedResult<InfoModel>
+```
+
+**优化收益：**
+- **DRY 原则** - 消除重复的别名定义
+- **类型透明** - 一眼就能看出是 `PagedResult<T>` 类型
+- **维护简化** - 只需维护一个泛型结构
+
+---
+
+### 2. 网络层优化
+
+#### 优化内容
+
+**1. 使用 Moya 的 map 方法**
+```swift
+// 优化前
+func requestDecoded<T: Decodable>(
+    _ target: Target,
+    responseType: StandardResponse<T>.Type
+) async throws -> T {
+    let response = try await requestAsync(target)
+    let decoded = try JSONDecoder().decode(StandardResponse<T>.self, from: response.data)
+    return try decoded.getData()
+}
+
+// 优化后
+func requestDecoded<T: Decodable>(
+    _ target: Target,
+    responseType: StandardResponse<T>.Type
+) async throws -> T {
+    let decoded = try await requestAsync(target).map(StandardResponse<T>.self)
+    return try decoded.getData()
+}
+```
+
+**2. 统一 EmptyResponse 处理**
+```swift
+// 移除 requestVoid 方法，统一使用 requestDecoded
+func logout() async {
+    try? await provider.requestDecoded(
+        .logout,
+        responseType: StandardResponse<EmptyResponse>.self
+    )
+}
+
+struct EmptyResponse: Decodable {}
+```
+
+**优化收益：**
+- **KISS 原则** - 代码更简洁
+- **使用框架能力** - 直接使用 Moya 的 map 方法
+- **统一错误处理** - 所有请求统一处理
+
+---
+
+### 3. 登录拦截优化
+
+#### 需求描述
+将登录拦截逻辑从"导航后检查"改为"点击时检查"，提升用户体验。
+
+#### 实现方案
+
+**创建 View 扩展：**
+```swift
+// View+LoginGuard.swift
+extension View {
+    func loginGuard<Destination: View>(
+        isLoggedIn: Bool,
+        showLogin: Binding<Bool>,
+        @ViewBuilder destination: () -> Destination
+    ) -> some View {
+        Group {
+            if isLoggedIn {
+                NavigationLink(destination: destination()) {
+                    self
+                }
+            } else {
+                Button {
+                    showLogin.wrappedValue = true
+                } label: {
+                    self
+                }
+            }
+        }
+    }
+}
+```
+
+**使用示例：**
+```swift
+// 优化后：点击时检查
+FunctionRow(
+    icon: "star.fill",
+    title: "我的积分",
+    color: .yellow
+)
+.loginGuard(
+    isLoggedIn: viewModel.isLoggedIn,
+    showLogin: $showLogin
+) {
+    CoinView()
+}
+```
+
+---
+
+### 4. 密码输入框组件
+
+#### 需求描述
+登录和注册页面的密码输入框需要支持明文/密文切换。
+
+#### 实现方案
+
+```swift
+// SecureInputField.swift
+struct SecureInputField: View {
+    let title: String
+    @Binding var text: String
+    @State private var isVisible: Bool = false
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Group {
+                if isVisible {
+                    TextField(title, text: $text)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                } else {
+                    SecureField(title, text: $text)
+                }
+            }
+
+            Button {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    isVisible.toggle()
+                }
+            } label: {
+                Image(systemName: isVisible ? "eye.slash.fill" : "eye.fill")
+                    .foregroundColor(.secondary)
+            }
+            .buttonStyle(.plain)
+        }
+    }
+}
+```
+
+**关键要点：**
+- 使用 `@State` 控制可见性
+- 添加 `withAnimation` 实现平滑过渡
+- 使用 `.buttonStyle(.plain)` 避免按钮样式影响输入
+
+---
+
+### 5. TreeView 显示模式切换
+
+#### 需求描述
+体系页面支持列表/流式布局（FlowLayout）两种显示方式。
+
+#### 实现方案
+
+```swift
+enum TreeViewMode: String {
+    case list = "列表"
+    case flow = "网格"
+
+    var icon: String {
+        switch self {
+        case .list: return "list.bullet"
+        case .flow: return "square.grid.2x2"
+        }
+    }
+}
+
+struct TreeView: View {
+    @State private var viewMode: TreeViewMode = .list
+
+    var body: some View {
+        contentView
+            .navigationBar("体系")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        withAnimation {
+                            viewMode = viewMode == .list ? .flow : .list
+                        }
+                    } label: {
+                        Image(systemName: viewMode.icon)
+                    }
+                }
+            }
+    }
+
+    @ViewBuilder
+    private var flowView(children: [TreeChildTagModel]) -> some View {
+        FlowLayout(spacing: 10) {
+            ForEach(children) { child in
+                NavigationLink(destination: TreeArticleListAdapter(child: child)) {
+                    TreeCategoryChip(name: child.name ?? "")
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.vertical, 8)
+    }
+}
+```
+
+---
+
+### 6. ProgressHUD 集成
+
+#### 需求描述
+WebView 加载时显示加载状态，加载完成或失败时给出提示。
+
+#### Tuist 配置
+```swift
+// Tuist/Package.swift
+dependencies: [
+    .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "2.0.0"),
+]
+productTypes: [
+    "ProgressHUD": .staticFramework
+]
+```
+
+#### 实现方案
+
+**使用 WKNavigationDelegate 监听加载状态：**
+```swift
+final class MyNavigationDelegate: NSObject, WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        ProgressHUD.animate()
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        ProgressHUD.dismiss()
+    }
+
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        ProgressHUD.dismiss()
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        ProgressHUD.dismiss()
+    }
+}
+```
+
+**在 WebView 中应用：**
+```swift
+WebView(request: URLRequest(url: url))
+    .uiDelegate(MyUIDelegate())
+    .navigationDelegate(MyNavigationDelegate())
+    .progressHUD()
+```
+
+---
+
+## 三、第三天技术要点总结
+
+### 1. 分页模型最佳实践
+
+**❌ 不推荐：**
+```swift
+typealias HomePageModel = PagedResult<InfoModel>
+```
+
+**✅ 推荐：**
+```swift
+func fetchList() async throws -> PagedResult<InfoModel>
+```
+
+**理由：**
+- 减少抽象层，类型更明确
+- 避免别名维护成本
+- 符合 YAGNI 原则
+
+### 2. 登录拦截设计模式
+
+| 模式 | 触发时机 | 用户体验 |
+|------|---------|---------|
+| 导航后检查 | 页面 onAppear | ❌ 需要返回 |
+| 点击时检查 | Button action | ✅ 直接拦截 |
+
+### 3. WebView 状态监听
+
+| 代理方法 | 触发时机 | 操作 |
+|---------|---------|------|
+| `didStartProvisionalNavigation` | 开始导航 | `ProgressHUD.animate()` |
+| `didFinishNavigation` | 导航完成 | `ProgressHUD.dismiss()` |
+| `didFail` | 导航失败 | `ProgressHUD.dismiss()` |
+
+---
+
+## 四、第三天修改文件清单
+
+### 新增文件
+
+| 文件 | 说明 |
+|------|------|
+| `SwiftUIApp/Extensions/View+LoginGuard.swift` | 登录拦截扩展 |
+| `SwiftUIApp/Components/SecureInputField.swift` | 密码输入框组件 |
+
+### 核心修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `Project.swift` | 添加 ProgressHUD 依赖（SwiftUIStudy target） |
+| `Tuist/Package.swift` | 1. 添加 ProgressHUD<br>2. 添加 PagerTabStripView（未实际使用） |
+| `SwiftUIApp/Models/PageModels.swift` | 移除所有分页相关 typealias |
+| `SwiftUIApp/Models/CoinCollectModels.swift` | 移除分页相关 typealias |
+| `SwiftUIApp/Network/APIService.swift | 1. 优化 requestDecoded 使用 Moya map()<br>2. 移除未使用的 APIService 协议 |
+
+### View 修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `TreeView.swift` | 添加列表/流式布局切换功能 |
+| `MineView.swift` | 1. 优化登录拦截<br>2. 积分排名无需登录守护 |
+| `CoinView.swift` | 简化内部逻辑，使用 .loginGuard |
+| `CollectView.swift` | 简化内部逻辑，使用 .loginGuard |
+| `WebUIController.swift` | 用户自行添加 ProgressHUD 加载状态 |
+
+### 用户自行实现（不在本次总结范围）
+
+| 文件 | 说明 |
+|------|------|
+| `ProjectView.swift` | 用户实现侧边栏 + 文章列表布局 |
+| `PublicNumberView.swift` | 用户实现侧边栏 + 文章列表布局 |
+
+---
+
+# 遗留问题与后续工作
+
+## 已解决问题
+- ✅ 分页模型简化
+- ✅ 网络层优化
+- ✅ 登录拦截优化
+- ✅ 密码输入框组件
+- ✅ TreeView 显示模式切换
+- ✅ ProgressHUD 集成
+
+## 用户自行完成
+- ✅ ProjectView/PublicNumberView 侧边栏布局
+
+## 后续优化建议
+1. **错误处理** - 完善 WebView 加载失败的错误提示
+2. **缓存机制** - 实现 WebView 缓存策略
+3. **性能监控** - 添加页面加载性能监控
+4. **单元测试** - 为核心组件添加单元测试
+5. **代码清理** - 移除未使用的 PagerTabStripView 依赖（添加但未实际使用）
+
+---
+
 **总结人：** Claude
-**最后更新：** 2026-02-26
+**最后更新：** 2026-02-27
