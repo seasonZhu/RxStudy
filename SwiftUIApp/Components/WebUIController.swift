@@ -29,9 +29,8 @@ struct WebUIController: View {
             WebView(request: URLRequest(url: url))
                 .uiDelegate(MyUIDelegate())
                 .navigationDelegate(MyNavigationDelegate())
-                .refreshable {
-                    // 下拉刷新
-                }
+                .allowsLinkPreview(true)
+                .refreshable()
                 .navigationTitle(article.title?.swiftUIReplaceHtmlElement ?? "文章详情")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
