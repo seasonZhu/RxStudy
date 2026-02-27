@@ -64,7 +64,6 @@ struct HomeView: View {
                 // Banner 轮播
                 if !viewModel.banners.isEmpty {
                     BannerCarouselView(banners: viewModel.banners)
-                        .frame(height: 180)
                 }
 
                 // 文章列表
@@ -120,43 +119,6 @@ struct HomeView: View {
             .buttonStyle(.borderedProminent)
         }
         .padding()
-    }
-}
-
-// MARK: - Banner 轮播视图
-
-struct BannerCarouselView: View {
-    let banners: [HomeBannerModel]
-    @State private var currentIndex = 0
-
-    var body: some View {
-        TabView(selection: $currentIndex) {
-            ForEach(Array(banners.enumerated()), id: \.element.id) { index, banner in
-                if let url = banner.url {
-                    NavigationLink(destination: URLWebViewController(url: url, title: banner.title)) {
-                        KFImage(URL(string: banner.imagePath ?? ""))
-                            .placeholder {
-                                ProgressView()
-                            }
-                            .retry(maxCount: 2, interval: .seconds(1))
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .tag(index)
-                    }
-                    .buttonStyle(.plain)
-                } else {
-                    KFImage(URL(string: banner.imagePath ?? ""))
-                        .placeholder {
-                            ProgressView()
-                        }
-                        .retry(maxCount: 2, interval: .seconds(1))
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .tag(index)
-                }
-            }
-        }
-        .tabViewStyle(.page(indexDisplayMode: .always))
     }
 }
 

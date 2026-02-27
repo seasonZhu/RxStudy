@@ -34,6 +34,7 @@
 		11A043DE530B5E8C4BB28070 /* Assets+SwiftGen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4766B1D80DDF982D05523CC6 /* Assets+SwiftGen.swift */; };
 		1291E1125E62FC4A6C00FDF1 /* JXSegmentedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E33344E4A18C8BD4922DFF9 /* JXSegmentedView.swift */; };
 		12FAEAF8102BE65BB0FFB478 /* WebLoadInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7206D95C463960D376EF45F9 /* WebLoadInfo.swift */; };
+		13B0EC4F0F211F2A4C187B44 /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF6F95D59A7B94266795257 /* ACarousel.swift */; };
 		13D425F022967A7E78FE21FB /* SafariActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4269C59C690E95E413193197 /* SafariActivity.swift */; };
 		13DA8B76D64BD3552962B980 /* Moya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CE901A55440AFB8543C4AC0 /* Moya.framework */; };
 		147086CCEC2D25650036985A /* Notification.Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB9D6BE80ABCBE9371FF0ED4 /* Notification.Name.swift */; };
@@ -46,6 +47,7 @@
 		188EAF10AEB8141411E70AD8 /* JXSegmentedNumberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE05B61C3EFE1C678898F994 /* JXSegmentedNumberCell.swift */; };
 		18B94ED1AD71E39F83CE4C99 /* CrashController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8EA12BBB737EABBE27BCAB /* CrashController.m */; };
 		1BADDC8AE68E2A607E5A5840 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2928995245FCB62B0BD498 /* String+Extension.swift */; };
+		1CF9FCDCEEC67CE4014C1B8B /* AppLifeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22F532AB2BE84A8890834 /* AppLifeCycleModifier.swift */; };
 		1D20798F215AD59C8E4789AF /* SVProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6AEC4B4FF332756C5355C /* SVProgressHUD+Extension.swift */; };
 		1DA872A1788A4A25097F0C5A /* TypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B53494C5115AF7D3150FDD2 /* TypeViewController.swift */; };
 		1E777C83CE6313CDE5538A0A /* RxSwift_RxCocoaRuntime.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = 59A9E804AC1ED8C0E3177547 /* RxSwift_RxCocoaRuntime.bundle */; };
@@ -279,6 +281,7 @@
 		9CD96322D3EAB57EAEFC44E8 /* FSPagerViewObjcCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E9E470B36BEF3D88AD428F /* FSPagerViewObjcCompat.m */; };
 		9DC25A6C1537294BDCAE9F44 /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB2EFA8A886AD6414699A95 /* FSPageViewLayout.swift */; };
 		9E1D8F7E4E7253EF26BCC368 /* SplashAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB001483BB0F3CCD3A0D5FF4 /* SplashAnimationType.swift */; };
+		9E433EAE2ABD87DD6AF52F6F /* ACarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219A16650481331E3C890999 /* ACarouselViewModel.swift */; };
 		9F094B30F9569370606E16EE /* CoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9156B1B3EF54782D575BE3AE /* CoinRankListController.swift */; };
 		9FCF1D6354D38F828B76B041 /* TheRouterDebugTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54122650AD11C115BE1ECF39 /* TheRouterDebugTool.swift */; };
 		9FEC8F34F46D747B79CFE8B3 /* Codable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD5667276FE2C4D80DD7D363 /* Codable+Extension.swift */; };
@@ -297,6 +300,7 @@
 		A4E2B68FDA9502CF3F9FD25A /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD6019E36367F62F887580E3 /* CFNetwork.framework */; };
 		A51083F52145C0996F6F4B5F /* ObserverType+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C13278067BF8165CEE61116 /* ObserverType+Extension.swift */; };
 		A6273C7F5BF84C3C83137CB6 /* My.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA1B6A0AFF41AB402EE93A9 /* My.swift */; };
+		A6590DBCEBC5D893FB72D8E7 /* BannerCarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05843CA52A585ADB297C902B /* BannerCarouselView.swift */; };
 		A6EC5C5A8069CDE546F87372 /* RxSwiftExt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE37E5F555AA68B17A9BFEF4 /* RxSwiftExt.framework */; };
 		A70C1B824FF663E1F6C456A2 /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B61006D947FFB1C0765999F /* Provider.swift */; };
 		A7269F7910B86728495547EC /* WebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1D9A001FCA2122FE00B3CF /* WebViewModel.swift */; };
@@ -358,6 +362,7 @@
 		CB918096C3058542F544BC5C /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFAD5D63469253AB9D26ED5D /* BaseModel.swift */; };
 		CBCFFC3FB1FF6D0FD9DE2895 /* FlutterMethodChannelPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 576907EA17350A16D65AB031 /* FlutterMethodChannelPlugin.swift */; };
 		CC855AD69AF2C087E5A56E88 /* MarqueeLabel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0DD2878B5A76030894284BDC /* MarqueeLabel.framework */; };
+		CDF0DFF5CE4D6F623394A6E8 /* ACarouselAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CA4B234CDADD0AA78CC1669 /* ACarouselAutoScroll.swift */; };
 		CEE5D6984EA04B3A4D17236A /* JXSegmentedNumberDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 808D8907AF08366495F9FE4D /* JXSegmentedNumberDataSource.swift */; };
 		CF574B892D94815FAEE922FE /* CustomLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75C29B9E7744A6C93652F3A4 /* CustomLogFormatter.swift */; };
 		D00E73BE9559E37FE99118BD /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B5A9A9A2468262734410C4D /* View+Navigation.swift */; };
@@ -432,6 +437,7 @@
 		F39F66E90FCB8F74AC656B9D /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 2189ABF6B12789DE3CFB84C5 /* MJRefreshComponent.m */; };
 		F3D78EE3BC6271C04CDFA283 /* JXSegmentedIndicatorBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F70D45990047476FB75A397B /* JXSegmentedIndicatorBackgroundView.swift */; };
 		F401946FED3E7FC643FE7272 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326D52ED4F9E69F504E5A7F4 /* ProjectView.swift */; };
+		F5183C6E9DC8D9CD75355B7D /* View+ReceiveTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64A42D21F301E6C78AF10D3A /* View+ReceiveTimer.swift */; };
 		F548629CDF8FE8ADFFA84026 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05BF6DDA5559CC42DAE76C /* AppDelegate.swift */; };
 		F59D1BBF57EA820DF99FD310 /* CustomNetworkActivityPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC238069F0C502F991A1FB63 /* CustomNetworkActivityPlugin.swift */; };
 		F7492E92E9026AF5FAA28EAD /* TreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E96BE193C15C7DEB7DB1D /* TreeService.swift */; };
@@ -516,6 +522,7 @@
 		0392912BF29F80A7853F885B /* UIScrollView+EmptyDataSet.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+EmptyDataSet.m"; sourceTree = "<group>"; };
 		046C2619B3613671665783DE /* SubscriptionToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
 		048F5FE21A3FC58C510B40E2 /* MJRefreshAutoNormalFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoNormalFooter.m; sourceTree = "<group>"; };
+		05843CA52A585ADB297C902B /* BannerCarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCarouselView.swift; sourceTree = "<group>"; };
 		05BE5D6F21458E12A5F32FA2 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0601661C9EEC256A04BFDA44 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		07302E2DBEE3BC724AA40C2A /* MyBaseWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyBaseWebViewController.swift; sourceTree = "<group>"; };
@@ -2261,6 +2268,7 @@
 			children = (
 				489DA24DB3C33423F9236F05 /* AppNavigationBar.swift */,
 				8312EA72AD7969FE373FFF67 /* AppNavigationBarExamples.swift */,
+				05843CA52A585ADB297C902B /* BannerCarouselView.swift */,
 				86EB63052CB5368CDDEBD9A0 /* ShareSheet.swift */,
 				25012730D8554FF6AF546BE1 /* WebUIController.swift */,
 			);
@@ -2854,8 +2862,14 @@
 				3E9384A0C9D24DFD95AA35D1 /* TuistBundle+SwiftUIStudy.swift in Sources */,
 				E83017ACAA9A57634FF86299 /* Assets+SwiftGen.swift in Sources */,
 				98CB6E7CB3A1CFE66F768024 /* Strings+SwiftGen.swift in Sources */,
+				13B0EC4F0F211F2A4C187B44 /* ACarousel.swift in Sources */,
+				CDF0DFF5CE4D6F623394A6E8 /* ACarouselAutoScroll.swift in Sources */,
+				9E433EAE2ABD87DD6AF52F6F /* ACarouselViewModel.swift in Sources */,
+				1CF9FCDCEEC67CE4014C1B8B /* AppLifeCycleModifier.swift in Sources */,
+				F5183C6E9DC8D9CD75355B7D /* View+ReceiveTimer.swift in Sources */,
 				1566005386AA40E76D5BBE52 /* AppNavigationBar.swift in Sources */,
 				C880418576DBA2E50C870944 /* AppNavigationBarExamples.swift in Sources */,
+				A6590DBCEBC5D893FB72D8E7 /* BannerCarouselView.swift in Sources */,
 				243F8753AE27C4DACF088EB5 /* ShareSheet.swift in Sources */,
 				79FD63615FD04A3C2C12695F /* WebUIController.swift in Sources */,
 				35736053AED7A507E58CCD79 /* ColorExtensions.swift in Sources */,

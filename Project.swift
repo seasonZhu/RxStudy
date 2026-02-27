@@ -199,6 +199,8 @@ let project = Project(
                 "SwiftUIApp/**/*.swift",
                 // ========== SwiftGen 生成的代码 ==========
                 "RxStudy/Generated/**/*.swift",
+                // ========== 复用这个轮播图 ==========
+                "RxStudy/SwiftUIExample/View/ACarousel/*.swift",
             ],
             resources: [
                 // ========== 资源（共享主项目的 Assets）==========
