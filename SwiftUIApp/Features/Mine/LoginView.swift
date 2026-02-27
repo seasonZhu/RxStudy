@@ -51,6 +51,7 @@ struct LoginView: View {
             }
             .navigationTitle(formData.isRegisterMode ? "注册" : "登录")
             .navigationBarTitleDisplayMode(.inline)
+            .hideTabBar()
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("取消") {

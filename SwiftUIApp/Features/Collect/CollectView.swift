@@ -17,6 +17,7 @@ struct CollectView: View {
         contentView
             .navigationTitle("我的收藏")
             .navigationBarTitleDisplayMode(.inline)
+            .hideTabBar()
             .onAppear {
                 checkLoginAndLoad()
             }

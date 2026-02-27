@@ -29,6 +29,9 @@ private struct TreeArticleListContentView: View {
 
     var body: some View {
         contentView
+            .navigationTitle(viewModel.tagName)
+            .navigationBarTitleDisplayMode(.inline)
+            .hideTabBar()
             .onAppear {
                 Task {
                     await viewModel.loadData()

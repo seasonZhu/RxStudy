@@ -33,6 +33,7 @@ struct SearchResultView: View {
         }
         .navigationTitle(keyword)
         .navigationBarTitleDisplayMode(.inline)
+        .hideTabBar()
         .onAppear {
             print("📱 SearchResultView onAppear，关键词: \(keyword)")
             print("📊 当前文章数: \(viewModel.articles.count)，是否加载中: \(viewModel.isLoading)")

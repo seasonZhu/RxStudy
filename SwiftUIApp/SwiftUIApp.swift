@@ -75,48 +75,58 @@ struct TabBarView: View {
     @State private var selectedTab = 0
 
     var body: some View {
-        // NavigationView 在外层，保证 push 时 TabBar 自动隐藏
-        NavigationView {
-            TabView(selection: $selectedTab) {
-                // 首页
+        TabView(selection: $selectedTab) {
+            // 首页
+            NavigationView {
                 HomeView()
-                    .tabItem {
-                        Label("首页", systemImage: "house.fill")
-                    }
-                    .tag(0)
-
-                // 项目
-                ProjectView()
-                    .tabItem {
-                        Label("项目", systemImage: "folder.fill")
-                    }
-                    .tag(1)
-
-                // 公众号
-                PublicNumberView()
-                    .tabItem {
-                        Label("公众号", systemImage: "person.2.fill")
-                    }
-                    .tag(2)
-
-                // 体系
-                TreeView()
-                    .tabItem {
-                        Label("体系", systemImage: "square.grid.3x3.fill")
-                    }
-                    .tag(3)
-
-                // 我的
-                MineView()
-                    .tabItem {
-                        Label("我的", systemImage: "person.fill")
-                    }
-                    .tag(4)
             }
-            .accentColor(.blue)
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("首页", systemImage: "house.fill")
+            }
+            .tag(0)
+
+            // 项目
+            NavigationView {
+                ProjectView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("项目", systemImage: "folder.fill")
+            }
+            .tag(1)
+
+            // 公众号
+            NavigationView {
+                PublicNumberView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("公众号", systemImage: "person.2.fill")
+            }
+            .tag(2)
+
+            // 体系
+            NavigationView {
+                TreeView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("体系", systemImage: "square.grid.3x3.fill")
+            }
+            .tag(3)
+
+            // 我的
+            NavigationView {
+                MineView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("我的", systemImage: "person.fill")
+            }
+            .tag(4)
         }
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationViewStyle(.stack)
+        .accentColor(.blue)
         .tint(.blue)
     }
 }

@@ -16,6 +16,7 @@ struct CoinRankListView: View {
         contentView
             .navigationTitle("积分排名")
             .navigationBarTitleDisplayMode(.inline)
+            .hideTabBar()
             .onAppear {
                 Task {
                     await viewModel.loadData()

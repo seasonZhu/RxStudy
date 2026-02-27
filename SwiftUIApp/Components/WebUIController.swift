@@ -9,10 +9,18 @@
 import SwiftUI
 import WebUI
 
+// MARK: - 分享配置
+
+struct ShareConfiguration: Identifiable {
+    let id = UUID()
+    let items: [Any]
+}
+
 // MARK: - 文章详情 WebView（用于 InfoModel）
 
 struct WebUIController: View {
     let article: InfoModel
+    @State private var shareConfig: ShareConfiguration?
 
     var body: some View {
         if let link = article.link, let url = URL(string: link) {
@@ -22,6 +30,20 @@ struct WebUIController: View {
                 }
                 .navigationTitle(article.title?.swiftUIReplaceHtmlElement ?? "文章详情")
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            shareConfig = ShareConfiguration(items: [article.title ?? "", link])
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+                }
+                .sheet(item: $shareConfig) { config in
+                    ShareSheet(items: config.items)
+                        .presentationDragIndicator(.visible)
+                }
+                .hideTabBar()
         } else {
             Text("无效的链接")
                 .foregroundColor(.secondary)
@@ -34,6 +56,7 @@ struct WebUIController: View {
 struct URLWebViewController: View {
     let url: String
     let title: String?
+    @State private var shareConfig: ShareConfiguration?
 
     init(url: String, title: String? = nil) {
         self.url = url
@@ -48,6 +71,24 @@ struct URLWebViewController: View {
                 }
                 .navigationTitle(title?.swiftUIReplaceHtmlElement ?? "网页")
                 .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            if let shareTitle = title {
+                                shareConfig = ShareConfiguration(items: [shareTitle, url])
+                            } else {
+                                shareConfig = ShareConfiguration(items: [url])
+                            }
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+                }
+                .sheet(item: $shareConfig) { config in
+                    ShareSheet(items: config.items)
+                        .presentationDragIndicator(.visible)
+                }
+                .hideTabBar()
         } else {
             Text("无效的链接")
                 .foregroundColor(.secondary)

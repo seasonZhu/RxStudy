@@ -17,6 +17,7 @@ struct CoinView: View {
         contentView
             .navigationTitle("我的积分")
             .navigationBarTitleDisplayMode(.inline)
+            .hideTabBar()
             .onAppear {
                 checkLoginAndLoad()
             }

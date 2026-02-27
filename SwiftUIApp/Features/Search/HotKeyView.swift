@@ -18,6 +18,7 @@ struct HotKeyView: View {
         contentView
             .navigationTitle("搜索")
             .navigationBarTitleDisplayMode(.inline)
+            .hideTabBar()
             .onAppear {
                 if viewModel.hotKeys.isEmpty {
                     viewModel.loadHotKeys()
