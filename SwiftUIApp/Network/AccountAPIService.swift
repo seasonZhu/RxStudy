@@ -116,9 +116,10 @@ final class AccountAPIService {
         }
 
         do {
-            let response = try await provider.requestAsync(.login(username: username, password: password))
-            let decoded = try JSONDecoder().decode(StandardResponse<UserInfoModel>.self, from: response.data)
-            let userInfo = try decoded.getData()
+            let userInfo = try await provider.requestDecoded(
+                .login(username: username, password: password),
+                responseType: StandardResponse<UserInfoModel>.self
+            )
 
             await MainActor.run {
                 self.userInfo = userInfo
@@ -149,9 +150,10 @@ final class AccountAPIService {
 
     /// 登录
     func login(username: String, password: String) async throws {
-        let response = try await provider.requestAsync(.login(username: username, password: password))
-        let decoded = try JSONDecoder().decode(StandardResponse<UserInfoModel>.self, from: response.data)
-        let userInfo = try decoded.getData()
+        let userInfo = try await provider.requestDecoded(
+            .login(username: username, password: password),
+            responseType: StandardResponse<UserInfoModel>.self
+        )
 
         // 保存登录信息
         await MainActor.run {
@@ -164,9 +166,10 @@ final class AccountAPIService {
 
     /// 注册
     func register(username: String, password: String, repassword: String) async throws {
-        let response = try await provider.requestAsync(.register(username: username, password: password, repassword: repassword))
-        let decoded = try JSONDecoder().decode(StandardResponse<UserInfoModel>.self, from: response.data)
-        let userInfo = try decoded.getData()
+        let userInfo = try await provider.requestDecoded(
+            .register(username: username, password: password, repassword: repassword),
+            responseType: StandardResponse<UserInfoModel>.self
+        )
 
         // 保存登录信息
         await MainActor.run {
@@ -179,8 +182,8 @@ final class AccountAPIService {
 
     /// 退出登录
     func logout() async {
-        // 调用退出接口
-        _ = try? await provider.requestAsync(.logout)
+        // 调用退出接口（忽略返回值）
+        let _ = try? await provider.requestDecoded(.logout, responseType: StandardResponse<EmptyResponse>.self)
 
         // 清除本地状态
         await MainActor.run {

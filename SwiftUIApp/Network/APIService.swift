@@ -65,8 +65,8 @@ struct StandardResponse<T: Decodable>: Decodable {
 // MARK: - MoyaProvider 扩展
 
 extension MoyaProvider {
-    /// async/await 包装方法
-    func requestAsync(_ target: Target) async throws -> Response {
+    /// async/await 包装方法（内部使用）
+    private func requestAsync(_ target: Target) async throws -> Response {
         try await withCheckedThrowingContinuation { continuation in
             self.request(target) { result in
                 switch result {
@@ -84,13 +84,10 @@ extension MoyaProvider {
         _ target: Target,
         responseType: StandardResponse<T>.Type
     ) async throws -> T {
-        let response = try await requestAsync(target)
-
-        do {
-            let decoded = try JSONDecoder().decode(StandardResponse<T>.self, from: response.data)
-            return try decoded.getData()
-        } catch {
-            throw APIError.parsingError(error)
-        }
+        let decoded = try await requestAsync(target).map(StandardResponse<T>.self)
+        return try decoded.getData()
     }
 }
+
+/// 空响应类型（用于不需要返回数据的接口，如 logout）
+struct EmptyResponse: Decodable {}
