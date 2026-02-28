@@ -10,6 +10,9 @@ import Foundation
 
 import RxSwift
 import RxCocoa
+import NSObject_Rx
+
+import SVProgressHUD
 
 /// 账户管理器（遵循 AccountManageable 协议，支持依赖注入）
 final class AccountManager: AccountManageable {

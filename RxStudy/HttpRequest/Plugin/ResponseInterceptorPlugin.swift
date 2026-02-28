@@ -8,6 +8,8 @@
 
 import Moya
 
+import SVProgressHUD
+
 // MARK: - 响应异常拦截器插件
 class ResponseInterceptorPlugin: PluginType {
     func process(_ result: Swift.Result<Moya.Response, MoyaError>, target: TargetType) -> Swift.Result<Moya.Response, MoyaError> {

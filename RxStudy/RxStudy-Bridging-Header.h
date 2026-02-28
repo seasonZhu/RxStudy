@@ -19,11 +19,14 @@
 /// 仅 Objective-C 库需要在此导入
 #import "TheRouterableProxy.h"
 #import "TheRouterDynamicParamsMapping.h"
-#import "MBProgressHUD.h"
-#import "SVProgressHUD.h"
-#import "MJRefresh.h"
 #import "UIScrollView+EmptyDataSet.h"
 #import "UIScrollView+MJRefresh.h"
-/// FSPagerView、JXSegmentedView、NSObject+Rx、TheRouter 是 Swift 库，直接编译到主目标中，不需要在此导入
+
+/// ========== 第三方库使用SPM进行依赖后,不用在桥接文件里面进行声明了 ==========
+//#import "MBProgressHUD.h"
+//#import "SVProgressHUD.h"
+//#import "MJRefresh.h"
+
+/// FSPagerView、TheRouter 是 Swift 库，直接编译到主目标中，不需要在此导入
 
 #define guard(wish) if (wish);

@@ -10,6 +10,8 @@ import Foundation
 
 import RxSwift
 import RxRelay
+import NSObject_Rx
+
 import Moya
 
 /// MVVM 架构中的 ViewModel 基类

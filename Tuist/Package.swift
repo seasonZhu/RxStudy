@@ -27,9 +27,15 @@ import PackageDescription
             "MarqueeLabel": .staticFramework,
             "SFSafeSymbols": .staticFramework,
             "ZipArchive": .staticFramework,
+            "MBProgressHUD": .staticFramework,
+            "SVProgressHUD": .staticFramework,
+            "MJRefresh": .staticFramework,
+            "JXSegmentedView": .staticFramework,
+            "NSObject-Rx": .staticFramework,
             "WebUI": .staticFramework,
             "PagerTabStripView": .staticFramework,
             "ProgressHUD": .staticFramework,
+
         ]
     )
 #endif
@@ -67,8 +73,15 @@ let package = Package(
 
         // ========== TabView 组件 ==========
         .package(url: "https://github.com/xmartlabs/PagerTabStripView.git", from: "3.0.0"),
-        
+
         // ========== UI 工具 ==========
         .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "15.0.1"),
+        .package(url: "https://github.com/jdg/MBProgressHUD.git", from: "1.2.0"),
+        .package(url: "https://github.com/SVProgressHUD/SVProgressHUD.git", from: "2.3.1"),
+        .package(url: "https://github.com/CoderMJLee/MJRefresh.git", from: "3.7.9"),
+        .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.4.1"),
+
+        // ========== RxSwift 扩展 ==========
+        .package(url: "https://github.com/RxSwiftCommunity/NSObject-Rx.git", from: "5.2.2"),
     ]
 )

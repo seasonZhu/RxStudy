@@ -11,6 +11,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+import NSObject_Rx
 // Moya 14.x 自带 RxSwift 支持
 
 // MARK: - 列表服务

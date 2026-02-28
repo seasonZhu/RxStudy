@@ -14,16 +14,28 @@
          location = "group:Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Tuist/.build/tuist-derived/JXSegmentedView/JXSegmentedView.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Tuist/.build/tuist-derived/KeychainAccess/KeychainAccess.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Tuist/.build/tuist-derived/MBProgressHUD/MBProgressHUD.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/MJRefresh/MJRefresh.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Tuist/.build/tuist-derived/MarqueeLabel/MarqueeLabel.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/Moya/Moya.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/NSObject-Rx/NSObject-Rx.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/PagerTabStripView/PagerTabStripView.xcodeproj">
@@ -51,6 +63,9 @@
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/SFSafeSymbols/SFSafeSymbols.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/SnapKit/SnapKit.xcodeproj">

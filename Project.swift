@@ -79,25 +79,29 @@ let project = Project(
                 // ========== SwiftGen 生成的代码 ==========
                 "RxStudy/Generated/**/*.swift",
                 // ========== 第三方库源码（不支持SPM）直接引入 ==========
-                "Packages/ThirdParty/NSObject+Rx/Sources/**",
+                // 以下库已改为使用官方 SPM 依赖：
+                // - NSObject+Rx → RxSwiftCommunity/NSObject-Rx
+                // - SVProgressHUD → SVProgressHUD/SVProgressHUD
+                // - MJRefresh → CoderMJLee/MJRefresh
+                // - JXSegmentedView → pujiaxin33/JXSegmentedView
+                // 以下库不支持 SPM，保持源码集成：
+                // - DZNEmptyDataSet（无 Package.swift）
+                // - FSPagerView（Package.swift 格式错误）
                 "Packages/ThirdParty/TheRouter/Sources/**",
-                // FlexLayout 暂时移除 - 需要 C++ yoga 模块支持，配置较复杂
-                // "Packages/ThirdParty/FlexLayout/Sources/**",
-                "Packages/ThirdParty/MBProgressHUD/Sources/**",
-                "Packages/ThirdParty/SVProgressHUD/Sources/**",
-                "Packages/ThirdParty/MJRefresh/Sources/**",
+                "Packages/ThirdParty/DZNEmptyDataSet/Sources/**",
                 // FSPagerView: 排除 include 目录（仅头文件，避免重复编译）
                 "Packages/ThirdParty/FSPagerView/Sources/**/*.swift",
                 "Packages/ThirdParty/FSPagerView/Sources/*.m",
-                "Packages/ThirdParty/JXSegmentedView/Sources/**",
-                "Packages/ThirdParty/DZNEmptyDataSet/Sources/**"
+                // FlexLayout 暂时移除 - 需要 C++ yoga 模块支持，配置较复杂
+                // "Packages/ThirdParty/FlexLayout/Sources/**",
             ],
             resources: [
                 "RxStudy/Assets.xcassets/**",
                 "RxStudy/Base.lproj/LaunchScreen.storyboard",
                 "RxStudy/Base.lproj/Main.storyboard",
-                "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**",
-                "Packages/ThirdParty/MJRefresh/Sources/MJRefresh/MJRefresh.bundle/**"
+                // 以下库的 bundle 已通过 SPM 自动管理：
+                // - SVProgressHUD.bundle
+                // - MJRefresh.bundle
             ],
             dependencies: [
                 // ========== RxSwift 生态 ==========
@@ -110,6 +114,7 @@ let project = Project(
                 TargetDependency.external(name: "RxSwiftExt"),
                 TargetDependency.external(name: "RxOptional"),
                 TargetDependency.external(name: "RxBlocking"),
+                TargetDependency.external(name: "NSObject-Rx"),
 
                 // ========== 网络层 ==========
                 // 使用 Moya 的 RxMoya 模块（SPM 自带，不需要自定义扩展）
@@ -128,6 +133,14 @@ let project = Project(
                 TargetDependency.external(name: "MarqueeLabel"),
                 TargetDependency.external(name: "SFSafeSymbols"),
                 TargetDependency.external(name: "ZipArchive"),
+
+                // ========== UI 工具 ==========
+                TargetDependency.external(name: "MBProgressHUD"),
+                TargetDependency.external(name: "SVProgressHUD"),
+                TargetDependency.external(name: "MJRefresh"),
+
+                // ========== 分段控制器 ==========
+                TargetDependency.external(name: "JXSegmentedView"),
             ],
             settings: .settings(
                 base: [
@@ -150,11 +163,11 @@ let project = Project(
                         "$(SRCROOT)/RxStudy/Extension/CrashController",
                         "$(SRCROOT)/RxStudy/Extension/NSURLProtocol+WKWebVIew",
                         "$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
-                        "$(SRCROOT)/Packages/ThirdParty/MBProgressHUD/Sources/include",
-                        "$(SRCROOT)/Packages/ThirdParty/SVProgressHUD/Sources/include",
-                        "$(SRCROOT)/Packages/ThirdParty/MJRefresh/Sources/MJRefresh",
-                        "$(SRCROOT)/Packages/ThirdParty/MJRefresh/Sources/MJRefresh/**",
-                        "$(SRCROOT)/Packages/ThirdParty/DZNEmptyDataSet/Sources/include"
+                        "$(SRCROOT)/Packages/ThirdParty/DZNEmptyDataSet/Sources/include",
+                        // 以下库已改为使用官方 SPM 依赖，头文件由 SPM 自动管理：
+                        // - MBProgressHUD
+                        // - SVProgressHUD
+                        // - MJRefresh
                     ]
                 ],
                 configurations: [

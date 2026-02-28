@@ -540,83 +540,46 @@ simulatedLocation: .disabled
 )
 ```
 
-## 📦 常用依赖配置
+## 📦 常用依赖快速参考
 
-### 网络层
+以下是一些常用第三方库的 Package.swift 配置，直接复制到 `Tuist/Package.swift` 中使用：
 
-**Tuist/Package.swift**:
 ```swift
+// 网络层
 dependencies: [
     .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.11.0"),
     .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
 ]
-productTypes: [
-    "Alamofire": .staticFramework,
-    "Moya": .staticFramework,
-]
-```
 
-**Project.swift**:
-```swift
-dependencies: [
-    .external(name: "Alamofire"),
-    .external(name: "Moya"),
-]
-```
-
-### RxSwift 生态
-
-**Tuist/Package.swift**:
-```swift
+// RxSwift 生态
 dependencies: [
     .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.9.0"),
 ]
-```
 
-**Project.swift**:
-```swift
-dependencies: [
-    .external(name: "RxSwift"),
-    .external(name: "RxCocoa"),
-    .external(name: "RxRelay"),
-    .external(name: "RxDataSources"),
-    .external(name: "RxGesture"),
-]
-```
-
-### UI 组件
-
-**Tuist/Package.swift**:
-```swift
+// UI 组件
 dependencies: [
     .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.7.1"),
     .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.6.3"),
 ]
-```
 
-**Project.swift**:
-```swift
+// 图片加载
 dependencies: [
-    .external(name: "SnapKit"),
-    .external(name: "Kingfisher"),
+    .package(url: "https://github.com/kean/Nuke.git", from: "12.0.0"),
 ]
-```
 
-### 架构框架
-
-**Tuist/Package.swift**:
-```swift
+// 架构框架
 dependencies: [
     .package(url: "https://github.com/pointfreeco/swift-composable-architecture.git", from: "1.0.0"),
 ]
-```
 
-**Project.swift**:
-```swift
+// 工具类
 dependencies: [
-    .external(name: "ComposableArchitecture"),
+    .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2"),
+    .package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", from: "5.0.0"),
 ]
 ```
+
+> 💡 **提示**：更多依赖配置示例，请参考上面的"依赖管理"部分。
 
 ## 🛠️ 常用命令
 
@@ -663,10 +626,128 @@ tuist test
 
 ### 依赖管理
 
-1. 先在 `Tuist/Package.swift` 中添加依赖
-2. 在 `productTypes` 中指定产品类型
-3. 在 `Project.swift` 的 `dependencies` 中引用
-4. 运行 `tuist install` 安装依赖
+**重要提示**：由于 Tuist Registry (registry.tuist.dev) 在国内可能无法直接访问，**本模板使用本地 Package.swift 方式**。
+
+#### 添加第三方依赖（两步）
+
+**步骤 1**：修改 `Tuist/Package.swift`，添加依赖定义
+
+```swift
+// Tuist/Package.swift
+let package = Package(
+    name: "AppTemplate",
+    dependencies: [
+        // 添加你需要的依赖
+        .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.11.0"),
+        .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.6.3"),
+        .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.7.1"),
+    ],
+    productTypes: [
+        // 可选：指定产品类型（默认为 .framework）
+        "Alamofire": .staticFramework,
+        "Kingfisher": .staticFramework,
+        "SnapKit": .staticFramework,
+    ]
+)
+```
+
+**步骤 2**：修改 `Project.swift`，引用依赖
+
+```swift
+// Project.swift
+targets: [
+    .target(
+        name: "AppTemplate",
+        dependencies: [
+            .external(name: "Alamofire"),
+            .external(name: "Kingfisher"),
+            .external(name: "SnapKit"),
+        ]
+    )
+]
+```
+
+**步骤 3**：运行命令
+
+```bash
+tuist install  # 安装依赖
+tuist generate  # 生成项目
+```
+
+#### 删除依赖（两步）
+
+```swift
+// 1. Tuist/Package.swift - 删除对应的 .package(...)
+// 2. Project.swift - 删除对应的 .external(name: "...")
+```
+
+#### 常用依赖配置示例
+
+```swift
+// RxSwift 生态
+dependencies: [
+    .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "6.9.0"),
+]
+// Project.swift
+dependencies: [
+    .external(name: "RxSwift"),
+    .external(name: "RxCocoa"),
+    .external(name: "RxRelay"),
+]
+
+// 网络层
+dependencies: [
+    .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.11.0"),
+    .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
+]
+```
+
+#### 版本指定
+
+```swift
+// 精确版本
+.package(url: "...", exact: "5.11.0")
+
+// 版本范围
+.package(url: "...", from: "5.11.0")
+.package(url: "...", "5.11.0"..."6.0.0")
+
+// 指定分支
+.package(url: "...", branch: "main")
+```
+
+#### ⚠️ 关于 Tuist Registry
+
+如果你可以访问 `registry.tuist.dev`（例如使用代理），可以启用 Registry 模式：
+
+```swift
+// Tuist/Tuist.swift
+let config = Config(
+    dependencies: [
+        .remote(url: "https://registry.tuist.dev", name: "Tuist"),
+    ]
+)
+```
+
+启用后，常用库（Alamofire、Kingfisher 等）可以**只修改 Project.swift**：
+
+```swift
+// Project.swift - 无需修改 Package.swift
+dependencies: [
+    .external(name: "Alamofire"),  // 自动从 Registry 获取
+]
+```
+
+```bash
+# ✅ 推荐方式（Registry）
+# 1. 修改 Project.swift，添加/删除 .external(name: "xxx")
+# 2. 运行 tuist install
+
+# ⚠️ 备选方式（Package.swift）
+# 1. 修改 Tuist/Package.swift
+# 2. 修改 Project.swift
+# 3. 运行 tuist install
+```
 
 ### 代码签名
 

@@ -84,6 +84,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "B1CC0B83AC3950A6A2AA7833"
+               BuildableName = "JXSegmentedView.framework"
+               BlueprintName = "JXSegmentedView"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/JXSegmentedView/JXSegmentedView.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2FE3AA4CE939065CE7B30803"
+               BuildableName = "JXSegmentedView_JXSegmentedView.bundle"
+               BlueprintName = "JXSegmentedView_JXSegmentedView"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/JXSegmentedView/JXSegmentedView.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "FC8983B65BEFA93EC9015ECE"
                BuildableName = "KeychainAccess.framework"
                BlueprintName = "KeychainAccess"
@@ -126,6 +154,48 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5867F83D3D559C6BA0229C5F"
+               BuildableName = "MBProgressHUD.framework"
+               BlueprintName = "MBProgressHUD"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/MBProgressHUD/MBProgressHUD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "46097A2D95A3FB9C3328A692"
+               BuildableName = "MJRefresh.framework"
+               BlueprintName = "MJRefresh"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/MJRefresh/MJRefresh.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "295F4E785F4B23FBB00120A8"
+               BuildableName = "MJRefresh_MJRefresh.bundle"
+               BlueprintName = "MJRefresh_MJRefresh"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/MJRefresh/MJRefresh.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "3F021E77926999B111A8E16D"
                BuildableName = "MarqueeLabel.framework"
                BlueprintName = "MarqueeLabel"
@@ -158,6 +228,20 @@
                BuildableName = "Moya.framework"
                BlueprintName = "Moya"
                ReferencedContainer = "container:Tuist/.build/tuist-derived/Moya/Moya.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "2228447DE6CF413762723712"
+               BuildableName = "NSObject_Rx.framework"
+               BlueprintName = "NSObject-Rx"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/NSObject-Rx/NSObject-Rx.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -438,6 +522,34 @@
                BuildableName = "SFSafeSymbols.framework"
                BlueprintName = "SFSafeSymbols"
                ReferencedContainer = "container:Tuist/.build/tuist-derived/SFSafeSymbols/SFSafeSymbols.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "BFD54B16764E5C0DE3D875D0"
+               BuildableName = "SVProgressHUD.framework"
+               BlueprintName = "SVProgressHUD"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F8484EC501FD36E30F1EAABD"
+               BuildableName = "SVProgressHUD_SVProgressHUD.bundle"
+               BlueprintName = "SVProgressHUD_SVProgressHUD"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry

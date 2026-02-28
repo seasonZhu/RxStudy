@@ -8,6 +8,8 @@
 
 import UIKit
 
+import SVProgressHUD
+
 extension AppDelegate {
 
     /// 设置应用配置

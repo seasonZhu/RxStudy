@@ -8,6 +8,8 @@
 
 import UIKit
 
+import SVProgressHUD
+
 class AccountBaseController: BaseViewController {
     
     lazy var usernameFiled: UITextField = {

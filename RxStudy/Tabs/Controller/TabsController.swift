@@ -10,6 +10,7 @@ import UIKit
 
 import RxCocoa
 
+import JXSegmentedView
 
 class TabsController: BaseViewController {
     

@@ -15,7 +15,7 @@ import RxGesture
 import Moya
 import Alamofire
 
-
+import SVProgressHUD
 
 class ViewController: UITabBarController {
     

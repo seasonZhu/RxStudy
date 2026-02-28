@@ -11,6 +11,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import MJRefresh
+
 class Target: NSObject, Disposable {
     private var retainSelf: Target?
     

@@ -9,6 +9,7 @@ import UIKit
 
 import RxSwift
 import SnapKit
+import NSObject_Rx
 
 class CustomTabBarController: UITabBarController {
     

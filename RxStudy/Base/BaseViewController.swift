@@ -14,6 +14,8 @@ import RxGesture
 
 import Moya
 
+import SVProgressHUD
+
 #if DEBUG
 #endif
 
