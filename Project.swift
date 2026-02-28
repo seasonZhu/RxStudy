@@ -78,21 +78,12 @@ let project = Project(
                 "RxStudy/**",
                 // ========== SwiftGen 生成的代码 ==========
                 "RxStudy/Generated/**/*.swift",
-                // ========== 第三方库源码（不支持SPM）直接引入 ==========
-                // 以下库已改为使用官方 SPM 依赖：
-                // - NSObject+Rx → RxSwiftCommunity/NSObject-Rx
-                // - SVProgressHUD → SVProgressHUD/SVProgressHUD
-                // - MJRefresh → CoderMJLee/MJRefresh
-                // - JXSegmentedView → pujiaxin33/JXSegmentedView
-                // - DZNEmptyDataSet → dzenbot/DZNEmptyDataSet（使用 master 分支）
-                // 以下库不支持 SPM，保持源码集成：
-                // - FSPagerView → 改为本地 SPM 包（修复 Package.swift 后）
-                "Packages/ThirdParty/TheRouter/Sources/**",
-                // FSPagerView: 已改为本地 SPM 依赖
-                // "Packages/ThirdParty/FSPagerView/Sources/**/*.swift",
-                // "Packages/ThirdParty/FSPagerView/Sources/*.m",
-                // FlexLayout 已通过 SPM 集成
-                // "Packages/ThirdParty/FlexLayout/Sources/**",  // 本地源码已清理
+                // ========== 本地依赖（源码集成 → 本地 SPM 包迁移）==========
+                // 以下库已改为使用本地 SPM 包：
+                // - FSPagerView → 本地 SPM 包（Package.swift 手动创建）
+                // - TheRouter → 本地 SPM 包（Package.swift 手动创建）
+                // 已清理的本地源码：
+                // - FlexLayout → 已通过官方 SPM 集成（本地源码已清理）
             ],
             resources: [
                 "RxStudy/Assets.xcassets/**",
@@ -150,6 +141,9 @@ let project = Project(
                 // ========== 轮播图 ==========
                 TargetDependency.external(name: "FSPagerView"),
 
+                // ========== 路由 ==========
+                TargetDependency.external(name: "TheRouter"),
+
                 // ========== 许可证列表 ==========
                 TargetDependency.external(name: "AcknowList"),
             ],
@@ -173,7 +167,9 @@ let project = Project(
                         "$(SRCROOT)/RxStudy",
                         "$(SRCROOT)/RxStudy/Extension/CrashController",
                         "$(SRCROOT)/RxStudy/Extension/NSURLProtocol+WKWebVIew",
-                        "$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
+                        // 以下库已改为使用本地 SPM 依赖，头文件由 SPM 自动管理：
+                        // - FSPagerView
+                        // - TheRouter
                         // 以下库已改为使用官方 SPM 依赖，头文件由 SPM 自动管理：
                         // - MBProgressHUD
                         // - SVProgressHUD
