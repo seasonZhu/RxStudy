@@ -71,9 +71,8 @@ class ViewController: UITabBarController {
         navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { [weak self] _ in
             debugLog("点击事件")
             Haptics.success.feedback()
-            // HotKeyFlexBoxController (FlexLayout) 已移除，使用 HotKeyController
-            self?.navigationController?.pushViewController(HotKeyController(), animated: true)
-            // TheRouter.openURL("wandroid://hotkey")
+            // 使用 FlexLayout 布局的热门快捷键页面
+            self?.navigationController?.pushViewController(HotKeyFlexBoxController(), animated: true)
         })
         .disposed(by: rx.disposeBag)
         

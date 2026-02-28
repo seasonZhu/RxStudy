@@ -101,6 +101,37 @@ targets: [
 .package(path: "../LocalSPMPackage")
 ```
 
+### 版本指定方式对比
+
+| 方式 | 语法 | 说明 | 稳定性 | 推荐场景 |
+|------|------|------|--------|----------|
+| **版本范围** | `from: "1.8.1"` | 使用 1.8.1 及以上兼容版本 | ⭐⭐⭐⭐⭐ | 默认推荐，自动获取小版本更新 |
+| **精确版本** | `exact: "1.8.1"` | 锁定 1.8.1 版本 | ⭐⭐⭐⭐⭐ | 生产环境，需要完全确定版本 |
+| **分支** | `branch: "master"` | 使用指定分支最新代码 | ⭐⭐⭐ | 开发环境，尝鲜新特性 |
+| **修订** | `revision: "abc123"` | 使用指定提交哈希 | ⭐⭐⭐⭐ | 需要特定提交或修复 |
+| **范围区间** | `"1.8.0"..."2.0.0"` | 版本范围区间 | ⭐⭐⭐⭐ | 限制大版本更新范围 |
+| **本地路径** | `path: "../Lib"` | 使用本地包 | ⭐⭐⭐ | 本地开发或私有包 |
+
+#### 使用建议
+
+```swift
+// ✅ 推荐：生产环境使用版本范围
+.package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.11.0")
+
+// ✅ 推荐：需要精确控制版本
+.package(url: "https://github.com/Alamofire/Alamofire.git", exact: "5.11.0")
+
+// ⚠️ 谨慎使用：主分支（代码可能不稳定）
+// DZNEmptyDataSet 示例：该库的 tagged 版本不支持 SPM，必须使用 master 分支
+.package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master")
+
+// ⚠️ 特殊场景：特定提交（如临时修复）
+.package(url: "https://github.com/example/Lib.git", revision: "abc123def")
+
+// ✅ 本地开发
+.package(path: "../LocalSPMPackage")
+```
+
 ### 产品类型
 
 ```swift
@@ -486,6 +517,22 @@ tuist install
 2. 定期更新依赖并测试
 3. 使用 `tuist graph` 查看依赖关系
 
+### Q: 什么时候应该使用 branch 而不是 from？
+
+**A**: 使用 `branch` 的场景：
+- ❌ 库的 tagged 版本不支持 SPM（如 DZNEmptyDataSet）
+- ⚠️ 需要测试尚未发布的最新功能
+- ⚠️ 临时使用某个分支的 bug 修复
+
+**示例**：
+```swift
+// DZNEmptyDataSet 的 tagged 版本没有 Package.swift，必须使用 master
+.package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master")
+
+// FlexLayout 使用正常的版本范围
+.package(url: "https://github.com/layoutBox/FlexLayout.git", from: "2.2.3")
+```
+
 ### Q: 国内使用哪种方式更稳定？
 
 **A**: **Package.swift 更稳定**，因为：
@@ -505,4 +552,4 @@ tuist install
 
 ---
 
-**最后更新**: 2026-02-27
+**最后更新**: 2026-02-28

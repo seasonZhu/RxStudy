@@ -49,7 +49,8 @@ extension TreeCellStyleChangeController {
                 self?.tableView.deselectRow(at: indexPath, animated: false)
                 let type = LayoutType.allCases[indexPath.row]
                 AccountManager.shared.layoutType = type
-                NotificationCenter.default.post(name: .Layout.typeChange, object: nil)
+                NotificationCenter.default.post(name: .Layout.typeChange, object: type)
+                self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: rx.disposeBag)
     }

@@ -8,24 +8,26 @@
 
 import FlexLayout
 
+import FlexLayoutYogaKit
+
 extension Flex {
-    
+
     /// 添加一个撑满的间隙
     @discardableResult
     func addSpacer(_ value: CGFloat = 1) -> Flex {
         addItem().grow(value).shrink(value)
     }
-    
+
     /// 创建行
     func row() -> Flex {
         direction(.row)
     }
-    
+
     /// 创建列
     func column() -> Flex {
         direction(.column)
     }
-    
+
     /// 是否进行布局计算及显示
     var isLayoutAndShow: Bool {
         set {
@@ -36,22 +38,22 @@ extension Flex {
             return isIncludedInLayout && (self.view?.isHidden ?? false)
         }
     }
-    
+
     func removeAllElement() {
         view?.subviews.forEach { $0.removeFromSuperview() }
     }
-    
+
     var yoga: YGLayout? {
         view?.yoga
     }
-    
+
     var display: Flex.Display {
         guard let display = yoga?.display else {
             return .flex
         }
-        
+
         switch display {
-            
+
         case .flex:
             return .flex
         case .none:
@@ -62,15 +64,15 @@ extension Flex {
             fatalError()
         }
     }
-    
+
     var displayIsNone: Bool {
         display == .none
     }
-    
+
     var displayIsFlex: Bool {
         display == .flex
     }
-    
+
     var displayIsContents: Bool {
         display == .contents
     }

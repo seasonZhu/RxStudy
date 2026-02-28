@@ -14,6 +14,12 @@
          location = "group:Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Tuist/.build/tuist-derived/DZNEmptyDataSet/DZNEmptyDataSet.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/FlexLayout/FlexLayout.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Tuist/.build/tuist-derived/JXSegmentedView/JXSegmentedView.xcodeproj">
       </FileRef>
       <FileRef
@@ -75,6 +81,9 @@
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/yoga/yoga.xcodeproj">
       </FileRef>
    </Group>
 </Workspace>

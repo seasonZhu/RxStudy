@@ -30,8 +30,8 @@ class BaseTableViewController: BaseViewController {
                                                    InfoGenericsCell.self,
                                                    LogoutCell.self,
                                                    MessageCell.self,
-                                                   MessageContentCell.self]
-                                                   // TreeCell 已禁用 - 暂时移除
+                                                   MessageContentCell.self,
+                                                   TreeCell.self,]
 
     override func viewDidLoad() {
         super.viewDidLoad()

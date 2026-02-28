@@ -5,6 +5,21 @@
 //  这是一个带完整注释的 Tuist 项目配置模板
 //  根据你的需求取消注释相应的配置即可
 //
+//  第三方库集成说明：
+//  ---------------------
+//  优先使用 SPM（Swift Package Manager）方式集成第三方库：
+//  1. 在 Tuist/Package.swift 中添加依赖
+//  2. 在 dependencies 中添加 .external(name: "...")
+//  3. 运行 tuist install 安装依赖
+//
+//  对于不支持 SPM 的第三方库，使用源码集成：
+//  1. 在 sources 中添加库的源码路径
+//  2. 在 HEADER_SEARCH_PATHS 中添加头文件路径
+//  3. 在 resources 中添加资源文件路径（如需要）
+//  4. 在 dependencies 中添加 .target(name: "..." )（如果是本地模块）
+//
+//  详见：Template/DEPENDENCY_GUIDE.md
+//
 
 import ProjectDescription
 
@@ -188,6 +203,25 @@ let project = Project(
             sources: [
                 "AppTemplate/Sources/**",
 
+                // ========== 第三方库源码集成（不支持 SPM 的库）==========
+                // 以下是一些常见的不支持 SPM 的第三方库，可以通过源码方式集成：
+                //
+                // 示例：
+                // "Packages/ThirdParty/TheRouter/Sources/**",
+                // "Packages/ThirdParty/FSPagerView/Sources/**/*.swift",  // 排除 .h 文件
+                // "Packages/ThirdParty/FSPagerView/Sources/*.m",
+                //
+                // 注意：优先使用 SPM 方式集成第三方库，源码集成仅作为备选方案
+                //
+                // 已改为 SPM 的库（已移除源码集成）：
+                // - FlexLayout → 使用 SPM (layoutBox/FlexLayout 2.2.3)
+                // - DZNEmptyDataSet → 使用 SPM (dzenbot/DZNEmptyDataSet master 分支)
+                // - MBProgressHUD → 使用 SPM (jdg/MBProgressHUD 1.2.0)
+                // - SVProgressHUD → 使用 SPM (SVProgressHUD/SVProgressHUD 2.3.1)
+                // - MJRefresh → 使用 SPM (CoderMJLee/MJRefresh 3.7.9)
+                // - JXSegmentedView → 使用 SPM (pujiaxin33/JXSegmentedView 1.4.1)
+                // - NSObject+Rx → 使用 SPM (RxSwiftCommunity/NSObject-Rx 5.2.2)
+
                 // ========== Glob 模式（更灵活的文件匹配）==========
                 // .glob(pattern: "AppTemplate/Sources/**/*.swift", excluding: ["**/*+Unused.swift"]),
 
@@ -198,6 +232,13 @@ let project = Project(
             // ========== 资源文件 ==========
             resources: [
                 "AppTemplate/Resources/**",
+
+                // ========== 第三方库资源文件（如 .bundle）==========
+                // 如果第三方库包含资源文件（如 bundle、xcassets 等），需要添加到这里
+                //
+                // 示例：
+                // "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**",
+                // "Packages/ThirdParty/MJRefresh/Sources/MJRefresh/MJRefresh.bundle/**",
 
                 // ========== Glob 模式 ==========
                 // .glob(pattern: "AppTemplate/Resources/**", excluding: ["**/*.lproj"]),
@@ -287,6 +328,10 @@ let project = Project(
                 // .external(name: "RxDataSources"),
                 // .external(name: "RxGesture"),
                 // .external(name: "RxTheme"),
+                // .external(name: "RxSwiftExt"),
+                // .external(name: "RxOptional"),
+                // .external(name: "RxBlocking"),
+                // .external(name: "NSObject-Rx"),
 
                 // ---------- 网络层 ----------
 
@@ -305,6 +350,36 @@ let project = Project(
                 // ---------- 布局 ----------
 
                 // .external(name: "SnapKit"),
+                // .external(name: "FlexLayout"),
+
+                // ---------- UI 工具 ----------
+
+                // 进度指示器
+                // .external(name: "MBProgressHUD"),
+                // .external(name: "SVProgressHUD"),
+                // .external(name: "ProgressHUD"),
+
+                // 下拉刷新
+                // .external(name: "MJRefresh"),
+
+                // 轮播图
+                // .external(name: "FSPagerView"),
+
+                // 分段控制器
+                // .external(name: "JXSegmentedView"),
+
+                // 空数据展示（使用 master 分支获取最新代码）
+                // .external(name: "DZNEmptyDataSet"),
+
+                // ========== WebView ==========
+
+                // ---------- WebView ----------
+
+                // .external(name: "WebUI"),
+
+                // ---------- TabView 组件 ----------
+
+                // .external(name: "PagerTabStripView"),
 
                 // ---------- 架构模式 ----------
 
@@ -317,6 +392,12 @@ let project = Project(
 
                 // SF Symbols 图标
                 // .external(name: "SFSafeSymbols"),
+
+                // 滚动文字
+                // .external(name: "MarqueeLabel"),
+
+                // 压缩解压
+                // .external(name: "ZipArchive"),
 
                 // ---------- 日志调试 ----------
 
@@ -333,6 +414,24 @@ let project = Project(
                     "CODE_SIGN_STYLE": "Automatic",
                     "CODE_SIGN_IDENTITY": "Apple Development",
                     "PRODUCT_BUNDLE_IDENTIFIER": "com.example.AppTemplate",
+
+                    // ========== Bridging Header 配置（Objective-C 桥接头文件）==========
+                    // 如果项目使用了 Objective-C 代码或第三方库，需要配置 Bridging Header
+                    // "SWIFT_OBJC_BRIDGING_HEADER": "$(SRCROOT)/AppTemplate/AppTemplate-Bridging-Header.h",
+
+                    // ========== 第三方库头文件搜索路径 ==========
+                    // 对于不支持 SPM 的第三方库，需要手动添加源码路径和头文件搜索路径
+                    "HEADER_SEARCH_PATHS": [
+                        "$(inherited)",
+                        // "$(SRCROOT)/AppTemplate",
+                        // "$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
+                        // "$(SRCROOT)/Packages/ThirdParty/FSPagerView/Sources/include",
+                        // "$(SRCROOT)/Packages/ThirdParty/DZNEmptyDataSet/Sources/include",
+                    ],
+
+                    // ========== 链接标志 ==========
+                    // 如果使用了第三方库的 Objective-C 分类（Category），需要添加 -ObjC
+                    // "OTHER_LDFLAGS": ["$(inherited)", "-ObjC"],
 
                     // 权限文件
                     // "CODE_SIGN_ENTITLEMENTS": "AppTemplate/Resources/AppTemplate.entitlements",

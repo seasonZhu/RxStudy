@@ -29,6 +29,7 @@ import PackageDescription
 
             // ========== 布局 ==========
             // "SnapKit": .staticFramework,
+            // "FlexLayout": .staticFramework,
 
             // ========== 工具 ==========
             // "KeychainAccess": .staticFramework,
@@ -40,6 +41,13 @@ import PackageDescription
             // ========== WebView (SwiftUI) ==========
             // "WebUI": .staticFramework,
             // "ProgressHUD": .staticFramework,
+
+            // ========== UI 工具 ==========
+            // "MBProgressHUD": .staticFramework,
+            // "SVProgressHUD": .staticFramework,
+            // "MJRefresh": .staticFramework,
+            // "JXSegmentedView": .staticFramework,
+            // "DZNEmptyDataSet": .staticFramework,
         ]
     )
 #endif
@@ -67,6 +75,7 @@ let package = Package(
 
         // ---------- 布局 ----------
         // .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.7.1"),
+        // .package(url: "https://github.com/layoutBox/FlexLayout.git", from: "2.2.3"),
 
         // ---------- 工具 ----------
         // .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2"),
@@ -78,6 +87,13 @@ let package = Package(
         // ---------- WebView (SwiftUI) ----------
         // .package(url: "https://github.com/cybozu/WebUI.git", from: "4.0.0"),
         // .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "15.0.1"),
+
+        // ---------- UI 工具 ----------
+        // .package(url: "https://github.com/jdg/MBProgressHUD.git", from: "1.2.0"),
+        // .package(url: "https://github.com/SVProgressHUD/SVProgressHUD.git", from: "2.3.1"),
+        // .package(url: "https://github.com/CoderMJLee/MJRefresh.git", from: "3.7.9"),
+        // .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.4.1"),
+        // .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),  // 使用主分支最新代码
     ]
 )
 

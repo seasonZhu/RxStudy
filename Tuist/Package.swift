@@ -17,6 +17,7 @@ import PackageDescription
             "RxSwiftExt": .staticFramework,
             "RxOptional": .staticFramework,
             "RxBlocking": .staticFramework,
+            "NSObject-Rx": .staticFramework,
             "RxMoya": .staticFramework,
             "Moya": .staticFramework,
             "Alamofire": .staticFramework,
@@ -27,15 +28,15 @@ import PackageDescription
             "MarqueeLabel": .staticFramework,
             "SFSafeSymbols": .staticFramework,
             "ZipArchive": .staticFramework,
+            "WebUI": .staticFramework,
+            "PagerTabStripView": .staticFramework,
+            "ProgressHUD": .staticFramework,
             "MBProgressHUD": .staticFramework,
             "SVProgressHUD": .staticFramework,
             "MJRefresh": .staticFramework,
             "JXSegmentedView": .staticFramework,
-            "NSObject-Rx": .staticFramework,
-            "WebUI": .staticFramework,
-            "PagerTabStripView": .staticFramework,
-            "ProgressHUD": .staticFramework,
-
+            "DZNEmptyDataSet": .staticFramework,
+            "FlexLayout": .staticFramework,
         ]
     )
 #endif
@@ -50,6 +51,7 @@ let package = Package(
         .package(url: "https://github.com/RxSwiftCommunity/RxTheme.git", from: "6.0.0"),
         .package(url: "https://github.com/RxSwiftCommunity/RxSwiftExt.git", from: "6.0.0"),
         .package(url: "https://github.com/RxSwiftCommunity/RxOptional.git", from: "5.0.0"),
+        .package(url: "https://github.com/RxSwiftCommunity/NSObject-Rx.git", from: "5.2.2"),
 
         // ========== 网络层 ==========
         .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
@@ -60,6 +62,7 @@ let package = Package(
 
         // ========== 布局 ==========
         .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.7.1"),
+        .package(url: "https://github.com/layoutBox/FlexLayout.git", from: "2.2.3"),
 
         // ========== 工具 ==========
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2"),
@@ -81,7 +84,7 @@ let package = Package(
         .package(url: "https://github.com/CoderMJLee/MJRefresh.git", from: "3.7.9"),
         .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.4.1"),
 
-        // ========== RxSwift 扩展 ==========
-        .package(url: "https://github.com/RxSwiftCommunity/NSObject-Rx.git", from: "5.2.2"),
+        // ========== 空数据展示（使用主分支最新代码）==========
+        .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),        
     ]
 )

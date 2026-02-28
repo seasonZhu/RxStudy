@@ -84,16 +84,15 @@ let project = Project(
                 // - SVProgressHUD → SVProgressHUD/SVProgressHUD
                 // - MJRefresh → CoderMJLee/MJRefresh
                 // - JXSegmentedView → pujiaxin33/JXSegmentedView
+                // - DZNEmptyDataSet → dzenbot/DZNEmptyDataSet（使用 master 分支）
                 // 以下库不支持 SPM，保持源码集成：
-                // - DZNEmptyDataSet（无 Package.swift）
                 // - FSPagerView（Package.swift 格式错误）
                 "Packages/ThirdParty/TheRouter/Sources/**",
-                "Packages/ThirdParty/DZNEmptyDataSet/Sources/**",
                 // FSPagerView: 排除 include 目录（仅头文件，避免重复编译）
                 "Packages/ThirdParty/FSPagerView/Sources/**/*.swift",
                 "Packages/ThirdParty/FSPagerView/Sources/*.m",
-                // FlexLayout 暂时移除 - 需要 C++ yoga 模块支持，配置较复杂
-                // "Packages/ThirdParty/FlexLayout/Sources/**",
+                // FlexLayout 已通过 SPM 集成
+                // "Packages/ThirdParty/FlexLayout/Sources/**",  // 本地源码已清理
             ],
             resources: [
                 "RxStudy/Assets.xcassets/**",
@@ -126,6 +125,7 @@ let project = Project(
 
                 // ========== 布局 ==========
                 TargetDependency.external(name: "SnapKit"),
+                TargetDependency.external(name: "FlexLayout"),
 
                 // ========== 工具 ==========
                 TargetDependency.external(name: "KeychainAccess"),
@@ -141,6 +141,9 @@ let project = Project(
 
                 // ========== 分段控制器 ==========
                 TargetDependency.external(name: "JXSegmentedView"),
+
+                // ========== 空数据展示 ==========
+                TargetDependency.external(name: "DZNEmptyDataSet"),
             ],
             settings: .settings(
                 base: [
@@ -163,11 +166,11 @@ let project = Project(
                         "$(SRCROOT)/RxStudy/Extension/CrashController",
                         "$(SRCROOT)/RxStudy/Extension/NSURLProtocol+WKWebVIew",
                         "$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
-                        "$(SRCROOT)/Packages/ThirdParty/DZNEmptyDataSet/Sources/include",
                         // 以下库已改为使用官方 SPM 依赖，头文件由 SPM 自动管理：
                         // - MBProgressHUD
                         // - SVProgressHUD
                         // - MJRefresh
+                        // - DZNEmptyDataSet
                     ]
                 ],
                 configurations: [
