@@ -45,25 +45,59 @@ Tuist 会自动扫描：
 
 如果使用 **AcknowList** + **自己的 `Pods-RxStudy-acknowledgements.plist`**，Tuist 自动生成的 `TuistPlists+RxStudy.swift` 就不需要了。
 
-### 配置方法
+### ✅ 验证通过的配置方法
 
-在 **Project.swift** 中添加 `resourceSynthesizers` 配置：
+在 **Project.swift** 中添加 `resourceSynthesizers` 配置（**注意：不使用 `.default`**）：
 
 ```swift
 let project = Project(
+    name: "RxStudy",
     // ... 其他配置
 
-    // ========== 禁用 Plist 资源合成器 ==========
-    resourceSynthesizers: .default + [
-        .assets(),        // ✅ 保留：Assets 合成器
-        .strings(),      // ✅ 保留：Strings 合成器
-        .coreData(),      // ✅ 保留：CoreData 合成器
-        .files(),         // ✅ 保留：Files 合成器
-        // ❌ 不添加 .plist()，禁用 Plist 合成器
+    targets: [
+        .target(
+            name: "RxStudy",
+            // ... target 配置
+        )
     ],
 
-    // ... 其他配置
+    schemes: [
+        // ... schemes 配置
+    ],
+
+    additionalFiles: [
+        ".tuist-supported-version",
+        "Tuist/**"
+    ],
+
+    // ========== 禁用 Plist 资源合成器（验证通过）==========
+    // 手动指定需要的合成器，不包含 .plist() 以避免生成 TuistPlists+RxStudy.swift
+    // 这样我们就可以使用自己的 Pods-RxStudy-acknowledgements.plist + AcknowList
+    resourceSynthesizers: [
+        .assets(),   // ✅ 保留：Assets 合成器
+        .strings(),  // ✅ 保留：Strings 合成器
+    ]
 )
+```
+
+### ⚠️ 重要：不要使用 `.default`
+
+**错误示例**（会导致生成 Plist 文件）：
+```swift
+// ❌ 错误：.default 包含了 .plist()
+resourceSynthesizers: .default + [
+    .assets(),
+    .strings(),
+]
+```
+
+**正确示例**（验证通过）：
+```swift
+// ✅ 正确：只包含需要的合成器
+resourceSynthesizers: [
+    .assets(),
+    .strings(),
+]
 ```
 
 ### 效果
@@ -71,37 +105,102 @@ let project = Project(
 - ✅ **不再生成** `TuistPlists+RxStudy.swift` 文件
 - ✅ **保留其他**资源合成器功能（Assets、Strings 等）
 - ✅ 使用自己的 `Pods-RxStudy-acknowledgements.plist` + AcknowList
+- ✅ **已在 RxStudy 项目中验证通过**
 
 ---
 
-## 完整配置示例
+## 完整配置示例（验证通过）
 
 ```swift
 import ProjectDescription
 
+let teamId = "GZKK4Y45D3"
+
 let project = Project(
     name: "RxStudy",
+    organizationName: "com.lostsakura",
+    options: .options(
+        textSettings: .textSettings(
+            indentWidth: 2,
+            tabWidth: 2
+        )
+    ),
+    settings: .settings(
+        base: [
+            "IPHONEOS_DEPLOYMENT_TARGET": "17.6",
+            "ENABLE_BITCODE": "NO",
+            "SWIFT_VERSION": "5.9",
+            "DEVELOPMENT_TEAM": .string(teamId)
+        ],
+        configurations: [
+            .debug(name: .debug),
+            .release(name: .release)
+        ],
+        defaultSettings: .recommended
+    ),
     targets: [
         .target(
             name: "RxStudy",
-            // ... 其他配置
-
-            resources: [
-                "RxStudy/Pods-RxStudy-acknowledgements.plist",  // 手动管理的许可证文件
+            destinations: .iOS,
+            product: .app,
+            bundleId: "com.lostsakura.RxStudy",
+            deploymentTargets: .iOS("17.6"),
+            infoPlist: .extendingDefault(with: [
+                "CFBundleDisplayName": "玩安卓",
+                "CFBundleShortVersionString": "1.0.0",
+                "CFBundleVersion": "1",
+                // ... 其他 Info.plist 配置
+            ]),
+            sources: [
+                "RxStudy/**",
+                "RxStudy/Generated/**/*.swift",
             ],
-
+            resources: [
+                "RxStudy/Assets.xcassets/**",
+                "RxStudy/Base.lproj/LaunchScreen.storyboard",
+                "RxStudy/Base.lproj/Main.storyboard",
+                // ========== 手动管理的许可证文件 ==========
+                "RxStudy/Pods-RxStudy-acknowledgements.plist",
+            ],
             dependencies: [
-                .external(name: "AcknowList"),  // 使用 AcknowList 读取 plist
-            ]
+                // ========== 许可证列表 ==========
+                TargetDependency.external(name: "AcknowList"),
+                // ... 其他依赖
+            ],
+            settings: .settings(
+                base: [
+                    "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
+                    "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
+                    "ENABLE_PREVIEWS": "YES",
+                    // ... 其他设置
+                ],
+                configurations: [
+                    .debug(name: .debug),
+                    .release(name: .release)
+                ],
+                defaultSettings: .recommended
+            )
+        ),
+    ],
+    schemes: [
+        .scheme(
+            name: "RxStudy",
+            shared: true,
+            buildAction: .buildAction(targets: ["RxStudy"]),
+            runAction: .runAction(executable: "RxStudy"),
+            archiveAction: .archiveAction(configuration: .release),
+            profileAction: .profileAction(configuration: .release),
+            analyzeAction: .analyzeAction(configuration: .debug)
         )
     ],
-
-    // ========== 禁用 Plist synthesizer ==========
-    resourceSynthesizers: .default + [
-        .assets(),
-        .strings(),
-        .coreData(),
-        .files(),
+    additionalFiles: [
+        ".tuist-supported-version",
+        "Tuist/**"
+    ],
+    // ========== 禁用 Plist 资源合成器（验证通过）==========
+    resourceSynthesizers: [
+        .assets(),   // ✅ 保留：Assets 合成器
+        .strings(),  // ✅ 保留：Strings 合成器
     ]
 )
 ```
@@ -116,29 +215,22 @@ let project = Project(
 resourceSynthesizers: []  // 完全禁用所有自动生成
 ```
 
-### 方案 2：仅禁用 Plist synthesizer
+### 方案 2：仅保留 Assets 和 Strings（推荐，已验证）
 
 ```swift
-resourceSynthesizers: .default + [
+resourceSynthesizers: [
     .assets(),
     .strings(),
-    .coreData(),
-    .files(),
-    // 不添加 .plist()
 ]
 ```
 
-### 方案 3：使用自定义 Plist synthesizer（高级）
+### 方案 3：尝试使用 .default（不推荐，会生成 Plist）
 
 ```swift
+// ❌ 这会导致生成 TuistPlists+RxStudy.swift
 resourceSynthesizers: .default + [
-    .custom(
-        type: "plist",
-        parser: .directory(
-            selector: "InfoPlist",  // 只处理特定的 plist 文件
-            extensions: ["plist"]
-        )
-    ),
+    .assets(),
+    .strings(),
 ]
 ```
 
@@ -174,10 +266,23 @@ tuist generate
 # 查看 Derived/Sources 目录
 ls -la Derived/Sources/
 
-# 确认 TuistPlists+RxStudy.swift 不存在
+# ✅ 确认 TuistPlists+RxStudy.swift 不存在
 ls -la Derived/Sources/TuistPlists+RxStudy.swift
 # 应该显示：No such file or directory
+
+# ✅ 确认其他合成器仍然正常工作
+ls -la Derived/Sources/TuistAssets+RxStudy.swift   # 应该存在
+ls -la Derived/Sources/TuistStrings+RxStudy.swift  # 应该存在
 ```
+
+### 验证状态：✅ 通过
+
+**RxStudy 项目验证结果**（2026-02-28）：
+- ✅ `TuistPlists+RxStudy.swift` 不再生成
+- ✅ `TuistAssets+RxStudy.swift` 正常生成
+- ✅ `TuistStrings+RxStudy.swift` 正常生成
+- ✅ AcknowList 正常读取 `Pods-RxStudy-acknowledgements.plist`
+- ✅ 第三方库许可证页面正常显示
 
 ---
 
@@ -187,23 +292,45 @@ ls -la Derived/Sources/TuistPlists+RxStudy.swift
 
 **A**: 不会。只禁用了 Plist synthesizer，其他合成器（Assets、Strings 等）仍然正常工作。
 
+### Q: 为什么不使用 `.default`？
+
+**A**: `.default` 包含了 `.plist()` 合成器，即使你显式添加其他合成器，Plist 合成器仍然会生成文件。要完全禁用 Plist 生成，必须不使用 `.default`。
+
+### Q: 配置后 tuist generate 报错怎么办？
+
+**A**: 检查以下常见问题：
+
+1. **参数顺序错误**：确保 `additionalFiles` 在 `resourceSynthesizers` 之前
+2. **使用了 `.default`**：改用手动指定合成器的方式
+3. **模板不可用**：某些合成器模板（如 `.coreData()`、`.files()`）可能不可用
+
 ### Q: 如何恢复自动生成？
 
-**A**: 删除 `resourceSynthesizers` 配置或添加 `.plist()` 即可：
+**A**: 删除 `resourceSynthesizers` 配置即可恢复默认行为：
 
 ```swift
-resourceSynthesizers: .default + [
-    .assets(),
-    .strings(),
-    .coreData(),
-    .files(),
-    .plist(),  // 恢复 Plist synthesizer
-]
+// 删除或注释掉 resourceSynthesizers 配置
+// resourceSynthesizers: [
+//     .assets(),
+//     .strings(),
+// ]
 ```
 
 ### Q: 如果项目中没有 Info.plist 会怎样？
 
-**A**: Tuist 会自动生成一个基础的 Info.plist。resourceSynthesizers 配置不影响这个。
+**A**: Tuist 会自动生成一个基础的 Info.plist。`resourceSynthesizers` 配置不影响这个。
+
+### Q: .coreData() 和 .files() 合成器报错怎么办？
+
+**A**: 这些合成器可能需要额外的参数或模板。如果不需要 CoreData 和文件合成功能，可以不添加它们：
+
+```swift
+// ✅ 简化配置，只包含必需的合成器
+resourceSynthesizers: [
+    .assets(),
+    .strings(),
+]
+```
 
 ---
 
@@ -219,16 +346,25 @@ resourceSynthesizers: .default + [
 2. **禁用自动生成的 Plist synthesizer**
    - 避免重复代码
    - 保持许可证文件的一致性
+   - 使用手动指定合成器的方式（不使用 `.default`）
 
 3. **保留其他资源合成器**
    - Assets - 自动生成图片资源访问代码
    - Strings - 自动生成本地化字符串访问代码
 
+4. **验证配置**
+   - 运行 `tuist generate` 后检查 `Derived/Sources/` 目录
+   - 确认 `TuistPlists+<项目名>.swift` 不存在
+   - 确认其他合成器文件正常生成
+
 ### ❌ 不推荐
 
 1. 同时使用自动生成和手动管理
 2. 完全禁用所有 resourceSynthesizers（除非不需要）
+3. 使用 `.default + [...]` 试图排除 Plist（不会生效）
 
 ---
 
 **最后更新**: 2026-02-28
+
+**验证状态**: ✅ RxStudy 项目中验证通过
