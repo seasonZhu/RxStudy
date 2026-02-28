@@ -30,8 +30,7 @@ class BaseTableViewController: BaseViewController {
                                                    InfoGenericsCell.self,
                                                    LogoutCell.self,
                                                    MessageCell.self,
-                                                   MessageContentCell.self,
-                                                   TreeCell.self,]
+                                                   MessageContentCell.self]
 
     override func viewDidLoad() {
         super.viewDidLoad()

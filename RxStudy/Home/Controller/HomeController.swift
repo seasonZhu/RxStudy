@@ -15,6 +15,7 @@ import RxCocoa
 import SnapKit
 import Kingfisher
 import SVProgressHUD
+import FSPagerView
 
 /// 需要非常小心循环引用
 class HomeController: BaseTableViewController {

@@ -42,7 +42,7 @@ extension TreeCellStyleChangeController {
                 return cell
             }
             .disposed(by: rx.disposeBag)
-        
+#if canImport(FlexLayout) && canImport(FlexLayoutYogaKit)
         /// 这里相当于重写
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in
@@ -53,5 +53,6 @@ extension TreeCellStyleChangeController {
                 self?.navigationController?.popViewController(animated: true)
             }
             .disposed(by: rx.disposeBag)
+#endif
     }
 }

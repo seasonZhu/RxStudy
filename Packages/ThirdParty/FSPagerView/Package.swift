@@ -1,15 +1,23 @@
 // swift-tools-version: 5.9
-// This package is not used as a standalone SPM package
-// Source files are directly included in the main project
 import PackageDescription
 
 let package = Package(
-    name: "FSPagerViewSPM",
+    name: "FSPagerView",
     platforms: [.iOS(.v13)],
+    products: [
+        .library(
+            name: "FSPagerView",
+            targets: ["FSPagerView"]
+        ),
+    ],
     targets: [
         .target(
-            name: "FSPagerViewSPM",
-            sources: ["Sources/**"]
-        )
+            name: "FSPagerView",
+            path: "Sources",
+            sources: [
+                ".",  // 包含当前目录下的所有 Swift 和 Objective-C 文件
+            ],
+            publicHeadersPath: "include"  // 公开头文件路径
+        ),
     ]
 )

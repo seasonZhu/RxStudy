@@ -6,6 +6,7 @@
 //  Copyright © 2025 season. All rights reserved.
 //
 
+#if canImport(FlexLayout) && canImport(FlexLayoutYogaKit)
 import FlexLayout
 
 import FlexLayoutYogaKit
@@ -77,3 +78,4 @@ extension Flex {
         display == .contents
     }
 }
+#endif

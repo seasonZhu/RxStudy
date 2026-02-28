@@ -37,6 +37,7 @@ import PackageDescription
             "JXSegmentedView": .staticFramework,
             "DZNEmptyDataSet": .staticFramework,
             "FlexLayout": .staticFramework,
+            "FSPagerView": .staticFramework,
             "AcknowList": .staticFramework,
         ]
     )
@@ -63,7 +64,7 @@ let package = Package(
 
         // ========== 布局 ==========
         .package(url: "https://github.com/SnapKit/SnapKit.git", from: "5.7.1"),
-        .package(url: "https://github.com/layoutBox/FlexLayout.git", from: "2.2.3"),
+        //.package(url: "https://github.com/layoutBox/FlexLayout.git", from: "2.2.3"),
 
         // ========== 工具 ==========
         .package(url: "https://github.com/kishikawakatsumi/KeychainAccess.git", from: "4.2.2"),
@@ -87,6 +88,9 @@ let package = Package(
 
         // ========== 空数据展示（使用主分支最新代码）==========
         .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),
+
+        // ========== 本地依赖（Package.swift 格式错误的库）==========
+        .package(path: "../Packages/ThirdParty/FSPagerView"),
 
         // ========== 许可证列表 ==========
         .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),

@@ -45,7 +45,6 @@
 		1760BB7049D1695ADEE29621 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21498D38E3D490D0DAF4B520 /* RegisterController.swift */; };
 		18816655CA2EE8F8E48084A3 /* TreeAPIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29DEB7F070589C1D9E624A88 /* TreeAPIService.swift */; };
 		18B94ED1AD71E39F83CE4C99 /* CrashController.m in Sources */ = {isa = PBXBuildFile; fileRef = EC8EA12BBB737EABBE27BCAB /* CrashController.m */; };
-		1A45F0DB9B6BF86C4D6F517C /* core.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F41985288E2310994609CB /* core.framework */; };
 		1BADDC8AE68E2A607E5A5840 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF2928995245FCB62B0BD498 /* String+Extension.swift */; };
 		1CF9FCDCEEC67CE4014C1B8B /* AppLifeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D22F532AB2BE84A8890834 /* AppLifeCycleModifier.swift */; };
 		1D20798F215AD59C8E4789AF /* SVProgressHUD+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6AEC4B4FF332756C5355C /* SVProgressHUD+Extension.swift */; };
@@ -129,7 +128,6 @@
 		52F9BE115D0EE15595A54BAD /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2FD8E11DDD6DDA1D0C0D909 /* BaseViewController.swift */; };
 		54400B0D27950727002A8024 /* MyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF21C59DDB645C3FBC48E0DC /* MyController.swift */; };
 		54DAEF7F4C1DE19A585EC8FE /* SnapKit_SnapKit.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = E5BD51E952443367C425E143 /* SnapKit_SnapKit.bundle */; };
-		55683C74569E2CDB93706067 /* FSPagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8900F53B15F262638274886 /* FSPagerView.swift */; };
 		558166AC591D89F7788E9687 /* RxMoya.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C56AB9E9906BD0E37F52F653 /* RxMoya.framework */; };
 		562AB2BBA83FA16467B314EC /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32FDEFC49B75110723736ED9 /* NetworkMonitor.swift */; };
 		56460769DC3A7E21812E0B77 /* TheRouterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCA5BEF68CA71B79FD961DAF /* TheRouterParser.swift */; };
@@ -145,7 +143,6 @@
 		5D3396EC5790D12F3CF81B2F /* FSPagerView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 977F7D04F4ADF9201645D822 /* FSPagerView+Rx.swift */; };
 		5DE3C1008D6D980378B2B284 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71450D40A59CFCEACE7443FB /* Alamofire.framework */; };
 		5ECA5A953B945341661121D7 /* SFSafeSymbols.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E75D6457701EAF6FCB08339 /* SFSafeSymbols.framework */; };
-		5F3ECBA2787038E53CBDA5A2 /* PagerTabStripView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB5E4FBFBF5A5329B12A7566 /* PagerTabStripView.framework */; };
 		5FC8BA77561C1BCBF28536E3 /* NSObject_Rx.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 33A205310FF03E8AC6A285B0 /* NSObject_Rx.framework */; };
 		5FD5315EA33BC041DDFB17A2 /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1715526EC9D34D24852700D6 /* Moya+BlockingObservable.swift */; };
 		60447C8F97BDB92F83A46E3C /* InfoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82574D925572F14B92DE38 /* InfoViewCell.swift */; };
@@ -196,7 +193,6 @@
 		7BC07D37DBE4F927B27A77E7 /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0EA73CCC5A764652F6E0FB36 /* Kingfisher.framework */; };
 		7BDAF4C002D4BE0FB1B748D5 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DE19769ADFF9CFE0B45B2D9 /* Message.swift */; };
 		7C467689AD1F621F795673C7 /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72E0C860E152FDDB233929B1 /* ProjectViewModel.swift */; };
-		7C714F3B07BC5E00F8FA490A /* FlexLayoutYogaKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 119A0368D4EC8228D679C6F7 /* FlexLayoutYogaKit.framework */; };
 		7C76B1B1CCA90B10EB65E3F2 /* CollectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDCCFBC262EFEE79095B5FA1 /* CollectViewModel.swift */; };
 		7CD99C4085A15E6FCB007877 /* PublicNumberViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EAC49CEC478D38D0E01724F /* PublicNumberViewModel.swift */; };
 		7CF54675B244CCFDE3183BEF /* CustomLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3021DFAD90CBA6A0D05735 /* CustomLogFileManager.swift */; };
@@ -238,12 +234,9 @@
 		91AC5CDF920554E83040AF3E /* AppDelegate+LogConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4CC283A1D3D9F775B13932 /* AppDelegate+LogConfig.swift */; };
 		91BA3452589516BBF708C529 /* TreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F9C434C3647C4008F7E739 /* TreeView.swift */; };
 		930616E6E8F0514729A61BFE /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B648AF65291CB4D85283F43 /* SVProgressHUD.framework */; };
-		93342D5901E05619DAC4EAD0 /* TuistPlists+RxStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFAD5062F610A8C1C2AB89E /* TuistPlists+RxStudy.swift */; };
-		93D25F78CDA1D0639E068FAC /* FlexLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84339707AE5202CDC42325B0 /* FlexLayout.framework */; };
 		93F7E8C37D87617F71E217A0 /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1533F48073862D5EE1C0F12 /* SingleTabListViewModel.swift */; };
 		9452BE1A1492E32480845255 /* AppDelegate+NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692BC4B0D80AFE4690EDEA88 /* AppDelegate+NetworkConfig.swift */; };
 		94E362710CFA10C6B00888D4 /* MessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13307D95BC09D60911588581 /* MessageViewModel.swift */; };
-		9548CC4F24BBBA49EA933F20 /* FSPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7658A32E6F4ABF8F470C938 /* FSPageControl.swift */; };
 		9587F68D512B17A18DA24141 /* RxCocoaRuntime.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AFB203062CF4AAA3DE02295 /* RxCocoaRuntime.framework */; };
 		97981649319502BDE12A5CF3 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFE1ABC05A934C430B3BDFC5 /* Constant.swift */; };
 		9838A91EECFD66E88CBD8E0E /* HotKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49C8AD18A558D20B0864076 /* HotKeyView.swift */; };
@@ -255,8 +248,6 @@
 		9ADEA6172F57B78C122C7058 /* CoinRankListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F14FB7A8B1C589967A7EEF /* CoinRankListViewModel.swift */; };
 		9C2ABF08BC34857909E555A8 /* DefaultEnumCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC72CB6E345D0FB72D2C937 /* DefaultEnumCodable.swift */; };
 		9C3A0E257FAF99680E8E417E /* NetworkGZipPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3BCEC8C156CF759BEF5D15D /* NetworkGZipPlugin.swift */; };
-		9CD96322D3EAB57EAEFC44E8 /* FSPagerViewObjcCompat.m in Sources */ = {isa = PBXBuildFile; fileRef = D5E9E470B36BEF3D88AD428F /* FSPagerViewObjcCompat.m */; };
-		9DC25A6C1537294BDCAE9F44 /* FSPageViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB2EFA8A886AD6414699A95 /* FSPageViewLayout.swift */; };
 		9E1D8F7E4E7253EF26BCC368 /* SplashAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB001483BB0F3CCD3A0D5FF4 /* SplashAnimationType.swift */; };
 		9E433EAE2ABD87DD6AF52F6F /* ACarouselViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 219A16650481331E3C890999 /* ACarouselViewModel.swift */; };
 		9F094B30F9569370606E16EE /* CoinRankListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9156B1B3EF54782D575BE3AE /* CoinRankListController.swift */; };
@@ -359,7 +350,6 @@
 		DCD1E15B10668ACC8C013A12 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6986B115769D99994FEA64C2 /* Modifier.swift */; };
 		DDDF973D967838C3B6FCF85E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 478F306E5D39BA80AF0B6CEB /* Assets.xcassets */; };
 		DED6034FD15BCD646D74F1A6 /* CombineSinkEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C31553899BCD496161AA76A /* CombineSinkEvent.swift */; };
-		E02B754AF26B74342F5783AE /* FSPagerCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EBD4EE2B098C2D1DBA09970 /* FSPagerCollectionView.swift */; };
 		E20BBB89AC47697D07F3B376 /* MyHistoryCoin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA872B86EDE80807C557BE48 /* MyHistoryCoin.swift */; };
 		E2A689AD50458D7D9CAC921F /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = C82FE64BCC554A47A7948889 /* Utilities.swift */; };
 		E36C3786A1EA7A4E84E74FE8 /* AsyncRelay.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33240F38C326DD6D5BA3B8D /* AsyncRelay.swift */; };
@@ -373,7 +363,6 @@
 		E8E8B1A93D5DF8FD9C24B064 /* WebUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 130427DF45366A65FB942E36 /* WebUI.framework */; };
 		E9183D91DBB13BF07BE904C1 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CEE6D1DF328F07F5D06006B /* Friend.swift */; };
 		E9FEEFD2EAD1C9604C61885A /* CoinRankListPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 962AB32F5DBCC75BF472C8B7 /* CoinRankListPage.swift */; };
-		EA0486418EB60F54CE7CBD2B /* FSPagerViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0980FAA00503954A67E52F2A /* FSPagerViewCell.swift */; };
 		EB3C2C6D340B37869D62A00A /* RxSwift_RxSwift.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 02F53D373E398C15782D911E /* RxSwift_RxSwift.bundle */; };
 		EC9CB6BB9F6FC312ED464C15 /* TuistBundle+RxStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D032DEF88375B44209AB3BD /* TuistBundle+RxStudy.swift */; };
 		ED58FDD472A5BEB5EE17BC84 /* TreeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 684D5864ECF88EC13ECA2F12 /* TreeCell.swift */; };
@@ -384,10 +373,10 @@
 		F016A89BA3C30C1169931EC4 /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5BC516C6C3332F8AA089700 /* CustomExtensions.swift */; };
 		F05081866727535E54F4488D /* SubscriptionToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 046C2619B3613671665783DE /* SubscriptionToken.swift */; };
 		F054DCCA5F81FFA1B725C7FC /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 95FE84115BCA0D8043A8645E /* libiconv.tbd */; };
+		F253B8AA7615FA0444D1C493 /* FSPagerView.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A8900B8E15AD42896EBBA97 /* FSPagerView.framework */; };
 		F265EAFC1E9828E52ACF0DAB /* LSBundleProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = A79F91DC2A3AD54BE30080C9 /* LSBundleProxy.m */; };
 		F2900DA226FF3243C210974E /* MessageReadyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D6439F5990F3ADC0CC34726 /* MessageReadyStatus.swift */; };
 		F2DCA99519B29024B364615D /* InfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 854BE25DFB0B1F6284C1DC5E /* InfoCell.swift */; };
-		F2DEB26C5115186E741302D7 /* FSPageViewTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC2E3D9CDC698945C630D0C /* FSPageViewTransformer.swift */; };
 		F363C17806CEBC0B557459D3 /* FlutterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1DC0CE5AB6C33ACB8823ACE /* FlutterManager.swift */; };
 		F401946FED3E7FC643FE7272 /* ProjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326D52ED4F9E69F504E5A7F4 /* ProjectView.swift */; };
 		F445D5681157696BAFC9F946 /* MJRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F87EB7D8D35F18929F9A671 /* MJRefresh.framework */; };
@@ -395,7 +384,6 @@
 		F548629CDF8FE8ADFFA84026 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05BF6DDA5559CC42DAE76C /* AppDelegate.swift */; };
 		F59D1BBF57EA820DF99FD310 /* CustomNetworkActivityPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC238069F0C502F991A1FB63 /* CustomNetworkActivityPlugin.swift */; };
 		F7492E92E9026AF5FAA28EAD /* TreeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F6E96BE193C15C7DEB7DB1D /* TreeService.swift */; };
-		F7CF2CFB0BEA6B798A11C5C8 /* FSPagerViewLayoutAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5576A673ADCA7912F9C81D69 /* FSPagerViewLayoutAttributes.swift */; };
 		F8160E412D7BCC3B2A7D9CA9 /* NavigationUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2DABD7BB9F4FB5FBE98020D /* NavigationUrl.swift */; };
 		F84740B6C21B7488DDC30D90 /* ClassCoinRank.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210CFA544AFF82CBFDC05F61 /* ClassCoinRank.swift */; };
 		F920C6E934F6A7D2573CFD64 /* HotKeyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381799C9EF9A5A1B618DC7C1 /* HotKeyController.swift */; };
@@ -484,7 +472,6 @@
 		07A771C09278DDE9514E8746 /* PublicNumberAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicNumberAPIService.swift; sourceTree = "<group>"; };
 		083F7F68AE158433BC27349F /* TheRouterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterRequest.swift; sourceTree = "<group>"; };
 		095B6648F1A1F5FEB796C709 /* MyJueJinController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJueJinController.swift; sourceTree = "<group>"; };
-		0980FAA00503954A67E52F2A /* FSPagerViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPagerViewCell.swift; sourceTree = "<group>"; };
 		0DAE368465CE9A8F3DDF2B67 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkActivityManager.swift; sourceTree = "<group>"; };
 		0DD2878B5A76030894284BDC /* MarqueeLabel.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = MarqueeLabel.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0DF4ED01F93E037FEAF53BA5 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
@@ -494,7 +481,6 @@
 		101C1A06B150283A6A9FC26F /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		108F69A1F97843705E1BB1B9 /* TuistBundle+SwiftUIStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistBundle+SwiftUIStudy.swift"; sourceTree = "<group>"; };
 		115344D603DA2EA015BAB8DF /* Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
-		119A0368D4EC8228D679C6F7 /* FlexLayoutYogaKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexLayoutYogaKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		11CA80DEC6EF5EF1A562EF39 /* AccountManageable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManageable.swift; sourceTree = "<group>"; };
 		130427DF45366A65FB942E36 /* WebUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WebUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13307D95BC09D60911588581 /* MessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
@@ -591,7 +577,6 @@
 		53A92475312FE1A015947D52 /* KeyConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyConstants.swift; sourceTree = "<group>"; };
 		54122650AD11C115BE1ECF39 /* TheRouterDebugTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterDebugTool.swift; sourceTree = "<group>"; };
 		54C86B48A2CA67329B22AB09 /* Header.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
-		5576A673ADCA7912F9C81D69 /* FSPagerViewLayoutAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPagerViewLayoutAttributes.swift; sourceTree = "<group>"; };
 		55F2CDCBDCBD0143144A4742 /* RxStudy.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = RxStudy.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		571FB3DE402CA7F20D74E62D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		576907EA17350A16D65AB031 /* FlutterMethodChannelPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlutterMethodChannelPlugin.swift; sourceTree = "<group>"; };
@@ -631,7 +616,6 @@
 		6B677E87AF26700C6D4010B7 /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
 		6BCF1E9D5E8B3BB4F83A1FBF /* Strings+SwiftGen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Strings+SwiftGen.swift"; sourceTree = "<group>"; };
 		6C1D9A001FCA2122FE00B3CF /* WebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
-		6CB2EFA8A886AD6414699A95 /* FSPageViewLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPageViewLayout.swift; sourceTree = "<group>"; };
 		6CE901A55440AFB8543C4AC0 /* Moya.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Moya.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D0B24A5A54E2E459C7271D4 /* AppDelegate+RouterConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RouterConfig.swift"; sourceTree = "<group>"; };
 		6D3658CF0AB2074B42AA9F7A /* MineViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MineViewModel.swift; sourceTree = "<group>"; };
@@ -672,7 +656,6 @@
 		8191D112EAA2B0BC4CE03FE6 /* TagType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagType.swift; sourceTree = "<group>"; };
 		8293FB9B5076A4578982E3D2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		8312EA72AD7969FE373FFF67 /* AppNavigationBarExamples.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppNavigationBarExamples.swift; sourceTree = "<group>"; };
-		84339707AE5202CDC42325B0 /* FlexLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FlexLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		844CDEEDFDD3E064E51031EA /* KeychainAccess.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KeychainAccess.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8461BCFA2BA8C68325C32889 /* TheRouterDynamicParamsMapping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheRouterDynamicParamsMapping.m; sourceTree = "<group>"; };
 		851A2654CF0B8B3E0D441EEC /* RxStudy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "RxStudy-Info.plist"; sourceTree = "<group>"; };
@@ -683,7 +666,6 @@
 		8A3077100C029E28486D27EA /* View+OnLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnLoad.swift"; sourceTree = "<group>"; };
 		8AD8B382A3ABD7F2CE30FBA4 /* UIScrollView+RxSwift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+RxSwift.swift"; sourceTree = "<group>"; };
 		8B46C2358A8A5F490D7FBE97 /* SearchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
-		8BC2E3D9CDC698945C630D0C /* FSPageViewTransformer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPageViewTransformer.swift; sourceTree = "<group>"; };
 		8CF6F95D59A7B94266795257 /* ACarousel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ACarousel.swift; sourceTree = "<group>"; };
 		9122CA957A2481D8FE0E1998 /* TabModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
 		9156B1B3EF54782D575BE3AE /* CoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListController.swift; sourceTree = "<group>"; };
@@ -699,6 +681,7 @@
 		97F14FB7A8B1C589967A7EEF /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
 		98317625FDDD8AE32AA5EFA0 /* NSObject+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
 		99878A31EA8A475D9FF66A91 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9A8900B8E15AD42896EBBA97 /* FSPagerView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = FSPagerView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B61006D947FFB1C0765999F /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
 		9BDDED9CEEBEDDD7EAD0A364 /* TheRouter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TheRouter+Convenience.swift"; sourceTree = "<group>"; };
 		9C31553899BCD496161AA76A /* CombineSinkEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineSinkEvent.swift; sourceTree = "<group>"; };
@@ -709,7 +692,6 @@
 		9D64F399842C969BB3D43130 /* HotKeyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotKeyViewModel.swift; sourceTree = "<group>"; };
 		9E44D0D81185CB46F545E7A0 /* Collection+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
 		9EA2ACBF26A7B10E1C56C157 /* TheRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouter.swift; sourceTree = "<group>"; };
-		9EBD4EE2B098C2D1DBA09970 /* FSPagerCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPagerCollectionView.swift; sourceTree = "<group>"; };
 		9F497BE3E290B9558AEEADD7 /* MockService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		9F76BEBED3DF9E9B9EE50E9D /* RxTheme.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RxTheme.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0C924F3F7746A624DB6F9A4 /* HomeAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
@@ -728,8 +710,6 @@
 		A79F91DC2A3AD54BE30080C9 /* LSBundleProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSBundleProxy.m; sourceTree = "<group>"; };
 		A89EF5877FA7C21C23A9CD38 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		AA2069328EC3BED2E2FB3AE8 /* InfoGenericsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGenericsCell.swift; sourceTree = "<group>"; };
-		AAFAD5062F610A8C1C2AB89E /* TuistPlists+RxStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistPlists+RxStudy.swift"; sourceTree = "<group>"; };
-		AB5E4FBFBF5A5329B12A7566 /* PagerTabStripView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PagerTabStripView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC72CB6E345D0FB72D2C937 /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
 		AC8D815A1D0768C406620A00 /* CoinRankListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListView.swift; sourceTree = "<group>"; };
 		AF21C59DDB645C3FBC48E0DC /* MyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
@@ -744,7 +724,6 @@
 		B2FD8E11DDD6DDA1D0C0D909 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		B3B8FC1FA612E31E389EA15A /* SwiftUIStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B46FE12FBD517322FA07CA30 /* CoinRank.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRank.swift; sourceTree = "<group>"; };
-		B5F41985288E2310994609CB /* core.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = core.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6A7B26790435E5439DDBDFA /* PropertyWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
 		B7FCB7639A47258A07BD60D1 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
 		B8AD187FEF795C15589740BC /* CoinCollectAPIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCollectAPIService.swift; sourceTree = "<group>"; };
@@ -787,11 +766,9 @@
 		D2A28320DAD5ADE197D25472 /* NativeEventChannel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeEventChannel.swift; sourceTree = "<group>"; };
 		D465ABEE1A73848C37E4A970 /* WeakScriptMessageDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakScriptMessageDelegate.swift; sourceTree = "<group>"; };
 		D52BE441ECBF0E6CD4ED352A /* TreeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeController.swift; sourceTree = "<group>"; };
-		D5E9E470B36BEF3D88AD428F /* FSPagerViewObjcCompat.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FSPagerViewObjcCompat.m; sourceTree = "<group>"; };
 		D6132226C80959A975CACCC2 /* ToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolController.swift; sourceTree = "<group>"; };
 		D6BBB4BA42ACADE3E2F6AFD1 /* DownloadWebController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWebController.swift; sourceTree = "<group>"; };
 		D6CB680E7388DBDA69058638 /* MyCoinViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
-		D7658A32E6F4ABF8F470C938 /* FSPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPageControl.swift; sourceTree = "<group>"; };
 		D7A20019EFA85F9B54930044 /* Setter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
 		D86E433C0C579C9388121C2F /* Dictionary+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
 		D93AAE9012D7D54C687429C6 /* CustomItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomItemView.swift; sourceTree = "<group>"; };
@@ -821,7 +798,6 @@
 		E5BD51E952443367C425E143 /* SnapKit_SnapKit.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SnapKit_SnapKit.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
 		E745489BC3CA0DEBA727B78C /* JXSegmentedView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JXSegmentedView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7897320133A4973CC646A1B /* SearchResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
-		E8900F53B15F262638274886 /* FSPagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FSPagerView.swift; sourceTree = "<group>"; };
 		EAA75E67A56D66F4BF4FFE42 /* RxStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB2A37E4181A6C4924E2B980 /* RxSwiftCoinRankListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxSwiftCoinRankListController.swift; sourceTree = "<group>"; };
 		EC15B0C8AC8943598D1D74F7 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
@@ -868,8 +844,7 @@
 				24B1F936117A60F5D8E52F24 /* CocoaLumberjack.framework in Frameworks */,
 				AC93286BE0AD927B68DF8D54 /* DZNEmptyDataSet.framework in Frameworks */,
 				36C3CA2965F0CB3CF541024A /* Differentiator.framework in Frameworks */,
-				93D25F78CDA1D0639E068FAC /* FlexLayout.framework in Frameworks */,
-				7C714F3B07BC5E00F8FA490A /* FlexLayoutYogaKit.framework in Frameworks */,
+				F253B8AA7615FA0444D1C493 /* FSPagerView.framework in Frameworks */,
 				D8BC7E91F88E11A3A74C2E3C /* JXSegmentedView.framework in Frameworks */,
 				BE553C2A78B5A71FA87EBC0E /* KeychainAccess.framework in Frameworks */,
 				7BC07D37DBE4F927B27A77E7 /* Kingfisher.framework in Frameworks */,
@@ -893,7 +868,6 @@
 				930616E6E8F0514729A61BFE /* SVProgressHUD.framework in Frameworks */,
 				0841CA855F2DCE25CAAAC751 /* SnapKit.framework in Frameworks */,
 				8ECD43C6EC32B2293A5BFA60 /* ZipArchive.framework in Frameworks */,
-				1A45F0DB9B6BF86C4D6F517C /* core.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,7 +879,6 @@
 				31D675DBA2F21D7970BCE2BA /* Alamofire.framework in Frameworks */,
 				8882E4D2ADDC6621AD078525 /* Kingfisher.framework in Frameworks */,
 				13DA8B76D64BD3552962B980 /* Moya.framework in Frameworks */,
-				5F3ECBA2787038E53CBDA5A2 /* PagerTabStripView.framework in Frameworks */,
 				8E13619D44B610AB8E919A39 /* ProgressHUD.framework in Frameworks */,
 				E8E8B1A93D5DF8FD9C24B064 /* WebUI.framework in Frameworks */,
 			);
@@ -1038,7 +1011,6 @@
 		1C42FA57FD57DE95A5B4CCAC /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
-				C478214738291AFED733B025 /* FSPagerView */,
 				B123F8FC6E5ECBC2C0414F2A /* TheRouter */,
 			);
 			path = ThirdParty;
@@ -1257,11 +1229,9 @@
 				71450D40A59CFCEACE7443FB /* Alamofire.framework */,
 				59232BB97273036AA9599914 /* CocoaLumberjack_CocoaLumberjack.bundle */,
 				30CCB8F05057F9521EBD188D /* CocoaLumberjack.framework */,
-				B5F41985288E2310994609CB /* core.framework */,
 				E39A053395033DD2EE0B8777 /* Differentiator.framework */,
 				1471A95A4895E2DE99A8B12E /* DZNEmptyDataSet.framework */,
-				84339707AE5202CDC42325B0 /* FlexLayout.framework */,
-				119A0368D4EC8228D679C6F7 /* FlexLayoutYogaKit.framework */,
+				9A8900B8E15AD42896EBBA97 /* FSPagerView.framework */,
 				1C6BC56DF99DDF4BF8F394E2 /* JXSegmentedView_JXSegmentedView.bundle */,
 				E745489BC3CA0DEBA727B78C /* JXSegmentedView.framework */,
 				844CDEEDFDD3E064E51031EA /* KeychainAccess.framework */,
@@ -1274,7 +1244,6 @@
 				7F87EB7D8D35F18929F9A671 /* MJRefresh.framework */,
 				6CE901A55440AFB8543C4AC0 /* Moya.framework */,
 				33A205310FF03E8AC6A285B0 /* NSObject_Rx.framework */,
-				AB5E4FBFBF5A5329B12A7566 /* PagerTabStripView.framework */,
 				70FA3035DECC9DEAB06CED29 /* ProgressHUD_ProgressHUD.bundle */,
 				A3C3D28BC8201B527D984E7D /* ProgressHUD.framework */,
 				9C9F01AECD32934E0C73309B /* RxBlocking.framework */,
@@ -1339,21 +1308,6 @@
 				01DC6A1BFB6449A323A0D9FE /* ConstraintArrayDSL.swift */,
 			);
 			path = SnapKitExtension;
-			sourceTree = "<group>";
-		};
-		54CB94743BC6D844D6AF841D /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				D7658A32E6F4ABF8F470C938 /* FSPageControl.swift */,
-				9EBD4EE2B098C2D1DBA09970 /* FSPagerCollectionView.swift */,
-				E8900F53B15F262638274886 /* FSPagerView.swift */,
-				0980FAA00503954A67E52F2A /* FSPagerViewCell.swift */,
-				5576A673ADCA7912F9C81D69 /* FSPagerViewLayoutAttributes.swift */,
-				D5E9E470B36BEF3D88AD428F /* FSPagerViewObjcCompat.m */,
-				6CB2EFA8A886AD6414699A95 /* FSPageViewLayout.swift */,
-				8BC2E3D9CDC698945C630D0C /* FSPageViewTransformer.swift */,
-			);
-			path = Sources;
 			sourceTree = "<group>";
 		};
 		5941EC848C9B8CF0739C23A6 /* Frameworks */ = {
@@ -1772,14 +1726,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		C478214738291AFED733B025 /* FSPagerView */ = {
-			isa = PBXGroup;
-			children = (
-				54CB94743BC6D844D6AF841D /* Sources */,
-			);
-			path = FSPagerView;
-			sourceTree = "<group>";
-		};
 		C4AF26DD3A100BE73FE9723E /* WebView */ = {
 			isa = PBXGroup;
 			children = (
@@ -1843,7 +1789,6 @@
 				1005C0E622ACC51FC3C65179 /* TuistAssets+SwiftUIStudy.swift */,
 				2D032DEF88375B44209AB3BD /* TuistBundle+RxStudy.swift */,
 				108F69A1F97843705E1BB1B9 /* TuistBundle+SwiftUIStudy.swift */,
-				AAFAD5062F610A8C1C2AB89E /* TuistPlists+RxStudy.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -2139,15 +2084,6 @@
 			files = (
 				6CBAF2D3D3A15E0362529CA0 /* TuistAssets+RxStudy.swift in Sources */,
 				EC9CB6BB9F6FC312ED464C15 /* TuistBundle+RxStudy.swift in Sources */,
-				93342D5901E05619DAC4EAD0 /* TuistPlists+RxStudy.swift in Sources */,
-				9548CC4F24BBBA49EA933F20 /* FSPageControl.swift in Sources */,
-				9DC25A6C1537294BDCAE9F44 /* FSPageViewLayout.swift in Sources */,
-				F2DEB26C5115186E741302D7 /* FSPageViewTransformer.swift in Sources */,
-				E02B754AF26B74342F5783AE /* FSPagerCollectionView.swift in Sources */,
-				55683C74569E2CDB93706067 /* FSPagerView.swift in Sources */,
-				EA0486418EB60F54CE7CBD2B /* FSPagerViewCell.swift in Sources */,
-				F7CF2CFB0BEA6B798A11C5C8 /* FSPagerViewLayoutAttributes.swift in Sources */,
-				9CD96322D3EAB57EAEFC44E8 /* FSPagerViewObjcCompat.m in Sources */,
 				4DABC472E60F36A98208A128 /* Decode+Extension.swift in Sources */,
 				214214DE81D0CBFF0D7A2CB8 /* TheRouerBridge.swift in Sources */,
 				D9A9EB250ADD6C92EC6B522D /* TheRouter+Convenience.swift in Sources */,
@@ -2503,17 +2439,15 @@
 					"$(SRCROOT)/RxStudy/Extension/CrashController",
 					"$(SRCROOT)/RxStudy/Extension/NSURLProtocol+WKWebVIew",
 					"$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
+					"$(SRCROOT)/Packages/ThirdParty/FSPagerView/Sources/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/CocoaLumberjack/Sources/CocoaLumberjack/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/DZNEmptyDataSet/Source",
-					"$(SRCROOT)/Tuist/.build/checkouts/FlexLayout/Sources/Swift/Public",
-					"$(SRCROOT)/Tuist/.build/checkouts/FlexLayout/Sources/YogaKit/include/YogaKit",
 					"$(SRCROOT)/Tuist/.build/checkouts/MBProgressHUD/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/MJRefresh/MJRefresh",
 					"$(SRCROOT)/Tuist/.build/checkouts/MJRefresh/MJRefresh/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/RxSwift/Sources/RxCocoaRuntime/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/SVProgressHUD/SVProgressHUD/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/ZipArchive/SSZipArchive/include",
-					"$(SRCROOT)/Tuist/.build/checkouts/yoga",
 				);
 				INFOPLIST_FILE = "Derived/InfoPlists/RxStudy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -2523,16 +2457,14 @@
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
+					"-fmodule-map-file=$(SRCROOT)/Packages/ThirdParty/FSPagerView/Derived/FSPagerView.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/checkouts/MBProgressHUD/include/module.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/DZNEmptyDataSet/DZNEmptyDataSet.modulemap",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayout/FlexLayout.modulemap",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayoutYogaKit/FlexLayoutYogaKit.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/MJRefresh/MJRefresh.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/RxCocoaRuntime/RxCocoaRuntime.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/ZipArchive/ZipArchive.modulemap",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/core/core.modulemap",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2541,15 +2473,13 @@
 				OTHER_SWIFT_FLAGS = (
 					"$(inherited)",
 					"-Xcc",
+					"-fmodule-map-file=$(SRCROOT)/Packages/ThirdParty/FSPagerView/Derived/FSPagerView.modulemap",
+					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/checkouts/MBProgressHUD/include/module.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/DZNEmptyDataSet/DZNEmptyDataSet.modulemap",
-					"-Xcc",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayout/FlexLayout.modulemap",
-					"-Xcc",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayoutYogaKit/FlexLayoutYogaKit.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/MJRefresh/MJRefresh.modulemap",
 					"-Xcc",
@@ -2558,8 +2488,6 @@
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/ZipArchive/ZipArchive.modulemap",
-					"-Xcc",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/core/core.modulemap",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lostsakura.RxStudy;
 				PRODUCT_NAME = RxStudy;
@@ -2709,17 +2637,15 @@
 					"$(SRCROOT)/RxStudy/Extension/CrashController",
 					"$(SRCROOT)/RxStudy/Extension/NSURLProtocol+WKWebVIew",
 					"$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
+					"$(SRCROOT)/Packages/ThirdParty/FSPagerView/Sources/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/CocoaLumberjack/Sources/CocoaLumberjack/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/DZNEmptyDataSet/Source",
-					"$(SRCROOT)/Tuist/.build/checkouts/FlexLayout/Sources/Swift/Public",
-					"$(SRCROOT)/Tuist/.build/checkouts/FlexLayout/Sources/YogaKit/include/YogaKit",
 					"$(SRCROOT)/Tuist/.build/checkouts/MBProgressHUD/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/MJRefresh/MJRefresh",
 					"$(SRCROOT)/Tuist/.build/checkouts/MJRefresh/MJRefresh/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/RxSwift/Sources/RxCocoaRuntime/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/SVProgressHUD/SVProgressHUD/include",
 					"$(SRCROOT)/Tuist/.build/checkouts/ZipArchive/SSZipArchive/include",
-					"$(SRCROOT)/Tuist/.build/checkouts/yoga",
 				);
 				INFOPLIST_FILE = "Derived/InfoPlists/RxStudy-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
@@ -2729,16 +2655,14 @@
 				);
 				OTHER_CFLAGS = (
 					"$(inherited)",
+					"-fmodule-map-file=$(SRCROOT)/Packages/ThirdParty/FSPagerView/Derived/FSPagerView.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/checkouts/MBProgressHUD/include/module.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/DZNEmptyDataSet/DZNEmptyDataSet.modulemap",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayout/FlexLayout.modulemap",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayoutYogaKit/FlexLayoutYogaKit.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/MJRefresh/MJRefresh.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/RxCocoaRuntime/RxCocoaRuntime.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.modulemap",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/ZipArchive/ZipArchive.modulemap",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/core/core.modulemap",
 				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -2747,15 +2671,13 @@
 				OTHER_SWIFT_FLAGS = (
 					"$(inherited)",
 					"-Xcc",
+					"-fmodule-map-file=$(SRCROOT)/Packages/ThirdParty/FSPagerView/Derived/FSPagerView.modulemap",
+					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/checkouts/MBProgressHUD/include/module.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/DZNEmptyDataSet/DZNEmptyDataSet.modulemap",
-					"-Xcc",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayout/FlexLayout.modulemap",
-					"-Xcc",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/FlexLayoutYogaKit/FlexLayoutYogaKit.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/MJRefresh/MJRefresh.modulemap",
 					"-Xcc",
@@ -2764,8 +2686,6 @@
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.modulemap",
 					"-Xcc",
 					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/ZipArchive/ZipArchive.modulemap",
-					"-Xcc",
-					"-fmodule-map-file=$(SRCROOT)/Tuist/.build/tuist-derived/core/core.modulemap",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lostsakura.RxStudy;
 				PRODUCT_NAME = RxStudy;

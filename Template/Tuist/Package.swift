@@ -49,6 +49,9 @@ import PackageDescription
             // "JXSegmentedView": .staticFramework,
             // "DZNEmptyDataSet": .staticFramework,
 
+            // ========== 轮播图 ==========
+            // "FSPagerView": .staticFramework,
+
             // ========== 许可证列表 ==========
             // "AcknowList": .staticFramework,
         ]
@@ -97,6 +100,9 @@ let package = Package(
         // .package(url: "https://github.com/CoderMJLee/MJRefresh.git", from: "3.7.9"),
         // .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.4.1"),
         // .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),  // 使用主分支最新代码
+
+        // ---------- 本地依赖（远程 Package.swift 格式错误）----------
+        // .package(path: "../Packages/ThirdParty/FSPagerView"),
 
         // ---------- 许可证列表 ----------
         // .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),

@@ -6,6 +6,7 @@
 //  Copyright © 2021 season. All rights reserved.
 //
 
+import FSPagerView
 import RxSwift
 import RxCocoa
 

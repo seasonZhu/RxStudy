@@ -86,11 +86,11 @@ let project = Project(
                 // - JXSegmentedView → pujiaxin33/JXSegmentedView
                 // - DZNEmptyDataSet → dzenbot/DZNEmptyDataSet（使用 master 分支）
                 // 以下库不支持 SPM，保持源码集成：
-                // - FSPagerView（Package.swift 格式错误）
+                // - FSPagerView → 改为本地 SPM 包（修复 Package.swift 后）
                 "Packages/ThirdParty/TheRouter/Sources/**",
-                // FSPagerView: 排除 include 目录（仅头文件，避免重复编译）
-                "Packages/ThirdParty/FSPagerView/Sources/**/*.swift",
-                "Packages/ThirdParty/FSPagerView/Sources/*.m",
+                // FSPagerView: 已改为本地 SPM 依赖
+                // "Packages/ThirdParty/FSPagerView/Sources/**/*.swift",
+                // "Packages/ThirdParty/FSPagerView/Sources/*.m",
                 // FlexLayout 已通过 SPM 集成
                 // "Packages/ThirdParty/FlexLayout/Sources/**",  // 本地源码已清理
             ],
@@ -127,7 +127,7 @@ let project = Project(
 
                 // ========== 布局 ==========
                 TargetDependency.external(name: "SnapKit"),
-                TargetDependency.external(name: "FlexLayout"),
+                //TargetDependency.external(name: "FlexLayout"),
 
                 // ========== 工具 ==========
                 TargetDependency.external(name: "KeychainAccess"),
@@ -146,6 +146,9 @@ let project = Project(
 
                 // ========== 空数据展示 ==========
                 TargetDependency.external(name: "DZNEmptyDataSet"),
+
+                // ========== 轮播图 ==========
+                TargetDependency.external(name: "FSPagerView"),
 
                 // ========== 许可证列表 ==========
                 TargetDependency.external(name: "AcknowList"),
@@ -240,7 +243,7 @@ let project = Project(
                 TargetDependency.external(name: "WebUI"),
 
                 // ========== TabView 组件 ==========
-                TargetDependency.external(name: "PagerTabStripView"),
+                //TargetDependency.external(name: "PagerTabStripView"),
 
                 // ========== UI 工具 ==========
                 TargetDependency.external(name: "ProgressHUD"),
@@ -286,5 +289,12 @@ let project = Project(
     additionalFiles: [
         ".tuist-supported-version",
         "Tuist/**"
+    ],
+    // ========== 禁用 Plist 资源合成器 ==========
+    // 手动指定需要的合成器，不包含 .plist() 以避免生成 TuistPlists+RxStudy.swift
+    // 这样我们就可以使用自己的 Pods-RxStudy-acknowledgements.plist + AcknowList
+    resourceSynthesizers: [
+        .assets(),   // ✅ 保留：Assets 合成器
+        .strings(),  // ✅ 保留：Strings 合成器
     ]
 )

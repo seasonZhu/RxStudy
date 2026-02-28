@@ -5,6 +5,17 @@
       location = "group:RxStudy.xcodeproj">
    </FileRef>
    <Group
+      location = "group:Packages"
+      name = "Packages">
+      <Group
+         location = "group:ThirdParty"
+         name = "ThirdParty">
+         <FileRef
+            location = "group:FSPagerView/FSPagerView.xcodeproj">
+         </FileRef>
+      </Group>
+   </Group>
+   <Group
       location = "container:"
       name = "Dependencies">
       <FileRef
@@ -18,9 +29,6 @@
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/DZNEmptyDataSet/DZNEmptyDataSet.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Tuist/.build/tuist-derived/FlexLayout/FlexLayout.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/JXSegmentedView/JXSegmentedView.xcodeproj">
@@ -45,9 +53,6 @@
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/NSObject-Rx/NSObject-Rx.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Tuist/.build/tuist-derived/PagerTabStripView/PagerTabStripView.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/ProgressHUD/ProgressHUD.xcodeproj">
@@ -84,9 +89,6 @@
       </FileRef>
       <FileRef
          location = "group:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
-      </FileRef>
-      <FileRef
-         location = "group:Tuist/.build/tuist-derived/yoga/yoga.xcodeproj">
       </FileRef>
    </Group>
 </Workspace>

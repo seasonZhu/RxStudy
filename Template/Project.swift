@@ -221,6 +221,9 @@ let project = Project(
                 // - MJRefresh → 使用 SPM (CoderMJLee/MJRefresh 3.7.9)
                 // - JXSegmentedView → 使用 SPM (pujiaxin33/JXSegmentedView 1.4.1)
                 // - NSObject+Rx → 使用 SPM (RxSwiftCommunity/NSObject-Rx 5.2.2)
+                // - DZNEmptyDataSet → 使用 SPM (dzenbot/DZNEmptyDataSet master 分支)
+                // - FlexLayout → 使用 SPM (layoutBox/FlexLayout 2.2.3)
+                // - FSPagerView → 本地 SPM 包（修复 Package.swift 后）
 
                 // ========== Glob 模式（更灵活的文件匹配）==========
                 // .glob(pattern: "AppTemplate/Sources/**/*.swift", excluding: ["**/*+Unused.swift"]),
@@ -372,7 +375,7 @@ let project = Project(
                 // 下拉刷新
                 // .external(name: "MJRefresh"),
 
-                // 轮播图
+                // 轮播图（本地 SPM 包）
                 // .external(name: "FSPagerView"),
 
                 // 分段控制器

@@ -391,6 +391,51 @@ let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []
 - 文件需要在 Project.swift 的 resources 中声明
 - AcknowList 会自动解析并显示许可证信息
 
+### 场景 7：使用本地依赖（修复远程 Package.swift 问题）
+
+**背景**：某些库的 Package.swift 格式错误，无法直接通过 URL 使用。
+
+**解决方案**：下载到本地，修复 Package.swift，然后作为本地包使用。
+
+**以 FSPagerView 为例**：
+
+```swift
+// 1. 下载库源码到本地
+// cd Packages/ThirdParty
+// git clone https://github.com/wenchao-d/FSPagerView.git
+
+// 2. 修复 Package.swift（调整路径配置）
+// 详见 Packages/ThirdParty/FSPagerView/Package.swift
+
+// 3. Tuist/Package.swift - 添加本地路径依赖
+dependencies: [
+    .package(path: "../Packages/ThirdParty/FSPagerView"),
+]
+productTypes: [
+    "FSPagerView": .staticFramework,
+]
+
+// 4. Project.swift - 引用依赖
+dependencies: [
+    .external(name: "FSPagerView"),
+]
+
+// 5. 移除源码集成方式（如果之前使用）
+// sources 中删除：
+// "Packages/ThirdParty/FSPagerView/Sources/**/*.swift",
+// "Packages/ThirdParty/FSPagerView/Sources/*.m",
+```
+
+**本地依赖的优点**：
+- ✅ 可以修复 Package.swift 的问题
+- ✅ 可以修改库的源码（如需要）
+- ✅ 不受远程仓库更新影响
+
+**注意事项**：
+- ⚠️ 本地路径是相对于 Tuist/Package.swift 的相对路径
+- ⚠️ 团队成员需要有相同的本地目录结构
+- ⚠️ 建议将本地依赖提交到 Git 仓库中
+
 ---
 
 ## 迁移指南

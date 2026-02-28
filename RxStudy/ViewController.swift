@@ -72,7 +72,7 @@ class ViewController: UITabBarController {
             debugLog("点击事件")
             Haptics.success.feedback()
             // 使用 FlexLayout 布局的热门快捷键页面
-            self?.navigationController?.pushViewController(HotKeyFlexBoxController(), animated: true)
+            self?.navigationController?.pushViewController(HotKeyController(), animated: true)
         })
         .disposed(by: rx.disposeBag)
         

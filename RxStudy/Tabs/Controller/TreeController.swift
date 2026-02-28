@@ -11,7 +11,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 import RxDataSources
-import FlexLayout
 
 import SnapKit
 
@@ -175,18 +174,19 @@ extension TreeController {
 
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<TabModel, TabModel>>(
             configureCell: { [weak self] (ds, tv, indexPath, _) in
-                let cell = tv.dequeueReusableCell(withIdentifier: TreeCell.className) as! TreeCell
-                cell.model = ds.sectionModels[indexPath.section].model
-
-                /// 处理 TreeCell 内部按钮点击事件
-                /// 由于 cell 重用，这里使用 flatMapLatest 确保只处理最新的订阅
-                cell.buttonTap
-                    .subscribe(onNext: { tabModel in
-                        guard let self else { return }
-                        let vc = SingleTabListController(type: self.type, tabModel: tabModel)
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    })
-                    .disposed(by: cell.disposeBag)
+                //let cell = tv.dequeueReusableCell(withIdentifier: TreeCell.className) as! TreeCell
+                let cell = tv.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+//                cell.model = ds.sectionModels[indexPath.section].model
+//
+//                /// 处理 TreeCell 内部按钮点击事件
+//                /// 由于 cell 重用，这里使用 flatMapLatest 确保只处理最新的订阅
+//                cell.buttonTap
+//                    .subscribe(onNext: { tabModel in
+//                        guard let self else { return }
+//                        let vc = SingleTabListController(type: self.type, tabModel: tabModel)
+//                        self.navigationController?.pushViewController(vc, animated: true)
+//                    })
+//                    .disposed(by: cell.disposeBag)
 
                 return cell
             },

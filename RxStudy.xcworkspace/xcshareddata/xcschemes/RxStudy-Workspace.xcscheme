@@ -126,24 +126,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "74F4A0C60FFE24D6B3C40707"
-               BuildableName = "FlexLayout.framework"
-               BlueprintName = "FlexLayout"
-               ReferencedContainer = "container:Tuist/.build/tuist-derived/FlexLayout/FlexLayout.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4FD122C7BA22F7F2B0B2FA6B"
-               BuildableName = "FlexLayoutYogaKit.framework"
-               BlueprintName = "FlexLayoutYogaKit"
-               ReferencedContainer = "container:Tuist/.build/tuist-derived/FlexLayout/FlexLayout.xcodeproj">
+               BlueprintIdentifier = "03660D20F2174BE5A89446D7"
+               BuildableName = "FSPagerView.framework"
+               BlueprintName = "FSPagerView"
+               ReferencedContainer = "container:Packages/ThirdParty/FSPagerView/FSPagerView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -312,20 +298,6 @@
                BuildableName = "NSObject_Rx.framework"
                BlueprintName = "NSObject-Rx"
                ReferencedContainer = "container:Tuist/.build/tuist-derived/NSObject-Rx/NSObject-Rx.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BC81F859C8E834A1AA4339FF"
-               BuildableName = "PagerTabStripView.framework"
-               BlueprintName = "PagerTabStripView"
-               ReferencedContainer = "container:Tuist/.build/tuist-derived/PagerTabStripView/PagerTabStripView.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -704,20 +676,6 @@
                BuildableName = "ZipArchive_ZipArchive.bundle"
                BlueprintName = "ZipArchive_ZipArchive"
                ReferencedContainer = "container:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BCC7008FC79CC5F75DE8AC9B"
-               BuildableName = "core.framework"
-               BlueprintName = "core"
-               ReferencedContainer = "container:Tuist/.build/tuist-derived/yoga/yoga.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
