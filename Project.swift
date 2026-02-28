@@ -144,6 +144,9 @@ let project = Project(
 
                 // ========== 空数据展示 ==========
                 TargetDependency.external(name: "DZNEmptyDataSet"),
+
+                // ========== 许可证列表 ==========
+                TargetDependency.external(name: "AcknowList"),
             ],
             settings: .settings(
                 base: [

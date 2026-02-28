@@ -8,6 +8,9 @@
       location = "container:"
       name = "Dependencies">
       <FileRef
+         location = "group:Tuist/.build/tuist-derived/AcknowList/AcknowList.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
       </FileRef>
       <FileRef

@@ -37,6 +37,7 @@ import PackageDescription
             "JXSegmentedView": .staticFramework,
             "DZNEmptyDataSet": .staticFramework,
             "FlexLayout": .staticFramework,
+            "AcknowList": .staticFramework,
         ]
     )
 #endif
@@ -85,6 +86,9 @@ let package = Package(
         .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.4.1"),
 
         // ========== 空数据展示（使用主分支最新代码）==========
-        .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),        
+        .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),
+
+        // ========== 许可证列表 ==========
+        .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),
     ]
 )

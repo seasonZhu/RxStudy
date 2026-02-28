@@ -48,6 +48,9 @@ import PackageDescription
             // "MJRefresh": .staticFramework,
             // "JXSegmentedView": .staticFramework,
             // "DZNEmptyDataSet": .staticFramework,
+
+            // ========== 许可证列表 ==========
+            // "AcknowList": .staticFramework,
         ]
     )
 #endif
@@ -94,6 +97,9 @@ let package = Package(
         // .package(url: "https://github.com/CoderMJLee/MJRefresh.git", from: "3.7.9"),
         // .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.4.1"),
         // .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),  // 使用主分支最新代码
+
+        // ---------- 许可证列表 ----------
+        // .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),
     ]
 )
 

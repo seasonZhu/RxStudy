@@ -371,6 +371,9 @@ let project = Project(
                 // 空数据展示（使用 master 分支获取最新代码）
                 // .external(name: "DZNEmptyDataSet"),
 
+                // ========== 许可证列表 ==========
+                // .external(name: "AcknowList"),
+
                 // ========== WebView ==========
 
                 // ---------- WebView ----------

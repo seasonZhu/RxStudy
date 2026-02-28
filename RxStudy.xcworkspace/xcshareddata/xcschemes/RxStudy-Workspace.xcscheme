@@ -14,6 +14,34 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "864136A093557C119AA04EF0"
+               BuildableName = "AcknowList.framework"
+               BlueprintName = "AcknowList"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/AcknowList/AcknowList.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "A1E73FB1077B931332C2E6F0"
+               BuildableName = "AcknowList_AcknowList.bundle"
+               BlueprintName = "AcknowList_AcknowList"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/AcknowList/AcknowList.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "2A717419231F3C0B8A3E0F06"
                BuildableName = "Alamofire.framework"
                BlueprintName = "Alamofire"
@@ -715,10 +743,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A717419231F3C0B8A3E0F06"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire"
-            ReferencedContainer = "container:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+            BlueprintIdentifier = "864136A093557C119AA04EF0"
+            BuildableName = "AcknowList.framework"
+            BlueprintName = "AcknowList"
+            ReferencedContainer = "container:Tuist/.build/tuist-derived/AcknowList/AcknowList.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </LaunchAction>
@@ -731,10 +759,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2A717419231F3C0B8A3E0F06"
-            BuildableName = "Alamofire.framework"
-            BlueprintName = "Alamofire"
-            ReferencedContainer = "container:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+            BlueprintIdentifier = "864136A093557C119AA04EF0"
+            BuildableName = "AcknowList.framework"
+            BlueprintName = "AcknowList"
+            ReferencedContainer = "container:Tuist/.build/tuist-derived/AcknowList/AcknowList.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
