@@ -344,6 +344,53 @@ dependencies: [
 ]
 ```
 
+### 场景 6：添加需要额外资源文件的库（AcknowList）
+
+某些库需要额外的资源文件（如 plist、bundle 等），以 AcknowList 为例：
+
+**背景**：AcknowList 用于显示应用的第三方库许可证列表，需要 acknowledgements.plist 文件。
+
+**步骤**：
+
+```swift
+// 1. Tuist/Package.swift - 添加依赖
+dependencies: [
+    .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),
+]
+productTypes: [
+    "AcknowList": .staticFramework,
+]
+
+// 2. Project.swift - 添加依赖和资源文件
+targets: [
+    .target(
+        name: "MyApp",
+        dependencies: [
+            .external(name: "AcknowList"),
+        ],
+        resources: [
+            "MyApp/Pods-MyApp-acknowledgements.plist",  // 许可证列表文件
+        ]
+    )
+]
+
+// 3. 在代码中使用
+import AcknowList
+
+let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []
+```
+
+**获取 acknowledgements.plist 文件**：
+
+- **CocoaPods 项目**：自动生成在 `Pods/Target Support Files/Pods-<target>/Pods-<target>-acknowledgements.plist`
+- **SPM 项目**：需要手动创建或从其他分支获取
+- **文件位置**：放在项目根目录，确保 `Bundle.main.path(forResource:ofType:)` 能找到
+
+**注意事项**：
+- plist 文件名必须为 `Pods-<CFBundleName>-acknowledgements.plist`
+- 文件需要在 Project.swift 的 resources 中声明
+- AcknowList 会自动解析并显示许可证信息
+
 ---
 
 ## 迁移指南

@@ -238,6 +238,7 @@
 		91AC5CDF920554E83040AF3E /* AppDelegate+LogConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC4CC283A1D3D9F775B13932 /* AppDelegate+LogConfig.swift */; };
 		91BA3452589516BBF708C529 /* TreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F9C434C3647C4008F7E739 /* TreeView.swift */; };
 		930616E6E8F0514729A61BFE /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B648AF65291CB4D85283F43 /* SVProgressHUD.framework */; };
+		93342D5901E05619DAC4EAD0 /* TuistPlists+RxStudy.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAFAD5062F610A8C1C2AB89E /* TuistPlists+RxStudy.swift */; };
 		93D25F78CDA1D0639E068FAC /* FlexLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84339707AE5202CDC42325B0 /* FlexLayout.framework */; };
 		93F7E8C37D87617F71E217A0 /* SingleTabListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1533F48073862D5EE1C0F12 /* SingleTabListViewModel.swift */; };
 		9452BE1A1492E32480845255 /* AppDelegate+NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692BC4B0D80AFE4690EDEA88 /* AppDelegate+NetworkConfig.swift */; };
@@ -339,6 +340,7 @@
 		D193AC58FDA59FA6E5303072 /* CollectActionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7299F2CBE8EC24A29ACD40E6 /* CollectActionType.swift */; };
 		D25C9DCA578B370F2AB67791 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C86B48A2CA67329B22AB09 /* Header.swift */; };
 		D2B410463E99C8C3B1275ED5 /* Alamofire_Alamofire.bundle in Dependencies */ = {isa = PBXBuildFile; fileRef = DFB53D9494BFE951D2300C99 /* Alamofire_Alamofire.bundle */; };
+		D386E8E18A36FCB69C7EB934 /* Pods-RxStudy-acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = BCF925D9B541C59C8DF8E965 /* Pods-RxStudy-acknowledgements.plist */; };
 		D3A253E232A5AF9BBC3FD708 /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F56FD40D24F057298290134 /* SearchResultViewModel.swift */; };
 		D3DD4692B04D4F0E4CEA8488 /* HeaderKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0712585DCBE23C047C58251 /* HeaderKey.swift */; };
 		D4370E34965932E20AFE5018 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E8062B468A2A3CC0615454 /* AccountService.swift */; };
@@ -726,6 +728,7 @@
 		A79F91DC2A3AD54BE30080C9 /* LSBundleProxy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LSBundleProxy.m; sourceTree = "<group>"; };
 		A89EF5877FA7C21C23A9CD38 /* Tool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
 		AA2069328EC3BED2E2FB3AE8 /* InfoGenericsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoGenericsCell.swift; sourceTree = "<group>"; };
+		AAFAD5062F610A8C1C2AB89E /* TuistPlists+RxStudy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TuistPlists+RxStudy.swift"; sourceTree = "<group>"; };
 		AB5E4FBFBF5A5329B12A7566 /* PagerTabStripView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = PagerTabStripView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABC72CB6E345D0FB72D2C937 /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
 		AC8D815A1D0768C406620A00 /* CoinRankListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRankListView.swift; sourceTree = "<group>"; };
@@ -753,6 +756,7 @@
 		BC4CC283A1D3D9F775B13932 /* AppDelegate+LogConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+LogConfig.swift"; sourceTree = "<group>"; };
 		BC8FE21B2361D5AF5D0F4216 /* List+Refresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "List+Refresh.swift"; sourceTree = "<group>"; };
 		BCA8642D33405425799E25A7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		BCF925D9B541C59C8DF8E965 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Pods-RxStudy-acknowledgements.plist"; sourceTree = "<group>"; };
 		BD8ABFC935B10E0AE741A375 /* AppDelegate+AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AppConfig.swift"; sourceTree = "<group>"; };
 		BD8E616F538B66A5C38954B7 /* Transform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
 		BEB127225B9F9F7CDC64406B /* TheRouterServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterServiceManager.swift; sourceTree = "<group>"; };
@@ -1839,6 +1843,7 @@
 				1005C0E622ACC51FC3C65179 /* TuistAssets+SwiftUIStudy.swift */,
 				2D032DEF88375B44209AB3BD /* TuistBundle+RxStudy.swift */,
 				108F69A1F97843705E1BB1B9 /* TuistBundle+SwiftUIStudy.swift */,
+				AAFAD5062F610A8C1C2AB89E /* TuistPlists+RxStudy.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -1972,6 +1977,7 @@
 				7F05BF6DDA5559CC42DAE76C /* AppDelegate.swift */,
 				478F306E5D39BA80AF0B6CEB /* Assets.xcassets */,
 				2A65114B44B1E3B98C555FE8 /* ImportHeader.swift */,
+				BCF925D9B541C59C8DF8E965 /* Pods-RxStudy-acknowledgements.plist */,
 				55F2CDCBDCBD0143144A4742 /* RxStudy.playground */,
 				571FB3DE402CA7F20D74E62D /* SceneDelegate.swift */,
 				1A4CBCCEA2F49861B69B2D9C /* TabType.swift */,
@@ -2094,6 +2100,7 @@
 				BF9E1E2FD34C9AD4C7C5F847 /* Assets.xcassets in Resources */,
 				5AE0D28F918ECC347A0782E0 /* LaunchScreen.storyboard in Resources */,
 				E7ECE31E793A6D4019C38562 /* Main.storyboard in Resources */,
+				D386E8E18A36FCB69C7EB934 /* Pods-RxStudy-acknowledgements.plist in Resources */,
 				108C5EC2F48CFBE107B9FE19 /* AcknowList_AcknowList.bundle in Resources */,
 				A2760D8B2F187A24E1A18D45 /* Alamofire_Alamofire.bundle in Resources */,
 				2DBA92FFEE1DEC1C21B83491 /* CocoaLumberjack_CocoaLumberjack.bundle in Resources */,
@@ -2132,6 +2139,7 @@
 			files = (
 				6CBAF2D3D3A15E0362529CA0 /* TuistAssets+RxStudy.swift in Sources */,
 				EC9CB6BB9F6FC312ED464C15 /* TuistBundle+RxStudy.swift in Sources */,
+				93342D5901E05619DAC4EAD0 /* TuistPlists+RxStudy.swift in Sources */,
 				9548CC4F24BBBA49EA933F20 /* FSPageControl.swift in Sources */,
 				9DC25A6C1537294BDCAE9F44 /* FSPageViewLayout.swift in Sources */,
 				F2DEB26C5115186E741302D7 /* FSPageViewTransformer.swift in Sources */,

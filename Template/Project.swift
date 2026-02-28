@@ -239,6 +239,16 @@ let project = Project(
                 // 示例：
                 // "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**",
                 // "Packages/ThirdParty/MJRefresh/Sources/MJRefresh/MJRefresh.bundle/**",
+                //
+                // ========== 许可证列表（AcknowList）==========
+                // AcknowList 需要一个 acknowledgements.plist 文件来显示许可证信息
+                // 文件命名格式：Pods-<CFBundleName>-acknowledgements.plist
+                // 示例："AppTemplate/Pods-AppTemplate-acknowledgements.plist",
+                //
+                // 注意：
+                // 1. plist 文件必须放在项目根目录（Bundle.main 能访问的位置）
+                // 2. 文件名必须与 CFBundleName 或 CFBundleExecutable 匹配
+                // 3. 可通过 CocoaPods 自动生成，或手动创建
 
                 // ========== Glob 模式 ==========
                 // .glob(pattern: "AppTemplate/Resources/**", excluding: ["**/*.lproj"]),

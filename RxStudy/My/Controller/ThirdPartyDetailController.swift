@@ -8,14 +8,15 @@
 
 import UIKit
 
+import AcknowList
 
 class ThirdPartyDetailController: BaseViewController {
 
     /// The main text view.
     open var textView: UITextView?
 
-    /// The represented acknowledgement - AcknowList library removed
-    // var acknowledgement: Acknow?
+    /// The represented acknowledgement
+    var acknowledgement: Acknow?
 
     /// Title for the detail view
     var detailTitle: String?
@@ -34,6 +35,19 @@ class ThirdPartyDetailController: BaseViewController {
 
         self.detailTitle = title
         self.detailText = text
+    }
+
+    /**
+     Initializes the `ThirdPartyDetailController` instance with an acknowledgement.
+
+     - parameter acknowledgement: The acknowledgement.
+
+     - returns: The new `ThirdPartyDetailController` instance.
+     */
+    public init(acknowledgement: Acknow) {
+        super.init(nibName: nil, bundle: nil)
+
+        self.acknowledgement = acknowledgement
     }
 
     /**
@@ -85,9 +99,9 @@ class ThirdPartyDetailController: BaseViewController {
         }
 
         // Need to set the textView text after the layout is completed, so that the content inset and offset properties can be adjusted automatically.
-        // if let acknowledgement {
-        //     textView?.text = acknowledgement.text
-        // }
+        if let acknowledgement {
+            textView?.text = acknowledgement.text
+        }
     }
 
     @available(iOS 11.0, tvOS 11.0, *) open override func viewLayoutMarginsDidChange() {

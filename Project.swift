@@ -98,6 +98,8 @@ let project = Project(
                 "RxStudy/Assets.xcassets/**",
                 "RxStudy/Base.lproj/LaunchScreen.storyboard",
                 "RxStudy/Base.lproj/Main.storyboard",
+                // ========== 许可证列表 ==========
+                "RxStudy/Pods-RxStudy-acknowledgements.plist",
                 // 以下库的 bundle 已通过 SPM 自动管理：
                 // - SVProgressHUD.bundle
                 // - MJRefresh.bundle

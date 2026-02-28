@@ -11,11 +11,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+import AcknowList
+
 /// 没有直接使用AcknowList自带的控制器,是因为其导航栏的风格和App的不同,所以自己写了
 class ThirdPartyController: BaseTableViewController {
 
-    // AcknowList library removed - temporarily use empty data source
-    // let dataSource = BehaviorRelay<[Acknow]>(value: [])
+    let dataSource = BehaviorRelay<[Acknow]>(value: [])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,8 +27,7 @@ class ThirdPartyController: BaseTableViewController {
 
 extension ThirdPartyController {
     private func setupUI() {
-        // title = AcknowLocalization.localizedTitle() // AcknowList 库已移除
-        title = "第三方库" // 设置固定标题
+        title = AcknowLocalization.localizedTitle()
 
         tableView.mj_header = nil
         tableView.mj_footer = nil
@@ -36,30 +36,28 @@ extension ThirdPartyController {
         tableView.emptyDataSetDelegate = nil
 
         tableView.rowHeight = 44
-
     }
 
     private func binding() {
-        // AcknowList library removed - temporarily commented
-        // let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []
-        //
-        // dataSource.accept(list)
-        //
-        // /// 获取cell中的模型
-        // tableView.rx.modelSelected(Acknow.self)
-        //     .map { (ThirdPartyDetailController(acknowledgement: $0), true) }
-        //     .bind(onNext: navigationController!.pushViewController)
-        //     .disposed(by: rx.disposeBag)
-        //
-        // dataSource
-        //     .asDriver(onErrorJustReturn: [])
-        //     .drive(tableView.rx.items) { (tableView, _, info) in
-        //
-        //         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
-        //         cell.textLabel?.text = info.title
-        //         return cell
-        //     }
-        //     .disposed(by: rx.disposeBag)
+        let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []
+
+        dataSource.accept(list)
+
+        /// 获取cell中的模型
+        tableView.rx.modelSelected(Acknow.self)
+            .map { (ThirdPartyDetailController(acknowledgement: $0), true) }
+            .bind(onNext: navigationController!.pushViewController)
+            .disposed(by: rx.disposeBag)
+
+        dataSource
+            .asDriver(onErrorJustReturn: [])
+            .drive(tableView.rx.items) { (tableView, _, info) in
+
+                let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                cell.textLabel?.text = info.title
+                return cell
+            }
+            .disposed(by: rx.disposeBag)
     }
 
     private func defaultAcknowledgementsPlistPath() -> String? {
