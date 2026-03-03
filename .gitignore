@@ -63,3 +63,10 @@ fastlane/test_output
 iOSInjectionProject/
 
 .DS_Store
+
+Derived/
+Tuist/
+Template/
+Generated/
+.package.resolved
+.tuist-supported-version
