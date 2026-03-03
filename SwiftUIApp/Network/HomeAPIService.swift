@@ -34,7 +34,7 @@ extension HomeAPI: TargetType {
             return "/article/list/\(page)/json"
         case .hotKey:
             return "/hotkey/json"
-        case .search(let keyword, let page):
+        case .search(_, let page):
             return "/article/query/\(page)/json"
         }
     }

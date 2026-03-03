@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00F93534E39BA798ECCC6CAB /* TheRouterableProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = E8A0B30FF19946F132EE17E0 /* TheRouterableProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		025A49EEB3DB0AF9A3BA9F63 /* TheRouterInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607A22BC331101641AF88249 /* TheRouterInterceptor.swift */; };
 		19CDD7DC56E4721BFDAFD7E5 /* TheRouterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B0BC041479C9C95402F191A /* TheRouterBuilder.swift */; };
 		262B99E8716FF2E9EECDB943 /* TheRouterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57C2BD5DDBD19CCD585C2004 /* TheRouterManager.swift */; };
 		269D1A07F022A6FC1D6C3FFE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B678FB862BE520264392310 /* UIKit.framework */; };
-		2A684E6E6E1EAD2412E0FD83 /* TheRouterDynamicParamsMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = A26BF8FD513B94E34A30912E /* TheRouterDynamicParamsMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		317D9450F202789BF515C98C /* TheRouterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F8775D3F5C562E9BBD2CC2D /* TheRouterExtension.swift */; };
 		4EEE854E138A48739CF87836 /* TheRouterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DAA8E3C0A91D45BB68E0E3 /* TheRouterable.swift */; };
 		51B2F9C2A3A6DB8674098092 /* TheRouter+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F2B0DD9C2996216CF1B98C /* TheRouter+Service.swift */; };
@@ -60,7 +58,6 @@
 		8B678FB862BE520264392310 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		96F2B0DD9C2996216CF1B98C /* TheRouter+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TheRouter+Service.swift"; sourceTree = "<group>"; };
 		9C0540BBE8E78D53C5A3CCFE /* TheRouterServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterServiceProtocol.swift; sourceTree = "<group>"; };
-		A26BF8FD513B94E34A30912E /* TheRouterDynamicParamsMapping.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheRouterDynamicParamsMapping.h; sourceTree = "<group>"; };
 		A4E1FF97712DD002ADF0604E /* TheRouterServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterServiceManager.swift; sourceTree = "<group>"; };
 		A5CD377A75D1D34403D8F44A /* TheRouterDynamicParamsMapping.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TheRouterDynamicParamsMapping.m; sourceTree = "<group>"; };
 		A687F5D914D235936CCD06E8 /* TheRouterDebugTool.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterDebugTool.swift; sourceTree = "<group>"; };
@@ -68,7 +65,6 @@
 		C1B5BADB0D88FE5BCCFF8AD6 /* TheRouerBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouerBridge.swift; sourceTree = "<group>"; };
 		D3FC32E0D73F0A67679A7F04 /* TheRouter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TheRouter+Convenience.swift"; sourceTree = "<group>"; };
 		D7B31CFA8D1AE741189E1DA3 /* TheRouterRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterRequest.swift; sourceTree = "<group>"; };
-		E8A0B30FF19946F132EE17E0 /* TheRouterableProxy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TheRouterableProxy.h; sourceTree = "<group>"; };
 		EA8EE70DE83772ABC68F6FC6 /* TheRouterPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheRouterPattern.swift; sourceTree = "<group>"; };
 		FDA0CB79B7241A0BCA6C40DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -86,15 +82,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0BCC3E5EEFCA1B93A170F213 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				E8A0B30FF19946F132EE17E0 /* TheRouterableProxy.h */,
-				A26BF8FD513B94E34A30912E /* TheRouterDynamicParamsMapping.h */,
-			);
-			path = include;
-			sourceTree = "<group>";
-		};
 		1C7619E651384123B5F68AEF /* InfoPlists */ = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +102,6 @@
 		4CF82C7BF8F315B6CD4E4E27 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0BCC3E5EEFCA1B93A170F213 /* include */,
 				0CFCD91E29F62A91A376F9EB /* Decode+Extension.swift */,
 				C1B5BADB0D88FE5BCCFF8AD6 /* TheRouerBridge.swift */,
 				00A92E9D0FC061EE41081A2F /* TheRouter.swift */,
@@ -175,24 +161,11 @@
 		};
 /* End PBXGroup section */
 
-/* Begin PBXHeadersBuildPhase section */
-		EBB34E1D52C7C141DF6189A4 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2A684E6E6E1EAD2412E0FD83 /* TheRouterDynamicParamsMapping.h in Headers */,
-				00F93534E39BA798ECCC6CAB /* TheRouterableProxy.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
-
 /* Begin PBXNativeTarget section */
 		A900F74345CCE054AEC1FA65 /* TheRouter */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99C2BB0810C363F5C42062B5 /* Build configuration list for PBXNativeTarget "TheRouter" */;
 			buildPhases = (
-				EBB34E1D52C7C141DF6189A4 /* Headers */,
 				0EEE02A95F8E5884C1825ED4 /* Sources */,
 				9D3431A9605D172B9F126654 /* Resources */,
 				6050C66D0A0A7886E2188798 /* Frameworks */,

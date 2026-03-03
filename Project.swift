@@ -81,7 +81,9 @@ let project = Project(
                 // ========== 本地依赖（源码集成 → 本地 SPM 包迁移）==========
                 // 以下库已改为使用本地 SPM 包：
                 // - FSPagerView → 本地 SPM 包（Package.swift 手动创建）
-                // - TheRouter → 本地 SPM 包（Package.swift 手动创建）
+                // 以下库不支持 SPM，保持源码集成：
+                // - TheRouter → 已改回源码直接集成
+                "Packages/ThirdParty/TheRouter/Sources/**",
                 // 已清理的本地源码：
                 // - FlexLayout → 已通过官方 SPM 集成（本地源码已清理）
             ],
@@ -141,9 +143,6 @@ let project = Project(
                 // ========== 轮播图 ==========
                 TargetDependency.external(name: "FSPagerView"),
 
-                // ========== 路由 ==========
-                TargetDependency.external(name: "TheRouter"),
-
                 // ========== 许可证列表 ==========
                 TargetDependency.external(name: "AcknowList"),
             ],
@@ -167,9 +166,9 @@ let project = Project(
                         "$(SRCROOT)/RxStudy",
                         "$(SRCROOT)/RxStudy/Extension/CrashController",
                         "$(SRCROOT)/RxStudy/Extension/NSURLProtocol+WKWebVIew",
+                        "$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
                         // 以下库已改为使用本地 SPM 依赖，头文件由 SPM 自动管理：
                         // - FSPagerView
-                        // - TheRouter
                         // 以下库已改为使用官方 SPM 依赖，头文件由 SPM 自动管理：
                         // - MBProgressHUD
                         // - SVProgressHUD

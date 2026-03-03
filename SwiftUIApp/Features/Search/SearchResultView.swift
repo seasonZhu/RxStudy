@@ -154,7 +154,7 @@ extension SearchResultViewModel {
 extension String {
   var swiftUIReplaceHtmlElement: String {
       // 先使用正则表达式移除所有 HTML 标签
-      var result = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
+      let result = self.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression)
 
       // 再替换 HTML 实体字符
       return result

@@ -644,20 +644,6 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A900F74345CCE054AEC1FA65"
-               BuildableName = "TheRouter.framework"
-               BlueprintName = "TheRouter"
-               ReferencedContainer = "container:Packages/ThirdParty/TheRouter/TheRouter.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8BA9986FC66F2CE5F5604E75"
                BuildableName = "WebUI.framework"
                BlueprintName = "WebUI"

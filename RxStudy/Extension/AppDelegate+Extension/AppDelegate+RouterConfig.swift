@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import TheRouter
 
 extension AppDelegate {
 

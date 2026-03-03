@@ -12,9 +12,6 @@ import UIKit
 import Flutter
 #endif
 
-import TheRouter
-
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

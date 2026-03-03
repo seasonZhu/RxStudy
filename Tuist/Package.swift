@@ -38,7 +38,6 @@ import PackageDescription
             "DZNEmptyDataSet": .staticFramework,
             "FlexLayout": .staticFramework,
             "FSPagerView": .staticFramework,
-            "TheRouter": .staticFramework,
             "AcknowList": .staticFramework,
         ]
     )
@@ -92,7 +91,6 @@ let package = Package(
 
         // ========== 本地依赖（修复远程 Package.swift 问题或本地库）==========
         .package(path: "../Packages/ThirdParty/FSPagerView"),
-        .package(path: "../Packages/ThirdParty/TheRouter"),
 
         // ========== 许可证列表 ==========
         .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),

@@ -13,9 +13,6 @@
          <FileRef
             location = "group:FSPagerView/FSPagerView.xcodeproj">
          </FileRef>
-         <FileRef
-            location = "group:TheRouter/TheRouter.xcodeproj">
-         </FileRef>
       </Group>
    </Group>
    <Group

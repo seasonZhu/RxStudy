@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 // 定义一个封装类来存储和执行接受参数的闭包
 public class TheRouerParamsClosureWrapper: NSObject {

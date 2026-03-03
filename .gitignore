@@ -75,6 +75,7 @@ Thumbs.db
 .build/
 .tuist-supported-version
 Derived/
+Tuist.zip
 
 # Swift Package Manager
 .package.resolved
