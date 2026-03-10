@@ -1,562 +1,1328 @@
-# RxStudy 架构迁移总结：CocoaPods → Tuist
+# SwiftUI 迁移工作总结
 
-## 📅 迁移时间线
-
-| 日期 | 阶段 | 主要工作 |
-|------|------|----------|
-| 2025-02-18 | Phase 1-2 | Tuist构建系统 + SPM依赖迁移完成 |
-| 待定 | Phase 3 | SwiftUI + Combine迁移（未来） |
+**项目：** RxStudy - SwiftUI 迁移
+**工作周期：** 2026-02-25 ~ 2026-02-26
 
 ---
 
-## 🎯 迁移目标
+# 第一天工作总结 (2026-02-25)
 
-| 重构方向 | 迁移前状态 | 当前状态 |
-|---------|-----------|---------|
-| 构建系统 | Xcode项目 + CocoaPods | ✅ Tuist |
-| 依赖管理 | CocoaPods | ✅ SPM为主 |
-| UI框架 | UIKit + RxSwift | UIKit + RxSwift (保持) |
-| 跨平台 | Flutter + UniApp | ✅ 已移除 |
+## 一、工作概述
 
----
+第一天主要解决了 SwiftUI 迁移过程中的三个核心问题：
 
-## 📦 当前技术栈
-
-### 核心框架
-- **Tuist 4.99.2** - 项目构建系统
-- **Swift Package Manager** - 依赖管理
-- **RxSwift 6.10.1** - 响应式编程
-- **Moya 15.0.0 + RxMoya** - 网络层
-- **SnapKit 5.6.0** - 布局
-
-### 远程SPM依赖（14个）
-```
-ReactiveX/RxSwift (6.7.0+)
-RxSwiftCommunity/RxDataSources (5.0.0+)
-RxSwiftCommunity/RxGesture (4.0.0+)
-RxSwiftCommunity/RxTheme (6.0.0+)
-RxSwiftCommunity/RxSwiftExt (6.0.0+)
-RxSwiftCommunity/RxOptional (5.0.0+)
-Moya/Moya (15.0.0+)
-Alamofire/Alamofire (5.8.0+)
-onevcat/Kingfisher (7.10.0+)
-SnapKit/SnapKit (5.6.0+)
-kishikawakatsumi/KeychainAccess (4.2.2+)
-CocoaLumberjack/CocoaLumberjack (3.8.0+)
-cbpowell/MarqueeLabel (4.0.0+)
-SFSafeSymbols/SFSafeSymbols (2.1.3+)
-ZipArchive/ZipArchive (2.5.0+)
-```
-
-### 本地源码引入的第三方库
-```
-Packages/ThirdParty/
-├── NSObject+Rx/
-├── TheRouter/
-├── MBProgressHUD/
-├── SVProgressHUD/
-├── MJRefresh/
-├── FSPagerView/
-├── JXSegmentedView/
-└── DZNEmptyDataSet/
-```
-
-### 已移除的依赖
-```
-❌ FlexLayout/PinLayout (需要C++ yoga模块，配置复杂)
-❌ Flutter模块
-❌ UniApp模块 (UniMP)
-❌ ReactiveSwift (仅使用RxSwift)
-❌ R.swift (替换为系统图标和Bundle.main.url())
-```
+1. **TabBar 切换透明问题** - 切换底部 tab 时，tabBar 颜色变成透明
+2. **体系页面数据解析错误** - 点击 cell 进入子页面后显示数据解析异常
+3. **导航栏缺失问题** - TabBar 各个页面（首页、项目、公众号、体系、我的）没有显示导航栏
+4. **Push 到二级页面 TabBar 显示问题** - 需要在 push 到二级页面时自动隐藏 TabBar
 
 ---
 
-## 🔧 关键配置
+## 二、问题分析与解决方案
 
-### 代码签名
+### 问题 1：TabBar 切换透明问题
+
+#### 问题描述
+切换底部 tab 时，tabBar 的颜色会变成透明，导致底部导航栏显示异常。但切换到首页是正常的。
+
+#### 初步尝试
 ```swift
-// Project.swift
-let teamId = "GZKK4Y45D3"  // 河南灵动汽车销售服务有限公司
-let bundleId = "com.lostsakura.RxStudy"
-```
-
-### 项目结构
-```
-RxStudy/
-├── Project.swift              # Tuist主项目配置
-├── Tuist/                     # Tuist配置目录
-│   └── Config.swift          # 全局配置
-├── RxStudy/                   # 主App源码
-│   ├── Assets.xcassets/
-│   ├── Base.lproj/           # LaunchScreen.storyboard
-│   ├── Account/
-│   ├── Home/
-│   ├── My/
-│   ├── Tabs/
-│   ├── WebView/
-│   └── ...
-├── Packages/
-│   └── ThirdParty/           # 不支持SPM的第三方库
-│       ├── MBProgressHUD/
-│       ├── SVProgressHUD/
-│       ├── MJRefresh/
-│       ├── FSPagerView/
-│       ├── JXSegmentedView/
-│       └── DZNEmptyDataSet/
-└── .build/                   # SPM缓存（已在.gitignore中）
-```
-
----
-
-## 📝 遇到的问题与解决方案
-
-### 问题1: Bundle ID不匹配导致代码签名失败
-
-**错误现象：**
-```
-之前你把我的bundle改了，导致无法匹配到正确的Apple ID
-```
-
-**根本原因：**
-- 使用了 `com.rxstudy.app` 与用户的Apple Developer账户不匹配
-- Tuist没有配置正确的team ID
-
-**解决方案：**
-```swift
-// Project.swift
-let teamId = "GZKK4Y45D3"
-bundleId: "com.lostsakura.RxStudy"
-
-// 同时在target settings中配置
-"DEVELOPMENT_TEAM": .string(teamId),
-"CODE_SIGN_STYLE": "Automatic",
-"PRODUCT_BUNDLE_IDENTIFIER": "com.lostsakura.RxStudy"
-```
-
-**经验教训：**
-- ✅ 参考TemplateTuist项目进行配置
-- ✅ 明确team ID可避免每次tuist generate后需要手动设置
-
----
-
-### 问题2: RxSwift 6.x API兼容性问题
-
-**错误现象：**
-```
-cannot convert value of type 'BaseModel<AccountInfo>.Type'
-to expected argument type '(Response) throws -> Result'
-```
-
-**根本原因：**
-- RxSwift 6.x改变了`.map()` API
-- 旧版本：`.map(BaseModel<T>.self)`
-- 新版本需要闭包：`.map { try $0.map(BaseModel<T>.self) }`
-
-**解决方案：**
-```swift
-// 修改前 (RxSwift 5.x)
-myProvider.rx.request(MyService.userCoinInfo)
-    .map(BaseModel<CoinRank>.self)
-
-// 修改后 (RxSwift 6.x)
-myProvider.rx.request(MyService.userCoinInfo)
-    .map { try $0.map(BaseModel<CoinRank>.self) }
-```
-
-**影响范围：**
-- 40+ 处ViewModel中的网络请求代码需要修改
-
-**经验教训：**
-- ✅ SPM依赖版本升级时需要关注API breaking changes
-- ✅ 批量修改时注意不要遗漏边缘情况
-
----
-
-### 问题3: Moya集成方式选择错误
-
-**错误现象：**
-用户反馈：
-```
-Moya的SPM支持RxMoya，为啥你自己要搞这么复杂
-```
-
-**错误做法：**
-```swift
-// ❌ 自己创建 Moya+RxSwift.swift 扩展
-import ReactiveMoya  // 同时引入了ReactiveSwift
-```
-
-**正确做法：**
-```swift
-// ✅ 直接使用官方RxMoya模块
-import RxMoya  // 仅RxSwift支持
-
-// 使用MoyaProvider，.rx扩展由RxMoya提供
-let homeProvider = MoyaProvider<HomeService>(plugins: plugins)
-
-// 直接使用.rx.request
-homeProvider.rx.request(HomeService.normalArticle(page))
-```
-
-**经验教训：**
-- ✅ 优先使用官方SPM模块，而非自定义扩展
-- ✅ 明确项目技术栈选择（仅RxSwift，不用ReactiveSwift）
-- ✅ 删除不必要的 `RxStudy/Extension/Moya+RxSwift.swift`
-
----
-
-### 问题4: 第三方库资源文件缺失
-
-**错误现象（真机崩溃）：**
-```
-*** Terminating app due to uncaught exception 'NSInvalidArgumentException',
-reason: '*** -[NSBundle initWithURL:]: nil URL argument'
-```
-
-**SVProgressHUD.bundle路径问题：**
-
-| 错误配置 | 正确配置 |
-|---------|---------|
-| `Pods/SVProgressHUD/...` | `Sources/SVProgressHUD.bundle/` |
-| CocoaPods目录结构 | Tuist源码目录结构 |
-
-**解决方案：**
-```swift
-// Project.swift
-sources: [
-    "Packages/ThirdParty/SVProgressHUD/Sources/**",
-],
-resources: [
-    // ✅ 明确包含bundle资源
-    "Packages/ThirdParty/SVProgressHUD/Sources/SVProgressHUD.bundle/**",
-    "Packages/ThirdParty/MJRefresh/Sources/MJRefresh/MJRefresh.bundle/**"
-]
-```
-
-**经验教训：**
-- ✅ 用户建议："把ThirdParty里面的都检查一遍，看看还有哪些其他库也有资源文件没有引入"
-- ✅ 检查清单：SVProgressHUD、MJRefresh、MBProgressHUD等
-- ✅ bundle资源必须在resources中明确声明
-
----
-
-### 问题5: 真机调试黑屏
-
-**错误现象：**
-```
-真机调试，进入后没有页面显示，整个App都是黑色的
-```
-
-**根本原因：**
-- SceneDelegate的`scene(_:willConnectTo:options:)`方法没有初始化window
-- iOS 13+使用Scene生命周期，需要手动创建window
-
-**错误代码：**
-```swift
-// ❌ 缺少window初始化
-func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    window?.backgroundColor = .playAndroidBackground
-    guard let _ = (scene as? UIWindowScene) else { return }
-}
-```
-
-**正确代码：**
-```swift
-// ✅ 完整的window初始化
-func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    guard let windowScene = (scene as? UIWindowScene) else { return }
-
-    window = UIWindow(windowScene: windowScene)
-    let viewController = BaseNavigationController(rootViewController: ViewController())
-    window?.rootViewController = viewController
-    window?.backgroundColor = .playAndroidBackground
-    window?.makeKeyAndVisible()  // 关键：使window可见
-}
-```
-
-**经验教训：**
-- ✅ iOS 13+需要手动初始化Scene window
-- ✅ `makeKeyAndVisible()` 必须调用
-
----
-
-### 问题6: 启动屏显示异常（黑色）
-
-**错误现象：**
-```
-启动图还是异常，我之前的项目是有Launch.storyboard作为启动的，
-但是迁移到Tuist之后就没有了
-```
-
-**问题分析：**
-1. LaunchScreen.storyboard存在于`RxStudy/Base.lproj/`目录
-2. 但没有添加到Project.swift的resources中
-3. LaunchImagePlayAndroid.imageset的Contents.json配置错误
-
-**解决方案：**
-
-**步骤1：添加storyboard到resources**
-```swift
-// Project.swift
-resources: [
-    "RxStudy/Assets.xcassets/**",
-    "RxStudy/Base.lproj/LaunchScreen.storyboard",  // ✅ 添加
-    "RxStudy/Base.lproj/Main.storyboard",          // ✅ 添加
+// 方案 1：使用 .accentColor()
+TabView {
     // ...
-],
-```
-
-**步骤2：修复Contents.json配置**
-```json
-// ❌ 错误配置（1x没有filename，2x使用了错误的文件）
-{
-  "images" : [
-    { "idiom" : "universal", "scale" : "1x" },
-    { "filename" : "LaunchImagePlayAndroid@3x.png", "scale" : "2x" },
-    { "filename" : "launchImage.png", "scale" : "3x" }
-  ]
 }
+.accentColor(.blue)
+```
+**结果：** 不稳定，在某些 tab 上仍然出现透明问题。
 
-// ✅ 正确配置（仅使用universal 3x）
-{
-  "images" : [
-    {
-      "filename" : "launchImage.png",
-      "idiom" : "universal",
-      "scale" : "3x"
+```swift
+// 方案 2：同时使用 .accentColor() 和 .tint()
+TabView {
+    // ...
+}
+.accentColor(.blue)
+.tint(.blue)
+```
+**结果：** 问题依旧存在。
+
+#### 根本原因分析
+在 SwiftUI 中，当 `NavigationView` 包裹 `TabView` 时，SwiftUI 的 `tint` 和 `accentColor` 修饰符的行为可能不稳定，特别是在复杂的视图层级中。
+
+#### 最终解决方案
+使用 UIKit 的 `UITabBarAppearance` 在 App 启动时直接配置 TabBar 外观：
+
+```swift
+@main
+struct SwiftUIApp: App {
+    var body: some Scene {
+        WindowGroup {
+            TabBarView()
+        }
     }
-  ]
+
+    init() {
+        configureTabBarAppearance()
+    }
+
+    private func configureTabBarAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+
+        // 设置选中和未选中状态的颜色
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.systemBlue]
+        appearance.stackedLayoutAppearance.selected.iconColor = .systemBlue
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.systemGray]
+        appearance.stackedLayoutAppearance.normal.iconColor = .systemGray
+
+        // 应用到所有状态
+        UITabBar.appearance().standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
+    }
 }
 ```
 
-**经验教训：**
-- ✅ Storyboard是资源文件，需要在resources中声明
-- ✅ Universal单一分辨率配置比多分辨率更简单可靠
-- ✅ 图片尺寸：1242x2208 (3x) = 414x736 (1x逻辑分辨率)
+**核心要点：**
+- `configureWithOpaqueBackground()` - 强制使用不透明背景
+- 在 UIKit 层面直接配置，不依赖 SwiftUI 的修饰符
+- 同时配置 `standardAppearance` 和 `scrollEdgeAppearance`（iOS 15+）
 
 ---
 
-### 问题7: FSPagerView重复符号错误
+### 问题 2：导航栏显示与 Push 隐藏 TabBar 的冲突
 
-**错误现象：**
-```
-duplicate symbol '_FSPagerViewAutomaticSize'
-```
+#### 问题描述
+需要同时满足两个需求：
+1. 每个 tab 页面需要显示导航栏标题
+2. Push 到二级页面时，TabBar 需要自动隐藏
 
-**根本原因：**
-Glob模式 `"Packages/ThirdParty/FSPagerView/Sources/**"` 同时匹配了：
-- `Sources/*.swift` 和 `Sources/*.m`（需要编译）
-- `Sources/include/`（仅头文件，不应编译）
+#### 尝试的方案
 
-**解决方案：**
+**方案 A：NavigationView 包裹 TabView（原始方案）**
 ```swift
-// ❌ 过于宽泛
-"Packages/ThirdParty/FSPagerView/Sources/**"
-
-// ✅ 精确匹配
-"Packages/ThirdParty/FSPagerView/Sources/**/*.swift",
-"Packages/ThirdParty/FSPagerView/Sources/*.m",
+NavigationView {
+    TabView {
+        HomeView().navigationTitle("首页")
+        ProjectView().navigationTitle("项目")
+        // ...
+    }
+}
 ```
+**问题：** `.navigationTitle()` 在此结构下不生效，导航栏不显示
 
-**经验教训：**
-- ✅ 对于同时包含swift和objc文件的库，使用精确glob模式
-- ✅ 排除仅头文件的目录（如include/）
-
----
-
-### 问题8: Git大文件问题
-
-**错误现象：**
-```
-GitHub rejected push due to large .pack files in .build/repositories/
-```
-
-**根本原因：**
-- `.build/` 目录（SPM缓存）被提交到git
-- 包含大量二进制文件
-
-**解决方案：**
-1. 创建干净的分支：`refactor/tuist-migration`
-2. 确保.gitignore包含：
-```gitignore
-.build/
-tuist/
-Derived/
-```
-
-**经验教训：**
-- ✅ Tuist和SPM生成的目录不应提交到git
-- ✅ 使用干净的分支避免大文件历史问题
-
----
-
-## 📊 性能对比
-
-| 指标 | CocoaPods | Tuist + SPM |
-|------|-----------|------------|
-| 首次依赖解析 | ~5分钟 | ~1分钟 |
-| 增量编译 | ~30秒 | ~20秒 |
-| clean build | ~3分钟 | ~2分钟 |
-| 项目打开速度 | 慢 | 快 |
-| 代码签名稳定性 | 需手动配置 | 自动化配置 |
-
----
-
-## ✅ 验收测试清单
-
-### 功能测试
-- [x] App可正常启动
-- [x] 登录功能正常
-- [x] 首页列表展示正常
-- [x] WebView加载正常
-- [x] 下拉刷新正常
-- [x] 页面导航正常
-- [x] 启动屏正常显示
-- [x] 真机运行正常
-
-### 构建测试
-- [x] Tuist项目可正常生成
-- [x] 所有SPM依赖可正常解析
-- [x] 项目可正常编译
-- [x] 无编译警告
-- [x] 代码签名自动配置正确
-
----
-
-## 🏆 重要决策记录
-
-### 决策1：技术栈选择
-**问题：** 是否同时支持RxSwift和ReactiveSwift？
-
-**决策：** 仅支持RxSwift
-- 用户明确表示："我只使用RxSwift相关的库，我不使用ReactiveSwift"
-- 后期SwiftUI迁移将使用Combine代替RxSwift
-
-### 决策2：依赖管理策略
-**问题：** HttpRequest和RxStudyUtils如何引入？
-
-**决策：** 源码直接引入主项目
+**方案 B：每个 tab 内部使用 NavigationView**
 ```swift
-sources: [
-    "RxStudy/**",  // 包含了HttpRequest和RxStudyUtils
+TabView {
+    NavigationView { HomeView() }.tabItem { ... }
+    NavigationView { ProjectView() }.tabItem { ... }
+    // ...
+}
+```
+**问题：** Push 到二级页面时，TabBar 不会隐藏（因为 NavigationView 只包裹了单个 tab 的内容）
+
+#### 最终解决方案
+采用 **NavigationView 在外层 + .toolbar() 设置标题** 的组合方案：
+
+**SwiftUIApp.swift 结构：**
+```swift
+NavigationView {
+    TabView(selection: $selectedTab) {
+        HomeView().tabItem { ... }.tag(0)
+        ProjectView().tabItem { ... }.tag(1)
+        PublicNumberView().tabItem { ... }.tag(2)
+        TreeView().tabItem { ... }.tag(3)
+        MineView().tabItem { ... }.tag(4)
+    }
+    .accentColor(.blue)
+}
+.navigationViewStyle(.stack)
+.tint(.blue)
+```
+
+**各个 tab 页面使用 .toolbar() 设置标题：**
+```swift
+struct HomeView: View {
+    var body: some View {
+        contentView
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text("首页")
+                        .font(.system(size: 17, weight: .semibold))
+                }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+    }
+}
+```
+
+**为什么这个方案有效：**
+1. `NavigationView` 在外层 → 整个 `TabView` 都在导航栈内 → push 到二级页面时 TabBar 自动隐藏 ✅
+2. 使用 `.toolbar { ToolbarItem(placement: .principal) }` → 在导航栏中央显示标题，绕过 `.navigationTitle()` 的限制 ✅
+
+---
+
+### 问题 3：数据模型对比与 InfoModel 完善
+
+#### 问题描述
+体系页面点击 cell 进入子页面后，显示数据解析异常。
+
+#### 分析过程
+
+对比 RxStudy（UIKit 原版）和 SwiftUI 版本的数据模型：
+
+**RxStudy 的 Info 结构：**
+```swift
+struct Info: Codable {
+    var title: String?
+    var link: String?
+    var originId: Int?
+    var id: Int?
+
+    let apkLink: String?
+    let audit: Int?
+    let author: String?
+    // ... 更多字段
+    let niceDate: String?
+    let shareUser: String?
+    let type: Int?
+    let userId: Int?
+    // ... 共约 40+ 字段
+}
+```
+
+**SwiftUIApp 的 InfoModel：**
+初始版本字段不完整，导致部分数据解析失败。
+
+#### 解决方案
+完善 `InfoModel`，确保包含所有必要字段：
+
+```swift
+struct InfoModel: Codable, Identifiable {
+    var title: String?
+    var link: String?
+    var originId: Int?
+    var id: Int?
+
+    let apkLink: String?
+    let audit: Int?
+    let author: String?
+    let canEdit: Bool?
+    let chapterId: Int?
+    let chapterName: String?
+    let collect: Bool?
+    let courseId: Int?
+    let desc: String?
+    let descMd: String?
+    let envelopePic: String?
+    let fresh: Bool?
+    let top: Bool?  // 首页需要
+
+    let niceDate: String?
+    let niceShareDate: String?
+    let origin: String?
+
+    let prefix: String?
+    let projectLink: String?
+    let publishTime: Int?
+    let selfVisible: Int?
+    let shareDate: Int?
+    let shareUser: String?
+    let superChapterId: Int?
+    let superChapterName: String?
+    let tags: [TagModel]?
+
+    let type: Int?
+    let userId: Int?
+    let visible: Int?
+    let zan: Int?
+}
+```
+
+**关键点：**
+- 添加了 `top: Bool?` 字段用于首页的置顶标识
+- 所有字段都声明为可选，确保 API 返回不完整字段时不会崩溃
+- 使用 `typealias` 保持向后兼容：
+  ```swift
+  typealias TreeArticleModel = InfoModel
+  typealias ProjectArticleModel = InfoModel
+  typealias PublicNumberArticleModel = InfoModel
+  ```
+
+---
+
+## 三、第一天技术要点总结
+
+### 1. SwiftUI 导航层级设计
+
+| 结构组合 | 导航栏标题 | Push 隐藏 TabBar | 推荐度 |
+|---------|-----------|-----------------|--------|
+| NavigationView > TabView + .navigationTitle() | ❌ 不显示 | ✅ 自动隐藏 | ⭐ |
+| TabView > NavigationView (每个 tab) | ✅ 显示 | ❌ 不隐藏 | ⭐⭐ |
+| **NavigationView > TabView + .toolbar()** | **✅ 显示** | **✅ 自动隐藏** | **⭐⭐⭐** |
+
+### 2. TabBar 外观配置的最佳实践
+
+**SwiftUI 层面（不稳定）：**
+```swift
+TabView { ... }
+.accentColor(.blue)
+.tint(.blue)
+```
+
+**UIKit 层面（推荐）：**
+```swift
+let appearance = UITabBarAppearance()
+appearance.configureWithOpaqueBackground()
+// ... 配置颜色
+UITabBar.appearance().standardAppearance = appearance
+```
+
+**为什么 UIKit 更可靠：**
+- SwiftUI 的修饰符在复杂视图层级中可能被覆盖或失效
+- UIKit 的 `appearance` API 是全局配置，优先级更高
+- 不受视图层级影响
+
+### 3. .toolbar() 的使用技巧
+
+```swift
+.toolbar {
+    ToolbarItem(placement: .principal) {
+        Text("标题")
+            .font(.system(size: 17, weight: .semibold))
+    }
+}
+```
+
+**placement 选项：**
+- `.principal` - 导航栏中央
+- `.navigationBarLeading` - 导航栏左侧
+- `.navigationBarTrailing` - 导航栏右侧
+- `.bottomBar` - 底部工具栏
+
+---
+
+# 第二天工作总结 (2026-02-26)
+
+## 一、工作概述
+
+第二天主要完成了以下核心功能迁移与问题修复：
+
+1. **搜索功能迁移** - HotKeyController 和 SearchResultController 从 UIKit 迁移到 SwiftUI
+2. **WebView 功能集成** - 集成 WebUI 库，实现文章详情页面的 WebView 展示
+3. **分享功能实现** - 实现自定义分享面板，支持 Safari 打开和复制链接
+4. **Navigation 层级问题修复** - 解决点击分享按钮导致页面 pop 的严重问题
+5. **TabBar 架构优化** - 优化 NavigationView 层级，解决二级页面 TabBar 隐藏问题
+
+---
+
+## 二、问题分析与解决方案
+
+### 问题 1：搜索功能迁移（HotKey + SearchResult）
+
+#### 需求描述
+将 RxStudy 中的 HotKeyController 和 SearchResultController 迁移到 SwiftUI，使用 ArticleCellView 展示搜索结果。
+
+#### 实现方案
+
+**1. HotKeyViewModel（热词搜索）**
+```swift
+@Observable
+class HotKeyViewModel {
+    private(set) var hotKeys: [HotKeyModel] = []
+    private(set) var isLoading = false
+    private(set) var errorMessage: String?
+
+    func loadHotKeys() {
+        Task { @MainActor in
+            isLoading = true
+            do {
+                let keys = try await apiService.getHotKeys()
+                hotKeys = keys
+            } catch {
+                errorMessage = error.localizedDescription
+            }
+            isLoading = false
+        }
+    }
+}
+```
+
+**2. 自定义 FlowLayout（标签云布局）**
+使用 SwiftUI Layout 协议实现流式布局：
+```swift
+struct FlowLayout: Layout {
+    var spacing: CGFloat = 8
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        // 计算流式布局尺寸
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        // 流式排列子视图
+    }
+}
+```
+
+**3. SearchBar 组件优化**
+- 搜索按钮代替换行键
+- 内部管理 @FocusState
+- 使用 `.toolbar` + `.principal` placement
+
+**4. SearchResultViewModel（分页搜索）**
+```swift
+@Observable
+class SearchResultViewModel {
+    private(set) var articles: [InfoModel] = []
+    private(set) var isLoadingMore = false
+    private(set) var hasNoMoreData = false
+
+    func loadMoreIfNeeded(_ article: InfoModel) async {
+        // 接近底部时自动加载更多
+    }
+}
+```
+
+**关键技术点：**
+- 使用 `NavigationLink` + `isActive` binding 实现页面跳转
+- 搜索框使用 `.toolbar(placement: .principal)` 放在导航栏中央
+- 空状态视图处理（未找到相关结果）
+
+---
+
+### 问题 2：WebView 功能集成
+
+#### 需求描述
+所有文章列表的 cell 点击后都能跳转到 WebView 展示文章详情，包括首页、项目、公众号、体系、收藏、搜索结果等页面。
+
+#### 技术选型
+选择 [WebUI](https://github.com/cybozu/WebUI) 库：
+- 纯 SwiftUI 实现
+- 简单易用的 API
+- 支持下拉刷新
+
+#### Tuist 依赖配置
+
+**Tuist/Package.swift：**
+```swift
+dependencies: [
+    .package(url: "https://github.com/cybozu/WebUI.git", from: "4.0.0"),
+]
+packageTypes: [
+    "WebUI": .staticFramework
 ]
 ```
 
-### 决策3：FlexLayout处理
-**问题：** FlexLayout需要C++ yoga模块支持，配置复杂
-
-**决策：** 暂时移除FlexLayout
-- 将相关Controller重命名为.bak
-- SwiftUI迁移后不需要FlexLayout
-
-### 决策4：Git分支管理
-**问题：** 大文件历史导致push失败
-
-**决策：** 创建clean分支
-- 分支名：`refactor/tuist-migration`
-- 标签：`v1.0.0-uikit-tuist`
-
----
-
-## 📚 参考资料和工具
-
-### 官方文档
-- [Tuist Documentation](https://tuist.dev/docs)
-- [Swift Package Manager](https://swift.org/package-manager/)
-- [RxSwift 6.0 Migration Guide](https://github.com/ReactiveX/RxSwift/releases)
-
-### 项目参考
-- `/Users/dy/Documents/Swift Git/TemplateTuist` - Tuist配置参考项目
-
-### 关键配置文件
-```
-/Users/dy/Documents/Swift Git/RxStudy/
-├── Project.swift           # Tuist主配置
-├── Tuist/Config.swift      # Tuist全局配置
-└── .gitignore             # Git忽略规则
+**Project.swift：**
+```swift
+dependencies: [
+    .external(name: "WebUI"),
+]
 ```
 
----
+#### 实现方案
 
-## 🎓 经验教训总结
+**两个 WebView 控制器：**
+1. `WebUIController` - 用于 InfoModel（文章）
+2. `URLWebViewController` - 用于 Banner、工具等只需要 URL 的场景
 
-### DO（应该做的）
+```swift
+struct WebUIController: View {
+    let article: InfoModel
+    @State private var shareConfig: ShareConfiguration?
 
-1. **明确技术栈边界**
-   - 只使用RxSwift，不用ReactiveSwift
-   - 避免不必要的依赖共存
+    var body: some View {
+        if let link = article.link, let url = URL(string: link) {
+            WebView(request: URLRequest(url: url))
+                .navigationTitle(article.title?.swiftUIReplaceHtmlElement ?? "文章详情")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            shareConfig = ShareConfiguration(items: [article.title ?? "", link])
+                        } label: {
+                            Image(systemName: "square.and.arrow.up")
+                        }
+                    }
+                }
+                .sheet(item: $shareConfig) { config in
+                    ShareSheet(items: config.items)
+                }
+                .toolbar(.hidden, for: .tabBar)
+        }
+    }
+}
+```
 
-2. **优先使用官方方案**
-   - Moya的RxMoya模块比自定义扩展更可靠
-   - SPM官方支持的库优先选择
-
-3. **资源文件检查清单**
-   - 所有带.bundle的第三方库都需要在resources中声明
-   - Storyboard是资源文件，不是源代码
-
-4. **版本升级注意事项**
-   - 检查API breaking changes
-   - 批量修改后进行回归测试
-
-5. **代码签名配置**
-   - 在Project.swift中明确team ID
-   - 参考已验证的配置模板
-
-6. **Git管理**
-   - .build/等生成目录不应提交
-   - 遇到问题及时创建clean分支
-
-### DON'T（不应该做的）
-
-1. **不要过度复杂化**
-   - 不需要为Moya创建自定义扩展
-   - 不需要支持不使用的框架（ReactiveSwift）
-
-2. **不要忽略资源文件**
-   - 不要忘记在resources中声明.bundle
-   - 不要忘记添加LaunchScreen.storyboard
-
-3. **不要提交生成的文件**
-   - .build/、tuist/、Derived/等目录
-   - SPM缓存和Tuist缓存
-
-4. **不要假设配置正确**
-   - 每次修改后需要真机测试
-   - 模拟器正常运行不代表真机没问题
+**String 扩展复用：**
+通过 Tuist 引用 RxStudy 的 String+Extension：
+```swift
+// Project.swift
+sources: [
+    "RxStudy/Extension/String+Extension.swift",
+]
+```
 
 ---
 
-## 📌 当前项目状态
+### 问题 3：分享功能实现
 
-### Git信息
-- **分支**: `refactor/tuist-migration`
-- **标签**: `v1.0.0-uikit-tuist`
-- **状态**: ✅ 可编译、可运行、功能正常
+#### 需求描述
+在 WebView 页面的导航栏右侧添加分享按钮，支持：
+1. 系统分享功能（微信、短信等）
+2. Safari 打开链接
+3. 复制链接到剪贴板
 
-### 技术债务
-- ⚠️ FlexLayout相关文件已备份但未删除（.bak文件）
-- ⚠️ 部分Controller仍使用FlexLayout（已停用）
+#### 实现方案
 
-### 已知限制
-- FlexLayout已移除，相关页面需要使用SnapKit重写
-- SwiftUI迁移尚未开始（Phase 3）
+**1. 自定义 UIActivity**
+
+**SafariActivity：**
+```swift
+class SafariActivity: UIActivity {
+    private var url: URL?
+
+    override class var activityCategory: UIActivity.Category { .share }
+    override var activityTitle: String? { "Safari" }
+    override var activityImage: UIImage? { UIImage(systemName: "safari") }
+
+    override func prepare(withActivityItems activityItems: [Any]) {
+        // activityItems[0] 是 title，activityItems[1] 是 URL
+        guard activityItems.count >= 2,
+              let urlString = activityItems[1] as? String,
+              let url = URL(string: urlString) else {
+            return
+        }
+        self.url = url
+    }
+
+    override func perform() {
+        if let url = self.url, UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+}
+```
+
+**CopyActivity：**
+```swift
+class CopyActivity: UIActivity {
+    private var urlString: String?
+
+    override class var activityCategory: UIActivity.Category { .share }
+    override var activityTitle: String? { "复制URL" }
+    override var activityImage: UIImage? { UIImage(systemName: "doc.on.doc") }
+
+    override func prepare(withActivityItems activityItems: [Any]) {
+        guard activityItems.count >= 2,
+              let urlString = activityItems[1] as? String else {
+            return
+        }
+        self.urlString = urlString
+    }
+
+    override func perform() {
+        if let urlString = urlString {
+            UIPasteboard.general.string = urlString
+        }
+    }
+}
+```
+
+**2. ShareSheet 包装器**
+```swift
+struct ShareSheet: UIViewControllerRepresentable {
+    let items: [Any]
+    let excludedActivityTypes: [UIActivity.ActivityType]
+
+    func makeUIViewController(context: Context) -> UIActivityViewController {
+        let controller = UIActivityViewController(
+            activityItems: items,
+            applicationActivities: [SafariActivity(), CopyActivity()]
+        )
+        controller.excludedActivityTypes = excludedActivityTypes
+        return controller
+    }
+}
+```
+
+**3. 使用 .sheet(item:) 呈现**
+```swift
+@State private var shareConfig: ShareConfiguration?
+
+// 点击按钮
+shareConfig = ShareConfiguration(items: [article.title ?? "", link])
+
+// Sheet 呈现
+.sheet(item: $shareConfig) { config in
+    ShareSheet(items: config.items)
+        .presentationDragIndicator(.visible)
+}
+```
+
+**关键要点：**
+- `activityItems[0]` = title（标题）
+- `activityItems[1]` = URL（链接地址）
+- 使用 `.sheet(item:)` 而不是 `.sheet(isPresented:)`，避免状态冲突
+- 排除 `.copyToPasteboard`，使用自定义 CopyActivity
 
 ---
 
-## 🚀 下一步计划
+### 问题 4：Navigation 层级导致的 Pop 问题（核心问题）
 
-详见：`NEXT_STEPS.md`
+#### 问题描述
+点击 WebView 的分享按钮后：
+1. 分享面板能弹出
+2. 但 WebUIController 立即被 pop 掉
+3. 分享面板随之消失
+
+#### 问题根源
+NavigationView 层级结构不合理，导致点击分享按钮时触发了意外的导航 pop 操作。
+
+#### 解决方案
+
+**1. 调整 TabBarView 架构**
+每个 Tab 独立包裹 NavigationView：
+```swift
+TabView(selection: $selectedTab) {
+    NavigationView { HomeView() }
+        .navigationViewStyle(.stack)
+        .tabItem { Label("首页", systemImage: "house.fill") }
+        .tag(0)
+
+    NavigationView { ProjectView() }
+        .navigationViewStyle(.stack)
+        .tabItem { Label("项目", systemImage: "folder.fill") }
+        .tag(1)
+
+    // ... 其他 tab 同样结构
+}
+.accentColor(.blue)
+.tint(.blue)
+```
+
+**2. 二级页面隐藏 TabBar**
+使用 iOS 16+ 的 `.toolbar(.hidden, for: .tabBar)`：
+```swift
+// WebUIController
+.toolbar(.hidden, for: .tabBar)
+
+// 其他二级页面同样处理
+```
+
+**修改的二级页面列表：**
+- HotKeyView（搜索页面）
+- SearchResultView（搜索结果）
+- WebUIController（文章详情）
+- URLWebViewController（URL 页面）
+- TreeArticleListView（体系文章列表）
+- CoinView（我的积分）
+- CoinRankListView（积分排名）
+- CollectView（我的收藏）
+- LoginView（登录页面）
+
+**架构对比：**
+
+| 架构 | Navigation 结构 | 问题 |
+|------|----------------|------|
+| **旧方案** | NavigationView > TabView | ❌ 点击分享触发 pop |
+| **新方案** | TabView > NavigationView (每个 tab) | ✅ 正常工作 |
 
 ---
 
-## 📞 项目信息
+## 三、第二天技术要点总结
 
-- **项目**: RxStudy
-- **迁移时间**: 2025年2月18日
-- **当前版本**: v1.0.0-uikit-tuist
-- **技术负责人**: dy
+### 1. UIActivity 自定义实现要点
+
+| 要点 | 说明 | 示例 |
+|------|------|------|
+| **activityCategory** | 设置为 `.share` | `override class var activityCategory: UIActivity.Category { .share }` |
+| **prepare 方法** | 提取数据，假设 items[1] 是 URL | `activityItems[1] as? String` |
+| **canPerform** | 简单返回 true | `return true` |
+| **perform** | 执行实际操作 | `UIApplication.shared.open(url)` |
+
+### 2. .sheet(item:) vs .sheet(isPresented:)
+
+| 方式 | 优点 | 缺点 | 推荐场景 |
+|------|------|------|----------|
+| `.sheet(isPresented:)` | 简单直接 | 可能与 NavigationLink 冲突 | 简单场景 |
+| `.sheet(item:)` | 更稳定，支持 Identifiable | 需要额外的模型 | **NavigationLink 中推荐** |
+
+### 3. TabBar 架构设计
+
+**原则：**
+- 每个 Tab 独立的 NavigationView
+- 二级页面使用 `.toolbar(.hidden, for: .tabBar)` 隐藏 TabBar
+- 使用 `.navigationViewStyle(.stack)` 确保一致的导航行为
+
+### 4. Tuist 依赖管理
+
+**添加外部库的步骤：**
+1. `Tuist/Package.swift` - 添加依赖和类型
+2. `Project.swift` - 添加 target dependency
+3. 执行 `tuist fetch` 拉取依赖
 
 ---
 
-*本文档记录了RxStudy项目从CocoaPods到Tuist的完整迁移过程，供未来参考。*
+# 总体修改文件清单
+
+## 第一天修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `SwiftUIApp/SwiftUIApp.swift` | 1. 添加 `configureTabBarAppearance()` 方法<br>2. 调整 NavigationView 和 TabView 层级<br>3. 添加 `.tint(.blue)` 修饰符 |
+| `SwiftUIApp/Models/CommonModels.swift` | 1. 完善 `InfoModel` 字段<br>2. 添加 `top: Bool?` 字段<br>3. 添加 typealias 兼容性别名 |
+| `SwiftUIApp/Features/Home/HomeView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIApp/Features/Project/ProjectView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIApp/Features/PublicNumber/PublicNumberView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIApp/Features/Tree/TreeView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIApp/Features/Mine/MineView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+
+## 第二天新增
+
+| 文件 | 说明 |
+|------|------|
+| `SwiftUIApp/Features/Search/HotKeyViewModel.swift` | 搜索热词 ViewModel |
+| `SwiftUIApp/Features/Search/HotKeyView.swift` | 搜索页面，包含 FlowLayout |
+| `SwiftUIApp/Features/Search/SearchResultViewModel.swift` | 搜索结果 ViewModel（分页） |
+| `SwiftUIApp/Features/Search/SearchResultView.swift` | 搜索结果页面 |
+| `SwiftUIApp/Components/WebUIController.swift` | WebView 控制器（两个） |
+| `SwiftUIApp/Components/ShareSheet.swift` | 分享面板组件 |
+
+## 第二天核心修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `SwiftUIApp/SwiftUIApp.swift` | 1. 重构 TabBarView 架构<br>2. 每个 Tab 独立 NavigationView<br>3. 清理注释代码 |
+| `Project.swift` | 1. 添加 WebUI 依赖<br>2. 引用 RxStudy 的 String+Extension |
+| `Tuist/Package.swift` | 添加 WebUI 库依赖 |
+
+## 第二天二级页面修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `HotKeyView.swift` | 添加 `.toolbar(.hidden, for: .tabBar)` |
+| `SearchResultView.swift` | 添加 `.toolbar(.hidden, for: .tabBar)` |
+| `TreeArticleListView.swift` | 添加 `.toolbar(.hidden, for: .tabBar)` |
+| `CoinView.swift` | 添加 `.toolbar(.hidden, for: .tabBar)` |
+| `CoinRankListView.swift` | 添加 `.toolbar(.hidden, for: .tabBar)` |
+| `CollectView.swift` | 添加 `.toolbar(.hidden, for: .tabBar)` |
+| `LoginView.swift` | 添加 `.toolbar(.hidden, for: .tabBar)` |
+
+## 第二天列表页面修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `HomeView.swift` | ArticleCellView + Banner 跳转 WebView |
+| `ProjectView.swift` | ArticleCellView 跳转 WebView |
+| `PublicNumberView.swift` | ArticleCellView 跳转 WebView |
+| `TreeView.swift` | TreeArticleListView 跳转 WebView |
+| `CollectView.swift` | ArticleCellView 跳转 WebView |
+| `SearchResultView.swift` | ArticleCellView 跳转 WebView |
+
+---
+
+# 关键代码片段
+
+## 完整的 TabBar 配置代码
+
+```swift
+import SwiftUI
+import UIKit
+
+@main
+struct SwiftUIApp: App {
+    var body: some Scene {
+        WindowGroup {
+            TabBarView()
+        }
+    }
+
+    init() {
+        configureTabBarAppearance()
+        configureNavigationBarAppearance()
+    }
+
+    private func configureTabBarAppearance() {
+        let appearance = UITabBarAppearance()
+        appearance.configureWithOpaqueBackground()
+
+        // 选中状态
+        appearance.stackedLayoutAppearance.selected.titleTextAttributes = [
+            .foregroundColor: UIColor.systemBlue
+        ]
+        appearance.stackedLayoutAppearance.selected.iconColor = .systemBlue
+
+        // 未选中状态
+        appearance.stackedLayoutAppearance.normal.titleTextAttributes = [
+            .foregroundColor: UIColor.systemGray
+        ]
+        appearance.stackedLayoutAppearance.normal.iconColor = .systemGray
+
+        // 应用配置
+        UITabBar.appearance().standardAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UITabBar.appearance().scrollEdgeAppearance = appearance
+        }
+    }
+
+    private func configureNavigationBarAppearance() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+
+        // 设置大标题和标准标题的属性
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+
+        // 设置背景色
+        appearance.backgroundColor = .systemBackground
+        appearance.shadowColor = .separator
+
+        // 应用到所有状态
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        if #available(iOS 15.0, *) {
+            UINavigationBar.appearance().compactScrollEdgeAppearance = appearance
+        }
+
+        // 设置导航栏标题颜色
+        UINavigationBar.appearance().isTranslucent = false
+        UINavigationBar.appearance().tintColor = .systemBlue
+
+        // 强制所有导航栏使用 inline 模式（关键！）
+        UINavigationBar.appearance().prefersLargeTitles = false
+    }
+}
+```
+
+## TabBarView 架构（最终版本）
+
+```swift
+struct TabBarView: View {
+    @State private var selectedTab = 0
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            NavigationView {
+                HomeView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("首页", systemImage: "house.fill")
+            }
+            .tag(0)
+
+            NavigationView {
+                ProjectView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("项目", systemImage: "folder.fill")
+            }
+            .tag(1)
+
+            NavigationView {
+                PublicNumberView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("公众号", systemImage: "person.2.fill")
+            }
+            .tag(2)
+
+            NavigationView {
+                TreeView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("体系", systemImage: "square.grid.3x3.fill")
+            }
+            .tag(3)
+
+            NavigationView {
+                MineView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("我的", systemImage: "person.fill")
+            }
+            .tag(4)
+        }
+        .accentColor(.blue)
+        .tint(.blue)
+    }
+}
+```
+
+## 分享功能实现
+
+```swift
+// MARK: - ShareConfiguration
+struct ShareConfiguration: Identifiable {
+    let id = UUID()
+    let items: [Any]
+}
+
+// MARK: - 使用示例
+struct WebUIController: View {
+    let article: InfoModel
+    @State private var shareConfig: ShareConfiguration?
+
+    var body: some View {
+        WebView(request: URLRequest(url: url))
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        shareConfig = ShareConfiguration(items: [article.title ?? "", link])
+                    } label: {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                }
+            }
+            .sheet(item: $shareConfig) { config in
+                ShareSheet(items: config.items)
+                    .presentationDragIndicator(.visible)
+            }
+    }
+}
+```
+
+---
+
+# 遗留问题与后续工作
+
+## 已解决问题
+- ✅ TabBar 透明问题
+- ✅ 导航栏显示问题
+- ✅ 数据模型完善
+- ✅ 搜索功能迁移
+- ✅ WebView 集成
+- ✅ 分享功能实现
+- ✅ Navigation 层级问题修复
+- ✅ TabBar 架构优化
+
+## 后续优化建议
+1. **搜索历史记录** - 保存用户的搜索历史
+2. **WebView 加载进度** - 添加加载进度指示器
+3. **分享优化** - 支持更多分享平台（微博、Twitter 等）
+4. **错误处理** - 完善 WebView 加载失败的错误处理
+5. **统一配置管理** - 考虑将 TabBar 外观配置抽取为单独的配置类
+6. **自定义 NavigationWrapper** - 创建可复用的导航容器组件，简化各个页面的导航栏配置
+7. **主题系统** - 建立统一的主题配置，支持暗色模式等
+
+---
+
+# 参考资料
+
+## SwiftUI 文档
+- [Toolbar](https://developer.apple.com/documentation/swiftui/toolbar)
+- [NavigationView](https://developer.apple.com/documentation/swiftui/navigationview)
+- [TabView](https://developer.apple.com/documentation/swiftui/tabview)
+
+## UIKit 文档
+- [UITabBarAppearance](https://developer.apple.com/documentation/uikit/uitabbarappearance)
+- [UIAppearance](https://developer.apple.com/documentation/uikit/uiappearance)
+
+## 第三方库
+- [WebUI - SwiftUI WebView](https://github.com/cybozu/WebUI)
+
+## Apple 文档
+- [UIActivity](https://developer.apple.com/documentation/uikit/uiactivity)
+- [UIActivityViewController](https://developer.apple.com/documentation/uikit/uiactivityviewcontroller)
+- [.sheet(item:)](https://developer.apple.com/documentation/swiftui/view/sheet(item:content:))
+
+---
+
+# 第三天工作总结 (2026-02-27)
+
+## 一、工作概述
+
+第三天主要完成了以下核心功能优化与架构改进：
+
+1. **分页模型优化** - 移除所有 typealias，直接使用 `PagedResult<T>` 泛型
+2. **网络层优化** - 简化 API 调用，使用 Moya 的 map 方法
+3. **登录拦截优化** - 实现 `.loginGuard()` modifier，优化用户体验
+4. **密码输入框组件** - 创建 SecureInputField，支持明文/密文切换
+5. **TreeView 显示模式切换** - 支持列表/流式布局两种显示方式
+6. **ProgressHUD 集成** - WebView 加载状态提示
+
+> **注：** ProjectView/PublicNumberView 的侧边栏布局由用户自行实现，不在本次总结范围内。
+
+---
+
+## 二、详细实现内容
+
+### 1. 分页模型优化
+
+#### 优化内容
+移除所有分页相关的 typealias，直接使用 `PagedResult<T>` 泛型。
+
+**优化前：**
+```swift
+// PageModels.swift
+typealias HomePageModel = PagedResult<InfoModel>
+typealias ProjectPageModel = PagedResult<InfoModel>
+typealias CoinRankPageModel = PagedResult<CoinRankModel>
+// ... 更多别名
+```
+
+**优化后：**
+```swift
+// 直接使用泛型，无需别名
+func fetchArticleList(page: Int) async throws -> PagedResult<InfoModel>
+```
+
+**优化收益：**
+- **DRY 原则** - 消除重复的别名定义
+- **类型透明** - 一眼就能看出是 `PagedResult<T>` 类型
+- **维护简化** - 只需维护一个泛型结构
+
+---
+
+### 2. 网络层优化
+
+#### 优化内容
+
+**1. 使用 Moya 的 map 方法**
+```swift
+// 优化前
+func requestDecoded<T: Decodable>(
+    _ target: Target,
+    responseType: StandardResponse<T>.Type
+) async throws -> T {
+    let response = try await requestAsync(target)
+    let decoded = try JSONDecoder().decode(StandardResponse<T>.self, from: response.data)
+    return try decoded.getData()
+}
+
+// 优化后
+func requestDecoded<T: Decodable>(
+    _ target: Target,
+    responseType: StandardResponse<T>.Type
+) async throws -> T {
+    let decoded = try await requestAsync(target).map(StandardResponse<T>.self)
+    return try decoded.getData()
+}
+```
+
+**2. 统一 EmptyResponse 处理**
+```swift
+// 移除 requestVoid 方法，统一使用 requestDecoded
+func logout() async {
+    try? await provider.requestDecoded(
+        .logout,
+        responseType: StandardResponse<EmptyResponse>.self
+    )
+}
+
+struct EmptyResponse: Decodable {}
+```
+
+**优化收益：**
+- **KISS 原则** - 代码更简洁
+- **使用框架能力** - 直接使用 Moya 的 map 方法
+- **统一错误处理** - 所有请求统一处理
+
+---
+
+### 3. 登录拦截优化
+
+#### 需求描述
+将登录拦截逻辑从"导航后检查"改为"点击时检查"，提升用户体验。
+
+#### 实现方案
+
+**创建 View 扩展：**
+```swift
+// View+LoginGuard.swift
+extension View {
+    func loginGuard<Destination: View>(
+        isLoggedIn: Bool,
+        showLogin: Binding<Bool>,
+        @ViewBuilder destination: () -> Destination
+    ) -> some View {
+        Group {
+            if isLoggedIn {
+                NavigationLink(destination: destination()) {
+                    self
+                }
+            } else {
+                Button {
+                    showLogin.wrappedValue = true
+                } label: {
+                    self
+                }
+            }
+        }
+    }
+}
+```
+
+**使用示例：**
+```swift
+// 优化后：点击时检查
+FunctionRow(
+    icon: "star.fill",
+    title: "我的积分",
+    color: .yellow
+)
+.loginGuard(
+    isLoggedIn: viewModel.isLoggedIn,
+    showLogin: $showLogin
+) {
+    CoinView()
+}
+```
+
+---
+
+### 4. 密码输入框组件
+
+#### 需求描述
+登录和注册页面的密码输入框需要支持明文/密文切换。
+
+#### 实现方案
+
+```swift
+// SecureInputField.swift
+struct SecureInputField: View {
+    let title: String
+    @Binding var text: String
+    @State private var isVisible: Bool = false
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Group {
+                if isVisible {
+                    TextField(title, text: $text)
+                        .textInputAutocapitalization(.never)
+                        .autocorrectionDisabled()
+                } else {
+                    SecureField(title, text: $text)
+                }
+            }
+
+            Button {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    isVisible.toggle()
+                }
+            } label: {
+                Image(systemName: isVisible ? "eye.slash.fill" : "eye.fill")
+                    .foregroundColor(.secondary)
+            }
+            .buttonStyle(.plain)
+        }
+    }
+}
+```
+
+**关键要点：**
+- 使用 `@State` 控制可见性
+- 添加 `withAnimation` 实现平滑过渡
+- 使用 `.buttonStyle(.plain)` 避免按钮样式影响输入
+
+---
+
+### 5. TreeView 显示模式切换
+
+#### 需求描述
+体系页面支持列表/流式布局（FlowLayout）两种显示方式。
+
+#### 实现方案
+
+```swift
+enum TreeViewMode: String {
+    case list = "列表"
+    case flow = "网格"
+
+    var icon: String {
+        switch self {
+        case .list: return "list.bullet"
+        case .flow: return "square.grid.2x2"
+        }
+    }
+}
+
+struct TreeView: View {
+    @State private var viewMode: TreeViewMode = .list
+
+    var body: some View {
+        contentView
+            .navigationBar("体系")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        withAnimation {
+                            viewMode = viewMode == .list ? .flow : .list
+                        }
+                    } label: {
+                        Image(systemName: viewMode.icon)
+                    }
+                }
+            }
+    }
+
+    @ViewBuilder
+    private var flowView(children: [TreeChildTagModel]) -> some View {
+        FlowLayout(spacing: 10) {
+            ForEach(children) { child in
+                NavigationLink(destination: TreeArticleListAdapter(child: child)) {
+                    TreeCategoryChip(name: child.name ?? "")
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.vertical, 8)
+    }
+}
+```
+
+---
+
+### 6. ProgressHUD 集成
+
+#### 需求描述
+WebView 加载时显示加载状态，加载完成或失败时给出提示。
+
+#### Tuist 配置
+```swift
+// Tuist/Package.swift
+dependencies: [
+    .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "2.0.0"),
+]
+productTypes: [
+    "ProgressHUD": .staticFramework
+]
+```
+
+#### 实现方案
+
+**使用 WKNavigationDelegate 监听加载状态：**
+```swift
+final class MyNavigationDelegate: NSObject, WKNavigationDelegate {
+    func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+        ProgressHUD.animate()
+    }
+
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+        ProgressHUD.dismiss()
+    }
+
+    func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+        ProgressHUD.dismiss()
+    }
+
+    func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+        ProgressHUD.dismiss()
+    }
+}
+```
+
+**在 WebView 中应用：**
+```swift
+WebView(request: URLRequest(url: url))
+    .uiDelegate(MyUIDelegate())
+    .navigationDelegate(MyNavigationDelegate())
+    .progressHUD()
+```
+
+---
+
+## 三、第三天技术要点总结
+
+### 1. 分页模型最佳实践
+
+**❌ 不推荐：**
+```swift
+typealias HomePageModel = PagedResult<InfoModel>
+```
+
+**✅ 推荐：**
+```swift
+func fetchList() async throws -> PagedResult<InfoModel>
+```
+
+**理由：**
+- 减少抽象层，类型更明确
+- 避免别名维护成本
+- 符合 YAGNI 原则
+
+### 2. 登录拦截设计模式
+
+| 模式 | 触发时机 | 用户体验 |
+|------|---------|---------|
+| 导航后检查 | 页面 onAppear | ❌ 需要返回 |
+| 点击时检查 | Button action | ✅ 直接拦截 |
+
+### 3. WebView 状态监听
+
+| 代理方法 | 触发时机 | 操作 |
+|---------|---------|------|
+| `didStartProvisionalNavigation` | 开始导航 | `ProgressHUD.animate()` |
+| `didFinishNavigation` | 导航完成 | `ProgressHUD.dismiss()` |
+| `didFail` | 导航失败 | `ProgressHUD.dismiss()` |
+
+---
+
+## 四、第三天修改文件清单
+
+### 新增文件
+
+| 文件 | 说明 |
+|------|------|
+| `SwiftUIApp/Extensions/View+LoginGuard.swift` | 登录拦截扩展 |
+| `SwiftUIApp/Components/SecureInputField.swift` | 密码输入框组件 |
+
+### 核心修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `Project.swift` | 添加 ProgressHUD 依赖（SwiftUIStudy target） |
+| `Tuist/Package.swift` | 1. 添加 ProgressHUD<br>2. 添加 PagerTabStripView（未实际使用） |
+| `SwiftUIApp/Models/PageModels.swift` | 移除所有分页相关 typealias |
+| `SwiftUIApp/Models/CoinCollectModels.swift` | 移除分页相关 typealias |
+| `SwiftUIApp/Network/APIService.swift | 1. 优化 requestDecoded 使用 Moya map()<br>2. 移除未使用的 APIService 协议 |
+
+### View 修改
+
+| 文件 | 修改内容 |
+|------|---------|
+| `TreeView.swift` | 添加列表/流式布局切换功能 |
+| `MineView.swift` | 1. 优化登录拦截<br>2. 积分排名无需登录守护 |
+| `CoinView.swift` | 简化内部逻辑，使用 .loginGuard |
+| `CollectView.swift` | 简化内部逻辑，使用 .loginGuard |
+| `WebUIController.swift` | 用户自行添加 ProgressHUD 加载状态 |
+
+### 用户自行实现（不在本次总结范围）
+
+| 文件 | 说明 |
+|------|------|
+| `ProjectView.swift` | 用户实现侧边栏 + 文章列表布局 |
+| `PublicNumberView.swift` | 用户实现侧边栏 + 文章列表布局 |
+
+---
+
+# 遗留问题与后续工作
+
+## 已解决问题
+- ✅ 分页模型简化
+- ✅ 网络层优化
+- ✅ 登录拦截优化
+- ✅ 密码输入框组件
+- ✅ TreeView 显示模式切换
+- ✅ ProgressHUD 集成
+
+## 用户自行完成
+- ✅ ProjectView/PublicNumberView 侧边栏布局
+
+## 后续优化建议
+1. **错误处理** - 完善 WebView 加载失败的错误提示
+2. **缓存机制** - 实现 WebView 缓存策略
+3. **性能监控** - 添加页面加载性能监控
+4. **单元测试** - 为核心组件添加单元测试
+5. **代码清理** - 移除未使用的 PagerTabStripView 依赖（添加但未实际使用）
+
+---
+
+**总结人：** Claude
+**最后更新：** 2026-02-27
