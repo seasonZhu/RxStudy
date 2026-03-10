@@ -21,7 +21,7 @@ protocol APIService {
 // MARK: - 通用 API 错误
 
 enum APIError: LocalizedError {
-    case networkError(Error)
+    case networkError(MoyaError)
     case parsingError(Error)
     case businessError(code: Int?, message: String?)
     case unknown
@@ -43,14 +43,14 @@ enum APIError: LocalizedError {
 // MARK: - 响应模型
 
 /// 标准 API 响应模型
-struct StandardResponse<T: Decodable>: Decodable {
+struct StandardResponse<T: Codable>: Codable {
     let data: T?
     let errorCode: Int?
     let errorMsg: String?
 
     /// 判断请求是否成功
     var isSuccess: Bool {
-        return errorCode == nil || errorCode == 0
+        return errorCode == 0
     }
 
     /// 获取数据或抛出错误
@@ -80,7 +80,7 @@ extension MoyaProvider {
     }
 
     /// 带类型解析的 async/await 请求
-    func requestDecoded<T: Decodable>(
+    func requestDecoded<T: Codable>(
         _ target: Target,
         responseType: StandardResponse<T>.Type
     ) async throws -> T {
@@ -88,6 +88,3 @@ extension MoyaProvider {
         return try decoded.getData()
     }
 }
-
-/// 空响应类型（用于不需要返回数据的接口，如 logout）
-struct EmptyResponse: Decodable {}

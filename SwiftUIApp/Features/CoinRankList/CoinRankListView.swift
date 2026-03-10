@@ -114,13 +114,6 @@ struct CoinRankListCellView: View {
                 Divider()
                     .padding(.leading, 15)
             }
-
-            Spacer()
-
-            Image(systemName: "chevron.right")
-                .font(.system(size: 14))
-                .foregroundColor(.secondary)
-                .padding(.trailing, 15)
         }
         .padding(.vertical, 12)
         .background(Color.systemBackground)

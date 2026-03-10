@@ -71,9 +71,10 @@ struct URLWebViewController: View {
     var body: some View {
         if let urlString = URL(string: url) {
             WebView(request: URLRequest(url: urlString))
-                .refreshable {
-                    // 下拉刷新
-                }
+                .uiDelegate(MyUIDelegate())
+                .navigationDelegate(MyNavigationDelegate())
+                .allowsLinkPreview(true)
+                .refreshable()
                 .navigationTitle(title?.swiftUIReplaceHtmlElement ?? "网页")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {

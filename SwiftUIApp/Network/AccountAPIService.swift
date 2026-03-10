@@ -183,7 +183,7 @@ final class AccountAPIService {
     /// 退出登录
     func logout() async {
         // 调用退出接口（忽略返回值）
-        let _ = try? await provider.requestDecoded(.logout, responseType: StandardResponse<EmptyResponse>.self)
+        let _ = try? await provider.requestDecoded(.logout, responseType: StandardResponse<EmptyModel>.self)
 
         // 清除本地状态
         await MainActor.run {

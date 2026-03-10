@@ -1,8 +1,8 @@
 //
-//  CoinCollectAPIService.swift
+//  CoinAPIService.swift
 //  RxStudy - SwiftUIApp
 //
-//  积分和收藏 API 服务
+//  积分 API 服务
 //  使用 async/await 封装
 //
 
@@ -13,7 +13,7 @@ import Moya
 
 enum CoinAPI {
     case coinRank(page: Int)        // 获取积分排名
-    case userCoinInfo              // 获取个人积分信息
+    case userCoinInfo               // 获取个人积分信息
     case myCoinList(page: Int)      // 获取积分列表
 }
 
@@ -42,40 +42,6 @@ extension CoinAPI: TargetType {
     }
 
     var headers: [String: String]? {
-        // 从 AccountAPIService 获取 Cookie
-        let cookie = AccountAPIService.shared.cookieHeaderValue
-        return cookie.isEmpty ? nil : ["cookie": cookie]
-    }
-}
-
-// MARK: - 收藏 API 定义
-
-enum CollectAPI {
-    case collectList(page: Int)       // 获取收藏列表
-}
-
-extension CollectAPI: TargetType {
-    var baseURL: URL {
-        return URL(string: "https://www.wanandroid.com")!
-    }
-
-    var path: String {
-        switch self {
-        case .collectList(let page):
-            return "/lg/collect/list/\(page)/json"
-        }
-    }
-
-    var method: Moya.Method {
-        return .get
-    }
-
-    var task: Task {
-        return .requestPlain
-    }
-
-    var headers: [String: String]? {
-        // 从 AccountAPIService 获取 Cookie
         let cookie = AccountAPIService.shared.cookieHeaderValue
         return cookie.isEmpty ? nil : ["cookie": cookie]
     }
@@ -104,21 +70,5 @@ final class CoinAPIService {
     /// 获取我的积分记录列表
     func fetchMyCoinList(page: Int) async throws -> PagedResult<MyHistoryCoin> {
         return try await provider.requestDecoded(.myCoinList(page: page), responseType: StandardResponse<PagedResult<MyHistoryCoin>>.self)
-    }
-}
-
-// MARK: - 收藏 API 服务
-
-@Observable
-final class CollectAPIService {
-    static let shared = CollectAPIService()
-
-    private let provider = MoyaProvider<CollectAPI>()
-
-    private init() {}
-
-    /// 获取收藏列表
-    func fetchCollectList(page: Int) async throws -> PagedResult<InfoModel> {
-        return try await provider.requestDecoded(.collectList(page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
     }
 }

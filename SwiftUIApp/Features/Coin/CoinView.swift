@@ -70,39 +70,18 @@ struct CoinView: View {
 
     private func userInfoCard(_ userInfo: CoinRankModel) -> some View {
         VStack(spacing: 16) {
-            // 积分
-            VStack(spacing: 8) {
-                Text("\(userInfo.coinCount ?? 0)")
-                    .font(.system(size: 36, weight: .bold))
-                    .foregroundColor(.blue)
-
-                Text("当前积分")
-                    .font(.system(size: 14))
-                    .foregroundColor(.secondary)
-            }
-
-            // 排名和等级
             HStack(spacing: 32) {
-                if let rank = userInfo.rank, let level = userInfo.level {
-                    VStack(spacing: 4) {
-                        Text("排名: \(rank)")
-                            .font(.system(size: 16))
-                        Text("等级: \(level)")
-                            .font(.system(size: 12))
-                            .foregroundColor(.secondary)
-                    }
-                }
-
-                VStack(spacing: 4) {
-                    Text("ID: \(userInfo.userId ?? 0)")
-                        .font(.system(size: 12))
-                        .foregroundColor(.secondary)
-                }
+              Text("积分: \(userInfo.coinCount ?? 0)")
+                  .font(.system(size: 16))
+              Text("排名: \(userInfo.rank ?? "0")")
+                  .font(.system(size: 16))
+              Text("等级: \(userInfo.level ?? 0)")
+                  .font(.system(size: 16))
             }
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 24)
-        .background(Color.systemBackground)
+        .background(Color.systemGray)
     }
 
     // MARK: - 积分记录列表视图

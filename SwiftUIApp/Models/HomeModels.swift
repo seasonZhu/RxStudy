@@ -15,10 +15,4 @@ struct HomeBannerModel: Codable, Identifiable {
     let desc: String?
     let imagePath: String?
     let url: String?
-
-    enum CodingKeys: String, CodingKey {
-        case id, title, desc
-        case imagePath = "imagePath"
-        case url
-    }
 }

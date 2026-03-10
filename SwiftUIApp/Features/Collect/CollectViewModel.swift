@@ -38,15 +38,7 @@ final class CollectViewModel {
     // MARK: - 私有属性
 
     private let apiService = CollectAPIService.shared
-    private let accountService = AccountAPIService.shared
     private var currentPage = 0
-
-    // MARK: - 计算属性
-
-    /// 是否已登录（引用全局状态）
-    var isLoggedIn: Bool {
-        return accountService.isLoggedIn
-    }
 
     // MARK: - 初始化
 

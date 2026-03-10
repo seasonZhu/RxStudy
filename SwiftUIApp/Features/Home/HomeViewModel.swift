@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// SwiftUI 最新数据模型完整解析：@Observable、@State、@Bindable（iOS17+ 全新范式）
+/// https://juejin.cn/post/7578177007576268854
+
 // MARK: - 首页 ViewModel
 
 @Observable

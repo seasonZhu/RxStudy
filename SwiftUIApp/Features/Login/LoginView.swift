@@ -8,39 +8,17 @@
 
 import SwiftUI
 
-// MARK: - 登录表单模型
-
-@Observable
-class LoginFormData {
-    var username: String = ""
-    var password: String = ""
-    var confirmPassword: String = ""
-    var isRegisterMode: Bool = false
-
-    var isValid: Bool {
-        if isRegisterMode {
-            return !username.isEmpty && !password.isEmpty && password == confirmPassword
-        } else {
-            return !username.isEmpty && !password.isEmpty
-        }
-    }
-}
-
 // MARK: - 登录视图
 
 struct LoginView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var formData = LoginFormData()
-    @State private var accountService = AccountAPIService.shared
-
-    @State private var isLoading = false
-    @State private var errorMessage: String?
+    @State private var viewModel = LoginViewModel()
 
     var body: some View {
         NavigationView {
             Form {
                 // 模式切换
-                Picker("模式", selection: $formData.isRegisterMode) {
+                Picker("模式", selection: $viewModel.formData.isRegisterMode) {
                     Text("登录").tag(false)
                     Text("注册").tag(true)
                 }
@@ -49,7 +27,7 @@ struct LoginView: View {
                 // 使用 @Bindable 实现双向绑定
                 formContent
             }
-            .navigationTitle(formData.isRegisterMode ? "注册" : "登录")
+            .navigationTitle(viewModel.formData.isRegisterMode ? "注册" : "登录")
             .navigationBarTitleDisplayMode(.inline)
             .hideTabBar()
             .toolbar {
@@ -60,16 +38,16 @@ struct LoginView: View {
                 }
 
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(formData.isRegisterMode ? "注册" : "登录") {
+                    Button(viewModel.formData.isRegisterMode ? "注册" : "登录") {
                         Task {
                             await submit()
                         }
                     }
-                    .disabled(!formData.isValid || isLoading)
+                    .disabled(!viewModel.formData.isValid || viewModel.state == .loading)
                 }
             }
             .overlay {
-                if isLoading {
+                if viewModel.state == .loading {
                     ProgressView()
                         .scaleEffect(1.5)
                         .padding()
@@ -85,7 +63,7 @@ struct LoginView: View {
     @ViewBuilder
     private var formContent: some View {
         // 使用 @Bindable 获取绑定能力
-        @Bindable var form = formData
+        @Bindable var form = viewModel.formData
 
         Section {
             // 用户名
@@ -100,7 +78,7 @@ struct LoginView: View {
             )
 
             // 确认密码（仅注册模式）
-            if formData.isRegisterMode {
+            if viewModel.formData.isRegisterMode {
                 SecureInputField(
                     title: "确认密码",
                     text: $form.confirmPassword
@@ -109,15 +87,15 @@ struct LoginView: View {
         } header: {
             Text("账号信息")
         } footer: {
-            if let error = errorMessage {
-                Text(error)
+            if case .error(let message) = viewModel.state {
+                Text(message)
                     .foregroundColor(.red)
             }
         }
 
         // 说明文字
         Section {
-            if formData.isRegisterMode {
+            if viewModel.formData.isRegisterMode {
                 Text("注册后可使用玩安卓的所有功能")
                     .font(.system(size: 13))
                     .foregroundColor(.secondary)
@@ -132,35 +110,9 @@ struct LoginView: View {
     // MARK: - 提交
 
     private func submit() async {
-        isLoading = true
-        errorMessage = nil
-
-        do {
-            if formData.isRegisterMode {
-                // 注册
-                _ = try await accountService.register(
-                    username: formData.username,
-                    password: formData.password,
-                    repassword: formData.confirmPassword
-                )
-            } else {
-                // 登录
-                _ = try await accountService.login(
-                    username: formData.username,
-                    password: formData.password
-                )
-            }
-
-            // 成功后关闭
-            await MainActor.run {
-                isLoading = false
-                dismiss()
-            }
-        } catch {
-            await MainActor.run {
-                errorMessage = error.localizedDescription
-                isLoading = false
-            }
+        let success = await viewModel.submit()
+        if success {
+            dismiss()
         }
     }
 }
