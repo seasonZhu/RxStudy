@@ -3,6 +3,7 @@
 //  RxStudy - SwiftUIApp
 //
 //  公众号页面视图
+//  上下结构：顶部分类标签 + 底部横向滑动文章列表（双向绑定）
 //
 
 import SwiftUI
@@ -11,10 +12,16 @@ import SwiftUI
 
 struct PublicNumberView: View {
     @State private var viewModel = PublicNumberViewModel()
+    @State private var currentPage: Int = 0
 
     var body: some View {
         contentView
             .navigationBar("公众号")
+            .onAppear {
+                if !viewModel.publicNumbers.isEmpty {
+                    viewModel.selectPublicNumber(viewModel.publicNumbers[0])
+                }
+            }
     }
 
     // MARK: - 内容视图
@@ -30,81 +37,84 @@ struct PublicNumberView: View {
         }
     }
 
-    // MARK: - 公众号内容视图
+    // MARK: - 公众号内容视图（上下结构 + 横向滑动）
 
     private var publicNumberContentView: some View {
-        GeometryReader { geometry in
-            HStack(spacing: 0) {
-                // 左侧公众号列表
-                publicNumberSidebar
-                    .frame(width: sidebarWidth)
+        VStack(spacing: 0) {
+            // 顶部分类选择器
+            categoryPicker
 
-                // 右侧文章列表
-                articleList
-            }
+            // 横向滑动的文章列表
+            articleList
         }
     }
 
-    // MARK: - 公众号侧边栏
+    // MARK: - 分类选择器（与页面双向绑定）
 
-    private var sidebarWidth: CGFloat = 120
-
-    private var publicNumberSidebar: some View {
-        ScrollView {
-            LazyVStack(spacing: 0) {
-                ForEach(viewModel.publicNumbers) { number in
-                    PublicNumberCell(
-                        name: number.name?.replaceHtmlElement ?? "",
-                        isSelected: viewModel.selectedPublicNumber?.id == number.id
-                    ) {
-                        viewModel.selectPublicNumber(number)
+    private var categoryPicker: some View {
+        ScrollViewReader { proxy in
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 8) {
+                    ForEach(Array(viewModel.publicNumbers.enumerated()), id: \.element.id) { index, number in
+                        CategoryTag(
+                            name: number.name?.replaceHtmlElement ?? "",
+                            isSelected: currentPage == index
+                        ) {
+                            withAnimation(.easeInOut(duration: 0.25)) {
+                                currentPage = index
+                                viewModel.selectPublicNumber(number)
+                            }
+                            // 自动滚动到中间
+                            withAnimation {
+                                proxy.scrollTo(number.id, anchor: .center)
+                            }
+                        }
+                        .id(number.id)
                     }
                 }
+                .padding(.horizontal, 12)
             }
-        }
-        .background(Color.systemGroupedBackground)
-    }
-
-    // MARK: - 文章列表
-
-    private var articleList: some View {
-        ZStack {
-            if !viewModel.articles.isEmpty {
-                articleListView
-            } else if viewModel.isLoading {
-                ProgressView("加载中...")
-            } else {
-                emptyView
-            }
-        }
-    }
-
-    private var articleListView: some View {
-        ScrollView {
-            LazyVStack(spacing: 0) {
-                ForEach(viewModel.articles) { article in
-                    NavigationLink(destination: WebUIController(article: article)) {
-                        ArticleCellView(article: article)
-                    }
-                    .buttonStyle(.plain)
-                    .onAppear {
-                        // 预加载：接近底部时加载更多
-                        Task {
-                            await viewModel.loadMoreIfNeeded(article)
+            .frame(height: 44)
+            .background(Color.systemBackground)
+            .onAppear {
+                // 初始滚动到选中标签
+                if let firstNumber = viewModel.publicNumbers.first, let numberId = firstNumber.id {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        withAnimation {
+                            proxy.scrollTo(numberId, anchor: .center)
                         }
                     }
                 }
-
-                if viewModel.isLoadingMore {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
+            }
+            // 监听页面变化，同步滚动 tag
+            .onChange(of: currentPage) { _, newValue in
+                if newValue < viewModel.publicNumbers.count {
+                    let number = viewModel.publicNumbers[newValue]
+                    if let numberId = number.id {
+                        withAnimation {
+                            proxy.scrollTo(numberId, anchor: .center)
+                        }
+                    }
                 }
             }
         }
-        .refreshable {
-            await viewModel.refresh()
+    }
+
+    // MARK: - 横向滑动的文章列表
+
+    private var articleList: some View {
+        TabView(selection: $currentPage) {
+            ForEach(Array(viewModel.publicNumbers.enumerated()), id: \.element.id) { index, number in
+                PublicNumberArticleListView(
+                    viewModel: viewModel,
+                    accountId: number.id ?? 0,
+                    accountName: number.name ?? "",
+                    isActive: currentPage == index
+                )
+                .tag(index)
+            }
         }
+        .tabViewStyle(.page(indexDisplayMode: .never))
     }
 
     // MARK: - 辅助视图
@@ -133,6 +143,164 @@ struct PublicNumberView: View {
         }
         .padding()
     }
+}
+
+// MARK: - 单个公众号的文章列表
+
+struct PublicNumberArticleListView: View {
+    let viewModel: PublicNumberViewModel
+    let accountId: Int
+    let accountName: String
+    let isActive: Bool
+
+    // 使用单独的加载状态
+    @State private var isLoading = false
+    @State private var isLoadingMore = false
+    @State private var articles: [InfoModel] = []
+    @State private var hasMoreData = true
+    @State private var currentPage = 0
+    @State private var errorMessage: String?
+    @State private var isInitialized = false
+
+    private let apiService = PublicNumberAPIService.shared
+
+    var body: some View {
+        ZStack {
+            if !articles.isEmpty {
+                articleListView
+            } else if isLoading {
+                ProgressView("加载中...")
+            } else if let error = errorMessage {
+                errorView(error)
+            } else {
+                emptyView
+            }
+        }
+        .onAppear {
+            // 只在首次激活时加载数据
+            if !isInitialized && accountId > 0 {
+                isInitialized = true
+                Task {
+                    await loadArticleList(isRefresh: true)
+                }
+            }
+        }
+        .onChange(of: isActive) { _, newValue in
+            // 当页面重新激活时，如果没数据则重新加载
+            if newValue && articles.isEmpty && !isLoading && accountId > 0 {
+                Task {
+                    await loadArticleList(isRefresh: true)
+                }
+            }
+        }
+    }
+
+    // MARK: - 文章列表视图
+
+    private var articleListView: some View {
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                ForEach(articles) { article in
+                    NavigationLink(
+                        destination: WebUIController(article: article),
+                        label: {
+                            ArticleCellView(article: article)
+                        }
+                    )
+                    .buttonStyle(.plain)
+                    .onAppear {
+                        Task {
+                            await loadMoreIfNeeded(article)
+                        }
+                    }
+                }
+
+                if isLoadingMore {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
+                }
+            }
+        }
+        .refreshable {
+            await loadArticleList(isRefresh: true)
+        }
+    }
+
+    // MARK: - 加载数据
+
+    private func loadArticleList(isRefresh: Bool) async {
+        if isRefresh {
+            isLoading = true
+            currentPage = 0
+            hasMoreData = true
+            errorMessage = nil
+        } else {
+            isLoadingMore = true
+        }
+
+        do {
+            currentPage = isRefresh ? 1 : currentPage + 1
+            let pageResult = try await apiService.fetchArticleList(accountId: accountId, page: currentPage)
+
+            await MainActor.run {
+                if isRefresh {
+                    articles = pageResult.datas ?? []
+                } else {
+                    if let newArticles = pageResult.datas {
+                        articles.append(contentsOf: newArticles)
+                    }
+                }
+                hasMoreData = pageResult.hasMore
+                isLoading = false
+                isLoadingMore = false
+            }
+        } catch {
+            await MainActor.run {
+                errorMessage = error.localizedDescription
+                if isRefresh {
+                    currentPage = 0
+                } else {
+                    currentPage -= 1
+                }
+                isLoading = false
+                isLoadingMore = false
+            }
+        }
+    }
+
+    // MARK: - 加载更多
+
+    private func loadMoreIfNeeded(_ article: InfoModel) async {
+        guard let index = articles.firstIndex(where: { $0.id == article.id }),
+              index >= articles.count - 3,
+              !isLoadingMore,
+              hasMoreData else {
+            return
+        }
+        await loadArticleList(isRefresh: false)
+    }
+
+    // MARK: - 辅助视图
+
+    private func errorView(_ error: String) -> some View {
+        VStack(spacing: 16) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 50))
+                .foregroundColor(.gray)
+
+            Text(error)
+                .font(.system(size: 14))
+                .foregroundColor(.red)
+
+            Button("重新加载") {
+                Task {
+                    await loadArticleList(isRefresh: true)
+                }
+            }
+            .buttonStyle(.borderedProminent)
+        }
+    }
 
     private var emptyView: some View {
         VStack(spacing: 16) {
@@ -143,42 +311,13 @@ struct PublicNumberView: View {
             Text("暂无文章")
                 .font(.system(size: 17))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-// MARK: - 公众号单元格
-
-struct PublicNumberCell: View {
-    let name: String
-    let isSelected: Bool
-    let onTap: () -> Void
-
-    var body: some View {
-        Button(action: onTap) {
-            HStack {
-                Text(name)
-                    .font(.system(size: 14))
-                    .foregroundColor(isSelected ? .white : .primary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 12)
-
-                if isSelected {
-                    Spacer()
-                    Rectangle()
-                        .fill(Color.white)
-                        .frame(width: 3)
-                }
-            }
-            .background(isSelected ? Color.blue : Color.clear)
-        }
-        .buttonStyle(.plain)
     }
 }
 
 // MARK: - 预览
 
 #Preview {
-    PublicNumberView()
+    NavigationView {
+        PublicNumberView()
+    }
 }
