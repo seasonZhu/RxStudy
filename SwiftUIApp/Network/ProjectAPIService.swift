@@ -62,11 +62,11 @@ final class ProjectAPIService {
 
     /// 获取项目分类
     func fetchTags() async throws -> [ProjectTagModel] {
-        return try await provider.requestDecoded(.tags, responseType: StandardResponse<[ProjectTagModel]>.self)
+        return try await provider.requestDecoded(.tags, responseType: BaseModel<[ProjectTagModel]>.self)
     }
 
     /// 获取项目列表
     func fetchProjectList(tagId: Int, page: Int) async throws -> Page<InfoModel> {
-        return try await provider.requestDecoded(.tagList(id: tagId, page: page), responseType: StandardResponse<Page<InfoModel>>.self)
+        return try await provider.requestDecoded(.tagList(id: tagId, page: page), responseType: BaseModel<Page<InfoModel>>.self)
     }
 }

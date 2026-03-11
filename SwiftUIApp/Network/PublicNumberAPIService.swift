@@ -57,11 +57,11 @@ final class PublicNumberAPIService {
 
     /// 获取公众号分类
     func fetchTags() async throws -> [PublicNumberTagModel] {
-        return try await provider.requestDecoded(.tags, responseType: StandardResponse<[PublicNumberTagModel]>.self)
+        return try await provider.requestDecoded(.tags, responseType: BaseModel<[PublicNumberTagModel]>.self)
     }
 
     /// 获取公众号文章列表
     func fetchArticleList(accountId: Int, page: Int) async throws -> Page<InfoModel> {
-        return try await provider.requestDecoded(.tagList(id: accountId, page: page), responseType: StandardResponse<Page<InfoModel>>.self)
+        return try await provider.requestDecoded(.tagList(id: accountId, page: page), responseType: BaseModel<Page<InfoModel>>.self)
     }
 }

@@ -118,7 +118,7 @@ final class AccountAPIService {
         do {
             let userInfo = try await provider.requestDecoded(
                 .login(username: username, password: password),
-                responseType: StandardResponse<UserInfoModel>.self
+                responseType: BaseModel<UserInfoModel>.self
             )
 
             await MainActor.run {
@@ -152,7 +152,7 @@ final class AccountAPIService {
     func login(username: String, password: String) async throws {
         let userInfo = try await provider.requestDecoded(
             .login(username: username, password: password),
-            responseType: StandardResponse<UserInfoModel>.self
+            responseType: BaseModel<UserInfoModel>.self
         )
 
         // 保存登录信息
@@ -168,7 +168,7 @@ final class AccountAPIService {
     func register(username: String, password: String, repassword: String) async throws {
         let userInfo = try await provider.requestDecoded(
             .register(username: username, password: password, repassword: repassword),
-            responseType: StandardResponse<UserInfoModel>.self
+            responseType: BaseModel<UserInfoModel>.self
         )
 
         // 保存登录信息
@@ -183,7 +183,7 @@ final class AccountAPIService {
     /// 退出登录
     func logout() async {
         // 调用退出接口（忽略返回值）
-        let _ = try? await provider.requestDecoded(.logout, responseType: StandardResponse<EmptyModel>.self)
+        let _ = try? await provider.requestDecoded(.logout, responseType: BaseModel<EmptyModel>.self)
 
         // 清除本地状态
         await MainActor.run {

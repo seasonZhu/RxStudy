@@ -59,16 +59,16 @@ final class CoinAPIService {
 
     /// 获取积分排名
     func fetchCoinRank(page: Int) async throws -> Page<CoinRankModel> {
-        return try await provider.requestDecoded(.coinRank(page: page), responseType: StandardResponse<Page<CoinRankModel>>.self)
+        return try await provider.requestDecoded(.coinRank(page: page), responseType: BaseModel<Page<CoinRankModel>>.self)
     }
 
     /// 获取个人积分信息
     func fetchUserInfo() async throws -> CoinUserInfoModel {
-        return try await provider.requestDecoded(.userCoinInfo, responseType: StandardResponse<CoinUserInfoModel>.self)
+        return try await provider.requestDecoded(.userCoinInfo, responseType: BaseModel<CoinUserInfoModel>.self)
     }
 
     /// 获取我的积分记录列表
     func fetchMyCoinList(page: Int) async throws -> Page<MyHistoryCoin> {
-        return try await provider.requestDecoded(.myCoinList(page: page), responseType: StandardResponse<Page<MyHistoryCoin>>.self)
+        return try await provider.requestDecoded(.myCoinList(page: page), responseType: BaseModel<Page<MyHistoryCoin>>.self)
     }
 }

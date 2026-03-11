@@ -62,8 +62,8 @@ extension TreeController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            // .drive(rx.tableViewSectionAndCellConfig)
-            .drive(rx.tableViewSectionAndFlexLayoutCell)
+            .drive(rx.tableViewSectionAndCellConfig)
+            //.drive(rx.tableViewSectionAndFlexLayoutCell)
             .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView

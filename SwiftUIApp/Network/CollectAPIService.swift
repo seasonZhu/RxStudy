@@ -53,6 +53,6 @@ final class CollectAPIService {
 
     /// 获取收藏列表
     func fetchCollectList(page: Int) async throws -> Page<InfoModel> {
-        return try await provider.requestDecoded(.collectList(page: page), responseType: StandardResponse<Page<InfoModel>>.self)
+        return try await provider.requestDecoded(.collectList(page: page), responseType: BaseModel<Page<InfoModel>>.self)
     }
 }

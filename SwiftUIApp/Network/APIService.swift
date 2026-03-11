@@ -40,21 +40,11 @@ enum APIError: LocalizedError {
     }
 }
 
-// MARK: - 响应模型
+// MARK: - 响应模型扩展
 
-/// 标准 API 响应模型
-struct StandardResponse<T: Codable>: Codable {
-    let data: T?
-    let errorCode: Int?
-    let errorMsg: String?
-
-    /// 判断请求是否成功
-    var isSuccess: Bool {
-        return errorCode == 0
-    }
-
+extension BaseModel {
     /// 获取数据或抛出错误
-    func getData() throws -> T {
+    public func getData() throws -> T {
         guard isSuccess, let data = data else {
             throw APIError.businessError(code: errorCode, message: errorMsg)
         }
@@ -82,9 +72,9 @@ extension MoyaProvider {
     /// 带类型解析的 async/await 请求
     func requestDecoded<T: Codable>(
         _ target: Target,
-        responseType: StandardResponse<T>.Type
+        responseType: BaseModel<T>.Type
     ) async throws -> T {
-        let decoded = try await requestAsync(target).map(StandardResponse<T>.self)
+        let decoded = try await requestAsync(target).map(BaseModel<T>.self)
         return try decoded.getData()
     }
 }
