@@ -78,6 +78,8 @@ let project = Project(
                 "RxStudy/**",
                 // ========== SwiftGen 生成的代码 ==========
                 "RxStudy/Generated/**/*.swift",
+                // ========== 共享代码 ==========
+                "Shared/ACarousel/**",
                 // ========== 本地依赖（源码集成 → 本地 SPM 包迁移）==========
                 // 以下库已改为使用本地 SPM 包：
                 // - FSPagerView → 本地 SPM 包（Package.swift 手动创建）
@@ -214,12 +216,12 @@ let project = Project(
                 ]
             ),
             sources: [
-                // ========== SwiftUIApp 独立代码（与 RxStudy 同级）==========
+                // ========== SwiftUIApp 独立代码 ==========
                 "SwiftUIApp/**/*.swift",
                 // ========== SwiftGen 生成的代码 ==========
                 "RxStudy/Generated/**/*.swift",
-                // ========== 复用这个轮播图 ==========
-                "RxStudy/SwiftUIExample/View/ACarousel/*.swift",
+                // ========== 共享代码 ==========
+                "Shared/ACarousel/**",
             ],
             resources: [
                 // ========== 资源（共享主项目的 Assets）==========
