@@ -31,7 +31,7 @@ struct WebUIController: View {
                 .navigationDelegate(MyNavigationDelegate())
                 .allowsLinkPreview(true)
                 .refreshable()
-                .navigationTitle(article.title?.swiftUIReplaceHtmlElement ?? "文章详情")
+                .navigationTitle(article.title?.replaceHtmlElement ?? "文章详情")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {
@@ -75,7 +75,7 @@ struct URLWebViewController: View {
                 .navigationDelegate(MyNavigationDelegate())
                 .allowsLinkPreview(true)
                 .refreshable()
-                .navigationTitle(title?.swiftUIReplaceHtmlElement ?? "网页")
+                .navigationTitle(title?.replaceHtmlElement ?? "网页")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
                     ToolbarItem(placement: .topBarTrailing) {

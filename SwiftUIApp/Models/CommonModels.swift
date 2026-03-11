@@ -7,15 +7,8 @@
 
 import Foundation
 
-// MARK: - 热词模型
-
-struct HotKeyModel: Codable, Identifiable {
-    let id: Int?
-    let link: String?
-    let name: String?
-    let order: Int?
-    let visible: Int?
-}
+// MARK: - 热词模型（已移至 Shared/Models/HotKey.swift）
+// 使用 Shared/HotKeyModel 或直接使用 HotKeyModel（通过 typealias）
 
 // MARK: - 通用文章模型（用于首页、项目、公众号、体系、搜索等）
 
@@ -114,11 +107,3 @@ struct TreeChildTagModel: Codable, Identifiable {
     let name: String?
 }
 
-// MARK: - 兼容性别名
-
-// 文章模型别名
-typealias TreeArticleModel = InfoModel
-typealias ProjectArticleModel = InfoModel
-typealias PublicNumberArticleModel = InfoModel
-typealias HomeArticleModel = InfoModel
-typealias CollectArticleModel = InfoModel

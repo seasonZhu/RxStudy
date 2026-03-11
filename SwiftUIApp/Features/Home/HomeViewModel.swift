@@ -18,7 +18,7 @@ final class HomeViewModel {
     // MARK: - 状态
 
     /// 文章列表
-    private(set) var articles: [HomeArticleModel] = []
+    private(set) var articles: [InfoModel] = []
 
     /// Banner 列表
     private(set) var banners: [HomeBannerModel] = []
@@ -70,7 +70,7 @@ final class HomeViewModel {
     }
 
     /// 检查是否需要加载更多（由 View 调用）
-    func loadMoreIfNeeded(_ article: HomeArticleModel) async {
+    func loadMoreIfNeeded(_ article: InfoModel) async {
         guard let index = articles.firstIndex(where: { $0.id == article.id }),
               index >= articles.count - 3,
               !isLoadingMore,

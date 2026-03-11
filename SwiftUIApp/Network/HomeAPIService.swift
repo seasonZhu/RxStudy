@@ -80,13 +80,13 @@ final class HomeAPIService {
     }
 
     /// 获取置顶文章
-    func fetchTopArticles() async throws -> [HomeArticleModel] {
-        return try await provider.requestDecoded(.topArticle, responseType: StandardResponse<[HomeArticleModel]>.self)
+    func fetchTopArticles() async throws -> [InfoModel] {
+        return try await provider.requestDecoded(.topArticle, responseType: StandardResponse<[InfoModel]>.self)
     }
 
     /// 获取文章列表
-    func fetchArticleList(page: Int) async throws -> PagedResult<InfoModel> {
-        return try await provider.requestDecoded(.articleList(page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
+    func fetchArticleList(page: Int) async throws -> Page<InfoModel> {
+        return try await provider.requestDecoded(.articleList(page: page), responseType: StandardResponse<Page<InfoModel>>.self)
     }
 
     /// 获取热词
@@ -95,12 +95,12 @@ final class HomeAPIService {
     }
 
     /// 搜索文章
-    func searchArticles(keyword: String, page: Int) async throws -> PagedResult<InfoModel> {
+    func searchArticles(keyword: String, page: Int) async throws -> Page<InfoModel> {
         print("🔍 API请求: 搜索关键词=\(keyword), 页码=\(page)")
         print("🌐 URL: https://www.wanandroid.com/article/query/\(page)/json")
         print("📦 参数: k=\(keyword)")
 
-        let result = try await provider.requestDecoded(.search(keyword: keyword, page: page), responseType: StandardResponse<PagedResult<InfoModel>>.self)
+        let result = try await provider.requestDecoded(.search(keyword: keyword, page: page), responseType: StandardResponse<Page<InfoModel>>.self)
 
         print("✅ API响应成功，返回 \(result.datas?.count ?? 0) 条数据")
         return result

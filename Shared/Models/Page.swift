@@ -1,16 +1,14 @@
 //
-//  PageModels.swift
-//  RxStudy - SwiftUIApp
+//  Page.swift
+//  RxStudy - Shared
 //
 //  通用分页模型
 //
 
 import Foundation
 
-// MARK: - 通用分页模型
-
 /// 有分页的基础模型
-struct PagedResult<Content: Codable>: Codable {
+struct Page<Content: Codable>: Codable {
     let curPage: Int?
     let datas: [Content]?
     let offset: Int?
@@ -20,7 +18,7 @@ struct PagedResult<Content: Codable>: Codable {
     let total: Int?
 }
 
-extension PagedResult {
+extension Page {
     /// 判断是否还有更多数据
     var hasMore: Bool {
         guard let cur = curPage, let total = pageCount else { return false }
@@ -33,3 +31,4 @@ extension PagedResult {
         return curPage == pageCount
     }
 }
+

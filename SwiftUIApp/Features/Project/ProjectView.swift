@@ -54,7 +54,7 @@ struct ProjectView: View {
             LazyVStack(spacing: 0) {
                 ForEach(viewModel.tags) { tag in
                     CategoryCell(
-                        name: tag.name?.swiftUIReplaceHtmlElement ?? "",
+                        name: tag.name?.replaceHtmlElement ?? "",
                         isSelected: viewModel.selectedTag?.id == tag.id
                     ) {
                         viewModel.selectTag(tag)

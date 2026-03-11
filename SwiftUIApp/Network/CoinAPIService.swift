@@ -58,8 +58,8 @@ final class CoinAPIService {
     private init() {}
 
     /// 获取积分排名
-    func fetchCoinRank(page: Int) async throws -> PagedResult<CoinRankModel> {
-        return try await provider.requestDecoded(.coinRank(page: page), responseType: StandardResponse<PagedResult<CoinRankModel>>.self)
+    func fetchCoinRank(page: Int) async throws -> Page<CoinRankModel> {
+        return try await provider.requestDecoded(.coinRank(page: page), responseType: StandardResponse<Page<CoinRankModel>>.self)
     }
 
     /// 获取个人积分信息
@@ -68,7 +68,7 @@ final class CoinAPIService {
     }
 
     /// 获取我的积分记录列表
-    func fetchMyCoinList(page: Int) async throws -> PagedResult<MyHistoryCoin> {
-        return try await provider.requestDecoded(.myCoinList(page: page), responseType: StandardResponse<PagedResult<MyHistoryCoin>>.self)
+    func fetchMyCoinList(page: Int) async throws -> Page<MyHistoryCoin> {
+        return try await provider.requestDecoded(.myCoinList(page: page), responseType: StandardResponse<Page<MyHistoryCoin>>.self)
     }
 }

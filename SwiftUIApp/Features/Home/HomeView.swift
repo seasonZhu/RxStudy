@@ -125,7 +125,7 @@ struct HomeView: View {
 // MARK: - 文章单元格
 
 struct ArticleCellView: View {
-    let article: HomeArticleModel
+    let article: InfoModel
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
@@ -153,14 +153,14 @@ struct ArticleCellView: View {
                 }
 
                 // 标题
-                Text((article.title ?? "无标题").swiftUIReplaceHtmlElement)
+                Text((article.title ?? "无标题").replaceHtmlElement)
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.primary)
                     .lineLimit(2)
 
                 // 描述
                 if let desc = article.desc, !desc.isEmpty {
-                    Text(desc.swiftUIReplaceHtmlElement)
+                    Text(desc.replaceHtmlElement)
                         .font(.system(size: 14))
                         .foregroundColor(.secondary)
                         .lineLimit(2)
@@ -169,7 +169,7 @@ struct ArticleCellView: View {
                 // 底部信息
                 HStack(spacing: 8) {
                     if let chapterName = article.chapterName {
-                        Text(chapterName.swiftUIReplaceHtmlElement)
+                        Text(chapterName.replaceHtmlElement)
                             .font(.system(size: 11))
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)

@@ -16,7 +16,7 @@ final class CollectViewModel {
     // MARK: - 状态
 
     /// 收藏列表
-    private(set) var articles: [CollectArticleModel] = []
+    private(set) var articles: [InfoModel] = []
 
     /// 加载状态
     private(set) var isLoading = false
@@ -62,7 +62,7 @@ final class CollectViewModel {
     }
 
     /// 检查是否需要加载更多
-    func loadMoreIfNeeded(_ article: CollectArticleModel) async {
+    func loadMoreIfNeeded(_ article: InfoModel) async {
         guard let index = articles.firstIndex(where: { $0.id == article.id }),
               index >= articles.count - 3,
               !isLoadingMore,

@@ -71,12 +71,7 @@ struct CoinView: View {
     private func userInfoCard(_ userInfo: CoinRankModel) -> some View {
         VStack(spacing: 16) {
             HStack(spacing: 32) {
-              Text("积分: \(userInfo.coinCount ?? 0)")
-                  .font(.system(size: 16))
-              Text("排名: \(userInfo.rank ?? "0")")
-                  .font(.system(size: 16))
-              Text("等级: \(userInfo.level ?? 0)")
-                  .font(.system(size: 16))
+              Text(userInfo.myInfo)
             }
         }
         .frame(maxWidth: .infinity)

@@ -80,6 +80,8 @@ let project = Project(
                 "RxStudy/Generated/**/*.swift",
                 // ========== 共享代码 ==========
                 "Shared/ACarousel/**",
+                "Shared/Models/**",
+                "Shared/Extensions/**",
                 // ========== 本地依赖（源码集成 → 本地 SPM 包迁移）==========
                 // 以下库已改为使用本地 SPM 包：
                 // - FSPagerView → 本地 SPM 包（Package.swift 手动创建）
@@ -222,6 +224,8 @@ let project = Project(
                 "RxStudy/Generated/**/*.swift",
                 // ========== 共享代码 ==========
                 "Shared/ACarousel/**",
+                "Shared/Models/**",
+                "Shared/Extensions/**",
             ],
             resources: [
                 // ========== 资源（共享主项目的 Assets）==========
