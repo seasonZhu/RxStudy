@@ -431,9 +431,27 @@ extension WebViewController: WKScriptMessageHandler {
 
 // MARK: - 其实在RxCocoa中有WebView+Rx的分类,专门来将WebView的代理进行rx的编写方式,就和UITablevDelegate差不多,这里只是没有使用
 extension WebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+        // 获取请求的 URL
+        guard let url = navigationAction.request.url else {
+            decisionHandler(.allow)
+            return
+        }
+
+        // 判断是否为外部链接（不同域名）
+        if let host = url.host, let currentHost = webView.url?.host {
+            // 如果域名不同，且不是空链接或电话链接，则用系统浏览器打开
+            if host != currentHost && !url.absoluteString.hasPrefix("javascript") {
+                // 排除电话、邮件等特殊协议
+                if url.scheme == "http" || url.scheme == "https" {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                    decisionHandler(.cancel)
+                    return
+                }
+            }
+        }
+
         decisionHandler(.allow)
-        return
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -477,17 +495,10 @@ extension WebViewController: WKUIDelegate {
     ///   - windowFeatures: 窗口特性
     /// - Returns: 新的WKWebView
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        
-        /*
-        if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-        
+        // 处理 target="_blank" 的情况，在当前 WebView 中加载
         if navigationAction.targetFrame == nil || navigationAction.targetFrame?.isMainFrame == false {
             webView.load(navigationAction.request)
         }
-        */
-         
         return nil
     }
     
