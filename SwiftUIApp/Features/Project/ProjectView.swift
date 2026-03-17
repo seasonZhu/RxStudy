@@ -52,51 +52,13 @@ struct ProjectView: View {
     // MARK: - 分类选择器（与页面双向绑定）
 
     private var categoryPicker: some View {
-        ScrollViewReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(Array(viewModel.tags.enumerated()), id: \.element.id) { index, tag in
-                        CategoryTag(
-                            name: tag.name?.replaceHtmlElement ?? "",
-                            isSelected: currentPage == index
-                        ) {
-                            withAnimation(.easeInOut(duration: 0.25)) {
-                                currentPage = index
-                                viewModel.selectTag(tag)
-                            }
-                            // 自动滚动到中间
-                            withAnimation {
-                                proxy.scrollTo(tag.id, anchor: .center)
-                            }
-                        }
-                        .id(tag.id)
-                    }
-                }
-                .padding(.horizontal, 12)
-            }
-            .frame(height: 44)
-            .background(Color.systemBackground)
-            .onAppear {
-                // 初始滚动到选中标签
-                if let firstTag = viewModel.tags.first, let tagId = firstTag.id {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation {
-                            proxy.scrollTo(tagId, anchor: .center)
-                        }
-                    }
-                }
-            }
-            // 监听页面变化，同步滚动 tag
-            .onChange(of: currentPage) { _, newValue in
-                if newValue < viewModel.tags.count {
-                    let tag = viewModel.tags[newValue]
-                    if let tagId = tag.id {
-                        withAnimation {
-                            proxy.scrollTo(tagId, anchor: .center)
-                        }
-                    }
-                }
-            }
+        HorizontalCategoryPicker(
+            items: viewModel.tags,
+            selectedIndex: $currentPage,
+            idPath: \.id,
+            namePath: \.name
+        ) { tag, index in
+            viewModel.selectTag(tag)
         }
     }
 
@@ -120,51 +82,15 @@ struct ProjectView: View {
     // MARK: - 辅助视图
 
     private var loadingView: some View {
-        ProgressView("加载中...")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        LoadingView(message: "加载中...")
     }
 
     private var errorView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text(viewModel.errorMessage ?? "加载失败")
-                .font(.system(size: 14))
-                .foregroundColor(.red)
-
-            Button("重新加载") {
-                Task {
-                    await viewModel.loadTags()
-                }
+        ErrorStateView(message: viewModel.errorMessage ?? "加载失败") {
+            Task {
+                await viewModel.loadTags()
             }
-            .buttonStyle(.borderedProminent)
         }
-        .padding()
-    }
-}
-
-// MARK: - 分类标签
-
-struct CategoryTag: View {
-    let name: String
-    let isSelected: Bool
-    let onTap: () -> Void
-
-    var body: some View {
-        Button(action: onTap) {
-            Text(name)
-                .font(.system(size: 14, weight: isSelected ? .semibold : .regular))
-                .foregroundColor(isSelected ? .white : .primary)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(
-                    Capsule()
-                        .fill(isSelected ? Color.blue : Color.clear)
-                )
-        }
-        .buttonStyle(.plain)
     }
 }
 
@@ -239,9 +165,7 @@ struct ArticleListView: View {
                 }
 
                 if isLoadingMore {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
+                    LoadingMoreView()
                 }
             }
         }
@@ -307,33 +231,18 @@ struct ArticleListView: View {
     // MARK: - 辅助视图
 
     private func errorView(_ error: String) -> some View {
-        VStack(spacing: 16) {
-            Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text(error)
-                .font(.system(size: 14))
-                .foregroundColor(.red)
-
-            Button("重新加载") {
-                Task {
-                    await loadArticleList(isRefresh: true)
-                }
+        ErrorStateView(message: error) {
+            Task {
+                await loadArticleList(isRefresh: true)
             }
-            .buttonStyle(.borderedProminent)
         }
     }
 
     private var emptyView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "tray")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text("暂无项目")
-                .font(.system(size: 17))
-        }
+        EmptyStateView(
+            icon: "tray",
+            message: "暂无项目"
+        )
     }
 }
 

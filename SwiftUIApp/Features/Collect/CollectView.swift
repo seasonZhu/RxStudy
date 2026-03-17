@@ -32,7 +32,7 @@ struct CollectView: View {
         if !viewModel.articles.isEmpty {
             articlesListView
         } else if viewModel.isLoading {
-            loadingView
+            LoadingView(message: "加载中...")
         } else {
             emptyOrErrorView
         }
@@ -56,9 +56,7 @@ struct CollectView: View {
                 }
 
                 if viewModel.isLoadingMore {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
+                    LoadingMoreView()
                 }
             }
         }
@@ -69,31 +67,21 @@ struct CollectView: View {
 
     // MARK: - 辅助视图
 
-    private var loadingView: some View {
-        ProgressView("加载中...")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
     private var emptyOrErrorView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: viewModel.errorMessage == nil ? "bookmark" : "exclamationmark.triangle")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text(viewModel.errorMessage ?? "暂无收藏")
-                .font(.system(size: 14))
-                .foregroundColor(.secondary)
-
-            if viewModel.errorMessage != nil {
-                Button("重新加载") {
+        Group {
+            if let error = viewModel.errorMessage {
+                ErrorStateView(message: error) {
                     Task {
                         await viewModel.loadData()
                     }
                 }
-                .buttonStyle(.borderedProminent)
+            } else {
+                EmptyStateView(
+                    icon: "bookmark",
+                    message: "暂无收藏"
+                )
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 

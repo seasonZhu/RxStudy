@@ -29,7 +29,6 @@ import PackageDescription
             "SFSafeSymbols": .staticFramework,
             "ZipArchive": .staticFramework,
             "WebUI": .staticFramework,
-            "PagerTabStripView": .staticFramework,
             "ProgressHUD": .staticFramework,
             "MBProgressHUD": .staticFramework,
             "SVProgressHUD": .staticFramework,
@@ -75,9 +74,6 @@ let package = Package(
 
         // ========== WebView ==========
         .package(url: "https://github.com/cybozu/WebUI.git", from: "4.0.0"),
-
-        // ========== TabView 组件 ==========
-        .package(url: "https://github.com/xmartlabs/PagerTabStripView.git", from: "3.0.0"),
 
         // ========== UI 工具 ==========
         .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "15.0.1"),

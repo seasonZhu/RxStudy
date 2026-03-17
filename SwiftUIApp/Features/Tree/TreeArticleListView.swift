@@ -46,9 +46,15 @@ private struct TreeArticleListContentView: View {
         if !viewModel.articles.isEmpty {
             articleListView
         } else if viewModel.isLoading {
-            loadingView
+            LoadingView(message: "加载中...")
+        } else if let error = viewModel.errorMessage {
+            ErrorStateView(message: error) {
+                Task {
+                    await viewModel.loadData()
+                }
+            }
         } else {
-            errorView
+            EmptyStateView(icon: "tray", message: "暂无内容")
         }
     }
 
@@ -70,42 +76,13 @@ private struct TreeArticleListContentView: View {
                 }
 
                 if viewModel.isLoadingMore {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
+                    LoadingMoreView()
                 }
             }
         }
         .refreshable {
             await viewModel.loadData()
         }
-    }
-
-    // MARK: - 辅助视图
-
-    private var loadingView: some View {
-        ProgressView("加载中...")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-
-    private var errorView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text(viewModel.errorMessage ?? "加载失败")
-                .font(.system(size: 14))
-                .foregroundColor(.red)
-
-            Button("重新加载") {
-                Task {
-                    await viewModel.loadData()
-                }
-            }
-            .buttonStyle(.borderedProminent)
-        }
-        .padding()
     }
 }
 

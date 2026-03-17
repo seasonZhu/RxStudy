@@ -52,51 +52,13 @@ struct PublicNumberView: View {
     // MARK: - 分类选择器（与页面双向绑定）
 
     private var categoryPicker: some View {
-        ScrollViewReader { proxy in
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 8) {
-                    ForEach(Array(viewModel.publicNumbers.enumerated()), id: \.element.id) { index, number in
-                        CategoryTag(
-                            name: number.name?.replaceHtmlElement ?? "",
-                            isSelected: currentPage == index
-                        ) {
-                            withAnimation(.easeInOut(duration: 0.25)) {
-                                currentPage = index
-                                viewModel.selectPublicNumber(number)
-                            }
-                            // 自动滚动到中间
-                            withAnimation {
-                                proxy.scrollTo(number.id, anchor: .center)
-                            }
-                        }
-                        .id(number.id)
-                    }
-                }
-                .padding(.horizontal, 12)
-            }
-            .frame(height: 44)
-            .background(Color.systemBackground)
-            .onAppear {
-                // 初始滚动到选中标签
-                if let firstNumber = viewModel.publicNumbers.first, let numberId = firstNumber.id {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation {
-                            proxy.scrollTo(numberId, anchor: .center)
-                        }
-                    }
-                }
-            }
-            // 监听页面变化，同步滚动 tag
-            .onChange(of: currentPage) { _, newValue in
-                if newValue < viewModel.publicNumbers.count {
-                    let number = viewModel.publicNumbers[newValue]
-                    if let numberId = number.id {
-                        withAnimation {
-                            proxy.scrollTo(numberId, anchor: .center)
-                        }
-                    }
-                }
-            }
+        HorizontalCategoryPicker(
+            items: viewModel.publicNumbers,
+            selectedIndex: $currentPage,
+            idPath: \.id,
+            namePath: \.name
+        ) { number, index in
+            viewModel.selectPublicNumber(number)
         }
     }
 
@@ -120,28 +82,15 @@ struct PublicNumberView: View {
     // MARK: - 辅助视图
 
     private var loadingView: some View {
-        ProgressView("加载中...")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        LoadingView(message: "加载中...")
     }
 
     private var errorView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text(viewModel.errorMessage ?? "加载失败")
-                .font(.system(size: 14))
-                .foregroundColor(.red)
-
-            Button("重新加载") {
-                Task {
-                    await viewModel.loadPublicNumbers()
-                }
+        ErrorStateView(message: viewModel.errorMessage ?? "加载失败") {
+            Task {
+                await viewModel.loadPublicNumbers()
             }
-            .buttonStyle(.borderedProminent)
         }
-        .padding()
     }
 }
 
@@ -216,9 +165,7 @@ struct PublicNumberArticleListView: View {
                 }
 
                 if isLoadingMore {
-                    ProgressView()
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .padding()
+                    LoadingMoreView()
                 }
             }
         }
@@ -284,33 +231,18 @@ struct PublicNumberArticleListView: View {
     // MARK: - 辅助视图
 
     private func errorView(_ error: String) -> some View {
-        VStack(spacing: 16) {
-            Image(systemName: "exclamationmark.triangle")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text(error)
-                .font(.system(size: 14))
-                .foregroundColor(.red)
-
-            Button("重新加载") {
-                Task {
-                    await loadArticleList(isRefresh: true)
-                }
+        ErrorStateView(message: error) {
+            Task {
+                await loadArticleList(isRefresh: true)
             }
-            .buttonStyle(.borderedProminent)
         }
     }
 
     private var emptyView: some View {
-        VStack(spacing: 16) {
-            Image(systemName: "tray")
-                .font(.system(size: 50))
-                .foregroundColor(.gray)
-
-            Text("暂无文章")
-                .font(.system(size: 17))
-        }
+        EmptyStateView(
+            icon: "tray",
+            message: "暂无文章"
+        )
     }
 }
 

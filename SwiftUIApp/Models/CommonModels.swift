@@ -59,20 +59,20 @@ struct TagModel: Codable {
 
 // MARK: - 项目相关模型
 
-struct ProjectTagModel: Codable, Identifiable {
+struct ProjectTagModel: Codable, Identifiable, Hashable {
     let id: Int?
     let name: String?
     let children: [ProjectChildTagModel]?
 }
 
-struct ProjectChildTagModel: Codable, Identifiable {
+struct ProjectChildTagModel: Codable, Identifiable, Hashable {
     let id: Int?
     let name: String?
 }
 
 // MARK: - 公众号相关模型
 
-struct PublicNumberTagModel: Codable, Identifiable {
+struct PublicNumberTagModel: Codable, Identifiable, Hashable {
     let id: Int?
     let name: String?
 }
