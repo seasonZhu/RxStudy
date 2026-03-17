@@ -96,13 +96,13 @@ struct UserInfoModel: Codable {
 
 // MARK: - 体系相关模型
 
-struct TreeTagModel: Codable, Identifiable {
+struct TreeTagModel: Codable, Identifiable, Hashable, Equatable {
     let id: Int?
     let name: String?
     let children: [TreeChildTagModel]?
 }
 
-struct TreeChildTagModel: Codable, Identifiable {
+struct TreeChildTagModel: Codable, Identifiable, Hashable, Equatable {
     let id: Int?
     let name: String?
 }

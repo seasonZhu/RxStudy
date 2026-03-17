@@ -86,9 +86,9 @@ struct TabBarView: View {
             }
             .tag(0)
 
-            // 项目
+            // 项目（使用通用分类组件）
             NavigationView {
-                ProjectView()
+                CategoryPageView<ProjectTagModel>(categoryType: .project)
             }
             .navigationViewStyle(.stack)
             .tabItem {
@@ -96,9 +96,9 @@ struct TabBarView: View {
             }
             .tag(1)
 
-            // 公众号
+            // 公众号（使用通用分类组件）
             NavigationView {
-                PublicNumberView()
+                CategoryPageView<PublicNumberTagModel>(categoryType: .publicNumber)
             }
             .navigationViewStyle(.stack)
             .tabItem {
