@@ -16,8 +16,21 @@ struct HotKeyView: View {
 
     var body: some View {
         contentView
-            .navigationTitle("搜索")
+            .navigationTitle("")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    SearchBar(
+                        text: $searchText,
+                        onSearch: {
+                            if !searchText.isEmpty {
+                                searchKeyword = searchText
+                            }
+                        }
+                    )
+                    .frame(width: UIScreen.main.bounds.width - 66)
+                }
+            }
             .hideTabBar()
             .onAppear {
                 if viewModel.hotKeys.isEmpty {
@@ -60,6 +73,8 @@ struct HotKeyView: View {
                         onSearch()
                     }
 
+                Spacer()
+
                 if !text.isEmpty {
                     Button(action: {
                         text = ""
@@ -89,20 +104,6 @@ struct HotKeyView: View {
     @ViewBuilder
     private var contentView: some View {
         VStack(spacing: 0) {
-            // 搜索框
-            SearchBar(
-                text: $searchText,
-                onSearch: {
-                    if !searchText.isEmpty {
-                        searchKeyword = searchText
-                    }
-                }
-            )
-            .padding(.horizontal, 16)
-            .padding(.top, 8)
-            .padding(.bottom, 12)
-            .background(Color(.systemGroupedBackground))
-
             // 内容区域
             Group {
                 if !viewModel.hotKeys.isEmpty {
