@@ -38,6 +38,8 @@ import PackageDescription
             "FlexLayout": .staticFramework,
             "FSPagerView": .staticFramework,
             "AcknowList": .staticFramework,
+            "SwiftUIX": .staticFramework,
+            "SwiftUIIntrospect": .staticFramework,
         ]
     )
 #endif
@@ -91,5 +93,8 @@ let package = Package(
 
         // ========== 许可证列表 ==========
         .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),
+        
+        .package(url: "https://github.com/SwiftUIX/SwiftUIX.git", branch: "master"),
+        .package(url: "https://github.com/siteline/swiftui-introspect", from: "26.0.0"),
     ]
 )

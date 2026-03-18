@@ -85,6 +85,9 @@
          location = "group:Tuist/.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Tuist/.build/tuist-derived/SwiftUIX/SwiftUIX.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Tuist/.build/tuist-derived/WebUI/WebUI.xcodeproj">
       </FileRef>
       <FileRef

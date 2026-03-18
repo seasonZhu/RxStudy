@@ -481,6 +481,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F6EE051B99A3B277EB743C56"
+               BuildableName = "SwiftUIX.framework"
+               BlueprintName = "SwiftUIX"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/SwiftUIX/SwiftUIX.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "8BA9986FC66F2CE5F5604E75"
                BuildableName = "WebUI.framework"
                BlueprintName = "WebUI"
@@ -499,6 +513,20 @@
                BuildableName = "ZipArchive.framework"
                BlueprintName = "ZipArchive"
                ReferencedContainer = "container:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "9A3AC31C2C0EA128F9D1F0CF"
+               BuildableName = "_SwiftUIX.framework"
+               BlueprintName = "_SwiftUIX"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/SwiftUIX/SwiftUIX.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
