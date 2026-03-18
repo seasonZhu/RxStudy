@@ -14,6 +14,7 @@ struct HorizontalCategoryPicker<Item: Identifiable & Hashable, ID: Hashable>: Vi
     let idPath: KeyPath<Item, ID?>
     let namePath: KeyPath<Item, String?>
     let onSelect: ((Item, Int) -> Void)?
+    @State private var hasScrolledToSelected = false
 
     init(
         items: [Item],
@@ -57,13 +58,7 @@ struct HorizontalCategoryPicker<Item: Identifiable & Hashable, ID: Hashable>: Vi
             .background(Color.systemBackground)
             .onAppear {
                 // 初始滚动到选中项
-                if let firstItem = items.first, let firstId = firstItem[keyPath: idPath] {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                        withAnimation {
-                            proxy.scrollTo(firstId, anchor: .center)
-                        }
-                    }
-                }
+                scrollToSelectedItem(proxy: proxy)
             }
             .onChange(of: selectedIndex) { _, newValue in
                 if newValue < items.count {
@@ -75,6 +70,20 @@ struct HorizontalCategoryPicker<Item: Identifiable & Hashable, ID: Hashable>: Vi
                     }
                 }
             }
+        }
+    }
+
+    /// 滚动到当前选中的项
+    private func scrollToSelectedItem(proxy: ScrollViewProxy) {
+        guard !hasScrolledToSelected, selectedIndex < items.count else { return }
+        let item = items[selectedIndex]
+        if let id = item[keyPath: idPath] {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                withAnimation {
+                    proxy.scrollTo(id, anchor: .center)
+                }
+            }
+            hasScrolledToSelected = true
         }
     }
 }
