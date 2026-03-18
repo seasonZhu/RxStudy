@@ -21,7 +21,7 @@ final class HomeViewModel {
     private(set) var articles: [InfoModel] = []
 
     /// Banner 列表
-    private(set) var banners: [HomeBannerModel] = []
+    private(set) var banners: [Banner] = []
 
     /// 加载状态
     private(set) var isLoading = false

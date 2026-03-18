@@ -1,14 +1,13 @@
 //
 //  WebLoadInfo.swift
-//  RxStudy
+//  RxStudy - Shared
 //
-//  Created by season on 2021/5/27.
-//  Copyright © 2021 season. All rights reserved.
+//  Web 加载信息协议
 //
 
 import Foundation
 
-protocol WebLoadInfo {
+public protocol WebLoadInfo {
     var id: Int? { get set }
     var originId: Int? { get set }
     var title: String? { get set }

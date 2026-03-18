@@ -90,5 +90,8 @@
       <FileRef
          location = "group:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/swiftui-introspect/swiftui-introspect.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>

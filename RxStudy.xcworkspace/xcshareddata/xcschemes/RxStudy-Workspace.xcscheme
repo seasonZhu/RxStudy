@@ -453,6 +453,20 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
+               BlueprintIdentifier = "C0B66C9F607B0D0E419B8581"
+               BuildableName = "SwiftUIIntrospect.framework"
+               BlueprintName = "SwiftUIIntrospect"
+               ReferencedContainer = "container:Tuist/.build/tuist-derived/swiftui-introspect/swiftui-introspect.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
                BlueprintIdentifier = "34DAA287EC5DF247179D5B35"
                BuildableName = "SwiftUIStudy.app"
                BlueprintName = "SwiftUIStudy"

@@ -75,8 +75,8 @@ final class HomeAPIService {
     // MARK: - 请求方法
 
     /// 获取 Banner 列表
-    func fetchBanners() async throws -> [HomeBannerModel] {
-        return try await provider.requestDecoded(.banner, responseType: BaseModel<[HomeBannerModel]>.self)
+    func fetchBanners() async throws -> [Banner] {
+        return try await provider.requestDecoded(.banner, responseType: BaseModel<[Banner]>.self)
     }
 
     /// 获取置顶文章

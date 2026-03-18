@@ -14,7 +14,7 @@ import Kingfisher
 /// Banner 轮播图组件
 /// 基于 ACarousel 实现，支持自动滚动、手动滑动和页码指示器
 struct BannerCarouselView: View {
-    let banners: [HomeBannerModel]
+    let banners: [Banner]
     @State private var currentIndex = 0
 
     /// 默认高度（16:9 比例）
@@ -72,7 +72,7 @@ struct BannerCarouselView: View {
 
 /// 单个 Banner 条目视图
 private struct BannerItemView: View {
-    let banner: HomeBannerModel
+    let banner: Banner
 
     var body: some View {
         Group {

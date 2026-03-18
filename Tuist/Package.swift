@@ -76,6 +76,7 @@ let package = Package(
         .package(url: "https://github.com/cybozu/WebUI.git", from: "4.0.0"),
 
         // ========== UI 工具 ==========
+        .package(url: "https://github.com/siteline/swiftui-introspect.git", from: "26.0.0"),
         .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "15.0.1"),
         .package(url: "https://github.com/jdg/MBProgressHUD.git", from: "1.2.0"),
         .package(url: "https://github.com/SVProgressHUD/SVProgressHUD.git", from: "2.3.1"),

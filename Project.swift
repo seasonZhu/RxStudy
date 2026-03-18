@@ -248,6 +248,8 @@ let project = Project(
 
                 // ========== UI 工具 ==========
                 TargetDependency.external(name: "ProgressHUD"),
+                
+                TargetDependency.external(name: "SwiftUIIntrospect"),
             ],
             settings: .settings(
                 base: [
