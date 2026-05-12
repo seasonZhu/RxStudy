@@ -94,3 +94,7 @@ Podfile.lock
 
 # SwiftGen 生成的文件（通过脚本重新生成）
 RxStudy/Generated/
+
+.build-benchmark
+
+.build-benchmark-swiftuiapp

@@ -19,7 +19,7 @@ enum CoinAPI {
 
 extension CoinAPI: TargetType {
     var baseURL: URL {
-        return URL(string: "https://www.wanandroid.com")!
+        return URL(string: "https://wanandroid.com")!
     }
 
     var path: String {

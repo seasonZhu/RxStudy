@@ -11,7 +11,7 @@ import Foundation
 /// 其实根据经验,维护一份API是不是没有必要?
 enum Api {
     /// baseUrl
-    static let baseUrl = "https://www.wanandroid.com/"
+    static let baseUrl = "https://wanandroid.com/"
     
     /// 新的baseUrl,目前感觉两个都在同时使用
     static let newBaseUrl = "https://wanandroid.com/"

@@ -18,7 +18,7 @@ enum PublicNumberAPI {
 
 extension PublicNumberAPI: TargetType {
     var baseURL: URL {
-        return URL(string: "https://www.wanandroid.com")!
+        return URL(string: "https://wanandroid.com")!
     }
 
     var path: String {
