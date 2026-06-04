@@ -35,7 +35,10 @@ class ViewController: UITabBarController {
         networkListening()
 //        addRxPan()
 //        testExBehaviorRelay()
-        
+        logger.info("This is an info")
+        logger.warning("Ummm...seems not that good...")
+        logger.fault("Something really BAD happens!!")
+
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -7,7 +7,7 @@
 //
 
 import Foundation
-// import CocoaLumberjack // CocoaLumberjack API changed - temporarily disabled
+ import CocoaLumberjack // CocoaLumberjack API changed - temporarily disabled
 
 enum LogUtils {
     enum LogType {
@@ -79,5 +79,21 @@ public func debugLog(_ items: Any...) {
     // CocoaLumberjack API changed - using regular print for now
     // let message = DDLogMessageFormat(stringLiteral: "\(strings)")
     // DDLogDebug(message)
-    Swift.print("[DEBUG] \(strings)")
+    // let ddMessage = DDLogMessage(message: strings, level: .debug, flag: .debug, context: 0, file: #file, function: #function, line: #line, tag: nil, options: [], timestamp: Date())
+    // DDLog.log(asynchronous: true, message: ddMessage)
+    #if DEBUG
+        Swift.print("[Debug] \(strings)")
+    #else
+        logger.info("[Release] \(strings)")
+    #endif
+    
 }
+
+import OSLog
+
+/// https://onevcat.com/2024/04/swift-log/
+/// 使用Logger进行打印,可以在控制台App中查看当前App的打印日志,用于排查问题,很像Android Studio里面的logcat
+let logger = Logger(
+   subsystem: "logger.season.com",
+   category: "main"
+)
