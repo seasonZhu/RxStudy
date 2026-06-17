@@ -9,13 +9,15 @@
 import UIKit
 
 import SVProgressHUD
+import IQKeyboardManagerSwift
+import IQKeyboardToolbarManager
 
 extension AppDelegate {
 
     /// 设置应用配置
     func setupAppConfiguration() {
         setupSVProgressHUD()
-        // setupKeyboardManager() // IQKeyboardManager 库已移除
+        setupKeyboardManager()
         setupNetworkActivityLogger()
     }
 
@@ -28,19 +30,18 @@ extension AppDelegate {
     // MARK: - 键盘管理器配置
 
     private func setupKeyboardManager() {
-        // IQKeyboardManager 库已移除 - 暂时注释
-        // // Core functionality
-        // IQKeyboardManager.shared.isEnabled = true
-        //
-        // // Toolbar
-        // IQKeyboardToolbarManager.shared.isEnabled = true
-        //
-        // // Tap to resign
-        // IQKeyboardManager.shared.resignOnTouchOutside = false
-        //
-        // // Appearance
-        // IQKeyboardManager.shared.keyboardConfiguration.overrideAppearance = false
-        // IQKeyboardManager.shared.keyboardConfiguration.appearance = .default
+         // Core functionality
+         IQKeyboardManager.shared.isEnabled = true
+        
+         // Toolbar
+         IQKeyboardToolbarManager.shared.isEnabled = true
+        
+         // Tap to resign
+         IQKeyboardManager.shared.resignOnTouchOutside = false
+        
+         // Appearance
+         IQKeyboardManager.shared.keyboardConfiguration.overrideAppearance = false
+         IQKeyboardManager.shared.keyboardConfiguration.appearance = .default
     }
 
     // MARK: - 网络日志打印

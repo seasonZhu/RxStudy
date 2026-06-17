@@ -19,82 +19,106 @@
       location = "container:"
       name = "Dependencies">
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/AcknowList/AcknowList.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/AcknowList/AcknowList.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/Alamofire/Alamofire.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/Alamofire/Alamofire.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/CocoaLumberjack/CocoaLumberjack.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/CocoaLumberjack/CocoaLumberjack.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/DZNEmptyDataSet/DZNEmptyDataSet.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/DZNEmptyDataSet/DZNEmptyDataSet.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/JXSegmentedView/JXSegmentedView.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQKeyboardCore/IQKeyboardCore.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/KeychainAccess/KeychainAccess.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQKeyboardManagerSwift/IQKeyboardManagerSwift.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/Kingfisher/Kingfisher.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQKeyboardNotification/IQKeyboardNotification.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/MBProgressHUD/MBProgressHUD.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQKeyboardReturnManager/IQKeyboardReturnManager.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/MJRefresh/MJRefresh.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQKeyboardToolbar/IQKeyboardToolbar.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/MarqueeLabel/MarqueeLabel.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQKeyboardToolbarManager/IQKeyboardToolbarManager.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/Moya/Moya.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQTextInputViewNotification/IQTextInputViewNotification.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/NSObject-Rx/NSObject-Rx.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/IQTextView/IQTextView.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/ProgressHUD/ProgressHUD.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/JXSegmentedView/JXSegmentedView.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/RxDataSources/RxDataSources.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/KeychainAccess/KeychainAccess.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/RxGesture/RxGesture.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/Kingfisher/Kingfisher.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/RxOptional/RxOptional.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/MBProgressHUD/MBProgressHUD.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/RxSwift/RxSwift.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/MJRefresh/MJRefresh.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/RxSwiftExt/RxSwiftExt.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/MarqueeLabel/MarqueeLabel.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/RxTheme/RxTheme.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/Moya/Moya.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/SFSafeSymbols/SFSafeSymbols.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/NSObject-Rx/NSObject-Rx.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/SVProgressHUD/SVProgressHUD.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/ProgressHUD/ProgressHUD.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/SnapKit/SnapKit.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/RxDataSources/RxDataSources.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/SwiftUIX/SwiftUIX.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/RxGesture/RxGesture.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/WebUI/WebUI.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/RxOptional/RxOptional.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/ZipArchive/ZipArchive.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/RxSwift/RxSwift.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Tuist/.build/tuist-derived/swiftui-introspect/swiftui-introspect.xcodeproj">
+         location = "group:Tuist/.build/tuist-derived/Projects/RxSwiftExt/RxSwiftExt.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/RxTheme/RxTheme.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/SFSafeSymbols/SFSafeSymbols.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/SVProgressHUD/SVProgressHUD.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/SnapKit/SnapKit.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/SwiftUIX/SwiftUIX.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/WebUI/WebUI.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/ZipArchive/ZipArchive.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Tuist/.build/tuist-derived/Projects/swiftui-introspect/swiftui-introspect.xcodeproj">
       </FileRef>
    </Group>
 </Workspace>

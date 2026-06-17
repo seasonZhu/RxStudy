@@ -11,9 +11,11 @@
 3. [依赖管理](#3-依赖管理)
 4. [Project.swift 高级配置](#4-projectswift-高级配置)
 5. [Package.swift 配置](#5-packageswift-配置)
+    - [5.4 productTypes 配置审计](#54-producttypes-配置审计重要避免重复决策)
 6. [资源合成器配置](#6-资源合成器配置)
 7. [常见问题与解决方案](#7-常见问题与解决方案)
 8. [最佳实践](#8-最佳实践)
+9. [版本升级 SOP](#9-版本升级-sop)
 
 ---
 
@@ -369,6 +371,76 @@ let package = Package(
 )
 ```
 
+### 5.4 productTypes 配置审计（重要，避免重复决策）
+
+> **审计日期**: 2026-06-17
+> **审计结论**: 保留所有 33 行配置（保守策略）
+
+#### 5.4.1 底层逻辑（why productTypes 配置存在）
+
+Tuist 默认会自动检测 SPM 库的 product 类型：
+
+| 库的 Package.swift 长这样 | Tuist 实际产物 |
+|---|---|
+| `.library(name: "X", targets: [...])` | `.staticFramework`（默认） |
+| `.library(name: "X", type: .dynamic, ...)` | `.dynamicFramework` |
+| `.library(name: "X", type: .static, ...)` | `.staticFramework` |
+
+所以 **`productTypes` 配置的真正作用是「覆盖默认行为」**——只有当库的默认类型和你期望不一致时才有意义。
+
+#### 5.4.2 当前 33 行配置分类（全量审计结果）
+
+| 分类 | 数量 | 库 | 说明 |
+|---|---|---|---|
+| ✅ **必要覆盖** | 5 | RxCocoa, RxRelay, RxBlocking, Alamofire, SnapKit | 库默认是 `.dynamic`，配成 `.staticFramework` 才是真正的覆盖 |
+| ❌ **冗余配置** | 25 | RxSwift, RxDataSources, RxGesture, RxTheme, RxSwiftExt, RxOptional, NSObject-Rx, RxMoya, Moya, Kingfisher, KeychainAccess, CocoaLumberjack, MarqueeLabel, SFSafeSymbols, ZipArchive, WebUI, ProgressHUD, MBProgressHUD, SVProgressHUD, MJRefresh, JXSegmentedView, DZNEmptyDataSet, AcknowList, SwiftUIX, SwiftUIIntrospect | 库默认就是 static，配置是冗余但无害 |
+| 💀 **死代码** | 2 | IQKeyboardManager, FlexLayout | 库的 product 名变了 / package 已注释 |
+| ⚠️ **无效配置** | 1 | FSPagerView | 本地 Package 走 sources 集成，productTypes 不生效 |
+
+#### 5.4.3 5 个真正"必要覆盖"的库（核心价值）
+
+这些库默认 `.dynamic`，如果不显式配成 `.staticFramework`：
+
+- iOS app 会要求 **Embed Frameworks**（动态库必须 embed）
+- App Store 上传时会有 **"Missing required architecture"** 警告
+- 启动时动态链接开销变大
+
+```
+RxCocoa     → 默认 .dynamic → 必须配 .staticFramework
+RxRelay     → 默认 .dynamic → 必须配 .staticFramework
+RxBlocking  → 默认 .dynamic → 必须配 .staticFramework
+Alamofire   → 默认 .dynamic → 必须配 .staticFramework
+SnapKit     → 默认 .dynamic → 必须配 .staticFramework
+```
+
+#### 5.4.4 决策记录（避免反复拉扯）
+
+**决策**：**保留所有 33 行配置（含冗余和无效），不清洗**。
+
+**理由**：
+1. **冗余不是错**：25 行冗余配置起到"显式文档"作用——未来读者看到一堆 `.staticFramework`，一眼明白"项目全用静态 framework"
+2. **防御性默认值**：未来加新库时，如果默认是 `.dynamic`，开发者会注意到现有配置都是 `.staticFramework`，主动覆盖，避免埋雷
+3. **3 行死代码暂时保留**：IQKeyboardManager / FlexLayout 短期内可能被重新引入，配置不动；FSPagerView 是历史残留，无害
+
+#### 5.4.5 审计方法（如何自查新库）
+
+```bash
+# 1. 在 checkouts 目录找到新库的 Package.swift
+find Tuist/.build/checkouts/<LibName> -name "Package.swift"
+
+# 2. 看 products 段的 type 字段
+grep -A3 "name: \"<LibName>\"" Tuist/.build/checkouts/<LibName>/Package.swift | grep "type:"
+# type: .dynamic  → 必须配 productTypes 为 .staticFramework
+# type: .static   → 配不配都一样（冗余）
+# 无 type 字段     → 默认 static（冗余）
+```
+
+#### 5.4.6 历史变更记录
+
+| 日期 | 变更 | 审计人 |
+|---|---|---|
+| 2026-06-17 | 首次全量审计，确认 5 必要 / 25 冗余 / 2 死代码 / 1 无效；决策保留全部 | Claude |
+
 ---
 
 ## 6. 资源合成器配置
@@ -522,6 +594,119 @@ http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 tuist generat
 
 ---
 
+## 9. 版本升级 SOP
+
+> Tuist 4.x 升级频繁（平均每月 1-2 个 minor），server-side 强依赖版本。**把升级动作固化为 SOP，避免每次踩同样的坑**。
+
+### 9.1 三处版本号必须对齐（核心原则）
+
+| 位置 | 含义 | 示例 |
+|------|------|------|
+| `~/.local/state/tuist/...` 实际运行的 binary | 真实版本 | `4.200.4` |
+| `.tuist-supported-version`（项目根） | 项目支持的最低/期望版本 | `4.200.4` |
+| `mise.toml`（`[tools] tuist =`） | 工具版本管理声明 | `4.200.4` |
+
+**违反此原则的后果**：
+- 别人 clone 仓库后，Tuist 会警告版本不匹配
+- `mise install` 装错版本，hook 触发时二进制不一致
+- 服务器端（远程 cache、analytics）随版本失效而失败
+
+### 9.2 升级前检查（5 步）
+
+```bash
+# 1. 看当前版本
+/opt/homebrew/Cellar/tuist@<ver>/<ver>/bin/tuist version
+
+# 2. 看 homebrew 实际装的版本（可能有多个版本共存）
+brew list --versions | grep tuist
+
+# 3. 看 tuist 实际指向的 symlink
+ls -la /opt/homebrew/bin/tuist
+
+# 4. 看项目声明的版本
+cat .tuist-supported-version
+
+# 5. 看 mise 声明的版本
+cat mise.toml
+```
+
+### 9.3 升级命令（macOS Apple Silicon）
+
+#### 场景 A：从旧版本升级到最新 stable
+
+```bash
+# 1. 信任 tuist 官方 tap（首次升级需要）
+brew trust tuist/tuist
+
+# 2. ARM Mac 必须用 arch -arm64（shell 在 Rosetta 2 下会失败）
+arch -arm64 brew install tuist/tuist/tuist@<最新版本>
+
+# 3. 解除旧版本 link
+arch -arm64 brew unlink tuist@<旧版本>
+
+# 4. 链接新版本
+arch -arm64 brew link tuist@<新版本>
+
+# 5. 同步项目版本声明
+echo "<新版本>" > .tuist-supported-version
+
+# 6. 更新 mise.toml
+# 编辑 mise.toml: tuist = "<新版本>"
+
+# 7. 端到端验证
+tuist generate
+```
+
+#### 场景 B：x86 用户的 ARM Mac 兼容配置
+
+如果你的 shell 跑在 Rosetta 2 下（`arch` 命令返回 `i386`），所有 `brew` 命令都必须加 `arch -arm64` 前缀。**长期方案**——在 `~/.zshrc` 加 alias：
+
+```bash
+alias brew='arch -arm64 brew'
+```
+
+#### 场景 C：完全重装（推荐每半年一次）
+
+```bash
+# 1. 卸载所有版本
+arch -arm64 brew uninstall --force tuist@4.143.0
+arch -arm64 brew uninstall --force tuist@4.200.4
+
+# 2. 清理缓存
+rm -rf /opt/homebrew/Cellar/tuist@*
+
+# 3. 重新安装最新
+arch -arm64 brew install tuist/tuist/tuist@<最新版本>
+
+# 4. 同步项目三处版本号（参见 9.1）
+```
+
+### 9.4 升级失败排错清单
+
+| 症状 | 根因 | 解决方案 |
+|------|------|----------|
+| `Refusing to load formula ... from untrusted tap` | tap 未信任 | `brew trust tuist/tuist` |
+| `Cannot install under Rosetta 2 in ARM default prefix` | shell 在 x86 模式 | 命令前加 `arch -arm64` |
+| `Could not symlink bin/tuist` | 旧版本还占着 symlink | `brew unlink tuist@<旧版>` 后再 `brew link` |
+| 升级后 `tuist version` 没变 | PATH 缓存或 symlink 没切换 | `hash -r && which tuist`，必要时重新 link |
+| `Refreshing of the access and refresh token pair failed after 5 seconds` | DNS 无法解析 `auth.tuist.dev` / `backend.tuist.dev` | 见 `TROUBLESHOOTING.md`「错误7」 |
+
+### 9.5 升级后必须做的 3 件事
+
+```bash
+# 1. 重新生成项目（验证不破坏现有 manifest）
+tuist generate
+
+# 2. 检查是否有 deprecation warning（4.143.0 以前的版本会遇到）
+# 如果有，按 9.3 升级
+
+# 3. 提交版本对齐变更
+git add .tuist-supported-version mise.toml
+git commit -m "chore: bump tuist to <新版本>"
+```
+
+---
+
 ## 相关文件
 
 | 文件 | 路径 |
@@ -533,5 +718,8 @@ http_proxy=http://127.0.0.1:7890 https_proxy=http://127.0.0.1:7890 tuist generat
 
 ---
 
-**文档版本**: v2.0
-**更新日期**: 2026-03-11
+**文档版本**: v3.1
+**更新日期**: 2026-06-17
+**变更记录**:
+- v3.0 (2026-06-17): 新增第 9 章「版本升级 SOP」，固化 4.143.0 → 4.200.4 升级踩坑经验（DNS/认证、IQKeyboardManager 重命名、Rosetta 2、版本对齐）
+- v3.1 (2026-06-17): 新增 5.4 节「productTypes 配置审计」，全量审计 33 行配置（5 必要 / 25 冗余 / 2 死代码 / 1 无效），决策保留全部配置（含审计方法 + 决策记录 + 历史变更）

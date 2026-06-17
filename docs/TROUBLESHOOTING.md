@@ -342,6 +342,148 @@ Failed to connect to 127.0.0.1 port 7890
 ./set-proxy.sh      # 设置代理
 ```
 
+### 错误4: Tuist Token 刷新超时（DNS 解析失败）
+
+```
+✖ Error
+The refreshing of the access and refresh token pair for the URL
+https://tuist.dev failed after 5 seconds.
+```
+
+**根因**：DNS 无法解析 `auth.tuist.dev` / `backend.tuist.dev` / `api.tuist.io`。
+Tuist 4.x 每次 generate 都会去刷 token，5 秒超时即失败。
+
+**诊断命令**：
+```bash
+# 看哪些子域名解析失败
+dig tuist.dev +short             # ✅ 应该返回 Cloudflare IP
+dig auth.tuist.dev +short        # ❌ 解析失败 = 问题
+dig backend.tuist.dev +short     # ❌ 解析失败 = 问题
+
+# 看系统 DNS 配置
+scutil --dns
+
+# 先验证 OAuth 路径是否畅通（决定走哪个修复方案）
+# 用浏览器打开 https://tuist.dev 看能否正常访问
+# 能访问 → 走方案 A（OAuth 浏览器登录）
+# 不能访问 → 走方案 B/C（hosts 兜底或换 DNS）
+```
+
+**修复方案**（按推荐度排序）：
+
+| 方案 | 命令 | 适用 |
+|------|------|------|
+| **A. OAuth 浏览器登录（首选）** | `tuist auth logout && tuist generate`，按提示在浏览器完成 OAuth 登录 | **零系统级变更，推荐默认方案** |
+| **B. hosts 兜底** | `sudo vim /etc/hosts`，加 `<tuist.dev IP> auth.tuist.dev backend.tuist.dev` | 急需跑通 + 不能走浏览器时 |
+| **C. 切换公共 DNS** | 系统设置 → 网络 → DNS → 加 `1.1.1.1` `8.8.8.8` | 长期方案，多人共用机器时 |
+
+**方案 A 完整流程**（绕开本地 DNS 阻塞的**最优解**）：
+
+```bash
+# 第 1 步：清除已损坏的本地 token 缓存
+tuist auth logout
+
+# 第 2 步：触发 generate，会提示未登录
+tuist generate
+# 输出形如：
+#   "Authentication required. Please open: https://tuist.dev/auth/cli?..."
+#   或者直接打印一个 device code
+
+# 第 3 步：用浏览器打开那个 URL（或粘贴 device code），完成 OAuth 登录
+#    - 浏览器走系统级 DNS（通常能解析 tuist.dev 全套子域名）
+#    - 登录成功后 token 写入 ~/.local/share/tuist/credentials/
+
+# 第 4 步：再跑一次 generate（这次不会触发 DNS 阻塞，因为 token 已缓存）
+tuist generate
+✔ Success
+```
+
+**为什么方案 A 最优**：
+- 零系统级变更（不需要 sudo、不需要改 hosts、不需要改系统设置）
+- 浏览器 DNS 解析通常和 tuist 进程 DNS 解析是**两条独立的网络栈**——即使公司 DNS 不通 tuist 子域名，浏览器走系统代理/公共 DNS 也能登录
+- 登录后 token 会缓存在 `~/.local/share/tuist/credentials/`，后续 generate 用缓存的 token，不会再触发 5 秒超时
+- **DRY 原则**：一次解决长期问题
+
+**方案 B 细节**（当不能走浏览器时）：
+```bash
+# 先查 tuist.dev 真实 IP（绕过本地 DNS）
+dig @1.1.1.1 tuist.dev +short
+# 假设返回 172.66.173.37
+
+# 写 hosts
+echo "172.66.173.37 auth.tuist.dev"     | sudo tee -a /etc/hosts
+echo "172.66.173.37 backend.tuist.dev"  | sudo tee -a /etc/hosts
+
+# 清掉损坏的 token 锁
+rm -f ~/.local/state/tuist/auth-locks/token_https___tuist.dev.lock
+
+tuist generate
+```
+
+### 错误5: 第三方库 SPM product 名变更（not a valid configured external dependency）
+
+```
+✖ Error
+`IQKeyboardManager` is not a valid configured external dependency
+```
+
+**根因**：第三方库的 `Package.swift` 把 product name 从 A 改成了 B（比如 `IQKeyboardManager` → `IQKeyboardManagerSwift`）。常见于 8.x 等主版本升级。
+
+**诊断命令**：
+```bash
+# 看实际 SPM dump 出来的 product 名
+swift package --package-path Tuist/.build/checkouts/<LibName> dump-package | grep -A2 '"products"'
+
+# 比对你的 Project.swift 引用的名字
+grep "<LibName>" Project.swift Tuist/Package.swift
+```
+
+**修复**（两种思路）：
+1. **业务已不用**：删除 `Project.swift` 的 `TargetDependency.external` 和 `Tuist/Package.swift` 的 `productTypes` / `.package(url:)` 行（YAGNI）
+2. **业务还在用**：把 `Project.swift` 和 `Tuist/Package.swift` 中的旧名改成新名，同时恢复业务代码的 import
+
+**本案参考**：IQKeyboardManager 8.x 把 product 重命名为 `IQKeyboardManagerSwift`。业务代码已注释（`// IQKeyboardManager 库已移除`），所以选方案 1 彻底删除。
+
+### 错误6: Tuist 版本过期警告
+
+```
+! Warning
+Your Tuist version 4.143.0 is deprecated. Please upgrade to the latest
+version for server-side features to continue working.
+```
+
+**根因**：Tuist 4.x 升级频繁，旧版本超过 N 个月会触发 deprecation，server-side 强依赖新版本。
+
+**修复**：参考 `TUIST_COMPLETE_GUIDE.md` 第 9 章「版本升级 SOP」一键脚本。
+
+**快速检查三处版本是否对齐**：
+```bash
+ls -la /opt/homebrew/bin/tuist           # 看 symlink 指向的真实版本
+cat .tuist-supported-version              # 项目声明
+cat mise.toml                              # 工具管理声明
+# 三者必须一致
+```
+
+### 错误7: ARM Mac 在 Rosetta 2 下 brew install 失败
+
+```
+Error: Cannot install under Rosetta 2 in ARM default prefix (/opt/homebrew)!
+To rerun under ARM use:
+    arch -arm64 brew install ...
+```
+
+**根因**：shell 跑在 x86 模拟下，但 homebrew 是 ARM 原生路径（`/opt/homebrew`）。所有 `brew install/upgrade/uninstall` 都必须显式声明 `arch -arm64`。
+
+**修复**：
+```bash
+# 单次命令加前缀
+arch -arm64 brew install tuist/tuist/tuist@4.200.4
+
+# 长期方案：给 brew 加 alias
+echo "alias brew='arch -arm64 brew'" >> ~/.zshrc
+source ~/.zshrc
+```
+
 ---
 
 ## 📚 相关文档
@@ -370,6 +512,8 @@ Failed to connect to 127.0.0.1 port 7890
 | 日期 | 版本 | 更新内容 |
 |------|------|----------|
 | 2025-02-19 | 1.0 | 初始版本，记录lstat错误分析和解决方案 |
+| 2026-06-17 | 1.1 | 新增错误4-7：Tuist token 刷新超时（DNS）、SPM product 重命名、版本过期、Rosetta 2 brew 安装失败 |
+| 2026-06-17 | 1.2 | 错误4 修复方案重排序：OAuth 浏览器登录（logout + generate + 浏览器）提升为首选方案 A，零系统级变更 |
 
 ---
 

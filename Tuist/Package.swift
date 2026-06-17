@@ -40,6 +40,7 @@ import PackageDescription
             "AcknowList": .staticFramework,
             "SwiftUIX": .staticFramework,
             "SwiftUIIntrospect": .staticFramework,
+            "IQKeyboardManagerSwift": .staticFramework,
         ]
     )
 #endif
@@ -96,5 +97,8 @@ let package = Package(
         
         .package(url: "https://github.com/SwiftUIX/SwiftUIX.git", branch: "master"),
         .package(url: "https://github.com/siteline/swiftui-introspect", from: "26.0.0"),
+        
+        // ========== 键盘管理 ==========
+        .package(url: "https://github.com/hackiftekhar/IQKeyboardManager.git", from: "8.0.3"),
     ]
 )

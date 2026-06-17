@@ -149,6 +149,9 @@ let project = Project(
 
                 // ========== 许可证列表 ==========
                 TargetDependency.external(name: "AcknowList"),
+                
+                // ========== 键盘管理 ==========
+                TargetDependency.external(name: "IQKeyboardManagerSwift"),
             ],
             settings: .settings(
                 base: [
@@ -250,6 +253,9 @@ let project = Project(
                 TargetDependency.external(name: "ProgressHUD"),
                 TargetDependency.external(name: "SwiftUIIntrospect"),
                 TargetDependency.external(name: "SwiftUIX"),
+                
+                // ========== 键盘管理 ==========
+                TargetDependency.external(name: "IQKeyboardManagerSwift"),
             ],
             settings: .settings(
                 base: [
