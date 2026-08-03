@@ -1,0 +1,123 @@
+# RxStudy 两个 Target 依赖对比分析
+
+## Target 概览
+
+| Target 名称 | Bundle ID | 类型 | 用途 |
+|------------|-----------|------|------|
+| RxStudy | com.lostsakura.RxStudy | App | 主工程（基于 RxSwift + UIKit） |
+| SwiftUIStudy | com.lostsakura.RxStudy.SwiftUIStudy | App | SwiftUI 迁移专用（基于 SwiftUI） |
+
+---
+
+## 依赖对比表
+
+### 1. RxSwift 生态（RxStudy 独有）
+
+| 依赖库 | RxStudy | SwiftUIStudy |
+|--------|---------|--------------|
+| RxSwift | ✅ | ❌ |
+| RxCocoa | ✅ | ❌ |
+| RxRelay | ✅ | ❌ |
+| RxDataSources | ✅ | ❌ |
+| RxGesture | ✅ | ❌ |
+| RxTheme | ✅ | ❌ |
+| RxSwiftExt | ✅ | ❌ |
+| RxOptional | ✅ | ❌ |
+| RxBlocking | ✅ | ❌ |
+| NSObject-Rx | ✅ | ❌ |
+
+### 2. 网络层
+
+| 依赖库 | RxStudy | SwiftUIStudy | 说明 |
+|--------|---------|--------------|------|
+| RxMoya | ✅ | ❌ | RxSwift 封装的 Moya |
+| Moya | ❌ | ✅ | 基础网络层 |
+| Alamofire | ✅ | ✅ | 通用 HTTP 库 |
+
+### 3. 图片加载
+
+| 依赖库 | RxStudy | SwiftUIStudy |
+|--------|---------|--------------|
+| Kingfisher | ✅ | ✅ |
+
+### 4. 布局
+
+| 依赖库 | RxStudy | SwiftUIStudy | 说明 |
+|--------|---------|--------------|------|
+| SnapKit | ✅ | ❌ | UIKit 布局库 |
+| FlexLayout | ❌ | ❌ | 已移除（改用官方 SPM） |
+
+### 5. UI 工具
+
+| 依赖库 | RxStudy | SwiftUIStudy | 说明 |
+|--------|---------|--------------|------|
+| MBProgressHUD | ✅ | ❌ | UIKit 进度 HUD |
+| SVProgressHUD | ✅ | ❌ | UIKit 进度 HUD |
+| MJRefresh | ✅ | ❌ | UIKit 下拉刷新 |
+| ProgressHUD | ❌ | ✅ | SwiftUI 进度 HUD |
+| SwiftUIIntrospect | ❌ | ✅ | SwiftUI  introspection |
+| SwiftUIX | ❌ | ✅ | SwiftUI 扩展库 |
+
+### 6. 其他 UI 组件
+
+| 依赖库 | RxStudy | SwiftUIStudy | 说明 |
+|--------|---------|--------------|------|
+| JXSegmentedView | ✅ | ❌ | 分段控制器（UIKit） |
+| DZNEmptyDataSet | ✅ | ❌ | 空数据展示（UIKit） |
+| FSPagerView | ✅ | ❌ | 轮播图（UIKit） |
+| MarqueeLabel | ✅ | ❌ | 滚动标签 |
+| PagerTabStripView | ❌ | ❌ | 已注释 |
+
+### 7. Web 相关
+
+| 依赖库 | RxStudy | SwiftUIStudy | 说明 |
+|--------|---------|--------------|------|
+| WebUI | ❌ | ✅ | SwiftUI WebView 支持 |
+
+### 8. 工具库
+
+| 依赖库 | RxStudy | SwiftUIStudy |
+|--------|---------|--------------|
+| KeychainAccess | ✅ | ❌ |
+| CocoaLumberjack | ✅ | ❌ |
+| SFSafeSymbols | ✅ | ❌ |
+| ZipArchive | ✅ | ❌ |
+
+### 9. 许可证
+
+| 依赖库 | RxStudy | SwiftUIStudy |
+|--------|---------|--------------|
+| AcknowList | ✅ | ❌ |
+
+---
+
+## 核心差异总结
+
+### RxStudy（主工程）特点：
+1. **完整的 RxSwift 响应式编程生态** - 10 个 Rx 相关依赖
+2. **UIKit 为主** - 使用 SnapKit、MBProgressHUD、MJRefresh 等 UIKit 库
+3. **更多第三方组件** - JXSegmentedView、DZNEmptyDataSet、FSPagerView 等
+4. **丰富的工具库** - KeychainAccess、CocoaLumberjack 等
+
+### SwiftUIStudy 特点：
+1. **极简依赖** - 仅 6 个外部依赖
+2. **SwiftUI 为主** - 使用 ProgressHUD、SwiftUIIntrospect、SwiftUIX 等 SwiftUI 库
+3. **Moya + async/await** - 使用原生 Moya 而非 RxMoya
+4. **WebUI 支持** - 专门用于 WebView 开发
+
+---
+
+## 依赖数量统计
+
+| Target | 外部依赖数量 |
+|--------|-------------|
+| RxStudy | 25 |
+| SwiftUIStudy | 6 |
+
+---
+
+## 共享依赖
+
+两个 Target 共同依赖的库：
+1. Alamofire
+2. Kingfisher

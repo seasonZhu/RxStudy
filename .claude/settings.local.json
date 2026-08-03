@@ -6,7 +6,8 @@
       "mcp__zread__read_file",
       "mcp__zread__search_doc",
       "mcp__zread__get_repo_structure",
-      "Skill(zcf:init-project)"
+      "Skill(zcf:init-project)",
+      "mcp__codegraph__codegraph_explore"
     ]
   }
 }

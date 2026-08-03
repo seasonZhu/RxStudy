@@ -1,0 +1,22 @@
+{
+  "eval_id": 1,
+  "eval_name": "swiftui-add-module-flow",
+  "prompt": "我想在 SwiftUIApp 里加一个新功能模块，流程是什么",
+  "assertions": [
+    {
+      "text": "应说明 MVVM 结构和文件放置位置（SwiftUIApp/Features/）",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "text": "应给出 ViewModel 实现示例（@Observable）",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "text": "应说明如何添加 Tab 或子页面",
+      "passed": null,
+      "evidence": ""
+    }
+  ]
+}

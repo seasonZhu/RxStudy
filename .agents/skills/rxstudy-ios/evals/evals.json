@@ -1,0 +1,23 @@
+{
+  "skill_name": "rxstudy-ios",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "帮我看看两个 Target 的依赖有什么区别",
+      "expected_output": "应返回 RxStudy (UIKit+RxSwift) 与 SwiftUIApp (SwiftUI) 的依赖对比表，列出各自独有的依赖和共用的依赖",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "我想在 SwiftUIApp 里加一个新功能模块，流程是什么",
+      "expected_output": "应给出 MVVM 结构说明、文件放置位置（SwiftUIApp/Features/）、依赖添加步骤（修改 Project.swift）、网络层调用方式",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "网络层两个 Target 用的一样吗？有什么区别",
+      "expected_output": "应对比 RxStudy 的 RxSwift 响应式网络请求 vs SwiftUIApp 的 async/await 方式，包括代码示例差异",
+      "files": []
+    }
+  ]
+}

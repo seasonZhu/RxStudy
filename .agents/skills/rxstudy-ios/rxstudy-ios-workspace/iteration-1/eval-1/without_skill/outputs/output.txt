@@ -1,0 +1,400 @@
+# SwiftUIApp 添加新功能模块流程
+
+## 一、项目架构概述
+
+SwiftUIApp 是 RxStudy 项目中专门用于 SwiftUI 迁移的独立 Target（名为 SwiftUIStudy），位于 `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp` 目录下。
+
+### 1.1 目录结构
+
+```
+SwiftUIApp/
+├── SwiftUIApp.swift          # App 入口文件，包含 TabBar 配置
+├── Features/                 # 功能模块目录
+│   ├── Home/                 # 首页
+│   ├── Tree/                 # 体系
+│   ├── Search/               # 搜索
+│   ├── Category/             # 通用分类组件（被项目、公众号复用）
+│   ├── Mine/                 # 我的
+│   ├── Coin/                 # 积分
+│   ├── CoinRankList/         # 积分排行榜
+│   ├── Collect/              # 收藏
+│   ├── Login/                # 登录
+│   ├── Project/              # 项目
+│   └── PublicNumber/         # 公众号
+├── Components/               # 通用 UI 组件
+│   ├── ArticleCellView.swift # 文章单元格
+│   ├── BannerCarouselView.swift
+│   ├── CategoryTag.swift
+│   ├── EmptyStateView.swift
+│   ├── ErrorStateView.swift
+│   ├── HorizontalCategoryPicker.swift
+│   ├── LoadingView.swift
+│   ├── PaginatedArticleListView.swift
+│   └── WebUIController.swift
+├── Extensions/                # Swift 扩展
+├── Models/                   # 本地数据模型
+│   ├── CommonModels.swift
+│   ├── CoinCollectModels.swift
+│   └── EmptyModel.swift
+└── Network/                  # 网络服务层
+    ├── APIService.swift      # Moya 扩展基类
+    ├── HomeAPIService.swift
+    ├── AccountAPIService.swift
+    ├── CoinAPIService.swift
+    ├── TreeAPIService.swift
+    ├── ProjectAPIService.swift
+    ├── PublicNumberAPIService.swift
+    └── CollectAPIService.swift
+```
+
+### 1.2 技术栈
+
+- **UI 框架**: SwiftUI (iOS 17.6+)
+- **状态管理**: @Observable (iOS 17+ 新语法)
+- **网络层**: Moya + async/await
+- **图片加载**: Kingfisher
+- **WebView**: WebUI
+- **项目构建**: Tuist
+
+### 1.3 现有功能模块
+
+从 `SwiftUIApp.swift` 中的 TabBarView 可以看到当前包含以下 Tab：
+
+1. **首页 (Home)** - HomeView + HomeViewModel + HomeAPIService
+2. **项目 (Project)** - 复用 CategoryPageView<ProjectTagModel>
+3. **公众号 (PublicNumber)** - 复用 CategoryPageView<PublicNumberTagModel>
+4. **体系 (Tree)** - TreeView + TreeViewModel + TreeAPIService
+5. **我的 (Mine)** - MineView + MineViewModel + AccountAPIService
+
+---
+
+## 二、添加新功能模块的流程
+
+### 2.1 确定模块类型
+
+新功能模块分为两种类型：
+
+#### 类型 A：独立页面（需要新建完整模块）
+如果新功能是一个全新的独立页面，需要包含：
+- 页面视图 (View)
+- 页面 ViewModel
+- API 服务 (如果需要网络请求)
+- 可能还需要数据模型
+
+#### 类型 B：通用组件复用（推荐）
+如果新功能与现有组件类似（如文章列表），可以使用通用组件：
+- CategoryPageView - 适用于"分类 + 文章列表"场景（项目、公众号）
+- PaginatedArticleListView - 分页文章列表组件
+- ArticleCellView - 文章单元格组件
+
+### 2.2 添加独立页面（类型 A）的完整流程
+
+#### 步骤 1：在 Features 目录下创建功能模块目录
+
+在 `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Features/` 下创建新模块目录，例如 `NewFeature/`：
+
+```
+Features/NewFeature/
+├── NewFeatureView.swift       # 页面视图
+├── NewFeatureViewModel.swift  # 页面 ViewModel
+└── (可选) NewFeatureAPIService.swift  # API 服务（如果需要网络请求）
+```
+
+#### 步骤 2：实现 ViewModel
+
+参考 `HomeViewModel.swift` 的模式：
+
+```swift
+import Foundation
+
+@Observable
+final class NewFeatureViewModel {
+    // MARK: - 状态
+    private(set) var articles: [InfoModel] = []
+    private(set) var isLoading = false
+    private(set) var errorMessage: String?
+
+    // MARK: - 私有属性
+    private let apiService = NewFeatureAPIService.shared
+    private var currentPage = 0
+
+    // MARK: - 公共方法
+    func refresh() async {
+        currentPage = 0
+        await loadData(isRefresh: true)
+    }
+
+    func loadMore() async {
+        // 实现加载更多逻辑
+    }
+
+    // MARK: - 私有方法
+    private func loadData(isRefresh: Bool) async {
+        if isRefresh {
+            isLoading = true
+        }
+        // 实现数据加载逻辑
+    }
+}
+```
+
+#### 步骤 3：实现 View
+
+参考 `HomeView.swift` 的模式：
+
+```swift
+import SwiftUI
+
+struct NewFeatureView: View {
+    @State private var viewModel = NewFeatureViewModel()
+
+    var body: some View {
+        ZStack {
+            contentView
+
+            if viewModel.isLoading && viewModel.articles.isEmpty {
+                LoadingView()
+            }
+        }
+        .navigationBar("新功能") {} trailing: {
+            // 右侧导航按钮
+        }
+        .task {
+            if viewModel.articles.isEmpty {
+                await viewModel.refresh()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        if !viewModel.articles.isEmpty {
+            articleListView
+        } else if !viewModel.isLoading {
+            emptyView
+        } else {
+            EmptyView()
+        }
+    }
+
+    private var articleListView: some View {
+        ScrollView {
+            LazyVStack(spacing: 0) {
+                ForEach(viewModel.articles) { article in
+                    NavigationLink(destination: WebUIController(article: article)) {
+                        ArticleCellView(article: article)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+        }
+        .refreshable {
+            await viewModel.refresh()
+        }
+    }
+
+    private var emptyView: some View {
+        EmptyStateView(
+            icon: "tray",
+            message: "暂无内容",
+            showRetry: viewModel.errorMessage != nil
+        ) {
+            Task {
+                await viewModel.refresh()
+            }
+        }
+    }
+}
+
+#Preview {
+    NewFeatureView()
+}
+```
+
+#### 步骤 4：实现 API 服务（如果需要）
+
+参考 `HomeAPIService.swift` 的模式：
+
+```swift
+import Foundation
+import Moya
+
+enum NewFeatureAPI {
+    case list(page: Int)
+    case detail(id: Int)
+}
+
+extension NewFeatureAPI: TargetType {
+    var baseURL: URL {
+        return URL(string: "https://www.wanandroid.com")!
+    }
+
+    var path: String {
+        switch self {
+        case .list(let page):
+            return "/newfeature/list/\(page)/json"
+        case .detail(let id):
+            return "/newfeature/detail/\(id)/json"
+        }
+    }
+
+    var task: Task {
+        switch self {
+        default:
+            return .requestPlain
+        }
+    }
+
+    var method: Moya.Method {
+        return .get
+    }
+
+    var headers: [String: String]? {
+        return nil
+    }
+}
+
+@Observable
+final class NewFeatureAPIService {
+    static let shared = NewFeatureAPIService()
+
+    private let provider = MoyaProvider<NewFeatureAPI>()
+
+    private init() {}
+
+    func fetchList(page: Int) async throws -> Page<InfoModel> {
+        return try await provider.requestDecoded(.list(page: page), responseType: BaseModel<Page<InfoModel>>.self)
+    }
+}
+```
+
+#### 步骤 5：在 TabBarView 中注册新页面
+
+编辑 `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/SwiftUIApp.swift`，在 `TabBarView` 中添加新的 Tab：
+
+```swift
+struct TabBarView: View {
+    @State private var selectedTab = 0
+
+    var body: some View {
+        TabView(selection: $selectedTab) {
+            // 现有 Tab...
+
+            // 新增：我的
+            NavigationView {
+                NewFeatureView()
+            }
+            .navigationViewStyle(.stack)
+            .tabItem {
+                Label("新功能", systemImage: "star.fill")
+            }
+            .tag(5)  // 使用新的 tag
+        }
+        .accentColor(.blue)
+        .tint(.blue)
+    }
+}
+```
+
+### 2.3 使用通用组件（类型 B）的流程
+
+如果新功能可以用现有组件实现，只需：
+
+#### 方式 1：复用 CategoryPageView
+
+适用于"分类 + 文章列表"场景，直接在 `SwiftUIApp.swift` 的 TabBar 中添加：
+
+```swift
+NavigationView {
+    CategoryPageView<NewTagModel>(categoryType: .newFeature)
+}
+.navigationViewStyle(.stack)
+.tabItem {
+    Label("新功能", systemImage: "star.fill")
+}
+.tag(5)
+```
+
+然后在 `CategoryPageViewModel.swift` 的 `CategoryType` 枚举中添加新的类型。
+
+#### 方式 2：复用 PaginatedArticleListView
+
+适用于简单的分页文章列表：
+
+```swift
+PaginatedArticleListView(
+    fetchAction: { page in
+        // 调用 API 获取数据
+    },
+    content: { article in
+        // 文章单元格
+        ArticleCellView(article: article)
+    }
+)
+```
+
+---
+
+## 三、注意事项
+
+### 3.1 数据模型
+
+- 如果新功能使用 `InfoModel`，可以直接复用（在 `CommonModels.swift` 中定义）
+- 如果需要新的数据模型，在 `SwiftUIApp/Models/` 或 `Shared/Models/` 中添加
+
+### 3.2 内存优化
+
+参考 `HomeViewModel` 中的实现，建议：
+- 设置最大数据条数限制（如 200 条）
+- 设置数据清理阈值（如 250 条）
+- 超过阈值时移除旧数据
+
+### 3.3 代码规范
+
+- 使用 `@Observable` 代替 Combine 的 `ObservableObject`
+- 使用 `async/await` 进行异步编程
+- View 中使用 `@State` 包装 ViewModel
+- View 与 ViewModel 之间通过属性绑定进行通信
+
+### 3.4 Tuist 构建
+
+添加新文件后，通常不需要修改 `Project.swift`，因为 `SwiftUIApp/**/*.swift` 是 glob 模式匹配。但如果添加了新的外部依赖，需要在 `SwiftUIStudy` target 的 `dependencies` 中添加。
+
+---
+
+## 四、总结流程图
+
+```
+1. 确定模块类型
+   ├── 独立页面 → 执行步骤 2-5
+   └── 复用组件 → 执行步骤 5（仅需注册到 TabBar）
+
+2. 创建功能目录
+   └── Features/NewFeature/
+
+3. 实现 ViewModel
+   └── @Observable + async/await
+
+4. 实现 View
+   └── @State + contentView 模式
+
+5. 实现 API 服务（如需要）
+   └── Moya TargetType + async/await
+
+6. 注册到 TabBar
+   └── SwiftUIApp.swift
+```
+
+---
+
+## 五、相关文件路径汇总
+
+| 文件 | 路径 |
+|------|------|
+| App 入口 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/SwiftUIApp.swift` |
+| 项目配置 | `/Users/dy/Documents/Swift Git/RxStudy/Project.swift` |
+| 通用视图组件 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Components/` |
+| 共享数据模型 | `/Users/dy/Documents/Swift Git/RxStudy/Shared/Models/` |
+| API 服务基类 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Network/APIService.swift` |
+| Home 模块参考 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Features/Home/` |
+| Category 模块参考 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Features/Category/` |

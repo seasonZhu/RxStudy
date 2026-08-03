@@ -1,0 +1,52 @@
+网络层两个 Target 用的一样吗？有什么区别
+=========================================
+
+项目中有两个 Target，均使用 Moya 作为网络层框架，但实现方式有显著区别：
+
+1. RxStudy 主工程 Target
+------------------------
+位置: RxStudy/HttpRequest/ 和 Packages/HttpRequest/
+网络框架: Moya + RxMoya (基于 RxSwift 响应式编程)
+
+特点:
+- 使用 RxSwift 响应式编程范式
+- Provider 集中管理 (homeProvider, myProvider, projectProvider 等)
+- 支持 MultiTarget 封装
+- 完整的插件体系:
+  * activityPlugin (Loading 状态管理)
+  * responseInterceptorPlugin (响应拦截)
+  * responseCachePlugin (缓存)
+- 支持 Stub/Mock 数据 (mockProvider, fakeProvider)
+- 依赖: RxSwift, RxCocoa, RxMoya 等 RxSwift 生态
+
+2. SwiftUIStudy Target
+----------------------
+位置: SwiftUIApp/Network/
+网络框架: 纯 Moya (基于 async/await)
+
+特点:
+- 使用 Swift 并发 (async/await)
+- 每个 API 服务独立管理自己的 MoyaProvider
+- 使用 @Observable 注解管理状态
+- 无额外插件配置
+- 无 RxSwift 依赖
+- 依赖: Moya, Alamofire, WebUI
+
+3. 主要区别总结
+--------------
+| 对比项        | RxStudy              | SwiftUIStudy        |
+|--------------|---------------------|---------------------|
+| 编程范式      | RxSwift 响应式       | async/await         |
+| 网络框架      | RxMoya              | Moya                |
+| Provider 管理 | 集中式              | 分散式              |
+| 插件体系      | 完整 (3个插件)       | 无                  |
+| 状态管理      | RxSwift Observable  | @Observable         |
+| Mock 支持    | 有                  | 无                  |
+
+4. 总结
+-------
+两个 Target 使用了不同的网络层实现方式：
+- RxStudy 主工程采用传统的 RxSwift 响应式方案，功能更完善
+- SwiftUIStudy 采用现代 Swift 并发方案，代码更简洁
+
+它们调用的是同一个后端 API (www.wanandroid.com)，但网络请求的封装方式完全不同。

@@ -1,0 +1,108 @@
+{
+  "skill_name": "rxstudy-ios",
+  "iteration": 1,
+  "results": [
+    {
+      "run_id": "eval-0-with_skill",
+      "eval_name": "target-dependencies-comparison",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "timing": {
+        "total_duration_seconds": 103.7,
+        "total_tokens": 32427
+      },
+      "assertions": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      }
+    },
+    {
+      "run_id": "eval-0-without_skill",
+      "eval_name": "target-dependencies-comparison",
+      "config": "without_skill",
+      "pass_rate": 1.0,
+      "timing": {
+        "total_duration_seconds": 74.7,
+        "total_tokens": 24459
+      },
+      "assertions": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      }
+    },
+    {
+      "run_id": "eval-1-with_skill",
+      "eval_name": "swiftui-add-module-flow",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "timing": {
+        "total_duration_seconds": 84.2,
+        "total_tokens": 26151
+      },
+      "assertions": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      }
+    },
+    {
+      "run_id": "eval-1-without_skill",
+      "eval_name": "swiftui-add-module-flow",
+      "config": "without_skill",
+      "pass_rate": 1.0,
+      "timing": {
+        "total_duration_seconds": 151.9,
+        "total_tokens": 42788
+      },
+      "assertions": {
+        "passed": 3,
+        "failed": 0,
+        "total": 3
+      }
+    },
+    {
+      "run_id": "eval-2-with_skill",
+      "eval_name": "network-layer-comparison",
+      "config": "with_skill",
+      "pass_rate": 1.0,
+      "timing": {
+        "total_duration_seconds": 113.1,
+        "total_tokens": 33583
+      },
+      "assertions": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      }
+    },
+    {
+      "run_id": "eval-2-without_skill",
+      "eval_name": "network-layer-comparison",
+      "config": "without_skill",
+      "pass_rate": 1.0,
+      "timing": {
+        "total_duration_seconds": 86.6,
+        "total_tokens": 38280
+      },
+      "assertions": {
+        "passed": 2,
+        "failed": 0,
+        "total": 2
+      }
+    }
+  ],
+  "summary": {
+    "with_skill": {
+      "mean_duration_seconds": 100.33,
+      "mean_tokens": 30720.33,
+      "pass_rate": 1.0
+    },
+    "without_skill": {
+      "mean_duration_seconds": 104.4,
+      "mean_tokens": 35175.67,
+      "pass_rate": 1.0
+    }
+  }
+}

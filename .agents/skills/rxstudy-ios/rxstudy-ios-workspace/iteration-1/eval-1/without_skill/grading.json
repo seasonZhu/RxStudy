@@ -1,0 +1,20 @@
+{
+  "run_id": "eval-1-without_skill",
+  "assertions": [
+    {
+      "text": "应说明 MVVM 结构和文件放置位置（SwiftUIApp/Features/）",
+      "passed": true,
+      "evidence": "提供了完整的项目架构概述，说明了 Features/ 目录结构"
+    },
+    {
+      "text": "应给出 ViewModel 实现示例（@Observable）",
+      "passed": true,
+      "evidence": "提供了完整的 @Observable NewFeatureViewModel 实现代码"
+    },
+    {
+      "text": "应说明如何添加 Tab 或子页面",
+      "passed": true,
+      "evidence": "详细说明了 TabBarView 添加和组件复用两种方式"
+    }
+  ]
+}

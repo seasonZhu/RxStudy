@@ -1,0 +1,125 @@
+# 网络层两个 Target 对比分析
+
+## 项目 Target 概览
+
+根据 Project.swift 配置，项目有两个 Target：
+
+| Target | 包名 | 类型 | 用途 |
+|--------|------|------|------|
+| RxStudy | com.lostsakura.RxStudy | App | 主工程（UIKit） |
+| SwiftUIStudy | com.lostsakura.RxStudy.SwiftUIStudy | App | SwiftUI 迁移专用 |
+
+---
+
+## 网络层差异对比
+
+### 1. 代码位置
+
+- **RxStudy**: `RxStudy/HttpRequest/` 目录
+  - Provider.swift、AccountService.swift、HomeService.swift 等
+
+- **SwiftUIStudy**: `SwiftUIApp/Network/` 目录
+  - APIService.swift、AccountAPIService.swift、HomeAPIService.swift 等
+
+---
+
+### 2. 网络框架依赖
+
+| Target | Moya 变体 | 附加框架 |
+|--------|-----------|----------|
+| RxStudy | RxMoya | Alamofire |
+| SwiftUIStudy | Moya (纯) | Alamofire |
+
+**关键区别**：
+- RxStudy 使用 `RxMoya`，结合 RxSwift 响应式编程
+- SwiftUIStudy 使用纯 Moya + async/await
+
+---
+
+### 3. 编程范式
+
+#### RxStudy（响应式 RxSwift）
+```swift
+// Provider.swift
+let homeProvider = MoyaProvider<HomeService>(plugins: plugins)
+homeProvider.request(.banner) { result in
+    // RxSwift Observable 方式
+}
+```
+
+#### SwiftUIStudy（async/await）
+```swift
+// CoinAPIService.swift
+private let provider = MoyaProvider<CoinAPI>()
+
+func fetchCoinRank(page: Int) async throws -> Page<CoinRankModel> {
+    return try await provider.requestDecoded(.coinRank(page: page), responseType: BaseModel<Page<CoinRankModel>>.self)
+}
+```
+
+---
+
+### 4. Provider 管理方式
+
+#### RxStudy：集中式 + MultiTarget
+```swift
+// Provider.swift
+let homeProvider = MoyaProvider<HomeService>(plugins: plugins)
+let myProvider = MoyaProvider<MyService>(endpointClosure: myEndpointClosure, plugins: plugins)
+let provider = MoyaProvider<MultiTarget>(plugins: plugins)  // 统一入口
+```
+
+#### SwiftUIStudy：每服务独立 Provider
+```swift
+// 每个 XXXAPIService.swift
+private let provider = MoyaProvider<CoinAPI>()  // 独立实例
+```
+
+---
+
+### 5. 插件机制
+
+#### RxStudy：完整插件体系
+```swift
+let plugins: [PluginType] = [
+    activityPlugin,       // Loading 管理
+    responseInterceptorPlugin,  // 响应拦截
+    responseCachePlugin    // 缓存
+]
+```
+
+#### SwiftUIStudy：基础扩展
+```swift
+// APIService.swift - 仅扩展了 requestDecoded 方法
+extension MoyaProvider {
+    func requestDecoded<T: Codable>(_ target: Target, responseType: BaseModel<T>.Type) async throws -> T
+}
+```
+
+---
+
+### 6. API 命名规范
+
+| Target | 枚举命名 | 示例 |
+|--------|----------|------|
+| RxStudy | XXXService | HomeService, AccountService |
+| SwiftUIStudy | XXXAPI | HomeAPI, AccountAPI |
+
+---
+
+### 7. 状态管理
+
+- **RxStudy**: RxRelay（`BehaviorRelay`, `BehaviorSubject`）
+- **SwiftUIStudy**: @Observable 注解
+
+---
+
+## 总结
+
+| 对比项 | RxStudy | SwiftUIStudy |
+|--------|---------|---------------|
+| 编程范式 | RxSwift 响应式 | async/await |
+| 代码风格 | 命令式 Rx | 简洁异步 |
+| Provider | 集中+MultiTarget | 分散独立 |
+| 插件生态 | 完整（loading/缓存/拦截） | 基础 |
+| 适用场景 | 复杂业务/老项目 | SwiftUI 新架构 |

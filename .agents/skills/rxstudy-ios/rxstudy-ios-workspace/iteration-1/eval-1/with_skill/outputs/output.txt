@@ -1,0 +1,210 @@
+# SwiftUIApp 添加新功能模块流程
+
+## 项目架构概述
+
+SwiftUIApp 采用以下架构：
+
+1. **入口**: `SwiftUIApp/SwiftUIApp.swift` - App 生命周期入口，包含 TabBarView 定义
+2. **模块组织**: `SwiftUIApp/Features/` - 按功能模块组织，每个模块包含 View + ViewModel
+3. **状态管理**: 使用 Swift 5.9+ 的 `@Observable` 宏
+4. **网络层**: 使用 Moya + async/await
+5. **通用组件**: `SwiftUIApp/Components/` - 可复用组件
+6. **网络服务**: `SwiftUIApp/Network/` - API 服务
+
+---
+
+## 添加新功能模块的完整流程
+
+### 步骤 1: 创建模块目录结构
+
+在 `SwiftUIApp/Features/` 下创建新模块目录：
+
+```
+SwiftUIApp/Features/NewFeature/
+├── NewFeatureView.swift      # 视图文件
+└── NewFeatureViewModel.swift  # ViewModel 文件
+```
+
+### 步骤 2: 创建 ViewModel
+
+使用 `@Observable` 宏定义 ViewModel：
+
+```swift
+import Foundation
+
+@Observable
+final class NewFeatureViewModel {
+    private(set) var isLoading = false
+    private(set) var errorMessage: String?
+    private(set) var items: [ItemModel] = []
+
+    // 如需网络服务
+    private let apiService = SomeAPIService.shared
+
+    func loadData() async {
+        isLoading = true
+        defer { isLoading = false }
+
+        do {
+            items = try await apiService.fetchItems()
+        } catch {
+            errorMessage = error.localizedDescription
+        }
+    }
+}
+```
+
+### 步骤 3: 创建 View
+
+遵循项目命名规范 `XxxView.swift`：
+
+```swift
+import SwiftUI
+
+struct NewFeatureView: View {
+    @State private var viewModel = NewFeatureViewModel()
+
+    var body: some View {
+        contentView
+            .navigationBar("新功能")
+            .onAppear {
+                Task {
+                    await viewModel.loadData()
+                }
+            }
+    }
+
+    @ViewBuilder
+    private var contentView: some View {
+        if viewModel.isLoading {
+            LoadingView(message: "加载中...")
+        } else if let error = viewModel.errorMessage {
+            ErrorStateView(message: error) {
+                Task { await viewModel.loadData() }
+            }
+        } else if viewModel.items.isEmpty {
+            EmptyStateView(icon: "tray", message: "暂无内容")
+        } else {
+            // 列表内容
+            List(viewModel.items) { item in
+                ItemRow(item: item)
+            }
+        }
+    }
+}
+```
+
+### 步骤 4: 如需网络请求，创建 API Service
+
+在 `SwiftUIApp/Network/` 下创建 API Service：
+
+```swift
+// 1. 定义 TargetType 协议（通常在 RxStudy 网络层定义）
+enum NewFeatureAPI {
+    case fetchItems
+    case fetchItemDetail(id: Int)
+}
+
+// 2. 创建 API Service
+final class NewFeatureAPIService {
+    static let shared = NewFeatureAPIService()
+
+    private let provider = MoyaProvider<NewFeatureAPI>()
+
+    func fetchItems() async throws -> [ItemModel] {
+        try await provider.requestDecoded(.fetchItems, responseType: BaseModel<[ItemModel]>.self)
+    }
+}
+```
+
+### 步骤 5: 在 TabBarView 中添加（如果是顶级 Tab）
+
+编辑 `SwiftUIApp/SwiftUIApp.swift`，在 TabBarView 中添加新 Tab：
+
+```swift
+TabView(selection: $selectedTab) {
+    // ... 现有 tabs ...
+
+    // 新增 Tab
+    NavigationView {
+        NewFeatureView()
+    }
+    .navigationViewStyle(.stack)
+    .tabItem {
+        Label("新功能", systemImage: "star.fill")
+    }
+    .tag(5)  // 使用新的 tag 值
+}
+```
+
+### 步骤 6: 或作为子页面添加到现有功能
+
+在 `MineView` 等现有页面中通过 NavigationLink 跳转：
+
+```swift
+NavigationLink(destination: NewFeatureView()) {
+    FunctionRow(
+        icon: "star.fill",
+        title: "新功能",
+        color: .purple
+    )
+}
+```
+
+---
+
+## 复用通用组件
+
+项目提供了多个可复用组件，位于 `SwiftUIApp/Components/`：
+
+| 组件 | 用途 |
+|------|------|
+| `LoadingView` | 加载状态显示 |
+| `ErrorStateView` | 错误状态显示 |
+| `EmptyStateView` | 空状态显示 |
+| `ArticleCellView` | 文章列表单元格 |
+| `PaginatedArticleListView` | 分页文章列表 |
+| `HorizontalCategoryPicker` | 横向分类选择器 |
+| `CategoryPageView<T>` | 通用分类页面（可直接复用） |
+| `WebUIController` | WebView 容器 |
+| `ShareSheet` | 分享面板 |
+| `BannerCarouselView` | 轮播图 |
+| `CategoryTag` | 分类标签 |
+
+---
+
+## 如需添加新的分类类型
+
+已有通用分类组件 `CategoryPageView<T>`，支持快速添加新分类类型：
+
+1. 在 `CategoryType` 枚举中添加新 case
+2. 确保对应的 Tag Model 实现 `CategoryItem` 协议
+3. 在 `UnifiedCategoryService` 中添加对应分支
+
+---
+
+## 文件命名规范
+
+- View 文件: `XxxView.swift`
+- ViewModel 文件: `XxxViewModel.swift`
+- API Service 文件: `XxxAPIService.swift`
+- Model 文件: `XxxModels.swift`
+
+---
+
+## 现有模块参考
+
+现有功能模块位于 `SwiftUIApp/Features/`：
+
+| 模块 | 路径 | 说明 |
+|------|------|------|
+| 首页 | `Features/Home/` | HomeView + HomeViewModel |
+| 项目 | `Features/Category/` | 使用通用 CategoryPageView |
+| 公众号 | `Features/PublicNumber/` | PublicNumberView + ViewModel |
+| 体系 | `Features/Tree/` | TreeView + TreeViewModel |
+| 我的 | `Features/Mine/` | MineView + MineViewModel |
+| 登录 | `Features/Login/` | LoginView + LoginViewModel |
+| 收藏 | `Features/Collect/` | CollectView + CollectViewModel |
+| 积分 | `Features/Coin/` | CoinView + CoinViewModel |
+| 积分排行 | `Features/CoinRankList/` | CoinRankListView + ViewModel |
+| 搜索 | `Features/Search/` | HotKeyView + SearchResultView |

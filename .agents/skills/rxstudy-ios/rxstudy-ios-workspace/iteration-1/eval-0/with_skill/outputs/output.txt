@@ -1,0 +1,111 @@
+RxStudy 和 SwiftUIStudy Target 依赖对比分析
+================================================
+
+项目文件：/Users/dy/Documents/Swift Git/RxStudy/Project.swift
+
+一、RxStudy Target (UIKit + RxSwift 架构)
+-----------------------------------------
+
+依赖数量：27个
+
+1. RxSwift 生态（11个）
+   - RxSwift
+   - RxCocoa
+   - RxRelay
+   - RxDataSources
+   - RxGesture
+   - RxTheme
+   - RxSwiftExt
+   - RxOptional
+   - RxBlocking
+   - NSObject-Rx
+   - RxMoya
+
+2. 网络层（2个）
+   - Alamofire
+   - Moya（通过 RxMoya）
+
+3. 图片加载（1个）
+   - Kingfisher
+
+4. 布局（1个）
+   - SnapKit
+
+5. 工具库（5个）
+   - KeychainAccess
+   - CocoaLumberjack
+   - MarqueeLabel
+   - SFSafeSymbols
+   - ZipArchive
+
+6. UI 工具（3个）
+   - MBProgressHUD
+   - SVProgressHUD
+   - MJRefresh
+
+7. 其他 UI 组件（3个）
+   - JXSegmentedView
+   - DZNEmptyDataSet
+   - FSPagerView
+
+8. 许可证列表（1个）
+   - AcknowList
+
+9. 本地依赖（1个）
+   - TheRouter（源码集成，路径：Packages/ThirdParty/TheRouter/Sources）
+
+
+二、SwiftUIStudy Target (SwiftUI + async/await 架构)
+----------------------------------------------------
+
+依赖数量：7个
+
+1. 网络层（2个）
+   - Moya
+   - Alamofire
+
+2. 图片加载（1个）
+   - Kingfisher
+
+3. WebView（1个）
+   - WebUI
+
+4. UI 工具（2个）
+   - ProgressHUD
+   - SwiftUIIntrospect
+
+5. SwiftUI 扩展（1个）
+   - SwiftUIX
+
+
+三、主要区别总结
+----------------
+
+| 维度          | RxStudy                      | SwiftUIStudy                  |
+|---------------|------------------------------|-------------------------------|
+| 架构风格      | UIKit + RxSwift (响应式)     | SwiftUI + async/await (声明式)|
+| 依赖数量      | 27个                         | 7个                           |
+| RxSwift 生态  | 完整使用                      | 不使用                        |
+| 布局框架      | SnapKit (Auto Layout)        | 不使用（SwiftUI 原生布局）    |
+| 刷新组件      | MJRefresh                    | 不使用                        |
+| 进度HUD       | MBProgressHUD / SVProgressHUD| ProgressHUD                   |
+| 分段控制器    | JXSegmentedView              | 不使用                        |
+| 空数据展示    | DZNEmptyDataSet              | 不使用                        |
+| 轮播图        | FSPagerView                  | 不使用                        |
+| Web框架       | UIKit WebView                | WebUI                         |
+| 路由          | TheRouter (本地源码)          | 不使用                        |
+| 日志框架      | CocoaLumberjack              | 不使用                        |
+| Keychain      | KeychainAccess               | 不使用                        |
+| 本地包        | FSPagerView, TheRouter        | 无                            |
+
+四、总结
+--------
+
+RxStudy 是一个功能完整的 App，使用传统的 RxSwift 响应式编程范式，依赖丰富（约27个），
+适合复杂的 UIKit 开发和需要精细控制界面的场景。
+
+SwiftUIStudy 是一个轻量级的 SwiftUI 探索项目，使用现代的 async/await 异步编程，
+依赖精简（仅7个），专注于 SwiftUI 本身的学习和快速开发。
+
+SwiftUIStudy 可以看作是 RxStudy 的 SwiftUI 简化版本，去除了 RxSwift 生态，
+使用 SwiftUI 原生 API 替代大部分功能。

@@ -1,0 +1,22 @@
+{
+  "eval_id": 0,
+  "eval_name": "target-dependencies-comparison",
+  "prompt": "帮我看看两个 Target 的依赖有什么区别",
+  "assertions": [
+    {
+      "text": "应列出 RxStudy 的 RxSwift 生态依赖（RxSwift, RxCocoa, RxRelay 等）",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "text": "应列出 SwiftUIApp 的依赖（Moya, Kingfisher, SwiftUIX 等）",
+      "passed": null,
+      "evidence": ""
+    },
+    {
+      "text": "应标注共用依赖（Alamofire, Kingfisher）",
+      "passed": null,
+      "evidence": ""
+    }
+  ]
+}

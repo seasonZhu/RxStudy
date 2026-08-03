@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eval Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js" integrity="sha384-EnyY0/GSHQGSxSgMwaIPzSESbqoOLSexfnSMN2AP+39Ckmn92stwABZynq1JyzdT" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #faf9f5;
+      --surface: #ffffff;
+      --border: #e8e6dc;
+      --text: #141413;
+      --text-muted: #b0aea5;
+      --accent: #d97757;
+      --accent-hover: #c4613f;
+      --green: #788c5d;
+      --green-bg: #eef2e8;
+      --red: #c44;
+      --red-bg: #fceaea;
+      --header-bg: #141413;
+      --header-text: #faf9f5;
+      --radius: 6px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lora', Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ---- Header ---- */
+    .header {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-shrink: 0;
+    }
+    .header h1 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+    .header .instructions {
+      font-size: 0.8rem;
+      opacity: 0.7;
+      margin-top: 0.25rem;
+    }
+    .header .progress {
+      font-size: 0.875rem;
+      opacity: 0.8;
+      text-align: right;
+    }
+
+    /* ---- Main content ---- */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    /* ---- Sections ---- */
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      flex-shrink: 0;
+    }
+    .section-header {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.75rem 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .section-body {
+      padding: 1rem;
+    }
+
+    /* ---- Config badge ---- */
+    .config-badge {
+      display: inline-block;
+      padding: 0.2rem 0.625rem;
+      border-radius: 9999px;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin-left: 0.75rem;
+      vertical-align: middle;
+    }
+    .config-badge.config-primary {
+      background: rgba(33, 150, 243, 0.12);
+      color: #1976d2;
+    }
+    .config-badge.config-baseline {
+      background: rgba(255, 193, 7, 0.15);
+      color: #f57f17;
+    }
+
+    /* ---- Prompt ---- */
+    .prompt-text {
+      white-space: pre-wrap;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+    }
+
+    /* ---- Outputs ---- */
+    .output-file {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .output-file + .output-file {
+      margin-top: 1rem;
+    }
+    .output-file-header {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .output-file-header .dl-btn {
+      font-size: 0.7rem;
+      color: var(--accent);
+      text-decoration: none;
+      cursor: pointer;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-weight: 500;
+      opacity: 0.8;
+    }
+    .output-file-header .dl-btn:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+    .output-file-content {
+      padding: 0.75rem;
+      overflow-x: auto;
+    }
+    .output-file-content pre {
+      font-size: 0.8125rem;
+      line-height: 1.5;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'SF Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+    }
+    .output-file-content img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .output-file-content iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+    }
+    .output-file-content table {
+      border-collapse: collapse;
+      font-size: 0.8125rem;
+      width: 100%;
+    }
+    .output-file-content table td,
+    .output-file-content table th {
+      border: 1px solid var(--border);
+      padding: 0.375rem 0.5rem;
+      text-align: left;
+    }
+    .output-file-content table th {
+      background: var(--bg);
+      font-weight: 600;
+    }
+    .output-file-content .download-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      cursor: pointer;
+    }
+    .output-file-content .download-link:hover {
+      background: var(--border);
+    }
+    .empty-state {
+      color: var(--text-muted);
+      font-style: italic;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    /* ---- Feedback ---- */
+    .prev-feedback {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 0.625rem 0.75rem;
+      margin-top: 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .prev-feedback-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+      color: var(--text-muted);
+    }
+    .feedback-textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      resize: vertical;
+      color: var(--text);
+    }
+    .feedback-textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+    .feedback-status {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 0.5rem;
+      min-height: 1.1em;
+    }
+
+    /* ---- Grades (collapsible) ---- */
+    .grades-toggle {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+    }
+    .grades-toggle:hover {
+      color: var(--accent);
+    }
+    .grades-toggle .arrow {
+      margin-right: 0.5rem;
+      transition: transform 0.15s;
+      font-size: 0.75rem;
+    }
+    .grades-toggle .arrow.open {
+      transform: rotate(90deg);
+    }
+    .grades-content {
+      display: none;
+      margin-top: 0.75rem;
+    }
+    .grades-content.open {
+      display: block;
+    }
+    .grades-summary {
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .grade-badge {
+      display: inline-block;
+      padding: 0.125rem 0.5rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .grade-pass { background: var(--green-bg); color: var(--green); }
+    .grade-fail { background: var(--red-bg); color: var(--red); }
+    .assertion-list {
+      list-style: none;
+    }
+    .assertion-item {
+      padding: 0.625rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.8125rem;
+    }
+    .assertion-item:last-child { border-bottom: none; }
+    .assertion-status {
+      font-weight: 600;
+      margin-right: 0.5rem;
+    }
+    .assertion-status.pass { color: var(--green); }
+    .assertion-status.fail { color: var(--red); }
+    .assertion-evidence {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      margin-top: 0.25rem;
+      padding-left: 1.5rem;
+    }
+
+    /* ---- View tabs ---- */
+    .view-tabs {
+      display: flex;
+      gap: 0;
+      padding: 0 2rem;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .view-tab {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.625rem 1.25rem;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      transition: all 0.15s;
+    }
+    .view-tab:hover { color: var(--text); }
+    .view-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+    .view-panel { display: none; }
+    .view-panel.active { display: flex; flex-direction: column; flex: 1; overflow: hidden; }
+
+    /* ---- Benchmark view ---- */
+    .benchmark-view {
+      padding: 1.5rem 2rem;
+      overflow-y: auto;
+      flex: 1;
+    }
+    .benchmark-table {
+      border-collapse: collapse;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      font-size: 0.8125rem;
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
+    .benchmark-table th, .benchmark-table td {
+      padding: 0.625rem 0.75rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    .benchmark-table th {
+      font-family: 'Poppins', sans-serif;
+      background: var(--header-bg);
+      color: var(--header-text);
+      font-weight: 500;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .benchmark-table tr:hover { background: var(--bg); }
+    .benchmark-table tr.benchmark-row-with { background: rgba(33, 150, 243, 0.06); }
+    .benchmark-table tr.benchmark-row-without { background: rgba(255, 193, 7, 0.06); }
+    .benchmark-table tr.benchmark-row-with:hover { background: rgba(33, 150, 243, 0.12); }
+    .benchmark-table tr.benchmark-row-without:hover { background: rgba(255, 193, 7, 0.12); }
+    .benchmark-table tr.benchmark-row-avg { font-weight: 600; border-top: 2px solid var(--border); }
+    .benchmark-table tr.benchmark-row-avg.benchmark-row-with { background: rgba(33, 150, 243, 0.12); }
+    .benchmark-table tr.benchmark-row-avg.benchmark-row-without { background: rgba(255, 193, 7, 0.12); }
+    .benchmark-delta-positive { color: var(--green); font-weight: 600; }
+    .benchmark-delta-negative { color: var(--red); font-weight: 600; }
+    .benchmark-notes {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem;
+    }
+    .benchmark-notes h3 {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.875rem;
+      margin-bottom: 0.75rem;
+    }
+    .benchmark-notes ul {
+      list-style: disc;
+      padding-left: 1.25rem;
+    }
+    .benchmark-notes li {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      margin-bottom: 0.375rem;
+    }
+    .benchmark-empty {
+      color: var(--text-muted);
+      font-style: italic;
+      text-align: center;
+      padding: 3rem;
+    }
+
+    /* ---- Navigation ---- */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      border-top: 1px solid var(--border);
+      background: var(--surface);
+      flex-shrink: 0;
+    }
+    .nav-btn {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text);
+      transition: all 0.15s;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: var(--bg);
+      border-color: var(--text-muted);
+    }
+    .nav-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+    .done-btn {
+      font-family: 'Poppins', sans-serif;
+      padding: 0.5rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.15s;
+    }
+    .done-btn:hover {
+      background: var(--bg);
+      border-color: var(--text-muted);
+    }
+    .done-btn.ready {
+      border: none;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+    }
+    .done-btn.ready:hover {
+      background: var(--accent-hover);
+    }
+    /* ---- Done overlay ---- */
+    .done-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+    }
+    .done-overlay.visible {
+      display: flex;
+    }
+    .done-card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 2rem 3rem;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+    }
+    .done-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .done-card p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.5;
+    }
+    .done-card .btn-row {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+    }
+    .done-card button {
+      padding: 0.5rem 1.25rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--surface);
+      cursor: pointer;
+      font-size: 0.875rem;
+    }
+    .done-card button:hover {
+      background: var(--bg);
+    }
+    /* ---- Toast ---- */
+    .toast {
+      position: fixed;
+      bottom: 5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 0.625rem 1.25rem;
+      border-radius: var(--radius);
+      font-size: 0.875rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+      pointer-events: none;
+      z-index: 200;
+    }
+    .toast.visible {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" style="height:100vh; display:flex; flex-direction:column;">
+    <div class="header">
+      <div>
+        <h1>Eval Review: <span id="skill-name"></span></h1>
+        <div class="instructions">Review each output and leave feedback below. Navigate with arrow keys or buttons. When done, copy feedback and paste into Claude Code.</div>
+      </div>
+      <div class="progress" id="progress"></div>
+    </div>
+
+    <!-- View tabs (only shown when benchmark data exists) -->
+    <div class="view-tabs" id="view-tabs" style="display:none;">
+      <button class="view-tab active" onclick="switchView('outputs')">Outputs</button>
+      <button class="view-tab" onclick="switchView('benchmark')">Benchmark</button>
+    </div>
+
+    <!-- Outputs panel (qualitative review) -->
+    <div class="view-panel active" id="panel-outputs">
+    <div class="main">
+      <!-- Prompt -->
+      <div class="section">
+        <div class="section-header">Prompt <span class="config-badge" id="config-badge" style="display:none;"></span></div>
+        <div class="section-body">
+          <div class="prompt-text" id="prompt-text"></div>
+        </div>
+      </div>
+
+      <!-- Outputs -->
+      <div class="section">
+        <div class="section-header">Output</div>
+        <div class="section-body" id="outputs-body">
+          <div class="empty-state">No output files found</div>
+        </div>
+      </div>
+
+      <!-- Previous Output (collapsible) -->
+      <div class="section" id="prev-outputs-section" style="display:none;">
+        <div class="section-header">
+          <div class="grades-toggle" onclick="togglePrevOutputs()">
+            <span class="arrow" id="prev-outputs-arrow">&#9654;</span>
+            Previous Output
+          </div>
+        </div>
+        <div class="grades-content" id="prev-outputs-content"></div>
+      </div>
+
+      <!-- Grades (collapsible) -->
+      <div class="section" id="grades-section" style="display:none;">
+        <div class="section-header">
+          <div class="grades-toggle" onclick="toggleGrades()">
+            <span class="arrow" id="grades-arrow">&#9654;</span>
+            Formal Grades
+          </div>
+        </div>
+        <div class="grades-content" id="grades-content"></div>
+      </div>
+
+      <!-- Feedback -->
+      <div class="section">
+        <div class="section-header">Your Feedback</div>
+        <div class="section-body">
+          <textarea
+            class="feedback-textarea"
+            id="feedback"
+            placeholder="What do you think of this output? Any issues, suggestions, or things that look great?"
+          ></textarea>
+          <div class="feedback-status" id="feedback-status"></div>
+          <div class="prev-feedback" id="prev-feedback" style="display:none;">
+            <div class="prev-feedback-label">Previous feedback</div>
+            <div id="prev-feedback-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="nav" id="outputs-nav">
+      <button class="nav-btn" id="prev-btn" onclick="navigate(-1)">&#8592; Previous</button>
+      <button class="done-btn" id="done-btn" onclick="showDoneDialog()">Submit All Reviews</button>
+      <button class="nav-btn" id="next-btn" onclick="navigate(1)">Next &#8594;</button>
+    </div>
+    </div><!-- end panel-outputs -->
+
+    <!-- Benchmark panel (quantitative stats) -->
+    <div class="view-panel" id="panel-benchmark">
+      <div class="benchmark-view" id="benchmark-content">
+        <div class="benchmark-empty">No benchmark data available. Run a benchmark to see quantitative results here.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Done overlay -->
+  <div class="done-overlay" id="done-overlay">
+    <div class="done-card">
+      <h2>Review Complete</h2>
+      <p>Your feedback has been saved. Go back to your Claude Code session and tell Claude you're done reviewing.</p>
+      <div class="btn-row">
+        <button onclick="closeDoneDialog()">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ---- Embedded data (injected by generate_review.py) ----
+    const EMBEDDED_DATA = {"skill_name": "rxstudy-ios", "runs": [{"id": "eval-0-with_skill", "prompt": "\u5e2e\u6211\u770b\u770b\u4e24\u4e2a Target \u7684\u4f9d\u8d56\u6709\u4ec0\u4e48\u533a\u522b", "eval_id": 0, "outputs": [{"name": "output.txt", "type": "text", "content": "RxStudy \u548c SwiftUIStudy Target \u4f9d\u8d56\u5bf9\u6bd4\u5206\u6790\n================================================\n\n\u9879\u76ee\u6587\u4ef6\uff1a/Users/dy/Documents/Swift Git/RxStudy/Project.swift\n\n\u4e00\u3001RxStudy Target (UIKit + RxSwift \u67b6\u6784)\n-----------------------------------------\n\n\u4f9d\u8d56\u6570\u91cf\uff1a27\u4e2a\n\n1. RxSwift \u751f\u6001\uff0811\u4e2a\uff09\n   - RxSwift\n   - RxCocoa\n   - RxRelay\n   - RxDataSources\n   - RxGesture\n   - RxTheme\n   - RxSwiftExt\n   - RxOptional\n   - RxBlocking\n   - NSObject-Rx\n   - RxMoya\n\n2. \u7f51\u7edc\u5c42\uff082\u4e2a\uff09\n   - Alamofire\n   - Moya\uff08\u901a\u8fc7 RxMoya\uff09\n\n3. \u56fe\u7247\u52a0\u8f7d\uff081\u4e2a\uff09\n   - Kingfisher\n\n4. \u5e03\u5c40\uff081\u4e2a\uff09\n   - SnapKit\n\n5. \u5de5\u5177\u5e93\uff085\u4e2a\uff09\n   - KeychainAccess\n   - CocoaLumberjack\n   - MarqueeLabel\n   - SFSafeSymbols\n   - ZipArchive\n\n6. UI \u5de5\u5177\uff083\u4e2a\uff09\n   - MBProgressHUD\n   - SVProgressHUD\n   - MJRefresh\n\n7. \u5176\u4ed6 UI \u7ec4\u4ef6\uff083\u4e2a\uff09\n   - JXSegmentedView\n   - DZNEmptyDataSet\n   - FSPagerView\n\n8. \u8bb8\u53ef\u8bc1\u5217\u8868\uff081\u4e2a\uff09\n   - AcknowList\n\n9. \u672c\u5730\u4f9d\u8d56\uff081\u4e2a\uff09\n   - TheRouter\uff08\u6e90\u7801\u96c6\u6210\uff0c\u8def\u5f84\uff1aPackages/ThirdParty/TheRouter/Sources\uff09\n\n\n\u4e8c\u3001SwiftUIStudy Target (SwiftUI + async/await \u67b6\u6784)\n----------------------------------------------------\n\n\u4f9d\u8d56\u6570\u91cf\uff1a7\u4e2a\n\n1. \u7f51\u7edc\u5c42\uff082\u4e2a\uff09\n   - Moya\n   - Alamofire\n\n2. \u56fe\u7247\u52a0\u8f7d\uff081\u4e2a\uff09\n   - Kingfisher\n\n3. WebView\uff081\u4e2a\uff09\n   - WebUI\n\n4. UI \u5de5\u5177\uff082\u4e2a\uff09\n   - ProgressHUD\n   - SwiftUIIntrospect\n\n5. SwiftUI \u6269\u5c55\uff081\u4e2a\uff09\n   - SwiftUIX\n\n\n\u4e09\u3001\u4e3b\u8981\u533a\u522b\u603b\u7ed3\n----------------\n\n| \u7ef4\u5ea6          | RxStudy                      | SwiftUIStudy                  |\n|---------------|------------------------------|-------------------------------|\n| \u67b6\u6784\u98ce\u683c      | UIKit + RxSwift (\u54cd\u5e94\u5f0f)     | SwiftUI + async/await (\u58f0\u660e\u5f0f)|\n| \u4f9d\u8d56\u6570\u91cf      | 27\u4e2a                         | 7\u4e2a                           |\n| RxSwift \u751f\u6001  | \u5b8c\u6574\u4f7f\u7528                      | \u4e0d\u4f7f\u7528                        |\n| \u5e03\u5c40\u6846\u67b6      | SnapKit (Auto Layout)        | \u4e0d\u4f7f\u7528\uff08SwiftUI \u539f\u751f\u5e03\u5c40\uff09    |\n| \u5237\u65b0\u7ec4\u4ef6      | MJRefresh                    | \u4e0d\u4f7f\u7528                        |\n| \u8fdb\u5ea6HUD       | MBProgressHUD / SVProgressHUD| ProgressHUD                   |\n| \u5206\u6bb5\u63a7\u5236\u5668    | JXSegmentedView              | \u4e0d\u4f7f\u7528                        |\n| \u7a7a\u6570\u636e\u5c55\u793a    | DZNEmptyDataSet              | \u4e0d\u4f7f\u7528                        |\n| \u8f6e\u64ad\u56fe        | FSPagerView                  | \u4e0d\u4f7f\u7528                        |\n| Web\u6846\u67b6       | UIKit WebView                | WebUI                         |\n| \u8def\u7531          | TheRouter (\u672c\u5730\u6e90\u7801)          | \u4e0d\u4f7f\u7528                        |\n| \u65e5\u5fd7\u6846\u67b6      | CocoaLumberjack              | \u4e0d\u4f7f\u7528                        |\n| Keychain      | KeychainAccess               | \u4e0d\u4f7f\u7528                        |\n| \u672c\u5730\u5305        | FSPagerView, TheRouter        | \u65e0                            |\n\n\u56db\u3001\u603b\u7ed3\n--------\n\nRxStudy \u662f\u4e00\u4e2a\u529f\u80fd\u5b8c\u6574\u7684 App\uff0c\u4f7f\u7528\u4f20\u7edf\u7684 RxSwift \u54cd\u5e94\u5f0f\u7f16\u7a0b\u8303\u5f0f\uff0c\u4f9d\u8d56\u4e30\u5bcc\uff08\u7ea627\u4e2a\uff09\uff0c\n\u9002\u5408\u590d\u6742\u7684 UIKit \u5f00\u53d1\u548c\u9700\u8981\u7cbe\u7ec6\u63a7\u5236\u754c\u9762\u7684\u573a\u666f\u3002\n\nSwiftUIStudy \u662f\u4e00\u4e2a\u8f7b\u91cf\u7ea7\u7684 SwiftUI \u63a2\u7d22\u9879\u76ee\uff0c\u4f7f\u7528\u73b0\u4ee3\u7684 async/await \u5f02\u6b65\u7f16\u7a0b\uff0c\n\u4f9d\u8d56\u7cbe\u7b80\uff08\u4ec57\u4e2a\uff09\uff0c\u4e13\u6ce8\u4e8e SwiftUI \u672c\u8eab\u7684\u5b66\u4e60\u548c\u5feb\u901f\u5f00\u53d1\u3002\n\nSwiftUIStudy \u53ef\u4ee5\u770b\u4f5c\u662f RxStudy \u7684 SwiftUI \u7b80\u5316\u7248\u672c\uff0c\u53bb\u9664\u4e86 RxSwift \u751f\u6001\uff0c\n\u4f7f\u7528 SwiftUI \u539f\u751f API \u66ff\u4ee3\u5927\u90e8\u5206\u529f\u80fd\u3002\n"}], "grading": {"run_id": "eval-0-with_skill", "assertions": [{"text": "\u5e94\u5217\u51fa RxStudy \u7684 RxSwift \u751f\u6001\u4f9d\u8d56\uff08RxSwift, RxCocoa, RxRelay \u7b49\uff09", "passed": true, "evidence": "\u5217\u51fa\u4e86\u5b8c\u6574\u7684 RxSwift \u751f\u6001\uff08RxSwift\u3001RxCocoa\u3001RxRelay\u3001RxDataSources\u3001RxGesture \u7b49 11 \u4e2a\uff09"}, {"text": "\u5e94\u5217\u51fa SwiftUIApp \u7684\u4f9d\u8d56\uff08Moya, Kingfisher, SwiftUIX \u7b49\uff09", "passed": true, "evidence": "\u5217\u51fa\u4e86 SwiftUIStudy \u7684 7 \u4e2a\u4f9d\u8d56\uff08Moya\u3001Alamofire\u3001Kingfisher\u3001WebUI\u3001ProgressHUD\u3001SwiftUIIntrospect\u3001SwiftUIX\uff09"}, {"text": "\u5e94\u6807\u6ce8\u5171\u7528\u4f9d\u8d56\uff08Alamofire, Kingfisher\uff09", "passed": true, "evidence": "\u5728\u5bf9\u6bd4\u8868\u683c\u4e2d\u6807\u6ce8\u4e86\u5171\u7528\u4f9d\u8d56"}]}}, {"id": "eval-0-without_skill", "prompt": "\u5e2e\u6211\u770b\u770b\u4e24\u4e2a Target \u7684\u4f9d\u8d56\u6709\u4ec0\u4e48\u533a\u522b", "eval_id": 0, "outputs": [{"name": "output.txt", "type": "text", "content": "# RxStudy \u4e24\u4e2a Target \u4f9d\u8d56\u5bf9\u6bd4\u5206\u6790\n\n## Target \u6982\u89c8\n\n| Target \u540d\u79f0 | Bundle ID | \u7c7b\u578b | \u7528\u9014 |\n|------------|-----------|------|------|\n| RxStudy | com.lostsakura.RxStudy | App | \u4e3b\u5de5\u7a0b\uff08\u57fa\u4e8e RxSwift + UIKit\uff09 |\n| SwiftUIStudy | com.lostsakura.RxStudy.SwiftUIStudy | App | SwiftUI \u8fc1\u79fb\u4e13\u7528\uff08\u57fa\u4e8e SwiftUI\uff09 |\n\n---\n\n## \u4f9d\u8d56\u5bf9\u6bd4\u8868\n\n### 1. RxSwift \u751f\u6001\uff08RxStudy \u72ec\u6709\uff09\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy |\n|--------|---------|--------------|\n| RxSwift | \u2705 | \u274c |\n| RxCocoa | \u2705 | \u274c |\n| RxRelay | \u2705 | \u274c |\n| RxDataSources | \u2705 | \u274c |\n| RxGesture | \u2705 | \u274c |\n| RxTheme | \u2705 | \u274c |\n| RxSwiftExt | \u2705 | \u274c |\n| RxOptional | \u2705 | \u274c |\n| RxBlocking | \u2705 | \u274c |\n| NSObject-Rx | \u2705 | \u274c |\n\n### 2. \u7f51\u7edc\u5c42\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy | \u8bf4\u660e |\n|--------|---------|--------------|------|\n| RxMoya | \u2705 | \u274c | RxSwift \u5c01\u88c5\u7684 Moya |\n| Moya | \u274c | \u2705 | \u57fa\u7840\u7f51\u7edc\u5c42 |\n| Alamofire | \u2705 | \u2705 | \u901a\u7528 HTTP \u5e93 |\n\n### 3. \u56fe\u7247\u52a0\u8f7d\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy |\n|--------|---------|--------------|\n| Kingfisher | \u2705 | \u2705 |\n\n### 4. \u5e03\u5c40\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy | \u8bf4\u660e |\n|--------|---------|--------------|------|\n| SnapKit | \u2705 | \u274c | UIKit \u5e03\u5c40\u5e93 |\n| FlexLayout | \u274c | \u274c | \u5df2\u79fb\u9664\uff08\u6539\u7528\u5b98\u65b9 SPM\uff09 |\n\n### 5. UI \u5de5\u5177\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy | \u8bf4\u660e |\n|--------|---------|--------------|------|\n| MBProgressHUD | \u2705 | \u274c | UIKit \u8fdb\u5ea6 HUD |\n| SVProgressHUD | \u2705 | \u274c | UIKit \u8fdb\u5ea6 HUD |\n| MJRefresh | \u2705 | \u274c | UIKit \u4e0b\u62c9\u5237\u65b0 |\n| ProgressHUD | \u274c | \u2705 | SwiftUI \u8fdb\u5ea6 HUD |\n| SwiftUIIntrospect | \u274c | \u2705 | SwiftUI  introspection |\n| SwiftUIX | \u274c | \u2705 | SwiftUI \u6269\u5c55\u5e93 |\n\n### 6. \u5176\u4ed6 UI \u7ec4\u4ef6\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy | \u8bf4\u660e |\n|--------|---------|--------------|------|\n| JXSegmentedView | \u2705 | \u274c | \u5206\u6bb5\u63a7\u5236\u5668\uff08UIKit\uff09 |\n| DZNEmptyDataSet | \u2705 | \u274c | \u7a7a\u6570\u636e\u5c55\u793a\uff08UIKit\uff09 |\n| FSPagerView | \u2705 | \u274c | \u8f6e\u64ad\u56fe\uff08UIKit\uff09 |\n| MarqueeLabel | \u2705 | \u274c | \u6eda\u52a8\u6807\u7b7e |\n| PagerTabStripView | \u274c | \u274c | \u5df2\u6ce8\u91ca |\n\n### 7. Web \u76f8\u5173\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy | \u8bf4\u660e |\n|--------|---------|--------------|------|\n| WebUI | \u274c | \u2705 | SwiftUI WebView \u652f\u6301 |\n\n### 8. \u5de5\u5177\u5e93\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy |\n|--------|---------|--------------|\n| KeychainAccess | \u2705 | \u274c |\n| CocoaLumberjack | \u2705 | \u274c |\n| SFSafeSymbols | \u2705 | \u274c |\n| ZipArchive | \u2705 | \u274c |\n\n### 9. \u8bb8\u53ef\u8bc1\n\n| \u4f9d\u8d56\u5e93 | RxStudy | SwiftUIStudy |\n|--------|---------|--------------|\n| AcknowList | \u2705 | \u274c |\n\n---\n\n## \u6838\u5fc3\u5dee\u5f02\u603b\u7ed3\n\n### RxStudy\uff08\u4e3b\u5de5\u7a0b\uff09\u7279\u70b9\uff1a\n1. **\u5b8c\u6574\u7684 RxSwift \u54cd\u5e94\u5f0f\u7f16\u7a0b\u751f\u6001** - 10 \u4e2a Rx \u76f8\u5173\u4f9d\u8d56\n2. **UIKit \u4e3a\u4e3b** - \u4f7f\u7528 SnapKit\u3001MBProgressHUD\u3001MJRefresh \u7b49 UIKit \u5e93\n3. **\u66f4\u591a\u7b2c\u4e09\u65b9\u7ec4\u4ef6** - JXSegmentedView\u3001DZNEmptyDataSet\u3001FSPagerView \u7b49\n4. **\u4e30\u5bcc\u7684\u5de5\u5177\u5e93** - KeychainAccess\u3001CocoaLumberjack \u7b49\n\n### SwiftUIStudy \u7279\u70b9\uff1a\n1. **\u6781\u7b80\u4f9d\u8d56** - \u4ec5 6 \u4e2a\u5916\u90e8\u4f9d\u8d56\n2. **SwiftUI \u4e3a\u4e3b** - \u4f7f\u7528 ProgressHUD\u3001SwiftUIIntrospect\u3001SwiftUIX \u7b49 SwiftUI \u5e93\n3. **Moya + async/await** - \u4f7f\u7528\u539f\u751f Moya \u800c\u975e RxMoya\n4. **WebUI \u652f\u6301** - \u4e13\u95e8\u7528\u4e8e WebView \u5f00\u53d1\n\n---\n\n## \u4f9d\u8d56\u6570\u91cf\u7edf\u8ba1\n\n| Target | \u5916\u90e8\u4f9d\u8d56\u6570\u91cf |\n|--------|-------------|\n| RxStudy | 25 |\n| SwiftUIStudy | 6 |\n\n---\n\n## \u5171\u4eab\u4f9d\u8d56\n\n\u4e24\u4e2a Target \u5171\u540c\u4f9d\u8d56\u7684\u5e93\uff1a\n1. Alamofire\n2. Kingfisher\n"}], "grading": {"run_id": "eval-0-without_skill", "assertions": [{"text": "\u5e94\u5217\u51fa RxStudy \u7684 RxSwift \u751f\u6001\u4f9d\u8d56\uff08RxSwift, RxCocoa, RxRelay \u7b49\uff09", "passed": true, "evidence": "\u8be6\u7ec6\u5217\u51fa\u4e86 RxSwift \u751f\u6001\u4f9d\u8d56\u8868\u683c"}, {"text": "\u5e94\u5217\u51fa SwiftUIApp \u7684\u4f9d\u8d56\uff08Moya, Kingfisher, SwiftUIX \u7b49\uff09", "passed": true, "evidence": "\u5217\u51fa\u4e86 SwiftUIStudy \u7684 6 \u4e2a\u4f9d\u8d56"}, {"text": "\u5e94\u6807\u6ce8\u5171\u7528\u4f9d\u8d56\uff08Alamofire, Kingfisher\uff09", "passed": true, "evidence": "\u5728\u603b\u7ed3\u90e8\u5206\u660e\u786e\u6807\u6ce8\u4e86\u4e24\u4e2a Target \u7684\u5171\u4eab\u4f9d\u8d56"}]}}, {"id": "eval-1-with_skill", "prompt": "\u6211\u60f3\u5728 SwiftUIApp \u91cc\u52a0\u4e00\u4e2a\u65b0\u529f\u80fd\u6a21\u5757\uff0c\u6d41\u7a0b\u662f\u4ec0\u4e48", "eval_id": 1, "outputs": [{"name": "output.txt", "type": "text", "content": "# SwiftUIApp \u6dfb\u52a0\u65b0\u529f\u80fd\u6a21\u5757\u6d41\u7a0b\n\n## \u9879\u76ee\u67b6\u6784\u6982\u8ff0\n\nSwiftUIApp \u91c7\u7528\u4ee5\u4e0b\u67b6\u6784\uff1a\n\n1. **\u5165\u53e3**: `SwiftUIApp/SwiftUIApp.swift` - App \u751f\u547d\u5468\u671f\u5165\u53e3\uff0c\u5305\u542b TabBarView \u5b9a\u4e49\n2. **\u6a21\u5757\u7ec4\u7ec7**: `SwiftUIApp/Features/` - \u6309\u529f\u80fd\u6a21\u5757\u7ec4\u7ec7\uff0c\u6bcf\u4e2a\u6a21\u5757\u5305\u542b View + ViewModel\n3. **\u72b6\u6001\u7ba1\u7406**: \u4f7f\u7528 Swift 5.9+ \u7684 `@Observable` \u5b8f\n4. **\u7f51\u7edc\u5c42**: \u4f7f\u7528 Moya + async/await\n5. **\u901a\u7528\u7ec4\u4ef6**: `SwiftUIApp/Components/` - \u53ef\u590d\u7528\u7ec4\u4ef6\n6. **\u7f51\u7edc\u670d\u52a1**: `SwiftUIApp/Network/` - API \u670d\u52a1\n\n---\n\n## \u6dfb\u52a0\u65b0\u529f\u80fd\u6a21\u5757\u7684\u5b8c\u6574\u6d41\u7a0b\n\n### \u6b65\u9aa4 1: \u521b\u5efa\u6a21\u5757\u76ee\u5f55\u7ed3\u6784\n\n\u5728 `SwiftUIApp/Features/` \u4e0b\u521b\u5efa\u65b0\u6a21\u5757\u76ee\u5f55\uff1a\n\n```\nSwiftUIApp/Features/NewFeature/\n\u251c\u2500\u2500 NewFeatureView.swift      # \u89c6\u56fe\u6587\u4ef6\n\u2514\u2500\u2500 NewFeatureViewModel.swift  # ViewModel \u6587\u4ef6\n```\n\n### \u6b65\u9aa4 2: \u521b\u5efa ViewModel\n\n\u4f7f\u7528 `@Observable` \u5b8f\u5b9a\u4e49 ViewModel\uff1a\n\n```swift\nimport Foundation\n\n@Observable\nfinal class NewFeatureViewModel {\n    private(set) var isLoading = false\n    private(set) var errorMessage: String?\n    private(set) var items: [ItemModel] = []\n\n    // \u5982\u9700\u7f51\u7edc\u670d\u52a1\n    private let apiService = SomeAPIService.shared\n\n    func loadData() async {\n        isLoading = true\n        defer { isLoading = false }\n\n        do {\n            items = try await apiService.fetchItems()\n        } catch {\n            errorMessage = error.localizedDescription\n        }\n    }\n}\n```\n\n### \u6b65\u9aa4 3: \u521b\u5efa View\n\n\u9075\u5faa\u9879\u76ee\u547d\u540d\u89c4\u8303 `XxxView.swift`\uff1a\n\n```swift\nimport SwiftUI\n\nstruct NewFeatureView: View {\n    @State private var viewModel = NewFeatureViewModel()\n\n    var body: some View {\n        contentView\n            .navigationBar(\"\u65b0\u529f\u80fd\")\n            .onAppear {\n                Task {\n                    await viewModel.loadData()\n                }\n            }\n    }\n\n    @ViewBuilder\n    private var contentView: some View {\n        if viewModel.isLoading {\n            LoadingView(message: \"\u52a0\u8f7d\u4e2d...\")\n        } else if let error = viewModel.errorMessage {\n            ErrorStateView(message: error) {\n                Task { await viewModel.loadData() }\n            }\n        } else if viewModel.items.isEmpty {\n            EmptyStateView(icon: \"tray\", message: \"\u6682\u65e0\u5185\u5bb9\")\n        } else {\n            // \u5217\u8868\u5185\u5bb9\n            List(viewModel.items) { item in\n                ItemRow(item: item)\n            }\n        }\n    }\n}\n```\n\n### \u6b65\u9aa4 4: \u5982\u9700\u7f51\u7edc\u8bf7\u6c42\uff0c\u521b\u5efa API Service\n\n\u5728 `SwiftUIApp/Network/` \u4e0b\u521b\u5efa API Service\uff1a\n\n```swift\n// 1. \u5b9a\u4e49 TargetType \u534f\u8bae\uff08\u901a\u5e38\u5728 RxStudy \u7f51\u7edc\u5c42\u5b9a\u4e49\uff09\nenum NewFeatureAPI {\n    case fetchItems\n    case fetchItemDetail(id: Int)\n}\n\n// 2. \u521b\u5efa API Service\nfinal class NewFeatureAPIService {\n    static let shared = NewFeatureAPIService()\n\n    private let provider = MoyaProvider<NewFeatureAPI>()\n\n    func fetchItems() async throws -> [ItemModel] {\n        try await provider.requestDecoded(.fetchItems, responseType: BaseModel<[ItemModel]>.self)\n    }\n}\n```\n\n### \u6b65\u9aa4 5: \u5728 TabBarView \u4e2d\u6dfb\u52a0\uff08\u5982\u679c\u662f\u9876\u7ea7 Tab\uff09\n\n\u7f16\u8f91 `SwiftUIApp/SwiftUIApp.swift`\uff0c\u5728 TabBarView \u4e2d\u6dfb\u52a0\u65b0 Tab\uff1a\n\n```swift\nTabView(selection: $selectedTab) {\n    // ... \u73b0\u6709 tabs ...\n\n    // \u65b0\u589e Tab\n    NavigationView {\n        NewFeatureView()\n    }\n    .navigationViewStyle(.stack)\n    .tabItem {\n        Label(\"\u65b0\u529f\u80fd\", systemImage: \"star.fill\")\n    }\n    .tag(5)  // \u4f7f\u7528\u65b0\u7684 tag \u503c\n}\n```\n\n### \u6b65\u9aa4 6: \u6216\u4f5c\u4e3a\u5b50\u9875\u9762\u6dfb\u52a0\u5230\u73b0\u6709\u529f\u80fd\n\n\u5728 `MineView` \u7b49\u73b0\u6709\u9875\u9762\u4e2d\u901a\u8fc7 NavigationLink \u8df3\u8f6c\uff1a\n\n```swift\nNavigationLink(destination: NewFeatureView()) {\n    FunctionRow(\n        icon: \"star.fill\",\n        title: \"\u65b0\u529f\u80fd\",\n        color: .purple\n    )\n}\n```\n\n---\n\n## \u590d\u7528\u901a\u7528\u7ec4\u4ef6\n\n\u9879\u76ee\u63d0\u4f9b\u4e86\u591a\u4e2a\u53ef\u590d\u7528\u7ec4\u4ef6\uff0c\u4f4d\u4e8e `SwiftUIApp/Components/`\uff1a\n\n| \u7ec4\u4ef6 | \u7528\u9014 |\n|------|------|\n| `LoadingView` | \u52a0\u8f7d\u72b6\u6001\u663e\u793a |\n| `ErrorStateView` | \u9519\u8bef\u72b6\u6001\u663e\u793a |\n| `EmptyStateView` | \u7a7a\u72b6\u6001\u663e\u793a |\n| `ArticleCellView` | \u6587\u7ae0\u5217\u8868\u5355\u5143\u683c |\n| `PaginatedArticleListView` | \u5206\u9875\u6587\u7ae0\u5217\u8868 |\n| `HorizontalCategoryPicker` | \u6a2a\u5411\u5206\u7c7b\u9009\u62e9\u5668 |\n| `CategoryPageView<T>` | \u901a\u7528\u5206\u7c7b\u9875\u9762\uff08\u53ef\u76f4\u63a5\u590d\u7528\uff09 |\n| `WebUIController` | WebView \u5bb9\u5668 |\n| `ShareSheet` | \u5206\u4eab\u9762\u677f |\n| `BannerCarouselView` | \u8f6e\u64ad\u56fe |\n| `CategoryTag` | \u5206\u7c7b\u6807\u7b7e |\n\n---\n\n## \u5982\u9700\u6dfb\u52a0\u65b0\u7684\u5206\u7c7b\u7c7b\u578b\n\n\u5df2\u6709\u901a\u7528\u5206\u7c7b\u7ec4\u4ef6 `CategoryPageView<T>`\uff0c\u652f\u6301\u5feb\u901f\u6dfb\u52a0\u65b0\u5206\u7c7b\u7c7b\u578b\uff1a\n\n1. \u5728 `CategoryType` \u679a\u4e3e\u4e2d\u6dfb\u52a0\u65b0 case\n2. \u786e\u4fdd\u5bf9\u5e94\u7684 Tag Model \u5b9e\u73b0 `CategoryItem` \u534f\u8bae\n3. \u5728 `UnifiedCategoryService` \u4e2d\u6dfb\u52a0\u5bf9\u5e94\u5206\u652f\n\n---\n\n## \u6587\u4ef6\u547d\u540d\u89c4\u8303\n\n- View \u6587\u4ef6: `XxxView.swift`\n- ViewModel \u6587\u4ef6: `XxxViewModel.swift`\n- API Service \u6587\u4ef6: `XxxAPIService.swift`\n- Model \u6587\u4ef6: `XxxModels.swift`\n\n---\n\n## \u73b0\u6709\u6a21\u5757\u53c2\u8003\n\n\u73b0\u6709\u529f\u80fd\u6a21\u5757\u4f4d\u4e8e `SwiftUIApp/Features/`\uff1a\n\n| \u6a21\u5757 | \u8def\u5f84 | \u8bf4\u660e |\n|------|------|------|\n| \u9996\u9875 | `Features/Home/` | HomeView + HomeViewModel |\n| \u9879\u76ee | `Features/Category/` | \u4f7f\u7528\u901a\u7528 CategoryPageView |\n| \u516c\u4f17\u53f7 | `Features/PublicNumber/` | PublicNumberView + ViewModel |\n| \u4f53\u7cfb | `Features/Tree/` | TreeView + TreeViewModel |\n| \u6211\u7684 | `Features/Mine/` | MineView + MineViewModel |\n| \u767b\u5f55 | `Features/Login/` | LoginView + LoginViewModel |\n| \u6536\u85cf | `Features/Collect/` | CollectView + CollectViewModel |\n| \u79ef\u5206 | `Features/Coin/` | CoinView + CoinViewModel |\n| \u79ef\u5206\u6392\u884c | `Features/CoinRankList/` | CoinRankListView + ViewModel |\n| \u641c\u7d22 | `Features/Search/` | HotKeyView + SearchResultView |\n"}], "grading": {"run_id": "eval-1-with_skill", "assertions": [{"text": "\u5e94\u8bf4\u660e MVVM \u7ed3\u6784\u548c\u6587\u4ef6\u653e\u7f6e\u4f4d\u7f6e\uff08SwiftUIApp/Features/\uff09", "passed": true, "evidence": "\u8be6\u7ec6\u8bf4\u660e\u4e86 MVVM \u67b6\u6784\uff0c\u6587\u4ef6\u653e\u7f6e\u5728 SwiftUIApp/Features/ \u76ee\u5f55"}, {"text": "\u5e94\u7ed9\u51fa ViewModel \u5b9e\u73b0\u793a\u4f8b\uff08@Observable\uff09", "passed": true, "evidence": "\u63d0\u4f9b\u4e86\u5b8c\u6574\u7684 @Observable NewFeatureViewModel \u4ee3\u7801\u793a\u4f8b"}, {"text": "\u5e94\u8bf4\u660e\u5982\u4f55\u6dfb\u52a0 Tab \u6216\u5b50\u9875\u9762", "passed": true, "evidence": "\u8be6\u7ec6\u8bf4\u660e\u4e86\u4e24\u79cd\u65b9\u5f0f\uff1aTabBarView \u6dfb\u52a0\u548c NavigationLink \u5b50\u9875\u9762\u8df3\u8f6c"}]}}, {"id": "eval-1-without_skill", "prompt": "\u6211\u60f3\u5728 SwiftUIApp \u91cc\u52a0\u4e00\u4e2a\u65b0\u529f\u80fd\u6a21\u5757\uff0c\u6d41\u7a0b\u662f\u4ec0\u4e48", "eval_id": 1, "outputs": [{"name": "output.txt", "type": "text", "content": "# SwiftUIApp \u6dfb\u52a0\u65b0\u529f\u80fd\u6a21\u5757\u6d41\u7a0b\n\n## \u4e00\u3001\u9879\u76ee\u67b6\u6784\u6982\u8ff0\n\nSwiftUIApp \u662f RxStudy \u9879\u76ee\u4e2d\u4e13\u95e8\u7528\u4e8e SwiftUI \u8fc1\u79fb\u7684\u72ec\u7acb Target\uff08\u540d\u4e3a SwiftUIStudy\uff09\uff0c\u4f4d\u4e8e `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp` \u76ee\u5f55\u4e0b\u3002\n\n### 1.1 \u76ee\u5f55\u7ed3\u6784\n\n```\nSwiftUIApp/\n\u251c\u2500\u2500 SwiftUIApp.swift          # App \u5165\u53e3\u6587\u4ef6\uff0c\u5305\u542b TabBar \u914d\u7f6e\n\u251c\u2500\u2500 Features/                 # \u529f\u80fd\u6a21\u5757\u76ee\u5f55\n\u2502   \u251c\u2500\u2500 Home/                 # \u9996\u9875\n\u2502   \u251c\u2500\u2500 Tree/                 # \u4f53\u7cfb\n\u2502   \u251c\u2500\u2500 Search/               # \u641c\u7d22\n\u2502   \u251c\u2500\u2500 Category/             # \u901a\u7528\u5206\u7c7b\u7ec4\u4ef6\uff08\u88ab\u9879\u76ee\u3001\u516c\u4f17\u53f7\u590d\u7528\uff09\n\u2502   \u251c\u2500\u2500 Mine/                 # \u6211\u7684\n\u2502   \u251c\u2500\u2500 Coin/                 # \u79ef\u5206\n\u2502   \u251c\u2500\u2500 CoinRankList/         # \u79ef\u5206\u6392\u884c\u699c\n\u2502   \u251c\u2500\u2500 Collect/              # \u6536\u85cf\n\u2502   \u251c\u2500\u2500 Login/                # \u767b\u5f55\n\u2502   \u251c\u2500\u2500 Project/              # \u9879\u76ee\n\u2502   \u2514\u2500\u2500 PublicNumber/         # \u516c\u4f17\u53f7\n\u251c\u2500\u2500 Components/               # \u901a\u7528 UI \u7ec4\u4ef6\n\u2502   \u251c\u2500\u2500 ArticleCellView.swift # \u6587\u7ae0\u5355\u5143\u683c\n\u2502   \u251c\u2500\u2500 BannerCarouselView.swift\n\u2502   \u251c\u2500\u2500 CategoryTag.swift\n\u2502   \u251c\u2500\u2500 EmptyStateView.swift\n\u2502   \u251c\u2500\u2500 ErrorStateView.swift\n\u2502   \u251c\u2500\u2500 HorizontalCategoryPicker.swift\n\u2502   \u251c\u2500\u2500 LoadingView.swift\n\u2502   \u251c\u2500\u2500 PaginatedArticleListView.swift\n\u2502   \u2514\u2500\u2500 WebUIController.swift\n\u251c\u2500\u2500 Extensions/                # Swift \u6269\u5c55\n\u251c\u2500\u2500 Models/                   # \u672c\u5730\u6570\u636e\u6a21\u578b\n\u2502   \u251c\u2500\u2500 CommonModels.swift\n\u2502   \u251c\u2500\u2500 CoinCollectModels.swift\n\u2502   \u2514\u2500\u2500 EmptyModel.swift\n\u2514\u2500\u2500 Network/                  # \u7f51\u7edc\u670d\u52a1\u5c42\n    \u251c\u2500\u2500 APIService.swift      # Moya \u6269\u5c55\u57fa\u7c7b\n    \u251c\u2500\u2500 HomeAPIService.swift\n    \u251c\u2500\u2500 AccountAPIService.swift\n    \u251c\u2500\u2500 CoinAPIService.swift\n    \u251c\u2500\u2500 TreeAPIService.swift\n    \u251c\u2500\u2500 ProjectAPIService.swift\n    \u251c\u2500\u2500 PublicNumberAPIService.swift\n    \u2514\u2500\u2500 CollectAPIService.swift\n```\n\n### 1.2 \u6280\u672f\u6808\n\n- **UI \u6846\u67b6**: SwiftUI (iOS 17.6+)\n- **\u72b6\u6001\u7ba1\u7406**: @Observable (iOS 17+ \u65b0\u8bed\u6cd5)\n- **\u7f51\u7edc\u5c42**: Moya + async/await\n- **\u56fe\u7247\u52a0\u8f7d**: Kingfisher\n- **WebView**: WebUI\n- **\u9879\u76ee\u6784\u5efa**: Tuist\n\n### 1.3 \u73b0\u6709\u529f\u80fd\u6a21\u5757\n\n\u4ece `SwiftUIApp.swift` \u4e2d\u7684 TabBarView \u53ef\u4ee5\u770b\u5230\u5f53\u524d\u5305\u542b\u4ee5\u4e0b Tab\uff1a\n\n1. **\u9996\u9875 (Home)** - HomeView + HomeViewModel + HomeAPIService\n2. **\u9879\u76ee (Project)** - \u590d\u7528 CategoryPageView<ProjectTagModel>\n3. **\u516c\u4f17\u53f7 (PublicNumber)** - \u590d\u7528 CategoryPageView<PublicNumberTagModel>\n4. **\u4f53\u7cfb (Tree)** - TreeView + TreeViewModel + TreeAPIService\n5. **\u6211\u7684 (Mine)** - MineView + MineViewModel + AccountAPIService\n\n---\n\n## \u4e8c\u3001\u6dfb\u52a0\u65b0\u529f\u80fd\u6a21\u5757\u7684\u6d41\u7a0b\n\n### 2.1 \u786e\u5b9a\u6a21\u5757\u7c7b\u578b\n\n\u65b0\u529f\u80fd\u6a21\u5757\u5206\u4e3a\u4e24\u79cd\u7c7b\u578b\uff1a\n\n#### \u7c7b\u578b A\uff1a\u72ec\u7acb\u9875\u9762\uff08\u9700\u8981\u65b0\u5efa\u5b8c\u6574\u6a21\u5757\uff09\n\u5982\u679c\u65b0\u529f\u80fd\u662f\u4e00\u4e2a\u5168\u65b0\u7684\u72ec\u7acb\u9875\u9762\uff0c\u9700\u8981\u5305\u542b\uff1a\n- \u9875\u9762\u89c6\u56fe (View)\n- \u9875\u9762 ViewModel\n- API \u670d\u52a1 (\u5982\u679c\u9700\u8981\u7f51\u7edc\u8bf7\u6c42)\n- \u53ef\u80fd\u8fd8\u9700\u8981\u6570\u636e\u6a21\u578b\n\n#### \u7c7b\u578b B\uff1a\u901a\u7528\u7ec4\u4ef6\u590d\u7528\uff08\u63a8\u8350\uff09\n\u5982\u679c\u65b0\u529f\u80fd\u4e0e\u73b0\u6709\u7ec4\u4ef6\u7c7b\u4f3c\uff08\u5982\u6587\u7ae0\u5217\u8868\uff09\uff0c\u53ef\u4ee5\u4f7f\u7528\u901a\u7528\u7ec4\u4ef6\uff1a\n- CategoryPageView - \u9002\u7528\u4e8e\"\u5206\u7c7b + \u6587\u7ae0\u5217\u8868\"\u573a\u666f\uff08\u9879\u76ee\u3001\u516c\u4f17\u53f7\uff09\n- PaginatedArticleListView - \u5206\u9875\u6587\u7ae0\u5217\u8868\u7ec4\u4ef6\n- ArticleCellView - \u6587\u7ae0\u5355\u5143\u683c\u7ec4\u4ef6\n\n### 2.2 \u6dfb\u52a0\u72ec\u7acb\u9875\u9762\uff08\u7c7b\u578b A\uff09\u7684\u5b8c\u6574\u6d41\u7a0b\n\n#### \u6b65\u9aa4 1\uff1a\u5728 Features \u76ee\u5f55\u4e0b\u521b\u5efa\u529f\u80fd\u6a21\u5757\u76ee\u5f55\n\n\u5728 `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Features/` \u4e0b\u521b\u5efa\u65b0\u6a21\u5757\u76ee\u5f55\uff0c\u4f8b\u5982 `NewFeature/`\uff1a\n\n```\nFeatures/NewFeature/\n\u251c\u2500\u2500 NewFeatureView.swift       # \u9875\u9762\u89c6\u56fe\n\u251c\u2500\u2500 NewFeatureViewModel.swift  # \u9875\u9762 ViewModel\n\u2514\u2500\u2500 (\u53ef\u9009) NewFeatureAPIService.swift  # API \u670d\u52a1\uff08\u5982\u679c\u9700\u8981\u7f51\u7edc\u8bf7\u6c42\uff09\n```\n\n#### \u6b65\u9aa4 2\uff1a\u5b9e\u73b0 ViewModel\n\n\u53c2\u8003 `HomeViewModel.swift` \u7684\u6a21\u5f0f\uff1a\n\n```swift\nimport Foundation\n\n@Observable\nfinal class NewFeatureViewModel {\n    // MARK: - \u72b6\u6001\n    private(set) var articles: [InfoModel] = []\n    private(set) var isLoading = false\n    private(set) var errorMessage: String?\n\n    // MARK: - \u79c1\u6709\u5c5e\u6027\n    private let apiService = NewFeatureAPIService.shared\n    private var currentPage = 0\n\n    // MARK: - \u516c\u5171\u65b9\u6cd5\n    func refresh() async {\n        currentPage = 0\n        await loadData(isRefresh: true)\n    }\n\n    func loadMore() async {\n        // \u5b9e\u73b0\u52a0\u8f7d\u66f4\u591a\u903b\u8f91\n    }\n\n    // MARK: - \u79c1\u6709\u65b9\u6cd5\n    private func loadData(isRefresh: Bool) async {\n        if isRefresh {\n            isLoading = true\n        }\n        // \u5b9e\u73b0\u6570\u636e\u52a0\u8f7d\u903b\u8f91\n    }\n}\n```\n\n#### \u6b65\u9aa4 3\uff1a\u5b9e\u73b0 View\n\n\u53c2\u8003 `HomeView.swift` \u7684\u6a21\u5f0f\uff1a\n\n```swift\nimport SwiftUI\n\nstruct NewFeatureView: View {\n    @State private var viewModel = NewFeatureViewModel()\n\n    var body: some View {\n        ZStack {\n            contentView\n\n            if viewModel.isLoading && viewModel.articles.isEmpty {\n                LoadingView()\n            }\n        }\n        .navigationBar(\"\u65b0\u529f\u80fd\") {} trailing: {\n            // \u53f3\u4fa7\u5bfc\u822a\u6309\u94ae\n        }\n        .task {\n            if viewModel.articles.isEmpty {\n                await viewModel.refresh()\n            }\n        }\n    }\n\n    @ViewBuilder\n    private var contentView: some View {\n        if !viewModel.articles.isEmpty {\n            articleListView\n        } else if !viewModel.isLoading {\n            emptyView\n        } else {\n            EmptyView()\n        }\n    }\n\n    private var articleListView: some View {\n        ScrollView {\n            LazyVStack(spacing: 0) {\n                ForEach(viewModel.articles) { article in\n                    NavigationLink(destination: WebUIController(article: article)) {\n                        ArticleCellView(article: article)\n                    }\n                    .buttonStyle(.plain)\n                }\n            }\n        }\n        .refreshable {\n            await viewModel.refresh()\n        }\n    }\n\n    private var emptyView: some View {\n        EmptyStateView(\n            icon: \"tray\",\n            message: \"\u6682\u65e0\u5185\u5bb9\",\n            showRetry: viewModel.errorMessage != nil\n        ) {\n            Task {\n                await viewModel.refresh()\n            }\n        }\n    }\n}\n\n#Preview {\n    NewFeatureView()\n}\n```\n\n#### \u6b65\u9aa4 4\uff1a\u5b9e\u73b0 API \u670d\u52a1\uff08\u5982\u679c\u9700\u8981\uff09\n\n\u53c2\u8003 `HomeAPIService.swift` \u7684\u6a21\u5f0f\uff1a\n\n```swift\nimport Foundation\nimport Moya\n\nenum NewFeatureAPI {\n    case list(page: Int)\n    case detail(id: Int)\n}\n\nextension NewFeatureAPI: TargetType {\n    var baseURL: URL {\n        return URL(string: \"https://www.wanandroid.com\")!\n    }\n\n    var path: String {\n        switch self {\n        case .list(let page):\n            return \"/newfeature/list/\\(page)/json\"\n        case .detail(let id):\n            return \"/newfeature/detail/\\(id)/json\"\n        }\n    }\n\n    var task: Task {\n        switch self {\n        default:\n            return .requestPlain\n        }\n    }\n\n    var method: Moya.Method {\n        return .get\n    }\n\n    var headers: [String: String]? {\n        return nil\n    }\n}\n\n@Observable\nfinal class NewFeatureAPIService {\n    static let shared = NewFeatureAPIService()\n\n    private let provider = MoyaProvider<NewFeatureAPI>()\n\n    private init() {}\n\n    func fetchList(page: Int) async throws -> Page<InfoModel> {\n        return try await provider.requestDecoded(.list(page: page), responseType: BaseModel<Page<InfoModel>>.self)\n    }\n}\n```\n\n#### \u6b65\u9aa4 5\uff1a\u5728 TabBarView \u4e2d\u6ce8\u518c\u65b0\u9875\u9762\n\n\u7f16\u8f91 `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/SwiftUIApp.swift`\uff0c\u5728 `TabBarView` \u4e2d\u6dfb\u52a0\u65b0\u7684 Tab\uff1a\n\n```swift\nstruct TabBarView: View {\n    @State private var selectedTab = 0\n\n    var body: some View {\n        TabView(selection: $selectedTab) {\n            // \u73b0\u6709 Tab...\n\n            // \u65b0\u589e\uff1a\u6211\u7684\n            NavigationView {\n                NewFeatureView()\n            }\n            .navigationViewStyle(.stack)\n            .tabItem {\n                Label(\"\u65b0\u529f\u80fd\", systemImage: \"star.fill\")\n            }\n            .tag(5)  // \u4f7f\u7528\u65b0\u7684 tag\n        }\n        .accentColor(.blue)\n        .tint(.blue)\n    }\n}\n```\n\n### 2.3 \u4f7f\u7528\u901a\u7528\u7ec4\u4ef6\uff08\u7c7b\u578b B\uff09\u7684\u6d41\u7a0b\n\n\u5982\u679c\u65b0\u529f\u80fd\u53ef\u4ee5\u7528\u73b0\u6709\u7ec4\u4ef6\u5b9e\u73b0\uff0c\u53ea\u9700\uff1a\n\n#### \u65b9\u5f0f 1\uff1a\u590d\u7528 CategoryPageView\n\n\u9002\u7528\u4e8e\"\u5206\u7c7b + \u6587\u7ae0\u5217\u8868\"\u573a\u666f\uff0c\u76f4\u63a5\u5728 `SwiftUIApp.swift` \u7684 TabBar \u4e2d\u6dfb\u52a0\uff1a\n\n```swift\nNavigationView {\n    CategoryPageView<NewTagModel>(categoryType: .newFeature)\n}\n.navigationViewStyle(.stack)\n.tabItem {\n    Label(\"\u65b0\u529f\u80fd\", systemImage: \"star.fill\")\n}\n.tag(5)\n```\n\n\u7136\u540e\u5728 `CategoryPageViewModel.swift` \u7684 `CategoryType` \u679a\u4e3e\u4e2d\u6dfb\u52a0\u65b0\u7684\u7c7b\u578b\u3002\n\n#### \u65b9\u5f0f 2\uff1a\u590d\u7528 PaginatedArticleListView\n\n\u9002\u7528\u4e8e\u7b80\u5355\u7684\u5206\u9875\u6587\u7ae0\u5217\u8868\uff1a\n\n```swift\nPaginatedArticleListView(\n    fetchAction: { page in\n        // \u8c03\u7528 API \u83b7\u53d6\u6570\u636e\n    },\n    content: { article in\n        // \u6587\u7ae0\u5355\u5143\u683c\n        ArticleCellView(article: article)\n    }\n)\n```\n\n---\n\n## \u4e09\u3001\u6ce8\u610f\u4e8b\u9879\n\n### 3.1 \u6570\u636e\u6a21\u578b\n\n- \u5982\u679c\u65b0\u529f\u80fd\u4f7f\u7528 `InfoModel`\uff0c\u53ef\u4ee5\u76f4\u63a5\u590d\u7528\uff08\u5728 `CommonModels.swift` \u4e2d\u5b9a\u4e49\uff09\n- \u5982\u679c\u9700\u8981\u65b0\u7684\u6570\u636e\u6a21\u578b\uff0c\u5728 `SwiftUIApp/Models/` \u6216 `Shared/Models/` \u4e2d\u6dfb\u52a0\n\n### 3.2 \u5185\u5b58\u4f18\u5316\n\n\u53c2\u8003 `HomeViewModel` \u4e2d\u7684\u5b9e\u73b0\uff0c\u5efa\u8bae\uff1a\n- \u8bbe\u7f6e\u6700\u5927\u6570\u636e\u6761\u6570\u9650\u5236\uff08\u5982 200 \u6761\uff09\n- \u8bbe\u7f6e\u6570\u636e\u6e05\u7406\u9608\u503c\uff08\u5982 250 \u6761\uff09\n- \u8d85\u8fc7\u9608\u503c\u65f6\u79fb\u9664\u65e7\u6570\u636e\n\n### 3.3 \u4ee3\u7801\u89c4\u8303\n\n- \u4f7f\u7528 `@Observable` \u4ee3\u66ff Combine \u7684 `ObservableObject`\n- \u4f7f\u7528 `async/await` \u8fdb\u884c\u5f02\u6b65\u7f16\u7a0b\n- View \u4e2d\u4f7f\u7528 `@State` \u5305\u88c5 ViewModel\n- View \u4e0e ViewModel \u4e4b\u95f4\u901a\u8fc7\u5c5e\u6027\u7ed1\u5b9a\u8fdb\u884c\u901a\u4fe1\n\n### 3.4 Tuist \u6784\u5efa\n\n\u6dfb\u52a0\u65b0\u6587\u4ef6\u540e\uff0c\u901a\u5e38\u4e0d\u9700\u8981\u4fee\u6539 `Project.swift`\uff0c\u56e0\u4e3a `SwiftUIApp/**/*.swift` \u662f glob \u6a21\u5f0f\u5339\u914d\u3002\u4f46\u5982\u679c\u6dfb\u52a0\u4e86\u65b0\u7684\u5916\u90e8\u4f9d\u8d56\uff0c\u9700\u8981\u5728 `SwiftUIStudy` target \u7684 `dependencies` \u4e2d\u6dfb\u52a0\u3002\n\n---\n\n## \u56db\u3001\u603b\u7ed3\u6d41\u7a0b\u56fe\n\n```\n1. \u786e\u5b9a\u6a21\u5757\u7c7b\u578b\n   \u251c\u2500\u2500 \u72ec\u7acb\u9875\u9762 \u2192 \u6267\u884c\u6b65\u9aa4 2-5\n   \u2514\u2500\u2500 \u590d\u7528\u7ec4\u4ef6 \u2192 \u6267\u884c\u6b65\u9aa4 5\uff08\u4ec5\u9700\u6ce8\u518c\u5230 TabBar\uff09\n\n2. \u521b\u5efa\u529f\u80fd\u76ee\u5f55\n   \u2514\u2500\u2500 Features/NewFeature/\n\n3. \u5b9e\u73b0 ViewModel\n   \u2514\u2500\u2500 @Observable + async/await\n\n4. \u5b9e\u73b0 View\n   \u2514\u2500\u2500 @State + contentView \u6a21\u5f0f\n\n5. \u5b9e\u73b0 API \u670d\u52a1\uff08\u5982\u9700\u8981\uff09\n   \u2514\u2500\u2500 Moya TargetType + async/await\n\n6. \u6ce8\u518c\u5230 TabBar\n   \u2514\u2500\u2500 SwiftUIApp.swift\n```\n\n---\n\n## \u4e94\u3001\u76f8\u5173\u6587\u4ef6\u8def\u5f84\u6c47\u603b\n\n| \u6587\u4ef6 | \u8def\u5f84 |\n|------|------|\n| App \u5165\u53e3 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/SwiftUIApp.swift` |\n| \u9879\u76ee\u914d\u7f6e | `/Users/dy/Documents/Swift Git/RxStudy/Project.swift` |\n| \u901a\u7528\u89c6\u56fe\u7ec4\u4ef6 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Components/` |\n| \u5171\u4eab\u6570\u636e\u6a21\u578b | `/Users/dy/Documents/Swift Git/RxStudy/Shared/Models/` |\n| API \u670d\u52a1\u57fa\u7c7b | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Network/APIService.swift` |\n| Home \u6a21\u5757\u53c2\u8003 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Features/Home/` |\n| Category \u6a21\u5757\u53c2\u8003 | `/Users/dy/Documents/Swift Git/RxStudy/SwiftUIApp/Features/Category/` |\n"}], "grading": {"run_id": "eval-1-without_skill", "assertions": [{"text": "\u5e94\u8bf4\u660e MVVM \u7ed3\u6784\u548c\u6587\u4ef6\u653e\u7f6e\u4f4d\u7f6e\uff08SwiftUIApp/Features/\uff09", "passed": true, "evidence": "\u63d0\u4f9b\u4e86\u5b8c\u6574\u7684\u9879\u76ee\u67b6\u6784\u6982\u8ff0\uff0c\u8bf4\u660e\u4e86 Features/ \u76ee\u5f55\u7ed3\u6784"}, {"text": "\u5e94\u7ed9\u51fa ViewModel \u5b9e\u73b0\u793a\u4f8b\uff08@Observable\uff09", "passed": true, "evidence": "\u63d0\u4f9b\u4e86\u5b8c\u6574\u7684 @Observable NewFeatureViewModel \u5b9e\u73b0\u4ee3\u7801"}, {"text": "\u5e94\u8bf4\u660e\u5982\u4f55\u6dfb\u52a0 Tab \u6216\u5b50\u9875\u9762", "passed": true, "evidence": "\u8be6\u7ec6\u8bf4\u660e\u4e86 TabBarView \u6dfb\u52a0\u548c\u7ec4\u4ef6\u590d\u7528\u4e24\u79cd\u65b9\u5f0f"}]}}, {"id": "eval-2-with_skill", "prompt": "\u7f51\u7edc\u5c42\u4e24\u4e2a Target \u7528\u7684\u4e00\u6837\u5417\uff1f\u6709\u4ec0\u4e48\u533a\u522b", "eval_id": 2, "outputs": [{"name": "output.txt", "type": "text", "content": "# \u7f51\u7edc\u5c42\u4e24\u4e2a Target \u5bf9\u6bd4\u5206\u6790\n\n## \u9879\u76ee Target \u6982\u89c8\n\n\u6839\u636e Project.swift \u914d\u7f6e\uff0c\u9879\u76ee\u6709\u4e24\u4e2a Target\uff1a\n\n| Target | \u5305\u540d | \u7c7b\u578b | \u7528\u9014 |\n|--------|------|------|------|\n| RxStudy | com.lostsakura.RxStudy | App | \u4e3b\u5de5\u7a0b\uff08UIKit\uff09 |\n| SwiftUIStudy | com.lostsakura.RxStudy.SwiftUIStudy | App | SwiftUI \u8fc1\u79fb\u4e13\u7528 |\n\n---\n\n## \u7f51\u7edc\u5c42\u5dee\u5f02\u5bf9\u6bd4\n\n### 1. \u4ee3\u7801\u4f4d\u7f6e\n\n- **RxStudy**: `RxStudy/HttpRequest/` \u76ee\u5f55\n  - Provider.swift\u3001AccountService.swift\u3001HomeService.swift \u7b49\n\n- **SwiftUIStudy**: `SwiftUIApp/Network/` \u76ee\u5f55\n  - APIService.swift\u3001AccountAPIService.swift\u3001HomeAPIService.swift \u7b49\n\n---\n\n### 2. \u7f51\u7edc\u6846\u67b6\u4f9d\u8d56\n\n| Target | Moya \u53d8\u4f53 | \u9644\u52a0\u6846\u67b6 |\n|--------|-----------|----------|\n| RxStudy | RxMoya | Alamofire |\n| SwiftUIStudy | Moya (\u7eaf) | Alamofire |\n\n**\u5173\u952e\u533a\u522b**\uff1a\n- RxStudy \u4f7f\u7528 `RxMoya`\uff0c\u7ed3\u5408 RxSwift \u54cd\u5e94\u5f0f\u7f16\u7a0b\n- SwiftUIStudy \u4f7f\u7528\u7eaf Moya + async/await\n\n---\n\n### 3. \u7f16\u7a0b\u8303\u5f0f\n\n#### RxStudy\uff08\u54cd\u5e94\u5f0f RxSwift\uff09\n```swift\n// Provider.swift\nlet homeProvider = MoyaProvider<HomeService>(plugins: plugins)\nhomeProvider.request(.banner) { result in\n    // RxSwift Observable \u65b9\u5f0f\n}\n```\n\n#### SwiftUIStudy\uff08async/await\uff09\n```swift\n// CoinAPIService.swift\nprivate let provider = MoyaProvider<CoinAPI>()\n\nfunc fetchCoinRank(page: Int) async throws -> Page<CoinRankModel> {\n    return try await provider.requestDecoded(.coinRank(page: page), responseType: BaseModel<Page<CoinRankModel>>.self)\n}\n```\n\n---\n\n### 4. Provider \u7ba1\u7406\u65b9\u5f0f\n\n#### RxStudy\uff1a\u96c6\u4e2d\u5f0f + MultiTarget\n```swift\n// Provider.swift\nlet homeProvider = MoyaProvider<HomeService>(plugins: plugins)\nlet myProvider = MoyaProvider<MyService>(endpointClosure: myEndpointClosure, plugins: plugins)\nlet provider = MoyaProvider<MultiTarget>(plugins: plugins)  // \u7edf\u4e00\u5165\u53e3\n```\n\n#### SwiftUIStudy\uff1a\u6bcf\u670d\u52a1\u72ec\u7acb Provider\n```swift\n// \u6bcf\u4e2a XXXAPIService.swift\nprivate let provider = MoyaProvider<CoinAPI>()  // \u72ec\u7acb\u5b9e\u4f8b\n```\n\n---\n\n### 5. \u63d2\u4ef6\u673a\u5236\n\n#### RxStudy\uff1a\u5b8c\u6574\u63d2\u4ef6\u4f53\u7cfb\n```swift\nlet plugins: [PluginType] = [\n    activityPlugin,       // Loading \u7ba1\u7406\n    responseInterceptorPlugin,  // \u54cd\u5e94\u62e6\u622a\n    responseCachePlugin    // \u7f13\u5b58\n]\n```\n\n#### SwiftUIStudy\uff1a\u57fa\u7840\u6269\u5c55\n```swift\n// APIService.swift - \u4ec5\u6269\u5c55\u4e86 requestDecoded \u65b9\u6cd5\nextension MoyaProvider {\n    func requestDecoded<T: Codable>(_ target: Target, responseType: BaseModel<T>.Type) async throws -> T\n}\n```\n\n---\n\n### 6. API \u547d\u540d\u89c4\u8303\n\n| Target | \u679a\u4e3e\u547d\u540d | \u793a\u4f8b |\n|--------|----------|------|\n| RxStudy | XXXService | HomeService, AccountService |\n| SwiftUIStudy | XXXAPI | HomeAPI, AccountAPI |\n\n---\n\n### 7. \u72b6\u6001\u7ba1\u7406\n\n- **RxStudy**: RxRelay\uff08`BehaviorRelay`, `BehaviorSubject`\uff09\n- **SwiftUIStudy**: @Observable \u6ce8\u89e3\n\n---\n\n## \u603b\u7ed3\n\n| \u5bf9\u6bd4\u9879 | RxStudy | SwiftUIStudy |\n|--------|---------|---------------|\n| \u7f16\u7a0b\u8303\u5f0f | RxSwift \u54cd\u5e94\u5f0f | async/await |\n| \u4ee3\u7801\u98ce\u683c | \u547d\u4ee4\u5f0f Rx | \u7b80\u6d01\u5f02\u6b65 |\n| Provider | \u96c6\u4e2d+MultiTarget | \u5206\u6563\u72ec\u7acb |\n| \u63d2\u4ef6\u751f\u6001 | \u5b8c\u6574\uff08loading/\u7f13\u5b58/\u62e6\u622a\uff09 | \u57fa\u7840 |\n| \u9002\u7528\u573a\u666f | \u590d\u6742\u4e1a\u52a1/\u8001\u9879\u76ee | SwiftUI \u65b0\u67b6\u6784 |\n"}], "grading": {"run_id": "eval-2-with_skill", "assertions": [{"text": "\u5e94\u5bf9\u6bd4 RxStudy \u7684 RxSwift \u54cd\u5e94\u5f0f\uff08Observable\uff09vs SwiftUIApp \u7684 async/await", "passed": true, "evidence": "\u660e\u786e\u5bf9\u6bd4\u4e86 RxSwift Observable \u54cd\u5e94\u5f0f\u548c async/await \u4e24\u79cd\u65b9\u5f0f\uff0c\u5e76\u9644\u4e0a\u4ee3\u7801\u793a\u4f8b"}, {"text": "\u5e94\u8bf4\u660e Provider \u7ba1\u7406\u65b9\u5f0f\u5dee\u5f02\uff08\u96c6\u4e2d\u5f0f vs \u5206\u6563\u5f0f\uff09", "passed": true, "evidence": "\u8be6\u7ec6\u8bf4\u660e\u4e86 RxStudy \u96c6\u4e2d\u5f0f+MultiTarget vs SwiftUIStudy \u5206\u6563\u72ec\u7acb Provider"}]}}, {"id": "eval-2-without_skill", "prompt": "\u7f51\u7edc\u5c42\u4e24\u4e2a Target \u7528\u7684\u4e00\u6837\u5417\uff1f\u6709\u4ec0\u4e48\u533a\u522b", "eval_id": 2, "outputs": [{"name": "output.txt", "type": "text", "content": "\u7f51\u7edc\u5c42\u4e24\u4e2a Target \u7528\u7684\u4e00\u6837\u5417\uff1f\u6709\u4ec0\u4e48\u533a\u522b\n=========================================\n\n\u9879\u76ee\u4e2d\u6709\u4e24\u4e2a Target\uff0c\u5747\u4f7f\u7528 Moya \u4f5c\u4e3a\u7f51\u7edc\u5c42\u6846\u67b6\uff0c\u4f46\u5b9e\u73b0\u65b9\u5f0f\u6709\u663e\u8457\u533a\u522b\uff1a\n\n1. RxStudy \u4e3b\u5de5\u7a0b Target\n------------------------\n\u4f4d\u7f6e: RxStudy/HttpRequest/ \u548c Packages/HttpRequest/\n\u7f51\u7edc\u6846\u67b6: Moya + RxMoya (\u57fa\u4e8e RxSwift \u54cd\u5e94\u5f0f\u7f16\u7a0b)\n\n\u7279\u70b9:\n- \u4f7f\u7528 RxSwift \u54cd\u5e94\u5f0f\u7f16\u7a0b\u8303\u5f0f\n- Provider \u96c6\u4e2d\u7ba1\u7406 (homeProvider, myProvider, projectProvider \u7b49)\n- \u652f\u6301 MultiTarget \u5c01\u88c5\n- \u5b8c\u6574\u7684\u63d2\u4ef6\u4f53\u7cfb:\n  * activityPlugin (Loading \u72b6\u6001\u7ba1\u7406)\n  * responseInterceptorPlugin (\u54cd\u5e94\u62e6\u622a)\n  * responseCachePlugin (\u7f13\u5b58)\n- \u652f\u6301 Stub/Mock \u6570\u636e (mockProvider, fakeProvider)\n- \u4f9d\u8d56: RxSwift, RxCocoa, RxMoya \u7b49 RxSwift \u751f\u6001\n\n2. SwiftUIStudy Target\n----------------------\n\u4f4d\u7f6e: SwiftUIApp/Network/\n\u7f51\u7edc\u6846\u67b6: \u7eaf Moya (\u57fa\u4e8e async/await)\n\n\u7279\u70b9:\n- \u4f7f\u7528 Swift \u5e76\u53d1 (async/await)\n- \u6bcf\u4e2a API \u670d\u52a1\u72ec\u7acb\u7ba1\u7406\u81ea\u5df1\u7684 MoyaProvider\n- \u4f7f\u7528 @Observable \u6ce8\u89e3\u7ba1\u7406\u72b6\u6001\n- \u65e0\u989d\u5916\u63d2\u4ef6\u914d\u7f6e\n- \u65e0 RxSwift \u4f9d\u8d56\n- \u4f9d\u8d56: Moya, Alamofire, WebUI\n\n3. \u4e3b\u8981\u533a\u522b\u603b\u7ed3\n--------------\n| \u5bf9\u6bd4\u9879        | RxStudy              | SwiftUIStudy        |\n|--------------|---------------------|---------------------|\n| \u7f16\u7a0b\u8303\u5f0f      | RxSwift \u54cd\u5e94\u5f0f       | async/await         |\n| \u7f51\u7edc\u6846\u67b6      | RxMoya              | Moya                |\n| Provider \u7ba1\u7406 | \u96c6\u4e2d\u5f0f              | \u5206\u6563\u5f0f              |\n| \u63d2\u4ef6\u4f53\u7cfb      | \u5b8c\u6574 (3\u4e2a\u63d2\u4ef6)       | \u65e0                  |\n| \u72b6\u6001\u7ba1\u7406      | RxSwift Observable  | @Observable         |\n| Mock \u652f\u6301    | \u6709                  | \u65e0                  |\n\n4. \u603b\u7ed3\n-------\n\u4e24\u4e2a Target \u4f7f\u7528\u4e86\u4e0d\u540c\u7684\u7f51\u7edc\u5c42\u5b9e\u73b0\u65b9\u5f0f\uff1a\n- RxStudy \u4e3b\u5de5\u7a0b\u91c7\u7528\u4f20\u7edf\u7684 RxSwift \u54cd\u5e94\u5f0f\u65b9\u6848\uff0c\u529f\u80fd\u66f4\u5b8c\u5584\n- SwiftUIStudy \u91c7\u7528\u73b0\u4ee3 Swift \u5e76\u53d1\u65b9\u6848\uff0c\u4ee3\u7801\u66f4\u7b80\u6d01\n\n\u5b83\u4eec\u8c03\u7528\u7684\u662f\u540c\u4e00\u4e2a\u540e\u7aef API (www.wanandroid.com)\uff0c\u4f46\u7f51\u7edc\u8bf7\u6c42\u7684\u5c01\u88c5\u65b9\u5f0f\u5b8c\u5168\u4e0d\u540c\u3002\n"}], "grading": {"run_id": "eval-2-without_skill", "assertions": [{"text": "\u5e94\u5bf9\u6bd4 RxStudy \u7684 RxSwift \u54cd\u5e94\u5f0f\uff08Observable\uff09vs SwiftUIApp \u7684 async/await", "passed": true, "evidence": "\u660e\u786e\u8bf4\u660e\u4e86 RxSwift \u54cd\u5e94\u5f0f vs async/await \u7684\u533a\u522b"}, {"text": "\u5e94\u8bf4\u660e Provider \u7ba1\u7406\u65b9\u5f0f\u5dee\u5f02\uff08\u96c6\u4e2d\u5f0f vs \u5206\u6563\u5f0f\uff09", "passed": true, "evidence": "\u8bf4\u660e\u4e86 RxStudy \u96c6\u4e2d\u5f0f\u7ba1\u7406 vs SwiftUIStudy \u6bcf\u670d\u52a1\u72ec\u7acb\u7ba1\u7406"}]}}], "previous_feedback": {}, "previous_outputs": {}};
+
+    // ---- State ----
+    let feedbackMap = {};  // run_id -> feedback text
+    let currentIndex = 0;
+    let visitedRuns = new Set();
+
+    // ---- Init ----
+    async function init() {
+      // Load saved feedback from server — but only if this isn't a fresh
+      // iteration (indicated by previous_feedback being present). When
+      // previous feedback exists, the feedback.json on disk is stale from
+      // the prior iteration and should not pre-fill the textareas.
+      const hasPrevious = Object.keys(EMBEDDED_DATA.previous_feedback || {}).length > 0
+        || Object.keys(EMBEDDED_DATA.previous_outputs || {}).length > 0;
+      if (!hasPrevious) {
+        try {
+          const resp = await fetch("/api/feedback");
+          const data = await resp.json();
+          if (data.reviews) {
+            for (const r of data.reviews) feedbackMap[r.run_id] = r.feedback;
+          }
+        } catch { /* first run, no feedback yet */ }
+      }
+
+      document.getElementById("skill-name").textContent = EMBEDDED_DATA.skill_name;
+      showRun(0);
+
+      // Wire up feedback auto-save
+      const textarea = document.getElementById("feedback");
+      let saveTimeout = null;
+      textarea.addEventListener("input", () => {
+        clearTimeout(saveTimeout);
+        document.getElementById("feedback-status").textContent = "";
+        saveTimeout = setTimeout(() => saveCurrentFeedback(), 800);
+      });
+    }
+
+    // ---- Navigation ----
+    function navigate(delta) {
+      const newIndex = currentIndex + delta;
+      if (newIndex >= 0 && newIndex < EMBEDDED_DATA.runs.length) {
+        saveCurrentFeedback();
+        showRun(newIndex);
+      }
+    }
+
+    function updateNavButtons() {
+      document.getElementById("prev-btn").disabled = currentIndex === 0;
+      document.getElementById("next-btn").disabled =
+        currentIndex === EMBEDDED_DATA.runs.length - 1;
+    }
+
+    // ---- Show a run ----
+    function showRun(index) {
+      currentIndex = index;
+      const run = EMBEDDED_DATA.runs[index];
+
+      // Progress
+      document.getElementById("progress").textContent =
+        `${index + 1} of ${EMBEDDED_DATA.runs.length}`;
+
+      // Prompt
+      document.getElementById("prompt-text").textContent = run.prompt;
+
+      // Config badge
+      const badge = document.getElementById("config-badge");
+      const configMatch = run.id.match(/(with_skill|without_skill|new_skill|old_skill)/);
+      if (configMatch) {
+        const config = configMatch[1];
+        const isBaseline = config === "without_skill" || config === "old_skill";
+        badge.textContent = config.replace(/_/g, " ");
+        badge.className = "config-badge " + (isBaseline ? "config-baseline" : "config-primary");
+        badge.style.display = "inline-block";
+      } else {
+        badge.style.display = "none";
+      }
+
+      // Outputs
+      renderOutputs(run);
+
+      // Previous outputs
+      renderPrevOutputs(run);
+
+      // Grades
+      renderGrades(run);
+
+      // Previous feedback
+      const prevFb = (EMBEDDED_DATA.previous_feedback || {})[run.id];
+      const prevEl = document.getElementById("prev-feedback");
+      if (prevFb) {
+        document.getElementById("prev-feedback-text").textContent = prevFb;
+        prevEl.style.display = "block";
+      } else {
+        prevEl.style.display = "none";
+      }
+
+      // Feedback
+      document.getElementById("feedback").value = feedbackMap[run.id] || "";
+      document.getElementById("feedback-status").textContent = "";
+
+      updateNavButtons();
+
+      // Track visited runs and promote done button when all visited
+      visitedRuns.add(index);
+      const doneBtn = document.getElementById("done-btn");
+      if (visitedRuns.size >= EMBEDDED_DATA.runs.length) {
+        doneBtn.classList.add("ready");
+      }
+
+      // Scroll main content to top
+      document.querySelector(".main").scrollTop = 0;
+    }
+
+    // ---- Render outputs ----
+    function renderOutputs(run) {
+      const container = document.getElementById("outputs-body");
+      container.innerHTML = "";
+
+      const outputs = run.outputs || [];
+      if (outputs.length === 0) {
+        container.innerHTML = '<div class="empty-state">No output files</div>';
+        return;
+      }
+
+      for (const file of outputs) {
+        const fileDiv = document.createElement("div");
+        fileDiv.className = "output-file";
+
+        // Always show file header with download link
+        const header = document.createElement("div");
+        header.className = "output-file-header";
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = file.name;
+        header.appendChild(nameSpan);
+        const dlBtn = document.createElement("a");
+        dlBtn.className = "dl-btn";
+        dlBtn.textContent = "Download";
+        dlBtn.download = file.name;
+        dlBtn.href = getDownloadUri(file);
+        header.appendChild(dlBtn);
+        fileDiv.appendChild(header);
+
+        const content = document.createElement("div");
+        content.className = "output-file-content";
+
+        if (file.type === "text") {
+          const pre = document.createElement("pre");
+          pre.textContent = file.content;
+          content.appendChild(pre);
+        } else if (file.type === "image") {
+          const img = document.createElement("img");
+          img.src = file.data_uri;
+          img.alt = file.name;
+          content.appendChild(img);
+        } else if (file.type === "pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = file.data_uri;
+          content.appendChild(iframe);
+        } else if (file.type === "xlsx") {
+          renderXlsx(content, file.data_b64);
+        } else if (file.type === "binary") {
+          const a = document.createElement("a");
+          a.className = "download-link";
+          a.href = file.data_uri;
+          a.download = file.name;
+          a.textContent = "Download " + file.name;
+          content.appendChild(a);
+        } else if (file.type === "error") {
+          const pre = document.createElement("pre");
+          pre.textContent = file.content;
+          pre.style.color = "var(--red)";
+          content.appendChild(pre);
+        }
+
+        fileDiv.appendChild(content);
+        container.appendChild(fileDiv);
+      }
+    }
+
+    // ---- XLSX rendering via SheetJS ----
+    function renderXlsx(container, b64Data) {
+      try {
+        const raw = Uint8Array.from(atob(b64Data), c => c.charCodeAt(0));
+        const wb = XLSX.read(raw, { type: "array" });
+
+        for (let i = 0; i < wb.SheetNames.length; i++) {
+          const sheetName = wb.SheetNames[i];
+          const ws = wb.Sheets[sheetName];
+
+          if (wb.SheetNames.length > 1) {
+            const sheetLabel = document.createElement("div");
+            sheetLabel.style.cssText =
+              "font-weight:600; font-size:0.8rem; color:#b0aea5; margin-top:0.5rem; margin-bottom:0.25rem;";
+            sheetLabel.textContent = "Sheet: " + sheetName;
+            container.appendChild(sheetLabel);
+          }
+
+          const htmlStr = XLSX.utils.sheet_to_html(ws, { editable: false });
+          const wrapper = document.createElement("div");
+          wrapper.innerHTML = htmlStr;
+          container.appendChild(wrapper);
+        }
+      } catch (err) {
+        container.textContent = "Error rendering spreadsheet: " + err.message;
+      }
+    }
+
+    // ---- Grades ----
+    function renderGrades(run) {
+      const section = document.getElementById("grades-section");
+      const content = document.getElementById("grades-content");
+
+      if (!run.grading) {
+        section.style.display = "none";
+        return;
+      }
+
+      const grading = run.grading;
+      section.style.display = "block";
+      // Reset to collapsed
+      content.classList.remove("open");
+      document.getElementById("grades-arrow").classList.remove("open");
+
+      const summary = grading.summary || {};
+      const expectations = grading.expectations || [];
+
+      let html = '<div style="padding: 1rem;">';
+
+      // Summary line
+      const passRate = summary.pass_rate != null
+        ? Math.round(summary.pass_rate * 100) + "%"
+        : "?";
+      const badgeClass = summary.pass_rate >= 0.8 ? "grade-pass" : summary.pass_rate >= 0.5 ? "" : "grade-fail";
+      html += '<div class="grades-summary">';
+      html += '<span class="grade-badge ' + badgeClass + '">' + passRate + '</span>';
+      html += '<span>' + (summary.passed || 0) + ' passed, ' + (summary.failed || 0) + ' failed of ' + (summary.total || 0) + '</span>';
+      html += '</div>';
+
+      // Assertions list
+      html += '<ul class="assertion-list">';
+      for (const exp of expectations) {
+        const statusClass = exp.passed ? "pass" : "fail";
+        const statusIcon = exp.passed ? "\u2713" : "\u2717";
+        html += '<li class="assertion-item">';
+        html += '<span class="assertion-status ' + statusClass + '">' + statusIcon + '</span>';
+        html += '<span>' + escapeHtml(exp.text) + '</span>';
+        if (exp.evidence) {
+          html += '<div class="assertion-evidence">' + escapeHtml(exp.evidence) + '</div>';
+        }
+        html += '</li>';
+      }
+      html += '</ul>';
+
+      html += '</div>';
+      content.innerHTML = html;
+    }
+
+    function toggleGrades() {
+      const content = document.getElementById("grades-content");
+      const arrow = document.getElementById("grades-arrow");
+      content.classList.toggle("open");
+      arrow.classList.toggle("open");
+    }
+
+    // ---- Previous outputs (collapsible) ----
+    function renderPrevOutputs(run) {
+      const section = document.getElementById("prev-outputs-section");
+      const content = document.getElementById("prev-outputs-content");
+      const prevOutputs = (EMBEDDED_DATA.previous_outputs || {})[run.id];
+
+      if (!prevOutputs || prevOutputs.length === 0) {
+        section.style.display = "none";
+        return;
+      }
+
+      section.style.display = "block";
+      // Reset to collapsed
+      content.classList.remove("open");
+      document.getElementById("prev-outputs-arrow").classList.remove("open");
+
+      // Render the files into the content area
+      content.innerHTML = "";
+      const wrapper = document.createElement("div");
+      wrapper.style.padding = "1rem";
+
+      for (const file of prevOutputs) {
+        const fileDiv = document.createElement("div");
+        fileDiv.className = "output-file";
+
+        const header = document.createElement("div");
+        header.className = "output-file-header";
+        const nameSpan = document.createElement("span");
+        nameSpan.textContent = file.name;
+        header.appendChild(nameSpan);
+        const dlBtn = document.createElement("a");
+        dlBtn.className = "dl-btn";
+        dlBtn.textContent = "Download";
+        dlBtn.download = file.name;
+        dlBtn.href = getDownloadUri(file);
+        header.appendChild(dlBtn);
+        fileDiv.appendChild(header);
+
+        const fc = document.createElement("div");
+        fc.className = "output-file-content";
+
+        if (file.type === "text") {
+          const pre = document.createElement("pre");
+          pre.textContent = file.content;
+          fc.appendChild(pre);
+        } else if (file.type === "image") {
+          const img = document.createElement("img");
+          img.src = file.data_uri;
+          img.alt = file.name;
+          fc.appendChild(img);
+        } else if (file.type === "pdf") {
+          const iframe = document.createElement("iframe");
+          iframe.src = file.data_uri;
+          fc.appendChild(iframe);
+        } else if (file.type === "xlsx") {
+          renderXlsx(fc, file.data_b64);
+        } else if (file.type === "binary") {
+          const a = document.createElement("a");
+          a.className = "download-link";
+          a.href = file.data_uri;
+          a.download = file.name;
+          a.textContent = "Download " + file.name;
+          fc.appendChild(a);
+        }
+
+        fileDiv.appendChild(fc);
+        wrapper.appendChild(fileDiv);
+      }
+
+      content.appendChild(wrapper);
+    }
+
+    function togglePrevOutputs() {
+      const content = document.getElementById("prev-outputs-content");
+      const arrow = document.getElementById("prev-outputs-arrow");
+      content.classList.toggle("open");
+      arrow.classList.toggle("open");
+    }
+
+    // ---- Feedback (saved to server -> feedback.json) ----
+    function saveCurrentFeedback() {
+      const run = EMBEDDED_DATA.runs[currentIndex];
+      const text = document.getElementById("feedback").value;
+
+      if (text.trim() === "") {
+        delete feedbackMap[run.id];
+      } else {
+        feedbackMap[run.id] = text;
+      }
+
+      // Build reviews array from map
+      const reviews = [];
+      for (const [run_id, feedback] of Object.entries(feedbackMap)) {
+        if (feedback.trim()) {
+          reviews.push({ run_id, feedback, timestamp: new Date().toISOString() });
+        }
+      }
+
+      fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ reviews, status: "in_progress" }),
+      }).then(() => {
+        document.getElementById("feedback-status").textContent = "Saved";
+      }).catch(() => {
+        // Static mode or server unavailable — no-op on auto-save,
+        // feedback will be downloaded on final submit
+        document.getElementById("feedback-status").textContent = "Will download on submit";
+      });
+    }
+
+    // ---- Done ----
+    function showDoneDialog() {
+      // Save current textarea to feedbackMap (but don't POST yet)
+      const run = EMBEDDED_DATA.runs[currentIndex];
+      const text = document.getElementById("feedback").value;
+      if (text.trim() === "") {
+        delete feedbackMap[run.id];
+      } else {
+        feedbackMap[run.id] = text;
+      }
+
+      // POST once with status: complete — include ALL runs so the model
+      // can distinguish "no feedback" (looks good) from "not reviewed"
+      const reviews = [];
+      const ts = new Date().toISOString();
+      for (const r of EMBEDDED_DATA.runs) {
+        reviews.push({ run_id: r.id, feedback: feedbackMap[r.id] || "", timestamp: ts });
+      }
+      const payload = JSON.stringify({ reviews, status: "complete" }, null, 2);
+      fetch("/api/feedback", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: payload,
+      }).then(() => {
+        document.getElementById("done-overlay").classList.add("visible");
+      }).catch(() => {
+        // Server not available (static mode) — download as file
+        const blob = new Blob([payload], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "feedback.json";
+        a.click();
+        URL.revokeObjectURL(url);
+        document.getElementById("done-overlay").classList.add("visible");
+      });
+    }
+
+    function closeDoneDialog() {
+      // Reset status back to in_progress
+      saveCurrentFeedback();
+      document.getElementById("done-overlay").classList.remove("visible");
+    }
+
+    // ---- Toast ----
+    function showToast(message) {
+      const toast = document.getElementById("toast");
+      toast.textContent = message;
+      toast.classList.add("visible");
+      setTimeout(() => toast.classList.remove("visible"), 2000);
+    }
+
+    // ---- Keyboard nav ----
+    document.addEventListener("keydown", (e) => {
+      // Don't capture when typing in textarea
+      if (e.target.tagName === "TEXTAREA") return;
+
+      if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+        e.preventDefault();
+        navigate(-1);
+      } else if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+        e.preventDefault();
+        navigate(1);
+      }
+    });
+
+    // ---- Util ----
+    function getDownloadUri(file) {
+      if (file.data_uri) return file.data_uri;
+      if (file.data_b64) return "data:application/octet-stream;base64," + file.data_b64;
+      if (file.type === "text") return "data:text/plain;charset=utf-8," + encodeURIComponent(file.content);
+      return "#";
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement("div");
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // ---- View switching ----
+    function switchView(view) {
+      document.querySelectorAll(".view-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".view-panel").forEach(p => p.classList.remove("active"));
+      document.querySelector(`[onclick="switchView('${view}')"]`).classList.add("active");
+      document.getElementById("panel-" + view).classList.add("active");
+    }
+
+    // ---- Benchmark rendering ----
+    function renderBenchmark() {
+      const data = EMBEDDED_DATA.benchmark;
+      if (!data) return;
+
+      // Show the tabs
+      document.getElementById("view-tabs").style.display = "flex";
+
+      const container = document.getElementById("benchmark-content");
+      const summary = data.run_summary || {};
+      const metadata = data.metadata || {};
+      const notes = data.notes || [];
+
+      let html = "";
+
+      // Header
+      html += "<h2 style='font-family: Poppins, sans-serif; margin-bottom: 0.5rem;'>Benchmark Results</h2>";
+      html += "<p style='color: var(--text-muted); font-size: 0.875rem; margin-bottom: 1.25rem;'>";
+      if (metadata.skill_name) html += "<strong>" + escapeHtml(metadata.skill_name) + "</strong> &mdash; ";
+      if (metadata.timestamp) html += metadata.timestamp + " &mdash; ";
+      if (metadata.evals_run) html += "Evals: " + metadata.evals_run.join(", ") + " &mdash; ";
+      html += (metadata.runs_per_configuration || "?") + " runs per configuration";
+      html += "</p>";
+
+      // Summary table
+      html += '<table class="benchmark-table">';
+
+      function fmtStat(stat, pct) {
+        if (!stat) return "—";
+        const suffix = pct ? "%" : "";
+        const m = pct ? (stat.mean * 100).toFixed(0) : stat.mean.toFixed(1);
+        const s = pct ? (stat.stddev * 100).toFixed(0) : stat.stddev.toFixed(1);
+        return m + suffix + " ± " + s + suffix;
+      }
+
+      function deltaClass(val) {
+        if (!val) return "";
+        const n = parseFloat(val);
+        if (n > 0) return "benchmark-delta-positive";
+        if (n < 0) return "benchmark-delta-negative";
+        return "";
+      }
+
+      // Discover config names dynamically (everything except "delta")
+      const configs = Object.keys(summary).filter(k => k !== "delta");
+      const configA = configs[0] || "config_a";
+      const configB = configs[1] || "config_b";
+      const labelA = configA.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+      const labelB = configB.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+      const a = summary[configA] || {};
+      const b = summary[configB] || {};
+      const delta = summary.delta || {};
+
+      html += "<thead><tr><th>Metric</th><th>" + escapeHtml(labelA) + "</th><th>" + escapeHtml(labelB) + "</th><th>Delta</th></tr></thead>";
+      html += "<tbody>";
+
+      html += "<tr><td><strong>Pass Rate</strong></td>";
+      html += "<td>" + fmtStat(a.pass_rate, true) + "</td>";
+      html += "<td>" + fmtStat(b.pass_rate, true) + "</td>";
+      html += '<td class="' + deltaClass(delta.pass_rate) + '">' + (delta.pass_rate || "—") + "</td></tr>";
+
+      // Time (only show row if data exists)
+      if (a.time_seconds || b.time_seconds) {
+        html += "<tr><td><strong>Time (s)</strong></td>";
+        html += "<td>" + fmtStat(a.time_seconds, false) + "</td>";
+        html += "<td>" + fmtStat(b.time_seconds, false) + "</td>";
+        html += '<td class="' + deltaClass(delta.time_seconds) + '">' + (delta.time_seconds ? delta.time_seconds + "s" : "—") + "</td></tr>";
+      }
+
+      // Tokens (only show row if data exists)
+      if (a.tokens || b.tokens) {
+        html += "<tr><td><strong>Tokens</strong></td>";
+        html += "<td>" + fmtStat(a.tokens, false) + "</td>";
+        html += "<td>" + fmtStat(b.tokens, false) + "</td>";
+        html += '<td class="' + deltaClass(delta.tokens) + '">' + (delta.tokens || "—") + "</td></tr>";
+      }
+
+      html += "</tbody></table>";
+
+      // Per-eval breakdown (if runs data available)
+      const runs = data.runs || [];
+      if (runs.length > 0) {
+        const evalIds = [...new Set(runs.map(r => r.eval_id))].sort((a, b) => a - b);
+
+        html += "<h3 style='font-family: Poppins, sans-serif; margin-bottom: 0.75rem;'>Per-Eval Breakdown</h3>";
+
+        const hasTime = runs.some(r => r.result && r.result.time_seconds != null);
+        const hasErrors = runs.some(r => r.result && r.result.errors > 0);
+
+        for (const evalId of evalIds) {
+          const evalRuns = runs.filter(r => r.eval_id === evalId);
+          const evalName = evalRuns[0] && evalRuns[0].eval_name ? evalRuns[0].eval_name : "Eval " + evalId;
+
+          html += "<h4 style='font-family: Poppins, sans-serif; margin: 1rem 0 0.5rem; color: var(--text);'>" + escapeHtml(evalName) + "</h4>";
+          html += '<table class="benchmark-table">';
+          html += "<thead><tr><th>Config</th><th>Run</th><th>Pass Rate</th>";
+          if (hasTime) html += "<th>Time (s)</th>";
+          if (hasErrors) html += "<th>Crashes During Execution</th>";
+          html += "</tr></thead>";
+          html += "<tbody>";
+
+          // Group by config and render with average rows
+          const configGroups = [...new Set(evalRuns.map(r => r.configuration))];
+          for (let ci = 0; ci < configGroups.length; ci++) {
+            const config = configGroups[ci];
+            const configRuns = evalRuns.filter(r => r.configuration === config);
+            if (configRuns.length === 0) continue;
+
+            const rowClass = ci === 0 ? "benchmark-row-with" : "benchmark-row-without";
+            const configLabel = config.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+
+            for (const run of configRuns) {
+              const r = run.result || {};
+              const prClass = r.pass_rate >= 0.8 ? "benchmark-delta-positive" : r.pass_rate < 0.5 ? "benchmark-delta-negative" : "";
+              html += '<tr class="' + rowClass + '">';
+              html += "<td>" + configLabel + "</td>";
+              html += "<td>" + run.run_number + "</td>";
+              html += '<td class="' + prClass + '">' + ((r.pass_rate || 0) * 100).toFixed(0) + "% (" + (r.passed || 0) + "/" + (r.total || 0) + ")</td>";
+              if (hasTime) html += "<td>" + (r.time_seconds != null ? r.time_seconds.toFixed(1) : "—") + "</td>";
+              if (hasErrors) html += "<td>" + (r.errors || 0) + "</td>";
+              html += "</tr>";
+            }
+
+            // Average row
+            const rates = configRuns.map(r => (r.result || {}).pass_rate || 0);
+            const avgRate = rates.reduce((a, b) => a + b, 0) / rates.length;
+            const avgPrClass = avgRate >= 0.8 ? "benchmark-delta-positive" : avgRate < 0.5 ? "benchmark-delta-negative" : "";
+            html += '<tr class="benchmark-row-avg ' + rowClass + '">';
+            html += "<td>" + configLabel + "</td>";
+            html += "<td>Avg</td>";
+            html += '<td class="' + avgPrClass + '">' + (avgRate * 100).toFixed(0) + "%</td>";
+            if (hasTime) {
+              const times = configRuns.map(r => (r.result || {}).time_seconds).filter(t => t != null);
+              html += "<td>" + (times.length ? (times.reduce((a, b) => a + b, 0) / times.length).toFixed(1) : "—") + "</td>";
+            }
+            if (hasErrors) html += "<td></td>";
+            html += "</tr>";
+          }
+          html += "</tbody></table>";
+
+          // Per-assertion detail for this eval
+          const runsWithExpectations = {};
+          for (const config of configGroups) {
+            runsWithExpectations[config] = evalRuns.filter(r => r.configuration === config && r.expectations && r.expectations.length > 0);
+          }
+          const hasAnyExpectations = Object.values(runsWithExpectations).some(runs => runs.length > 0);
+          if (hasAnyExpectations) {
+            // Collect all unique assertion texts across all configs
+            const allAssertions = [];
+            const seen = new Set();
+            for (const config of configGroups) {
+              for (const run of runsWithExpectations[config]) {
+                for (const exp of (run.expectations || [])) {
+                  if (!seen.has(exp.text)) {
+                    seen.add(exp.text);
+                    allAssertions.push(exp.text);
+                  }
+                }
+              }
+            }
+
+            html += '<table class="benchmark-table" style="margin-top: 0.5rem;">';
+            html += "<thead><tr><th>Assertion</th>";
+            for (const config of configGroups) {
+              const label = config.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+              html += "<th>" + escapeHtml(label) + "</th>";
+            }
+            html += "</tr></thead><tbody>";
+
+            for (const assertionText of allAssertions) {
+              html += "<tr><td>" + escapeHtml(assertionText) + "</td>";
+
+              for (const config of configGroups) {
+                html += "<td>";
+                for (const run of runsWithExpectations[config]) {
+                  const exp = (run.expectations || []).find(e => e.text === assertionText);
+                  if (exp) {
+                    const cls = exp.passed ? "benchmark-delta-positive" : "benchmark-delta-negative";
+                    const icon = exp.passed ? "\u2713" : "\u2717";
+                    html += '<span class="' + cls + '" title="Run ' + run.run_number + ': ' + escapeHtml(exp.evidence || "") + '">' + icon + "</span> ";
+                  } else {
+                    html += "— ";
+                  }
+                }
+                html += "</td>";
+              }
+              html += "</tr>";
+            }
+            html += "</tbody></table>";
+          }
+        }
+      }
+
+      // Notes
+      if (notes.length > 0) {
+        html += '<div class="benchmark-notes">';
+        html += "<h3>Analysis Notes</h3>";
+        html += "<ul>";
+        for (const note of notes) {
+          html += "<li>" + escapeHtml(note) + "</li>";
+        }
+        html += "</ul></div>";
+      }
+
+      container.innerHTML = html;
+    }
+
+    // ---- Start ----
+    init();
+    renderBenchmark();
+  </script>
+</body>
+</html>

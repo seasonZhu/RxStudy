@@ -1,0 +1,20 @@
+{
+  "run_id": "eval-0-without_skill",
+  "assertions": [
+    {
+      "text": "应列出 RxStudy 的 RxSwift 生态依赖（RxSwift, RxCocoa, RxRelay 等）",
+      "passed": true,
+      "evidence": "详细列出了 RxSwift 生态依赖表格"
+    },
+    {
+      "text": "应列出 SwiftUIApp 的依赖（Moya, Kingfisher, SwiftUIX 等）",
+      "passed": true,
+      "evidence": "列出了 SwiftUIStudy 的 6 个依赖"
+    },
+    {
+      "text": "应标注共用依赖（Alamofire, Kingfisher）",
+      "passed": true,
+      "evidence": "在总结部分明确标注了两个 Target 的共享依赖"
+    }
+  ]
+}

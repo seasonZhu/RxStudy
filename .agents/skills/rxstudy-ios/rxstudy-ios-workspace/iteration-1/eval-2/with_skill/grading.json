@@ -1,0 +1,15 @@
+{
+  "run_id": "eval-2-with_skill",
+  "assertions": [
+    {
+      "text": "应对比 RxStudy 的 RxSwift 响应式（Observable）vs SwiftUIApp 的 async/await",
+      "passed": true,
+      "evidence": "明确对比了 RxSwift Observable 响应式和 async/await 两种方式，并附上代码示例"
+    },
+    {
+      "text": "应说明 Provider 管理方式差异（集中式 vs 分散式）",
+      "passed": true,
+      "evidence": "详细说明了 RxStudy 集中式+MultiTarget vs SwiftUIStudy 分散独立 Provider"
+    }
+  ]
+}
