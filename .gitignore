@@ -71,3 +71,5 @@ Generated/
 .package.resolved
 .tuist-supported-version
 Tuist.zip
+.claude
+.codegraph
