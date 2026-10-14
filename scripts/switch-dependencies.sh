@@ -47,7 +47,7 @@ if [ "$CURRENT" != "$BRANCH" ]; then
     if [ "$CURRENT" = develop-tuist ]; then
         STEP='备份 Tuist 生成工程'
         BACKUP=''
-        for artifact in RxStudy.xcodeproj RxStudy.xcworkspace; do
+        for artifact in RxStudy.xcodeproj RxStudy.xcworkspace Packages/ThirdParty/FSPagerView/FSPagerView.xcodeproj; do
             [ -e "$artifact" ] || continue
             [ ! -L "$artifact" ] && [ -d "$artifact" ] || fail "生成工程不是普通目录：$artifact"
             [ -z "$(git ls-files -- "$artifact")" ] || fail "工程含被跟踪文件，停止处理：$artifact"
@@ -57,7 +57,8 @@ if [ "$CURRENT" != "$BRANCH" ]; then
                 echo "生成工程备份：$BACKUP"
             fi
             # 先完整复制，成功后才移除原目录；备份保留用户工程设置。
-            cp -pR "$artifact" "$BACKUP/"
+            mkdir -p "$BACKUP/$(dirname "$artifact")"
+            cp -pR "$artifact" "$BACKUP/$artifact"
             rm -r -- "$artifact"
         done
     fi
