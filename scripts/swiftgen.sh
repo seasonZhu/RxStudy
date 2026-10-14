@@ -14,6 +14,7 @@ cd "$PROJECT_ROOT"
 echo "📦 运行 SwiftGen 生成资源访问代码..."
 
 # 检查 SwiftGen 是否安装
+export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
 if ! command -v swiftgen &> /dev/null; then
     echo "❌ SwiftGen 未安装"
     echo "   请运行: brew install swiftgen"
