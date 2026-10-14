@@ -72,7 +72,7 @@ STEP='生成 SwiftGen 资源'; bash scripts/swiftgen.sh
 if [ "$MODE" = pods ]; then
     STEP='安装 CocoaPods 锁定依赖'; pod install --deployment
 else
-    STEP='安装 Tuist 依赖'; mise exec -- tuist install
+    STEP='安装 Tuist 依赖'; mise exec -- tuist install --force-resolved-versions --skip-update
     STEP='生成 Tuist 工程'; mise exec -- tuist generate --no-open
 fi
 STEP='检查安装结果'
