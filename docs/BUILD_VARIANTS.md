@@ -32,3 +32,9 @@ xcodebuild -workspace RxStudy.xcworkspace -scheme SwiftUIStudy -destination 'gen
 先确认改动属于源码还是构建配置。功能修复、API 常量、模型、资源和两个 Target 的页面修改都同步到两条分支；Podfile、Project.swift、Tuist/Package.swift 只在各自的构建分支维护。同步后运行 `scripts/check-shared-sources.py` 比较两个 worktree，并分别编译两个 scheme。两条分支没有共同祖先，采用小范围补丁或文件同步，不做整分支合并。
 
 `Shared/API` 持有 API 路径定义，`Shared/Models` 持有共用数据模型，`Shared/Business` 持有共用 Cookie 规则，`Shared/Resources` 持有图片、启动页和 JavaScript。RxSwift 与 async/await 的适配代码分别保留在各自 Target。
+
+## 工程目录与 Target 归属
+
+Xcode 分组映射真实目录：`RxStudy` 与 `SwiftUIStudy` 分别展示各自入口及业务模块，`Shared` 展示共用代码和资源，`Packages/ThirdParty` 展示第三方源码。头文件、Info.plist 和 scripts 可直接在工程导航中查看。Tuist 自动生成的 `Project` 分组是这些目录的容器，重新生成后仍保留完整层级。
+
+`RxStudy/` 源码仅由 UIKit Target 编译，`SwiftUIStudy/` 源码仅由 SwiftUI Target 编译。共用源码在工程中只保留一份文件引用，加入两个 Target 的编译阶段。资源单独指定归属：共享图片与启动页供两端使用，UIKit 主界面、JavaScript 和 UniMP 包只加入 UIKit Target。新增文件时按目录放置，并检查 Target Membership，避免将依赖源码或另一端页面加入错误的 Target。
