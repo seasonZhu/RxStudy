@@ -265,7 +265,14 @@ let project = Project(
         )
     ],
     additionalFiles: [
-        ".tuist-supported-version",
+        "mise.toml",
+        "Project.swift",
+        "Tuist.swift",
+        "swiftgen.yml",
+        "scripts/**",
+        "RxStudy/**/*.h",
+        "RxStudy/Info.plist",
+        "SwiftUIStudy/Info.plist",
         "Tuist/**"
     ],
     // ========== 禁用 Plist 资源合成器 ==========
