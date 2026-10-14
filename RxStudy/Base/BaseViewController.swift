@@ -13,21 +13,26 @@ import RxCocoa
 import RxGesture
 
 import Moya
-
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import SVProgressHUD
 
 #if DEBUG
+import FunnyButton
+import LifetimeTracker
 #endif
 
 class BaseViewController: UIViewController {
-
+    
     private lazy var errorImage: UIImageView = {
-        // R.swift 库已移除 - 使用系统占位图
-        let imageView = UIImageView(image: UIImage(systemName: "exclamationmark.triangle"))
+        let imageView = UIImageView(image: Asset.notFound.image)
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = .playAndroidBackground
-        imageView.tintColor = .gray
         return imageView
     }()
     
@@ -36,10 +41,10 @@ class BaseViewController: UIViewController {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        // LifetimeTracker 库已移除 - 暂时注释
-        // #if DEBUG
-        //     trackLifetime()
-        // #endif
+        #if DEBUG
+            trackLifetime()
+        #endif
+        
     }
     
     required init?(coder: NSCoder) {
@@ -50,8 +55,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         /// 最简单的设置统一返回按钮的方法,所有的控制器继承该基类即可
-        // R.swift 库已移除 - 使用系统返回图标
-        let leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "chevron.left"), style: .plain, target: self, action: #selector(leftBarButtonItemAction(_:)))
+        let leftBarButtonItem = UIBarButtonItem(image: Asset.back.image, style: .plain, target: self, action: #selector(leftBarButtonItemAction(_:)))
         navigationItem.leftBarButtonItem = (navigationController?.viewControllers.count ?? 0) > 1 ? leftBarButtonItem : nil
         navigationItem.hidesBackButton = true
         
@@ -89,11 +93,7 @@ class BaseViewController: UIViewController {
         
         view.backgroundColor = .clear
         
-        if #available(iOS 26.0, *) {
-            setNavigationBarClear()
-        } else {
-            iOS15NavigationBarClear()
-        }
+        iOS15NavigationBarClear()
         iOS15TabBarClear()
         
         setupErrorImage()
@@ -121,8 +121,6 @@ class BaseViewController: UIViewController {
 }
 
 // MARK: - FunnyButton的使用
-// FunnyButton 库已移除 - 暂时注释整个 extension
-/*
  extension BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -132,20 +130,17 @@ class BaseViewController: UIViewController {
         }
     #endif
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     #if DEBUG
         removeFunnyActions()
     #endif
-
+        
     }
  }
- */
 
 // MARK: - LifetimeTracker的使用
-// LifetimeTracker 库已移除 - 暂时注释整个 extension
-/*
 #if DEBUG
 extension BaseViewController: LifetimeTrackable {
     class var lifetimeConfiguration: LifetimeConfiguration {
@@ -153,7 +148,6 @@ extension BaseViewController: LifetimeTrackable {
     }
 }
 #endif
-*/
 
 // MARK: - 网络请求错误页面的配置
 extension BaseViewController {
@@ -208,18 +202,6 @@ extension BaseViewController {
             tabBarController?.tabBar.scrollEdgeAppearance = tabBarAppearance
         }
     }
-  
-    private func setNavigationBarClear() {
-      
-        let color = UIColor.white
-        let barApp = UINavigationBarAppearance()
-        barApp.backgroundColor = color
-        barApp.backgroundEffect = nil
-        barApp.shadowColor = color
-        self.navigationController?.navigationBar.scrollEdgeAppearance = barApp
-        self.navigationController?.navigationBar.standardAppearance = barApp
-      
-  }
 }
 
 extension BaseViewController {

@@ -7,7 +7,10 @@
 //
 
 import Foundation
- import CocoaLumberjack // CocoaLumberjack API changed - temporarily disabled
+import CocoaLumberjack
+#if canImport(CocoaLumberjackSwift)
+import CocoaLumberjackSwift
+#endif
 
 enum LogUtils {
     enum LogType {
@@ -17,29 +20,29 @@ enum LogUtils {
         case verbose
         case error
     }
-
+    
     static var logcat: ((String) -> Void)?
-
+    
     static func debug(_ items: Any...) {
         print(items, type: .debug)
     }
-
+    
     static func info(_ items: Any...) {
         print(items, type: .info)
     }
-
+    
     static func warn(_ items: Any...) {
         print(items, type: .warn)
     }
-
+    
     static func verbose(_ items: Any...) {
         print(items, type: .verbose)
     }
-
+    
     static func error(_ items: Any...) {
         print(items, type: .error)
     }
-
+    
     static func logcat(_ logcat: @escaping ((String) -> Void)) {
         self.logcat = logcat
     }
@@ -49,26 +52,24 @@ extension LogUtils {
     private static func print(_ items: Any..., type: LogType = .debug) {
         let strings = items.map { String(describing: $0) }.joined(separator: ", ")
         logcat?(strings)
-        // CocoaLumberjack API changed - using regular print for now
-        // let message = DDLogMessageFormat(stringLiteral: "\(strings)")
-        // type.log(message: message)
-        Swift.print("[\(type)] \(strings)")
+        let message = DDLogMessageFormat(stringLiteral: "\(strings)")
+        type.log(message: message)
     }
 }
 
 extension LogUtils.LogType {
-    fileprivate func log(message: String) {
+    fileprivate func log(message: DDLogMessageFormat) {
         switch self {
         case .debug:
-            Swift.print("[DEBUG] \(message)")
+            DDLogDebug(message)
         case .info:
-            Swift.print("[INFO] \(message)")
+            DDLogInfo(message)
         case .warn:
-            Swift.print("[WARN] \(message)")
+            DDLogWarn(message)
         case .verbose:
-            Swift.print("[VERBOSE] \(message)")
+            DDLogVerbose(message)
         case .error:
-            Swift.print("[ERROR] \(message)")
+            DDLogError(message)
         }
     }
 }
@@ -76,24 +77,17 @@ extension LogUtils.LogType {
 /// 仅在Debug模式下打印,我小看了print,这个方法打印出来的效果和print打印出来的效果完全不一样
 public func debugLog(_ items: Any...) {
     let strings = items.map { String(describing: $0) }.joined(separator: ", ")
-    // CocoaLumberjack API changed - using regular print for now
-    // let message = DDLogMessageFormat(stringLiteral: "\(strings)")
-    // DDLogDebug(message)
-    // let ddMessage = DDLogMessage(message: strings, level: .debug, flag: .debug, context: 0, file: #file, function: #function, line: #line, tag: nil, options: [], timestamp: Date())
-    // DDLog.log(asynchronous: true, message: ddMessage)
+    let message = DDLogMessageFormat(stringLiteral: "\(strings)")
+    DDLogDebug(message)
+}
+
+/// 这种写法达不到理想效果
+public func swiftPrint(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
-        Swift.print("[Debug] \(strings)")
-    #else
-        logger.info("[Release] \(strings)")
+        print(items, separator: separator, terminator: terminator)
     #endif
-    
 }
 
 import OSLog
 
-/// https://onevcat.com/2024/04/swift-log/
-/// 使用Logger进行打印,可以在控制台App中查看当前App的打印日志,用于排查问题,很像Android Studio里面的logcat
-let logger = Logger(
-   subsystem: "logger.season.com",
-   category: "main"
-)
+let logger = Logger(subsystem: "season", category: "debug")

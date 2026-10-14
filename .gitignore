@@ -73,13 +73,10 @@ Thumbs.db
 
 # Tuist
 .build/
-.tuist-supported-version
 Derived/
 Tuist.zip
 
 # Swift Package Manager
-.package.resolved
-Package.resolved
 .swiftpm/
 
 # Development Pods (已废弃，改用 SPM)
@@ -98,3 +95,14 @@ RxStudy/Generated/
 .build-benchmark
 
 .build-benchmark-swiftuiapp
+
+# 工程由 Tuist 生成，依赖锁文件纳入版本管理
+*.xcodeproj/
+*.xcworkspace/
+.planning/
+__pycache__/
+.codegraph/
+
+# 资源代码由 SwiftGen 生成
+Shared/Generated/
+.planning/

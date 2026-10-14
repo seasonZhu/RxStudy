@@ -25,9 +25,10 @@ import PackageDescription
             "SnapKit": .staticFramework,
             "KeychainAccess": .staticFramework,
             "CocoaLumberjack": .staticFramework,
+            "CocoaLumberjackSwift": .staticFramework,
             "MarqueeLabel": .staticFramework,
             "SFSafeSymbols": .staticFramework,
-            "ZipArchive": .staticFramework,
+            "ZipArchive": .framework,
             "WebUI": .staticFramework,
             "ProgressHUD": .staticFramework,
             "MBProgressHUD": .staticFramework,
@@ -38,9 +39,6 @@ import PackageDescription
             "FlexLayout": .staticFramework,
             "FSPagerView": .staticFramework,
             "AcknowList": .staticFramework,
-            "SwiftUIX": .staticFramework,
-            "SwiftUIIntrospect": .staticFramework,
-            "IQKeyboardManagerSwift": .staticFramework,
         ]
     )
 #endif
@@ -61,6 +59,7 @@ let package = Package(
         .package(url: "https://github.com/Moya/Moya.git", from: "15.0.0"),
         .package(url: "https://github.com/Alamofire/Alamofire.git", from: "5.8.0"),
 
+
         // ========== 图片加载 ==========
         .package(url: "https://github.com/onevcat/Kingfisher.git", from: "8.6.3"),
 
@@ -79,7 +78,6 @@ let package = Package(
         .package(url: "https://github.com/cybozu/WebUI.git", from: "4.0.0"),
 
         // ========== UI 工具 ==========
-        .package(url: "https://github.com/siteline/swiftui-introspect.git", from: "26.0.0"),
         .package(url: "https://github.com/relatedcode/ProgressHUD.git", from: "15.0.1"),
         .package(url: "https://github.com/jdg/MBProgressHUD.git", from: "1.2.0"),
         .package(url: "https://github.com/SVProgressHUD/SVProgressHUD.git", from: "2.3.1"),
@@ -87,7 +85,7 @@ let package = Package(
         .package(url: "https://github.com/pujiaxin33/JXSegmentedView.git", from: "1.4.1"),
 
         // ========== 空数据展示（使用主分支最新代码）==========
-        .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", branch: "master"),
+        .package(url: "https://github.com/dzenbot/DZNEmptyDataSet.git", revision: "9bffa69a83a9fa58a14b3cf43cb6dd8a63774179"),
 
         // ========== 本地依赖（修复远程 Package.swift 问题或本地库）==========
         .package(path: "../Packages/ThirdParty/FSPagerView"),
@@ -95,10 +93,7 @@ let package = Package(
         // ========== 许可证列表 ==========
         .package(url: "https://github.com/vtourraine/AcknowList.git", from: "3.4.0"),
         
-        .package(url: "https://github.com/SwiftUIX/SwiftUIX.git", branch: "master"),
-        .package(url: "https://github.com/siteline/swiftui-introspect", from: "26.0.0"),
         
         // ========== 键盘管理 ==========
-        .package(url: "https://github.com/hackiftekhar/IQKeyboardManager.git", from: "8.0.3"),
     ]
 )

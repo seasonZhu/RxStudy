@@ -9,6 +9,14 @@
 import UIKit
 
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
+import MBProgressHUD
+import SVProgressHUD
 
 /// 在wanandroid客户端中,针对登录后状态,在请求头中塞进cookie
 extension TargetType {

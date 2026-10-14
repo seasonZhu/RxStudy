@@ -10,12 +10,11 @@ import UIKit
 
 import RxSwift
 import RxCocoa
-
 import AcknowList
 
 /// 没有直接使用AcknowList自带的控制器,是因为其导航栏的风格和App的不同,所以自己写了
 class ThirdPartyController: BaseTableViewController {
-
+    
     let dataSource = BehaviorRelay<[Acknow]>(value: [])
 
     override func viewDidLoad() {
@@ -28,38 +27,39 @@ class ThirdPartyController: BaseTableViewController {
 extension ThirdPartyController {
     private func setupUI() {
         title = AcknowLocalization.localizedTitle()
-
+        
         tableView.mj_header = nil
         tableView.mj_footer = nil
-
+        
         tableView.emptyDataSetSource = nil
         tableView.emptyDataSetDelegate = nil
-
+        
         tableView.rowHeight = 44
+
     }
-
+    
     private func binding() {
-        let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []
-
+        let list = AcknowParser.defaultAcknowList()?.acknowledgements ?? []// AcknowParser(plistPath: defaultAcknowledgementsPlistPath()!).parseAcknowledgements()
+        
         dataSource.accept(list)
-
+        
         /// 获取cell中的模型
         tableView.rx.modelSelected(Acknow.self)
             .map { (ThirdPartyDetailController(acknowledgement: $0), true) }
             .bind(onNext: navigationController!.pushViewController)
             .disposed(by: rx.disposeBag)
-
+        
         dataSource
             .asDriver(onErrorJustReturn: [])
             .drive(tableView.rx.items) { (tableView, _, info) in
-
+                
                 let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
                 cell.textLabel?.text = info.title
                 return cell
             }
             .disposed(by: rx.disposeBag)
     }
-
+    
     private func defaultAcknowledgementsPlistPath() -> String? {
         guard let bundleName = bundleName() else {
             return nil
@@ -74,7 +74,7 @@ extension ThirdPartyController {
 
         return plistPath
     }
-
+    
     private func bundleName() -> String? {
         let infoDictionary = Bundle.main.infoDictionary
 
@@ -86,7 +86,7 @@ extension ThirdPartyController {
             return nil
         }
     }
-
+    
     private func acknowledgementsPlistPath(name: String) -> String? {
         return Bundle.main.path(forResource: name, ofType: "plist")
     }

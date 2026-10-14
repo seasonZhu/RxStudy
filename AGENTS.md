@@ -2,14 +2,14 @@
 
 ## 项目愿景
 
-RxStudy 是一个使用 RxSwift 编写的 iOS WanAndroid 客户端，采用 MVVM 架构，当前分支 `refactor/swiftui-migration` 正在进行从 UIKit 向 SwiftUI 的迁移工作。项目旨在通过实际应用深入理解 RxSwift 响应式编程，同时探索 SwiftUI + Combine 的现代 iOS 开发方式。
+RxStudy 是一个使用 RxSwift 编写的 iOS WanAndroid 客户端，采用 MVVM 架构，当前分支 `develop-tuist` 正在进行从 UIKit 向 SwiftUI 的迁移工作。项目旨在通过实际应用深入理解 RxSwift 响应式编程，同时探索 SwiftUI + Combine 的现代 iOS 开发方式。
 
 ## 架构总览
 
 ```mermaid
 graph TD
     A["(根) RxStudy iOS项目"] --> B["RxStudy (UIKit主应用)"];
-    A --> B_S["SwiftUIApp (SwiftUI应用)"];
+    A --> B_S["SwiftUIStudy (SwiftUI应用)"];
     A --> C["Packages (本地SPM)"];
 
     B --> B1["Account - 登录注册"];
@@ -61,25 +61,25 @@ graph TD
 | **WebView** | `RxStudy/WebView/` | WebView容器，支持JS交互 | `WebViewController`, `DownloadWebController` |
 | **SwiftUIExample** | `RxStudy/SwiftUIExample/` | SwiftUI迁移示例页面 | `CoinRankListPage`, `LoginPage` |
 
-### Target 2: SwiftUIApp (SwiftUI 应用)
+### Target 2: SwiftUIStudy (SwiftUI 应用)
 
-> 这是 `refactor/swiftui-migration` 分支新建的 SwiftUI Target，用于探索 SwiftUI + Combine 开发模式。
+> 这是 `develop-tuist` 分支新建的 SwiftUI Target，用于探索 SwiftUI + Combine 开发模式。
 
 | 模块 | 路径 | 职责 | 入口/接口 |
 |------|------|------|-----------|
-| **SwiftUIApp入口** | `SwiftUIApp/SwiftUIApp.swift` | App入口，TabBar配置 | `@main SwiftUIApp` |
-| **Home** | `SwiftUIApp/Features/Home/` | 首页Banner+文章列表 | `HomeView`, `HomeViewModel` |
-| **Project** | `SwiftUIApp/Features/Project/` | 项目分类（复用CategoryPageView） | `ProjectView`, `ProjectViewModel` |
-| **PublicNumber** | `SwiftUIApp/Features/PublicNumber/` | 公众号分类 | `PublicNumberView`, `PublicNumberViewModel` |
-| **Tree** | `SwiftUIApp/Features/Tree/` | 体系结构（二级树形） | `TreeView`, `TreeViewModel` |
-| **Mine** | `SwiftUIApp/Features/Mine/` | 用户中心 | `MineView`, `MineViewModel` |
-| **Login** | `SwiftUIApp/Features/Login/` | 登录功能 | `LoginView`, `LoginViewModel` |
-| **Collect** | `SwiftUIApp/Features/Collect/` | 收藏列表 | `CollectView`, `CollectViewModel` |
-| **Coin** | `SwiftUIApp/Features/Coin/` | 积分明细 | `CoinView`, `CoinViewModel` |
-| **CoinRankList** | `SwiftUIApp/Features/CoinRankList/` | 积分排行榜 | `CoinRankListView`, `CoinRankListViewModel` |
-| **Search** | `SwiftUIApp/Features/Search/` | 搜索（热搜+结果） | `HotKeyView`, `SearchResultView` |
-| **Category** | `SwiftUIApp/Features/Category/` | 通用分类组件 | `CategoryPageView<T>`, `CategoryArticleListView` |
-| **Network** | `SwiftUIApp/Network/` | 网络请求层 | `APIService`, 各API服务 |
+| **SwiftUIStudy入口** | `SwiftUIStudy/SwiftUIStudy.swift` | App入口，TabBar配置 | `@main SwiftUIStudy` |
+| **Home** | `SwiftUIStudy/Features/Home/` | 首页Banner+文章列表 | `HomeView`, `HomeViewModel` |
+| **Project** | `SwiftUIStudy/Features/Project/` | 项目分类（复用CategoryPageView） | `ProjectView`, `ProjectViewModel` |
+| **PublicNumber** | `SwiftUIStudy/Features/PublicNumber/` | 公众号分类 | `PublicNumberView`, `PublicNumberViewModel` |
+| **Tree** | `SwiftUIStudy/Features/Tree/` | 体系结构（二级树形） | `TreeView`, `TreeViewModel` |
+| **Mine** | `SwiftUIStudy/Features/Mine/` | 用户中心 | `MineView`, `MineViewModel` |
+| **Login** | `SwiftUIStudy/Features/Login/` | 登录功能 | `LoginView`, `LoginViewModel` |
+| **Collect** | `SwiftUIStudy/Features/Collect/` | 收藏列表 | `CollectView`, `CollectViewModel` |
+| **Coin** | `SwiftUIStudy/Features/Coin/` | 积分明细 | `CoinView`, `CoinViewModel` |
+| **CoinRankList** | `SwiftUIStudy/Features/CoinRankList/` | 积分排行榜 | `CoinRankListView`, `CoinRankListViewModel` |
+| **Search** | `SwiftUIStudy/Features/Search/` | 搜索（热搜+结果） | `HotKeyView`, `SearchResultView` |
+| **Category** | `SwiftUIStudy/Features/Category/` | 通用分类组件 | `CategoryPageView<T>`, `CategoryArticleListView` |
+| **Network** | `SwiftUIStudy/Network/` | 网络请求层 | `APIService`, 各API服务 |
 
 ### 本地 Package
 
@@ -94,7 +94,7 @@ graph TD
 
 - Xcode 14+
 - Swift 5.7+
-- Tuist 3.x+
+- Tuist 4.200.4
 
 ### 常用命令
 
@@ -105,12 +105,12 @@ tuist generate
 # 构建 RxStudy (UIKit主应用)
 tuist build --scheme RxStudy
 
-# 构建 SwiftUIApp (SwiftUI应用)
-tuist build --scheme SwiftUIApp
+# 构建 SwiftUIStudy (SwiftUI应用)
+tuist build --scheme SwiftUIStudy
 
 # 运行项目
 tuist build --scheme RxStudy
-tuist build --scheme SwiftUIApp
+tuist build --scheme SwiftUIStudy
 
 # 更新依赖
 tuist fetch
@@ -121,13 +121,13 @@ tuist fetch
 ```
 RxStudy/
 ├── RxStudy/           # UIKit主应用 Target（当前主分支）
-├── SwiftUIApp/        # SwiftUI应用 Target（refactor/swiftui-migration 分支）
+├── SwiftUIStudy/        # SwiftUI应用 Target（develop-tuist 分支）
 ├── Packages/          # 本地 SPM Package
 └── Tuist/             # Tuist 配置（仅 Package.swift 需关注）
 ```
 
 - **RxStudy**: UIKit 主应用，包含所有业务代码和UI，使用 RxSwift + MVVM
-- **SwiftUIApp**: SwiftUI 探索应用，使用 SwiftUI + Combine + MVVM，分支 `refactor/swiftui-migration`
+- **SwiftUIStudy**: SwiftUI 探索应用，使用 SwiftUI + Combine + MVVM，分支 `develop-tuist`
 - **本地Package**: `Packages/` - 通过Tuist管理的本地Swift Package
 - **依赖管理**: 使用Swift Package Manager，通过Tuist统一管理
 - **Tuist配置**: `Tuist/Package.swift` - SPM包配置，仅此文件需关注
@@ -195,11 +195,11 @@ RxStudy/
 ## AI 使用指引
 
 ### 项目特点
-1. **双Target架构**: RxStudy (UIKit + RxSwift) 和 SwiftUIApp (SwiftUI + Combine)
+1. **双Target架构**: RxStudy (UIKit + RxSwift) 和 SwiftUIStudy (SwiftUI + Combine)
 2. **RxStudy**: 大量使用 `Observable`, `BehaviorRelay`, `DisposeBag`
-3. **SwiftUIApp**: 使用 `@StateObject`, `@Published`, `ObservableObject` 的 Combine 模式
+3. **SwiftUIStudy**: 使用 `@StateObject`, `@Published`, `ObservableObject` 的 Combine 模式
 4. **MVVM架构**: ViewModel通过Rx/Combine绑定与View通信
-5. **正在进行SwiftUI迁移**: 分支 `refactor/swiftui-migration`
+5. **正在进行SwiftUI迁移**: 分支 `develop-tuist`
 6. **Tuist管理**: 使用Tuist生成项目，非传统CocoaPods
 
 ### RxStudy (UIKit) 关键模式
@@ -216,7 +216,7 @@ tableView.rx.modelSelected(Item.self)
     .disposed(by: rx.disposeBag)
 ```
 
-### SwiftUIApp (SwiftUI) 关键模式
+### SwiftUIStudy (SwiftUI) 关键模式
 ```swift
 // ViewModel 标准模式
 class SomeViewModel: ObservableObject {
@@ -233,18 +233,18 @@ List(viewModel.dataSource) { item in
 
 ### 注意事项
 - **RxStudy**: 使用 `disposed(by: rx.disposeBag)` 管理订阅生命周期
-- **SwiftUIApp**: 使用 `cancellables` 和 `AnyCancellable` 管理订阅
-- 网络请求通过 Moya + RxSwift (RxStudy) 或 Combine (SwiftUIApp) 封装
+- **SwiftUIStudy**: 使用 `cancellables` 和 `AnyCancellable` 管理订阅
+- 网络请求通过 Moya + RxSwift (RxStudy) 或 Combine (SwiftUIStudy) 封装
 - UIKit 与 SwiftUI 混合使用，通过 `UIViewControllerRepresentable` 桥接
 
 ## 变更记录 (Changelog)
 
 ### 2026-03-24 (续)
-- **更新**: 根级 `AGENTS.md` 新增 SwiftUIApp Target 完整信息
-- **新增**: SwiftUIApp 模块索引（Home, Project, PublicNumber, Tree, Mine, Login, Collect, Coin, CoinRankList, Search, Category）
-- **新增**: SwiftUIApp 常用构建命令
-- **新增**: SwiftUIApp 关键模式示例（@Published, ObservableObject）
-- **更新**: 项目结构说明，包含 RxStudy + SwiftUIApp 双 Target 说明
+- **更新**: 根级 `AGENTS.md` 新增 SwiftUIStudy Target 完整信息
+- **新增**: SwiftUIStudy 模块索引（Home, Project, PublicNumber, Tree, Mine, Login, Collect, Coin, CoinRankList, Search, Category）
+- **新增**: SwiftUIStudy 常用构建命令
+- **新增**: SwiftUIStudy 关键模式示例（@Published, ObservableObject）
+- **更新**: 项目结构说明，包含 RxStudy + SwiftUIStudy 双 Target 说明
 
 ### 2026-03-24
 - 初始化架构师首次扫描

@@ -22,7 +22,7 @@ class SafariActivity: UIActivity {
     override var activityTitle: String? { "Safari" }
     
     /// 设置分享按钮的图片
-    override var activityImage: UIImage? { UIImage(systemName: "safari") }
+    override var activityImage: UIImage? { Asset.safari.image }
     
     /// 设置是否显示分享按钮
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {

@@ -11,10 +11,11 @@ import WebKit
 
 import RxSwift
 import RxCocoa
-
+import MBProgressHUD
 import SVProgressHUD
-import MJRefresh
 import MarqueeLabel
+import MJRefresh
+import JWNetAutoCache
 
 class WebViewController: BaseViewController {
     
@@ -80,9 +81,8 @@ class WebViewController: BaseViewController {
     
     private lazy var collectionButton: UIButton = {
         let button = UIButton(type: .custom)
-        // R.swift 库已移除 - 使用系统图标
-        button.setImage(UIImage(systemName: "star"), for: .normal)
-        button.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        button.setImage(Asset.collect.image, for: .normal)
+        button.setImage(Asset.collectSelected.image, for: .selected)
         return button
     }()
     
@@ -325,11 +325,10 @@ extension WebViewController {
     }
     
     /// 掘金的网页对这个支持不友好,会自动重定向到返回首页,可能是怕被爬虫了
-    /// JWCacheURLProtocol (JWNetAutoCache) 已移除 - 功能暂时禁用
     private func webViewCache() {
-        // URLProtocol.wk_registerScheme("http")
-        // URLProtocol.wk_registerScheme("https")
-        // JWCacheURLProtocol.startListeningNetWorking()
+        URLProtocol.wk_registerScheme("http")
+        URLProtocol.wk_registerScheme("https")
+        JWCacheURLProtocol.startListeningNetWorking()
     }
 }
 
@@ -431,27 +430,9 @@ extension WebViewController: WKScriptMessageHandler {
 
 // MARK: - 其实在RxCocoa中有WebView+Rx的分类,专门来将WebView的代理进行rx的编写方式,就和UITablevDelegate差不多,这里只是没有使用
 extension WebViewController: WKNavigationDelegate {
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-        // 获取请求的 URL
-        guard let url = navigationAction.request.url else {
-            decisionHandler(.allow)
-            return
-        }
-
-        // 判断是否为外部链接（不同域名）
-        if let host = url.host, let currentHost = webView.url?.host {
-            // 如果域名不同，且不是空链接或电话链接，则用系统浏览器打开
-            if host != currentHost && !url.absoluteString.hasPrefix("javascript") {
-                // 排除电话、邮件等特殊协议
-                if url.scheme == "http" || url.scheme == "https" {
-                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
-                    decisionHandler(.cancel)
-                    return
-                }
-            }
-        }
-
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void) {
         decisionHandler(.allow)
+        return
     }
     
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
@@ -495,10 +476,17 @@ extension WebViewController: WKUIDelegate {
     ///   - windowFeatures: 窗口特性
     /// - Returns: 新的WKWebView
     func webView(_ webView: WKWebView, createWebViewWith configuration: WKWebViewConfiguration, for navigationAction: WKNavigationAction, windowFeatures: WKWindowFeatures) -> WKWebView? {
-        // 处理 target="_blank" 的情况，在当前 WebView 中加载
+        
+        /*
+        if let url = navigationAction.request.url, UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+        
         if navigationAction.targetFrame == nil || navigationAction.targetFrame?.isMainFrame == false {
             webView.load(navigationAction.request)
         }
+        */
+         
         return nil
     }
     
@@ -556,11 +544,10 @@ extension WebViewController {
 extension WebViewController {
     /// 获取js方法,转成iOS的WKWebView可以识别的对象
     private func getJS() -> WKUserScript? {
-        // R.swift 库已移除 - 使用硬编码路径
         guard let url = Bundle.main.url(forResource: "open", withExtension: "js") else {
             return nil
         }
-
+        
         guard let string = try? String(contentsOf: url, encoding: .utf8) else {
             return nil
         }

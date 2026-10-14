@@ -22,6 +22,9 @@ extension NSObject {
 }
 
 import CocoaLumberjack
+#if canImport(CocoaLumberjackSwift)
+import CocoaLumberjackSwift
+#endif
 
 protocol DeinitPrintable {
     func deinitPrint()
@@ -37,8 +40,7 @@ extension DeinitPrintable where Self: NSObject {
     }
     
     func deinitDDLog() {
-        // CocoaLumberjack API changed - temporarily commented
-        // DDLog.debug("\(className)被销毁了")
+        DDLogDebug("\(className)被销毁了")
     }
 }
 

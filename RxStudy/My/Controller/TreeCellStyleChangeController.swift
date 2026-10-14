@@ -10,6 +10,7 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import MJRefresh
 
 class TreeCellStyleChangeController: BaseTableViewController {
     
@@ -42,17 +43,15 @@ extension TreeCellStyleChangeController {
                 return cell
             }
             .disposed(by: rx.disposeBag)
-#if canImport(FlexLayout) && canImport(FlexLayoutYogaKit)
+        
         /// 这里相当于重写
         tableView.rx.itemSelected
             .bind { [weak self] (indexPath) in
                 self?.tableView.deselectRow(at: indexPath, animated: false)
                 let type = LayoutType.allCases[indexPath.row]
                 AccountManager.shared.layoutType = type
-                NotificationCenter.default.post(name: .Layout.typeChange, object: type)
-                self?.navigationController?.popViewController(animated: true)
+                NotificationCenter.default.post(name: .Layout.typeChange, object: nil)
             }
             .disposed(by: rx.disposeBag)
-#endif
     }
 }

@@ -1,0 +1,4 @@
+module KSCrash {
+  header "KSCrashUmbrella.h"
+  export *
+}

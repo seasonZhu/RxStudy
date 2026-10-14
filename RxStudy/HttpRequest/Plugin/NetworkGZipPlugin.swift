@@ -8,6 +8,12 @@
 
 import Foundation
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import zlib
 
 /// 解压缩插件，只能解开`GZip`压缩数据 对https://github.com/yangKJ/RxNetworks进行了改造 有些方法大可不必如此复杂

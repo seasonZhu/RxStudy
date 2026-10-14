@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 class ToolViewModel<T: Codable>: BaseViewModel {
     
@@ -29,7 +35,7 @@ class ToolViewModel<T: Codable>: BaseViewModel {
 private extension ToolViewModel {
     func requestData() {
         otherProvider.rx.request(OtherService.tools)
-            .map { try $0.map(BaseModel<[T]>.self) }
+            .map(BaseModel<[T]>.self)
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }

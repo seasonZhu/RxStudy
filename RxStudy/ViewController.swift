@@ -13,9 +13,16 @@ import RxCocoa
 import RxGesture
 
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import Alamofire
 
 import SVProgressHUD
+import MBProgressHUD
 
 class ViewController: UITabBarController {
     
@@ -35,10 +42,7 @@ class ViewController: UITabBarController {
         networkListening()
 //        addRxPan()
 //        testExBehaviorRelay()
-        logger.info("This is an info")
-        logger.warning("Ummm...seems not that good...")
-        logger.fault("Something really BAD happens!!")
-
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -74,8 +78,9 @@ class ViewController: UITabBarController {
         navigationItem.rightBarButtonItem?.rx.tap.subscribe(onNext: { [weak self] _ in
             debugLog("点击事件")
             Haptics.success.feedback()
-            // 使用 FlexLayout 布局的热门快捷键页面
-            self?.navigationController?.pushViewController(HotKeyController(), animated: true)
+            // self?.navigationController?.pushViewController(HotKeyController(), animated: true)
+            self?.navigationController?.pushViewController(HotKeyFlexBoxController(), animated: true)
+            // TheRouter.openURL("wandroid://hotkey")
         })
         .disposed(by: rx.disposeBag)
         
@@ -119,12 +124,11 @@ class ViewController: UITabBarController {
     private func addSubviewController(type: TabType) {
         let subViewController = type.viewController
         subViewController.tabBarItem.title = type.title
-        // ✅ 使用 SwiftGen 生成的类型安全图片资源
-        subViewController.tabBarItem.image = type.image
-        subViewController.tabBarItem.selectedImage = type.selectedImage
+        subViewController.tabBarItem.image = UIImage(named: type.imageName)
+        subViewController.tabBarItem.selectedImage = UIImage(named: type.selectImageName)
         subViewController.title = type.title
         addChild(subViewController)
-
+        
     }
 
     // MARK: - 添加所有子控制器
@@ -220,10 +224,7 @@ extension ViewController {
 
 extension ViewController {
     private func beginSplashView() {
-        /// R.image 已移除，使用系统图标
-        let saberImage = UIImage(systemName: "star.circle.fill") ?? UIImage()
-        let launchImage = UIImage(systemName: "app.fill") ?? UIImage()
-        let revealingSplashView = RevealingSplashView(iconImage: saberImage, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: launchImage)
+        let revealingSplashView = RevealingSplashView(iconImage: Asset.saber.image, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: Asset.launchImagePlayAndroid.image)
         
         (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(revealingSplashView)
         

@@ -11,22 +11,11 @@
 #import "LSApplicationProxy.h"
 #import "LSBundleProxy.h"
 
-/// UniApp 库已移除（Flutter/UniApp 模块已移除）
-// #import "DCUniMP.h"
-// #import "WeexSDK.h"
-
-/// ========== 第三方库（不支持SPM）桥接头文件 ==========
-/// 仅 Objective-C 库需要在此导入
-#import "TheRouterableProxy.h"
-#import "TheRouterDynamicParamsMapping.h"
-#import "UIScrollView+EmptyDataSet.h"
-#import "UIScrollView+MJRefresh.h"
-
-/// ========== 第三方库使用SPM进行依赖后,不用在桥接文件里面进行声明了 ==========
-//#import "MBProgressHUD.h"
-//#import "SVProgressHUD.h"
-//#import "MJRefresh.h"
-
-/// FSPagerView、TheRouter 是 Swift 库，直接编译到主目标中，不需要在此导入
+/// 添加uniApp库
+#import "DCUniMP.h"
+#import "WeexSDK.h"
 
 #define guard(wish) if (wish);
+
+#import "TheRouterableProxy.h"
+#import "TheRouterDynamicParamsMapping.h"

@@ -9,8 +9,12 @@
 import Foundation
 
 import Moya
+#if canImport(RxMoya)
 import RxMoya
-
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import SVProgressHUD
 
 /// 将AlamofireNetworkActivityLogger改造成Moya插件进行使用
@@ -27,7 +31,7 @@ let blackList = [Api.Home.banner, Api.Home.topArticle, Api.My.unreadCount]
 
 /// loading开始与取消插件
 let activityPlugin = NetworkActivityPlugin { (state, targetType) in
-
+    
     /// 添加无网络拦截
     if AccountManager.shared.networkIsReachableRelay.value == false {
         if plugins.contains(where: {
@@ -38,18 +42,18 @@ let activityPlugin = NetworkActivityPlugin { (state, targetType) in
             SVProgressHUD.showText("似乎已断开与互联网的连接")
             return
         }
-
+        
     }
-
+    
     if blackList.contains(targetType.path) {
         return
     }
-
+    
     if let showLoading = targetType.headers?["showLoading"],
        showLoading == "false" {
         return
     }
-
+    
     switch state {
     case .began:
         SVProgressHUD.beginLoading()
@@ -109,10 +113,10 @@ let provider = MoyaProvider<MultiTarget>(plugins: plugins)
 
 /*
 homeProvider.request(.banner) { result in
-
+    
 }
 
 provider.request(MultiTarget(HomeService.banner)) { result in
-
+    
 }
 */

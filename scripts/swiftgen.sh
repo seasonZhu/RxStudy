@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # SwiftGen 运行脚本
-# 在 tuist generate 前运行此脚本来生成资源访问代码
+# 在打开任一构建方式的工程前生成资源访问代码
 
 set -e
 
@@ -21,11 +21,12 @@ if ! command -v swiftgen &> /dev/null; then
 fi
 
 # 运行 SwiftGen
+mkdir -p Shared/Generated
 swiftgen config run --config swiftgen.yml
 
 echo "✅ SwiftGen 完成！"
 echo ""
 echo "生成的文件:"
-echo "  - RxStudy/Generated/Strings+SwiftGen.swift"
-echo "  - RxStudy/Generated/Assets+SwiftGen.swift"
-echo "  - RxStudy/Generated/Fonts+SwiftGen.swift (如果有字体)"
+echo "  - Shared/Generated/Strings+SwiftGen.swift"
+echo "  - Shared/Generated/Assets+SwiftGen.swift"
+echo "  - Shared/Generated/Fonts+SwiftGen.swift (如果有字体)"

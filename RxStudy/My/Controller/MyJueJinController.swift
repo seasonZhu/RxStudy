@@ -100,21 +100,19 @@ extension MyJueJinController {
 extension MyJueJinController {
     /// 获取js方法,转成iOS的WKWebView可以识别的对象
     private func getJS() -> WKUserScript? {
-        // R.file.appStoreJs() not available - R.swift removed
-        // guard let url = R.file.appStoreJs() else {
-        //     return nil
-        // }
-        //
-        // guard let string = try? String(contentsOf: url, encoding: .utf8) else {
-        //     return nil
-        // }
-        //
-        // let userScript = WKUserScript(source: string, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
-        //
-        // debugLog(string)
-        //
-        // return userScript
-        return nil // Temporarily return nil
+        guard let url = Bundle.main.url(forResource: "appStore", withExtension: "js") else {
+            return nil
+        }
+        
+        guard let string = try? String(contentsOf: url, encoding: .utf8) else {
+            return nil
+        }
+        
+        let userScript = WKUserScript(source: string, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        debugLog(string)
+        
+        return userScript
     }
 }
 

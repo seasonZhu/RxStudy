@@ -53,7 +53,7 @@ TabView {
 
 ```swift
 @main
-struct SwiftUIApp: App {
+struct SwiftUIStudy: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
@@ -124,7 +124,7 @@ TabView {
 #### 最终解决方案
 采用 **NavigationView 在外层 + .toolbar() 设置标题** 的组合方案：
 
-**SwiftUIApp.swift 结构：**
+**SwiftUIStudy.swift 结构：**
 ```swift
 NavigationView {
     TabView(selection: $selectedTab) {
@@ -191,7 +191,7 @@ struct Info: Codable {
 }
 ```
 
-**SwiftUIApp 的 InfoModel：**
+**SwiftUIStudy 的 InfoModel：**
 初始版本字段不完整，导致部分数据解析失败。
 
 #### 解决方案
@@ -669,30 +669,30 @@ TabView(selection: $selectedTab) {
 
 | 文件 | 修改内容 |
 |------|---------|
-| `SwiftUIApp/SwiftUIApp.swift` | 1. 添加 `configureTabBarAppearance()` 方法<br>2. 调整 NavigationView 和 TabView 层级<br>3. 添加 `.tint(.blue)` 修饰符 |
-| `SwiftUIApp/Models/CommonModels.swift` | 1. 完善 `InfoModel` 字段<br>2. 添加 `top: Bool?` 字段<br>3. 添加 typealias 兼容性别名 |
-| `SwiftUIApp/Features/Home/HomeView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
-| `SwiftUIApp/Features/Project/ProjectView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
-| `SwiftUIApp/Features/PublicNumber/PublicNumberView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
-| `SwiftUIApp/Features/Tree/TreeView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
-| `SwiftUIApp/Features/Mine/MineView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIStudy/SwiftUIStudy.swift` | 1. 添加 `configureTabBarAppearance()` 方法<br>2. 调整 NavigationView 和 TabView 层级<br>3. 添加 `.tint(.blue)` 修饰符 |
+| `SwiftUIStudy/Models/CommonModels.swift` | 1. 完善 `InfoModel` 字段<br>2. 添加 `top: Bool?` 字段<br>3. 添加 typealias 兼容性别名 |
+| `SwiftUIStudy/Features/Home/HomeView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIStudy/Features/Project/ProjectView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIStudy/Features/PublicNumber/PublicNumberView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIStudy/Features/Tree/TreeView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
+| `SwiftUIStudy/Features/Mine/MineView.swift` | 移除 `.navigationTitle()`，改用 `.toolbar()` |
 
 ## 第二天新增
 
 | 文件 | 说明 |
 |------|------|
-| `SwiftUIApp/Features/Search/HotKeyViewModel.swift` | 搜索热词 ViewModel |
-| `SwiftUIApp/Features/Search/HotKeyView.swift` | 搜索页面，包含 FlowLayout |
-| `SwiftUIApp/Features/Search/SearchResultViewModel.swift` | 搜索结果 ViewModel（分页） |
-| `SwiftUIApp/Features/Search/SearchResultView.swift` | 搜索结果页面 |
-| `SwiftUIApp/Components/WebUIController.swift` | WebView 控制器（两个） |
-| `SwiftUIApp/Components/ShareSheet.swift` | 分享面板组件 |
+| `SwiftUIStudy/Features/Search/HotKeyViewModel.swift` | 搜索热词 ViewModel |
+| `SwiftUIStudy/Features/Search/HotKeyView.swift` | 搜索页面，包含 FlowLayout |
+| `SwiftUIStudy/Features/Search/SearchResultViewModel.swift` | 搜索结果 ViewModel（分页） |
+| `SwiftUIStudy/Features/Search/SearchResultView.swift` | 搜索结果页面 |
+| `SwiftUIStudy/Components/WebUIController.swift` | WebView 控制器（两个） |
+| `SwiftUIStudy/Components/ShareSheet.swift` | 分享面板组件 |
 
 ## 第二天核心修改
 
 | 文件 | 修改内容 |
 |------|---------|
-| `SwiftUIApp/SwiftUIApp.swift` | 1. 重构 TabBarView 架构<br>2. 每个 Tab 独立 NavigationView<br>3. 清理注释代码 |
+| `SwiftUIStudy/SwiftUIStudy.swift` | 1. 重构 TabBarView 架构<br>2. 每个 Tab 独立 NavigationView<br>3. 清理注释代码 |
 | `Project.swift` | 1. 添加 WebUI 依赖<br>2. 引用 RxStudy 的 String+Extension |
 | `Tuist/Package.swift` | 添加 WebUI 库依赖 |
 
@@ -730,7 +730,7 @@ import SwiftUI
 import UIKit
 
 @main
-struct SwiftUIApp: App {
+struct SwiftUIStudy: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
@@ -1270,8 +1270,8 @@ func fetchList() async throws -> PagedResult<InfoModel>
 
 | 文件 | 说明 |
 |------|------|
-| `SwiftUIApp/Extensions/View+LoginGuard.swift` | 登录拦截扩展 |
-| `SwiftUIApp/Components/SecureInputField.swift` | 密码输入框组件 |
+| `SwiftUIStudy/Extensions/View+LoginGuard.swift` | 登录拦截扩展 |
+| `SwiftUIStudy/Components/SecureInputField.swift` | 密码输入框组件 |
 
 ### 核心修改
 
@@ -1279,9 +1279,9 @@ func fetchList() async throws -> PagedResult<InfoModel>
 |------|---------|
 | `Project.swift` | 添加 ProgressHUD 依赖（SwiftUIStudy target） |
 | `Tuist/Package.swift` | 1. 添加 ProgressHUD<br>2. 添加 PagerTabStripView（未实际使用） |
-| `SwiftUIApp/Models/PageModels.swift` | 移除所有分页相关 typealias |
-| `SwiftUIApp/Models/CoinCollectModels.swift` | 移除分页相关 typealias |
-| `SwiftUIApp/Network/APIService.swift | 1. 优化 requestDecoded 使用 Moya map()<br>2. 移除未使用的 APIService 协议 |
+| `SwiftUIStudy/Models/PageModels.swift` | 移除所有分页相关 typealias |
+| `SwiftUIStudy/Models/CoinCollectModels.swift` | 移除分页相关 typealias |
+| `SwiftUIStudy/Network/APIService.swift | 1. 优化 requestDecoded 使用 Moya map()<br>2. 移除未使用的 APIService 协议 |
 
 ### View 修改
 

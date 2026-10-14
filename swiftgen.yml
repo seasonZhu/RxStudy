@@ -11,7 +11,7 @@ strings:
   # 输出配置
   outputs:
     - templateName: structured-swift5
-      output: RxStudy/Generated/Strings+SwiftGen.swift
+      output: Shared/Generated/Strings+SwiftGen.swift
       params:
         enumName: L10n
         publicAccess: true
@@ -20,11 +20,11 @@ strings:
 xcassets:
   # 输入路径（Assets.xcassets）
   inputs:
-    - RxStudy/Assets.xcassets
+    - Shared/Resources/Assets.xcassets
   # 输出配置
   outputs:
     - templateName: swift5
-      output: RxStudy/Generated/Assets+SwiftGen.swift
+      output: Shared/Generated/Assets+SwiftGen.swift
       params:
         enumName: Asset
         publicAccess: true
@@ -36,7 +36,7 @@ xcassets:
 #     - RxStudy/Resources/Fonts
 #   outputs:
 #     - templateName: swift5
-#       output: RxStudy/Generated/Fonts+SwiftGen.swift
+#       output: Shared/Generated/Fonts+SwiftGen.swift
 #       params:
 #         enumName: FontFamily
 #         publicAccess: true

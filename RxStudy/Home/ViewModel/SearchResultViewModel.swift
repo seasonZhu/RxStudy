@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
     /// 搜索结果的首页是从0开始的
@@ -56,7 +62,7 @@ private extension SearchResultViewModel {
     
     func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         homeProvider.rx.request(HomeService.queryKeyword(keyword, page))
-            .map { try $0.map(BaseModel<Page<Info>>.self) }
+            .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .compactMap { $0.data }
             /// 转换操作

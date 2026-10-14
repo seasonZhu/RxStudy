@@ -1,0 +1,5 @@
+module FlexLayoutYogaKit {
+  header "Sources/YogaKit/include/YogaKit/UIView+Yoga.h"
+  header "Sources/YogaKit/include/YogaKit/YGLayout.h"
+  export *
+}

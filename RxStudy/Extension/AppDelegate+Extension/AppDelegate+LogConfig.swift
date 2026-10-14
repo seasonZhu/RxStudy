@@ -8,14 +8,23 @@
 
 import Foundation
 import CocoaLumberjack
+#if canImport(CocoaLumberjackSwift)
+import CocoaLumberjackSwift
+#endif
+#if canImport(ZipArchive)
 import ZipArchive
+#else
+import SSZipArchive
+#endif
 
 extension AppDelegate {
 
     /// 设置日志配置
     func setupLogConfiguration() {
         #if DEBUG
+        dynamicLogLevel = .verbose
         #else
+        dynamicLogLevel = .warning
         #endif
 
         DDLog.add(DDOSLogger.sharedInstance)

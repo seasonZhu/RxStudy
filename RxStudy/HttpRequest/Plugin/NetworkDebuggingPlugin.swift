@@ -10,6 +10,12 @@ import Foundation
 
 import Alamofire
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 /// 网络打印，DEBUG模式内置插件
 /// Network printing, DEBUG mode built in plugin.

@@ -9,9 +9,15 @@
 import Foundation
 
 import RxSwift
-import Moya
-
 import SVProgressHUD
+
+import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 enum PollingEndReason {
     case success(Moya.Response)

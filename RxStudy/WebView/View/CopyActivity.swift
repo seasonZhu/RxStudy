@@ -21,7 +21,7 @@ class CopyActivity: UIActivity {
     override var activityTitle: String? { "复制URL" }
     
     /// 设置分享按钮的图片
-    override var activityImage: UIImage? { UIImage(systemName: "doc.on.doc") }
+    override var activityImage: UIImage? { Asset.saber.image }
     
     /// 设置是否显示分享按钮
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {

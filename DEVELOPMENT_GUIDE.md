@@ -36,7 +36,7 @@ RxStudy/
 │   └── .build/                     # 依赖缓存（自动生成）
 │       ├── checkouts/              # 依赖源码
 │       └── repositories/           # Git 仓库克隆
-├── SwiftUIApp/                     # SwiftUI 入口
+├── SwiftUIStudy/                     # SwiftUI 入口
 ├── RxStudy/                        # UIKit 代码
 ├── Derived/                        # 生成的文件
 └── Packages/ThirdParty/            # 本地第三方库
@@ -298,7 +298,7 @@ TabView(selection: $selectedTab) {
 使用 UIKit 层面配置，比 SwiftUI 修饰符更稳定：
 
 ```swift
-// SwiftUIApp.swift
+// SwiftUIStudy.swift
 private func configureTabBarAppearance() {
     let appearance = UITabBarAppearance()
     appearance.configureWithOpaqueBackground()

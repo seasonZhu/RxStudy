@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 class MyCoinViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
 
@@ -55,7 +61,7 @@ private extension MyCoinViewModel {
     
     func requestData(page: Int, loadMoreFailureResetCurrentPageCallback: (() -> Void)? = nil) {
         myProvider.rx.request(MyService.myCoinList(page))
-            .map { try $0.map(BaseModel<Page<MyHistoryCoin>>.self) }
+            .map(BaseModel<Page<MyHistoryCoin>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .compactMap { $0.data }
             /// 转换操作

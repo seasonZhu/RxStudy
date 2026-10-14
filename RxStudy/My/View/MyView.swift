@@ -13,9 +13,9 @@ import RxCocoa
 import RxGesture
 
 class MyView: UIView {
-
-    private lazy var imageView = UIImageView()
-
+    
+    private lazy var imageView = UIImageView(image: Asset.user.image)
+    
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -29,14 +29,13 @@ class MyView: UIView {
         set {
             _myCoin = newValue
             if let text = newValue?.myInfo {
-                // ✅ 使用 SwiftGen 生成的类型安全图片资源
                 imageView.image = Asset.android.image
+                infoLabel.text = text
             } else {
-                // ✅ 使用 SwiftGen 生成的用户头像
                 imageView.image = Asset.user.image
                 infoLabel.text = "排名: -- 等级: -- 积分: --"
             }
-
+            
         }
         get {
             return _myCoin

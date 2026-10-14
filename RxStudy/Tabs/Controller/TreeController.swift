@@ -10,9 +10,11 @@ import UIKit
 
 import RxSwift
 import RxCocoa
+import NSObject_Rx
 import RxDataSources
 
 import SnapKit
+import MJRefresh
 
 /// 使用tableView配合section即可完成需求
 class TreeController: BaseTableViewController {
@@ -62,8 +64,8 @@ extension TreeController {
         /// 绑定数据
         viewModel.outputs.dataSource
             .asDriver(onErrorJustReturn: [])
-            .drive(rx.tableViewSectionAndCellConfig)
-            //.drive(rx.tableViewSectionAndFlexLayoutCell)
+            // .drive(rx.tableViewSectionAndCellConfig)
+            .drive(rx.tableViewSectionAndFlexLayoutCell)
             .disposed(by: rx.disposeBag)
         
         /// 下拉与上拉状态绑定到tableView
@@ -79,17 +81,9 @@ extension TreeController {
             .bind(onNext: viewModel.inputs.loadData)
             .disposed(by: rx.disposeBag)
         
-        NotificationCenter.default.rx.notification(.Layout.typeChange).subscribe(onNext: { [weak self] notification in
-          if let type = notification.object as? LayoutType {
-              /// 使用reloadData,并不能更改数据源的结构,需要直接调用这个方法才行
-              switch type {
-              case .wrap:
-                  self?.tableViewSectionAndFlexLayoutCell(tabs: viewModel.outputs.dataSource.value)
-              case .list:
-                  self?.tableViewSectionAndCellConfig(tabs: viewModel.outputs.dataSource.value)
-              }
-          }
-            
+        NotificationCenter.default.rx.notification(.Layout.typeChange).subscribe(onNext: { [weak self] _ in
+            /// 使用reloadData,并不能更改数据源的结构,需要直接调用这个方法才行
+            self?.tableViewSectionAndFlexLayoutCell(tabs: viewModel.outputs.dataSource.value)
         }).disposed(by: rx.disposeBag)
     }
 }
@@ -154,41 +148,50 @@ extension TreeController {
             isEmptyRelay.accept(true)
             return
         }
-
+        
         /// 过滤掉子节点为空的数据
         let tabs = tabs.filter { $0.children?.isNotEmpty == true }
-
+        
         /// 这种带有section的tableView,不能通过一级菜单确定是否有数据,需要将二维数组进行降维打击
         let children = tabs.compactMap { $0.children }
         let deepChildren = children.flatMap { $0 }.compactMap { $0.children }.flatMap { $0 }
         isEmptyRelay.accept(deepChildren.isEmpty)
-
+        
         let sectionModels = tabs.map { tab in
-            /// 使用 FlexLayout 布局的 TreeCell
-            return SectionModel(model: tab, items: [tab])
+            switch AccountManager.shared.layoutType {
+            case .list:
+                return SectionModel(model: tab, items: tab.children ?? [])
+            case .wrap:
+                return SectionModel(model: tab, items: [tab])
+            }
+            
         }
 
         let items = Observable.just(sectionModels)
-
+        
         tableView.dataSource = nil
 
         let dataSource = RxTableViewSectionedReloadDataSource<SectionModel<TabModel, TabModel>>(
-            configureCell: { [weak self] (ds, tv, indexPath, _) in
-                //let cell = tv.dequeueReusableCell(withIdentifier: TreeCell.className) as! TreeCell
-                let cell = tv.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
-//                cell.model = ds.sectionModels[indexPath.section].model
-//
-//                /// 处理 TreeCell 内部按钮点击事件
-//                /// 由于 cell 重用，这里使用 flatMapLatest 确保只处理最新的订阅
-//                cell.buttonTap
-//                    .subscribe(onNext: { tabModel in
-//                        guard let self else { return }
-//                        let vc = SingleTabListController(type: self.type, tabModel: tabModel)
-//                        self.navigationController?.pushViewController(vc, animated: true)
-//                    })
-//                    .disposed(by: cell.disposeBag)
-
-                return cell
+            configureCell: { (ds, tv, indexPath, _) in
+                
+                switch AccountManager.shared.layoutType {
+                case .list:
+                    let cell = tv.dequeueReusableCell(withIdentifier: UITableViewCell.className)!
+                    cell.textLabel?.text = ds.sectionModels[indexPath.section].model.children?[indexPath.row].name
+                    cell.textLabel?.font = UIFont.systemFont(ofSize: 15)
+                    cell.accessoryType = .disclosureIndicator
+                    return cell
+                case .wrap:
+                    let cell = tv.dequeueReusableCell(withIdentifier: TreeCell.className) as! TreeCell
+                    cell.model = ds.sectionModels[indexPath.section].model
+                    cell.buttonTap.subscribe(onNext: { [weak self] model in
+                        guard let self else { return }
+                        let vc = SingleTabListController(type: self.type, tabModel: model)
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }).disposed(by: cell.disposeBag)
+                    return cell
+                }
+            
             },
             titleForHeaderInSection: { ds, index in
                 /// 这里是顶部悬停

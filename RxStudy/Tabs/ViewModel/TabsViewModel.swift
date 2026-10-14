@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 typealias TreeViewModel = TabsViewModel
 
@@ -56,7 +62,7 @@ private extension TabsViewModel {
         }
         
         result
-            .map { try $0.map(BaseModel<[TabModel]>.self) }
+            .map(BaseModel<[TabModel]>.self)
             .map { $0.data }
             /// 去掉其中为nil的值
             .compactMap { $0 }

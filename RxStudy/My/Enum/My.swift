@@ -34,7 +34,7 @@ extension My {
         case .ranking:
             string = "积分排名"
         case .openSource:
-            string = "玩安卓开源框架引用"
+            string = "\("玩安卓")开源框架引用"
         case .myGitHub:
             string = "作者的GitHub"
         case .myJueJin:
@@ -124,7 +124,7 @@ extension My {
 }
 
 extension My {
-    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .treeCellStyleChange, .tools, .course, .ranking, .login]
+    static let logoutDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .flutterModule, .uniMPModule, .login]
     
-    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource,.treeCellStyleChange, .tools, .course, .ranking, .myCoin, .myCollect, .myMessage, .logout]
+    static let loginDataSource: [My] = [.myGitHub, .myJueJin, .aSwiftUI, .openSource, .tools, .course, .ranking, .appIcon, .treeCellStyleChange, .flutterModule, .uniMPModule, .myCoin, .myCollect, .myMessage, .logout]
 }

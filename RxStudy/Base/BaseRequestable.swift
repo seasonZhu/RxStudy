@@ -10,7 +10,12 @@ import Foundation
 
 import RxSwift
 import Moya
-// Moya 14.x 自带 RxSwift 支持
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 /**
  为什么会出现这样一个层?
@@ -75,7 +80,7 @@ extension RepositoryProtocol {
     static func requestHotKey() -> Single<Moya.Response> {
         homeProvider.rx.request(HomeService.hotKey)
     }
-
+    
     static func requestBanner() -> Single<Moya.Response> {
         homeProvider.rx.request(HomeService.banner)
     }

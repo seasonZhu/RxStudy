@@ -11,7 +11,7 @@ description: RxStudy iOS 项目专属知识库，包含 Tuist 项目结构、Tar
 - **最低 iOS 版本**: iOS 17.6
 - **Swift 版本**: 5.9
 - **包管理**: Tuist (SPM)
-- **当前分支**: `refactor/swiftui-migration`
+- **当前分支**: `develop-tuist`
 
 ## 项目结构
 
@@ -21,7 +21,7 @@ RxStudy/
 ├── Tuist.swift                # Tuist 版本配置
 ├── Tuist/                     # Tuist 依赖包
 ├── RxStudy/                   # 主 Target (UIKit + RxSwift)
-├── SwiftUIApp/               # SwiftUI Target (SwiftUI)
+├── SwiftUIStudy/               # SwiftUI Target (SwiftUI)
 ├── Shared/                    # 共享代码 (两个 Target 共用)
 ├── Packages/                  # 本地 SPM 包
 └── Template/                  # 项目模板
@@ -45,7 +45,7 @@ RxStudy/
 - **工具**: KeychainAccess, CocoaLumberjack, MarqueeLabel, SFSafeSymbols, ZipArchive
 - **UI**: MBProgressHUD, SVProgressHUD, MJRefresh, JXSegmentedView, DZNEmptyDataSet, FSPagerView
 
-### SwiftUIApp (SwiftUI)
+### SwiftUIStudy (SwiftUI)
 
 | 配置项 | 值 |
 |--------|-----|
@@ -78,7 +78,6 @@ Shared/
 sources: [
     "Shared/ACarousel/**",
     "Shared/Models/**",
-    "Shared/Extensions/**",
 ]
 ```
 
@@ -101,7 +100,7 @@ Network (MoyaProvider)
 - Service 实现 `TargetType` 协议定义 API
 - 使用 `Observable<T>` 返回数据流
 
-### SwiftUIApp (SwiftUI)
+### SwiftUIStudy (SwiftUI)
 
 ```
 View (SwiftUI View)
@@ -145,7 +144,7 @@ func fetchBanner() -> Observable<[Banner]> {
 }
 ```
 
-### SwiftUIApp (async/await)
+### SwiftUIStudy (async/await)
 
 ```swift
 // Service 定义
@@ -175,7 +174,7 @@ func fetchBanner() async throws -> [Banner] {
 
 ## API 错误处理
 
-### SwiftUIApp 的 APIError
+### SwiftUIStudy 的 APIError
 
 ```swift
 enum APIError: LocalizedError {
@@ -221,7 +220,7 @@ enum Api {
 
 ### SwiftUI 与 UIKit 差异
 
-| 场景 | UIKit (RxStudy) | SwiftUI (SwiftUIApp) |
+| 场景 | UIKit (RxStudy) | SwiftUI (SwiftUIStudy) |
 |------|-----------------|---------------------|
 | 状态管理 | RxSwift (BehaviorRelay) | @State/@Published/@Observable |
 | 导航 | UINavigationController | NavigationView |
@@ -232,22 +231,22 @@ enum Api {
 ### 第三方库选择
 
 - **仅 RxStudy**: RxSwift 生态、MJRefresh、JXSegmentedView、SnapKit
-- **仅 SwiftUIApp**: SwiftUIIntrospect、SwiftUIX、WebUI、ProgressHUD
+- **仅 SwiftUIStudy**: SwiftUIIntrospect、SwiftUIX、WebUI、ProgressHUD
 - **共用**: Kingfisher、Moya、Alamofire、ACarousel (Shared)
 
 ## 开发注意事项
 
 1. **Tuist 生成**: 修改 `Project.swift` 后需运行 `tuist generate`
 2. **共享代码**: 放在 `Shared/` 目录，两个 Target 都会编译
-3. **SwiftUI 迁移**: 当前分支 `refactor/swiftui-migration` 进行 UIKit → SwiftUI 迁移
+3. **SwiftUI 迁移**: 当前分支 `develop-tuist` 进行 UIKit → SwiftUI 迁移
 4. **Bundle ID**: RxStudy 用 `com.lostsakura.RxStudy`，SwiftUIStudy 用 `com.lostsakura.RxStudy.SwiftUIStudy`
-5. **网络层差异**: RxStudy 用 RxSwift 响应式，SwiftUIApp 用 async/await
+5. **网络层差异**: RxStudy 用 RxSwift 响应式，SwiftUIStudy 用 async/await
 
 ## 相关文件路径
 
 - 项目配置: `Project.swift`
-- SwiftUI 入口: `SwiftUIApp/SwiftUIApp.swift`
-- 网络服务基类: `SwiftUIApp/Network/APIService.swift`
+- SwiftUI 入口: `SwiftUIStudy/SwiftUIStudy.swift`
+- 网络服务基类: `SwiftUIStudy/Network/APIService.swift`
 - 共享模型: `Shared/Models/BaseModel.swift`
 - UIKit Service 示例: `RxStudy/HttpRequest/Service/HomeService.swift`
-- SwiftUI Service 示例: `SwiftUIApp/Network/HomeAPIService.swift`
+- SwiftUI Service 示例: `SwiftUIStudy/Network/HomeAPIService.swift`

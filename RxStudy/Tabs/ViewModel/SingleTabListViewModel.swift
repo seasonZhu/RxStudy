@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting {
 
@@ -81,7 +87,7 @@ private extension SingleTabListViewModel {
         
         result
             /// Response转Model
-            .map { try $0.map(BaseModel<Page<Info>>.self) }
+            .map(BaseModel<Page<Info>>.self)
             /// 由于需要使用Page,所以return到$0.data这一层,而不是$0.data.datas
             .compactMap { $0.data }
             /// 转换操作

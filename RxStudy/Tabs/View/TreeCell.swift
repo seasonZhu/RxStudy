@@ -6,7 +6,6 @@
 //  Copyright © 2025 season. All rights reserved.
 //
 
-#if canImport(FlexLayout) && canImport(FlexLayoutYogaKit)
 import UIKit
 
 import RxRelay
@@ -109,4 +108,3 @@ extension TreeCell {
         contentView.flex.layout(mode: .adjustHeight)
     }
 }
-#endif

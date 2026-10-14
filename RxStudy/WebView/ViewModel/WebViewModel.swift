@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 class WebViewModel: BaseViewModel {
     
@@ -24,7 +30,7 @@ extension WebViewModel {
     
     func collectAction(collectId: Int) {
         myProvider.rx.request(MyService.collectArticle(collectId))
-            .map { try $0.map(BaseModel<String>.self) }
+            .map(BaseModel<String>.self)
             .map { $0.isSuccess }
             .subscribe { event in
                 switch event {
@@ -48,7 +54,7 @@ extension WebViewModel {
     
     func unCollectAction(collectId: Int) {
         myProvider.rx.request(MyService.unCollectArticle(collectId))
-            .map { try $0.map(BaseModel<String>.self) }
+            .map(BaseModel<String>.self)
             .map { $0.isSuccess }
             .subscribe { event in
                 switch event {

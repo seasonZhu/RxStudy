@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import SVProgressHUD
 import IQKeyboardManagerSwift
 import IQKeyboardToolbarManager
@@ -30,18 +29,18 @@ extension AppDelegate {
     // MARK: - 键盘管理器配置
 
     private func setupKeyboardManager() {
-         // Core functionality
-         IQKeyboardManager.shared.isEnabled = true
-        
-         // Toolbar
-         IQKeyboardToolbarManager.shared.isEnabled = true
-        
-         // Tap to resign
-         IQKeyboardManager.shared.resignOnTouchOutside = false
-        
-         // Appearance
-         IQKeyboardManager.shared.keyboardConfiguration.overrideAppearance = false
-         IQKeyboardManager.shared.keyboardConfiguration.appearance = .default
+        // Core functionality
+        IQKeyboardManager.shared.isEnabled = true
+
+        // Toolbar
+        IQKeyboardToolbarManager.shared.isEnabled = true
+
+        // Tap to resign
+        IQKeyboardManager.shared.resignOnTouchOutside = false
+
+        // Appearance
+        IQKeyboardManager.shared.keyboardConfiguration.overrideAppearance = false
+        IQKeyboardManager.shared.keyboardConfiguration.appearance = .default
     }
 
     // MARK: - 网络日志打印

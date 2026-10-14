@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 class MyViewModel: BaseViewModel {
     
@@ -56,7 +62,7 @@ extension MyViewModel {
     
     private func getMyCoin() -> Single<CoinRank> {
         myProvider.rx.request(MyService.userCoinInfo)
-            .map { try $0.map(BaseModel<CoinRank>.self) }
+            .map(BaseModel<CoinRank>.self)
             .map { $0.data }
             .compactMap { $0 }
             .catchAndReturn(CoinRank())
@@ -66,7 +72,7 @@ extension MyViewModel {
     
     private func getMyUnreadMessageCount() -> Single<Int> {
         myProvider.rx.request(MyService.unreadCount)
-            .map { try $0.map(BaseModel<Int>.self) }
+            .map(BaseModel<Int>.self)
             .map { $0.data }
             .compactMap { $0 }
             .catchAndReturn(0)
@@ -76,7 +82,7 @@ extension MyViewModel {
     
     func logout() -> Single<BaseModel<String>> {
         accountProvider.rx.request(AccountService.logout)
-            .map { try $0.map(BaseModel<String>.self) }
+            .map(BaseModel<String>.self)
     }
 }
 
@@ -87,7 +93,7 @@ extension MyViewModel {
         
         /// 使用自己写的BlockingObservable分类进行处理
         let some = myProvider.rx.request(MyService.userCoinInfo)
-            .map { try $0.map(BaseModel<CoinRank>.self) }
+            .map(BaseModel<CoinRank>.self)
             .map { $0.data }
             .compactMap { $0 }
             .toBlocking()
@@ -98,32 +104,34 @@ extension MyViewModel {
         case .failure(let error):
             print(error)
         }
-
-        /// blockingRequest 方法需要 ReactiveMoya 或自定义扩展 - 已暂时注释
-        // let result: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
-        //     .map { try $0.map(BaseModel<CoinRank>.self) }
-        //     .map { $0.data }
-        //     .filterNil(CoinRank.self)
-        //
-        // switch result {
-        // case .success(let data):
-        //     print("哈哈")
-        //     print(data)
-        // case .failure(let error):
-        //     print(error)
-        // }
-        //
-        // let anotherResult: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
-        //     .map { try $0.map(BaseModel<CoinRank>.self) }
-        //     .map { $0.data }
-        //     .filterNil()
-        //
-        // switch anotherResult {
-        // case .success(let data):
-        //     print("哈哈")
-        //     print(data)
-        // case .failure(let error):
-        //     print(error)
-        // }
+        
+        /// 使用自己写的MoyaProviderType分类进行处理
+        let result: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
+            .map(BaseModel<CoinRank>.self)
+            .map { $0.data }
+            .filterNil(CoinRank.self)
+        
+        switch result {
+            
+        case .success(let data):
+            print("哈哈")
+            print(data)
+        case .failure(let error):
+            print(error)
+        }
+        
+        let anotherResult: Result<CoinRank, MoyaError> = myProvider.rx.blockingRequest(MyService.userCoinInfo)
+            .map(BaseModel<CoinRank>.self)
+            .map { $0.data }
+            .filterNil()
+        
+        switch anotherResult {
+            
+        case .success(let data):
+            print("哈哈")
+            print(data)
+        case .failure(let error):
+            print(error)
+        }
     }
 }

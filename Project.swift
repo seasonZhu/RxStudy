@@ -1,4 +1,5 @@
 import ProjectDescription
+import ProjectDescriptionHelpers
 
 /// 这样每次 tuist generate 后就不需要手动设置了
 /// https://developer.apple.com/account
@@ -34,74 +35,45 @@ let project = Project(
             product: .app,
             bundleId: "com.lostsakura.RxStudy",
             deploymentTargets: .iOS("17.6"),
-            infoPlist: .extendingDefault(
-                with: [
-                    "CFBundleDisplayName": "玩安卓",
-                    "CFBundleShortVersionString": "1.0.0",
-                    "CFBundleVersion": "1",
-                    "UILaunchStoryboardName": "LaunchScreen",
-                    "UISupportedInterfaceOrientations": ["UIInterfaceOrientationPortrait"],
-                    "UISupportedInterfaceOrientations~ipad": [
-                        "UIInterfaceOrientationPortrait",
-                        "UIInterfaceOrientationPortraitUpsideDown",
-                        "UIInterfaceOrientationLandscapeLeft",
-                        "UIInterfaceOrientationLandscapeRight"
-                    ],
-                    "UIApplicationSceneManifest": [
-                        "UIApplicationSupportsMultipleScenes": false,
-                        "UISceneConfigurations": [
-                            "UIWindowSceneSessionRoleApplication": [
-                                [
-                                    "UISceneConfigurationName": "Default Configuration",
-                                    "UISceneDelegateClassName": "$(PRODUCT_MODULE_NAME).SceneDelegate"
-                                ]
-                            ]
-                        ]
-                    ],
-                    "NSAppTransportSecurity": [
-                        "NSAllowsArbitraryLoads": true
-                    ],
-                    "NSPhotoLibraryUsageDescription": "访问相册用于选择图片",
-                    "NSCameraUsageDescription": "访问相机用于拍摄图片",
-                    "NSPhotoLibraryAddUsageDescription": "保存图片到相册",
-                    "NSDocumentFolderUsageDescription": "需要访问文档文件夹以保存下载的文档",
-                    "CFBundleURLTypes": [
-                        [
-                            "CFBundleTypeRole": "Editor",
-                            "CFBundleURLSchemes": ["wandroid"]
-                        ]
-                    ],
-                    "LSApplicationQueriesSchemes": ["mqq", "csdn", "openjj", "jianshu", "jianshu.hugo", "com.jianshu.Hugo"]
-                ]
-            ),
+            infoPlist: .file(path: "RxStudy/Info.plist"),
             sources: [
-                "RxStudy/**",
+                .glob("RxStudy/**", excluding: ["RxStudy/Generated/**", "RxStudy/**/*.playground/**"]),
                 // ========== SwiftGen 生成的代码 ==========
-                "RxStudy/Generated/**/*.swift",
+                "Shared/Generated/**/*.swift",
                 // ========== 共享代码 ==========
                 "Shared/ACarousel/**",
+                "Shared/API/**",
+                "Shared/Business/**",
                 "Shared/Models/**",
-                "Shared/Extensions/**",
-                // ========== 本地依赖（源码集成 → 本地 SPM 包迁移）==========
-                // 以下库已改为使用本地 SPM 包：
-                // - FSPagerView → 本地 SPM 包（Package.swift 手动创建）
-                // 以下库不支持 SPM，保持源码集成：
-                // - TheRouter → 已改回源码直接集成
+                // TheRouter 保留源码集成，旧实验依赖由 LocalDependencies 定义。
                 "Packages/ThirdParty/TheRouter/Sources/**",
-                // 已清理的本地源码：
-                // - FlexLayout → 已通过官方 SPM 集成（本地源码已清理）
             ],
             resources: [
-                "RxStudy/Assets.xcassets/**",
-                "RxStudy/Base.lproj/LaunchScreen.storyboard",
-                "RxStudy/Base.lproj/Main.storyboard",
+                "Shared/Resources/Assets.xcassets/**",
+                "Shared/Resources/Base.lproj/LaunchScreen.storyboard",
+                "RxStudy/zh-Hans.lproj/**",
+                "RxStudy/en.lproj/**",
+                "Shared/Resources/Base.lproj/Main.storyboard",
                 // ========== 许可证列表 ==========
                 "RxStudy/Pods-RxStudy-acknowledgements.plist",
+                "Shared/Resources/JavaScript/**",
+                "RxStudy/UniMP/Apps/*.wgt",
+                "JSONS/APIKeys.json",
+                "Packages/ThirdParty/unimp/UniMPSDK/Core/Resources/**",
                 // 以下库的 bundle 已通过 SPM 自动管理：
                 // - SVProgressHUD.bundle
                 // - MJRefresh.bundle
             ],
             dependencies: [
+                .sdk(name: "CoreMotion", type: .framework),
+.sdk(name: "CoreTelephony", type: .framework),
+.sdk(name: "CoreText", type: .framework),
+.sdk(name: "CoreServices", type: .framework),
+.sdk(name: "MediaPlayer", type: .framework),
+.sdk(name: "JavaScriptCore", type: .framework),
+.sdk(name: "QuickLook", type: .framework),
+.sdk(name: "WebKit", type: .framework),
+.sdk(name: "CFNetwork", type: .framework),
                 // ========== RxSwift 生态 ==========
                 TargetDependency.external(name: "RxSwift"),
                 TargetDependency.external(name: "RxCocoa"),
@@ -124,11 +96,22 @@ let project = Project(
 
                 // ========== 布局 ==========
                 TargetDependency.external(name: "SnapKit"),
-                //TargetDependency.external(name: "FlexLayout"),
+                TargetDependency.target(name: "FlexLayout"),
+                TargetDependency.target(name: "FlexLayoutYogaKit"),
+                TargetDependency.target(name: "PinLayout"),
+                TargetDependency.target(name: "KSCrash"),
+                TargetDependency.target(name: "CocoaDebug"),
+                TargetDependency.target(name: "FunnyButton"),
+                TargetDependency.target(name: "LifetimeTracker"),
+                TargetDependency.target(name: "JWNetAutoCache"),
+                TargetDependency.target(name: "CombineExt"),
+                TargetDependency.external(name: "CombineMoya"),
+                TargetDependency.target(name: "SDWebImage"),
 
                 // ========== 工具 ==========
                 TargetDependency.external(name: "KeychainAccess"),
                 TargetDependency.external(name: "CocoaLumberjack"),
+                TargetDependency.external(name: "CocoaLumberjackSwift"),
                 TargetDependency.external(name: "MarqueeLabel"),
                 TargetDependency.external(name: "SFSafeSymbols"),
                 TargetDependency.external(name: "ZipArchive"),
@@ -151,15 +134,17 @@ let project = Project(
                 TargetDependency.external(name: "AcknowList"),
                 
                 // ========== 键盘管理 ==========
-                TargetDependency.external(name: "IQKeyboardManagerSwift"),
+                TargetDependency.target(name: "IQKeyboardManagerSwift"),
             ],
             settings: .settings(
                 base: [
                     "ASSETCATALOG_COMPILER_APPICON_NAME": "AppIcon",
                     "ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME": "AccentColor",
                     "ENABLE_PREVIEWS": "YES",
-                    "SWIFT_ACTIVE_COMPILATION_CONDITIONS": "$(inherited) DEBUG",
-                    "OTHER_LDFLAGS": ["$(inherited)", "-ObjC"],
+                    "OTHER_LDFLAGS": ["$(inherited)", "-ObjC", "-lcoreSupport", "-llibNativeObj", "-llibNativeUI", "-llibNavigator", "-llibPDRCore", "-llibStorage", "-llibUI", "-llibWeex", "-llibIO", "-framework", "storage", "-lc++", "-liconv"],
+                    "FRAMEWORK_SEARCH_PATHS": ["$(inherited)", "$(SRCROOT)/Packages/ThirdParty/unimp/UniMPSDK/Core/Libs"],
+                    "LIBRARY_SEARCH_PATHS": ["$(inherited)", "$(SRCROOT)/Packages/ThirdParty/unimp/UniMPSDK/Core/Libs", "$(SRCROOT)/Packages/ThirdParty/unimp/UniMPSDK/File/Libs"],
+                    "ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES": ["AppIcon-Swift", "AppIcon-Flutter"],
                     /// 这里进行同步修改 - 配置签名信息
                     "DEVELOPMENT_TEAM": .string(teamId),
                     "CODE_SIGN_STYLE": "Automatic",
@@ -171,6 +156,7 @@ let project = Project(
                     "HEADER_SEARCH_PATHS": [
                         "$(inherited)",
                         "$(SRCROOT)/RxStudy",
+                        "$(SRCROOT)/Packages/ThirdParty/unimp/UniMPSDK/Core/Headers/**",
                         "$(SRCROOT)/RxStudy/Extension/CrashController",
                         "$(SRCROOT)/RxStudy/Extension/NSURLProtocol+WKWebVIew",
                         "$(SRCROOT)/Packages/ThirdParty/TheRouter/Sources",
@@ -202,38 +188,24 @@ let project = Project(
             product: .app,
             bundleId: "com.lostsakura.RxStudy.SwiftUIStudy",
             deploymentTargets: .iOS("17.6"),
-            infoPlist: .extendingDefault(
-                with: [
-                    "CFBundleDisplayName": "玩安卓(SwiftUI)",
-                    "CFBundleShortVersionString": "1.0.0",
-                    "CFBundleVersion": "1",
-                    "UILaunchScreen": [
-                        "UIColorName": "",
-                        "UIImageName": "",
-                    ],
-                    "UILaunchStoryboardName": "LaunchScreen",
-                    "NSAppTransportSecurity": [
-                        "NSAllowsArbitraryLoads": true
-                    ],
-                    "NSPhotoLibraryUsageDescription": "访问相册用于选择图片",
-                    "NSCameraUsageDescription": "访问相机用于拍摄图片",
-                    "NSPhotoLibraryAddUsageDescription": "保存图片到相册"
-                ]
-            ),
+            infoPlist: .file(path: "SwiftUIStudy/Info.plist"),
             sources: [
-                // ========== SwiftUIApp 独立代码 ==========
-                "SwiftUIApp/**/*.swift",
+                // ========== SwiftUIStudy 独立代码 ==========
+                "SwiftUIStudy/**/*.swift",
                 // ========== SwiftGen 生成的代码 ==========
-                "RxStudy/Generated/**/*.swift",
+                "Shared/Generated/**/*.swift",
                 // ========== 共享代码 ==========
                 "Shared/ACarousel/**",
+                "Shared/API/**",
+                "Shared/Business/**",
                 "Shared/Models/**",
-                "Shared/Extensions/**",
             ],
             resources: [
                 // ========== 资源（共享主项目的 Assets）==========
-                "RxStudy/Assets.xcassets/**",
-                "RxStudy/Base.lproj/LaunchScreen.storyboard",
+                "Shared/Resources/Assets.xcassets/**",
+                "Shared/Resources/Base.lproj/LaunchScreen.storyboard",
+                "RxStudy/zh-Hans.lproj/**",
+                "RxStudy/en.lproj/**",
             ],
             dependencies: [
                 // ========== 网络层（使用 async/await）==========
@@ -244,18 +216,15 @@ let project = Project(
                 TargetDependency.external(name: "Kingfisher"),
 
                 // ========== WebView ==========
-                TargetDependency.external(name: "WebUI"),
 
                 // ========== TabView 组件 ==========
                 //TargetDependency.external(name: "PagerTabStripView"),
 
                 // ========== UI 工具 ==========
                 TargetDependency.external(name: "ProgressHUD"),
-                TargetDependency.external(name: "SwiftUIIntrospect"),
-                TargetDependency.external(name: "SwiftUIX"),
                 
                 // ========== 键盘管理 ==========
-                TargetDependency.external(name: "IQKeyboardManagerSwift"),
+                TargetDependency.target(name: "IQKeyboardManagerSwift"),
             ],
             settings: .settings(
                 base: [
@@ -274,7 +243,7 @@ let project = Project(
                 defaultSettings: .recommended
             )
         ),
-    ],
+    ] + localDependencyTargets,
     schemes: [
         .scheme(
             name: "RxStudy",

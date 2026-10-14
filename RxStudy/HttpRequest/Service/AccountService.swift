@@ -9,6 +9,12 @@
 import Foundation
 
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 enum AccountService {
     case login(_ username: String, _ password: String, _ showLoading: Bool)

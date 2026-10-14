@@ -11,8 +11,13 @@ import Foundation
 import RxSwift
 import RxRelay
 import NSObject_Rx
-
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 /// MVVM 架构中的 ViewModel 基类
 ///

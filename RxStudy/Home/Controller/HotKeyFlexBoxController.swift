@@ -6,7 +6,6 @@
 //  Copyright © 2025 season. All rights reserved.
 //
 
-#if canImport(FlexLayout) && canImport(FlexLayoutYogaKit)
 import UIKit
 
 import RxSwift
@@ -187,4 +186,3 @@ extension HotKeyFlexBoxController {
         rootFlexContainer.flex.layout()
     }
 }
-#endif

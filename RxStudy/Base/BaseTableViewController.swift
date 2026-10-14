@@ -12,6 +12,7 @@ import RxSwift
 import RxCocoa
 
 import MJRefresh
+import DZNEmptyDataSet
 
 class BaseTableViewController: BaseViewController {
     
@@ -30,7 +31,8 @@ class BaseTableViewController: BaseViewController {
                                                    InfoGenericsCell.self,
                                                    LogoutCell.self,
                                                    MessageCell.self,
-                                                   MessageContentCell.self]
+                                                   MessageContentCell.self,
+                                                   TreeCell.self]
 
     override func viewDidLoad() {
         super.viewDidLoad()

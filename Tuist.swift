@@ -3,15 +3,16 @@ import ProjectDescription
 let tuist = Tuist(
     // Configure your project's full handle for Tuist Cloud features
     // Uncomment and set your organization/project name
-    fullHandle: "seasonZhu/rxstudy",
+    // 本地双构建方式不依赖 Tuist Cloud 登录。
+    fullHandle: nil,
 
     project: .tuist(
         // Enable generation options for registry support
         generationOptions: .options(
             // Optional: Enable caching for faster builds
-            enableCaching: true,
+            enableCaching: false,
             // Eleminate 'tuist registry setup'
-            registryEnabled: true,
+            registryEnabled: false,
         )
     )
 )

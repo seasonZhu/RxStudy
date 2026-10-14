@@ -11,6 +11,12 @@ import CommonCrypto
 import CryptoKit
 
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 extension String {
     var SHA256: String {

@@ -60,8 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FlutterManager.shared()
         #endif
 
-        // UniMP 库已移除 - 暂时注释
-        // UniMPManager.shared.initDCUniMPSDKEngineEnvironment(launchOptions: launchOptions)
+        UniMPManager.shared.initDCUniMPSDKEngineEnvironment(launchOptions: launchOptions)
     }
 
     // MARK: - UIApplication Lifecycle

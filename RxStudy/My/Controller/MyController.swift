@@ -15,14 +15,13 @@ import SafariServices
 
 import RxSwift
 import RxCocoa
-
-import MJRefresh
+import MBProgressHUD
 import SVProgressHUD
+import MJRefresh
 
 #if canImport(Flutter)
 import Flutter
 #endif
-
 
 class MyController: BaseTableViewController {
     
@@ -139,8 +138,7 @@ extension MyController {
                     SVProgressHUD.showText("请在Podfile解除Flutter模块安装注释,flutter_module文件夹下面的单独运行进行pub get,pod install之后再试")
                     #endif
                 case .uniMPModule:
-                    // UniMPManager.shared.openUniApp(appid: "__UNI__98AF8A0") // UniMP 库已移除
-                    break // Empty case - add break statement
+                    UniMPManager.shared.openUniApp(appid: "__UNI__98AF8A0")
                 case .myGitHub:
                     /// 尝试使用了SFSafariViewController而非WebView进行加载,对于一个纯粹的展示性Web,SFSafariViewController体验效果更好
                     let sfsVC = SFSafariViewController(url: URL(string: "https://github.com/seasonZhu")!)

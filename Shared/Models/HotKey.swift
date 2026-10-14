@@ -16,5 +16,5 @@ struct HotKey: Codable, Identifiable {
     let visible: Int?
 }
 
-/// 别名（兼容 SwiftUIApp）
+/// 别名（兼容 SwiftUIStudy）
 typealias HotKeyModel = HotKey

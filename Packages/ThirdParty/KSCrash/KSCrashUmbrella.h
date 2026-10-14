@@ -1,0 +1,7 @@
+#import "Sources/KSCrashRecording/include/KSCrash.h"
+#import "Sources/KSCrashRecording/include/KSCrashConfiguration.h"
+#import "Sources/KSCrashRecording/include/KSCrashReport.h"
+#import "Sources/KSCrashRecording/include/KSCrashReportFilter.h"
+#import "Sources/KSCrashRecording/include/KSCrashReportStore.h"
+#import "Sources/KSCrashInstallations/include/KSCrashInstallation.h"
+#import "Sources/KSCrashInstallations/include/KSCrashInstallationEmail.h"

@@ -1,0 +1,4 @@
+module JWNetAutoCache {
+  header "JWNetAutoCache/JWCacheURLProtocol.h"
+  export *
+}

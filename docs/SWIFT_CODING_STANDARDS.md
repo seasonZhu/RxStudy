@@ -1,6 +1,6 @@
 # RxStudy Swift 编码标准与模版
 
-> 版本：1.0 · 适用范围：`RxStudy` (UIKit + RxSwift) 与 `SwiftUIApp` (SwiftUI + Combine) 双 Target
+> 版本：1.0 · 适用范围：`RxStudy` (UIKit + RxSwift) 与 `SwiftUIStudy` (SwiftUI + Combine) 双 Target
 > 本标准由项目实际代码提炼而来，所有模版均可直接复用，**新增代码必须遵循**，存量代码在重构时逐步对齐。
 > 生成日期：2026-07-03
 
@@ -15,7 +15,7 @@
 5. [类型设计](#5-类型设计)
 6. [通用 Swift 模式](#6-通用-swift-模式)
 7. [RxStudy (UIKit) 专项标准](#7-rxstudy-uikit-专项标准)
-8. [SwiftUIApp (SwiftUI) 专项标准](#8-swiftuiapp-swiftui-专项标准)
+8. [SwiftUIStudy (SwiftUI) 专项标准](#8-swiftuiapp-swiftui-专项标准)
 9. [网络层标准](#9-网络层标准)
 10. [Model 与 Codable 标准](#10-model-与-codable-标准)
 11. [Extension 扩展标准](#11-extension-扩展标准)
@@ -43,13 +43,13 @@
 - **Swift**：5.9
 - **最低部署目标**：iOS 17.6（可放心使用 `@Observable`、`NavigationStack`、`async/await`、存在类型 `any`）
 - **架构**：MVVM（View ↔ ViewModel ↔ Service ↔ Network）
-- **响应式**：RxStudy 用 RxSwift 6.x；SwiftUIApp 用 Combine + `@Observable`
+- **响应式**：RxStudy 用 RxSwift 6.x；SwiftUIStudy 用 Combine + `@Observable`
 
 ### 1.3 双 Target 选型决策
 
 | 场景 | 选择 |
 |------|------|
-| 新页面、新功能 | **优先 SwiftUIApp**（迁移方向） |
+| 新页面、新功能 | **优先 SwiftUIStudy**（迁移方向） |
 | 复杂列表交互、强依赖 UIKit 的控件（如 `JXSegmentedView`、`MJRefresh` 定制） | 暂留 RxStudy |
 | 跨 Target 复用的 Model、纯数据结构 | 放 `Shared/` |
 
@@ -64,7 +64,7 @@
 ```swift
 //
 //  FileName.swift
-//  RxStudy                       // 或 RxStudy - SwiftUIApp
+//  RxStudy                       // 或 RxStudy - SwiftUIStudy
 //
 //  Created by season on 2021/5/20.   // 作者 / 日期
 //  Copyright © 2021 season. All rights reserved.
@@ -218,11 +218,11 @@ viewModel.outputs.dataSource.bind(to: tableView.rx.items)
 | UIKit 子类（`UIViewController`/`UIView`） | 几何尺寸、配置项 |
 | RxSwift 的 ViewModel（继承 `BaseViewModel`） | — |
 
-> SwiftUIApp 的 ViewModel 虽然是 class（`@Observable` 要求引用类型），但用 `final` + `private(set)` 模拟值语义的可控性。
+> SwiftUIStudy 的 ViewModel 虽然是 class（`@Observable` 要求引用类型），但用 `final` + `private(set)` 模拟值语义的可控性。
 
 ### 5.2 final
 
-- SwiftUIApp 的 ViewModel、Service 类一律加 `final`：`final class HomeAPIService`。
+- SwiftUIStudy 的 ViewModel、Service 类一律加 `final`：`final class HomeAPIService`。
 - 不被继承的 UIKit ViewModel 鼓励加 `final`。
 
 ### 5.3 访问控制
@@ -268,7 +268,7 @@ guard let username = accountInfo?.username,
 - 不要静默 `try?` 吞掉错误，除非明确"失败就用默认值"。
 
 ```swift
-// ✅ SwiftUIApp 标准
+// ✅ SwiftUIStudy 标准
 do {
     let result = try await provider.requestDecoded(.banner, responseType: BaseModel<[Banner]>.self)
 } catch {
@@ -278,7 +278,7 @@ do {
 
 ### 6.3 并发
 
-- SwiftUIApp 统一 `async/await`，禁止再用闭包回调嵌套。
+- SwiftUIStudy 统一 `async/await`，禁止再用闭包回调嵌套。
 - 跨并发域更新 UI 用 `await MainActor.run { }`。
 - `async let` 并发请求提升首页等多接口场景的体验。
 
@@ -567,14 +567,14 @@ private extension XxxCell {
 
 ---
 
-## 8. SwiftUIApp (SwiftUI) 专项标准
+## 8. SwiftUIStudy (SwiftUI) 专项标准
 
 ### 8.1 ViewModel 标准模版
 
 ```swift
 //
 //  XxxViewModel.swift
-//  RxStudy - SwiftUIApp
+//  RxStudy - SwiftUIStudy
 //
 //  Xxx 模块 ViewModel
 //  使用 @Observable + async/await
@@ -681,7 +681,7 @@ final class XxxViewModel {
 ```swift
 //
 //  XxxView.swift
-//  RxStudy - SwiftUIApp
+//  RxStudy - SwiftUIStudy
 //
 //  Xxx 视图
 //
@@ -783,7 +783,7 @@ struct XxxView: View {
 ```swift
 //
 //  XxxCellView.swift
-//  RxStudy - SwiftUIApp
+//  RxStudy - SwiftUIStudy
 //
 
 import SwiftUI
@@ -864,14 +864,14 @@ extension XxxService: TargetType {
 > Provider 集中管理在 `RxStudy/HttpRequest/Service/Provider.swift`，新增 Service 在此追加：
 > `let xxxProvider = MoyaProvider<XxxService>(plugins: plugins)`
 
-### 9.2 SwiftUIApp（async/await）APIService 模版
+### 9.2 SwiftUIStudy（async/await）APIService 模版
 
 **第一部分：API 定义（路由）**
 
 ```swift
 //
 //  XxxAPI.swift（或并入 XxxAPIService.swift 顶部）
-//  RxStudy - SwiftUIApp
+//  RxStudy - SwiftUIStudy
 //
 
 import Foundation
@@ -1154,7 +1154,7 @@ ViewModel 继承 `BaseViewModel`，`deinit` 自动打印销毁日志，便于排
 - [ ] 下拉/上拉状态绑定到 `refreshSubject`
 - [ ] 颜色用 `UIColor(lightThemeColor:darkThemeColor:)`
 
-**SwiftUI（SwiftUIApp）**
+**SwiftUI（SwiftUIStudy）**
 - [ ] ViewModel 用 `@Observable final class`
 - [ ] 状态属性 `private(set)`
 - [ ] View 有 `#Preview`
@@ -1171,7 +1171,7 @@ ViewModel 继承 `BaseViewModel`，`deinit` 自动打印销毁日志，便于排
 
 ## 附录：双 Target 模式速查表
 
-| 维度 | RxStudy (UIKit) | SwiftUIApp (SwiftUI) |
+| 维度 | RxStudy (UIKit) | SwiftUIStudy (SwiftUI) |
 |------|-----------------|----------------------|
 | 响应式框架 | RxSwift 6.x | Combine + `@Observable` |
 | ViewModel 基类 | `BaseViewModel` | 无基类，`@Observable final class` |

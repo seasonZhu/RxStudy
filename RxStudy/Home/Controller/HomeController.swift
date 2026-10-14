@@ -11,11 +11,12 @@ import Foundation
 import RxSwift
 import RxSwiftExt
 import RxCocoa
-
+import NSObject_Rx
 import SnapKit
+import MJRefresh
 import Kingfisher
-import SVProgressHUD
 import FSPagerView
+import SVProgressHUD
 
 /// 需要非常小心循环引用
 class HomeController: BaseTableViewController {

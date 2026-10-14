@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import CombineExt
 
 import RxSwift
 import RxRelay
@@ -52,10 +53,10 @@ class LoginPageViewModel: ObservableObject {
         
         usernameValid
             .map { !$0 }
-            // .assign(to: \.showUserNameError, on: self, ownership: .weak) // iOS 14+ API
-            .sink(receiveValue: { [weak self] bool in
-                self?.showUserNameError = bool
-            })
+            .assign(to: \.showUserNameError, on: self, ownership: .weak)
+//            .sink(receiveValue: { [weak self] bool in
+//                self?.showUserNameError = bool
+//            })
             .store(in: &cancellables)
         
         if #available(iOS 14.0, *) {
@@ -74,10 +75,10 @@ class LoginPageViewModel: ObservableObject {
         } else {
             passwordValid
                 .map { !$0 }
-                // .assign(to: \.showPasswordError, on: self, ownership: .weak) // iOS 14+ API
-                .sink(receiveValue: { [weak self] bool in
-                    self?.showPasswordError = bool
-                })
+                .assign(to: \.showPasswordError, on: self, ownership: .weak)
+    //            .sink(receiveValue: { [weak self] bool in
+    //                self?.showPasswordError = bool
+    //            })
                 .store(in: &cancellables)
         }
         
@@ -85,10 +86,10 @@ class LoginPageViewModel: ObservableObject {
             .CombineLatest(usernameValid, passwordValid)
             .map { $0 && $1 }
             /// 使用assign是有要求的extension Publisher where Self.Failure == Never
-            // .assign(to: \.buttonEnable, on: self, ownership: .weak) // iOS 14+ API
-            .sink(receiveValue: { [weak self] bool in
-                self?.buttonEnable = bool
-            })
+            .assign(to: \.buttonEnable, on: self, ownership: .weak)
+//            .sink(receiveValue: { [weak self] bool in
+//                self?.buttonEnable = bool
+//            })
             .store(in: &cancellables)
         
         aExample()

@@ -6,9 +6,9 @@
 //  Copyright © 2021 season. All rights reserved.
 //
 
-import FSPagerView
 import RxSwift
 import RxCocoa
+import FSPagerView
 
 /**
  这个FSPagerViewDelegate有毒,它的代理分为objc书写方式和swift书写方式,在这里调用的使用其实调用的oc的书写方式,然后找不到方法名,然后就崩溃了.我要换个代理写

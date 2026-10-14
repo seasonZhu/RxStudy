@@ -31,4 +31,3 @@ extension Page {
         return curPage == pageCount
     }
 }
-
