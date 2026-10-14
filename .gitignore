@@ -78,3 +78,7 @@ Tuist.zip
 Shared/Generated/
 .planning/
 __pycache__/
+
+# cocoapods-keys 每次安装随机生成，由插件重新创建
+Pods/CocoaPodsKeys/RxStudyKeys.h
+Pods/CocoaPodsKeys/RxStudyKeys.m
