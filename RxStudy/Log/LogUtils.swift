@@ -8,6 +8,9 @@
 
 import Foundation
 import CocoaLumberjack
+#if canImport(CocoaLumberjackSwift)
+import CocoaLumberjackSwift
+#endif
 
 enum LogUtils {
     enum LogType {

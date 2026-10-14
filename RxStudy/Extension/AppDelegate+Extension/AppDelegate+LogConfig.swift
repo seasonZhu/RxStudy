@@ -8,7 +8,14 @@
 
 import Foundation
 import CocoaLumberjack
+#if canImport(CocoaLumberjackSwift)
+import CocoaLumberjackSwift
+#endif
+#if canImport(ZipArchive)
+import ZipArchive
+#else
 import SSZipArchive
+#endif
 
 extension AppDelegate {
 

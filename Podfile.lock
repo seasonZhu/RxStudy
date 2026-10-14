@@ -85,6 +85,8 @@ PODS:
   - MarqueeLabel (4.5.3)
   - MBProgressHUD (1.2.0)
   - MJRefresh (3.7.9)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
   - Moya/Combine (15.0.0):
     - Moya/Core
   - Moya/Core (15.0.0):
@@ -95,7 +97,7 @@ PODS:
   - "NSObject+Rx (5.2.2)":
     - RxSwift (~> 6.2)
   - PinLayout (1.10.6)
-  - R.swift (7.8.0)
+  - ProgressHUD (15.0.1)
   - RxBlocking (6.9.0):
     - RxSwift (= 6.9.0)
   - RxCocoa (6.9.0):
@@ -138,54 +140,54 @@ PODS:
     - SVProgressHUD/Core (= 2.3.1)
   - SVProgressHUD/Core (2.3.1)
   - SwiftDate (7.0.0)
-  - TheRouter (1.1.8)
   - unimp/Core (4.36):
     - SDWebImage (= 5.19.2)
   - unimp/File (4.36)
   - Yoga (3.2.1)
 
 DEPENDENCIES:
-  - AcknowList
+  - AcknowList (= 3.4.0)
+  - Alamofire (= 5.11.0)
   - CocoaDebug
-  - CocoaLumberjack/Swift
-  - CombineCocoa
-  - CombineExt
-  - DZNEmptyDataSet
-  - FlexLayout
-  - FSPagerView
+  - CocoaLumberjack/Swift (= 3.9.0)
+  - CombineCocoa (= 0.4.1)
+  - CombineExt (= 1.8.0)
+  - DZNEmptyDataSet (= 1.8.1)
+  - FlexLayout (= 2.2.3)
+  - FSPagerView (= 0.8.3)
   - FunnyButton
   - IQKeyboardManagerSwift (from `https://github.com/hackiftekhar/IQKeyboardManager.git`, tag `8.0.2`)
-  - JWNetAutoCache
-  - JXSegmentedView
-  - KeychainAccess
+  - JWNetAutoCache (= 0.0.2)
+  - JXSegmentedView (= 1.4.1)
+  - KeychainAccess (= 4.2.2)
   - Keys (from `Pods/CocoaPodsKeys`)
-  - Kingfisher
-  - KSCrash
+  - Kingfisher (= 8.6.2)
+  - KSCrash (= 2.5.0)
   - LifetimeTracker
   - LookinServer
-  - MarqueeLabel
-  - MBProgressHUD
-  - MJRefresh
-  - Moya/Combine
-  - Moya/RxSwift
-  - "NSObject+Rx"
-  - PinLayout
-  - R.swift
-  - RxBlocking
-  - RxCocoa
-  - RxDataSources
-  - RxGesture
-  - RxOptional
-  - RxSwift
-  - RxSwiftExt
-  - RxTheme
-  - RxViewController
-  - SFSafeSymbols
-  - SnapKit
-  - SSZipArchive
-  - SVProgressHUD
-  - SwiftDate
-  - TheRouter
+  - MarqueeLabel (= 4.5.3)
+  - MBProgressHUD (= 1.2.0)
+  - MJRefresh (= 3.7.9)
+  - Moya (= 15.0.0)
+  - Moya/Combine (= 15.0.0)
+  - Moya/RxSwift (= 15.0.0)
+  - "NSObject+Rx (= 5.2.2)"
+  - PinLayout (= 1.10.6)
+  - ProgressHUD (from `Packages/ThirdParty/ProgressHUD`)
+  - RxBlocking (= 6.9.0)
+  - RxCocoa (= 6.9.0)
+  - RxDataSources (= 5.0.0)
+  - RxGesture (= 4.0.4)
+  - RxOptional (= 5.0.6)
+  - RxSwift (= 6.9.0)
+  - RxSwiftExt (= 6.2.1)
+  - RxTheme (= 6.0.0)
+  - RxViewController (= 2.0.0)
+  - SFSafeSymbols (= 6.2.0)
+  - SnapKit (= 5.7.1)
+  - SSZipArchive (= 2.6.0)
+  - SVProgressHUD (= 2.3.1)
+  - SwiftDate (= 7.0.0)
   - unimp/Core (= 4.36)
   - unimp/File (= 4.36)
 
@@ -222,7 +224,6 @@ SPEC REPOS:
     - Moya
     - "NSObject+Rx"
     - PinLayout
-    - R.swift
     - RxBlocking
     - RxCocoa
     - RxDataSources
@@ -239,7 +240,6 @@ SPEC REPOS:
     - SSZipArchive
     - SVProgressHUD
     - SwiftDate
-    - TheRouter
     - unimp
     - Yoga
 
@@ -249,6 +249,8 @@ EXTERNAL SOURCES:
     :tag: 8.0.2
   Keys:
     :path: Pods/CocoaPodsKeys
+  ProgressHUD:
+    :path: Packages/ThirdParty/ProgressHUD
 
 CHECKOUT OPTIONS:
   IQKeyboardManagerSwift:
@@ -289,7 +291,7 @@ SPEC CHECKSUMS:
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   "NSObject+Rx": 61cf1f7306a73dcef8b36649198af0813ec18dfd
   PinLayout: e2fceb4cbfdf49f3569fc242a7dfa0da4fb9aa06
-  R.swift: f573269ca45b2ab066c082e363dd4c2b297b0d71
+  ProgressHUD: 02700a162377440e53d5e401c10fcbffd1599b8c
   RxBlocking: 5d2b26d019b6ba9eb3f58638611f124609c44822
   RxCocoa: ac16414696ae706516be3e1ab00fcce5bdc9be8a
   RxDataSources: aa47cc1ed6c500fa0dfecac5c979b723542d79cf
@@ -306,10 +308,9 @@ SPEC CHECKSUMS:
   SSZipArchive: 8a6ee5677c8e304bebc109e39cf0da91ccef22ea
   SVProgressHUD: 4837c74bdfe2e51e8821c397825996a8d7de6e22
   SwiftDate: bbc26e26fc8c0c33fbee8c140c5e8a68293a148a
-  TheRouter: 1c7801e4f3df9a2598088d7c3cf4d2f6d3779c51
   unimp: 87da0aee56ad553397e84570674e9f11fe76e188
   Yoga: 636ce73bd247407928a7df089f3bc3675916b3ff
 
-PODFILE CHECKSUM: 186632a6196e695dc36ab7b5c719efe8130fc2a8
+PODFILE CHECKSUM: 960584d62750dede5938dda18f05a29b0193acd2
 
-COCOAPODS: 1.16.2
+COCOAPODS: 1.17.0

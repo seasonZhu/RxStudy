@@ -23,8 +23,6 @@ import MJRefresh
 import Flutter
 #endif
 
-import RxViewController
-
 class MyController: BaseTableViewController {
     
     var cancelable: AnyCancellable?

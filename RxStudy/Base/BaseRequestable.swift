@@ -10,6 +10,12 @@ import Foundation
 
 import RxSwift
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 /**
  为什么会出现这样一个层?

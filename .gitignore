@@ -73,3 +73,8 @@ Generated/
 Tuist.zip
 .claude
 .codegraph
+
+# 资源代码由 SwiftGen 生成
+Shared/Generated/
+.planning/
+__pycache__/

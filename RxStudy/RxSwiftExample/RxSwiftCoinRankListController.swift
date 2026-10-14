@@ -12,6 +12,12 @@ import RxSwift
 import RxCocoa
 import NSObject_Rx
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import MJRefresh
 
 class RxSwiftCoinRankListController: BaseViewController {

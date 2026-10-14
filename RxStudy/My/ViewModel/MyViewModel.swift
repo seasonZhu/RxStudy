@@ -11,6 +11,12 @@ import Foundation
 import RxSwift
 import RxCocoa
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 class MyViewModel: BaseViewModel {
     

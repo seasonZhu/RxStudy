@@ -81,8 +81,8 @@ class WebViewController: BaseViewController {
     
     private lazy var collectionButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setImage(R.image.collect(), for: .normal)
-        button.setImage(R.image.collect_selected(), for: .selected)
+        button.setImage(Asset.collect.image, for: .normal)
+        button.setImage(Asset.collectSelected.image, for: .selected)
         return button
     }()
     
@@ -544,7 +544,7 @@ extension WebViewController {
 extension WebViewController {
     /// 获取js方法,转成iOS的WKWebView可以识别的对象
     private func getJS() -> WKUserScript? {
-        guard let url = R.file.openJs() else {
+        guard let url = Bundle.main.url(forResource: "open", withExtension: "js") else {
             return nil
         }
         

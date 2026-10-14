@@ -10,8 +10,17 @@ import Foundation
 
 import Alamofire
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 
 import CocoaLumberjack
+#if canImport(CocoaLumberjackSwift)
+import CocoaLumberjackSwift
+#endif
 
 public enum NetworkRequestLoggerLevel {
     case off

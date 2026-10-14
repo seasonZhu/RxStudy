@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import NSObject_Rx
 
 /// 账户服务容器，用于依赖注入
 ///

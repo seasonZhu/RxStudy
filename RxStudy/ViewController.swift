@@ -13,9 +13,13 @@ import RxCocoa
 import RxGesture
 
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import Alamofire
-
-import TheRouter
 
 import SVProgressHUD
 import MBProgressHUD
@@ -220,7 +224,7 @@ extension ViewController {
 
 extension ViewController {
     private func beginSplashView() {
-        let revealingSplashView = RevealingSplashView(iconImage: R.image.saber()!, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: R.image.launchImagePlayAndroid()!)
+        let revealingSplashView = RevealingSplashView(iconImage: Asset.saber.image, iconInitialSize: CGSize(width: 70, height: 70), backgroundImage: Asset.launchImagePlayAndroid.image)
         
         (UIApplication.shared.delegate as! AppDelegate).window?.addSubview(revealingSplashView)
         

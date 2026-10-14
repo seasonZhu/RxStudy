@@ -13,6 +13,12 @@ import RxCocoa
 import RxGesture
 
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import SVProgressHUD
 
 #if DEBUG
@@ -23,7 +29,7 @@ import LifetimeTracker
 class BaseViewController: UIViewController {
     
     private lazy var errorImage: UIImageView = {
-        let imageView = UIImageView(image: R.image.notFound())
+        let imageView = UIImageView(image: Asset.notFound.image)
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
         imageView.backgroundColor = .playAndroidBackground
@@ -49,7 +55,7 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         
         /// 最简单的设置统一返回按钮的方法,所有的控制器继承该基类即可
-        let leftBarButtonItem = UIBarButtonItem(image: R.image.back(), style: .plain, target: self, action: #selector(leftBarButtonItemAction(_:)))
+        let leftBarButtonItem = UIBarButtonItem(image: Asset.back.image, style: .plain, target: self, action: #selector(leftBarButtonItemAction(_:)))
         navigationItem.leftBarButtonItem = (navigationController?.viewControllers.count ?? 0) > 1 ? leftBarButtonItem : nil
         navigationItem.hidesBackButton = true
         

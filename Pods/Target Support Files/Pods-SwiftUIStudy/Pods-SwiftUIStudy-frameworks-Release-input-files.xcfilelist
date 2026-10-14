@@ -1,0 +1,6 @@
+${PODS_ROOT}/Target Support Files/Pods-SwiftUIStudy/Pods-SwiftUIStudy-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Keys-framework/Keys.framework
+${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework
+${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework
+${BUILT_PRODUCTS_DIR}/Moya/Moya.framework
+${BUILT_PRODUCTS_DIR}/ProgressHUD/ProgressHUD.framework

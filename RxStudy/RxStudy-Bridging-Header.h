@@ -16,3 +16,6 @@
 #import "WeexSDK.h"
 
 #define guard(wish) if (wish);
+
+#import "TheRouterableProxy.h"
+#import "TheRouterDynamicParamsMapping.h"

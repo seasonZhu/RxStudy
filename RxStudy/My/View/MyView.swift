@@ -14,7 +14,7 @@ import RxGesture
 
 class MyView: UIView {
     
-    private lazy var imageView = UIImageView(image: R.image.user())
+    private lazy var imageView = UIImageView(image: Asset.user.image)
     
     private lazy var infoLabel: UILabel = {
         let label = UILabel()
@@ -29,10 +29,10 @@ class MyView: UIView {
         set {
             _myCoin = newValue
             if let text = newValue?.myInfo {
-                imageView.image = R.image.android()
+                imageView.image = Asset.android.image
                 infoLabel.text = text
             } else {
-                imageView.image = R.image.user()
+                imageView.image = Asset.user.image
                 infoLabel.text = "排名: -- 等级: -- 积分: --"
             }
             

@@ -7,6 +7,12 @@
 //
 
 import Moya
+#if canImport(RxMoya)
+import RxMoya
+#endif
+#if canImport(CombineMoya)
+import CombineMoya
+#endif
 import SVProgressHUD
 
 // MARK: - 响应异常拦截器插件

@@ -61,6 +61,10 @@ enum KeyConstants {
  
  */
 
+#if canImport(Keys)
 import Keys
-
 let testKey = RxStudyKeys().tEST_KEY
+#else
+// Tuist 构建可通过运行 Scheme 的环境变量提供示例密钥。
+let testKey = ProcessInfo.processInfo.environment["TEST_KEY"] ?? ""
+#endif

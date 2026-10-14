@@ -59,12 +59,7 @@ final class AccountManager: AccountManageable {
 extension AccountManager {
     /// 已登录请求头处理
     var cookieHeaderValue: String {
-        if let username = accountInfo?.username,
-           let password = accountInfo?.password {
-          return "loginUserName=\(username);loginUserPassword=\(password)"
-        } else {
-          return ""
-        }
+        AccountCookie.header(username: accountInfo?.username, password: accountInfo?.password)
     }
 }
 

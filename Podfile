@@ -7,71 +7,60 @@ platform :ios, IOS_DEPLOYMENT_TARGET
 #source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 flutter_application_path = 'flutter_module'
-load File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+flutter_helper = File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
+load flutter_helper if File.exist?(flutter_helper)
 
 target 'RxStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
   use_frameworks!
   
   # Rx Core
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  
+  pod 'RxSwift', '6.9.0'
+  pod 'RxCocoa', '6.9.0'
   # Rx Extensions
-  pod 'RxDataSources'
-  pod 'NSObject+Rx'
-  
+  pod 'RxDataSources', '5.0.0'
+  pod 'NSObject+Rx', '5.2.2'
   # 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
-  pod 'RxGesture'
-  
+  pod 'RxGesture', '4.0.4'
   # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,
   # 我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型,同时BlockingObservable的注释也说了,它用于测试与演示,并不适合用于App的生产环境,当你在程序逻辑中使用BlockingObservable,也许是该反省自己写的代码逻辑的时候了
-  pod 'RxBlocking'
-  
+  pod 'RxBlocking', '6.9.0'
   # 可以做主题优化,但是现在基本上适配黑暗模式即可,尝试做了全局主题,但是我想的太简单了
-  pod 'RxTheme'
-
+  pod 'RxTheme', '6.0.0'
   # Networking
-  pod 'Moya/RxSwift'
+  pod 'Moya/RxSwift', '15.0.0'
   # AlamofireNetworkActivityLogger的版本很久都没有升级,导致其绑定Alamofire无法升级,直接移除拖入,保证Alamofire和Moya可以向上升级,然后直接改写为Moya插件,因为Alamofire的升级,改写的Moya插件也无法正常工作了
   #pod 'AlamofireNetworkActivityLogger'
 
   # Image
-  pod 'Kingfisher'
-  
+  pod 'Kingfisher', '8.6.2'
   # R函数
-  pod 'R.swift'
+  # 两个构建方式统一使用 SwiftGen 资源代码
 
   # UI
-  pod 'DZNEmptyDataSet'
-  pod 'AcknowList'
-  pod 'MJRefresh'
-  pod 'FSPagerView'
-  pod 'JXSegmentedView'
-  pod 'MarqueeLabel'
-  pod 'SVProgressHUD'
-  
+  pod 'DZNEmptyDataSet', '1.8.1'
+  pod 'AcknowList', '3.4.0'
+  pod 'MJRefresh', '3.7.9'
+  pod 'FSPagerView', '0.8.3'
+  pod 'JXSegmentedView', '1.4.1'
+  pod 'MarqueeLabel', '4.5.3'
+  pod 'SVProgressHUD', '2.3.1'
   # SFSymbols的安全引用
-  pod 'SFSafeSymbols'
-  
+  pod 'SFSafeSymbols', '6.2.0'
   # Keyboard,弹不出来的原因是8.0.0之后拆分为不同的模块,需要分别进行配置
   pod 'IQKeyboardManagerSwift', :git => 'https://github.com/hackiftekhar/IQKeyboardManager.git', :tag => '8.0.2'
 
   # Auto Layout
-  pod 'SnapKit'
-  
+  pod 'SnapKit', '5.7.1'
   # Yoga Layout
-  pod 'FlexLayout'
-  pod 'PinLayout'
-  
+  pod 'FlexLayout', '2.2.3'
+  pod 'PinLayout', '1.10.6'
   # Combine 学习
-  pod 'Moya/Combine'
-  pod 'CombineExt'
-  pod 'CombineCocoa'
-  
+  pod 'Moya/Combine', '15.0.0'
+  pod 'CombineExt', '1.8.0'
+  pod 'CombineCocoa', '0.4.1'
   # 微软 Bug&Crash
-  pod 'KSCrash'
-  
+  pod 'KSCrash', '2.5.0'
   # 调试
   pod 'LookinServer', :configurations => ['Debug']
   pod 'CocoaDebug', :configurations => ['Debug']
@@ -82,42 +71,35 @@ target 'RxStudy' do
   pod 'LifetimeTracker', :configurations => ['Debug']
   
   # 日志打印与跟踪
-  pod 'CocoaLumberjack/Swift'
-  
+  pod 'CocoaLumberjack/Swift', '3.9.0'
   # 用于日志压缩为zip
-  pod 'SSZipArchive'
-  
+  pod 'SSZipArchive', '2.6.0'
   # 缓存
   #pod 'Cache'
   #pod 'YYCache'
   
   # 考虑使用货拉拉的TheRouter
-  pod 'TheRouter'
+  # TheRouter 统一使用 Packages/ThirdParty/TheRouter 中的源码
   
   ### 注意,以下是没有使用的库
   
   # Rx Extensions
   
   # 对序列的操作符的扩充,让序列从一种类型转换到另一种类型变得更加快捷 https://github.com/RxSwiftCommunity/RxSwiftExt
-  pod 'RxSwiftExt'
-  pod 'RxViewController'
-  pod 'RxOptional'
-  
+  pod 'RxSwiftExt', '6.2.1'
+  pod 'RxViewController', '2.0.0'
+  pod 'RxOptional', '5.0.6'
   # Date
-  pod 'SwiftDate'
-  
+  pod 'SwiftDate', '7.0.0'
   # Keychain
-  pod 'KeychainAccess'
-  
+  pod 'KeychainAccess', '4.2.2'
   # SwiftLint
   #pod 'SwiftLint', :configuration => 'Debug'
   
   # web缓存+离线缓存
-  pod 'JWNetAutoCache'
-  
+  pod 'JWNetAutoCache', '0.0.2'
   # 被SVProgressHUD替代了,目前没有使用
-  pod 'MBProgressHUD'
-  
+  pod 'MBProgressHUD', '1.2.0'
   ### 跨端模块
   
   # 添加flutter模块
@@ -179,6 +161,14 @@ target 'RxStudy' do
   ]
 
 
+end
+
+target 'SwiftUIStudy' do
+  use_frameworks!
+  pod 'Moya', '15.0.0'
+  pod 'Alamofire', '5.11.0'
+  pod 'Kingfisher', '8.6.2'
+  pod 'ProgressHUD', :path => 'Packages/ThirdParty/ProgressHUD'
 end
 
 =begin

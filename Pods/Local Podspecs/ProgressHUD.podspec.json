@@ -1,0 +1,22 @@
+{
+  "name": "ProgressHUD",
+  "version": "15.0.1",
+  "summary": "ProgressHUD 本地版本快照，与 Tuist 锁定版本一致",
+  "homepage": "https://github.com/relatedcode/ProgressHUD",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": "relatedcode",
+  "source": {
+    "git": "https://github.com/relatedcode/ProgressHUD.git",
+    "tag": "15.0.1"
+  },
+  "platforms": {
+    "ios": "17.6"
+  },
+  "swift_versions": "5.9",
+  "source_files": "SwiftUI/Sources/**/*.swift",
+  "resources": "SwiftUI/Sources/PrivacyInfo.xcprivacy",
+  "swift_version": "5.9"
+}

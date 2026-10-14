@@ -7,6 +7,9 @@
 //
 
 import FlexLayout
+#if canImport(FlexLayoutYogaKit)
+import FlexLayoutYogaKit
+#endif
 
 extension Flex {
     

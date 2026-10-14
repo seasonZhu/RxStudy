@@ -22,6 +22,9 @@ extension NSObject {
 }
 
 import CocoaLumberjack
+#if canImport(CocoaLumberjackSwift)
+import CocoaLumberjackSwift
+#endif
 
 protocol DeinitPrintable {
     func deinitPrint()

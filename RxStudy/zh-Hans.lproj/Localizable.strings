@@ -1,0 +1,12 @@
+// 首页
+"home.welcome" = "欢迎使用玩安卓";
+"home.title" = "首页";
+
+// 项目
+"project.title" = "项目";
+"project.list" = "项目列表";
+
+// 通用
+"common.confirm" = "确认";
+"common.cancel" = "取消";
+"common.loading" = "加载中...";

@@ -49,16 +49,14 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UM_API_KEY</key>
-	<string>$(UM_API_KEY)</string>
+	<key>NSCameraUsageDescription</key>
+	<string>访问相机用于拍摄图片</string>
+	<key>NSDocumentFolderUsageDescription</key>
+	<string>需要访问文档文件夹以保存下载的文档</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>保存图片到相册</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>访问相册用于选择图片</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
@@ -72,15 +70,19 @@
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
 				</dict>
 			</array>
 		</dict>
 	</dict>
 	<key>UIDesignRequiresCompatibility</key>
 	<true/>
-    <key>NSDocumentFolderUsageDescription</key>
-    <string>需要访问文档文件夹以保存下载的文档</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UM_API_KEY</key>
+	<string>$(UM_API_KEY)</string>
 </dict>
 </plist>
