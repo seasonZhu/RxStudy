@@ -127,6 +127,8 @@ struct NativeWebView: UIViewRepresentable {
     }
 
     func updateUIView(_ webView: WKWebView, context: Context) {
+        guard context.coordinator.lastLoadedInputURL != url else { return }
+        context.coordinator.lastLoadedInputURL = url
         let request = URLRequest(url: url)
         webView.load(request)
     }
@@ -137,6 +139,7 @@ struct NativeWebView: UIViewRepresentable {
 
     class Coordinator: NSObject, WKNavigationDelegate, WKUIDelegate {
         var parent: NativeWebView
+        var lastLoadedInputURL: URL?
 
         init(_ parent: NativeWebView) {
             self.parent = parent

@@ -70,9 +70,7 @@ struct CategoryPageView<T: CategoryItem>: View {
             selectedIndex: $viewModel.currentPage,
             idPath: \.id,
             namePath: \.name
-        ) { category, _ in
-            viewModel.selectCategory(category)
-        }
+        )
     }
 
     // MARK: - 横向滑动的文章列表
@@ -80,13 +78,13 @@ struct CategoryPageView<T: CategoryItem>: View {
     private var articleList: some View {
         TabView(selection: $viewModel.currentPage) {
             ForEach(Array(viewModel.categories.enumerated()), id: \.element.id) { index, category in
-                CategoryArticleListView(
-                    viewModel: viewModel,
-                    categoryId: category.id ?? 0,
-                    categoryName: category.name ?? "",
-                    isActive: viewModel.currentPage == index
-                )
-                .tag(index)
+                if let id = category.id, let articleViewModel = viewModel.articleViewModels[id] {
+                    CategoryArticleListView(
+                        viewModel: articleViewModel,
+                        isActive: viewModel.currentPage == index
+                    )
+                    .tag(index)
+                }
             }
         }
         .tabViewStyle(.page(indexDisplayMode: .never))

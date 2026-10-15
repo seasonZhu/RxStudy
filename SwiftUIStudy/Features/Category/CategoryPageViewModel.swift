@@ -3,122 +3,128 @@
 //  RxStudy - SwiftUIStudy
 //
 //  分类页面 ViewModel
-//  负责管理分类数据和文章数据的加载
+//  分类与文章分页状态按分类 ID 独立保存
 //
 
 import Foundation
 
 // MARK: - 分类页面 ViewModel
 
+@MainActor
 @Observable
 final class CategoryPageViewModel<T: CategoryItem> {
-    // MARK: - 分类数据
-
     private(set) var categories: [T] = []
     private(set) var isLoading = false
     private(set) var errorMessage: String?
-
-    // MARK: - 文章数据
-
-    private(set) var articles: [InfoModel] = []
-    private(set) var isLoadingMore = false
-    private(set) var hasMoreData = true
     var currentPage = 0
-    var isInitialized = false
+    private(set) var articleViewModels: [Int: CategoryArticleListViewModel<T>] = [:]
 
-    // MARK: - 私有属性
-
-    private var articlePage = 0
-    private let categoryType: CategoryType
     private let service: UnifiedCategoryService<T>
 
-    // MARK: - 初始化
-
     init(categoryType: CategoryType) {
-        self.categoryType = categoryType
-        self.service = UnifiedCategoryService<T>(type: categoryType)
+        service = UnifiedCategoryService<T>(type: categoryType)
     }
 
-    // MARK: - 加载分类
-
     func loadCategories() async {
+        guard !isLoading, !Task.isCancelled else { return }
         isLoading = true
         errorMessage = nil
+        defer { isLoading = false }
 
         do {
             let result = try await service.fetchCategories()
-            await MainActor.run {
-                self.categories = result
-                self.isLoading = false
-                // 默认选中第一个
-                if let first = result.first {
-                    self.selectCategory(first)
-                }
+            guard !Task.isCancelled else { return }
+            var models: [Int: CategoryArticleListViewModel<T>] = [:]
+            for category in result {
+                guard let id = category.id, id > 0 else { continue }
+                models[id] = articleViewModels[id] ?? CategoryArticleListViewModel(categoryId: id, service: service)
+            }
+            articleViewModels = models
+            categories = result
+            if !categories.indices.contains(currentPage) {
+                currentPage = 0
             }
         } catch {
-            await MainActor.run {
-                self.errorMessage = error.localizedDescription
-                self.isLoading = false
-            }
+            guard !Task.isCancelled, !(error is CancellationError) else { return }
+            errorMessage = error.localizedDescription
         }
     }
+}
 
-    // MARK: - 选择分类
+// MARK: - 单个分类的文章分页状态
 
-    func selectCategory(_ category: T) {
-        // 重置文章数据
-        articles = []
-        isInitialized = false
-        hasMoreData = true
-        articlePage = 0
+@MainActor
+@Observable
+final class CategoryArticleListViewModel<T: CategoryItem> {
+    private(set) var articles: [InfoModel] = []
+    private(set) var isLoading = false
+    private(set) var isLoadingMore = false
+    private(set) var hasMoreData = true
+    private(set) var errorMessage: String?
+    private(set) var isInitialized = false
+
+    private let categoryId: Int
+    private let service: UnifiedCategoryService<T>
+    private var currentPage = 0
+    @ObservationIgnored private var requestGeneration = 0
+
+    init(categoryId: Int, service: UnifiedCategoryService<T>) {
+        self.categoryId = categoryId
+        self.service = service
     }
 
-    // MARK: - 加载文章列表
+    func loadIfNeeded() async {
+        guard !isInitialized else { return }
+        await refresh()
+    }
 
-    func loadArticles(categoryId: Int, isRefresh: Bool) async {
+    func refresh() async {
+        await loadArticles(isRefresh: true)
+    }
+
+    func loadMoreIfNeeded(_ article: InfoModel) async {
+        guard !isLoading, !isLoadingMore, hasMoreData,
+              let index = articles.firstIndex(where: { $0.id == article.id }),
+              index >= articles.count - 3 else { return }
+        await loadArticles(isRefresh: false)
+    }
+
+    private func loadArticles(isRefresh: Bool) async {
+        guard !Task.isCancelled else { return }
         if isRefresh {
+            guard !isLoading else { return }
+            requestGeneration += 1
             isLoading = true
-            articlePage = 0
-            hasMoreData = true
-            errorMessage = nil
+            isLoadingMore = false
         } else {
+            guard !isLoading, !isLoadingMore, hasMoreData else { return }
             isLoadingMore = true
+        }
+        let generation = requestGeneration
+        let requestedPage = isRefresh ? 1 : currentPage + 1
+        errorMessage = nil
+
+        defer {
+            if generation == requestGeneration {
+                isLoading = false
+                isLoadingMore = false
+            }
         }
 
         do {
-            let result = try await service.fetchArticleList(id: categoryId, page: isRefresh ? 1 : articlePage + 1)
-
-            await MainActor.run {
-                if isRefresh {
-                    articles = result.datas ?? []
-                } else {
-                    if let newArticles = result.datas {
-                        articles.append(contentsOf: newArticles)
-                    }
-                }
-                hasMoreData = result.hasMore
-                articlePage += 1
-                isLoading = false
-                isLoadingMore = false
+            let result = try await service.fetchArticleList(id: categoryId, page: requestedPage)
+            guard !Task.isCancelled, generation == requestGeneration else { return }
+            if isRefresh {
+                articles = result.datas ?? []
+            } else {
+                articles.append(contentsOf: result.datas ?? [])
             }
+            currentPage = requestedPage
+            hasMoreData = result.hasMore
+            isInitialized = true
         } catch {
-            await MainActor.run {
-                errorMessage = error.localizedDescription
-                isLoading = false
-                isLoadingMore = false
-            }
+            guard !Task.isCancelled, !(error is CancellationError), generation == requestGeneration else { return }
+            errorMessage = error.localizedDescription
         }
-    }
-
-    // MARK: - 加载更多
-
-    func loadMoreIfNeeded(_ article: InfoModel, categoryId: Int) async {
-        guard let index = articles.firstIndex(where: { $0.id == article.id }),
-              index >= articles.count - 3,
-              !isLoadingMore,
-              hasMoreData else {
-            return
-        }
-        await loadArticles(categoryId: categoryId, isRefresh: false)
     }
 }

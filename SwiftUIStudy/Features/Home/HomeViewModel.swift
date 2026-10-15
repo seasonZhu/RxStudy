@@ -13,6 +13,7 @@ import Foundation
 
 // MARK: - 首页 ViewModel
 
+@MainActor
 @Observable
 final class HomeViewModel {
     // MARK: - 状态
@@ -35,18 +36,11 @@ final class HomeViewModel {
     /// 是否还有更多数据
     private(set) var hasMoreData = true
 
-    // MARK: - 内存优化
-
-    /// 最大数据条数限制
-    private let maxDataSourceCount = 200
-
-    /// 数据清理阈值
-    private let dataCleanupThreshold = 250
-
     // MARK: - 私有属性
 
     private let apiService = HomeAPIService.shared
     private var currentPage = 0
+    @ObservationIgnored private var requestGeneration = 0
 
     // MARK: - 初始化
 
@@ -58,14 +52,12 @@ final class HomeViewModel {
 
     /// 刷新数据
     func refresh() async {
-        currentPage = 0
-        hasMoreData = true
         await loadData(isRefresh: true)
     }
 
     /// 加载更多数据
     func loadMore() async {
-        guard !isLoadingMore && hasMoreData else { return }
+        guard !isLoading && !isLoadingMore && hasMoreData else { return }
         await loadData(isRefresh: false)
     }
 
@@ -73,6 +65,7 @@ final class HomeViewModel {
     func loadMoreIfNeeded(_ article: InfoModel) async {
         guard let index = articles.firstIndex(where: { $0.id == article.id }),
               index >= articles.count - 3,
+              !isLoading,
               !isLoadingMore,
               hasMoreData else {
             return
@@ -83,71 +76,51 @@ final class HomeViewModel {
     // MARK: - 私有方法
 
     private func loadData(isRefresh: Bool) async {
-        // 更新加载状态
+        guard !Task.isCancelled else { return }
         if isRefresh {
+            guard !isLoading else { return }
+            // 新刷新取代旧分页，旧请求不得再修改数据或加载状态。
+            requestGeneration += 1
             isLoading = true
+            isLoadingMore = false
         } else {
+            guard !isLoading && !isLoadingMore && hasMoreData else { return }
             isLoadingMore = true
         }
+        let generation = requestGeneration
+        let requestedPage = isRefresh ? 1 : currentPage + 1
         errorMessage = nil
 
-        do {
-            if isRefresh && currentPage == 0 {
-                // 首次刷新：同时请求 Banner 和文章
-                async let banners = apiService.fetchBanners()
-                async let topArticles = apiService.fetchTopArticles()
-                async let articles = apiService.fetchArticleList(page: 1)
-
-                let (bannersResult, topArticlesResult, pageResult) = try await (banners, topArticles, articles)
-
-                await MainActor.run {
-                    self.banners = bannersResult
-                    self.articles = topArticlesResult + (pageResult.datas ?? [])
-                    self.currentPage = 1
-                    self.hasMoreData = pageResult.hasMore
-                    self.cleanupOldDataIfNeeded()
-                }
-            } else {
-                // 加载更多
-                currentPage += 1
-                let pageResult = try await apiService.fetchArticleList(page: currentPage)
-
-                await MainActor.run {
-                    if let newArticles = pageResult.datas {
-                        self.articles.append(contentsOf: newArticles)
-                    }
-                    self.hasMoreData = pageResult.hasMore
-                    self.cleanupOldDataIfNeeded()
-                }
-            }
-        } catch {
-            await MainActor.run {
-                errorMessage = error.localizedDescription
-                if isRefresh {
-                    currentPage = 0
-                } else {
-                    currentPage -= 1
-                }
-            }
-        }
-
-        // 重置加载状态
-        await MainActor.run {
-            if isRefresh {
+        defer {
+            if generation == requestGeneration {
                 isLoading = false
-            } else {
                 isLoadingMore = false
             }
         }
-    }
 
-    /// 清理旧数据以控制内存使用
-    private func cleanupOldDataIfNeeded() {
-        guard articles.count > dataCleanupThreshold else { return }
+        do {
+            if isRefresh {
+                // 保留首页 Banner、置顶文章和普通文章的并行请求。
+                async let banners = apiService.fetchBanners()
+                async let topArticles = apiService.fetchTopArticles()
+                async let articles = apiService.fetchArticleList(page: requestedPage)
+                let (bannersResult, topArticlesResult, pageResult) = try await (banners, topArticles, articles)
 
-        let excessCount = articles.count - maxDataSourceCount
-        articles.removeFirst(excessCount)
-
-        print("🧹 内存优化: 已移除 \(excessCount) 条旧数据，当前数据量: \(articles.count)")
+                guard !Task.isCancelled, generation == requestGeneration else { return }
+                self.banners = bannersResult
+                self.articles = topArticlesResult + (pageResult.datas ?? [])
+                currentPage = requestedPage
+                hasMoreData = pageResult.hasMore
+            } else {
+                let pageResult = try await apiService.fetchArticleList(page: requestedPage)
+                guard !Task.isCancelled, generation == requestGeneration else { return }
+                articles.append(contentsOf: pageResult.datas ?? [])
+                currentPage = requestedPage
+                hasMoreData = pageResult.hasMore
+            }
+        } catch {
+            guard !Task.isCancelled, !(error is CancellationError), generation == requestGeneration else { return }
+            errorMessage = error.localizedDescription
+        }
     }
 }

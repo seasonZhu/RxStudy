@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - 积分排名 ViewModel
 
+@MainActor
 @Observable
 final class CoinRankListViewModel {
     // MARK: - 状态
@@ -29,28 +30,22 @@ final class CoinRankListViewModel {
     /// 是否还有更多数据
     private(set) var hasMoreData = true
 
-    // MARK: - 内存优化
-
-    private let maxDataSourceCount = 200
-    private let dataCleanupThreshold = 250
-
     // MARK: - 私有属性
 
     private let apiService = CoinAPIService.shared
     private var currentPage = 0
+    @ObservationIgnored private var requestGeneration = 0
 
     // MARK: - 公共方法
 
     /// 加载积分排名
     func loadData() async {
-        currentPage = 0
-        hasMoreData = true
         await loadRanks(isRefresh: true)
     }
 
     /// 加载更多排名
     func loadMore() async {
-        guard !isLoadingMore && hasMoreData else { return }
+        guard !isLoading && !isLoadingMore && hasMoreData else { return }
         await loadRanks(isRefresh: false)
     }
 
@@ -58,6 +53,7 @@ final class CoinRankListViewModel {
     func loadMoreIfNeeded(_ rank: CoinRankModel) async {
         guard let index = ranks.firstIndex(where: { $0.userId == rank.userId }),
               index >= ranks.count - 3,
+              !isLoading,
               !isLoadingMore,
               hasMoreData else {
             return
@@ -68,54 +64,41 @@ final class CoinRankListViewModel {
     // MARK: - 私有方法
 
     private func loadRanks(isRefresh: Bool) async {
+        guard !Task.isCancelled else { return }
         if isRefresh {
+            guard !isLoading else { return }
+            // 新刷新取代旧分页，旧请求不得再修改数据或加载状态。
+            requestGeneration += 1
             isLoading = true
+            isLoadingMore = false
         } else {
+            guard !isLoading && !isLoadingMore && hasMoreData else { return }
             isLoadingMore = true
         }
+        let generation = requestGeneration
+        let requestedPage = isRefresh ? 1 : currentPage + 1
         errorMessage = nil
 
-        do {
-            currentPage = isRefresh ? 1 : currentPage + 1
-            let pageResult = try await apiService.fetchCoinRank(page: currentPage)
-
-            await MainActor.run {
-                if isRefresh {
-                    self.ranks = pageResult.datas ?? []
-                } else {
-                    if let newRanks = pageResult.datas {
-                        self.ranks.append(contentsOf: newRanks)
-                    }
-                }
-                self.hasMoreData = pageResult.hasMore
-                self.cleanupOldDataIfNeeded()
-            }
-        } catch {
-            await MainActor.run {
-                self.errorMessage = error.localizedDescription
-                if isRefresh {
-                    self.currentPage = 0
-                } else {
-                    self.currentPage -= 1
-                }
-            }
-        }
-
-        await MainActor.run {
-            if isRefresh {
+        defer {
+            if generation == requestGeneration {
                 isLoading = false
-            } else {
                 isLoadingMore = false
             }
         }
-    }
 
-    private func cleanupOldDataIfNeeded() {
-        guard ranks.count > dataCleanupThreshold else { return }
-
-        let excessCount = ranks.count - maxDataSourceCount
-        ranks.removeFirst(excessCount)
-
-        print("🧹 内存优化: 已移除 \(excessCount) 条旧数据，当前数据量: \(ranks.count)")
+        do {
+            let pageResult = try await apiService.fetchCoinRank(page: requestedPage)
+            guard !Task.isCancelled, generation == requestGeneration else { return }
+            if isRefresh {
+                ranks = pageResult.datas ?? []
+            } else {
+                ranks.append(contentsOf: pageResult.datas ?? [])
+            }
+            currentPage = requestedPage
+            hasMoreData = pageResult.hasMore
+        } catch {
+            guard !Task.isCancelled, !(error is CancellationError), generation == requestGeneration else { return }
+            errorMessage = error.localizedDescription
+        }
     }
 }

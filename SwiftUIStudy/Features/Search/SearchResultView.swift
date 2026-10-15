@@ -34,12 +34,9 @@ struct SearchResultView: View {
         .navigationTitle(keyword)
         .navigationBarTitleDisplayMode(.inline)
         .hideTabBar()
-        .onAppear {
-            print("📱 SearchResultView onAppear，关键词: \(keyword)")
-            print("📊 当前文章数: \(viewModel.articles.count)，是否加载中: \(viewModel.isLoading)")
+        .task {
             if viewModel.articles.isEmpty && !viewModel.isLoading {
-                print("🔄 文章列表为空且未在加载，开始刷新...")
-                viewModel.refresh()
+                await viewModel.refresh()
             }
         }
     }
@@ -69,7 +66,9 @@ struct SearchResultView: View {
                     .buttonStyle(.plain)
                     .onAppear {
                         // 预加载：接近底部时加载更多
-                        _ = viewModel.loadMoreIfNeeded(article: article)
+                        Task {
+                            await viewModel.loadMoreIfNeeded(article: article)
+                        }
                     }
                 }
 
@@ -91,7 +90,7 @@ struct SearchResultView: View {
             }
         }
         .refreshable {
-            await viewModel.refreshAsync()
+            await viewModel.refresh()
         }
     }
 
@@ -113,7 +112,9 @@ struct SearchResultView: View {
                 .foregroundColor(.red)
 
             Button("重新加载") {
-                viewModel.refresh()
+                Task {
+                    await viewModel.refresh()
+                }
             }
             .buttonStyle(.borderedProminent)
         }
@@ -135,18 +136,6 @@ struct SearchResultView: View {
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    }
-}
-
-// MARK: - ViewModel 异步扩展
-
-extension SearchResultViewModel {
-    /// 刷新数据（异步，用于 refreshable）
-    func refreshAsync() async {
-        refresh()
-        // 等待加载完成
-        // 简单实现：等待一小段时间
-        try? await Task.sleep(nanoseconds: 500_000_000)
     }
 }
 

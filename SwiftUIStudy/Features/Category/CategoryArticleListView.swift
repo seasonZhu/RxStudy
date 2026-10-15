@@ -11,9 +11,7 @@ import SwiftUI
 // MARK: - 分类文章列表视图
 
 struct CategoryArticleListView<T: CategoryItem>: View {
-    let viewModel: CategoryPageViewModel<T>
-    let categoryId: Int
-    let categoryName: String
+    let viewModel: CategoryArticleListViewModel<T>
     let isActive: Bool
 
     var body: some View {
@@ -25,27 +23,18 @@ struct CategoryArticleListView<T: CategoryItem>: View {
             } else if let error = viewModel.errorMessage {
                 ErrorStateView(message: error) {
                     Task {
-                        await viewModel.loadArticles(categoryId: categoryId, isRefresh: true)
+                        await viewModel.refresh()
                     }
                 }
             } else {
                 EmptyStateView(icon: "tray", message: "暂无文章")
             }
         }
-        .onAppear {
-            // 只在首次激活时加载数据
-            if !viewModel.isInitialized && categoryId > 0 {
-                viewModel.isInitialized = true
+        .onChange(of: isActive, initial: true) { _, active in
+            // 邻页预加载不发请求；切回时复用该分类已加载的数据。
+            if active {
                 Task {
-                    await viewModel.loadArticles(categoryId: categoryId, isRefresh: true)
-                }
-            }
-        }
-        .onChange(of: isActive) { _, newValue in
-            // 当页面重新激活时，如果没数据则重新加载
-            if newValue && viewModel.articles.isEmpty && !viewModel.isLoading && categoryId > 0 {
-                Task {
-                    await viewModel.loadArticles(categoryId: categoryId, isRefresh: true)
+                    await viewModel.loadIfNeeded()
                 }
             }
         }
@@ -65,8 +54,9 @@ struct CategoryArticleListView<T: CategoryItem>: View {
                     )
                     .buttonStyle(.plain)
                     .onAppear {
+                        guard isActive else { return }
                         Task {
-                            await viewModel.loadMoreIfNeeded(article, categoryId: categoryId)
+                            await viewModel.loadMoreIfNeeded(article)
                         }
                     }
                 }
@@ -79,7 +69,7 @@ struct CategoryArticleListView<T: CategoryItem>: View {
             }
         }
         .refreshable {
-            await viewModel.loadArticles(categoryId: categoryId, isRefresh: true)
+            await viewModel.refresh()
         }
     }
 }

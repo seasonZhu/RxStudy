@@ -7,10 +7,10 @@
 //
 
 import Foundation
-import Moya
 
 // MARK: - 收藏 ViewModel
 
+@MainActor
 @Observable
 final class CollectViewModel {
     // MARK: - 状态
@@ -30,15 +30,11 @@ final class CollectViewModel {
     /// 是否还有更多数据
     private(set) var hasMoreData = true
 
-    // MARK: - 内存优化
-
-    private let maxDataSourceCount = 200
-    private let dataCleanupThreshold = 250
-
     // MARK: - 私有属性
 
     private let apiService = CollectAPIService.shared
     private var currentPage = 0
+    @ObservationIgnored private var requestGeneration = 0
 
     // MARK: - 初始化
 
@@ -50,14 +46,12 @@ final class CollectViewModel {
 
     /// 加载收藏列表
     func loadData() async {
-        currentPage = 0
-        hasMoreData = true
         await loadArticles(isRefresh: true)
     }
 
     /// 加载更多
     func loadMore() async {
-        guard !isLoadingMore && hasMoreData else { return }
+        guard !isLoading && !isLoadingMore && hasMoreData else { return }
         await loadArticles(isRefresh: false)
     }
 
@@ -65,6 +59,7 @@ final class CollectViewModel {
     func loadMoreIfNeeded(_ article: InfoModel) async {
         guard let index = articles.firstIndex(where: { $0.id == article.id }),
               index >= articles.count - 3,
+              !isLoading,
               !isLoadingMore,
               hasMoreData else {
             return
@@ -75,55 +70,41 @@ final class CollectViewModel {
     // MARK: - 私有方法
 
     private func loadArticles(isRefresh: Bool) async {
+        guard !Task.isCancelled else { return }
         if isRefresh {
+            guard !isLoading else { return }
+            // 新刷新取代旧分页，旧请求不得再修改数据或加载状态。
+            requestGeneration += 1
             isLoading = true
+            isLoadingMore = false
         } else {
+            guard !isLoading && !isLoadingMore && hasMoreData else { return }
             isLoadingMore = true
         }
+        let generation = requestGeneration
+        let requestedPage = isRefresh ? 0 : currentPage + 1
         errorMessage = nil
 
-        do {
-            currentPage = isRefresh ? 0 : currentPage + 1
-            let pageResult = try await apiService.fetchCollectList(page: currentPage)
-
-            await MainActor.run {
-                if isRefresh {
-                    self.articles = pageResult.datas ?? []
-                } else {
-                    if let newArticles = pageResult.datas {
-                        self.articles.append(contentsOf: newArticles)
-                    }
-                }
-                self.hasMoreData = pageResult.hasMore
-                self.cleanupOldDataIfNeeded()
-            }
-        } catch {
-            await MainActor.run {
-                self.errorMessage = error.localizedDescription
-
-                if isRefresh {
-                    self.currentPage = 0
-                } else {
-                    self.currentPage -= 1
-                }
-            }
-        }
-
-        await MainActor.run {
-            if isRefresh {
+        defer {
+            if generation == requestGeneration {
                 isLoading = false
-            } else {
                 isLoadingMore = false
             }
         }
-    }
 
-    private func cleanupOldDataIfNeeded() {
-        guard articles.count > dataCleanupThreshold else { return }
-
-        let excessCount = articles.count - maxDataSourceCount
-        articles.removeFirst(excessCount)
-
-        print("🧹 内存优化: 已移除 \(excessCount) 条旧数据，当前数据量: \(articles.count)")
+        do {
+            let pageResult = try await apiService.fetchCollectList(page: requestedPage)
+            guard !Task.isCancelled, generation == requestGeneration else { return }
+            if isRefresh {
+                articles = pageResult.datas ?? []
+            } else {
+                articles.append(contentsOf: pageResult.datas ?? [])
+            }
+            currentPage = requestedPage
+            hasMoreData = pageResult.hasMore
+        } catch {
+            guard !Task.isCancelled, !(error is CancellationError), generation == requestGeneration else { return }
+            errorMessage = error.localizedDescription
+        }
     }
 }
