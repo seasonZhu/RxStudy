@@ -1,227 +1,167 @@
-# 使用RxSwift编写iOS的wanandroid客户端
+# RxStudy：WanAndroid iOS 学习项目
 
-构建入口：[CocoaPods / Tuist 切换速查](docs/构建方式切换速查.md) · [Tuist 新手手册](docs/工程生成新手实操手册.md) · [配置示例](docs/配置示例/工程配置示例.md)
+基于 [WanAndroid 开放 API](https://www.wanandroid.com/) 的 iOS 客户端，包含 UIKit + RxSwift 与独立 SwiftUI 两种实现，用于学习 MVVM、响应式编程、网络请求及页面状态管理。
 
-## 前言
+这是我的第一个 Swift MVVM 项目，从 RxSwift 学习实践开始，逐步加入 Combine、SwiftUI、组件化和跨端集成实验。欢迎 Star、提交 PR 和交流实现思路。
 
-尝试学习RxSwift已经是很久之前的事情了，今年通过掘金的活动才基本落地。
+[快速开始](#快速开始) · [开发指南](DEVELOPMENT_GUIDE.md) · [构建方式切换](docs/构建方式切换速查.md) · [文档导航](#文档导航)
 
-之前版本的README写的乱七八糟的，一直想找个机会重新整理一下。
+## 两个应用 Target
 
-拖拖拉拉的一直推迟到现在，真是不好意思。
+| Target / Scheme | 实现方式 | 代码入口 |
+| --- | --- | --- |
+| `RxStudy` | UIKit + RxSwift / RxCocoa，包含原有学习示例和跨端集成实验 | [RxStudy](RxStudy) |
+| `SwiftUIStudy` | 独立 SwiftUI 应用，包含首页、分类、搜索、登录、收藏、积分等页面 | [SwiftUIStudy](SwiftUIStudy) |
 
-## 关于这个项目
+两个构建分支都包含这两个应用 Target。选择 CocoaPods 或 Tuist 不会改变页面使用的 UI 技术。
 
-这是我第一个Swift的MVVM项目，依旧通过[WanAndroid开放API](https://www.wanandroid.com/)制作。
+## 界面预览
 
-我已经写了Flutter和uni-app版本，所以Swift版本更看重是对逻辑与RxSwift的理解。
+以下动图和截图为项目早期 UIKit 版本的历史展示，不代表当前两个 Target 的全部界面。
 
-曾经的我更看重在单个UI页面上的编写与实现，现在经常想的是这个有没有现成的轮子可以，更偏向于思路与思考。我不是说UI不需要思考，如果有好用的轮子何乐而不为呢？
+![UIKit 历史版本演示](ScreenShots/example.gif)
 
-**欢迎大家star、pr和一起讨论！！！**
-
-### 注意事项
-
-当前双 Target 工程的 iOS 部署版本为 17.6，Tuist 固定为 4.200.4。工具准备、首次编译与环境检查请按上面的新手手册执行。
-
-### 项目截图
-
-#### 先来一张动图
-
-<div align="center">
-
-![](ScreenShots/example.gif)
-
-</div>
-
-#### 界面截图
-
-| ![](ScreenShots/1.PNG) | ![](ScreenShots/2.PNG) | ![](ScreenShots/3.PNG) | ![](ScreenShots/4.PNG) |
+| ![历史界面 1](ScreenShots/1.PNG) | ![历史界面 2](ScreenShots/2.PNG) | ![历史界面 3](ScreenShots/3.PNG) | ![历史界面 4](ScreenShots/4.PNG) |
 | --- | --- | --- | --- |
-| ![](ScreenShots/5.PNG) | ![](ScreenShots/6.PNG) | ![](ScreenShots/7.PNG) | ![](ScreenShots/8.PNG) |  
+| ![历史界面 5](ScreenShots/5.PNG) | ![历史界面 6](ScreenShots/6.PNG) | ![历史界面 7](ScreenShots/7.PNG) | ![历史界面 8](ScreenShots/8.PNG) |
 
-### 功能说明
+## 功能与学习内容
 
-* 首页、项目、公众号、体系、我的，五大模块
-* 登录注册功能
-* 搜索功能：热门搜索、输入搜索
-* 文章列表，普通的TableView布局
-* Tab切换功能
-* 自动轮播图
-* MJRefresh的下拉刷新，无感知上拉加载更多
-* RxMoya的使用，Moya插件的使用
-* RxSwift、RxCocoa的响应式编程，ViewModel的绑定
-* 适配iOS 16，Swift语法更新到5.7
-* 适配黑暗模式
-* 常用扩展封装
-* 详细的注释与思考过程
+主要业务页面包括：
 
-### 引入的第三库
+- 首页、项目、公众号、体系、我的五个模块。
+- 登录与注册、热门搜索与文章搜索。
+- 文章列表、详情浏览与收藏。
+- 积分与积分排名。
+- 轮播、下拉刷新、分页加载及加载／空数据／错误状态展示。
+- 深色模式适配。
 
-```ruby
-target 'RxStudy' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-  use_frameworks!
-  
-  # Rx Core
-  pod 'RxSwift'
-  pod 'RxCocoa'
-  
-  # Rx Extensions
-  pod 'RxDataSources'
-  pod 'NSObject+Rx'
-  
-  # 在BaseViewController中有尝试使用,对于添加手势与调用会更加简单
-  pod 'RxGesture'
-  # 本质上是将异步操作转换为同步操作,这样使得测试代码更简单,
-  # 我在Moya转模型中进行了分类编写,可以直接转为可以使用的Result类型,同时BlockingObservable的注释也说了,它用于测试与演示,并不适合用于App的生产环境,当你在程序逻辑中使用BlockingObservable,也许是该反省自己写的代码逻辑的时候了
-  pod 'RxBlocking'
-  
-  # 可以做主题优化,但是现在基本上适配黑暗模式即可,尝试做了全局主题,但是我想的太简单了
-  pod 'RxTheme'
-  
-  # 对序列的操作符的扩充,让序列从一种类型转换到另一种类型变得更加快捷 https://github.com/RxSwiftCommunity/RxSwiftExt
-  # 使用subscribeNext(weak:...)这个方法来避免循环引用,详细可以见HotKeyController,同时_ onNext: @escaping (Object) -> (Element) -> Void 这种并不是特别好理解, 可以理解为 (Object) -> ((Element) -> Void),闭包嵌套闭包的写法
-  pod 'RxSwiftExt'
+两个 Target 的具体交互和完成情况以各自实现为准，可以结合源码对照学习：
 
-  # Networking
-  pod 'Moya/RxSwift'
-  # AlamofireNetworkActivityLogger的版本很久都没有升级,导致其绑定Alamofire无法升级,直接移除拖入,保证Alamofire和Moya可以向上升级
-  #pod 'AlamofireNetworkActivityLogger'
+- UIKit 中的 RxSwift / RxCocoa 事件处理、ViewModel 绑定与 MVVM 页面组织。
+- Moya 网络请求封装、插件及登录状态处理。
+- 独立 SwiftUI 应用的页面拆分、状态管理和通用列表组件。
+- UIKit 内嵌 SwiftUI、Combine 请求与积分排名示例，位于 [RxStudy/SwiftUIExample](RxStudy/SwiftUIExample)。
+- 共享 API、模型、登录 Cookie 和资源代码，位于 [Shared](Shared)。
 
-  # Image
-  pod 'Kingfisher'
-  
-  # R函数
-  pod 'R.swift'
+## 核心技术
 
-  # UI
-  pod 'DZNEmptyDataSet'
-  pod 'AcknowList'
-  pod 'MJRefresh'
-  pod 'FSPagerView'
-  pod 'JXSegmentedView'
-  pod 'MarqueeLabel'
-  pod 'SVProgressHUD'
-  
-  # 被SVProgressHUD替代了
-  pod 'MBProgressHUD'
-  
-  # SFSymbols的安全引用
-  pod 'SFSafeSymbols', '~> 2.1.3'
-  
-  # Keyboard
-  pod 'IQKeyboardManagerSwift'
+| 用途 | 技术或组件 |
+| --- | --- |
+| UI 与状态 | UIKit、RxSwift、RxCocoa、SwiftUI、Combine |
+| 网络请求 | Moya、Alamofire |
+| 布局 | FlexLayout、PinLayout、SnapKit，以及 SwiftUI 布局 |
+| 图片与列表交互 | Kingfisher、MJRefresh、FSPagerView、JXSegmentedView 等 |
+| 资源访问 | SwiftGen，使用 `Asset` 和 `L10n` 访问图片与本地化字符串 |
+| 工程与依赖 | CocoaPods；或 Tuist 生成工程，主要通过 SPM 管理依赖 |
 
-  # Auto Layout
-  pod 'SnapKit'
-  
-  # Combine 学习
-  pod 'Moya/Combine'
-  pod 'CombineExt'
-  pod 'CombineCocoa'
-  
-  # 调试
-  pod 'LookinServer', :configurations => ['Debug']
-  pod 'CocoaDebug', :configurations => ['Debug']
-  pod "SwiftPrettyPrint", "~> 1.2.0", :configuration => "Debug"
-  
-  # 注意,以下是没有使用的库
-  
-  # Rx Extensions
-  pod 'RxViewController'
-  pod 'RxOptional'
-  
-  # Date
-  pod 'SwiftDate'
-  
-  # Keychain
-  pod 'KeychainAccess'
+这里只列核心技术，不复制完整依赖清单。具体依赖和版本以对应分支的声明及锁文件为准；部分库仅用于特定 Target 或学习实验。
 
-end
+## 快速开始
+
+### 1. 选择构建分支
+
+CocoaPods 与 Tuist 都是可行的构建方式，可以按自己的使用习惯选择。
+
+| 分支 | 构建方式 | 工程与依赖说明 |
+| --- | --- | --- |
+| `develop-pods` | CocoaPods | 通过 `Podfile` 和 `Podfile.lock` 管理依赖，维护 Xcode 工程 |
+| `develop-tuist` | Tuist | 通过 `Project.swift` 定义并生成工程，主要使用 SPM，配合本地源码及二进制依赖 |
+
+首次获取项目时，选择其中一个分支：
+
+```sh
+# CocoaPods
+git clone --branch develop-pods https://github.com/seasonZhu/RxStudy.git
+
+# 或者选择 Tuist（与上面的命令二选一）
+git clone --branch develop-tuist https://github.com/seasonZhu/RxStudy.git
+
+cd RxStudy
 ```
 
-## 使用RxSwift、Flutter、Vue的一点感受
+### 2. 准备工具和工程
 
-之前跑去学了Flutter和简单的Vue入门。
+- 两个应用 Target 的最低部署版本为 **iOS 17.6**。使用完整 Xcode；Swift 语言配置以所选分支的工程配置为准，当前 CocoaPods 工程为 **Swift 5.9**。
+- 两种方式都使用 SwiftGen 生成资源代码。CocoaPods 方式需要 CocoaPods 及 Podfile 声明的插件；Tuist 方式通过 mise 安装项目固定的 Tuist 版本，以该分支的 `mise.toml` 为准。
+- 按照 [工程生成新手实操手册](docs/工程生成新手实操手册.md) 准备工具和首次构建环境，或通过 [构建方式切换速查](docs/构建方式切换速查.md) 查看安装、生成及切换步骤。手册同时说明两种构建方式的区别。
 
-说实话Vue的学习成本是最低的，因为它的MVVM框架开箱即用，你不需要做太多的操作，也非常容易理解。
+### 3. 选择 Scheme
 
-Flutter的学习曲线稍微难一点，但是学会了Provider之后，基本上MVVM的思想也上路了。
+准备工程后打开 `RxStudy.xcworkspace`，选择 `RxStudy` 或 `SwiftUIStudy` Scheme，按 ⌘B 编译。真机运行时需配置自己的签名；Tuist 工程的持久设置应写回工程定义，避免重新生成后丢失。
 
-反观RxSwift的学习曲线真的是陡峭啊，虽然我理解Oberveral其实就是异步的stream，但是使用起来的时候还是一脸懵逼，偶尔想要使用绑定，还需要自己做Rx的扩展，需要理解大量非原生的API，成本非常的高。
+### 已有工作副本切换构建方式
 
-你说为啥不直接上Combine，我只是想说，RxSwift学了，理解Combine还会难么？
+保存并提交或自行暂存修改，关闭当前 Xcode 工程，确认工作区干净、当前处于上述两个构建分支之一，且本地已存在目标分支，再运行：
 
-SwiftUI+Combine联合起来才能展现威力，不过在苹果这一侧，成熟好用的响应式和状态管理都还没有出世。
+```sh
+bash scripts/switch-dependencies.sh
+```
 
-而RxSwift系列的一些框架已经在向大前端的实现了，可惜对原生的支持不够好的，学习成本也太高了。
+脚本提供 CocoaPods / Tuist 选择菜单，准备依赖、生成资源和工程，并打开 workspace。新克隆的仓库可能尚未建立另一构建方式的本地分支，需要先按实际远端分支准备。前置工具、备份和失败处理见 [切换速查](docs/构建方式切换速查.md)。
 
-## Swift版wanandroid客户端
+切换脚本只准备构建环境，不同步两条分支的业务提交。代码同步约定见该文档的 [业务代码同步](docs/构建方式切换速查.md#业务代码同步)。
 
-[项目地址](https://github.com/seasonZhu/RxStudy)
+## 代码导航
 
-## Flutter版wanandroid客户端
+| 目录 | 内容 |
+| --- | --- |
+| [RxStudy](RxStudy) | UIKit 应用、RxSwift 基础封装、业务页面及学习示例 |
+| [SwiftUIStudy](SwiftUIStudy) | 独立 SwiftUI 应用，按 Features、Components、Network 等目录组织 |
+| [Shared](Shared) | 两个 Target 共用的 API、模型、业务工具、资源及 SwiftGen 生成代码 |
+| [Packages/ThirdParty](Packages/ThirdParty) | 本地第三方组件 |
+| [scripts](scripts) | 构建方式切换、SwiftGen 资源生成、Tuist 升级等脚本 |
+| [docs](docs) | 构建、资源、排错和开发约定 |
 
-[项目地址](https://github.com/seasonZhu/GetXStudy)
+## 文档导航
 
-## HarmonyOS版wanandroid客户端
+| 文档 | 内容 |
+| --- | --- |
+| [开发指南](DEVELOPMENT_GUIDE.md) | 开发入口与代码放置约定 |
+| [构建方式切换速查](docs/构建方式切换速查.md) | CocoaPods / Tuist 切换、版本管理及分支同步 |
+| [工程生成新手实操手册](docs/工程生成新手实操手册.md) | 工具准备、首次生成工程、选择 Target 和日常开发 |
+| [工程配置示例](docs/配置示例/工程配置示例.md) | 可参考的工程及依赖配置 |
+| [资源生成使用指南](docs/资源生成使用指南.md) | SwiftGen 与图片、本地化字符串访问 |
+| [编译问题排查指南](docs/编译问题排查指南.md) | 依赖、模块及构建常见问题 |
+| [迁移历史记录](docs/迁移历史记录.md) | 历史 SwiftUI 迁移过程，旧配置与命令不作为当前操作依据 |
 
-[项目地址](https://github.com/seasonZhu/HarmonyStudy)
+## 历史分支与实验
 
-## uni-app版wanandroid客户端
+除两个构建分支外，仓库还保留了部分学习过程：
 
-[项目地址](https://github.com/seasonZhu/UniAppPlayAndroid)
+| 分支 | 说明 |
+| --- | --- |
+| `develop` | 保留原有开发提交，当前构建入口见上面的两个构建分支 |
+| `module` | 组件化实验，探索网络层、HUD、账号状态之间的依赖与访问权限 |
+| `develop_flutter` | Flutter 混合开发实验，配合 `flutter_module` 使用 |
+| `develop_uniapp` | uni-app 小程序集成实验，使用对应版本生成的 wgt 资源 |
 
-## 我的掘金主页
+当前 `RxStudy` 目录也保留 Flutter、UniMP 相关集成代码；CocoaPods 分支的 Flutter Pod 接入默认关闭。这些实验需结合各自的 SDK、工具链和资源配置阅读，不能直接套用历史步骤。组件化分支的目录和依赖组织也不代表当前主工程结构。
 
-[我的主页](https://juejin.cn/user/4353721778057997)
+早期 SwiftUI 学习参考：[FuckingSwiftUI](https://github.com/agelessman/FuckingSwiftUI)、[Refresh](https://github.com/wxxsw/Refresh)、[ACarousel](https://github.com/JWAutumn/ACarousel)。
+
+## 相关项目与交流
+
+- [Swift 版 WanAndroid：RxStudy](https://github.com/seasonZhu/RxStudy)
+- [Flutter 版 WanAndroid：GetXStudy](https://github.com/seasonZhu/GetXStudy)
+- [HarmonyOS 版 WanAndroid：HarmonyStudy](https://github.com/seasonZhu/HarmonyStudy)
+- [uni-app 版 WanAndroid：UniAppPlayAndroid](https://github.com/seasonZhu/UniAppPlayAndroid)
+- [我的掘金主页](https://juejin.cn/user/4353721778057997)
+
+欢迎通过 [GitHub Issues](https://github.com/seasonZhu/RxStudy/issues) 反馈问题或讨论改进，通过 PR 贡献代码。
+
+## 许可证
+
+本项目采用 [MIT License](LICENSE)。
+
+## 最后
+
+随着AI时代的到来，其实我也不知道这种开源项目是否还有多少意义？
+
+其实不管是 ⭐️ 还是Fork，在目前来看，对于开源项目都说明不了什么。
+
+我唯一能说的是，这是我来时的路，对我自己而言是珍贵的过程。
 
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=seasonZhu/RxStudy&type=Date)](https://star-history.com/#seasonZhu/RxStudy&Date)
-
-## SwiftUI + Combine
-
-详细可以看SwiftUIExample这个文件夹的内容,我已经编写了SwiftUI的积分排名页面,包括上下拉,网络请求,异常等处理.
-可以说,基本上通过这个页面,CoinRankListPage可以看到交互->数据请求->数据驱动页面等一系列操作.
-
-如果下面这个FuckingSwiftUI都看懂了,基本上SwiftUI布局基本上明白.
-我目前是按照Flutter的思路在写SwiftUI的布局,但是其实很多细节还是不明白.
-
-### FuckingSwiftUI
-
-[FuckingSwiftUI](https://github.com/agelessman/FuckingSwiftUI)
-
-### 使用的SwiftUI的组件
-
-下拉与上拉
-
-[Refresh](https://github.com/wxxsw/Refresh)
-
-轮播
-
-[ACarousel](https://github.com/JWAutumn/ACarousel)
-
-## 组件化
-
-我在这个项目的`module`分支上面进行了简单的组件化尝试。
-
-所有的pod目前都是进行的本地化管理，也是放在当前项目下的`DevelopmentPods`文件夹下面。
-
-我之前很天真的以为自己写的代码很好解耦，应该一会就可以进行组件化，但是当我尝试拆解`HttpRequest`的时候就吃瘪了。
-
-我发现，我的`HttpRequest`中使用了Moya的插件，到请求开始与结束的使用了蒙层的loading与dismiss，于是乎，我优先去组件化了`HUD`。
-
-然后我的`HttpRequest`要先去依赖`HUD`才能进行正常的组件化与编译，结果发现`HttpRequest`实际上和登录状态也是有关联的，在`wanandroid`的API中，登录和未登录在有几个API里面的请求头是有差别的，登录后不将数据塞入请求头是拿不到数据的，于是乎就在我考虑是将`AccountManager`独立作为个组件还是放在`HttpRequest`里面，纠结了半天，然后还是考虑封装的网络请求层其实也算是业务层了，我个人理解`Moya`已经算是纯粹的网络请求层了，于是乎`AccountManager`和`HttpRequest`就放在一起了。
-
-没有组件化之前，虽然我也知道`public`修饰的重要性，结果进行组件化后，才更能理解，小心慎重的时候这些修饰符是多么的重要。
-
-如果大家有兴趣，可以切到`module`分支上面去看看。
-
-## UniApp接入
-
-在develop_uniapp分支上面，我进行了uni-app的接入。使用用的wgt文件就是通过uni-app版wanandroid客户端编译生成的。uni-app版本的写法与性能一般，大家看看就好。
-
-## Flutter接入
-在develop_flutter分支上面，需要运行的时候，需要先把flutter_module文件夹下面的单独运行进行pub get,然后再回到iOS的根目录下进行pod install。
