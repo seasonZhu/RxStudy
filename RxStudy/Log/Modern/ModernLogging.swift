@@ -9,12 +9,21 @@ import ZipArchive
 import SSZipArchive
 #endif
 
-/// 详细正文使用专用 context，仅文件接收器保留。
+/// 系统日志仅保留摘要；详细正文由文件及 Debug 控制台接收器保留。
 private final class ModernSystemLogFormatter: NSObject, DDLogFormatter {
     func format(message logMessage: DDLogMessage) -> String? {
         logMessage.context == ModernLogging.detailContext ? nil : logMessage.message
     }
 }
+
+#if DEBUG
+/// 控制台保留多行正文，方便像旧体系一样直接阅读请求和响应。
+private final class ModernConsoleLogFormatter: NSObject, DDLogFormatter {
+    func format(message logMessage: DDLogMessage) -> String? {
+        logMessage.message
+    }
+}
+#endif
 
 final class ModernLogging {
     static let shared = ModernLogging()
@@ -61,6 +70,13 @@ final class ModernLogging {
         self.fileLogger = fileLogger
         DDLog.add(systemLogger, with: dynamicLogLevel)
         DDLog.add(fileLogger, with: dynamicLogLevel)
+        #if DEBUG
+        if let consoleLogger = DDTTYLogger.sharedInstance,
+           !DDLog.allLoggers.contains(where: { $0 === consoleLogger }) {
+            consoleLogger.logFormatter = ModernConsoleLogFormatter()
+            DDLog.add(consoleLogger, with: .verbose)
+        }
+        #endif
         #if DEBUG
         ModernNetworkLogger.shared.level = .debug
         #else

@@ -1,6 +1,6 @@
 import Foundation
 
-/// 先脱敏后限长；无法结构化脱敏的文本不输出原文。
+/// 根据配置决定是否脱敏，两种模式都保留长度限制与二进制摘要。
 enum ModernLogRedactor {
     static let bodyLimit = 64 * 1024
 
@@ -37,6 +37,11 @@ enum ModernLogRedactor {
     }
 
     static func url(_ url: URL?) -> String {
+        if !LoggingConfiguration.redactionEnabled {
+            return bounded(url?.absoluteString ?? "未知", limit: 2048)
+                .replacingOccurrences(of: "\n", with: "\\n")
+                .replacingOccurrences(of: "\r", with: "\\r")
+        }
         guard let url, var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else { return "未知" }
         components.user = nil
         components.password = nil
@@ -51,6 +56,9 @@ enum ModernLogRedactor {
     }
 
     static func headers(_ headers: [String: String]) -> String {
+        if !LoggingConfiguration.redactionEnabled {
+            return bounded(json(headers), limit: bodyLimit)
+        }
         // 仅保留排障需要的无凭据头；未知自定义头同样隐藏。
         let allowed = ["content-type", "content-length", "accept", "accept-encoding"]
         let safe = headers.mapValues { _ in "[已脱敏]" }.merging(
@@ -74,7 +82,10 @@ enum ModernLogRedactor {
             return "[已截断：原始大小=\(data.count) 字节，超过 64 KiB，省略正文]"
         }
         if let object = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) {
-            return bounded(json(redacted(object)), limit: bodyLimit)
+            return bounded(json(LoggingConfiguration.redactionEnabled ? redacted(object) : object), limit: bodyLimit)
+        }
+        if !LoggingConfiguration.redactionEnabled, let string = String(data: data, encoding: .utf8) {
+            return bounded(string, limit: bodyLimit)
         }
         if contentType?.lowercased().contains("application/x-www-form-urlencoded") == true,
            let form = String(data: data, encoding: .utf8),
@@ -90,7 +101,7 @@ enum ModernLogRedactor {
     }
 
     private static func json(_ value: Any) -> String {
-        guard let data = try? JSONSerialization.data(withJSONObject: value, options: [.sortedKeys, .fragmentsAllowed]),
+        guard let data = try? JSONSerialization.data(withJSONObject: value, options: [.prettyPrinted, .sortedKeys, .fragmentsAllowed]),
               let string = String(data: data, encoding: .utf8) else { return "[无法编码]" }
         return string
     }

@@ -64,29 +64,37 @@ private enum LogTests {
         try fm.createDirectory(at: root, withIntermediateDirectories: true)
         defer { try? fm.removeItem(at: root) }
 
+        let redact = LoggingConfiguration.redactionEnabled
         let json = ModernLogRedactor.body(Data(#"{"user":{"password":"password-secret","phone":"13800138000"},"token":"token-secret","list":[{"email":"test@example.com"}],"value":"visible"}"#.utf8), contentType: "application/json")
         for secret in ["password-secret", "13800138000", "token-secret", "test@example.com"] {
-            check(!json.contains(secret), "JSON 脱敏失败")
+            check(json.contains(secret) != redact, "JSON 脱敏开关未生效")
         }
         check(json.contains("visible"), "普通 JSON 值不应丢失")
         let form = ModernLogRedactor.body(Data("password=form-secret&value=visible".utf8), contentType: "application/x-www-form-urlencoded")
-        check(!form.contains("form-secret") && form.contains("visible"), "表单脱敏失败")
+        check(form.contains("form-secret") != redact && form.contains("visible"), "表单脱敏开关未生效")
         let url = ModernLogRedactor.url(URL(string: "https://user:pass@example.com/13800138000?access_token=url-secret&q=visible#fragment"))
-        check(!url.contains("url-secret") && !url.contains("13800138000") && !url.contains("user:pass") && !url.contains("fragment"), "URL 脱敏失败")
+        for value in ["url-secret", "13800138000", "user:pass", "fragment"] {
+            check(url.contains(value) != redact, "URL 脱敏开关未生效")
+        }
         let headers = ModernLogRedactor.headers(["Authorization": "header-secret", "X-Custom": "custom-secret", "Content-Type": "application/json"])
-        check(!headers.contains("header-secret") && !headers.contains("custom-secret") && headers.contains("application"), "请求头脱敏失败")
+        check(headers.contains("header-secret") != redact && headers.contains("custom-secret") != redact && headers.contains("application"), "请求头脱敏开关未生效")
         let huge = ModernLogRedactor.body(Data(repeating: 65, count: 65537), contentType: "application/json")
         check(huge.contains("65537") && huge.contains("已截断") && huge.utf8.count <= 65536, "超限正文处理失败")
         let expanding = ModernLogRedactor.body(Data(("[" + Array(repeating: "0", count: 32000).joined(separator: ",") + "]").utf8), contentType: "application/json")
         check(expanding.utf8.count <= 65536, "格式化后正文超过限制")
         check(ModernLogRedactor.body(Data("{}".utf8), contentType: "application/octet-stream").contains("二进制正文"), "二进制数据被当作 JSON 记录")
         check(ModernLogRedactor.body(Data([0, 255, 1]), contentType: "application/octet-stream").contains("大小=3"), "二进制摘要失败")
-        check(!ModernLogRedactor.body(Data("unstructured-secret".utf8), contentType: "text/plain").contains("unstructured-secret"), "非结构化文本泄露")
+        check(ModernLogRedactor.body(Data("unstructured-secret".utf8), contentType: "text/plain").contains("unstructured-secret") != redact, "普通文本脱敏开关未生效")
         check(ModernLogRedactor.body(nil, contentType: nil) == "无正文", "空正文处理失败")
 
         let logs = root.appendingPathComponent("ModernLogs")
         let app = ModernLogging(logsDirectory: logs.path)
         app.start()
+        #if DEBUG
+        check(DDLog.allLoggers.compactMap { $0 as? DDTTYLogger }.count == 1, "Debug 没有唯一控制台接收器")
+        #else
+        check(DDLog.allLoggers.compactMap { $0 as? DDTTYLogger }.isEmpty, "Release 启用了控制台接收器")
+        #endif
         let initialCount = DDLog.allLoggers.count
         app.start()
         check(DDLog.allLoggers.count == initialCount, "重复注册日志器")
@@ -147,7 +155,13 @@ private enum LogTests {
             return [http, offline, invalid, validation].allSatisfy { text.contains("[网络][失败] id=\($0.id)") }
         }
         let logged = contents()
-        for secret in ["request-secret", "response-secret", "cookie-secret"] { check(!logged.contains(secret), "网络日志泄露凭据") }
+        for secret in ["request-secret", "response-secret", "cookie-secret"] {
+            #if DEBUG
+            check(logged.contains(secret) != redact, "网络文件脱敏开关未生效")
+            #else
+            check(!logged.contains(secret), "Release 记录了正文或头信息")
+            #endif
+        }
         #if DEBUG
         check(logged.contains("[网络][响应] id=\(success.id)"), "成功摘要缺失")
         check(logged.components(separatedBy: "[网络][请求] id=\(success.id)").count == 2, "请求开始日志重复或缺失")
@@ -157,6 +171,10 @@ private enum LogTests {
         check(!logged.contains("request-marker") && !logged.contains("response-marker"), "Release 记录了正文")
         #endif
         listener.stopLogging()
+        #if DEBUG
+        let console = DDLog.allLoggers.compactMap { $0 as? DDTTYLogger }.first!
+        check(console.logFormatter!.format(message: detail) == "file-only-marker", "控制台过滤了详细正文")
+        #endif
 
         DDLogWarn("export-latest-marker")
         var export: Result<URL, Error>?
@@ -184,11 +202,17 @@ private enum LogTests {
             DDLogMessageFormat(stringLiteral: String(repeating: "x", count: 256)),
             level: .verbose, flag: .warning))
         wait("达到大小后未轮转") { rotationManager.sortedLogFileInfos.contains { $0.isArchived } }
-        rotationLogger.maximumFileSize = 0
-        rotationLogger.rollingFrequency = 0.05
-        rotationLog.log(asynchronous: false, message: DDLogMessage("时间轮转验证", level: .verbose, flag: .warning))
-        wait("到期后未轮转") { rotationManager.sortedLogFileInfos.filter { $0.isArchived }.count >= 2 }
         rotationLog.removeAllLoggers()
+        // 时间与大小使用独立目录，避免同毫秒文件命名干扰两个触发条件的验证。
+        let timedManager = ModernLogFileManager(logsDirectory: root.appendingPathComponent("TimedRotation").path)
+        let timedLogger = DDFileLogger(logFileManager: timedManager)
+        timedLogger.maximumFileSize = 0
+        timedLogger.rollingFrequency = 0.05
+        let timedLog = DDLog()
+        timedLog.add(timedLogger)
+        timedLog.log(asynchronous: false, message: DDLogMessage("时间轮转验证", level: .verbose, flag: .warning))
+        wait("到期后未轮转") { timedManager.sortedLogFileInfos.contains { $0.isArchived } }
+        timedLog.removeAllLoggers()
 
         // 独立目录验证归档清理和活动文件保护。
         let quotaDirectory = root.appendingPathComponent("Quota")

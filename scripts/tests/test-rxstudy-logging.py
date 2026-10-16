@@ -67,9 +67,10 @@ def main():
         modern_sources = sorted((ROOT / "RxStudy/Log/Modern").glob("*.swift"))
         config = ROOT / "RxStudy/Log/Modern/LoggingConfiguration.swift"
         assert "static let mode: LoggingMode = .legacy" in config.read_text(), "默认必须保持旧体系"
-        for mode in ("legacy", "modern"):
+        for mode, redact in (("legacy", False), ("modern", False), ("modern", True)):
             selected_config = temporary / (mode + "-LoggingConfiguration.swift")
-            selected_config.write_text(config.read_text().replace("= .legacy", "= ." + mode))
+            selected_config.write_text(config.read_text().replace("= .legacy", "= ." + mode)
+                .replace("redactionEnabled = false", "redactionEnabled = " + str(redact).lower()))
             sources = [str(path) for path in modern_sources if path != config]
             sources += [str(selected_config), str(legacy_manager), str(bootstrap)]
             sources += [str(ROOT / source) for source in LEGACY_SOURCES]
@@ -79,14 +80,20 @@ def main():
                 subprocess.run(args + sources + ["-o", str(executable)], check=True)
                 environment = dict(os.environ, RXSTUDY_LEGACY_TEST_DIRECTORY=str(temporary / mode / configuration))
                 result = subprocess.run([str(executable)], env=environment, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-                print(mode, configuration, flush=True)
+                print(mode, configuration, "脱敏=" + str(redact), flush=True)
                 print(result.stdout, flush=True)
                 if result.returncode:
                     raise SystemExit(result.returncode)
                 if mode == "legacy":
                     assert ("Body:\n" in result.stdout) == (configuration == "Debug"), "旧网络 DEBUG/Release 启动行为改变"
                 else:
-                    assert "Body:\n" not in result.stdout, "新模式重复启动了旧网络监听"
+                    if configuration == "Debug":
+                        assert "Body:\n" in result.stdout and "Headers:\n" in result.stdout, "Modern 控制台缺少正文或请求头"
+                        assert "request-marker" in result.stdout and "response-marker" in result.stdout, "Modern 控制台缺少请求或响应"
+                        assert ("request-secret" in result.stdout) != redact, "控制台脱敏开关未生效"
+                        assert "[网络][请求详情]" in result.stdout, "Modern 控制台缺少请求详情"
+                    else:
+                        assert "Body:\n" not in result.stdout, "Release 不应输出控制台正文"
 
 
 

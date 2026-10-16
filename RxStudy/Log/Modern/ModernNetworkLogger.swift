@@ -41,7 +41,7 @@ enum ModernNetworkLogLevel {
     case fatal
 }
 
-/// 将 Alamofire 请求摘要写入系统与文件日志，Debug 正文仅写入文件。
+/// 将 Alamofire 请求摘要写入系统与文件日志，Debug 正文写入文件和控制台。
 final class ModernNetworkLogger {
     static let shared = ModernNetworkLogger()
     var level: ModernNetworkLogLevel = .info
@@ -94,7 +94,7 @@ final class ModernNetworkLogger {
                 let headers = ModernLogRedactor.headers(urlRequest.allHTTPHeaderFields ?? [:])
                 let body = ModernLogRedactor.body(urlRequest.httpBody,
                                                    contentType: urlRequest.value(forHTTPHeaderField: "Content-Type"))
-                DDLogDebug("[网络][请求详情] id=\(request.id) Headers=\(headers) Body=\(body)",
+                DDLogDebug("---------------------\n[网络][请求详情] \(self.summary(request, urlRequest: urlRequest))\nHeaders:\n\(headers)\nBody:\n\(body)",
                            context: ModernLogging.detailContext)
             }
             #endif
@@ -116,8 +116,11 @@ final class ModernNetworkLogger {
             let duration = elapsed.map { String(format: "%.3fs", $0) } ?? "未知"
             let summary = "\(self.summary(request, urlRequest: urlRequest)) status=\(status.map(String.init) ?? "未知") 耗时=\(duration)"
             if failed {
-                // 错误描述可能包含原始 URL 或凭据，仅保留类型和代码。
-                let error = request.error.map { "\(($0 as NSError).domain):\(($0 as NSError).code)" } ?? "HTTP"
+                let error = request.error.map {
+                    LoggingConfiguration.redactionEnabled
+                        ? "\(($0 as NSError).domain):\(($0 as NSError).code)"
+                        : $0.localizedDescription
+                } ?? "HTTP"
                 DDLogWarn("[网络][失败] \(summary) error=\(error)")
             }
             #if DEBUG
@@ -130,7 +133,7 @@ final class ModernNetworkLogger {
                 } ?? [:]
                 let body = ModernLogRedactor.body(request.data,
                                                    contentType: request.response?.value(forHTTPHeaderField: "Content-Type"))
-                DDLogDebug("[网络][响应详情] id=\(request.id) Headers=\(ModernLogRedactor.headers(headers)) Body=\(body)",
+                DDLogDebug("---------------------\n[网络][响应详情] \(summary)\nHeaders:\n\(ModernLogRedactor.headers(headers))\nBody:\n\(body)",
                            context: ModernLogging.detailContext)
             }
             #endif
