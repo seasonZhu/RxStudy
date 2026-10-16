@@ -46,6 +46,7 @@ extension AppDelegate {
     // MARK: - 网络日志打印
 
     private func setupNetworkActivityLogger() {
+        guard LoggingConfiguration.mode == .legacy else { return }
         #if DEBUG
             NetworkActivityLogger.shared.level = .debug
             NetworkActivityLogger.shared.startLogging()

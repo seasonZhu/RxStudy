@@ -29,6 +29,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        if LoggingConfiguration.mode == .modern {
+            ModernLogging.shared.start()
+        }
+
         // MARK: - 跨平台模块初始化
         setupCrossPlatformModules(launchOptions: launchOptions)
 

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6630E4CF59FED2D1CF77916C /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */; };
+		54C19F0D494E60686C561C97 /* ModernLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */; };
+		D0F94554DBE575FEDCE9BE4F /* ModernLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */; };
+		56B854EFE5959E1A9212B284 /* ModernLogRedactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F1A21448776836EEF2786D /* ModernLogRedactor.swift */; };
+		8DF8C9F5031817FF22F5C083 /* ModernLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999A39E9E98464449C910334 /* ModernLogging.swift */; };
+		E8FF9F210AC1FD4D2A911C17 /* ModernNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */; };
 		000DE8B1A2D3D515431A4D26 /* CollectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB7346DF02EE3E1141AEA15 /* CollectViewModel.swift */; };
 		007706B350F1DA4DFF5708FC /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249138730FF8E0961AE04396 /* AppNavigationBar.swift */; };
 		00F83DE5B7DD5803A793C35B /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8EA29FAC0E419C489DB5F1 /* Moya+BlockingObservable.swift */; };
@@ -357,6 +363,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingConfiguration.swift; sourceTree = "<group>"; };
+		FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogFileManager.swift; sourceTree = "<group>"; };
+		C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogFormatter.swift; sourceTree = "<group>"; };
+		45F1A21448776836EEF2786D /* ModernLogRedactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogRedactor.swift; sourceTree = "<group>"; };
+		999A39E9E98464449C910334 /* ModernLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogging.swift; sourceTree = "<group>"; };
+		A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernNetworkLogger.swift; sourceTree = "<group>"; };
 		0022853EFC693D6F7F89A09D /* BaseRequestable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseRequestable.swift; path = BaseRequestable.swift; sourceTree = "<group>"; };
 		01C4EEA4E1B7E6FAE1B20BE2 /* TheRouterExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterExtension.swift; path = TheRouterExtension.swift; sourceTree = "<group>"; };
 		028502054245363F7AD7F5D0 /* Friend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Friend.swift; path = Friend.swift; sourceTree = "<group>"; };
@@ -740,6 +752,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F43D71A3DD6510A9EF83572 /* Modern */ = {
+			isa = PBXGroup;
+			children = (
+				A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */,
+				FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */,
+				C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */,
+				45F1A21448776836EEF2786D /* ModernLogRedactor.swift */,
+				999A39E9E98464449C910334 /* ModernLogging.swift */,
+				A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */,
+			);
+			path = Modern;
+			sourceTree = "<group>";
+		};
 		0379593A790D1485253FA234 /* Tree */ = {
 			isa = PBXGroup;
 			children = (
@@ -1259,6 +1284,7 @@
 		5B78AC174E645DDBA3E57B75 /* Log */ = {
 			isa = PBXGroup;
 			children = (
+				4F43D71A3DD6510A9EF83572 /* Modern */,
 				12989C197D234084A6755A3B /* CustomLogFileManager.swift */,
 				B6E5118950579A83668264F0 /* CustomLogFormatter.swift */,
 				584C70688B77EEDCE6418DCD /* LogUtils.swift */,
@@ -2269,6 +2295,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6630E4CF59FED2D1CF77916C /* LoggingConfiguration.swift in Sources */,
+				54C19F0D494E60686C561C97 /* ModernLogFileManager.swift in Sources */,
+				D0F94554DBE575FEDCE9BE4F /* ModernLogFormatter.swift in Sources */,
+				56B854EFE5959E1A9212B284 /* ModernLogRedactor.swift in Sources */,
+				8DF8C9F5031817FF22F5C083 /* ModernLogging.swift in Sources */,
+				E8FF9F210AC1FD4D2A911C17 /* ModernNetworkLogger.swift in Sources */,
 				7D3BADEB6BF66D0323F22206 /* Decode+Extension.swift in Sources */,
 				1A9DC4B76E43A313DC6F1AA3 /* TheRouerBridge.swift in Sources */,
 				54D88945B1A296FDFF43D194 /* TheRouter+Convenience.swift in Sources */,

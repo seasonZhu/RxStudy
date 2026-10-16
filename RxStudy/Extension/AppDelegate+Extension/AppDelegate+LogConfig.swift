@@ -21,6 +21,7 @@ extension AppDelegate {
 
     /// 设置日志配置
     func setupLogConfiguration() {
+        guard LoggingConfiguration.mode == .legacy else { return }
         #if DEBUG
         dynamicLogLevel = .verbose
         #else
