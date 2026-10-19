@@ -79,6 +79,9 @@ Shared/Generated/
 .planning/
 __pycache__/
 
+# 本机 Flutter 接入开关
+.flutter-enabled
+
 # cocoapods-keys 每次安装随机生成，由插件重新创建
 Pods/CocoaPodsKeys/RxStudyKeys.h
 Pods/CocoaPodsKeys/RxStudyKeys.m

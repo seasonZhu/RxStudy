@@ -21,6 +21,7 @@ import MJRefresh
 
 #if canImport(Flutter)
 import Flutter
+import RxViewController
 #endif
 
 class MyController: BaseTableViewController {

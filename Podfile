@@ -8,7 +8,11 @@ platform :ios, IOS_DEPLOYMENT_TARGET
 
 flutter_application_path = 'flutter_module'
 flutter_helper = File.join(flutter_application_path, '.ios', 'Flutter', 'podhelper.rb')
-load flutter_helper if File.exist?(flutter_helper)
+flutter_enabled = File.file?(File.join(__dir__, '.flutter-enabled'))
+if flutter_enabled
+  raise 'Flutter 配置尚未生成，请运行 bash scripts/switch-flutter.sh enable' unless File.file?(flutter_helper)
+  load flutter_helper
+end
 
 target 'RxStudy' do
   # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
@@ -103,7 +107,7 @@ target 'RxStudy' do
   ### 跨端模块
   
   # 添加flutter模块
-  #install_all_flutter_pods(flutter_application_path)
+  install_all_flutter_pods(flutter_application_path) if flutter_enabled
   
   # 添加UniApp模块
   ## 判断需要引用哪些模块请参考文档:https://nativesupport.dcloud.net.cn/AppDocs/usemodule/iOSModuleConfig/common.html#%E5%A6%82%E4%BD%95%E9%85%8D%E7%BD%AE%E6%A8%A1%E5%9D%97-%E4%B8%89%E6%96%B9sdk
@@ -241,7 +245,7 @@ post_install do |installer|
     end
   end
 
-  flutter_post_install(installer) if defined?(flutter_post_install)
+  flutter_post_install(installer) if flutter_enabled
 end
 
 plugin 'cocoapods-keys', {

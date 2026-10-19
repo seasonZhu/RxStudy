@@ -119,6 +119,7 @@ bash scripts/switch-dependencies.sh
 | --- | --- |
 | [开发指南](DEVELOPMENT_GUIDE.md) | 开发入口与代码放置约定 |
 | [构建方式切换速查](docs/构建方式切换速查.md) | CocoaPods / Tuist 切换、版本管理及分支同步 |
+| [Flutter 模块接入指南](docs/Flutter模块接入指南.md) | 本机一键接入、卸载与状态检查 |
 | [工程生成新手实操手册](docs/工程生成新手实操手册.md) | 工具准备、首次生成工程、选择 Target 和日常开发 |
 | [工程配置示例](docs/配置示例/工程配置示例.md) | 可参考的工程及依赖配置 |
 | [资源生成使用指南](docs/资源生成使用指南.md) | SwiftGen 与图片、本地化字符串访问 |
@@ -136,7 +137,7 @@ bash scripts/switch-dependencies.sh
 | `develop_flutter` | Flutter 混合开发实验，配合 `flutter_module` 使用 |
 | `develop_uniapp` | uni-app 小程序集成实验，使用对应版本生成的 wgt 资源 |
 
-当前 `RxStudy` 目录也保留 Flutter、UniMP 相关集成代码；CocoaPods 分支的 Flutter Pod 接入默认关闭。这些实验需结合各自的 SDK、工具链和资源配置阅读，不能直接套用历史步骤。组件化分支的目录和依赖组织也不代表当前主工程结构。
+当前 `RxStudy` 目录也保留 Flutter、UniMP 相关集成代码；CocoaPods 分支的 Flutter Pod 接入默认关闭，可通过 `bash scripts/switch-flutter.sh` 一键接入或卸载，详见 [Flutter 模块接入指南](docs/Flutter模块接入指南.md)。这些实验需结合各自的 SDK、工具链和资源配置阅读，不能直接套用历史步骤。组件化分支的目录和依赖组织也不代表当前主工程结构。
 
 早期 SwiftUI 学习参考：[FuckingSwiftUI](https://github.com/agelessman/FuckingSwiftUI)、[Refresh](https://github.com/wxxsw/Refresh)、[ACarousel](https://github.com/JWAutumn/ACarousel)。
 
