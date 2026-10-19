@@ -9,6 +9,9 @@
 import Foundation
 
 enum FlutterMethodCallType: String {
+    /// Dart 已安装通信处理器。
+    case ready
+
     case pop
     
     case tokenOverdue

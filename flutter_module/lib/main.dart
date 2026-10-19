@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 import 'package:flutter_module/my_app.dart';
+import 'package:flutter_module/channel/native_channel_bridge.dart';
 import 'package:flutter_module/app_service/account_service.dart';
 import 'package:flutter_module/example_app/stream_app.dart';
 import 'package:flutter_module/example_app/get_x_app.dart';
@@ -41,10 +42,13 @@ run(List<String> args) async {
     final password = args[1];
     Map<String, dynamic> map = jsonDecode(jsonString);
     final info = AccountInfoEntity.fromJson(map);
-    accountService.save(info: info, isLogin: true, password: password);
+    await accountService.save(info: info, isLogin: true, password: password);
   } else {
     logger.d("没有参数");
   }
+
+  // 在页面创建前安装通信处理器，欢迎页也能完成原生握手。
+  await nativeChannelBridge.start();
 
   /// 玩安卓App的进这个
   runApp(MyApp(isFirst: isFirst));

@@ -57,141 +57,99 @@ extension AccountAPI: TargetType {
         }
     }
 
+    // HTTP 故障属于请求失败，不能按凭证拒绝处理。
+    var validationType: ValidationType { .successCodes }
+
     var headers: [String: String]? {
         return nil
     }
 }
 
-// MARK: - 全局账号管理器（@Observable 单例）
+// MARK: - 登录会话的 Observation 接入
 
 @Observable
 final class AccountAPIService {
     static let shared = AccountAPIService()
 
-    private let provider = MoyaProvider<AccountAPI>()
+    @ObservationIgnored private let provider: MoyaProvider<AccountAPI>
+    @ObservationIgnored private let session: AccountSession<UserInfoModel>
+    private(set) var state: AccountSessionState<UserInfoModel> = .signedOut
+    private(set) var errorMessage: String?
 
-    // MARK: - 状态
+    var isLoggedIn: Bool { state.isAuthenticated }
+    var isAuthenticating: Bool { state.isAuthenticating }
+    var canRetryAutoLogin: Bool { !isLoggedIn && !isAuthenticating && session.savedCredentials != nil }
+    var userInfo: UserInfoModel? { state.user }
+    var cookieHeaderValue: String { session.cookieHeaderValue }
 
-    /// 是否已登录
-    private(set) var isLoggedIn = false
-
-    /// 用户信息
-    private(set) var userInfo: UserInfoModel?
-
-    /// 用户名（用于自动登录）
-    private var username: String? {
-        didSet {
-            UserDefaults.standard.set(username, forKey: "swiftyuiapp_username")
-        }
+    init(provider: MoyaProvider<AccountAPI> = MoyaProvider<AccountAPI>(), defaults: UserDefaults = .standard) {
+        self.provider = provider
+        session = AccountSession(store: AccountCredentialStore(
+            defaults: defaults, usernameKey: "swiftyuiapp_username", passwordKey: "swiftyuiapp_password"
+        ))
     }
 
-    /// 密码（用于自动登录）
-    private var password: String? {
-        didSet {
-            UserDefaults.standard.set(password, forKey: "swiftyuiapp_password")
-        }
-    }
-
-    // MARK: - 初始化
-
-    private init() {
-        // 从 UserDefaults 加载保存的用户名密码
-        self.username = UserDefaults.standard.string(forKey: "swiftyuiapp_username")
-        self.password = UserDefaults.standard.string(forKey: "swiftyuiapp_password")
-
-        // 如果有保存的用户名密码，标记为已登录状态
-        if let username = self.username, let password = self.password, !username.isEmpty, !password.isEmpty {
-            self.isLoggedIn = true
-        }
-    }
-
-    // MARK: - 自动加载用户信息
-
-    /// 尝试自动加载用户信息（由 View 调用）
+    /// 无凭证、已认证或已有认证请求时不重复发起自动登录；暂时失败可再次尝试。
+    @MainActor
     func autoLoadUserInfo() async {
-        guard isLoggedIn,
-              let username = self.username,
-              let password = self.password else {
-            return
-        }
-
+        guard !isLoggedIn, !isAuthenticating, let credentials = session.savedCredentials else { return }
         do {
-            let userInfo = try await provider.requestDecoded(
-                .login(username: username, password: password),
-                responseType: BaseModel<UserInfoModel>.self
-            )
-
-            await MainActor.run {
-                self.userInfo = userInfo
-            }
+            try await authenticate(credentials: credentials, target: .login(
+                username: credentials.username, password: credentials.password
+            ))
         } catch {
-            // 自动登录失败，清除凭证
-            await MainActor.run {
-                self.isLoggedIn = false
-                self.username = nil
-                self.password = nil
-                UserDefaults.standard.removeObject(forKey: "swiftyuiapp_username")
-                UserDefaults.standard.removeObject(forKey: "swiftyuiapp_password")
-            }
+            // 当前请求的错误已由 authenticate 发布；旧请求和取消不覆盖新状态。
         }
     }
 
-    // MARK: - Cookie 获取
-
-    /// 获取 Cookie 请求头（格式：loginUserName=xxx;loginUserPassword=xxx）
-    var cookieHeaderValue: String {
-        AccountCookie.header(username: username, password: password)
-    }
-
-    // MARK: - 公共 API
-
-    /// 登录
+    @MainActor
     func login(username: String, password: String) async throws {
-        let userInfo = try await provider.requestDecoded(
-            .login(username: username, password: password),
-            responseType: BaseModel<UserInfoModel>.self
-        )
-
-        // 保存登录信息
-        await MainActor.run {
-            self.userInfo = userInfo
-            self.username = username
-            self.password = password
-            self.isLoggedIn = true
-        }
+        try await authenticate(credentials: AccountCredentials(username: username, password: password),
+                               target: .login(username: username, password: password))
     }
 
-    /// 注册
+    @MainActor
     func register(username: String, password: String, repassword: String) async throws {
-        let userInfo = try await provider.requestDecoded(
-            .register(username: username, password: password, repassword: repassword),
-            responseType: BaseModel<UserInfoModel>.self
-        )
+        try await authenticate(credentials: AccountCredentials(username: username, password: password),
+                               target: .register(username: username, password: password, repassword: repassword))
+    }
 
-        // 保存登录信息
-        await MainActor.run {
-            self.userInfo = userInfo
-            self.username = username
-            self.password = password
-            self.isLoggedIn = true
+    @MainActor
+    private func authenticate(credentials: AccountCredentials, target: AccountAPI) async throws {
+        try _Concurrency.Task.checkCancellation()
+        let revision = session.beginAuthentication()
+        state = session.state
+        errorMessage = nil
+        do {
+            let user = try await provider.requestDecoded(target, responseType: BaseModel<UserInfoModel>.self)
+            try _Concurrency.Task.checkCancellation()
+            guard session.authenticate(user: user, credentials: credentials, revision: revision) else {
+                throw AccountAuthenticationError.superseded
+            }
+            state = session.state
+        } catch {
+            // 仅登录接口明确的凭证拒绝才删除同一组旧凭证，注册失败不删除。
+            var rejected = false
+            if case .login = target, case APIError.businessError(let code, _) = error {
+                rejected = AccountAuthenticationError.credentialsRejected(code: code)
+            }
+            if session.failAuthentication(credentials: credentials, rejected: rejected, revision: revision) {
+                state = session.state
+                if !(error is CancellationError) { errorMessage = error.localizedDescription }
+            }
+            throw error
         }
     }
 
-    /// 退出登录
+    @MainActor
     func logout() async {
-        // 调用退出接口（忽略返回值）
+        // 用户确认退出后立即清理本地会话；服务端请求失败也不恢复登录。
+        session.signOut()
+        let revision = session.revision
+        state = session.state
+        errorMessage = nil
         _ = try? await provider.requestDecoded(.logout, responseType: BaseModel<EmptyModel>.self)
-
-        // 清除本地状态
-        await MainActor.run {
-            self.userInfo = nil
-            self.username = nil
-            self.password = nil
-            self.isLoggedIn = false
-
-            // 清除 UserDefaults
-            UserDefaults.standard.removeObject(forKey: "swiftyuiapp_username")
-            UserDefaults.standard.removeObject(forKey: "swiftyuiapp_password")
-        }
+        guard session.isCurrent(revision) else { return }
+        state = session.state
     }
 }

@@ -43,22 +43,12 @@ final class MineViewModel {
         // @Observable 会自动通知视图更新
     }
 
-    /// 退出登录
+    /// 退出立即结束本地会话，服务端失败不会恢复登录。
+    @MainActor
     func logout() async {
         isLoading = true
-
-        do {
-            try await accountService.logout()
-        } catch {
-            await MainActor.run {
-                self.errorMessage = error.localizedDescription
-                self.isLoading = false
-            }
-            return
-        }
-
-        await MainActor.run {
-            self.isLoading = false
-        }
+        errorMessage = nil
+        await accountService.logout()
+        isLoading = false
     }
 }

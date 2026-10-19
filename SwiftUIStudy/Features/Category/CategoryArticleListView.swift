@@ -10,8 +10,8 @@ import SwiftUI
 
 // MARK: - 分类文章列表视图
 
-struct CategoryArticleListView<T: CategoryItem>: View {
-    let viewModel: CategoryArticleListViewModel<T>
+struct CategoryArticleListView<Source: CategorySource>: View {
+    let viewModel: CategoryArticleListViewModel<Source>
     let isActive: Bool
 
     var body: some View {

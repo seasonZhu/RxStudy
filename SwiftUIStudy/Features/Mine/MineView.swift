@@ -69,15 +69,30 @@ struct MineView: View {
                 Text(username)
                     .font(.system(size: 20, weight: .semibold))
                     .foregroundColor(.primary)
+            } else if accountService.isAuthenticating {
+                Text("正在登录...")
+                    .font(.system(size: 20))
+                    .foregroundColor(.secondary)
             } else if !viewModel.isLoggedIn {
                 Text("未登录")
                     .font(.system(size: 20))
                     .foregroundColor(.secondary)
             } else {
-                // 已登录但用户信息还在加载中
-                Text("加载中...")
+                // 已认证但缺少昵称时仍展示确定的登录状态。
+                Text("已登录")
                     .font(.system(size: 20))
                     .foregroundColor(.secondary)
+            }
+
+            if let message = accountService.errorMessage {
+                Text(message)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                if accountService.canRetryAutoLogin {
+                    Button("重试自动登录") {
+                        Task { await accountService.autoLoadUserInfo() }
+                    }
+                }
             }
 
             // ID
@@ -88,7 +103,7 @@ struct MineView: View {
             }
 
             // 登录/退出按钮
-            if viewModel.isLoggedIn {
+            if viewModel.isLoggedIn || accountService.isAuthenticating {
                 Button("退出登录") {
                     Task {
                         await viewModel.logout()

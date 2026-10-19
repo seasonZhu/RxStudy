@@ -7,220 +7,326 @@
 //
 
 #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
-import Foundation
-
+import UIKit
 import Flutter
 import FlutterPluginRegistrant
 
+/// 引擎、通信和页面关联由此统一维护，调用者不再判断引擎状态。
 final class FlutterManager {
-    private static var _shared: FlutterManager?
-    
-    private(set) var flutterEngine: FlutterEngine?
-    
-    private var methodChannel: FlutterMethodChannel!
-    
-    var isFlutterEngineRun: Bool = false
-    
-    @discardableResult
-    static func shared() -> FlutterManager {
-        guard  let shared = _shared else {
-            _shared = FlutterManager()
-            return _shared!
+    private enum Phase { case idle, waitingForDart, ready, retiring }
+
+    private struct Message {
+        let type: InvokeMethodType
+        let arguments: String
+        let completion: ((Any?) -> Void)?
+    }
+
+    private static let instance = FlutterManager()
+    static func shared() -> FlutterManager { instance }
+
+    private let makeEngine: () -> FlutterEngine
+    private let registerPlugins: (FlutterEngine) -> Void
+    private let readinessTimeout: TimeInterval
+    private var phase = Phase.idle
+    private var engine: FlutterEngine?
+    private var methodChannel: FlutterMethodChannel?
+    private var eventChannel: NativeEventChannel?
+    private weak var activeController: FlutterViewController?
+    private var initialArguments: [String] = []
+    private var pendingPreparations: [(Result<FlutterEngine, Error>) -> Void] = []
+    private var pendingMessages: [Message] = []
+    private var inFlightMessages: [UUID: (Any?) -> Void] = [:]
+    private var sendingIdentifier: UUID?
+    private var timeout: DispatchWorkItem?
+    private var isOpening = false
+
+    init(makeEngine: @escaping () -> FlutterEngine = { FlutterEngine(name: "com.season.www.Template") },
+         registerPlugins: @escaping (FlutterEngine) -> Void = { GeneratedPluginRegistrant.register(with: $0) },
+         readinessTimeout: TimeInterval = 15) {
+        self.makeEngine = makeEngine
+        self.registerPlugins = registerPlugins
+        self.readinessTimeout = readinessTimeout
+    }
+
+    /// 预热与展示共用启动过程；收到 Dart 的 ready 才认为通信可用。
+    func prepare() {
+        onMain {
+            self.prepareEngine { result in
+                if case .failure(let error) = result { print(error.localizedDescription) }
+            }
         }
-        return shared
     }
-    
-    private init() {
-        initFlutterEngine()
-    }
-    
-    @discardableResult
-    func initFlutterEngine() -> FlutterEngine {
-        flutterEngine = FlutterEngine(name: "com.season.www.Template")
-        
-        return flutterEngine!
-        
-//        guard let flutterEngine else {
-//            return
-//        }
-        // 注意一个flutterEngine只能run一次,要么就把传参传好,要么就需要将flutterEngine置空重新再run!
-        // flutterEngine.run()
-    }
-    
-    func destoryInstance() {
-        flutterEngine = nil
-        methodChannel = nil
-        isFlutterEngineRun = false
-        FlutterManager._shared = nil
-    }
-    
-    func setFlutterEngineToNil() {
-        flutterEngine = nil
-    }
-    
-    @discardableResult
-    func runFlutterEngine(withEntrypoint: String? = nil, libraryURI: String? = nil, initialRoute: String? = nil, entrypointArgs: [String] = []) -> Bool {
-        guard let flutterEngine else {
-            return false
+
+    func synchronizeLogin(json: String, password: String) {
+        onMain {
+            self.initialArguments = [json, password]
+            switch self.phase {
+            case .idle: self.prepare()
+            case .waitingForDart, .ready:
+                self.send(Message(type: .nativeLogin, arguments: json, completion: nil))
+            case .retiring:
+                // Flutter 发起认证后不回传给旧引擎；新引擎通过启动参数恢复最新账号。
+                break
+            }
         }
-        
-        let result = flutterEngine.run(withEntrypoint: withEntrypoint, libraryURI: libraryURI, initialRoute: initialRoute, entrypointArgs: entrypointArgs)
-        
-        FlutterManager.shared().isFlutterEngineRun = result
-        
-        /// 这两个方法,必须再run之后再进行配置
-        listenFlutterToNativeMessage()
-        
-        GeneratedPluginRegistrant.register(with: flutterEngine)
-        
-        return result
     }
-    
-    func nativeNotifyToFlutter(type: InvokeMethodType, jsonString: String, flutterReturnMessageCallback: ((Any?) -> Void)? = nil) {
-        methodChannel.invokeMethod(type.rawValue, arguments: jsonString) { flutterReturnMessage in
-            flutterReturnMessageCallback?(flutterReturnMessage)
-            guard let message = flutterReturnMessage as? String else {
+
+    func nativeNotifyToFlutter(type: InvokeMethodType, jsonString: String,
+                               flutterReturnMessageCallback: ((Any?) -> Void)? = nil) {
+        onMain {
+            if type == .nativeLogout { self.initialArguments = [] }
+            self.send(Message(type: type, arguments: jsonString, completion: flutterReturnMessageCallback))
+        }
+    }
+
+    func present(from presenter: UIViewController, completion: ((Error?) -> Void)? = nil) {
+        onMain {
+            guard !self.isOpening, presenter.presentedViewController == nil,
+                  self.activeController?.presentingViewController == nil else {
+                completion?(BridgeError.pageAlreadyOpen)
                 return
             }
-            print("flutter callback message:\(message)")
+            self.isOpening = true
+            self.prepareEngine { [weak self, weak presenter] result in
+                guard let self else { return }
+                self.isOpening = false
+                switch result {
+                case .failure(let error): completion?(error)
+                case .success(let engine):
+                    guard let presenter, presenter.viewIfLoaded?.window != nil,
+                          presenter.presentedViewController == nil else {
+                        completion?(BridgeError.presenterUnavailable)
+                        return
+                    }
+                    engine.viewController = nil
+                    let controller = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
+                    self.activeController = controller
+                    controller.modalPresentationStyle = .fullScreen
+                    controller.setFlutterViewDidRenderCallback { [weak self] in
+                        self?.eventChannel?.eventSink?("这是从Native持续传过来来的消息")
+                    }
+                    presenter.present(controller, animated: true) { completion?(nil) }
+                }
+            }
         }
     }
-}
 
-extension FlutterManager {
-    private func listenFlutterToNativeMessage() {
-        guard let flutterEngine else {
+    private func prepareEngine(completion: @escaping (Result<FlutterEngine, Error>) -> Void) {
+        if phase == .retiring {
+            guard activeController?.presentingViewController == nil else {
+                completion(.failure(BridgeError.pageAlreadyOpen))
+                return
+            }
+            tearDown(error: BridgeError.engineReplaced)
+        }
+        if phase == .ready, let engine {
+            completion(.success(engine))
             return
         }
-        
-        methodChannel = FlutterMethodChannel(name: "com.lostsakura.www.RxStudy",
-                                             binaryMessenger: flutterEngine.binaryMessenger)
-        
-        methodChannel.setMethodCallHandler({
-            (call: FlutterMethodCall, result: @escaping FlutterResult) in
-            /// 这里将Flutter传过来的字符串方法,转为Swift枚举进行区分
-            guard let methodCallType = FlutterMethodCallType(rawValue: call.method) else {
-                result(FlutterMethodNotImplemented)
+        pendingPreparations.append(completion)
+        guard phase == .idle else { return }
+        let engine = makeEngine()
+        self.engine = engine
+        phase = .waitingForDart
+        guard engine.run(withEntrypoint: nil, libraryURI: nil, initialRoute: nil,
+                         entrypointArgs: initialArguments) else {
+            tearDown(error: BridgeError.startFailed)
+            return
+        }
+        registerPlugins(engine)
+        let channel = FlutterMethodChannel(name: "com.lostsakura.www.RxStudy", binaryMessenger: engine.binaryMessenger)
+        methodChannel = channel
+        eventChannel = NativeEventChannel(name: "nativeEvent", binaryMessenger: engine.binaryMessenger,
+                                          sendMessage: "这是从Native传递过来的消息")
+        channel.setMethodCallHandler { [weak self, weak engine] call, result in
+            guard let self else {
+                result(FlutterError(code: "engine_replaced", message: "消息所属引擎已释放", details: nil))
                 return
             }
-            
-            switch methodCallType {
-            case .pop:
-                FlutterManager.shared().currentVC()?.dismiss(animated: true)
-                result("收到从Flutter要求返回的通信,并且已经执行")
-                /// Flutter模块pop时,可以考虑将其engine置为nil,减少内存常驻开销,同时这样就没有办法将Native事件传递到Flutter侧了
-                // FlutterManager.shared().setFlutterEngineToNil()
-            case .tokenOverdue:
-                print("token过期")
-            case .logout:
-                print("接收到Flutter登出的消息")
-                FlutterManager.shared().setFlutterEngineToNil()
-                
-                AccountManager.shared.clearAccountInfo()
-            case .login:
-                /// Flutter侧进行登录后,如果回到Native侧,点击会卡住不动,需要将engine移除重新创建才行
-                print("接收到Flutter登录的消息")
-                FlutterManager.shared().setFlutterEngineToNil()
-                
-                guard let jsonString = call.arguments as? String else {
+            self.onMain { [weak self, weak engine] in
+                guard let self, let engine, self.engine === engine else {
+                    result(FlutterError(code: "engine_replaced", message: "消息所属引擎已释放", details: nil))
                     return
                 }
-                
-                guard let data = jsonString.data(using: .utf8), let accountInfo = try? JSONDecoder().decode(AccountInfo.self, from: data) else {
-                    return
-                }
-                
-                guard let username = accountInfo.username, let password = accountInfo.password else {
-                    return
-                }
-                AccountManager.shared.username = username
-                AccountManager.shared.password = password
-                AccountManager.shared.autoLogin()
+                self.receive(call, result: result)
             }
-        })
-    }
-}
-
-extension FlutterManager {
-    func currentNC() -> UINavigationController? {
-        return getCurrentNav()
-    }
-    
-    func currentVC() -> UIViewController? {
-        let nav = currentNC()
-        guard let nav else {
-            return nil
         }
-        
-        let array = nav.viewControllers
-        if array.count == 0 {
-            return nil
+        let work = DispatchWorkItem { [weak self, weak engine] in
+            guard let self, let engine, self.engine === engine, self.phase == .waitingForDart else { return }
+            self.tearDown(error: BridgeError.dartNotReady)
         }
-        
-        return array.last
+        timeout = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + readinessTimeout, execute: work)
     }
-    
-    private func getCurrentNav() -> UINavigationController? {
-        var rootVc: UIViewController?
 
-        if #available(iOS 13.0, *) {
-            let scene = UIApplication.shared.connectedScenes.first
-            guard let windowScene = scene as? UIWindowScene else {
-                return nil
-            }
-            guard let window = windowScene.windows.last, window.isKind(of: UIWindow.self) else { return nil }
-
-            if #available(iOS 15.0, *) {
-                rootVc = windowScene.keyWindow?.rootViewController
+    private func send(_ message: Message) {
+        switch phase {
+        case .ready, .waitingForDart:
+            if message.type == .nativeLogin || message.type == .nativeLogout {
+                let superseded = pendingMessages.filter { $0.type == .nativeLogin || $0.type == .nativeLogout }
+                pendingMessages.removeAll { $0.type == .nativeLogin || $0.type == .nativeLogout }
+                pendingMessages.append(message)
+                superseded.forEach { $0.completion?(flutterError(BridgeError.messageSuperseded)) }
             } else {
-                rootVc = window.rootViewController
+                pendingMessages.append(message)
             }
-        } else {
-            if UIApplication.shared.windows.last?.isKind(of: UIWindow.self) == false {
-                return nil
-            }
-            rootVc = UIApplication.shared.keyWindow?.rootViewController
-        }
-        guard let rootVc else { return nil }
-        
-        if rootVc.isKind(of: UITabBarController.self) {
-            return getCurrentNCFrom(vc: rootVc)
-        } else if rootVc.isKind(of: UINavigationController.self) {
-            return rootVc as? UINavigationController
-        } else {
-            var tabVc: UITabBarController?
-            
-            for vc in rootVc.children {
-                if vc.isKind(of: UITabBarController.self) {
-                    tabVc = vc as? UITabBarController
-                    break
-                }
-            }
-            if tabVc == nil {
-                return nil
-            }
-            return getCurrentNCFrom(vc: tabVc)
+            sendNextMessage()
+        case .idle, .retiring:
+            message.completion?(flutterError(BridgeError.notRunning))
         }
     }
-    
-    private func getCurrentNCFrom(vc: UIViewController?) -> UINavigationController? {
-        guard let vc else { return nil }
-        if vc.isKind(of: UITabBarController.self),
-           let tab = vc as? UITabBarController,
-           let nav = tab.selectedViewController as? UINavigationController {
-            return getCurrentNCFrom(vc: nav)
-        } else if vc.isKind(of: UINavigationController.self) {
-            if let pre = (vc as? UINavigationController)?.presentedViewController {
-                return getCurrentNCFrom(vc: pre as? UINavigationController)
+
+    private func sendNextMessage() {
+        guard phase == .ready, sendingIdentifier == nil, !pendingMessages.isEmpty, let methodChannel else { return }
+        let message = pendingMessages.removeFirst()
+        let identifier = UUID()
+        sendingIdentifier = identifier
+        if let completion = message.completion { inFlightMessages[identifier] = completion }
+        // 等待前一条回复后再发送，避免 Dart 的异步凭证写入互相覆盖。
+        methodChannel.invokeMethod(message.type.rawValue, arguments: message.arguments) { [weak self] value in
+            self?.onMain { [weak self] in
+                guard let self, self.sendingIdentifier == identifier else { return }
+                self.sendingIdentifier = nil
+                self.inFlightMessages.removeValue(forKey: identifier)?(value)
+                self.sendNextMessage()
             }
-            return getCurrentNCFrom(vc: (vc as? UINavigationController)?.topViewController)
-        } else if vc.isKind(of: UIViewController.self) {
-            if vc.presentedViewController != nil {
-                return getCurrentNCFrom(vc: vc.presentedViewController)
+        }
+    }
+
+    private func receive(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
+        guard let type = FlutterMethodCallType(rawValue: call.method) else {
+            result(FlutterMethodNotImplemented)
+            return
+        }
+        switch type {
+        case .ready:
+            // 先回复握手，再发送缓冲消息或展示页面，避免嵌套调用阻塞初始化。
+            result("原生通信已就绪")
+            guard phase == .waitingForDart, let engine else { return }
+            timeout?.cancel()
+            timeout = nil
+            phase = .ready
+            let preparations = pendingPreparations
+            pendingPreparations.removeAll()
+            sendNextMessage()
+            preparations.forEach {
+                if self.engine === engine, phase == .ready {
+                    $0(.success(engine))
+                } else {
+                    $0(.failure(BridgeError.engineReplaced))
+                }
             }
-            return vc.navigationController
-        } else {
-            return nil
+        case .pop:
+            guard let controller = activeController else {
+                result(FlutterError(code: "no_flutter_page", message: "没有可关闭的 Flutter 页面", details: nil))
+                return
+            }
+            result("收到从Flutter要求返回的通信,并且已经执行")
+            controller.dismiss(animated: true) { [weak self, weak controller] in
+                guard let self, self.activeController === controller else { return }
+                self.activeController = nil
+                if self.phase == .retiring {
+                    self.tearDown(error: BridgeError.engineReplaced)
+                } else {
+                    self.engine?.viewController = nil
+                }
+            }
+        case .tokenOverdue:
+            print("token过期")
+            result("已接收凭证过期通知")
+        case .logout:
+            result("原生已接收退出通知")
+            retire()
+            initialArguments = []
+            AccountManager.shared.clearAccountInfo()
+        case .login:
+            guard let json = call.arguments as? String, let data = json.data(using: .utf8),
+                  let info = try? JSONDecoder().decode(AccountInfo.self, from: data),
+                  let username = info.username, !username.isEmpty,
+                  let password = info.password, !password.isEmpty else {
+                result(FlutterError(code: "invalid_arguments", message: "登录消息缺少有效账号信息", details: nil))
+                return
+            }
+            result("原生已接收登录通知")
+            initialArguments = [json, password]
+            retire()
+            // 继续使用 UIKit 原有的凭证保存与自动登录流程。
+            AccountManager.shared.username = username
+            AccountManager.shared.password = password
+            AccountManager.shared.autoLogin()
+        }
+    }
+
+    private func retire() {
+        phase = .retiring
+        timeout?.cancel()
+        timeout = nil
+        let messages = pendingMessages
+        pendingMessages.removeAll()
+        let preparations = pendingPreparations
+        pendingPreparations.removeAll()
+        messages.forEach { $0.completion?(flutterError(BridgeError.engineReplaced)) }
+        let inFlight = inFlightMessages
+        inFlightMessages.removeAll()
+        sendingIdentifier = nil
+        inFlight.values.forEach { $0(flutterError(BridgeError.engineReplaced)) }
+        preparations.forEach { $0(.failure(BridgeError.engineReplaced)) }
+    }
+
+    private func tearDown(error: BridgeError) {
+        timeout?.cancel()
+        timeout = nil
+        let oldEngine = engine
+        methodChannel?.setMethodCallHandler(nil)
+        eventChannel?.invalidate()
+        methodChannel = nil
+        eventChannel = nil
+        engine = nil
+        phase = .idle
+        oldEngine?.viewController = nil
+        oldEngine?.destroyContext()
+        let messages = pendingMessages
+        pendingMessages.removeAll()
+        let preparations = pendingPreparations
+        pendingPreparations.removeAll()
+        let inFlight = inFlightMessages
+        inFlightMessages.removeAll()
+        sendingIdentifier = nil
+        messages.forEach { $0.completion?(flutterError(error)) }
+        inFlight.values.forEach { $0(flutterError(error)) }
+        preparations.forEach { $0(.failure(error)) }
+    }
+
+    deinit {
+        timeout?.cancel()
+        methodChannel?.setMethodCallHandler(nil)
+        eventChannel?.invalidate()
+        engine?.viewController = nil
+        engine?.destroyContext()
+    }
+
+    private func onMain(_ action: @escaping () -> Void) {
+        if Thread.isMainThread { action() } else { DispatchQueue.main.async(execute: action) }
+    }
+
+    private func flutterError(_ error: BridgeError) -> FlutterError {
+        FlutterError(code: error.rawValue, message: error.localizedDescription, details: nil)
+    }
+
+    private enum BridgeError: String, LocalizedError {
+        case startFailed, dartNotReady, pageAlreadyOpen, presenterUnavailable
+        case engineReplaced, notRunning, messageSuperseded
+
+        var errorDescription: String? {
+            switch self {
+            case .startFailed: return "Flutter 引擎启动失败，请重试"
+            case .dartNotReady: return "Flutter 通信初始化超时，请重试"
+            case .pageAlreadyOpen: return "Flutter 页面正在打开或已经显示"
+            case .presenterUnavailable: return "当前页面无法展示 Flutter"
+            case .engineReplaced: return "Flutter 引擎将在下次打开时重建"
+            case .notRunning: return "Flutter 通信尚未启动或正在等待重建"
+            case .messageSuperseded: return "消息已被更新的账号状态替代"
+            }
         }
     }
 }

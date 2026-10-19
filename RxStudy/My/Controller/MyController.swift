@@ -32,11 +32,9 @@ class MyController: BaseTableViewController {
     var hostingVC: UIViewController?
     
 #if canImport(Flutter)
-    var eventChannel: NativeEventChannel?
-    
     private var eventSink: FlutterEventSink?
 #endif
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -240,44 +238,11 @@ extension MyController: TabBarViewControllerChildrenRefreshProtocol {
 #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
 extension MyController {
     private func toFlutterViewController() {
-        /**
-         The supplied FlutterEngine <FlutterEngine: 0x10a93e2b0> is already used with FlutterViewController instance <FlutterViewController: 0x11300da00>. One instance of the FlutterEngine can only be attached to one FlutterViewController at a time. Set FlutterEngine.viewController to nil before attaching it to another FlutterViewController.
-         */
-        let engine: FlutterEngine!
-        if let e = FlutterManager.shared().flutterEngine {
-            engine = e
-        } else {
-            engine = FlutterManager.shared().initFlutterEngine()
-            FlutterManager.shared().runFlutterEngine()
+        FlutterManager.shared().present(from: self) { error in
+            if let error { SVProgressHUD.showText(error.localizedDescription) }
         }
-        
-        engine.viewController = nil
-        
-        let flutterViewController = FlutterViewController(engine: engine, nibName: nil, bundle: nil)
-        
-//        let eventChannel = FlutterEventChannel(name: "nativeEvent", binaryMessenger: flutterViewController.binaryMessenger)
-//        eventChannel.setStreamHandler(self)
-        
-        self.eventChannel = NativeEventChannel(name: "nativeEvent", binaryMessenger: flutterViewController.binaryMessenger, sendMessage: "这是从Native传递过来的消息")
-        
-        flutterViewController.setFlutterViewDidRenderCallback { [weak flutterViewController, weak self] in
-            print("FlutterViewController did render")
-            // flutterViewController?.navigationController?.setNavigationBarHidden(true, animated: false)
-            
-            /// 发送一个Native事件并传参到Flutter侧
-            // FlutterManager.shared().nativeNotifyToFlutter(type: .userLocationUpdate, jsonString: "湖北武汉")
-            
-            self?.eventChannel?.eventSink?("这是从Native持续传过来来的消息")
-        }
+    }
 
-        presentToFlutterModule(flutterViewController: flutterViewController)
-    }
-    
-    private func presentToFlutterModule(flutterViewController: FlutterViewController) {
-        flutterViewController.modalPresentationStyle = .fullScreen
-        present(flutterViewController, animated: true)
-    }
-    
     private func pushToFlutterModule(flutterViewController: FlutterViewController) {
         /// 通过以下方式,避免present而增加其他逻辑,保证原生导航栏的逻辑
         navigationController?.pushViewController(flutterViewController, animated: true)

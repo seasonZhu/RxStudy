@@ -12,17 +12,17 @@ import Foundation
 
 @MainActor
 @Observable
-final class CategoryPageViewModel<T: CategoryItem> {
-    private(set) var categories: [T] = []
+final class CategoryPageViewModel<Source: CategorySource> {
+    private(set) var categories: [Source.Item] = []
     private(set) var isLoading = false
     private(set) var errorMessage: String?
     var currentPage = 0
-    private(set) var articleViewModels: [Int: CategoryArticleListViewModel<T>] = [:]
+    private(set) var articleViewModels: [Int: CategoryArticleListViewModel<Source>] = [:]
 
-    private let service: UnifiedCategoryService<T>
+    private let source: Source
 
-    init(categoryType: CategoryType) {
-        service = UnifiedCategoryService<T>(type: categoryType)
+    init(source: Source) {
+        self.source = source
     }
 
     func loadCategories() async {
@@ -32,12 +32,12 @@ final class CategoryPageViewModel<T: CategoryItem> {
         defer { isLoading = false }
 
         do {
-            let result = try await service.fetchCategories()
+            let result = try await source.fetchCategories()
             guard !Task.isCancelled else { return }
-            var models: [Int: CategoryArticleListViewModel<T>] = [:]
+            var models: [Int: CategoryArticleListViewModel<Source>] = [:]
             for category in result {
                 guard let id = category.id, id > 0 else { continue }
-                models[id] = articleViewModels[id] ?? CategoryArticleListViewModel(categoryId: id, service: service)
+                models[id] = articleViewModels[id] ?? CategoryArticleListViewModel(categoryId: id, source: source)
             }
             articleViewModels = models
             categories = result
@@ -55,22 +55,21 @@ final class CategoryPageViewModel<T: CategoryItem> {
 
 @MainActor
 @Observable
-final class CategoryArticleListViewModel<T: CategoryItem> {
-    private(set) var articles: [InfoModel] = []
-    private(set) var isLoading = false
-    private(set) var isLoadingMore = false
-    private(set) var hasMoreData = true
-    private(set) var errorMessage: String?
-    private(set) var isInitialized = false
-
+final class CategoryArticleListViewModel<Source: CategorySource> {
+    private let pagination = PaginationState<InfoModel, Void>(firstPage: 1)
     private let categoryId: Int
-    private let service: UnifiedCategoryService<T>
-    private var currentPage = 0
-    @ObservationIgnored private var requestGeneration = 0
+    private let source: Source
 
-    init(categoryId: Int, service: UnifiedCategoryService<T>) {
+    var articles: [InfoModel] { pagination.items }
+    var isLoading: Bool { pagination.isLoading }
+    var isLoadingMore: Bool { pagination.isLoadingMore }
+    var hasMoreData: Bool { pagination.hasMoreData }
+    var errorMessage: String? { pagination.errorMessage }
+    var isInitialized: Bool { pagination.isInitialized }
+
+    init(categoryId: Int, source: Source) {
         self.categoryId = categoryId
-        self.service = service
+        self.source = source
     }
 
     func loadIfNeeded() async {
@@ -79,52 +78,14 @@ final class CategoryArticleListViewModel<T: CategoryItem> {
     }
 
     func refresh() async {
-        await loadArticles(isRefresh: true)
+        await pagination.refresh(load: fetchPage)
     }
 
     func loadMoreIfNeeded(_ article: InfoModel) async {
-        guard !isLoading, !isLoadingMore, hasMoreData,
-              let index = articles.firstIndex(where: { $0.id == article.id }),
-              index >= articles.count - 3 else { return }
-        await loadArticles(isRefresh: false)
+        await pagination.loadMoreIfNeeded(article, identifiedBy: \.id, load: fetchPage)
     }
 
-    private func loadArticles(isRefresh: Bool) async {
-        guard !Task.isCancelled else { return }
-        if isRefresh {
-            guard !isLoading else { return }
-            requestGeneration += 1
-            isLoading = true
-            isLoadingMore = false
-        } else {
-            guard !isLoading, !isLoadingMore, hasMoreData else { return }
-            isLoadingMore = true
-        }
-        let generation = requestGeneration
-        let requestedPage = isRefresh ? 1 : currentPage + 1
-        errorMessage = nil
-
-        defer {
-            if generation == requestGeneration {
-                isLoading = false
-                isLoadingMore = false
-            }
-        }
-
-        do {
-            let result = try await service.fetchArticleList(id: categoryId, page: requestedPage)
-            guard !Task.isCancelled, generation == requestGeneration else { return }
-            if isRefresh {
-                articles = result.datas ?? []
-            } else {
-                articles.append(contentsOf: result.datas ?? [])
-            }
-            currentPage = requestedPage
-            hasMoreData = result.hasMore
-            isInitialized = true
-        } catch {
-            guard !Task.isCancelled, !(error is CancellationError), generation == requestGeneration else { return }
-            errorMessage = error.localizedDescription
-        }
+    private func fetchPage(_ page: Int) async throws -> PaginationPage<InfoModel, Void> {
+        PaginationPage(page: try await source.fetchArticleList(id: categoryId, page: page))
     }
 }

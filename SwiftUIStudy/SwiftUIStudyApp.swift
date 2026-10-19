@@ -13,6 +13,7 @@ struct SwiftUIApp: App {
     var body: some Scene {
         WindowGroup {
             TabBarView()
+                .task { await AccountAPIService.shared.autoLoadUserInfo() }
         }
     }
 
@@ -88,7 +89,7 @@ struct TabBarView: View {
 
             // 项目（使用通用分类组件）
             NavigationView {
-                CategoryPageView<ProjectTagModel>(categoryType: .project)
+                CategoryPageView(source: ProjectAPIService.shared)
             }
             .navigationViewStyle(.stack)
             .tabItem {
@@ -98,7 +99,7 @@ struct TabBarView: View {
 
             // 公众号（使用通用分类组件）
             NavigationView {
-                CategoryPageView<PublicNumberTagModel>(categoryType: .publicNumber)
+                CategoryPageView(source: PublicNumberAPIService.shared)
             }
             .navigationViewStyle(.stack)
             .tabItem {

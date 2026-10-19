@@ -77,15 +77,9 @@ extension AccountManager {
         isLoginRelay.accept(true)
         
     #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
-        if !FlutterManager.shared().isFlutterEngineRun {
-            if let json = AccountManager.shared.accountInfo?.toJson, let password = AccountManager.shared.accountInfo?.password {
-                FlutterManager.shared().runFlutterEngine(entrypointArgs: [json, password])
-            }
-        } else {
-            /// 发消息到Flutter侧
-            print("发消息到Flutter侧")
-            FlutterManager.shared().nativeNotifyToFlutter(type: .nativeLogin, jsonString: accountInfo?.toJson ?? "")
-       }
+        if let json = accountInfo?.toJson {
+            FlutterManager.shared().synchronizeLogin(json: json, password: password)
+        }
     #endif
     }
     
@@ -127,7 +121,7 @@ extension AccountManager {
         guard let username = self.username,
               let password = self.password else {
             #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
-            FlutterManager.shared().runFlutterEngine()
+            FlutterManager.shared().prepare()
             #endif
             return
         }

@@ -360,6 +360,8 @@
 		FCF9F27E2BE963D4BD9C5A11 /* AppDelegate+NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458E5691A053B856F729B74 /* AppDelegate+NetworkConfig.swift */; };
 		FD5C642332DFFE6DF9ACC301 /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5B0F1683F16673EC81710A /* ACarousel.swift */; };
 		FECD9964611BC6AB1B6ACCED /* InvokeMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9F031FD71AA08C9419CF28 /* InvokeMethodType.swift */; };
+		A41920260000000000000003 /* AccountSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41920260000000000000001 /* AccountSession.swift */; };
+		A41920260000000000000005 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41920260000000000000004 /* PaginationState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -729,6 +731,8 @@
 		FF49AD376E9F503653F9890A /* check-shared-sources.py */ = {isa = PBXFileReference; includeInIndex = 1; path = "check-shared-sources.py"; sourceTree = "<group>"; };
 		FF8A315375A40EEBC60A9BC5 /* Theme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = Theme.swift; sourceTree = "<group>"; };
 		FFAF1A9D33A65FE705BE2736 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxWebViewControllerDelegateProxy.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
+		A41920260000000000000001 /* AccountSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSession.swift; sourceTree = "<group>"; };
+		A41920260000000000000004 /* PaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1246,6 +1250,7 @@
 			isa = PBXGroup;
 			children = (
 				295C41286E654E75206E0DE4 /* AccountAPIService.swift */,
+				A41920260000000000000001 /* AccountSession.swift */,
 				A87EF3853A280807A9341946 /* APIService.swift */,
 				213E8840E582BF1879350971 /* CategoryAPIProtocol.swift */,
 				598C95B4481D904AFC49C295 /* CoinAPIService.swift */,
@@ -1343,6 +1348,7 @@
 			children = (
 				1FCBFB741E8A9033EEA78EE4 /* CoinCollectModels.swift */,
 				22C67F87C34BCF54CDB7A2A0 /* CommonModels.swift */,
+				A41920260000000000000004 /* PaginationState.swift */,
 				ADC041B86CA87412675CD1E8 /* EmptyModel.swift */,
 			);
 			name = Models;
@@ -2614,6 +2620,7 @@
 				E4869A9EA932BB6B5AC58063 /* TreeViewModel.swift in Sources */,
 				34E0E38D5E31326953570215 /* CoinCollectModels.swift in Sources */,
 				ED95435456B6AA01BCCCBB21 /* CommonModels.swift in Sources */,
+				A41920260000000000000005 /* PaginationState.swift in Sources */,
 				7517844908AFCDDAADEDB5BD /* EmptyModel.swift in Sources */,
 				41D053D87067D123E62154F0 /* APIService.swift in Sources */,
 				0856606D11FC1EBCEDA61F8E /* AccountAPIService.swift in Sources */,
@@ -2626,6 +2633,7 @@
 				6887594067371A7BD1F8D8ED /* TreeAPIService.swift in Sources */,
 				208B5C380956F0496810C4A8 /* SwiftUIStudyApp.swift in Sources */,
 				D8D186F94E85479371629356 /* AccountCookie.swift in Sources */,
+				A41920260000000000000003 /* AccountSession.swift in Sources */,
 				FD5C642332DFFE6DF9ACC301 /* ACarousel.swift in Sources */,
 				AF8748DC520CE4CE45369225 /* ACarouselAutoScroll.swift in Sources */,
 				DFD936E71998BA0B75B82D69 /* ACarouselViewModel.swift in Sources */,

@@ -27,6 +27,13 @@ class NativeEventChannel: NSObject {
         channel?.setStreamHandler(self)
         self.sendMessage = sendMessage
     }
+
+    /// 与引擎一起释放，避免旧事件处理器和回调继续持有彼此。
+    func invalidate() {
+        channel?.setStreamHandler(nil)
+        eventSink = nil
+        channel = nil
+    }
 }
 
 extension NativeEventChannel: FlutterStreamHandler {

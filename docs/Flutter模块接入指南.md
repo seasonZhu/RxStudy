@@ -52,6 +52,26 @@ RXSTUDY_DERIVED_DATA_PATH="/你的路径/DerivedData" bash scripts/switch-flutte
 
 `status` 在锁文件缺失、两份锁文件不同，或 Flutter 依赖、构建阶段与开关不匹配时返回非零退出码，并输出修复命令。若进程被强制结束导致遗留互斥锁，只能在确认没有其他切换任务运行后手动移除报出的锁目录。
 
+## 运行时引擎与通信
+
+- `FlutterManager.shared().prepare()` 负责预热；`present(from:completion:)` 负责等待通信就绪并展示页面。页面不再读取或重建引擎。
+- 原生登录成功后调用 `synchronizeLogin(json:password:)`；仅调整 Flutter 接入，UIKit 的认证、凭证存储和退出规则沿用原逻辑。
+- Dart 在 `runApp` 前安装 MethodChannel、EventChannel，并发送 `ready`，因此欢迎页无需等待主页控制器。Swift 与 Dart 的这组改动须配套使用；旧 Dart 不发送握手时，原生会在 15 秒后报告初始化超时，可重新打开重试。
+- 原生消息在握手后串行发送，上一条回复前不发送下一条；尚未发送的登录、退出通知只保留最新状态。引擎释放时，未完成的回调收到错误，旧回复不再触发回调。
+- Flutter 发起的登录、退出消息先收到接收确认，再进入原有 UIKit 账号流程；确认不代表原生登录请求已经成功。无效参数和未知方法也会获得明确回复。
+- 保留 Flutter 登录、退出后的重建策略：当前页面继续使用旧引擎，关闭后释放，下次打开创建新引擎。普通关闭可复用原引擎；同一时刻只展示一个 Flutter 页面。
+- 原生退出通知在 Dart 侧只同步本地账号状态，不重复请求退出或向原生回传退出消息。
+
+桥接行为测试不需要启用 CocoaPods 的 Flutter 开关，也不启动模拟器：
+
+```bash
+python3 scripts/tests/test-flutter-bridge.py
+cd flutter_module
+flutter test --no-pub
+```
+
+Swift 隔离测试使用 UIKit/Flutter 替身验证状态和时序；真实 SDK 编译与设备联调需要另外验证，不能用隔离测试替代。
+
 ## 验证
 
 ```bash

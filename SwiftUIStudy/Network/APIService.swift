@@ -52,20 +52,84 @@ extension BaseModel {
     }
 }
 
+/// 取消处理器与 Moya 回调可能来自不同线程，所有共享状态都由锁保护。
+/// 不在持锁期间取消请求或恢复 continuation，允许 cancel 同步触发回调。
+private final class AsyncRequestState: @unchecked Sendable {
+    private enum Status { case pending, completed, cancelled }
+    private let lock = NSLock()
+    private var status = Status.pending
+    private var continuation: CheckedContinuation<Response, Error>?
+    private var cancellable: Cancellable?
+
+    func install(_ continuation: CheckedContinuation<Response, Error>) -> Bool {
+        lock.lock()
+        if status == .cancelled {
+            lock.unlock()
+            continuation.resume(throwing: CancellationError())
+            return false
+        }
+        self.continuation = continuation
+        lock.unlock()
+        return true
+    }
+
+    func install(_ cancellable: Cancellable) {
+        lock.lock()
+        let shouldCancel = status == .cancelled
+        if status == .pending { self.cancellable = cancellable }
+        lock.unlock()
+        // 取消可能发生在 request 返回句柄之前，此时补做底层取消。
+        if shouldCancel { cancellable.cancel() }
+    }
+
+    func finish(_ result: Result<Response, Error>) {
+        lock.lock()
+        guard status == .pending else {
+            lock.unlock()
+            return
+        }
+        status = .completed
+        let continuation = self.continuation
+        self.continuation = nil
+        cancellable = nil
+        lock.unlock()
+        continuation?.resume(with: result)
+    }
+
+    func cancel() {
+        lock.lock()
+        guard status == .pending else {
+            lock.unlock()
+            return
+        }
+        status = .cancelled
+        let continuation = self.continuation
+        let cancellable = self.cancellable
+        self.continuation = nil
+        self.cancellable = nil
+        lock.unlock()
+        cancellable?.cancel()
+        continuation?.resume(throwing: CancellationError())
+    }
+}
+
 // MARK: - MoyaProvider 扩展
 
 extension MoyaProvider {
-    /// async/await 包装方法（内部使用）
+    /// 将任务取消传递给底层 Moya 请求，取消不包装为网络错误。
     private func requestAsync(_ target: Target) async throws -> Response {
-        try await withCheckedThrowingContinuation { continuation in
-            self.request(target) { result in
-                switch result {
-                case .success(let response):
-                    continuation.resume(returning: response)
-                case .failure(let error):
-                    continuation.resume(throwing: APIError.networkError(error))
+        try _Concurrency.Task.checkCancellation()
+        let state = AsyncRequestState()
+        return try await withTaskCancellationHandler {
+            try await withCheckedThrowingContinuation { continuation in
+                guard state.install(continuation) else { return }
+                let cancellable = self.request(target) { result in
+                    state.finish(result.mapError { APIError.networkError($0) })
                 }
+                state.install(cancellable)
             }
+        } onCancel: {
+            state.cancel()
         }
     }
 
@@ -74,7 +138,16 @@ extension MoyaProvider {
         _ target: Target,
         responseType: BaseModel<T>.Type
     ) async throws -> T {
-        let decoded = try await requestAsync(target).map(BaseModel<T>.self)
-        return try decoded.getData()
+        do {
+            let response = try await requestAsync(target)
+            try _Concurrency.Task.checkCancellation()
+            let decoded = try response.map(BaseModel<T>.self)
+            try _Concurrency.Task.checkCancellation()
+            return try decoded.getData()
+        } catch {
+            // 失败回调可能先于取消到达，但调用任务已经取消时仍按取消处理。
+            try _Concurrency.Task.checkCancellation()
+            throw error
+        }
     }
 }

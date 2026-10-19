@@ -10,18 +10,18 @@ import SwiftUI
 
 // MARK: - 通用分类页面
 
-struct CategoryPageView<T: CategoryItem>: View {
-    let categoryType: CategoryType
-    @State private var viewModel: CategoryPageViewModel<T>
+struct CategoryPageView<Source: CategorySource>: View {
+    let source: Source
+    @State private var viewModel: CategoryPageViewModel<Source>
 
-    init(categoryType: CategoryType) {
-        self.categoryType = categoryType
-        _viewModel = State(initialValue: CategoryPageViewModel(categoryType: categoryType))
+    init(source: Source) {
+        self.source = source
+        _viewModel = State(initialValue: CategoryPageViewModel(source: source))
     }
 
     var body: some View {
         contentView
-            .navigationBar(categoryType.title)
+            .navigationBar(source.title)
             .onAppear {
                 if viewModel.categories.isEmpty {
                     Task {
