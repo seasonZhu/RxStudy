@@ -74,6 +74,9 @@ target 'RxStudy' do
   #pod 'MLeaksFinder', :configurations => ['Debug']
   pod 'LifetimeTracker', :configurations => ['Debug']
   
+  # Xcode的热更新
+  pod 'NoCompile', :configurations => ['Debug']
+  
   # 日志打印与跟踪
   pod 'CocoaLumberjack/Swift', '3.9.0'
   # 用于日志压缩为zip

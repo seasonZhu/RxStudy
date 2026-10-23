@@ -12,6 +12,10 @@ import UIKit
 import Flutter
 #endif
 
+#if DEBUF
+import NoCompile
+#endif
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -32,6 +36,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if LoggingConfiguration.mode == .modern {
             ModernLogging.shared.start()
         }
+        
+        #if DEBUF
+        NoCompile.autoReloadViewControllers = true
+        #endif
 
         // MARK: - 跨平台模块初始化
         setupCrossPlatformModules(launchOptions: launchOptions)

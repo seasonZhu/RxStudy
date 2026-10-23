@@ -1,0 +1,6 @@
+framework module NoCompile {
+  umbrella header "NoCompile-umbrella.h"
+
+  export *
+  module * { export * }
+}

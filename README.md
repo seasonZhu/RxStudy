@@ -124,6 +124,7 @@ bash scripts/switch-dependencies.sh
 | [工程配置示例](docs/配置示例/工程配置示例.md) | 可参考的工程及依赖配置 |
 | [资源生成使用指南](docs/资源生成使用指南.md) | SwiftGen 与图片、本地化字符串访问 |
 | [编译问题排查指南](docs/编译问题排查指南.md) | 依赖、模块及构建常见问题 |
+| [NoCompile 热重载调试指南](docs/NoCompile热重载调试指南.md) | CocoaPods 接入、真机调试、页面刷新及空格路径故障排查 |
 | [迁移历史记录](docs/迁移历史记录.md) | 历史 SwiftUI 迁移过程，旧配置与命令不作为当前操作依据 |
 
 ## 历史分支与实验
