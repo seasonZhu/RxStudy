@@ -74,8 +74,8 @@ target 'RxStudy' do
   #pod 'MLeaksFinder', :configurations => ['Debug']
   pod 'LifetimeTracker', :configurations => ['Debug']
   
-  # Xcode的热更新
-  pod 'NoCompile', :configurations => ['Debug']
+  # Xcode的热更新,可能会引起莫名的崩溃
+  #pod 'NoCompile', :configurations => ['Debug']
   
   # 日志打印与跟踪
   pod 'CocoaLumberjack/Swift', '3.9.0'

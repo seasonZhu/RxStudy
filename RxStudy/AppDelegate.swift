@@ -12,7 +12,7 @@ import UIKit
 import Flutter
 #endif
 
-#if DEBUF
+#if DEBUF && canImport(Flutter)
 import NoCompile
 #endif
 
@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             ModernLogging.shared.start()
         }
         
-        #if DEBUF
+        #if DEBUF && canImport(Flutter)
         NoCompile.autoReloadViewControllers = true
         #endif
 
