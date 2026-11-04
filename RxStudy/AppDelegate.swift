@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        // MARK: - 日志配置项
         if LoggingConfiguration.mode == .modern {
             ModernLogging.shared.start()
         }
