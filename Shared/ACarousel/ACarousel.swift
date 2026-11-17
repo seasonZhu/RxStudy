@@ -21,6 +21,7 @@
 import SwiftUI
 
 @available(iOS 13.0, OSX 10.15, *)
+@MainActor
 public struct ACarousel<Data, ID, Content>: View where Data: RandomAccessCollection, ID: Hashable, Content: View {
     
     @ObservedObject
@@ -107,9 +108,10 @@ extension ACarousel where ID == Data.Element.ID, Data.Element: Identifiable {
 }
 
 @available(iOS 14.0, OSX 11.0, *)
-struct ACarousel_LibraryContent: LibraryContentProvider {
+struct ACarousel_LibraryContent: @MainActor LibraryContentProvider {
     let Datas = Array(repeating: _Item(color: .red), count: 3)
     @LibraryContentBuilder
+    @MainActor
     var views: [LibraryItem] {
         LibraryItem(ACarousel(Datas) { _ in }, title: "ACarousel", category: .control)
         LibraryItem(ACarousel(Datas, index: .constant(0), spacing: 10, headspace: 10, sidesScaling: 0.8, isWrap: false, autoScroll: .inactive) { _ in }, title: "ACarousel full parameters", category: .control)
