@@ -23,7 +23,7 @@ xcassets:
     - Shared/Resources/Assets.xcassets
   # 输出配置
   outputs:
-    - templateName: swift5
+    - templatePath: Template/SwiftGen/Assets.stencil
       output: Shared/Generated/Assets+SwiftGen.swift
       params:
         enumName: Asset
