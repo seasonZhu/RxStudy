@@ -1,41 +1,42 @@
-# Swift 6 后续任务草案（待用户确认，不发布）
+# Swift 6 后续任务（已确认并发布）
 
-编号仅为建议，GitHub 实际编号由发布时分配，不保证下一项一定为 #12。全部属于 #9。
-每项必须提交中文学习说明：实际诊断、修改前后示例、原因、Actor/Sendable 适用边界；临时兼容标记逐项说明安全依据与移除条件。保持依赖锁定、Flutter 关闭、保留用户文件，每批独立提交。
+用户于 2026-11-17 确认发布，全部关联父规格 #9，使用 ready-for-agent 标签与 GitHub 原生阻塞关系。#9 的正文与状态未修改。
 
-| 代号 | 交付 | 验收 | 真实阻塞 | 估算 |
-| --- | --- | --- | --- | --- |
-| A（建议 #12） | 共享源码 Shared/Generated/Assets+SwiftGen.swift 的 SwiftGen 模板/生成流程（禁止仅手改生成文件）、API、模型、AccountCookie、ACarousel 隔离与传值修复；核对两 Target 源文件成员关系 | 两 Target Debug/Release Swift 5 complete 成功，共享新增诊断消除；既有脚本测试通过 | #11 完成且用户确认发布 | 1–2 人日 |
-| B | SwiftUIStudy 网络服务、状态与本地 ProgressHUD 边界修复 | 两配置 complete 构建，异步请求/分页/账号测试；中文说明 | A；若共享签名不变可提前调查 | 1–2 人日 |
-| C | RxStudy 网络/HUD、Rx/Combine 回调与 UI 协议隔离修复 | 两配置 complete；账号、网络、订阅释放回归清单 | A | 2–3 人日 |
-| D | 日志、全局单例、TheRouter 本地源码及 UniMP 回调隔离修复 | 两配置 complete；日志与跨端桥脚本测试；不以批量 unchecked 掩盖问题 | C 仅在接口发生依赖时，否则可独立 | 1–2 人日 |
-| E | SwiftUIStudy 两配置切换 Swift 6；依赖仍按模块保留合适模式 | 生效 SWIFT_VERSION=6、Debug/Release 成功且 Swift 编译命令确认；测试通过 | A、B | 0.5–1 人日 |
-| F | RxStudy 两配置切换 Swift 6；持久化 App 配置，不把所有 Pods 强制切到 6 | 生效 SWIFT_VERSION=6、Debug/Release 成功；依赖阻塞提供具体日志 | A、C、D | 1–2 人日 |
-| G | 最终四项构建证据、学习记录汇总与设备回归交接 | E、F 后四项均 exit 0 + BUILD SUCCEEDED；设备结果单列，不以构建代替回归 | E、F；设备实测依赖开发者设备 | 0.5–1 人日，加设备 0.5–1 人日 |
+## 已发布任务与真实依赖
 
-总计约 7–13 人日，含设备 7.5–14 人日。估算基于跨 Target 共享签名、Rx 回调缺乏静态可发送保证、本地路由全局状态和日志跨队列捕获；按单人熟悉业务计算，依赖二进制运行问题另估。A 先行，SwiftUIStudy 先切换以缩小验证面，RxStudy 因调试 Pods、路由和 UniMP 边界后切换；不要求 E 完成才开始 F。
-
-设备交接：两个 App 启动、主要页面、导航、网络成功/失败/取消、HUD、订阅释放和重复进入、图片缓存、主题资源、路由、UniMP 安装/打开/回调；Flutter 当前关闭，重新开启需单独建立依赖与设备基线。记录设备型号、系统、提交号、步骤及实际结果。
-
-## 发布时细分约定
-
-上表是工期分组，实际发布按以下单会话交付单元拆分，禁止把 C、D 合并成一个 Ticket。每项均沿用表中中文学习说明要求、独立提交、Swift 5 complete 和对应 Target 两配置验收。
-
-| 单元 | 交付与独立验收 | 阻塞 |
+| 单元 | GitHub 任务 | 阻塞于 |
 | --- | --- | --- |
-| A1（建议 #12） | SwiftGen 模板/生成流程和共享资源诊断；重新生成不丢失修复，两 Target 四项构建 | #11 与用户确认 |
-| A2 | 共享 API/模型/AccountCookie/ACarousel 诊断；四项构建与相关测试 | A1（共享构建基点） |
-| B1 | SwiftUI 网络服务与异步传值；两配置及请求脚本测试 | A2 |
-| B2 | SwiftUI 状态、ProgressHUD 边界；两配置及分页/账号测试 | B1 |
-| C1 | Rx 网络/HUD 插件隔离；两配置及请求测试 | A2 |
-| C2 | Rx/Combine 回调与 UIKit 协议隔离；两配置及账号测试 | C1 |
-| D1 | ModernLogging/ModernNetworkLogger 跨队列捕获；两配置及日志测试 | A2 |
-| D2 | AccountServiceContainer 等全局状态与单例；两配置及账号测试 | C2 |
-| D3 | 本地 TheRouter 隔离与路由共享状态；两配置并交付路由回归步骤 | A2 |
-| D4 | UniMP 初始化、打开与事件回调边界；两配置并交付设备检查步骤 | A2 |
+| A1 | [#12 Swift 6 迁移：修复共享资源生成流程的并发诊断](https://github.com/seasonZhu/RxStudy/issues/12) | #11 |
+| A2 | [#13 Swift 6 迁移：修复共享模型与轮播状态的并发边界](https://github.com/seasonZhu/RxStudy/issues/13) | #11 |
+| D2 | [#14 Swift 6 迁移：修复账号与全局状态的并发访问](https://github.com/seasonZhu/RxStudy/issues/14) | #11 |
+| B1 | [#15 Swift 6 迁移：修复 SwiftUI 网络服务的可发送性边界](https://github.com/seasonZhu/RxStudy/issues/15) | #11 |
+| B2 | [#16 Swift 6 迁移：修复 SwiftUI 页面状态与本地 HUD 隔离](https://github.com/seasonZhu/RxStudy/issues/16) | #11 |
+| C1 | [#17 Swift 6 迁移：修复 Rx 网络与 HUD 插件的隔离边界](https://github.com/seasonZhu/RxStudy/issues/17) | #14 |
+| C2 | [#18 Swift 6 迁移：修复 Rx 与 Combine 回调及 UIKit 隔离](https://github.com/seasonZhu/RxStudy/issues/18) | #14 |
+| D1 | [#19 Swift 6 迁移：修复日志导出与日志单例的跨队列捕获](https://github.com/seasonZhu/RxStudy/issues/19) | #11 |
+| D3 | [#20 Swift 6 迁移：修复本地路由源码的全局状态与隔离](https://github.com/seasonZhu/RxStudy/issues/20) | #11 |
+| D4 | [#21 Swift 6 迁移：修复 UniMP 入口与事件回调的隔离边界](https://github.com/seasonZhu/RxStudy/issues/21) | #11 |
+| E | [#22 Swift 6 迁移：切换 SwiftUIStudy 为 Swift 6 语言模式](https://github.com/seasonZhu/RxStudy/issues/22) | #12、#13、#15、#16 |
+| F | [#23 Swift 6 迁移：切换 RxStudy 为 Swift 6 语言模式](https://github.com/seasonZhu/RxStudy/issues/23) | #12、#13、#17、#18、#19、#14、#20、#21 |
+| G | [#24 Swift 6 迁移：完成 Swift 6 四项编译验收与设备回归交接](https://github.com/seasonZhu/RxStudy/issues/24) | #22、#23 |
 
-A、B、C、D 的估算为各自子单元合计，每个子单元预计半日至一天；超出单会话时按文件簇继续拆分，先交付可独立验证的边界。E 阻塞 A2/B2，F 阻塞 C2/D1/D2/D3/D4；G 阻塞 E/F。D1/D3/D4 不依赖 C2，不制造串行阻塞。
+## 依赖核对结论
 
-## 新对话提示词（发布 A 后核对编号）
+- 移除原草案中 A1→A2 及共享批次→日志/路由/UniMP 等顺序性依赖；没有源码证据证明这些任务必须等待其他修复完成。各项以已完成 #11 为起点，可独立开始。
+- 账号状态所有权影响网络 Provider 和网络监听 Relay 写入，因此网络/HUD、Rx/Combine 回调修复等待账号状态任务。账号任务必须同步调整必要调用端，保证自身构建通过；后续任务承担剩余诊断，不留半成品接口。
+- SwiftUI 网络与页面/HUD 可独立修复；最终切换等待两者及共享资源、共享模型修复。RxStudy 切换等待该 Target 的所有相关修复。最终验收等待两个切换完成。
+- 共享文件相互影响时在同一迁移分支顺序提交并复验，不把潜在编辑冲突伪装为技术阻塞。
 
-执行 [$implement](/Users/dy/.cc-switch/skills/implement/SKILL.md)，完成 seasonZhu/RxStudy Issue #12（先核对标题为共享资源生成流程修复，若编号不同使用实际编号）。先读取该 Issue、父规格 #9、已完成 #11、docs/Swift6严格并发诊断.md 和 docs/Swift6后续任务草案.md。在 codex/swift6-migration 分支工作，保留全部用户未提交文件。保持锁定依赖、Flutter 关闭和 Swift 5 语言模式。只实施已发布 A1 任务中的共享资源生成流程修复，不提前切换 Target 或修改无关依赖。逐项依据诊断处理隔离与 Sendable，不用无安全依据的兼容标记压制告警。共享变更回查两个 Target Debug/Release，沿用 RxStudy.xcworkspace、generic/platform=iOS、CODE_SIGNING_ALLOWED=NO、SWIFT_STRICT_CONCURRENCY=complete，记录设置、完整命令、退出码与日志；运行相关脚本测试和完整现有测试。附中文学习说明、修改前后示例和安全边界，按技能审查并提交，明确设备验证待开发者执行。
+建议先 #12，再按就绪任务推进；优先完成 SwiftUIStudy 切换以缩小验证面，但 RxStudy 切换不人为依赖 SwiftUIStudy 切换。
+
+## 工期、学习与验证要求
+
+发布时按细分任务重新加总，单人预计 8–15 人日，设备另计 0.5–1 人日。原 7–13 人日是粗分组估算；细分后补计日志、路由及跨端边界独立验收。依据为 #11 观察到的生成资源共享状态、异步传值、Rx 回调约束、本地路由与日志跨队列捕获。复杂任务超过单次会话时应按可独立验证的调用路径再拆分，不承诺半日至一天必然完成。
+
+每项 Issue 已包含交付、验收、真实阻塞、估算和中文学习说明：实际诊断、修改前后示例、原因及边界；临时兼容标记须说明必要性、安全依据与移除条件。保持锁定依赖、Flutter 关闭、保留用户文件。修复阶段保持 Swift 5 complete；切换任务才持久化目标 App 的 Swift 6 设置。依赖模块独立决定语言模式，不批量强制到 Swift 6。
+
+设备由开发者验证；交接覆盖两个 App 的启动、页面、导航、网络成功/失败/取消、HUD、订阅释放与重复进入、图片缓存、主题资源、路由和 UniMP。Flutter 启用需另建基线。最终任务交付编译证据与设备清单，尚未执行的设备结果必须明确标记，不宣称整个规格已完成设备验收。
+
+## 第一项新对话提示词
+
+执行 [$implement](/Users/dy/.cc-switch/skills/implement/SKILL.md)，完成 seasonZhu/RxStudy Issue #12（Swift 6 迁移：修复共享资源生成流程的并发诊断）。先读取该 Issue、父规格 #9、已完成 #11、docs/Swift6严格并发诊断.md 和 docs/Swift6后续任务草案.md。在 codex/swift6-migration 分支工作，保留全部用户未提交文件。保持锁定依赖、Flutter 关闭和 Swift 5 语言模式。只实施已发布 A1 任务中的共享资源生成流程修复，不提前切换 Target 或修改无关依赖。逐项依据诊断处理隔离与 Sendable，不用无安全依据的兼容标记压制告警。共享变更回查两个 Target Debug/Release，沿用 RxStudy.xcworkspace、generic/platform=iOS、CODE_SIGNING_ALLOWED=NO、SWIFT_STRICT_CONCURRENCY=complete，记录设置、完整命令、退出码与日志；运行相关脚本测试和完整现有测试。附中文学习说明、修改前后示例和安全边界，按技能审查并提交，明确设备验证待开发者执行。
