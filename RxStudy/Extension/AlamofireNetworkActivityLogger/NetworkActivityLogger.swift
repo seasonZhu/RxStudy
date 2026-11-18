@@ -49,17 +49,44 @@ public enum NetworkActivityLoggerLevel {
 }
 
 /// `NetworkActivityLogger` logs requests and responses made by Alamofire.SessionManager, with an adjustable level of detail.
-public class NetworkActivityLogger {
+public final class NetworkActivityLogger: @unchecked Sendable {
     // MARK: - Properties
     
     /// The shared network activity logger for the system.
     public static let shared = NetworkActivityLogger()
     
     /// The level of logging detail. See NetworkActivityLoggerLevel enum for possible values. .info by default.
-    public var level: NetworkActivityLoggerLevel
+    public var level: NetworkActivityLoggerLevel {
+        get {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            return storedLevel
+        }
+        set {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            storedLevel = newValue
+        }
+    }
     
     /// Omit requests which match the specified predicate, if provided.
-    public var filterPredicate: NSPredicate?
+    public var filterPredicate: NSPredicate? {
+        get {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            return storedPredicate
+        }
+        set {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            storedPredicate = newValue
+        }
+    }
+
+    // 配置访问由锁保护；请求关联状态仅由原串行日志队列访问。谓词设置后不得外部修改。
+    private let configurationLock = NSLock()
+    private var storedLevel: NetworkActivityLoggerLevel = .info
+    private var storedPredicate: NSPredicate?
     
     private let queue = DispatchQueue(label: "\(NetworkActivityLogger.self) Queue")
     
@@ -104,8 +131,9 @@ public class NetworkActivityLogger {
     // MARK: - Private - Notifications
     
     @objc private func requestDidStart(notification: Notification) {
+        guard let dataRequest = notification.request as? DataRequest else { return }
         queue.async {
-            guard let dataRequest = notification.request as? DataRequest,
+            guard
                 let task = dataRequest.task,
                 let request = task.originalRequest,
                 let httpMethod = request.httpMethod,
@@ -138,8 +166,9 @@ public class NetworkActivityLogger {
     }
     
     @objc private func requestDidFinish(notification: Notification) {
+        guard let dataRequest = notification.request as? DataRequest else { return }
         queue.async {
-            guard let dataRequest = notification.request as? DataRequest,
+            guard
                 let task = dataRequest.task,
                 let metrics = dataRequest.metrics,
                 let request = task.originalRequest,

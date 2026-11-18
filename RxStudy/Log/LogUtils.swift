@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 import CocoaLumberjack
 #if canImport(CocoaLumberjackSwift)
 import CocoaLumberjackSwift
@@ -21,7 +22,12 @@ enum LogUtils {
         case error
     }
     
-    static var logcat: ((String) -> Void)?
+    private static let callback = OSAllocatedUnfairLock<(@Sendable (String) -> Void)?>(initialState: nil)
+
+    static var logcat: (@Sendable (String) -> Void)? {
+        get { callback.withLock { $0 } }
+        set { callback.withLock { $0 = newValue } }
+    }
     
     static func debug(_ items: Any...) {
         print(items, type: .debug)
@@ -43,7 +49,7 @@ enum LogUtils {
         print(items, type: .error)
     }
     
-    static func logcat(_ logcat: @escaping ((String) -> Void)) {
+    static func logcat(_ logcat: @escaping @Sendable (String) -> Void) {
         self.logcat = logcat
     }
 }

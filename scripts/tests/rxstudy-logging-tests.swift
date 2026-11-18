@@ -35,6 +35,7 @@ private final class MockProtocol: URLProtocol {
 }
 
 @main
+@MainActor
 private enum LogTests {
     private static var assertions = 0
 
@@ -192,6 +193,24 @@ private enum LogTests {
             .compactMap { try? String(contentsOf: $0, encoding: .utf8) }.joined()
         check(exported.contains("export-latest-marker"), "导出缺少最近写入的日志")
         check(!exported.contains("legacy-export-marker"), "新体系导出了旧目录日志")
+
+        // 同时提交两次导出，每次必须恰好回调一次并生成独立可解压归档。
+        var repeated: [URL] = []
+        var callbackCount = 0
+        for _ in 0..<2 {
+            app.exportLogs { result in
+                callbackCount += 1
+                check(Thread.isMainThread, "重复导出回调不在主线程")
+                if case .success(let url) = result { repeated.append(url) }
+            }
+        }
+        wait("重复导出未完成") { callbackCount == 2 }
+        check(repeated.count == 2 && Set(repeated).count == 2, "重复导出失败或覆盖同一归档")
+        for (index, url) in repeated.enumerated() {
+            let destination = root.appendingPathComponent("Repeated-\(index)")
+            check(SSZipArchive.unzipFile(atPath: url.path, toDestination: destination.path), "重复导出 ZIP 无法解压")
+            try? fm.removeItem(at: url)
+        }
 
         let rotationManager = ModernLogFileManager(logsDirectory: root.appendingPathComponent("Rotation").path)
         let rotationLogger = DDFileLogger(logFileManager: rotationManager)

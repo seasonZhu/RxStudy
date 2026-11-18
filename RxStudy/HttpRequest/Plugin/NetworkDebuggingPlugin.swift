@@ -29,7 +29,7 @@ public struct NetworkDebuggingPlugin {
 }
 
 extension NetworkDebuggingPlugin {
-    public struct Options: Equatable {
+    public struct Options: Equatable, Sendable {
         /// This plugin has all the log records.
         public static let all = Options(logOptions: LogOptions.all)
         /// Concise printing log, has plugins and success body and error body.
@@ -72,7 +72,7 @@ extension NetworkDebuggingPlugin {
 }
 
 extension NetworkDebuggingPlugin.Options {
-    public struct LogOptions: OptionSet {
+    public struct LogOptions: OptionSet, Sendable {
         public let rawValue: Int
         public init(rawValue: Int) { self.rawValue = rawValue }
         
@@ -128,7 +128,7 @@ extension NetworkDebuggingPlugin {
         return formatter.string(from: Date())
     }
     
-    private func realParameters(target: TargetType) -> Alamofire.Parameters? {
+    private func realParameters(target: TargetType) -> [String: Any]? {
         guard options.logOptions.contains(.requestParameters) else {
             return nil
         }

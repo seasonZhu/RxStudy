@@ -3,6 +3,7 @@
 from pathlib import Path
 import os
 import platform
+import re
 import shutil
 import subprocess
 import tempfile
@@ -66,10 +67,11 @@ def main():
             + "\nfunc testSetupLegacyNetwork() { setupNetworkActivityLogger() }\n}\n")
         modern_sources = sorted((ROOT / "RxStudy/Log/Modern").glob("*.swift"))
         config = ROOT / "RxStudy/Log/Modern/LoggingConfiguration.swift"
-        assert "static let mode: LoggingMode = .legacy" in config.read_text(), "默认必须保持旧体系"
+        # 61e84ca53 已明确启用 Modern；保留默认值断言，分别生成两种模式而不依赖默认模式。
+        assert "static let mode: LoggingMode = .modern" in config.read_text(), "当前默认必须保持 Modern"
         for mode, redact in (("legacy", False), ("modern", False), ("modern", True)):
             selected_config = temporary / (mode + "-LoggingConfiguration.swift")
-            selected_config.write_text(config.read_text().replace("= .legacy", "= ." + mode)
+            selected_config.write_text(re.sub(r"(static let mode: LoggingMode = )\.(legacy|modern)", r"\1." + mode, config.read_text())
                 .replace("redactionEnabled = false", "redactionEnabled = " + str(redact).lower()))
             sources = [str(path) for path in modern_sources if path != config]
             sources += [str(selected_config), str(legacy_manager), str(bootstrap)]

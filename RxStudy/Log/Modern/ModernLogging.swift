@@ -25,7 +25,13 @@ private final class ModernConsoleLogFormatter: NSObject, DDLogFormatter {
 }
 #endif
 
-final class ModernLogging {
+// fileLogger 的发布由 configurationLock 保护；归档闭包可发送，导出工作由 exportQueue 串行执行。
+final class ModernLogging: @unchecked Sendable {
+    /// 仅封装本模块配置后不再修改的接收器；框架方法自行调度，文件快照在 loggerQueue 内读取。
+    private final class ExportLogger: @unchecked Sendable {
+        let value: DDFileLogger
+        init(_ value: DDFileLogger) { self.value = value }
+    }
     static let shared = ModernLogging()
     static let subsystem = Bundle.main.bundleIdentifier ?? "RxStudy"
     static let detailContext = 1001
@@ -35,11 +41,11 @@ final class ModernLogging {
     private var fileLogger: DDFileLogger?
 
     private let logsDirectory: String?
-    private let createArchive: (String, [String]) -> Bool
+    private let createArchive: @Sendable (String, [String]) -> Bool
 
     /// 测试可传入隔离目录；应用默认仍使用 Documents/ModernLogs。
     init(logsDirectory: String? = nil,
-         createArchive: @escaping (String, [String]) -> Bool = {
+         createArchive: @escaping @Sendable (String, [String]) -> Bool = {
              SSZipArchive.createZipFile(atPath: $0, withFilesAtPaths: $1)
          }) {
         self.logsDirectory = logsDirectory
@@ -98,13 +104,13 @@ final class ModernLogging {
         }
     }
 
-    func exportLogs(completion: @escaping (Result<URL, Error>) -> Void) {
+    func exportLogs(completion: @escaping @MainActor @Sendable (Result<URL, Error>) -> Void) {
         guard LoggingConfiguration.mode == .modern else {
             DispatchQueue.main.async { completion(.failure(ExportError.inactiveMode)) }
             return
         }
         configurationLock.lock()
-        let logger = fileLogger
+        let logger = fileLogger.map(ExportLogger.init)
         configurationLock.unlock()
         guard let logger else {
             DispatchQueue.main.async { completion(.failure(ExportError.notConfigured)) }
@@ -113,9 +119,9 @@ final class ModernLogging {
         exportQueue.async {
             // 等待 DDLog 及文件接收器的待写消息落盘，避免主线程等待磁盘。
             DDLog.flushLog()
-            logger.rollLogFile {
+            logger.value.rollLogFile {
                 self.exportQueue.async {
-                    let result = Result { try self.makeArchive(logger: logger) }
+                    let result = Result { try self.makeArchive(logger: logger.value) }
                     DispatchQueue.main.async { completion(result) }
                 }
             }

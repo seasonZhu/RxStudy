@@ -42,10 +42,37 @@ enum ModernNetworkLogLevel {
 }
 
 /// 将 Alamofire 请求摘要写入系统与文件日志，Debug 正文写入文件和控制台。
-final class ModernNetworkLogger {
+final class ModernNetworkLogger: @unchecked Sendable {
     static let shared = ModernNetworkLogger()
-    var level: ModernNetworkLogLevel = .info
-    var filterPredicate: NSPredicate?
+    var level: ModernNetworkLogLevel {
+        get {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            return storedLevel
+        }
+        set {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            storedLevel = newValue
+        }
+    }
+    var filterPredicate: NSPredicate? {
+        get {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            return storedPredicate
+        }
+        set {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            storedPredicate = newValue
+        }
+    }
+
+    // 配置访问由锁保护；请求关联状态仅由原串行日志队列访问。谓词设置后不得外部修改。
+    private let configurationLock = NSLock()
+    private var storedLevel: ModernNetworkLogLevel = .info
+    private var storedPredicate: NSPredicate?
 
     private let queue = DispatchQueue(label: "RxStudy.NetworkLog")
     private var startedAt: [UUID: TimeInterval] = [:]

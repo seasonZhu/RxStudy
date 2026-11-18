@@ -37,24 +37,39 @@ public enum NetworkRequestLoggerLevel {
 }
 
 /// 该插件弃用
-public class NetworkRequestLoggerPlugin: PluginType {
+public final class NetworkRequestLoggerPlugin: PluginType, @unchecked Sendable {
 
-    public var level: NetworkRequestLoggerLevel
+    public var level: NetworkRequestLoggerLevel {
+        get {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            return storedLevel
+        }
+        set {
+            configurationLock.lock()
+            defer { configurationLock.unlock() }
+            storedLevel = newValue
+        }
+    }
+    private let configurationLock = NSLock()
+    private var storedLevel: NetworkRequestLoggerLevel
     
     private let queue = DispatchQueue(label: "\(NetworkRequestLoggerPlugin.self) Queue")
     
     private var startTime: TimeInterval?
     
     init(level: NetworkRequestLoggerLevel = .info) {
-        self.level = level
+        self.storedLevel = level
     }
     
     public func willSend(_ request: RequestType, target: TargetType) {
+        // Moya 的 RequestType 不可发送；仅提取 Alamofire 已声明可发送的请求。
+        let dataRequest = request as? DataRequest
         queue.async {
             self.startTime = CFAbsoluteTimeGetCurrent()
             
             /// Moya更新了,此时的request是RequestTypeWrapper类型,不再是DataRequest,导致转换失败,无法正常打印日志,直接使用AlamofireNetworkActivityLogger就可以了
-            guard let dataRequest = request as? DataRequest,
+            guard let dataRequest,
                 let task = dataRequest.task,
                 let request = task.originalRequest,
                 let httpMethod = request.httpMethod,
@@ -83,18 +98,18 @@ public class NetworkRequestLoggerPlugin: PluginType {
     }
     
     public func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
+        // 在 Moya 回调域取得不可变值，不把 Response/MoyaError 交给后台队列。
+        let response = try? result.get()
+        let resolved = response ?? result.moyaError?.response
+        let request = resolved?.request
+        let statusCode = resolved?.statusCode
+        let headers = resolved?.response?.allHeaderFields.reduce(into: [String: String]()) {
+            $0[String(describing: $1.key)] = String(describing: $1.value)
+        }
+        let data = resolved?.data
+        let error = result.moyaError.map { String(describing: $0) }
         queue.async {
-            let response: Moya.Response?
-            
-            switch result {
-            case .success(let success):
-                response = success
-            case .failure(let failure):
-                response = failure.response
-            }
-            
-            guard let response,
-                let request = response.request,
+            guard let request,
                 let httpMethod = request.httpMethod,
                 let requestURL = request.url
                 else {
@@ -107,7 +122,7 @@ public class NetworkRequestLoggerPlugin: PluginType {
                 elapsedTime = CFAbsoluteTimeGetCurrent() - startTime
             }
             
-            if let error = result.moyaError {
+            if let error {
                 switch self.level {
                 case .debug, .info, .warn, .error:
                     self.logDivider()
@@ -118,7 +133,7 @@ public class NetworkRequestLoggerPlugin: PluginType {
                     break
                 }
             } else {
-                guard let HTTPURLResponse = response.response else {
+                guard let headers, let statusCode, let data else {
                     return
                 }
                 
@@ -126,11 +141,9 @@ public class NetworkRequestLoggerPlugin: PluginType {
                 case .debug:
                     self.logDivider()
                     
-                    print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
+                    print("\(String(statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]:")
                     
-                    self.logHeaders(headers: HTTPURLResponse.allHeaderFields)
-                    
-                    let data = response.data
+                    self.logHeaders(headers: headers)
                     
                     print("Body:")
                     
@@ -149,7 +162,7 @@ public class NetworkRequestLoggerPlugin: PluginType {
                 case .info:
                     self.logDivider()
                     
-                    print("\(String(response.statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
+                    print("\(String(statusCode)) '\(requestURL.absoluteString)' [\(String(format: "%.04f", elapsedTime)) s]")
                 default:
                     break
                 }
