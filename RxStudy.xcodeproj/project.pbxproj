@@ -2820,7 +2820,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "RxStudy/RxStudy-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_OPTIMIZE_OBJECT_LIFETIME = YES;
-				SWIFT_VERSION = 5.9;
+				SWIFT_VERSION = 6;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				UM_API_KEY = RxStudy_um_api_key;
 			};
@@ -2859,7 +2859,7 @@
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "RxStudy/RxStudy-Bridging-Header.h";
 				SWIFT_OPTIMIZE_OBJECT_LIFETIME = YES;
-				SWIFT_VERSION = 5.9;
+				SWIFT_VERSION = 6;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				UM_API_KEY = RxStudy_um_api_key;
 			};

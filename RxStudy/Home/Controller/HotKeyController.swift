@@ -274,9 +274,10 @@ extension Reactive where Base == HotKeyController {
 /// 这里必须继承NSObject,不然无法通过runtime获取到TheRouterApi的信息,我已经在TheRouter做了PR,其实可以不继承NSObject了
 public class TheRouterApi: NSObject, CustomRouterInfo {
     
-    public static var patternString = "wandroid://hotkey"
+    /// 热门搜索页的固定路由地址。
+    public static let patternString = "wandroid://hotkey"
     /// 这里必须写带有命名空间的字符串,否则无法通过runtime找到
-    public static var routerClass = "RxStudy.HotKeyController"
+    public static let routerClass = "RxStudy.HotKeyController"
     public var params: [String: Any] { return [:] }
     public var jumpType: LAJumpType = .push
 }

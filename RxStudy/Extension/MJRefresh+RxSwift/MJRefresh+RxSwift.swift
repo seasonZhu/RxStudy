@@ -74,7 +74,8 @@ extension Reactive where Base: MJRefreshComponent {
                 observer.on(.completed)
                 return Disposables.create()
             }
-            MainActor.assumeIsolated { observer.on(.next(component.state)) }
+            let initialState = MainActor.assumeIsolated { component.state }
+            observer.on(.next(initialState))
             let target = MJRefreshTarget(component) { (state) in
                 observer.onNext(state)
             }

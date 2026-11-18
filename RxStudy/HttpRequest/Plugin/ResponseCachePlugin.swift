@@ -9,6 +9,7 @@
 import Foundation
 import CommonCrypto
 import CryptoKit
+import os
 
 import Moya
 #if canImport(RxMoya)
@@ -107,8 +108,6 @@ extension YYCache: ResponseCacheConvertible {
 #endif
 
 // MARK: - 使用系统自带的UserDefaults也可以做缓存
-let userDefaultsCache = UserDefaults(suiteName: "userDefaultsCache")!
-
 extension UserDefaults: ResponseCacheConvertible {
     func loadData(forKey key: String) throws -> Data? {
         data(forKey: key.SHA256)
@@ -132,22 +131,23 @@ extension UserDefaults: ResponseCacheConvertible {
 
 // MARK: - 响应缓存插件
 // 我更新了这个缓存插件,功能得到了提升,因为同时集成了Flutter与UniApp的模块,在Debug模式离线缓存会闪退,在Release模式下无异常
-class ResponseCachePlugin: PluginType {
+final class ResponseCachePlugin: PluginType, Sendable {
     
-    private let cache: any ResponseCacheConvertible
+    /// 缓存后端通过初始化转移所有权，只能在这把锁内访问。
+    private let cache: OSAllocatedUnfairLock<any ResponseCacheConvertible>
     
     /// 白名单判断闭包
-    private let shouldCache: (TargetType) -> Bool
+    private let shouldCache: @Sendable (TargetType) -> Bool
     
     /// 默认7天
     private let cacheDuration: TimeInterval
 
     private let queue = DispatchQueue(label: "com.network.cache.plugin")
     
-    init(cache: any ResponseCacheConvertible = userDefaultsCache,
-         shouldCache: @escaping (TargetType) -> Bool = { _ in true },
+    init(cache: sending any ResponseCacheConvertible = UserDefaults(suiteName: "userDefaultsCache")!,
+         shouldCache: @escaping @Sendable (TargetType) -> Bool = { _ in true },
          cacheDuration: TimeInterval = 86400 * 7) {
-        self.cache = cache
+        self.cache = OSAllocatedUnfairLock(uncheckedState: cache)
         self.shouldCache = shouldCache
         self.cacheDuration = cacheDuration
     }
@@ -172,23 +172,26 @@ class ResponseCachePlugin: PluginType {
     }
     
     func clearResponseCache() {
-        cache.clearAllData()
+        cache.withLock { $0.clearAllData() }
     }
     
     private func saveResponse(response: Response, target: TargetType) {
+        let key = "\(target.path)\(target.task.parametersString)"
+        let responseData = response.data
+        let statusCode = response.statusCode
+        let headers = response.response?.allHeaderFields as? [String: String]
         queue.async { [weak self] in
-            /// 白名单二次校验
-            guard self?.shouldCache(target) == true else { return }
+            guard let self else { return }
             
             let cacheObject = CacheObject(
-                data: response.data,
-                statusCode: response.statusCode,
-                headers: response.response?.allHeaderFields as? [String: String],
+                data: responseData,
+                statusCode: statusCode,
+                headers: headers,
                 timestamp: Date().timeIntervalSince1970
             )
             
             if let data = try? JSONEncoder().encode(cacheObject) {
-                try? self?.cache.saveData(data, forKey: "\(target.path)\(target.task.parametersString)")
+                try? self.cache.withLock { try $0.saveData(data, forKey: key) }
             }
         }
     }
@@ -198,14 +201,14 @@ class ResponseCachePlugin: PluginType {
         guard shouldCache(target) else { return nil }
         
         let key = "\(target.path)\(target.task.parametersString)"
-        guard let data = try? cache.loadData(forKey: key),
+        guard let data = try? cache.withLock({ try $0.loadData(forKey: key) }),
               let cacheObject = try? JSONDecoder().decode(CacheObject.self, from: data) else {
             return nil
         }
 
         /// 检查缓存是否过期
         if Date().timeIntervalSince1970 - cacheObject.timestamp > cacheDuration {
-            cache.clearData(by: key)
+            cache.withLock { $0.clearData(by: key) }
             return nil
         }
 

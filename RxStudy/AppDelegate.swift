@@ -16,7 +16,7 @@ import Flutter
 import NoCompile
 #endif
 
-@UIApplicationMain
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?

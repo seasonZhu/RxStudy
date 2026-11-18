@@ -124,7 +124,7 @@ extension MBProgressHUD {
             var progress: Float = 0.0
             while progress < 1.0 {
                 progress += 0.01
-                DispatchQueue.main.async {
+                DispatchQueue.main.async { [progress] in
                     hud.progress = progress
                     if progress == 1.0 {
                         hud.hide(animated: true)
