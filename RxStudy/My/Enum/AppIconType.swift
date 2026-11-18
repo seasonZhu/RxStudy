@@ -9,31 +9,31 @@
 import Foundation
 
 enum AppIconType: CaseIterable {
+    case primary
     case swiftStyle
     case flutterStyle
-    case onBackgroundTimer
 }
 
 extension AppIconType {
-    var iconName: String {
+    var iconName: String? {
         switch self {
+        case .primary:
+            return nil
         case .swiftStyle:
             return "AppIcon-Swift"
         case .flutterStyle:
             return "AppIcon-Flutter"
-        case .onBackgroundTimer:
-            return "AppIcon-Swift"
         }
     }
     
     var title: String {
         switch self {
-        case .swiftStyle:
+        case .primary:
             return "默认"
+        case .swiftStyle:
+            return "Swift 风格"
         case .flutterStyle:
-            return "Flutter风格"
-        case .onBackgroundTimer:
-            return "后台计时器"
+            return "Flutter 风格"
         }
     }
 }

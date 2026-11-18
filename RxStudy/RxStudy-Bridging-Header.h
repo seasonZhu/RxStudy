@@ -7,9 +7,6 @@
 #import "NSURLProtocol+WKWebVIew.h"
 
 /// 设置更换图标相关的hook
-#import "UIApplication+SetAppIcon.h"
-#import "LSApplicationProxy.h"
-#import "LSBundleProxy.h"
 
 /// 添加uniApp库
 #import "DCUniMP.h"
