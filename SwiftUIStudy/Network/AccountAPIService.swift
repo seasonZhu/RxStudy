@@ -8,6 +8,7 @@
 
 import Foundation
 import Moya
+import os
 
 // MARK: - 账号 API 定义
 
@@ -67,8 +68,15 @@ extension AccountAPI: TargetType {
 
 // MARK: - 登录会话的 Observation 接入
 
+@MainActor
 @Observable
 final class AccountAPIService {
+    // 同步请求头只读取锁保护的值快照，不跨域访问会话或 Observation 状态。
+    nonisolated private static let requestCookie = OSAllocatedUnfairLock(initialState: "")
+    nonisolated static var requestHeaders: [String: String]? {
+        requestCookie.withLock { $0.isEmpty ? nil : ["cookie": $0] }
+    }
+
     static let shared = AccountAPIService()
 
     @ObservationIgnored private let provider: MoyaProvider<AccountAPI>
@@ -118,6 +126,7 @@ final class AccountAPIService {
     private func authenticate(credentials: AccountCredentials, target: AccountAPI) async throws {
         try _Concurrency.Task.checkCancellation()
         let revision = session.beginAuthentication()
+        Self.requestCookie.withLock { $0 = "" }
         state = session.state
         errorMessage = nil
         do {
@@ -126,6 +135,8 @@ final class AccountAPIService {
             guard session.authenticate(user: user, credentials: credentials, revision: revision) else {
                 throw AccountAuthenticationError.superseded
             }
+            let cookie = session.cookieHeaderValue
+            Self.requestCookie.withLock { $0 = cookie }
             state = session.state
         } catch {
             // 仅登录接口明确的凭证拒绝才删除同一组旧凭证，注册失败不删除。
@@ -145,6 +156,7 @@ final class AccountAPIService {
     func logout() async {
         // 用户确认退出后立即清理本地会话；服务端请求失败也不恢复登录。
         session.signOut()
+        Self.requestCookie.withLock { $0 = "" }
         let revision = session.revision
         state = session.state
         errorMessage = nil

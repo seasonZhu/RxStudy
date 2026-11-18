@@ -38,8 +38,11 @@ class SafariActivity: UIActivity {
     override var activityViewController: UIViewController? { nil }
 
     override func perform() {
-        if let url = self.url, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
+        let url = self.url
+        Task { @MainActor in
+            if let url, UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
         }
     }
 

@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - 项目 ViewModel
 
+@MainActor
 @Observable
 final class ProjectViewModel {
     // MARK: - 状态

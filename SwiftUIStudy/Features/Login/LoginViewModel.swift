@@ -45,6 +45,7 @@ enum LoginState: Equatable {
 
 // MARK: - 登录 ViewModel
 
+@MainActor
 @Observable
 final class LoginViewModel {
     // MARK: - 公开属性

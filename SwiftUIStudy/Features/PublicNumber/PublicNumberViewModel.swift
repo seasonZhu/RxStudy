@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - 公众号 ViewModel
 
+@MainActor
 @Observable
 final class PublicNumberViewModel {
     // MARK: - 状态

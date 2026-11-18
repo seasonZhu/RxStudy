@@ -21,6 +21,7 @@ enum DisplayMode: Equatable {
 }
 
 // MARK: - ProgressHUD
+@MainActor
 @Observable
 public class ProgressHUD {
 

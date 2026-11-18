@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - 我的页面 ViewModel
 
+@MainActor
 @Observable
 final class MineViewModel {
     // MARK: - 状态

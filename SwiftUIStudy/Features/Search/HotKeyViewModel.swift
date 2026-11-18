@@ -7,6 +7,7 @@
 
 import Foundation
 
+@MainActor
 @Observable
 class HotKeyViewModel {
     // MARK: - 状态

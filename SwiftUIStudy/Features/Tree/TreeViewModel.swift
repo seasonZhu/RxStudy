@@ -10,6 +10,7 @@ import Foundation
 
 // MARK: - 体系 ViewModel
 
+@MainActor
 @Observable
 final class TreeViewModel {
     // MARK: - 状态

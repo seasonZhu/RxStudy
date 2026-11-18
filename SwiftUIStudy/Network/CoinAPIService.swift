@@ -42,8 +42,7 @@ extension CoinAPI: TargetType {
     }
 
     var headers: [String: String]? {
-        let cookie = AccountAPIService.shared.cookieHeaderValue
-        return cookie.isEmpty ? nil : ["cookie": cookie]
+        return AccountAPIService.requestHeaders
     }
 }
 
