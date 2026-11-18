@@ -7,12 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6630E4CF59FED2D1CF77916C /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */; };
-		54C19F0D494E60686C561C97 /* ModernLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */; };
-		D0F94554DBE575FEDCE9BE4F /* ModernLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */; };
-		56B854EFE5959E1A9212B284 /* ModernLogRedactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F1A21448776836EEF2786D /* ModernLogRedactor.swift */; };
-		8DF8C9F5031817FF22F5C083 /* ModernLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999A39E9E98464449C910334 /* ModernLogging.swift */; };
-		E8FF9F210AC1FD4D2A911C17 /* ModernNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */; };
 		000DE8B1A2D3D515431A4D26 /* CollectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FB7346DF02EE3E1141AEA15 /* CollectViewModel.swift */; };
 		007706B350F1DA4DFF5708FC /* AppNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 249138730FF8E0961AE04396 /* AppNavigationBar.swift */; };
 		00F83DE5B7DD5803A793C35B /* Moya+BlockingObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8EA29FAC0E419C489DB5F1 /* Moya+BlockingObservable.swift */; };
@@ -126,9 +120,11 @@
 		52688B1F2DFF92553F1DFE6C /* MessageReadyStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A4CBA8531A5C8659F8A8174 /* MessageReadyStatus.swift */; };
 		5320620612103C01B58DA88E /* FlutterMethodChannelPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FF99DA17ED256C931ACE6 /* FlutterMethodChannelPlugin.swift */; };
 		538A63E8BAF036682949AF79 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8A315375A40EEBC60A9BC5 /* Theme.swift */; };
+		54C19F0D494E60686C561C97 /* ModernLogFileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */; };
 		54D88945B1A296FDFF43D194 /* TheRouter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F00F48F68218DC7A50229 /* TheRouter+Convenience.swift */; };
 		5565780A874EB3D49FB11A88 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F943A05A3D58FFB8F21BDCD0 /* AppState.swift */; };
 		55EA58A30501AC412E0C2561 /* Pods_RxStudy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D76530C2026EEA5366404510 /* Pods_RxStudy.framework */; };
+		56B854EFE5959E1A9212B284 /* ModernLogRedactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F1A21448776836EEF2786D /* ModernLogRedactor.swift */; };
 		57836FA27C8C88B34B54F45C /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802E3C540366E64AED0D1E1E /* String+Extension.swift */; };
 		596328D0C68A25F57705F708 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D24C879231499ACFE3BCA /* BaseModel.swift */; };
 		59CB1B301E38D482DE965DB9 /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 643C32FB3A13C0C95A7ED86A /* AccountService.swift */; };
@@ -152,6 +148,7 @@
 		6524140D278DF36A1830322E /* CustomExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBD2EFDBB4591BA8703BDBF /* CustomExtensions.swift */; };
 		654151424C6FE36B8711F43B /* RxFSPagerViewDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ADCE716E7F2FBAD60D324D8 /* RxFSPagerViewDelegateProxy.swift */; };
 		65C0C252318AAB24C1E7CC7E /* NetworkActivityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9DF0518A58230A74A1F4FA6 /* NetworkActivityManager.swift */; };
+		6630E4CF59FED2D1CF77916C /* LoggingConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */; };
 		666BA4AC22E3CCB801C6DCFF /* ProjectViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA1D4C4CB4F70C4E322DD82E /* ProjectViewModel.swift */; };
 		66A0B85541EECE3A54CBF308 /* UIPanGestureRecognizer+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2102AEF9D0E1AD421988DB6 /* UIPanGestureRecognizer+Extension.swift */; };
 		67A1085D1C9D779A1426C59D /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEED9C6FE8D8649FE720E312 /* NSObject+Extension.swift */; };
@@ -208,6 +205,7 @@
 		88CFB01FAC14FDA9F4776E6C /* NetworkRequestLoggerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43AFB61376EABE21808F7DAD /* NetworkRequestLoggerPlugin.swift */; };
 		8993FE752AC03CA0481779B4 /* ACarouselAutoScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0E48A2D8A9C7419584C7DB /* ACarouselAutoScroll.swift */; };
 		8D388BA1DD767DB748A89FE3 /* Array+URLQueryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA398359BD513816D761F3F4 /* Array+URLQueryItem.swift */; };
+		8DF8C9F5031817FF22F5C083 /* ModernLogging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 999A39E9E98464449C910334 /* ModernLogging.swift */; };
 		8E537BC38D8925FBF90FA379 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1902C84E059CA656DFC23852 /* Header.swift */; };
 		8F40FC94080FB95174721B48 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE0E50532D2F9B8048E10910 /* RegisterController.swift */; };
 		8F7781F18AFC2A644F7BC099 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA46EA4CBCF601BFD02F374E /* HomeView.swift */; };
@@ -241,6 +239,8 @@
 		A33EFBFB224F8422AC1CFA1D /* TheRouterParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B8B30FE0089D865A89166E /* TheRouterParser.swift */; };
 		A3BBA04D9FA22B9CD85CA04F /* FlutterMethodCallType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B7A986A03C03A63E10FE47 /* FlutterMethodCallType.swift */; };
 		A414ED3824BD0F0313102470 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F5D869FE20FB72A885442F /* TestViewModel.swift */; };
+		A41920260000000000000003 /* AccountSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41920260000000000000001 /* AccountSession.swift */; };
+		A41920260000000000000005 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41920260000000000000004 /* PaginationState.swift */; };
 		A637BC5140888E3CFA94D667 /* CoinRankViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9321C5445140878C5844623E /* CoinRankViewModel.swift */; };
 		AA0137D5362BD257AECC46BD /* CustomTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1148A4E63CB263CE5FE3B2B5 /* CustomTabBar.swift */; };
 		AA866094C211A1AC61B502A0 /* AppLifeCycleModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB10ED8F4B49AD238746D96 /* AppLifeCycleModifier.swift */; };
@@ -290,6 +290,7 @@
 		CEC05FEAB83AB1BFFACF3F09 /* __UNI__C0D30A1.wgt in Resources */ = {isa = PBXBuildFile; fileRef = 8C5F7551B153FC67933852A0 /* __UNI__C0D30A1.wgt */; };
 		D047EFFBA51D58F318AC6C08 /* ALayoutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6404E21495DF24FCA73D98CF /* ALayoutPage.swift */; };
 		D0B6697AC07EC4F8E79B469B /* View+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C492DC223647991310C610 /* View+Navigation.swift */; };
+		D0F94554DBE575FEDCE9BE4F /* ModernLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */; };
 		D163B34BAAD24826402478BF /* CategoryPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F6813E7D89110590A7ADF2 /* CategoryPageViewModel.swift */; };
 		D1723F55A47BDB15DC5F0E5C /* TheRouterServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 326B14C9F7433E2E359F0A66 /* TheRouterServiceManager.swift */; };
 		D1A875BC3970B3CD44C25840 /* Eventable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93359368F805B5CAAA97CA1F /* Eventable.swift */; };
@@ -327,6 +328,7 @@
 		E817EA9F3C6AA0EB3DD9F90F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 577140A58E2635D89ECC0035 /* LoadingView.swift */; };
 		E885299026E31F0CF80FF8FD /* CategoryTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DC1C57813FEAAC7A2968E4 /* CategoryTag.swift */; };
 		E8FB93D94E8D2F95D5A8B0E8 /* LiquidGlass .swift in Sources */ = {isa = PBXBuildFile; fileRef = 063E08E25EC493E9AAB352C9 /* LiquidGlass .swift */; };
+		E8FF9F210AC1FD4D2A911C17 /* ModernNetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */; };
 		EABB813024CF9E8E5B3DB9CA /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123E34D4A56945A54F46B033 /* Setter.swift */; };
 		EC12E772EF742B725FDFF1A8 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1122E5ADF826AB007E977E39 /* Localizable.strings */; };
 		EC6D92C5533ED0E4FF2E39E9 /* MyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91C727A9AD47904AAEA9585 /* MyService.swift */; };
@@ -360,379 +362,377 @@
 		FCF9F27E2BE963D4BD9C5A11 /* AppDelegate+NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9458E5691A053B856F729B74 /* AppDelegate+NetworkConfig.swift */; };
 		FD5C642332DFFE6DF9ACC301 /* ACarousel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B5B0F1683F16673EC81710A /* ACarousel.swift */; };
 		FECD9964611BC6AB1B6ACCED /* InvokeMethodType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA9F031FD71AA08C9419CF28 /* InvokeMethodType.swift */; };
-		A41920260000000000000003 /* AccountSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41920260000000000000001 /* AccountSession.swift */; };
-		A41920260000000000000005 /* PaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A41920260000000000000004 /* PaginationState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingConfiguration.swift; sourceTree = "<group>"; };
-		FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogFileManager.swift; sourceTree = "<group>"; };
-		C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogFormatter.swift; sourceTree = "<group>"; };
-		45F1A21448776836EEF2786D /* ModernLogRedactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogRedactor.swift; sourceTree = "<group>"; };
-		999A39E9E98464449C910334 /* ModernLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogging.swift; sourceTree = "<group>"; };
-		A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernNetworkLogger.swift; sourceTree = "<group>"; };
-		0022853EFC693D6F7F89A09D /* BaseRequestable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseRequestable.swift; path = BaseRequestable.swift; sourceTree = "<group>"; };
-		01C4EEA4E1B7E6FAE1B20BE2 /* TheRouterExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterExtension.swift; path = TheRouterExtension.swift; sourceTree = "<group>"; };
-		028502054245363F7AD7F5D0 /* Friend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Friend.swift; path = Friend.swift; sourceTree = "<group>"; };
+		0022853EFC693D6F7F89A09D /* BaseRequestable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseRequestable.swift; sourceTree = "<group>"; };
+		01C4EEA4E1B7E6FAE1B20BE2 /* TheRouterExtension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterExtension.swift; sourceTree = "<group>"; };
+		028502054245363F7AD7F5D0 /* Friend.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0308856CF372BF18532DBACD /* TheRouter.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouter.h; sourceTree = "<group>"; };
-		035A51A8BE29804E202945D2 /* MyJueJinController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyJueJinController.swift; path = MyJueJinController.swift; sourceTree = "<group>"; };
-		061814DF86A4BC35E0E3E325 /* SimpleRefreshingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimpleRefreshingView.swift; path = SimpleRefreshingView.swift; sourceTree = "<group>"; };
-		063E08E25EC493E9AAB352C9 /* LiquidGlass .swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "LiquidGlass .swift"; path = "LiquidGlass .swift"; sourceTree = "<group>"; };
-		064FF99DA17ED256C931ACE6 /* FlutterMethodChannelPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlutterMethodChannelPlugin.swift; path = FlutterMethodChannelPlugin.swift; sourceTree = "<group>"; };
-		0698833A04877B43FC9D1A1C /* CustomTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomTabBarController.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
-		078437D9EF05159BFA35E376 /* Provider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Provider.swift; path = Provider.swift; sourceTree = "<group>"; };
-		07AAA0EF6040B5B324052339 /* SecureInputField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SecureInputField.swift; path = SecureInputField.swift; sourceTree = "<group>"; };
-		09BBF40809B307D4D159B545 /* LoginPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginPage.swift; path = LoginPage.swift; sourceTree = "<group>"; };
-		09CA13CD48AB42E0CCBC62BC /* CourseService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CourseService.swift; path = CourseService.swift; sourceTree = "<group>"; };
-		0A7D633D4DFC250FB05D2059 /* MyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyViewModel.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
-		0C332800304E65186FD3AD80 /* BaseTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseTableViewController.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
-		0C7BF56443D0977E7C2234A0 /* HomeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeController.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		035A51A8BE29804E202945D2 /* MyJueJinController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyJueJinController.swift; sourceTree = "<group>"; };
+		061814DF86A4BC35E0E3E325 /* SimpleRefreshingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SimpleRefreshingView.swift; sourceTree = "<group>"; };
+		063E08E25EC493E9AAB352C9 /* LiquidGlass .swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "LiquidGlass .swift"; sourceTree = "<group>"; };
+		064FF99DA17ED256C931ACE6 /* FlutterMethodChannelPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FlutterMethodChannelPlugin.swift; sourceTree = "<group>"; };
+		0698833A04877B43FC9D1A1C /* CustomTabBarController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		078437D9EF05159BFA35E376 /* Provider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		07AAA0EF6040B5B324052339 /* SecureInputField.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SecureInputField.swift; sourceTree = "<group>"; };
+		09BBF40809B307D4D159B545 /* LoginPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		09CA13CD48AB42E0CCBC62BC /* CourseService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CourseService.swift; sourceTree = "<group>"; };
+		0A7D633D4DFC250FB05D2059 /* MyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyViewModel.swift; sourceTree = "<group>"; };
+		0C332800304E65186FD3AD80 /* BaseTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseTableViewController.swift; sourceTree = "<group>"; };
+		0C7BF56443D0977E7C2234A0 /* HomeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		0D8B05302DC22D80BCB4CC5D /* Pods-SwiftUIStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIStudy.release.xcconfig"; path = "Target Support Files/Pods-SwiftUIStudy/Pods-SwiftUIStudy.release.xcconfig"; sourceTree = "<group>"; };
-		0DCA634AA6224D75EA3B788B /* TheRouter+Service.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TheRouter+Service.swift"; path = "TheRouter+Service.swift"; sourceTree = "<group>"; };
-		0FD75D5B94CCCA06C09D71B9 /* SplashAnimationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SplashAnimationType.swift; path = SplashAnimationType.swift; sourceTree = "<group>"; };
-		10AF3DDFED3DB02F281C8403 /* GrayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GrayView.swift; path = GrayView.swift; sourceTree = "<group>"; };
-		1148A4E63CB263CE5FE3B2B5 /* CustomTabBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomTabBar.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
-		123E34D4A56945A54F46B033 /* Setter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Setter.swift; path = Setter.swift; sourceTree = "<group>"; };
-		12989C197D234084A6755A3B /* CustomLogFileManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomLogFileManager.swift; path = CustomLogFileManager.swift; sourceTree = "<group>"; };
-		13A691309E57D8EA13B3D285 /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MBProgressHUD+Extension.swift"; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
-		140258B93ECFBF25BD0DEDFE /* SceneDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		1452424943401023BA2D68D8 /* CoinRankListPageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRankListPageCell.swift; path = CoinRankListPageCell.swift; sourceTree = "<group>"; };
-		147FB629A5C9EC5577EED3A8 /* AsyncRelay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AsyncRelay.swift; path = AsyncRelay.swift; sourceTree = "<group>"; };
-		17B8B30FE0089D865A89166E /* TheRouterParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterParser.swift; path = TheRouterParser.swift; sourceTree = "<group>"; };
-		17F5D869FE20FB72A885442F /* TestViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TestViewModel.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
-		18A38574FF74B53C8A310ADC /* Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Animations.swift; path = Animations.swift; sourceTree = "<group>"; };
-		1902C84E059CA656DFC23852 /* Header.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Header.swift; path = Header.swift; sourceTree = "<group>"; };
-		1912F7B658D026A08ABABE7D /* AppDelegate+AppConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+AppConfig.swift"; path = "AppDelegate+AppConfig.swift"; sourceTree = "<group>"; };
-		19A96FFD982926685BA4664E /* SwiftCoinRankListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftCoinRankListController.swift; path = SwiftCoinRankListController.swift; sourceTree = "<group>"; };
-		19D783B882E9211C14CF5B3E /* MyCollectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyCollectionViewModel.swift; path = MyCollectionViewModel.swift; sourceTree = "<group>"; };
-		1A5CE109E33D9F40283F020D /* ToolViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToolViewModel.swift; path = ToolViewModel.swift; sourceTree = "<group>"; };
-		1B062D4761B983178DEA0503 /* StringExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		1B56037DCB5ED5C33D7CDDAA /* FlutterManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlutterManager.swift; path = FlutterManager.swift; sourceTree = "<group>"; };
-		1B98914A1F1DAD6FBB87853C /* OtherService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtherService.swift; path = OtherService.swift; sourceTree = "<group>"; };
-		1C8D5E2F2D7049C0A0A4B75F /* AccountManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountManager.swift; path = AccountManager.swift; sourceTree = "<group>"; };
-		1E203562C776B5AE242E60C1 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UITraitCollection+Extension.swift"; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
-		1E2CFCD021C70B24F343BE59 /* NetworkActivityLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkActivityLogger.swift; path = NetworkActivityLogger.swift; sourceTree = "<group>"; };
-		1EE6ED4D2854D8DB7D1F54D9 /* AppDelegate+ScreenCapture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+ScreenCapture.swift"; path = "AppDelegate+ScreenCapture.swift"; sourceTree = "<group>"; };
-		1FCBFB741E8A9033EEA78EE4 /* CoinCollectModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinCollectModels.swift; path = CoinCollectModels.swift; sourceTree = "<group>"; };
-		20CAA55B66FA205C43292D4F /* ImportHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ImportHeader.swift; path = ImportHeader.swift; sourceTree = "<group>"; };
-		20D6A89C8777481AFA1578B3 /* TreeViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeViewModel.swift; path = TreeViewModel.swift; sourceTree = "<group>"; };
-		213E8840E582BF1879350971 /* CategoryAPIProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CategoryAPIProtocol.swift; path = CategoryAPIProtocol.swift; sourceTree = "<group>"; };
-		218959993F7DE75C83219E01 /* NetworkDebuggingPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkDebuggingPlugin.swift; path = NetworkDebuggingPlugin.swift; sourceTree = "<group>"; };
-		21A406DAA49ED83B9310A511 /* TabAble.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabAble.swift; path = TabAble.swift; sourceTree = "<group>"; };
-		22C67F87C34BCF54CDB7A2A0 /* CommonModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CommonModels.swift; path = CommonModels.swift; sourceTree = "<group>"; };
-		2420250FE60B48B47B138D8B /* Collection+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Collection+Extension.swift"; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
-		249138730FF8E0961AE04396 /* AppNavigationBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppNavigationBar.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
-		24D1B75D69C742B2DB10A24B /* ClassCoinRank.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClassCoinRank.swift; path = ClassCoinRank.swift; sourceTree = "<group>"; };
-		250CBBAEDF9FB3D03AE16BF9 /* InfoCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfoCell.swift; path = InfoCell.swift; sourceTree = "<group>"; };
-		25187B8A450914A2D5D7CB6C /* TheRouterRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterRequest.swift; path = TheRouterRequest.swift; sourceTree = "<group>"; };
-		262E600D37D05AD673557BA0 /* TypeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypeViewController.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
+		0DCA634AA6224D75EA3B788B /* TheRouter+Service.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TheRouter+Service.swift"; sourceTree = "<group>"; };
+		0FD75D5B94CCCA06C09D71B9 /* SplashAnimationType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashAnimationType.swift; sourceTree = "<group>"; };
+		10AF3DDFED3DB02F281C8403 /* GrayView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GrayView.swift; sourceTree = "<group>"; };
+		1148A4E63CB263CE5FE3B2B5 /* CustomTabBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomTabBar.swift; sourceTree = "<group>"; };
+		123E34D4A56945A54F46B033 /* Setter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Setter.swift; sourceTree = "<group>"; };
+		12989C197D234084A6755A3B /* CustomLogFileManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomLogFileManager.swift; sourceTree = "<group>"; };
+		13A691309E57D8EA13B3D285 /* MBProgressHUD+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Extension.swift"; sourceTree = "<group>"; };
+		140258B93ECFBF25BD0DEDFE /* SceneDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		1452424943401023BA2D68D8 /* CoinRankListPageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRankListPageCell.swift; sourceTree = "<group>"; };
+		147FB629A5C9EC5577EED3A8 /* AsyncRelay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AsyncRelay.swift; sourceTree = "<group>"; };
+		17B8B30FE0089D865A89166E /* TheRouterParser.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterParser.swift; sourceTree = "<group>"; };
+		17F5D869FE20FB72A885442F /* TestViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
+		18A38574FF74B53C8A310ADC /* Animations.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
+		1902C84E059CA656DFC23852 /* Header.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
+		1912F7B658D026A08ABABE7D /* AppDelegate+AppConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+AppConfig.swift"; sourceTree = "<group>"; };
+		19A96FFD982926685BA4664E /* SwiftCoinRankListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftCoinRankListController.swift; sourceTree = "<group>"; };
+		19D783B882E9211C14CF5B3E /* MyCollectionViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyCollectionViewModel.swift; sourceTree = "<group>"; };
+		1A5CE109E33D9F40283F020D /* ToolViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolViewModel.swift; sourceTree = "<group>"; };
+		1B062D4761B983178DEA0503 /* StringExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		1B56037DCB5ED5C33D7CDDAA /* FlutterManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FlutterManager.swift; sourceTree = "<group>"; };
+		1B98914A1F1DAD6FBB87853C /* OtherService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OtherService.swift; sourceTree = "<group>"; };
+		1C8D5E2F2D7049C0A0A4B75F /* AccountManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountManager.swift; sourceTree = "<group>"; };
+		1E203562C776B5AE242E60C1 /* UITraitCollection+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UITraitCollection+Extension.swift"; sourceTree = "<group>"; };
+		1E2CFCD021C70B24F343BE59 /* NetworkActivityLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkActivityLogger.swift; sourceTree = "<group>"; };
+		1EE6ED4D2854D8DB7D1F54D9 /* AppDelegate+ScreenCapture.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+ScreenCapture.swift"; sourceTree = "<group>"; };
+		1FCBFB741E8A9033EEA78EE4 /* CoinCollectModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinCollectModels.swift; sourceTree = "<group>"; };
+		20CAA55B66FA205C43292D4F /* ImportHeader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ImportHeader.swift; sourceTree = "<group>"; };
+		20D6A89C8777481AFA1578B3 /* TreeViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeViewModel.swift; sourceTree = "<group>"; };
+		213E8840E582BF1879350971 /* CategoryAPIProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoryAPIProtocol.swift; sourceTree = "<group>"; };
+		218959993F7DE75C83219E01 /* NetworkDebuggingPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkDebuggingPlugin.swift; sourceTree = "<group>"; };
+		21A406DAA49ED83B9310A511 /* TabAble.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabAble.swift; sourceTree = "<group>"; };
+		22C67F87C34BCF54CDB7A2A0 /* CommonModels.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CommonModels.swift; sourceTree = "<group>"; };
+		2420250FE60B48B47B138D8B /* Collection+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Collection+Extension.swift"; sourceTree = "<group>"; };
+		249138730FF8E0961AE04396 /* AppNavigationBar.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppNavigationBar.swift; sourceTree = "<group>"; };
+		24D1B75D69C742B2DB10A24B /* ClassCoinRank.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClassCoinRank.swift; sourceTree = "<group>"; };
+		250CBBAEDF9FB3D03AE16BF9 /* InfoCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoCell.swift; sourceTree = "<group>"; };
+		25187B8A450914A2D5D7CB6C /* TheRouterRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterRequest.swift; sourceTree = "<group>"; };
+		262E600D37D05AD673557BA0 /* TypeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TypeViewController.swift; sourceTree = "<group>"; };
 		268A2138B0FF253D801E6EBC /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2846C79D70CE74A0716C3FB2 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		28D1D2E1B290F17EF5335E49 /* CoinRankListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRankListView.swift; path = CoinRankListView.swift; sourceTree = "<group>"; };
-		28F31C3145C20DFD7B86D6CA /* TheRouterManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterManager.swift; path = TheRouterManager.swift; sourceTree = "<group>"; };
-		2905BABA744AC96385FC051D /* SearchResultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchResultView.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
-		295C41286E654E75206E0DE4 /* AccountAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountAPIService.swift; path = AccountAPIService.swift; sourceTree = "<group>"; };
-		2A2D32A23C96C25733E5B798 /* HotKeyFlexBoxController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKeyFlexBoxController.swift; path = HotKeyFlexBoxController.swift; sourceTree = "<group>"; };
-		2A40ABD5A362DD58B7F68F65 /* MyBaseWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyBaseWebViewController.swift; path = MyBaseWebViewController.swift; sourceTree = "<group>"; };
-		2AF7DD53AFF106FAE9DC4CF2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIColor+Extension.swift"; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
-		2B9E553B394A5715025B4414 /* SVProgressHUD+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "SVProgressHUD+Extension.swift"; path = "SVProgressHUD+Extension.swift"; sourceTree = "<group>"; };
-		2C751A3F7311072DAA02DB40 /* HomeViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		2CE06182387E4E64132DE80B /* WebLoadInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebLoadInfo.swift; path = WebLoadInfo.swift; sourceTree = "<group>"; };
-		2D450B020618038E5B3BE62B /* TreeArticleListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeArticleListViewModel.swift; path = TreeArticleListViewModel.swift; sourceTree = "<group>"; };
-		2DB859BBC3BEAFA69DAE186F /* WebUIController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebUIController.swift; path = WebUIController.swift; sourceTree = "<group>"; };
-		2DC89DF3FAF394035CB207D9 /* TheRouterBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterBuilder.swift; path = TheRouterBuilder.swift; sourceTree = "<group>"; };
+		2846C79D70CE74A0716C3FB2 /* AppDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		28D1D2E1B290F17EF5335E49 /* CoinRankListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRankListView.swift; sourceTree = "<group>"; };
+		28F31C3145C20DFD7B86D6CA /* TheRouterManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterManager.swift; sourceTree = "<group>"; };
+		2905BABA744AC96385FC051D /* SearchResultView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultView.swift; sourceTree = "<group>"; };
+		295C41286E654E75206E0DE4 /* AccountAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountAPIService.swift; sourceTree = "<group>"; };
+		2A2D32A23C96C25733E5B798 /* HotKeyFlexBoxController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotKeyFlexBoxController.swift; sourceTree = "<group>"; };
+		2A40ABD5A362DD58B7F68F65 /* MyBaseWebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyBaseWebViewController.swift; sourceTree = "<group>"; };
+		2AF7DD53AFF106FAE9DC4CF2 /* UIColor+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		2B9E553B394A5715025B4414 /* SVProgressHUD+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "SVProgressHUD+Extension.swift"; sourceTree = "<group>"; };
+		2C751A3F7311072DAA02DB40 /* HomeViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		2CE06182387E4E64132DE80B /* WebLoadInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebLoadInfo.swift; sourceTree = "<group>"; };
+		2D450B020618038E5B3BE62B /* TreeArticleListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeArticleListViewModel.swift; sourceTree = "<group>"; };
+		2DB859BBC3BEAFA69DAE186F /* WebUIController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebUIController.swift; sourceTree = "<group>"; };
+		2DC89DF3FAF394035CB207D9 /* TheRouterBuilder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterBuilder.swift; sourceTree = "<group>"; };
 		2E78B1C847BAB94F8DF0A9F2 /* TestModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TestModule.h; sourceTree = "<group>"; };
-		2E9096A71321418372A4017F /* UIApplication+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIApplication+Extension.swift"; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
-		2EDDA7D33BBFAD636BAEF238 /* PublicNumberService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicNumberService.swift; path = PublicNumberService.swift; sourceTree = "<group>"; };
-		2F3BA69359AC268A6A6EB8C7 /* ArticleCellView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ArticleCellView.swift; path = ArticleCellView.swift; sourceTree = "<group>"; };
-		2F51114118024F33247AAB70 /* HotKeyController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKeyController.swift; path = HotKeyController.swift; sourceTree = "<group>"; };
-		2F7168ACE88C9B50B2811FC2 /* MessageContentCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageContentCell.swift; path = MessageContentCell.swift; sourceTree = "<group>"; };
-		2F80086B23D1A00C0BBEDE73 /* PublicNumberAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicNumberAPIService.swift; path = PublicNumberAPIService.swift; sourceTree = "<group>"; };
-		2F9045E32AC96BFC0E1D6691 /* CoinViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinViewModel.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
-		2FBC29C690EE23F661C67E16 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewModelProtocol.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
-		314B87C19BC21C9A65A1FFEE /* UIKitBridgeSwiftUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UIKitBridgeSwiftUI.swift; path = UIKitBridgeSwiftUI.swift; sourceTree = "<group>"; };
-		31609CF73EEA157FBC81337E /* InfoGenericsCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfoGenericsCell.swift; path = InfoGenericsCell.swift; sourceTree = "<group>"; };
-		32269C0EA9250248D961470A /* CollectActionType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectActionType.swift; path = CollectActionType.swift; sourceTree = "<group>"; };
-		326B14C9F7433E2E359F0A66 /* TheRouterServiceManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterServiceManager.swift; path = TheRouterServiceManager.swift; sourceTree = "<group>"; };
-		330DA454F5F224DD454930F5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIViewController+Extension.swift"; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
-		336B2681D2CB651672E317EE /* MyController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyController.swift; path = MyController.swift; sourceTree = "<group>"; };
-		338F4E1558F75FE2001B7658 /* Tool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Tool.swift; path = Tool.swift; sourceTree = "<group>"; };
-		34506EC1DB950CC1F28217BC /* HorizontalCategoryPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HorizontalCategoryPicker.swift; path = HorizontalCategoryPicker.swift; sourceTree = "<group>"; };
-		36E42AD194E8F399869FE368 /* TestModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TestModule.m; path = TestModule.m; sourceTree = "<group>"; };
+		2E9096A71321418372A4017F /* UIApplication+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		2EDDA7D33BBFAD636BAEF238 /* PublicNumberService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublicNumberService.swift; sourceTree = "<group>"; };
+		2F3BA69359AC268A6A6EB8C7 /* ArticleCellView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArticleCellView.swift; sourceTree = "<group>"; };
+		2F51114118024F33247AAB70 /* HotKeyController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotKeyController.swift; sourceTree = "<group>"; };
+		2F7168ACE88C9B50B2811FC2 /* MessageContentCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageContentCell.swift; sourceTree = "<group>"; };
+		2F80086B23D1A00C0BBEDE73 /* PublicNumberAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublicNumberAPIService.swift; sourceTree = "<group>"; };
+		2F9045E32AC96BFC0E1D6691 /* CoinViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinViewModel.swift; sourceTree = "<group>"; };
+		2FBC29C690EE23F661C67E16 /* ViewModelProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		314B87C19BC21C9A65A1FFEE /* UIKitBridgeSwiftUI.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UIKitBridgeSwiftUI.swift; sourceTree = "<group>"; };
+		31609CF73EEA157FBC81337E /* InfoGenericsCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoGenericsCell.swift; sourceTree = "<group>"; };
+		32269C0EA9250248D961470A /* CollectActionType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CollectActionType.swift; sourceTree = "<group>"; };
+		326B14C9F7433E2E359F0A66 /* TheRouterServiceManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterServiceManager.swift; sourceTree = "<group>"; };
+		330DA454F5F224DD454930F5 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		336B2681D2CB651672E317EE /* MyController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyController.swift; sourceTree = "<group>"; };
+		338F4E1558F75FE2001B7658 /* Tool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Tool.swift; sourceTree = "<group>"; };
+		34506EC1DB950CC1F28217BC /* HorizontalCategoryPicker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HorizontalCategoryPicker.swift; sourceTree = "<group>"; };
+		36E42AD194E8F399869FE368 /* TestModule.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TestModule.m; sourceTree = "<group>"; };
 		377C31BC071A51263D80D143 /* RxStudy-Bridging-Header.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RxStudy-Bridging-Header.h"; sourceTree = "<group>"; };
-		39A18E6AFE1C1DF60ED7CA31 /* SubscriptionToken.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SubscriptionToken.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
-		39B828EF02FC29F0AFBA9D8B /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "FSPagerView+Rx.swift"; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
-		39F3621E6349B4C2E66BE18B /* ButtonRxTapBugController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ButtonRxTapBugController.swift; path = ButtonRxTapBugController.swift; sourceTree = "<group>"; };
-		3A01F94ADFC1067CF7A5E061 /* UIScrollView+RxSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIScrollView+RxSwift.swift"; path = "UIScrollView+RxSwift.swift"; sourceTree = "<group>"; };
-		3AE27615DE25E3EB8D4C7BBF /* Modifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Modifier.swift; path = Modifier.swift; sourceTree = "<group>"; };
-		3B8EA29FAC0E419C489DB5F1 /* Moya+BlockingObservable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Moya+BlockingObservable.swift"; path = "Moya+BlockingObservable.swift"; sourceTree = "<group>"; };
-		3BE2B3F9766FFB04EEB37D6C /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRankListViewModel.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
-		3C2940A373772206CFEE0CE9 /* MyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyView.swift; path = MyView.swift; sourceTree = "<group>"; };
-		3D0C81A9F4F37516C1F8A365 /* TheRouterServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterServiceProtocol.swift; path = TheRouterServiceProtocol.swift; sourceTree = "<group>"; };
-		3D3D8DD516EB045B84695184 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchResultViewModel.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
-		3D6FC7885DEC8E329C1A9B97 /* MJRefresh+RxSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "MJRefresh+RxSwift.swift"; path = "MJRefresh+RxSwift.swift"; sourceTree = "<group>"; };
-		3E3EA611D0F39CE1C6B909F7 /* TheRouterDynamicParamsMapping.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TheRouterDynamicParamsMapping.m; path = TheRouterDynamicParamsMapping.m; sourceTree = "<group>"; };
-		3E4436F2F862EA5825427EB9 /* InnerEventResponsible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InnerEventResponsible.swift; path = InnerEventResponsible.swift; sourceTree = "<group>"; };
-		3E5D81E1C2AC4CF37CBD9C6D /* TheRouterDebugTool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterDebugTool.swift; path = TheRouterDebugTool.swift; sourceTree = "<group>"; };
-		3E8ECA9019E00D2E8BFEA111 /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintArrayDSL.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
-		4006343855B345BAC8854167 /* TreeCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeCell.swift; path = TreeCell.swift; sourceTree = "<group>"; };
-		40D4C756AF5008A47C695C89 /* CombineSinkEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CombineSinkEvent.swift; path = CombineSinkEvent.swift; sourceTree = "<group>"; };
-		41E2087F8ABC4751496D28AC /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets.xcassets; sourceTree = "<group>"; };
-		4280CAE07B415834C4DA0FD1 /* MyCoinViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyCoinViewModel.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
-		43AFB61376EABE21808F7DAD /* NetworkRequestLoggerPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkRequestLoggerPlugin.swift; path = NetworkRequestLoggerPlugin.swift; sourceTree = "<group>"; };
-		43EAEBE7FF5AE50E169B5417 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WebViewController+Rx.swift"; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
-		44C882F1625287DE2D1F41A9 /* SimplePullToRefreshView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SimplePullToRefreshView.swift; path = SimplePullToRefreshView.swift; sourceTree = "<group>"; };
-		4568DD8601503544D556E53F /* BaseViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseViewModel.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
-		459A3ACDE096115AFFC7F25C /* AppDelegate+Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+Debug.swift"; path = "AppDelegate+Debug.swift"; sourceTree = "<group>"; };
-		48DE1EB698286C34E0242360 /* Combine+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Combine+Extension.swift"; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
-		49F3C2B5822BDB0693FF632C /* TreeCellStyleChangeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeCellStyleChangeController.swift; path = TreeCellStyleChangeController.swift; sourceTree = "<group>"; };
-		4A241959FFA53BF7F66D3694 /* MessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageCell.swift; path = MessageCell.swift; sourceTree = "<group>"; };
-		503BCC61AFF194281F67341F /* ExBehaviorRelay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExBehaviorRelay.swift; path = ExBehaviorRelay.swift; sourceTree = "<group>"; };
-		522F00F48F68218DC7A50229 /* TheRouter+Convenience.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TheRouter+Convenience.swift"; path = "TheRouter+Convenience.swift"; sourceTree = "<group>"; };
-		52520080DB860D2F1EA38A39 /* InnerViewEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InnerViewEvent.swift; path = InnerViewEvent.swift; sourceTree = "<group>"; };
-		562DAAB02C9D2DC64A93844D /* WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebViewController.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		5654F2380783812EE69779A4 /* WeakScriptMessageDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WeakScriptMessageDelegate.swift; path = WeakScriptMessageDelegate.swift; sourceTree = "<group>"; };
-		570E2134EBBD281A0E4C53F5 /* TabsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabsViewModel.swift; path = TabsViewModel.swift; sourceTree = "<group>"; };
-		577140A58E2635D89ECC0035 /* LoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		57D1FEEE7E18031457B11D50 /* ClassBanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ClassBanner.swift; path = ClassBanner.swift; sourceTree = "<group>"; };
-		58012BA5D81E6F2495963B32 /* WebViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WebViewModel.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
-		584C70688B77EEDCE6418DCD /* LogUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogUtils.swift; path = LogUtils.swift; sourceTree = "<group>"; };
-		58F8F75D6E30F77C4E26EFDD /* CustomNetworkActivityPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomNetworkActivityPlugin.swift; path = CustomNetworkActivityPlugin.swift; sourceTree = "<group>"; };
+		39A18E6AFE1C1DF60ED7CA31 /* SubscriptionToken.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SubscriptionToken.swift; sourceTree = "<group>"; };
+		39B828EF02FC29F0AFBA9D8B /* FSPagerView+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "FSPagerView+Rx.swift"; sourceTree = "<group>"; };
+		39F3621E6349B4C2E66BE18B /* ButtonRxTapBugController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ButtonRxTapBugController.swift; sourceTree = "<group>"; };
+		3A01F94ADFC1067CF7A5E061 /* UIScrollView+RxSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIScrollView+RxSwift.swift"; sourceTree = "<group>"; };
+		3AE27615DE25E3EB8D4C7BBF /* Modifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
+		3B8EA29FAC0E419C489DB5F1 /* Moya+BlockingObservable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Moya+BlockingObservable.swift"; sourceTree = "<group>"; };
+		3BE2B3F9766FFB04EEB37D6C /* CoinRankListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRankListViewModel.swift; sourceTree = "<group>"; };
+		3C2940A373772206CFEE0CE9 /* MyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyView.swift; sourceTree = "<group>"; };
+		3D0C81A9F4F37516C1F8A365 /* TheRouterServiceProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterServiceProtocol.swift; sourceTree = "<group>"; };
+		3D3D8DD516EB045B84695184 /* SearchResultViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		3D6FC7885DEC8E329C1A9B97 /* MJRefresh+RxSwift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "MJRefresh+RxSwift.swift"; sourceTree = "<group>"; };
+		3E3EA611D0F39CE1C6B909F7 /* TheRouterDynamicParamsMapping.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TheRouterDynamicParamsMapping.m; sourceTree = "<group>"; };
+		3E4436F2F862EA5825427EB9 /* InnerEventResponsible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerEventResponsible.swift; sourceTree = "<group>"; };
+		3E5D81E1C2AC4CF37CBD9C6D /* TheRouterDebugTool.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterDebugTool.swift; sourceTree = "<group>"; };
+		3E8ECA9019E00D2E8BFEA111 /* ConstraintArrayDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstraintArrayDSL.swift; sourceTree = "<group>"; };
+		4006343855B345BAC8854167 /* TreeCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeCell.swift; sourceTree = "<group>"; };
+		40D4C756AF5008A47C695C89 /* CombineSinkEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CombineSinkEvent.swift; sourceTree = "<group>"; };
+		41E2087F8ABC4751496D28AC /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4280CAE07B415834C4DA0FD1 /* MyCoinViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyCoinViewModel.swift; sourceTree = "<group>"; };
+		43AFB61376EABE21808F7DAD /* NetworkRequestLoggerPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkRequestLoggerPlugin.swift; sourceTree = "<group>"; };
+		43EAEBE7FF5AE50E169B5417 /* WebViewController+Rx.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebViewController+Rx.swift"; sourceTree = "<group>"; };
+		44C882F1625287DE2D1F41A9 /* SimplePullToRefreshView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SimplePullToRefreshView.swift; sourceTree = "<group>"; };
+		4568DD8601503544D556E53F /* BaseViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseViewModel.swift; sourceTree = "<group>"; };
+		459A3ACDE096115AFFC7F25C /* AppDelegate+Debug.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Debug.swift"; sourceTree = "<group>"; };
+		45F1A21448776836EEF2786D /* ModernLogRedactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogRedactor.swift; sourceTree = "<group>"; };
+		48DE1EB698286C34E0242360 /* Combine+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Combine+Extension.swift"; sourceTree = "<group>"; };
+		49F3C2B5822BDB0693FF632C /* TreeCellStyleChangeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeCellStyleChangeController.swift; sourceTree = "<group>"; };
+		4A241959FFA53BF7F66D3694 /* MessageCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageCell.swift; sourceTree = "<group>"; };
+		503BCC61AFF194281F67341F /* ExBehaviorRelay.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ExBehaviorRelay.swift; sourceTree = "<group>"; };
+		522F00F48F68218DC7A50229 /* TheRouter+Convenience.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TheRouter+Convenience.swift"; sourceTree = "<group>"; };
+		52520080DB860D2F1EA38A39 /* InnerViewEvent.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InnerViewEvent.swift; sourceTree = "<group>"; };
+		562DAAB02C9D2DC64A93844D /* WebViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		5654F2380783812EE69779A4 /* WeakScriptMessageDelegate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WeakScriptMessageDelegate.swift; sourceTree = "<group>"; };
+		570E2134EBBD281A0E4C53F5 /* TabsViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabsViewModel.swift; sourceTree = "<group>"; };
+		577140A58E2635D89ECC0035 /* LoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		57D1FEEE7E18031457B11D50 /* ClassBanner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ClassBanner.swift; sourceTree = "<group>"; };
+		58012BA5D81E6F2495963B32 /* WebViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WebViewModel.swift; sourceTree = "<group>"; };
+		584C70688B77EEDCE6418DCD /* LogUtils.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogUtils.swift; sourceTree = "<group>"; };
+		58F8F75D6E30F77C4E26EFDD /* CustomNetworkActivityPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomNetworkActivityPlugin.swift; sourceTree = "<group>"; };
 		5955603BC37695ACF9F32EC1 /* zh-Hans */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
-		598C95B4481D904AFC49C295 /* CoinAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinAPIService.swift; path = CoinAPIService.swift; sourceTree = "<group>"; };
-		5993D63AC3CC0756D1F3BB63 /* ResponseInterceptorPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseInterceptorPlugin.swift; path = ResponseInterceptorPlugin.swift; sourceTree = "<group>"; };
-		5A1C4E3EE87BF128A52B052E /* CoinRankListPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRankListPage.swift; path = CoinRankListPage.swift; sourceTree = "<group>"; };
+		598C95B4481D904AFC49C295 /* CoinAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinAPIService.swift; sourceTree = "<group>"; };
+		5993D63AC3CC0756D1F3BB63 /* ResponseInterceptorPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponseInterceptorPlugin.swift; sourceTree = "<group>"; };
+		5A1C4E3EE87BF128A52B052E /* CoinRankListPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRankListPage.swift; sourceTree = "<group>"; };
 		5A2758E8D8ECE30F518E8840 /* Pods-RxStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.debug.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.debug.xcconfig"; sourceTree = "<group>"; };
-		5C68C3C77143C163C6DD0F52 /* OtherApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OtherApp.swift; path = OtherApp.swift; sourceTree = "<group>"; };
-		5C8EE869E74574B11A8D17C0 /* PublicNumberViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicNumberViewModel.swift; path = PublicNumberViewModel.swift; sourceTree = "<group>"; };
-		5D715C4BB96A9795485E1A2A /* KeyConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = KeyConstants.swift; path = KeyConstants.swift; sourceTree = "<group>"; };
-		5F2DB40360C7B94D32F4130B /* TabModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabModel.swift; path = TabModel.swift; sourceTree = "<group>"; };
-		5F9CD9A029C2F560D74F6A4A /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Utilities.swift; path = Utilities.swift; sourceTree = "<group>"; };
-		5FE4C48E56D5C57AE51BCFF6 /* MineViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MineViewModel.swift; path = MineViewModel.swift; sourceTree = "<group>"; };
-		6040C680108ED7D9442A626B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5C68C3C77143C163C6DD0F52 /* OtherApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OtherApp.swift; sourceTree = "<group>"; };
+		5C8EE869E74574B11A8D17C0 /* PublicNumberViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublicNumberViewModel.swift; sourceTree = "<group>"; };
+		5D715C4BB96A9795485E1A2A /* KeyConstants.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeyConstants.swift; sourceTree = "<group>"; };
+		5F2DB40360C7B94D32F4130B /* TabModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabModel.swift; sourceTree = "<group>"; };
+		5F9CD9A029C2F560D74F6A4A /* Utilities.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		5FE4C48E56D5C57AE51BCFF6 /* MineViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MineViewModel.swift; sourceTree = "<group>"; };
+		6040C680108ED7D9442A626B /* LaunchScreen.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		612DBF58220022BA007F73CC /* RxStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		6141F266BA93E5C9621DC238 /* Message.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Message.swift; path = Message.swift; sourceTree = "<group>"; };
+		6141F266BA93E5C9621DC238 /* Message.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		617082672205895D00891B79 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		61E69DB64DB4F626C830E282 /* LogoutCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogoutCell.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
-		61F9C4A410A3FC381485E2FC /* SearchResultViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchResultViewModel.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
-		6291874D5DE1588B9E0AF068 /* AnyConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnyConvertible.swift; path = AnyConvertible.swift; sourceTree = "<group>"; };
-		62EBB79D2910CBCF709A5539 /* NSURLProtocol+WKWebVIew.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSURLProtocol+WKWebVIew.m"; path = "NSURLProtocol+WKWebVIew.m"; sourceTree = "<group>"; };
-		63282CD30720C7309444ABA6 /* ErrorStateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ErrorStateView.swift; path = ErrorStateView.swift; sourceTree = "<group>"; };
-		637FD8E6687C2C14DB572267 /* TestMapComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = TestMapComponent.m; path = TestMapComponent.m; sourceTree = "<group>"; };
-		63CD713CF177F7BFA3E0B451 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Page.swift; path = Page.swift; sourceTree = "<group>"; };
-		6404E21495DF24FCA73D98CF /* ALayoutPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ALayoutPage.swift; path = ALayoutPage.swift; sourceTree = "<group>"; };
-		643C32FB3A13C0C95A7ED86A /* AccountService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountService.swift; path = AccountService.swift; sourceTree = "<group>"; };
-		6466878D7F591A9675CC884F /* LoginController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginController.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		651D74AB0F37150E7031EFE6 /* ViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		668C59E828074183CBF9C6DD /* MyCollectionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyCollectionController.swift; path = MyCollectionController.swift; sourceTree = "<group>"; };
-		66D9AC4260403FAB63DBE348 /* ConstructorProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstructorProtocol.swift; path = ConstructorProtocol.swift; sourceTree = "<group>"; };
+		61E69DB64DB4F626C830E282 /* LogoutCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogoutCell.swift; sourceTree = "<group>"; };
+		61F9C4A410A3FC381485E2FC /* SearchResultViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		6291874D5DE1588B9E0AF068 /* AnyConvertible.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnyConvertible.swift; sourceTree = "<group>"; };
+		62EBB79D2910CBCF709A5539 /* NSURLProtocol+WKWebVIew.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "NSURLProtocol+WKWebVIew.m"; sourceTree = "<group>"; };
+		63282CD30720C7309444ABA6 /* ErrorStateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ErrorStateView.swift; sourceTree = "<group>"; };
+		637FD8E6687C2C14DB572267 /* TestMapComponent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TestMapComponent.m; sourceTree = "<group>"; };
+		63CD713CF177F7BFA3E0B451 /* Page.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
+		6404E21495DF24FCA73D98CF /* ALayoutPage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ALayoutPage.swift; sourceTree = "<group>"; };
+		643C32FB3A13C0C95A7ED86A /* AccountService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
+		6466878D7F591A9675CC884F /* LoginController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		651D74AB0F37150E7031EFE6 /* ViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		668C59E828074183CBF9C6DD /* MyCollectionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyCollectionController.swift; sourceTree = "<group>"; };
+		66D9AC4260403FAB63DBE348 /* ConstructorProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConstructorProtocol.swift; sourceTree = "<group>"; };
 		6842327579ADBC9166EC262A /* Pods_SwiftUIStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftUIStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		686647202EAFA9D60D65F08B /* TheRouter+Jump.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TheRouter+Jump.swift"; path = "TheRouter+Jump.swift"; sourceTree = "<group>"; };
-		6895D7B959C635BE61362FAF /* TheRouterable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterable.swift; path = TheRouterable.swift; sourceTree = "<group>"; };
-		69EA08C2930369B8B6312ACF /* Notification.Name.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Notification.Name.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
-		6AF1D0F1CB43A1E177A0ABF4 /* MyGitHubController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyGitHubController.swift; path = MyGitHubController.swift; sourceTree = "<group>"; };
-		6CBD2EFDBB4591BA8703BDBF /* CustomExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomExtensions.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
-		6D72CD1D980985BE4E08E4D4 /* UniMPManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UniMPManager.swift; path = UniMPManager.swift; sourceTree = "<group>"; };
-		6DB6C03D6A4E2FE513D1B1E3 /* SafariActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SafariActivity.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
-		6E715D5CBE55373D49EB08CC /* ACarouselViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ACarouselViewModel.swift; path = ACarouselViewModel.swift; sourceTree = "<group>"; };
-		6F61093FA62DB6CA142155C7 /* CoinRankListPageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRankListPageViewModel.swift; path = CoinRankListPageViewModel.swift; sourceTree = "<group>"; };
-		70B7A986A03C03A63E10FE47 /* FlutterMethodCallType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FlutterMethodCallType.swift; path = FlutterMethodCallType.swift; sourceTree = "<group>"; };
+		686647202EAFA9D60D65F08B /* TheRouter+Jump.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TheRouter+Jump.swift"; sourceTree = "<group>"; };
+		6895D7B959C635BE61362FAF /* TheRouterable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterable.swift; sourceTree = "<group>"; };
+		69EA08C2930369B8B6312ACF /* Notification.Name.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Notification.Name.swift; sourceTree = "<group>"; };
+		6AF1D0F1CB43A1E177A0ABF4 /* MyGitHubController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyGitHubController.swift; sourceTree = "<group>"; };
+		6CBD2EFDBB4591BA8703BDBF /* CustomExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomExtensions.swift; sourceTree = "<group>"; };
+		6D72CD1D980985BE4E08E4D4 /* UniMPManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = UniMPManager.swift; sourceTree = "<group>"; };
+		6DB6C03D6A4E2FE513D1B1E3 /* SafariActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SafariActivity.swift; sourceTree = "<group>"; };
+		6E715D5CBE55373D49EB08CC /* ACarouselViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ACarouselViewModel.swift; sourceTree = "<group>"; };
+		6F61093FA62DB6CA142155C7 /* CoinRankListPageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRankListPageViewModel.swift; sourceTree = "<group>"; };
+		70B7A986A03C03A63E10FE47 /* FlutterMethodCallType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FlutterMethodCallType.swift; sourceTree = "<group>"; };
 		713ABB3E3CD23795E5A1F097 /* LSApplicationProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LSApplicationProxy.h; sourceTree = "<group>"; };
-		71A440B182745A3797668499 /* AccountInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountInfo.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
-		71B8E8A020E0D61E25467883 /* CollectView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectView.swift; path = CollectView.swift; sourceTree = "<group>"; };
-		72030A1B24A70AB3EA9B4D41 /* AppIconSelectController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppIconSelectController.swift; path = AppIconSelectController.swift; sourceTree = "<group>"; };
-		7367D6FDCB62CD002B2B8166 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObservableType+Extension.swift"; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
-		73964BB4042FBC4E5AE07239 /* LSBundleProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSBundleProxy.m; path = LSBundleProxy.m; sourceTree = "<group>"; };
-		73D14B09AC5F306A962C446B /* CoinRank.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRank.swift; path = CoinRank.swift; sourceTree = "<group>"; };
-		74D50EFBA5EBA84879DF6A83 /* AccountManageable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountManageable.swift; path = AccountManageable.swift; sourceTree = "<group>"; };
-		75DDB30AD0F9EB4C74C07844 /* TabType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabType.swift; path = TabType.swift; sourceTree = "<group>"; };
-		78FB3313188EFB3E696AE51B /* ShareType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShareType.swift; path = ShareType.swift; sourceTree = "<group>"; };
+		71A440B182745A3797668499 /* AccountInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountInfo.swift; sourceTree = "<group>"; };
+		71B8E8A020E0D61E25467883 /* CollectView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CollectView.swift; sourceTree = "<group>"; };
+		72030A1B24A70AB3EA9B4D41 /* AppIconSelectController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppIconSelectController.swift; sourceTree = "<group>"; };
+		7367D6FDCB62CD002B2B8166 /* ObservableType+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ObservableType+Extension.swift"; sourceTree = "<group>"; };
+		73964BB4042FBC4E5AE07239 /* LSBundleProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LSBundleProxy.m; sourceTree = "<group>"; };
+		73D14B09AC5F306A962C446B /* CoinRank.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRank.swift; sourceTree = "<group>"; };
+		74D50EFBA5EBA84879DF6A83 /* AccountManageable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountManageable.swift; sourceTree = "<group>"; };
+		75DDB30AD0F9EB4C74C07844 /* TabType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabType.swift; sourceTree = "<group>"; };
+		78FB3313188EFB3E696AE51B /* ShareType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShareType.swift; sourceTree = "<group>"; };
 		79B2FFE2773896A31397900C /* Pods-RxStudy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxStudy.release.xcconfig"; path = "Target Support Files/Pods-RxStudy/Pods-RxStudy.release.xcconfig"; sourceTree = "<group>"; };
-		7A4CBA8531A5C8659F8A8174 /* MessageReadyStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageReadyStatus.swift; path = MessageReadyStatus.swift; sourceTree = "<group>"; };
-		7ADCE716E7F2FBAD60D324D8 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxFSPagerViewDelegateProxy.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
-		7AE1CD6BB9BABCC802EA72FE /* NetworkMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkMonitor.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		7B079E10F84221C00AD2F644 /* ListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ListViewModel.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
-		7BF6A39DC15A1190B736D741 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Dictionary+Extension.swift"; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
-		7BFFFA4A37E9840A93F798A0 /* AppDelegate+SecurityConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+SecurityConfig.swift"; path = "AppDelegate+SecurityConfig.swift"; sourceTree = "<group>"; };
-		7C28861FFE4AEA868708600B /* TreeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeView.swift; path = TreeView.swift; sourceTree = "<group>"; };
-		7D21E9ED8210344E7B703B52 /* RevealingSplashView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RevealingSplashView.swift; path = RevealingSplashView.swift; sourceTree = "<group>"; };
-		7DDF5DB1EEF6EDB1517D5069 /* HeaderKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HeaderKey.swift; path = HeaderKey.swift; sourceTree = "<group>"; };
-		7E6136EFB4928CA34B788326 /* BaseNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseNavigationController.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
-		7EA72BC903995AB49FF4E327 /* Api.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Api.swift; path = Api.swift; sourceTree = "<group>"; };
-		7F737F5DB43FBB48F4976448 /* TagType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TagType.swift; path = TagType.swift; sourceTree = "<group>"; };
-		7F888C118203E675F698B51B /* Moya+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Moya+Extension.swift"; path = "Moya+Extension.swift"; sourceTree = "<group>"; };
-		7FD8C4E0A39DDCC9B72F7D7D /* PaginatedArticleListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PaginatedArticleListView.swift; path = PaginatedArticleListView.swift; sourceTree = "<group>"; };
-		800F42AA4FCAA7F9E936F6C7 /* AccountManagerUsageGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountManagerUsageGuide.swift; path = AccountManagerUsageGuide.swift; sourceTree = "<group>"; };
-		802E3C540366E64AED0D1E1E /* String+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "String+Extension.swift"; path = "String+Extension.swift"; sourceTree = "<group>"; };
-		813599986E415472BBD66CAD /* ObserverType+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ObserverType+Extension.swift"; path = "ObserverType+Extension.swift"; sourceTree = "<group>"; };
-		813F15FCE82C2C5209D76A64 /* ShareSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ShareSheet.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
-		81C492DC223647991310C610 /* View+Navigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+Navigation.swift"; path = "View+Navigation.swift"; sourceTree = "<group>"; };
-		81C9018D7F7C05A41A3D2D67 /* Constant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constant.swift; path = Constant.swift; sourceTree = "<group>"; };
-		81F50F8376299F5AFC9077BB /* swiftgen.yml */ = {isa = PBXFileReference; includeInIndex = 1; path = swiftgen.yml; sourceTree = "<group>"; };
-		8209EA2C7C42F808E8A3BCE8 /* State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = State.swift; path = State.swift; sourceTree = "<group>"; };
+		7A4CBA8531A5C8659F8A8174 /* MessageReadyStatus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageReadyStatus.swift; sourceTree = "<group>"; };
+		7ADCE716E7F2FBAD60D324D8 /* RxFSPagerViewDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RxFSPagerViewDelegateProxy.swift; sourceTree = "<group>"; };
+		7AE1CD6BB9BABCC802EA72FE /* NetworkMonitor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
+		7B079E10F84221C00AD2F644 /* ListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ListViewModel.swift; sourceTree = "<group>"; };
+		7BF6A39DC15A1190B736D741 /* Dictionary+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Dictionary+Extension.swift"; sourceTree = "<group>"; };
+		7BFFFA4A37E9840A93F798A0 /* AppDelegate+SecurityConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+SecurityConfig.swift"; sourceTree = "<group>"; };
+		7C28861FFE4AEA868708600B /* TreeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeView.swift; sourceTree = "<group>"; };
+		7D21E9ED8210344E7B703B52 /* RevealingSplashView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RevealingSplashView.swift; sourceTree = "<group>"; };
+		7DDF5DB1EEF6EDB1517D5069 /* HeaderKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeaderKey.swift; sourceTree = "<group>"; };
+		7E6136EFB4928CA34B788326 /* BaseNavigationController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseNavigationController.swift; sourceTree = "<group>"; };
+		7EA72BC903995AB49FF4E327 /* Api.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
+		7F737F5DB43FBB48F4976448 /* TagType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TagType.swift; sourceTree = "<group>"; };
+		7F888C118203E675F698B51B /* Moya+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Moya+Extension.swift"; sourceTree = "<group>"; };
+		7FD8C4E0A39DDCC9B72F7D7D /* PaginatedArticleListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaginatedArticleListView.swift; sourceTree = "<group>"; };
+		800F42AA4FCAA7F9E936F6C7 /* AccountManagerUsageGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountManagerUsageGuide.swift; sourceTree = "<group>"; };
+		802E3C540366E64AED0D1E1E /* String+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		813599986E415472BBD66CAD /* ObserverType+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ObserverType+Extension.swift"; sourceTree = "<group>"; };
+		813F15FCE82C2C5209D76A64 /* ShareSheet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
+		81C492DC223647991310C610 /* View+Navigation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "View+Navigation.swift"; sourceTree = "<group>"; };
+		81C9018D7F7C05A41A3D2D67 /* Constant.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		81F50F8376299F5AFC9077BB /* swiftgen.yml */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		8209EA2C7C42F808E8A3BCE8 /* State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		823D70F57BDD0521EC493F8B /* CrashController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = CrashController.h; sourceTree = "<group>"; };
-		82828DD5576B765C30E57A2D /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UINavigationController+Extension.swift"; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
-		83BD481FFBB03DBF47A68E9B /* AppDelegate+CrashConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+CrashConfig.swift"; path = "AppDelegate+CrashConfig.swift"; sourceTree = "<group>"; };
-		843A710743635F908005C475 /* ToolController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ToolController.swift; path = ToolController.swift; sourceTree = "<group>"; };
-		850470950CD94ABC48DBF334 /* CustomImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomImageView.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
-		862A62A45DA1D5B436AAD70D /* Decode+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Decode+Extension.swift"; path = "Decode+Extension.swift"; sourceTree = "<group>"; };
-		876B0678B8EEFF58A6C77985 /* CoinView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinView.swift; path = CoinView.swift; sourceTree = "<group>"; };
-		8858919693FC64670DD638ED /* Flex+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Flex+Extension.swift"; path = "Flex+Extension.swift"; sourceTree = "<group>"; };
-		891081973F038520705E088D /* Assets+SwiftGen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Assets+SwiftGen.swift"; path = "Assets+SwiftGen.swift"; sourceTree = "<group>"; };
-		8979D7B6E4B5A38568C5AA20 /* MyCoinController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyCoinController.swift; path = MyCoinController.swift; sourceTree = "<group>"; };
-		89FDF91244932CFC36DB8F70 /* BasePageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BasePageViewModel.swift; path = BasePageViewModel.swift; sourceTree = "<group>"; };
-		8A0502B5F5D15CA1AE155613 /* BaseViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseViewController.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		8C5F7551B153FC67933852A0 /* __UNI__C0D30A1.wgt */ = {isa = PBXFileReference; includeInIndex = 1; name = __UNI__C0D30A1.wgt; path = __UNI__C0D30A1.wgt; sourceTree = "<group>"; };
-		8CED0092D17DBDFCF7512F04 /* AccountBaseController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountBaseController.swift; path = AccountBaseController.swift; sourceTree = "<group>"; };
-		8FB6F6CE0DC89F5FD2813344 /* appStore.js */ = {isa = PBXFileReference; includeInIndex = 1; name = appStore.js; path = appStore.js; sourceTree = "<group>"; };
-		9130B021F4C78B940AF1EF1D /* RequestLoadingPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RequestLoadingPlugin.swift; path = RequestLoadingPlugin.swift; sourceTree = "<group>"; };
-		91FE3DAE9D24D5984D2FC646 /* MyMessageController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyMessageController.swift; path = MyMessageController.swift; sourceTree = "<group>"; };
-		920BA37DCAA4D14A9C7AE8F9 /* TreeArticleListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeArticleListView.swift; path = TreeArticleListView.swift; sourceTree = "<group>"; };
-		92B6B13D94E8EC208506AB44 /* Int+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Int+Extension.swift"; path = "Int+Extension.swift"; sourceTree = "<group>"; };
-		9321C5445140878C5844623E /* CoinRankViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRankViewModel.swift; path = CoinRankViewModel.swift; sourceTree = "<group>"; };
-		93359368F805B5CAAA97CA1F /* Eventable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Eventable.swift; path = Eventable.swift; sourceTree = "<group>"; };
-		9458E5691A053B856F729B74 /* AppDelegate+NetworkConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+NetworkConfig.swift"; path = "AppDelegate+NetworkConfig.swift"; sourceTree = "<group>"; };
-		94BE49D407F57C671275BDFB /* Strings+SwiftGen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Strings+SwiftGen.swift"; path = "Strings+SwiftGen.swift"; sourceTree = "<group>"; };
-		96313248C9EF15C705CDE033 /* MockService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MockService.swift; path = MockService.swift; sourceTree = "<group>"; };
-		9709632320530E82ACE8B0CB /* LSApplicationProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LSApplicationProxy.m; path = LSApplicationProxy.m; sourceTree = "<group>"; };
-		97341DA38AA7F84547D3DFCF /* Banner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Banner.swift; path = Banner.swift; sourceTree = "<group>"; };
-		9943490F6515655F5D0DC8F2 /* UIApplication+SetAppIcon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIApplication+SetAppIcon.m"; path = "UIApplication+SetAppIcon.m"; sourceTree = "<group>"; };
-		99C5633B2273D819E6EB2F63 /* My.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = My.swift; path = My.swift; sourceTree = "<group>"; };
-		9B5B0F1683F16673EC81710A /* ACarousel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ACarousel.swift; path = ACarousel.swift; sourceTree = "<group>"; };
-		9BB75BC9699F482EAFBD9682 /* HotKeyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKeyViewModel.swift; path = HotKeyViewModel.swift; sourceTree = "<group>"; };
-		9BF7188D913D0781D5692D29 /* PropertyWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PropertyWrapper.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
-		9CE8E30FFECE26181AF554AC /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		9D46091401553126486FCE64 /* EmptyStateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmptyStateView.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
-		9DAA4D9DB9BEE4418D647E0C /* ProjectAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProjectAPIService.swift; path = ProjectAPIService.swift; sourceTree = "<group>"; };
-		9DD08FFD9D6EDE96450F907E /* CustomTabItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomTabItem.swift; path = CustomTabItem.swift; sourceTree = "<group>"; };
-		9DF6711950C06F38A19DC1AF /* ContentScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentScrollView.swift; path = ContentScrollView.swift; sourceTree = "<group>"; };
-		9E21A1EC92FBFF352EBF416B /* View+ReceiveTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+ReceiveTimer.swift"; path = "View+ReceiveTimer.swift"; sourceTree = "<group>"; };
-		9F03A4FFDCB1FB3748803481 /* HotKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKey.swift; path = HotKey.swift; sourceTree = "<group>"; };
-		9F18FACC275810D03F4F3736 /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintArray+Extensions.swift"; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
-		9FB7346DF02EE3E1141AEA15 /* CollectViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectViewModel.swift; path = CollectViewModel.swift; sourceTree = "<group>"; };
-		A00D9460997146E75C877C59 /* DownloadWebController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DownloadWebController.swift; path = DownloadWebController.swift; sourceTree = "<group>"; };
-		A019A2492D3D4AB51684524C /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Course.swift; path = Course.swift; sourceTree = "<group>"; };
+		82828DD5576B765C30E57A2D /* UINavigationController+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Extension.swift"; sourceTree = "<group>"; };
+		83BD481FFBB03DBF47A68E9B /* AppDelegate+CrashConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+CrashConfig.swift"; sourceTree = "<group>"; };
+		843A710743635F908005C475 /* ToolController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ToolController.swift; sourceTree = "<group>"; };
+		850470950CD94ABC48DBF334 /* CustomImageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		862A62A45DA1D5B436AAD70D /* Decode+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Decode+Extension.swift"; sourceTree = "<group>"; };
+		876B0678B8EEFF58A6C77985 /* CoinView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinView.swift; sourceTree = "<group>"; };
+		8858919693FC64670DD638ED /* Flex+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Flex+Extension.swift"; sourceTree = "<group>"; };
+		891081973F038520705E088D /* Assets+SwiftGen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Assets+SwiftGen.swift"; sourceTree = "<group>"; };
+		8979D7B6E4B5A38568C5AA20 /* MyCoinController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyCoinController.swift; sourceTree = "<group>"; };
+		89FDF91244932CFC36DB8F70 /* BasePageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BasePageViewModel.swift; sourceTree = "<group>"; };
+		8A0502B5F5D15CA1AE155613 /* BaseViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		8C5F7551B153FC67933852A0 /* __UNI__C0D30A1.wgt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = __UNI__C0D30A1.wgt; sourceTree = "<group>"; };
+		8CED0092D17DBDFCF7512F04 /* AccountBaseController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountBaseController.swift; sourceTree = "<group>"; };
+		8FB6F6CE0DC89F5FD2813344 /* appStore.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = appStore.js; sourceTree = "<group>"; };
+		9130B021F4C78B940AF1EF1D /* RequestLoadingPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RequestLoadingPlugin.swift; sourceTree = "<group>"; };
+		91FE3DAE9D24D5984D2FC646 /* MyMessageController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyMessageController.swift; sourceTree = "<group>"; };
+		920BA37DCAA4D14A9C7AE8F9 /* TreeArticleListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeArticleListView.swift; sourceTree = "<group>"; };
+		92B6B13D94E8EC208506AB44 /* Int+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
+		9321C5445140878C5844623E /* CoinRankViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRankViewModel.swift; sourceTree = "<group>"; };
+		93359368F805B5CAAA97CA1F /* Eventable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Eventable.swift; sourceTree = "<group>"; };
+		9458E5691A053B856F729B74 /* AppDelegate+NetworkConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+NetworkConfig.swift"; sourceTree = "<group>"; };
+		94BE49D407F57C671275BDFB /* Strings+SwiftGen.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Strings+SwiftGen.swift"; sourceTree = "<group>"; };
+		96313248C9EF15C705CDE033 /* MockService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
+		9709632320530E82ACE8B0CB /* LSApplicationProxy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LSApplicationProxy.m; sourceTree = "<group>"; };
+		97341DA38AA7F84547D3DFCF /* Banner.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Banner.swift; sourceTree = "<group>"; };
+		9943490F6515655F5D0DC8F2 /* UIApplication+SetAppIcon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+SetAppIcon.m"; sourceTree = "<group>"; };
+		999A39E9E98464449C910334 /* ModernLogging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogging.swift; sourceTree = "<group>"; };
+		99C5633B2273D819E6EB2F63 /* My.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = My.swift; sourceTree = "<group>"; };
+		9B5B0F1683F16673EC81710A /* ACarousel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ACarousel.swift; sourceTree = "<group>"; };
+		9BB75BC9699F482EAFBD9682 /* HotKeyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotKeyViewModel.swift; sourceTree = "<group>"; };
+		9BF7188D913D0781D5692D29 /* PropertyWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PropertyWrapper.swift; sourceTree = "<group>"; };
+		9CE8E30FFECE26181AF554AC /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		9D46091401553126486FCE64 /* EmptyStateView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		9DAA4D9DB9BEE4418D647E0C /* ProjectAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProjectAPIService.swift; sourceTree = "<group>"; };
+		9DD08FFD9D6EDE96450F907E /* CustomTabItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomTabItem.swift; sourceTree = "<group>"; };
+		9DF6711950C06F38A19DC1AF /* ContentScrollView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ContentScrollView.swift; sourceTree = "<group>"; };
+		9E21A1EC92FBFF352EBF416B /* View+ReceiveTimer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "View+ReceiveTimer.swift"; sourceTree = "<group>"; };
+		9F03A4FFDCB1FB3748803481 /* HotKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotKey.swift; sourceTree = "<group>"; };
+		9F18FACC275810D03F4F3736 /* ConstraintArray+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ConstraintArray+Extensions.swift"; sourceTree = "<group>"; };
+		9FB7346DF02EE3E1141AEA15 /* CollectViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CollectViewModel.swift; sourceTree = "<group>"; };
+		A00D9460997146E75C877C59 /* DownloadWebController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DownloadWebController.swift; sourceTree = "<group>"; };
+		A019A2492D3D4AB51684524C /* Course.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Course.swift; sourceTree = "<group>"; };
 		A0521E6121BBE077E3EAC696 /* UIApplication+SetAppIcon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIApplication+SetAppIcon.h"; sourceTree = "<group>"; };
-		A35BEED1F5685DC257612448 /* TheRouter+Generate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "TheRouter+Generate.swift"; path = "TheRouter+Generate.swift"; sourceTree = "<group>"; };
-		A3808E9859B7FAC8D8140960 /* Transform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Transform.swift; path = Transform.swift; sourceTree = "<group>"; };
-		A3D43A2F25E2553B8145DEFB /* grayMode.js */ = {isa = PBXFileReference; includeInIndex = 1; name = grayMode.js; path = grayMode.js; sourceTree = "<group>"; };
-		A3F00DD04BF25C774E82757D /* NetworkGZipPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkGZipPlugin.swift; path = NetworkGZipPlugin.swift; sourceTree = "<group>"; };
-		A4A1F48F2CB9E6D740E63FE3 /* HotKeyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKeyViewModel.swift; path = HotKeyViewModel.swift; sourceTree = "<group>"; };
-		A5976E9937F642445211C972 /* MineView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MineView.swift; path = MineView.swift; sourceTree = "<group>"; };
-		A5DDD5D5C9E48681571B9337 /* Main.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A874BCC85ED5D270D617B0CB /* ProjectService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProjectService.swift; path = ProjectService.swift; sourceTree = "<group>"; };
-		A87EF3853A280807A9341946 /* APIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = APIService.swift; path = APIService.swift; sourceTree = "<group>"; };
-		A940085C5B149FD797E1FA74 /* AccountServiceContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountServiceContainer.swift; path = AccountServiceContainer.swift; sourceTree = "<group>"; };
-		A94D36DD075B24936F193E27 /* TheRouterInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterInterceptor.swift; path = TheRouterInterceptor.swift; sourceTree = "<group>"; };
-		A9BD443AECCD7E49892E0CBA /* TheRouterDynamicParamsMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterDynamicParamsMapping.h; sourceTree = "<group>"; };
-		A9DF0518A58230A74A1F4FA6 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NetworkActivityManager.swift; path = NetworkActivityManager.swift; sourceTree = "<group>"; };
-		AA9F031FD71AA08C9419CF28 /* InvokeMethodType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InvokeMethodType.swift; path = InvokeMethodType.swift; sourceTree = "<group>"; };
-		AC57BF147BF795C9488933A2 /* TabsController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabsController.swift; path = TabsController.swift; sourceTree = "<group>"; };
-		ADBA2225A4F9707F8A506D39 /* SwiftUIStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		ADC041B86CA87412675CD1E8 /* EmptyModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EmptyModel.swift; path = EmptyModel.swift; sourceTree = "<group>"; };
-		AE275EE53AD27E16348FFD2A /* AppDelegate+LogConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+LogConfig.swift"; path = "AppDelegate+LogConfig.swift"; sourceTree = "<group>"; };
-		AEB10ED8F4B49AD238746D96 /* AppLifeCycleModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppLifeCycleModifier.swift; path = AppLifeCycleModifier.swift; sourceTree = "<group>"; };
-		B2019991F269D4C69A7188C8 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RxStudy-acknowledgements.plist"; sourceTree = "<group>"; };
-		B405872FABE10D6FF2A0AB0D /* ActivityIndicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ActivityIndicator.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
-		B432B3BAE9F33878902F7729 /* HUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HUD.swift; path = HUD.swift; sourceTree = "<group>"; };
-		B4CF8B90C048B2DA4C9A3651 /* ThirdPartyDetailController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThirdPartyDetailController.swift; path = ThirdPartyDetailController.swift; sourceTree = "<group>"; };
-		B6E5118950579A83668264F0 /* CustomLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomLogFormatter.swift; path = CustomLogFormatter.swift; sourceTree = "<group>"; };
-		B70BA8B7C1C6B90996493F69 /* CoinRankListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoinRankListController.swift; path = CoinRankListController.swift; sourceTree = "<group>"; };
-		B8DC1C57813FEAAC7A2968E4 /* CategoryTag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CategoryTag.swift; path = CategoryTag.swift; sourceTree = "<group>"; };
-		B92BA28B602AE8FB37665794 /* CategoryPageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CategoryPageView.swift; path = CategoryPageView.swift; sourceTree = "<group>"; };
-		B9F4CB5643F95A7658EBA412 /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleTabListViewModel.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
-		BA1D4C4CB4F70C4E322DD82E /* ProjectViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProjectViewModel.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
-		BA6014E21EA256817838B4F8 /* CollectAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CollectAPIService.swift; path = CollectAPIService.swift; sourceTree = "<group>"; };
-		BAAAE8E43D02DA3CE839EA1C /* SplashAnimatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SplashAnimatable.swift; path = SplashAnimatable.swift; sourceTree = "<group>"; };
-		BAFB0C576977F6B143ED142D /* CategoryArticleListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CategoryArticleListView.swift; path = CategoryArticleListView.swift; sourceTree = "<group>"; };
-		BB73528BFCEC8C1B543D8242 /* PublicNumberView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PublicNumberView.swift; path = PublicNumberView.swift; sourceTree = "<group>"; };
-		BBF017CE42FF1ADF539F5E00 /* CrashController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = CrashController.m; path = CrashController.m; sourceTree = "<group>"; };
-		BC783E3BCC982C8B3865C6E9 /* FooterKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FooterKey.swift; path = FooterKey.swift; sourceTree = "<group>"; };
-		BCCF6309AADD032C852D572D /* Footer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Footer.swift; path = Footer.swift; sourceTree = "<group>"; };
-		BCE420BC1172DAE53E13B5D4 /* RxSwiftCoinRankListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxSwiftCoinRankListController.swift; path = RxSwiftCoinRankListController.swift; sourceTree = "<group>"; };
-		BDAC3C7405156F9E79EF11EB /* Info.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Info.swift; path = Info.swift; sourceTree = "<group>"; };
-		BDFC7D77577B2EB671C31BFD /* MessageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MessageViewModel.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
-		BEA6719A94296A2DCA32F0DF /* View+LoginGuard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+LoginGuard.swift"; path = "View+LoginGuard.swift"; sourceTree = "<group>"; };
-		BEE0DFB8A18B8218B31D0675 /* NSURLProtocol+WKWebVIew.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebVIew.h"; sourceTree = "<group>"; };
-		BF1F2E08324CB6E69CC3704E /* HotKeyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HotKeyView.swift; path = HotKeyView.swift; sourceTree = "<group>"; };
-		C14D24C879231499ACFE3BCA /* BaseModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseModel.swift; path = BaseModel.swift; sourceTree = "<group>"; };
-		C18F4F8C280F667BD0E5B034 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C1D677F3CC636BE9EE2B571C /* SearchResultController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SearchResultController.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
-		C25D9ABF186CF5F182B82613 /* Pods-SwiftUIStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIStudy.debug.xcconfig"; path = "Target Support Files/Pods-SwiftUIStudy/Pods-SwiftUIStudy.debug.xcconfig"; sourceTree = "<group>"; };
-		C404F44B67BBF94FEA03C1AD /* ThirdPartyController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ThirdPartyController.swift; path = ThirdPartyController.swift; sourceTree = "<group>"; };
-		C433AD26A7A62BE32C41AE41 /* HomeService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeService.swift; path = HomeService.swift; sourceTree = "<group>"; };
-		C4F6F89543CEC55ABE8C03A3 /* LoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		C50C47A1598B468974C60A98 /* BannerCarouselView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BannerCarouselView.swift; path = BannerCarouselView.swift; sourceTree = "<group>"; };
-		C5AF586C2FF80EAC84C3065A /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		C5ED711AADE5DA6A3B95A09D /* TestMapComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TestMapComponent.h; sourceTree = "<group>"; };
-		C658DD77035BC2F8B06757C1 /* open.js */ = {isa = PBXFileReference; includeInIndex = 1; name = open.js; path = open.js; sourceTree = "<group>"; };
-		C9C8E9877E934DB5B80BF0F0 /* APIKeys.json */ = {isa = PBXFileReference; includeInIndex = 1; name = APIKeys.json; path = APIKeys.json; sourceTree = "<group>"; };
-		C9E8B5B85A2413D5D9F0BFCE /* ColorExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ColorExtensions.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
-		CA46EA4CBCF601BFD02F374E /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = HomeView.swift; sourceTree = "<group>"; };
-		CA8A3E390C2EC8A78FA94694 /* Refresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Refresh.swift; path = Refresh.swift; sourceTree = "<group>"; };
-		CAD6FDCB5AF7A34DEA8D213F /* SwiftUIStudyApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SwiftUIStudyApp.swift; path = SwiftUIStudyApp.swift; sourceTree = "<group>"; };
-		CB3D9133CE7571D746026209 /* ResponseCachePlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ResponseCachePlugin.swift; path = ResponseCachePlugin.swift; sourceTree = "<group>"; };
-		CD99177691284AB3FD4B4198 /* TheRouerBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouerBridge.swift; path = TheRouerBridge.swift; sourceTree = "<group>"; };
-		CEB8A84B72B0B77ED01FE97C /* AppNavigationBarExamples.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppNavigationBarExamples.swift; path = AppNavigationBarExamples.swift; sourceTree = "<group>"; };
-		CED0C77C1D801F4DB2D460BD /* swiftgen.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = swiftgen.sh; sourceTree = "<group>"; };
-		CF0B32EE940ECA8E71FE0B73 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; path = Podfile; sourceTree = "<group>"; };
-		CF3C4B2D1B69530FD5141E3A /* ScriptMessageHandlerType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScriptMessageHandlerType.swift; path = ScriptMessageHandlerType.swift; sourceTree = "<group>"; };
-		D138B2C6B2D03E7DAE62D735 /* BaseFlexController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseFlexController.swift; path = BaseFlexController.swift; sourceTree = "<group>"; };
-		D1F6813E7D89110590A7ADF2 /* CategoryPageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CategoryPageViewModel.swift; path = CategoryPageViewModel.swift; sourceTree = "<group>"; };
-		D2102AEF9D0E1AD421988DB6 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UIPanGestureRecognizer+Extension.swift"; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
-		D2D0219965FECCD2A68FBC06 /* ProjectView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ProjectView.swift; path = ProjectView.swift; sourceTree = "<group>"; };
-		D53CC9402773A334F425C499 /* ViewState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewState.swift; path = ViewState.swift; sourceTree = "<group>"; };
-		D554C4E41F4C2D54A606CE40 /* PollingNetworkRequester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PollingNetworkRequester.swift; path = PollingNetworkRequester.swift; sourceTree = "<group>"; };
-		D5953A7394055B3F684EB88A /* TheRouterPattern.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouterPattern.swift; path = TheRouterPattern.swift; sourceTree = "<group>"; };
-		D7155D2F057D917351D34426 /* AppIconType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppIconType.swift; path = AppIconType.swift; sourceTree = "<group>"; };
-		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D8A5B6B377BE60C2F5538A2F /* MyHistoryCoin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyHistoryCoin.swift; path = MyHistoryCoin.swift; sourceTree = "<group>"; };
-		D9981A052D909CB3589433A2 /* TreeAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeAPIService.swift; path = TreeAPIService.swift; sourceTree = "<group>"; };
-		DA0950FB8C9C2B668DFE18B7 /* TreeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeController.swift; path = TreeController.swift; sourceTree = "<group>"; };
-		DA1F4050C32FFE7CE012D1AF /* TabBarViewControllerChildrenRefreshProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabBarViewControllerChildrenRefreshProtocol.swift; path = TabBarViewControllerChildrenRefreshProtocol.swift; sourceTree = "<group>"; };
-		DA398359BD513816D761F3F4 /* Array+URLQueryItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Array+URLQueryItem.swift"; path = "Array+URLQueryItem.swift"; sourceTree = "<group>"; };
-		DA40C7C2D9AFB5715F4CCB66 /* HomeViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeViewModel.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		DB2FECBB76A29C7951BB82F6 /* HomeAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HomeAPIService.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
-		DB457C0C06DABD884DC5ECA7 /* WebView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "WebView+Extension.swift"; path = "WebView+Extension.swift"; sourceTree = "<group>"; };
-		DD2EA6704FF67EA6114D6F02 /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DefaultEnumCodable.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
-		DE0E50532D2F9B8048E10910 /* RegisterController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RegisterController.swift; path = RegisterController.swift; sourceTree = "<group>"; };
-		DEED9C6FE8D8649FE720E312 /* NSObject+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "NSObject+Extension.swift"; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
-		E2974C546DAD013761D9C978 /* CopyActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CopyActivity.swift; path = CopyActivity.swift; sourceTree = "<group>"; };
-		E303A291535FD029309C838B /* LayoutType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutType.swift; path = LayoutType.swift; sourceTree = "<group>"; };
-		E3B5BA79D819C6BC36431296 /* EditTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = EditTableViewController.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
-		E439800BB9779066D2908523 /* TreeService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TreeService.swift; path = TreeService.swift; sourceTree = "<group>"; };
-		E646C5027BFA5B81AD88BCEE /* InfoViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = InfoViewCell.swift; path = InfoViewCell.swift; sourceTree = "<group>"; };
-		E6DE056FC6726A24102BA0D0 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BaseTableViewCell.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
-		E868522DC2265F83EF1D1300 /* __UNI__98AF8A0.wgt */ = {isa = PBXFileReference; includeInIndex = 1; name = __UNI__98AF8A0.wgt; path = __UNI__98AF8A0.wgt; sourceTree = "<group>"; };
-		E9CF941F800E591760BF4FC9 /* AccountCookie.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AccountCookie.swift; path = AccountCookie.swift; sourceTree = "<group>"; };
-		EAE9921624D70B50010681CA /* TheRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TheRouter.swift; path = TheRouter.swift; sourceTree = "<group>"; };
-		ECF76552DAEF1A850BDE652C /* TheRouterableProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterableProxy.h; sourceTree = "<group>"; };
-		ED7F1BBCCDE5156234828A00 /* TypeNameProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TypeNameProtocol.swift; path = TypeNameProtocol.swift; sourceTree = "<group>"; };
-		ED9EFD3C8402548F0CC690E8 /* LoginViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginViewModel.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		EDD199FB21B7E3FE3DA57ED0 /* AppDelegate+RouterConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "AppDelegate+RouterConfig.swift"; path = "AppDelegate+RouterConfig.swift"; sourceTree = "<group>"; };
-		EE263615D621B9BEB7FF009D /* List+Refresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "List+Refresh.swift"; path = "List+Refresh.swift"; sourceTree = "<group>"; };
-		F15640429F727B8EBAA2AC0C /* Podfile.lock */ = {isa = PBXFileReference; includeInIndex = 1; path = Podfile.lock; sourceTree = "<group>"; };
-		F2787B0E14B8005045306D4D /* View+OnLoad.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "View+OnLoad.swift"; path = "View+OnLoad.swift"; sourceTree = "<group>"; };
-		F2C2BFFDE8AD9919E60FF690 /* TheRouterDynamicParamsMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterDynamicParamsMapping.h; sourceTree = "<group>"; };
-		F48934AFC44144AF60ADD157 /* LoginPageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LoginPageViewModel.swift; path = LoginPageViewModel.swift; sourceTree = "<group>"; };
-		F66ABC9C4DFFC3B6D947FD10 /* LSBundleProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LSBundleProxy.h; sourceTree = "<group>"; };
-		F8E17132E6889621CC54AECD /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SnapKitLayoutController.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
-		F91C727A9AD47904AAEA9585 /* MyService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = MyService.swift; path = MyService.swift; sourceTree = "<group>"; };
-		F943A05A3D58FFB8F21BDCD0 /* AppState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AppState.swift; path = AppState.swift; sourceTree = "<group>"; };
-		F9498815E528DA4CD18B2D2A /* TheRouterableProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterableProxy.h; sourceTree = "<group>"; };
-		F9D22A9C39918BCF1279D793 /* Rx+Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Rx+Operators.swift"; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
-		FA33C4BBFCCE37106A4003E6 /* NavigationUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NavigationUrl.swift; path = NavigationUrl.swift; sourceTree = "<group>"; };
-		FC0E48A2D8A9C7419584C7DB /* ACarouselAutoScroll.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ACarouselAutoScroll.swift; path = ACarouselAutoScroll.swift; sourceTree = "<group>"; };
-		FC688532113F72C56CFD3436 /* Codable+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Codable+Extension.swift"; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
-		FC86809A1D635DA6F64B5478 /* NativeEventChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NativeEventChannel.swift; path = NativeEventChannel.swift; sourceTree = "<group>"; };
-		FC8BBB48FAA8EEBDE8D8AFB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		FCF65E7C80AC485326D2FD04 /* SingleTabListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SingleTabListController.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
-		FDC5AF1E40744CE92997F137 /* CustomItemView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomItemView.swift; path = CustomItemView.swift; sourceTree = "<group>"; };
-		FF49AD376E9F503653F9890A /* check-shared-sources.py */ = {isa = PBXFileReference; includeInIndex = 1; path = "check-shared-sources.py"; sourceTree = "<group>"; };
-		FF8A315375A40EEBC60A9BC5 /* Theme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Theme.swift; path = Theme.swift; sourceTree = "<group>"; };
-		FFAF1A9D33A65FE705BE2736 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RxWebViewControllerDelegateProxy.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
+		A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernNetworkLogger.swift; sourceTree = "<group>"; };
+		A35BEED1F5685DC257612448 /* TheRouter+Generate.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "TheRouter+Generate.swift"; sourceTree = "<group>"; };
+		A3808E9859B7FAC8D8140960 /* Transform.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Transform.swift; sourceTree = "<group>"; };
+		A3D43A2F25E2553B8145DEFB /* grayMode.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = grayMode.js; sourceTree = "<group>"; };
+		A3F00DD04BF25C774E82757D /* NetworkGZipPlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkGZipPlugin.swift; sourceTree = "<group>"; };
 		A41920260000000000000001 /* AccountSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSession.swift; sourceTree = "<group>"; };
 		A41920260000000000000004 /* PaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaginationState.swift; sourceTree = "<group>"; };
+		A4A1F48F2CB9E6D740E63FE3 /* HotKeyViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotKeyViewModel.swift; sourceTree = "<group>"; };
+		A5976E9937F642445211C972 /* MineView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MineView.swift; sourceTree = "<group>"; };
+		A5DDD5D5C9E48681571B9337 /* Main.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		A874BCC85ED5D270D617B0CB /* ProjectService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProjectService.swift; sourceTree = "<group>"; };
+		A87EF3853A280807A9341946 /* APIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggingConfiguration.swift; sourceTree = "<group>"; };
+		A940085C5B149FD797E1FA74 /* AccountServiceContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountServiceContainer.swift; sourceTree = "<group>"; };
+		A94D36DD075B24936F193E27 /* TheRouterInterceptor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterInterceptor.swift; sourceTree = "<group>"; };
+		A9BD443AECCD7E49892E0CBA /* TheRouterDynamicParamsMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterDynamicParamsMapping.h; sourceTree = "<group>"; };
+		A9DF0518A58230A74A1F4FA6 /* NetworkActivityManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NetworkActivityManager.swift; sourceTree = "<group>"; };
+		AA9F031FD71AA08C9419CF28 /* InvokeMethodType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InvokeMethodType.swift; sourceTree = "<group>"; };
+		AC57BF147BF795C9488933A2 /* TabsController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabsController.swift; sourceTree = "<group>"; };
+		ADBA2225A4F9707F8A506D39 /* SwiftUIStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUIStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ADC041B86CA87412675CD1E8 /* EmptyModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EmptyModel.swift; sourceTree = "<group>"; };
+		AE275EE53AD27E16348FFD2A /* AppDelegate+LogConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+LogConfig.swift"; sourceTree = "<group>"; };
+		AEB10ED8F4B49AD238746D96 /* AppLifeCycleModifier.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppLifeCycleModifier.swift; sourceTree = "<group>"; };
+		B2019991F269D4C69A7188C8 /* Pods-RxStudy-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-RxStudy-acknowledgements.plist"; sourceTree = "<group>"; };
+		B405872FABE10D6FF2A0AB0D /* ActivityIndicator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B432B3BAE9F33878902F7729 /* HUD.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HUD.swift; sourceTree = "<group>"; };
+		B4CF8B90C048B2DA4C9A3651 /* ThirdPartyDetailController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ThirdPartyDetailController.swift; sourceTree = "<group>"; };
+		B6E5118950579A83668264F0 /* CustomLogFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomLogFormatter.swift; sourceTree = "<group>"; };
+		B70BA8B7C1C6B90996493F69 /* CoinRankListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CoinRankListController.swift; sourceTree = "<group>"; };
+		B8DC1C57813FEAAC7A2968E4 /* CategoryTag.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoryTag.swift; sourceTree = "<group>"; };
+		B92BA28B602AE8FB37665794 /* CategoryPageView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoryPageView.swift; sourceTree = "<group>"; };
+		B9F4CB5643F95A7658EBA412 /* SingleTabListViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SingleTabListViewModel.swift; sourceTree = "<group>"; };
+		BA1D4C4CB4F70C4E322DD82E /* ProjectViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProjectViewModel.swift; sourceTree = "<group>"; };
+		BA6014E21EA256817838B4F8 /* CollectAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CollectAPIService.swift; sourceTree = "<group>"; };
+		BAAAE8E43D02DA3CE839EA1C /* SplashAnimatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SplashAnimatable.swift; sourceTree = "<group>"; };
+		BAFB0C576977F6B143ED142D /* CategoryArticleListView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoryArticleListView.swift; sourceTree = "<group>"; };
+		BB73528BFCEC8C1B543D8242 /* PublicNumberView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PublicNumberView.swift; sourceTree = "<group>"; };
+		BBF017CE42FF1ADF539F5E00 /* CrashController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = CrashController.m; sourceTree = "<group>"; };
+		BC783E3BCC982C8B3865C6E9 /* FooterKey.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = FooterKey.swift; sourceTree = "<group>"; };
+		BCCF6309AADD032C852D572D /* Footer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Footer.swift; sourceTree = "<group>"; };
+		BCE420BC1172DAE53E13B5D4 /* RxSwiftCoinRankListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RxSwiftCoinRankListController.swift; sourceTree = "<group>"; };
+		BDAC3C7405156F9E79EF11EB /* Info.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Info.swift; sourceTree = "<group>"; };
+		BDFC7D77577B2EB671C31BFD /* MessageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MessageViewModel.swift; sourceTree = "<group>"; };
+		BEA6719A94296A2DCA32F0DF /* View+LoginGuard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "View+LoginGuard.swift"; sourceTree = "<group>"; };
+		BEE0DFB8A18B8218B31D0675 /* NSURLProtocol+WKWebVIew.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "NSURLProtocol+WKWebVIew.h"; sourceTree = "<group>"; };
+		BF1F2E08324CB6E69CC3704E /* HotKeyView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HotKeyView.swift; sourceTree = "<group>"; };
+		C14D24C879231499ACFE3BCA /* BaseModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		C18F4F8C280F667BD0E5B034 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C1D677F3CC636BE9EE2B571C /* SearchResultController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SearchResultController.swift; sourceTree = "<group>"; };
+		C25D9ABF186CF5F182B82613 /* Pods-SwiftUIStudy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUIStudy.debug.xcconfig"; path = "Target Support Files/Pods-SwiftUIStudy/Pods-SwiftUIStudy.debug.xcconfig"; sourceTree = "<group>"; };
+		C404F44B67BBF94FEA03C1AD /* ThirdPartyController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ThirdPartyController.swift; sourceTree = "<group>"; };
+		C433AD26A7A62BE32C41AE41 /* HomeService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeService.swift; sourceTree = "<group>"; };
+		C4F6F89543CEC55ABE8C03A3 /* LoadingView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		C50C47A1598B468974C60A98 /* BannerCarouselView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BannerCarouselView.swift; sourceTree = "<group>"; };
+		C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogFormatter.swift; sourceTree = "<group>"; };
+		C5AF586C2FF80EAC84C3065A /* en */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		C5ED711AADE5DA6A3B95A09D /* TestMapComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TestMapComponent.h; sourceTree = "<group>"; };
+		C658DD77035BC2F8B06757C1 /* open.js */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.javascript; path = open.js; sourceTree = "<group>"; };
+		C9C8E9877E934DB5B80BF0F0 /* APIKeys.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = APIKeys.json; sourceTree = "<group>"; };
+		C9E8B5B85A2413D5D9F0BFCE /* ColorExtensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ColorExtensions.swift; sourceTree = "<group>"; };
+		CA46EA4CBCF601BFD02F374E /* HomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		CA8A3E390C2EC8A78FA94694 /* Refresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Refresh.swift; sourceTree = "<group>"; };
+		CAD6FDCB5AF7A34DEA8D213F /* SwiftUIStudyApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SwiftUIStudyApp.swift; sourceTree = "<group>"; };
+		CB3D9133CE7571D746026209 /* ResponseCachePlugin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponseCachePlugin.swift; sourceTree = "<group>"; };
+		CD99177691284AB3FD4B4198 /* TheRouerBridge.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouerBridge.swift; sourceTree = "<group>"; };
+		CEB8A84B72B0B77ED01FE97C /* AppNavigationBarExamples.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppNavigationBarExamples.swift; sourceTree = "<group>"; };
+		CED0C77C1D801F4DB2D460BD /* swiftgen.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = swiftgen.sh; sourceTree = "<group>"; };
+		CF0B32EE940ECA8E71FE0B73 /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		CF3C4B2D1B69530FD5141E3A /* ScriptMessageHandlerType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScriptMessageHandlerType.swift; sourceTree = "<group>"; };
+		D138B2C6B2D03E7DAE62D735 /* BaseFlexController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseFlexController.swift; sourceTree = "<group>"; };
+		D1F6813E7D89110590A7ADF2 /* CategoryPageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CategoryPageViewModel.swift; sourceTree = "<group>"; };
+		D2102AEF9D0E1AD421988DB6 /* UIPanGestureRecognizer+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "UIPanGestureRecognizer+Extension.swift"; sourceTree = "<group>"; };
+		D2D0219965FECCD2A68FBC06 /* ProjectView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ProjectView.swift; sourceTree = "<group>"; };
+		D53CC9402773A334F425C499 /* ViewState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ViewState.swift; sourceTree = "<group>"; };
+		D554C4E41F4C2D54A606CE40 /* PollingNetworkRequester.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PollingNetworkRequester.swift; sourceTree = "<group>"; };
+		D5953A7394055B3F684EB88A /* TheRouterPattern.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouterPattern.swift; sourceTree = "<group>"; };
+		D7155D2F057D917351D34426 /* AppIconType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppIconType.swift; sourceTree = "<group>"; };
+		D76530C2026EEA5366404510 /* Pods_RxStudy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxStudy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D8A5B6B377BE60C2F5538A2F /* MyHistoryCoin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyHistoryCoin.swift; sourceTree = "<group>"; };
+		D9981A052D909CB3589433A2 /* TreeAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeAPIService.swift; sourceTree = "<group>"; };
+		DA0950FB8C9C2B668DFE18B7 /* TreeController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeController.swift; sourceTree = "<group>"; };
+		DA1F4050C32FFE7CE012D1AF /* TabBarViewControllerChildrenRefreshProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarViewControllerChildrenRefreshProtocol.swift; sourceTree = "<group>"; };
+		DA398359BD513816D761F3F4 /* Array+URLQueryItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Array+URLQueryItem.swift"; sourceTree = "<group>"; };
+		DA40C7C2D9AFB5715F4CCB66 /* HomeViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		DB2FECBB76A29C7951BB82F6 /* HomeAPIService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeAPIService.swift; sourceTree = "<group>"; };
+		DB457C0C06DABD884DC5ECA7 /* WebView+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "WebView+Extension.swift"; sourceTree = "<group>"; };
+		DD2EA6704FF67EA6114D6F02 /* DefaultEnumCodable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DefaultEnumCodable.swift; sourceTree = "<group>"; };
+		DE0E50532D2F9B8048E10910 /* RegisterController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		DEED9C6FE8D8649FE720E312 /* NSObject+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
+		E2974C546DAD013761D9C978 /* CopyActivity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CopyActivity.swift; sourceTree = "<group>"; };
+		E303A291535FD029309C838B /* LayoutType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutType.swift; sourceTree = "<group>"; };
+		E3B5BA79D819C6BC36431296 /* EditTableViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		E439800BB9779066D2908523 /* TreeService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TreeService.swift; sourceTree = "<group>"; };
+		E646C5027BFA5B81AD88BCEE /* InfoViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = InfoViewCell.swift; sourceTree = "<group>"; };
+		E6DE056FC6726A24102BA0D0 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		E868522DC2265F83EF1D1300 /* __UNI__98AF8A0.wgt */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file; path = __UNI__98AF8A0.wgt; sourceTree = "<group>"; };
+		E9CF941F800E591760BF4FC9 /* AccountCookie.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AccountCookie.swift; sourceTree = "<group>"; };
+		EAE9921624D70B50010681CA /* TheRouter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TheRouter.swift; sourceTree = "<group>"; };
+		ECF76552DAEF1A850BDE652C /* TheRouterableProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterableProxy.h; sourceTree = "<group>"; };
+		ED7F1BBCCDE5156234828A00 /* TypeNameProtocol.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TypeNameProtocol.swift; sourceTree = "<group>"; };
+		ED9EFD3C8402548F0CC690E8 /* LoginViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		EDD199FB21B7E3FE3DA57ED0 /* AppDelegate+RouterConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "AppDelegate+RouterConfig.swift"; sourceTree = "<group>"; };
+		EE263615D621B9BEB7FF009D /* List+Refresh.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "List+Refresh.swift"; sourceTree = "<group>"; };
+		F15640429F727B8EBAA2AC0C /* Podfile.lock */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = Podfile.lock; sourceTree = "<group>"; };
+		F2787B0E14B8005045306D4D /* View+OnLoad.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "View+OnLoad.swift"; sourceTree = "<group>"; };
+		F2C2BFFDE8AD9919E60FF690 /* TheRouterDynamicParamsMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterDynamicParamsMapping.h; sourceTree = "<group>"; };
+		F48934AFC44144AF60ADD157 /* LoginPageViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginPageViewModel.swift; sourceTree = "<group>"; };
+		F66ABC9C4DFFC3B6D947FD10 /* LSBundleProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LSBundleProxy.h; sourceTree = "<group>"; };
+		F8E17132E6889621CC54AECD /* SnapKitLayoutController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SnapKitLayoutController.swift; sourceTree = "<group>"; };
+		F91C727A9AD47904AAEA9585 /* MyService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = MyService.swift; sourceTree = "<group>"; };
+		F943A05A3D58FFB8F21BDCD0 /* AppState.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		F9498815E528DA4CD18B2D2A /* TheRouterableProxy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TheRouterableProxy.h; sourceTree = "<group>"; };
+		F9D22A9C39918BCF1279D793 /* Rx+Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Rx+Operators.swift"; sourceTree = "<group>"; };
+		FA33C4BBFCCE37106A4003E6 /* NavigationUrl.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NavigationUrl.swift; sourceTree = "<group>"; };
+		FC0E48A2D8A9C7419584C7DB /* ACarouselAutoScroll.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ACarouselAutoScroll.swift; sourceTree = "<group>"; };
+		FC688532113F72C56CFD3436 /* Codable+Extension.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Codable+Extension.swift"; sourceTree = "<group>"; };
+		FC86809A1D635DA6F64B5478 /* NativeEventChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NativeEventChannel.swift; sourceTree = "<group>"; };
+		FC8BBB48FAA8EEBDE8D8AFB8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModernLogFileManager.swift; sourceTree = "<group>"; };
+		FCF65E7C80AC485326D2FD04 /* SingleTabListController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SingleTabListController.swift; sourceTree = "<group>"; };
+		FDC5AF1E40744CE92997F137 /* CustomItemView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CustomItemView.swift; sourceTree = "<group>"; };
+		FF49AD376E9F503653F9890A /* check-shared-sources.py */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.python; path = "check-shared-sources.py"; sourceTree = "<group>"; };
+		FF8A315375A40EEBC60A9BC5 /* Theme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		FFAF1A9D33A65FE705BE2736 /* RxWebViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RxWebViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -756,19 +756,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		4F43D71A3DD6510A9EF83572 /* Modern */ = {
-			isa = PBXGroup;
-			children = (
-				A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */,
-				FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */,
-				C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */,
-				45F1A21448776836EEF2786D /* ModernLogRedactor.swift */,
-				999A39E9E98464449C910334 /* ModernLogging.swift */,
-				A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */,
-			);
-			path = Modern;
-			sourceTree = "<group>";
-		};
 		0379593A790D1485253FA234 /* Tree */ = {
 			isa = PBXGroup;
 			children = (
@@ -777,7 +764,6 @@
 				7C28861FFE4AEA868708600B /* TreeView.swift */,
 				20D6A89C8777481AFA1578B3 /* TreeViewModel.swift */,
 			);
-			name = Tree;
 			path = Tree;
 			sourceTree = "<group>";
 		};
@@ -787,7 +773,6 @@
 				D2D0219965FECCD2A68FBC06 /* ProjectView.swift */,
 				BA1D4C4CB4F70C4E322DD82E /* ProjectViewModel.swift */,
 			);
-			name = Project;
 			path = Project;
 			sourceTree = "<group>";
 		};
@@ -797,7 +782,6 @@
 				E2974C546DAD013761D9C978 /* CopyActivity.swift */,
 				6DB6C03D6A4E2FE513D1B1E3 /* SafariActivity.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -838,7 +822,6 @@
 				330DA454F5F224DD454930F5 /* UIViewController+Extension.swift */,
 				DB457C0C06DABD884DC5ECA7 /* WebView+Extension.swift */,
 			);
-			name = Extension;
 			path = Extension;
 			sourceTree = "<group>";
 		};
@@ -861,7 +844,6 @@
 				ED7F1BBCCDE5156234828A00 /* TypeNameProtocol.swift */,
 				314B87C19BC21C9A65A1FFEE /* UIKitBridgeSwiftUI.swift */,
 			);
-			name = Utils;
 			path = Utils;
 			sourceTree = "<group>";
 		};
@@ -891,7 +873,6 @@
 				326B14C9F7433E2E359F0A66 /* TheRouterServiceManager.swift */,
 				3D0C81A9F4F37516C1F8A365 /* TheRouterServiceProtocol.swift */,
 			);
-			name = Sources;
 			path = Sources;
 			sourceTree = "<group>";
 		};
@@ -902,7 +883,6 @@
 				ECF76552DAEF1A850BDE652C /* TheRouterableProxy.h */,
 				F2C2BFFDE8AD9919E60FF690 /* TheRouterDynamicParamsMapping.h */,
 			);
-			name = include;
 			path = include;
 			sourceTree = "<group>";
 		};
@@ -915,7 +895,6 @@
 				F8E17132E6889621CC54AECD /* SnapKitLayoutController.swift */,
 				19A96FFD982926685BA4664E /* SwiftCoinRankListController.swift */,
 			);
-			name = RxSwiftExample;
 			path = RxSwiftExample;
 			sourceTree = "<group>";
 		};
@@ -924,7 +903,6 @@
 			children = (
 				C9C8E9877E934DB5B80BF0F0 /* APIKeys.json */,
 			);
-			name = JSONS;
 			path = JSONS;
 			sourceTree = "<group>";
 		};
@@ -940,7 +918,6 @@
 				CB3D9133CE7571D746026209 /* ResponseCachePlugin.swift */,
 				5993D63AC3CC0756D1F3BB63 /* ResponseInterceptorPlugin.swift */,
 			);
-			name = Plugin;
 			path = Plugin;
 			sourceTree = "<group>";
 		};
@@ -950,7 +927,6 @@
 				BB73528BFCEC8C1B543D8242 /* PublicNumberView.swift */,
 				5C8EE869E74574B11A8D17C0 /* PublicNumberViewModel.swift */,
 			);
-			name = PublicNumber;
 			path = PublicNumber;
 			sourceTree = "<group>";
 		};
@@ -962,7 +938,6 @@
 				F48934AFC44144AF60ADD157 /* LoginPageViewModel.swift */,
 				17F5D869FE20FB72A885442F /* TestViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
@@ -976,7 +951,6 @@
 				F13398DE35619B220C98EFFE /* Models */,
 				44CB45678574DE4279C9C10F /* Resources */,
 			);
-			name = Shared;
 			path = Shared;
 			sourceTree = "<group>";
 		};
@@ -988,7 +962,6 @@
 				C0D5DAE4C222E7C4E338E74D /* View */,
 				EE0868739E0E7E48877BB619 /* ViewModel */,
 			);
-			name = Home;
 			path = Home;
 			sourceTree = "<group>";
 		};
@@ -998,7 +971,6 @@
 				3D6FC7885DEC8E329C1A9B97 /* MJRefresh+RxSwift.swift */,
 				3A01F94ADFC1067CF7A5E061 /* UIScrollView+RxSwift.swift */,
 			);
-			name = "MJRefresh+RxSwift";
 			path = "MJRefresh+RxSwift";
 			sourceTree = "<group>";
 		};
@@ -1009,7 +981,6 @@
 				10E0E9529DE303153CF3BC86 /* Plugin */,
 				B10428A60EC52063D6C002F4 /* Service */,
 			);
-			name = HttpRequest;
 			path = HttpRequest;
 			sourceTree = "<group>";
 		};
@@ -1019,7 +990,6 @@
 				A5976E9937F642445211C972 /* MineView.swift */,
 				5FE4C48E56D5C57AE51BCFF6 /* MineViewModel.swift */,
 			);
-			name = Mine;
 			path = Mine;
 			sourceTree = "<group>";
 		};
@@ -1028,7 +998,6 @@
 			children = (
 				81D4EBE156A3DA2D66E18947 /* ThirdParty */,
 			);
-			name = Packages;
 			path = Packages;
 			sourceTree = "<group>";
 		};
@@ -1041,7 +1010,6 @@
 				AEB10ED8F4B49AD238746D96 /* AppLifeCycleModifier.swift */,
 				9E21A1EC92FBFF352EBF416B /* View+ReceiveTimer.swift */,
 			);
-			name = ACarousel;
 			path = ACarousel;
 			sourceTree = "<group>";
 		};
@@ -1051,7 +1019,6 @@
 				9CE8E30FFECE26181AF554AC /* LoginView.swift */,
 				ED9EFD3C8402548F0CC690E8 /* LoginViewModel.swift */,
 			);
-			name = Login;
 			path = Login;
 			sourceTree = "<group>";
 		};
@@ -1060,7 +1027,6 @@
 			children = (
 				10AF3DDFED3DB02F281C8403 /* GrayView.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1069,7 +1035,6 @@
 			children = (
 				D53CC9402773A334F425C499 /* ViewState.swift */,
 			);
-			name = ViewState;
 			path = ViewState;
 			sourceTree = "<group>";
 		};
@@ -1105,7 +1070,6 @@
 				75DDB30AD0F9EB4C74C07844 /* TabType.swift */,
 				651D74AB0F37150E7031EFE6 /* ViewController.swift */,
 			);
-			name = RxStudy;
 			path = RxStudy;
 			sourceTree = "<group>";
 		};
@@ -1117,7 +1081,6 @@
 				BAAAE8E43D02DA3CE839EA1C /* SplashAnimatable.swift */,
 				0FD75D5B94CCCA06C09D71B9 /* SplashAnimationType.swift */,
 			);
-			name = RevealingSplashView;
 			path = RevealingSplashView;
 			sourceTree = "<group>";
 		};
@@ -1127,7 +1090,6 @@
 				876B0678B8EEFF58A6C77985 /* CoinView.swift */,
 				2F9045E32AC96BFC0E1D6691 /* CoinViewModel.swift */,
 			);
-			name = Coin;
 			path = Coin;
 			sourceTree = "<group>";
 		};
@@ -1136,7 +1098,6 @@
 			children = (
 				A3808E9859B7FAC8D8140960 /* Transform.swift */,
 			);
-			name = Transform;
 			path = Transform;
 			sourceTree = "<group>";
 		};
@@ -1148,7 +1109,6 @@
 				E7982DC4FAA7AB8035242B88 /* View */,
 				EF174935D386E10FD82A42E7 /* ViewModel */,
 			);
-			name = Tabs;
 			path = Tabs;
 			sourceTree = "<group>";
 		};
@@ -1159,7 +1119,6 @@
 				D8099FC5908C1AC9DCE97BBA /* JavaScript */,
 				41E2087F8ABC4751496D28AC /* Assets.xcassets */,
 			);
-			name = Resources;
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -1175,7 +1134,6 @@
 				CA8A3E390C2EC8A78FA94694 /* Refresh.swift */,
 				5F9CD9A029C2F560D74F6A4A /* Utilities.swift */,
 			);
-			name = Refresh;
 			path = Refresh;
 			sourceTree = "<group>";
 		};
@@ -1185,7 +1143,6 @@
 				28D1D2E1B290F17EF5335E49 /* CoinRankListView.swift */,
 				3BE2B3F9766FFB04EEB37D6C /* CoinRankListViewModel.swift */,
 			);
-			name = CoinRankList;
 			path = CoinRankList;
 			sourceTree = "<group>";
 		};
@@ -1194,7 +1151,6 @@
 			children = (
 				81C9018D7F7C05A41A3D2D67 /* Constant.swift */,
 			);
-			name = Constant;
 			path = Constant;
 			sourceTree = "<group>";
 		};
@@ -1210,7 +1166,6 @@
 				A0521E6121BBE077E3EAC696 /* UIApplication+SetAppIcon.h */,
 				9943490F6515655F5D0DC8F2 /* UIApplication+SetAppIcon.m */,
 			);
-			name = CrashController;
 			path = CrashController;
 			sourceTree = "<group>";
 		};
@@ -1222,7 +1177,6 @@
 				2E78B1C847BAB94F8DF0A9F2 /* TestModule.h */,
 				36E42AD194E8F399869FE368 /* TestModule.m */,
 			);
-			name = Extension;
 			path = Extension;
 			sourceTree = "<group>";
 		};
@@ -1232,8 +1186,20 @@
 				9F18FACC275810D03F4F3736 /* ConstraintArray+Extensions.swift */,
 				3E8ECA9019E00D2E8BFEA111 /* ConstraintArrayDSL.swift */,
 			);
-			name = SnapKitExtension;
 			path = SnapKitExtension;
+			sourceTree = "<group>";
+		};
+		4F43D71A3DD6510A9EF83572 /* Modern */ = {
+			isa = PBXGroup;
+			children = (
+				A93DCB32154EE0DD6E3DD199 /* LoggingConfiguration.swift */,
+				FC8E1A0B9A64EF20E3106F9E /* ModernLogFileManager.swift */,
+				C59B196DB112225C2DC82A58 /* ModernLogFormatter.swift */,
+				45F1A21448776836EEF2786D /* ModernLogRedactor.swift */,
+				999A39E9E98464449C910334 /* ModernLogging.swift */,
+				A156D5553149C1A22B258704 /* ModernNetworkLogger.swift */,
+			);
+			path = Modern;
 			sourceTree = "<group>";
 		};
 		4F7053094559F42FBF996EC1 /* Apps */ = {
@@ -1242,7 +1208,6 @@
 				E868522DC2265F83EF1D1300 /* __UNI__98AF8A0.wgt */,
 				8C5F7551B153FC67933852A0 /* __UNI__C0D30A1.wgt */,
 			);
-			name = Apps;
 			path = Apps;
 			sourceTree = "<group>";
 		};
@@ -1260,7 +1225,6 @@
 				2F80086B23D1A00C0BBEDE73 /* PublicNumberAPIService.swift */,
 				D9981A052D909CB3589433A2 /* TreeAPIService.swift */,
 			);
-			name = Network;
 			path = Network;
 			sourceTree = "<group>";
 		};
@@ -1270,7 +1234,6 @@
 				3E4436F2F862EA5825427EB9 /* InnerEventResponsible.swift */,
 				52520080DB860D2F1EA38A39 /* InnerViewEvent.swift */,
 			);
-			name = InnerViewEvent;
 			path = InnerViewEvent;
 			sourceTree = "<group>";
 		};
@@ -1282,7 +1245,6 @@
 				BEA6719A94296A2DCA32F0DF /* View+LoginGuard.swift */,
 				81C492DC223647991310C610 /* View+Navigation.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
 			sourceTree = "<group>";
 		};
@@ -1294,7 +1256,6 @@
 				B6E5118950579A83668264F0 /* CustomLogFormatter.swift */,
 				584C70688B77EEDCE6418DCD /* LogUtils.swift */,
 			);
-			name = Log;
 			path = Log;
 			sourceTree = "<group>";
 		};
@@ -1328,7 +1289,6 @@
 			children = (
 				5C68C3C77143C163C6DD0F52 /* OtherApp.swift */,
 			);
-			name = Enum;
 			path = Enum;
 			sourceTree = "<group>";
 		};
@@ -1339,7 +1299,6 @@
 				6466878D7F591A9675CC884F /* LoginController.swift */,
 				DE0E50532D2F9B8048E10910 /* RegisterController.swift */,
 			);
-			name = Controller;
 			path = Controller;
 			sourceTree = "<group>";
 		};
@@ -1351,7 +1310,6 @@
 				A41920260000000000000004 /* PaginationState.swift */,
 				ADC041B86CA87412675CD1E8 /* EmptyModel.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -1361,7 +1319,6 @@
 				E303A291535FD029309C838B /* LayoutType.swift */,
 				7F737F5DB43FBB48F4976448 /* TagType.swift */,
 			);
-			name = Enum;
 			path = Enum;
 			sourceTree = "<group>";
 		};
@@ -1380,7 +1337,6 @@
 				5F2DB40360C7B94D32F4130B /* TabModel.swift */,
 				338F4E1558F75FE2001B7658 /* Tool.swift */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -1392,7 +1348,6 @@
 				2F7168ACE88C9B50B2811FC2 /* MessageContentCell.swift */,
 				3C2940A373772206CFEE0CE9 /* MyView.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1401,7 +1356,6 @@
 			children = (
 				1E2CFCD021C70B24F343BE59 /* NetworkActivityLogger.swift */,
 			);
-			name = AlamofireNetworkActivityLogger;
 			path = AlamofireNetworkActivityLogger;
 			sourceTree = "<group>";
 		};
@@ -1411,7 +1365,6 @@
 				39B828EF02FC29F0AFBA9D8B /* FSPagerView+Rx.swift */,
 				7ADCE716E7F2FBAD60D324D8 /* RxFSPagerViewDelegateProxy.swift */,
 			);
-			name = "FSPagerView+RxSwift";
 			path = "FSPagerView+RxSwift";
 			sourceTree = "<group>";
 		};
@@ -1420,7 +1373,6 @@
 			children = (
 				D6120972414F76729ED213A2 /* TheRouter */,
 			);
-			name = ThirdParty;
 			path = ThirdParty;
 			sourceTree = "<group>";
 		};
@@ -1430,7 +1382,6 @@
 				8209EA2C7C42F808E8A3BCE8 /* State.swift */,
 				39A18E6AFE1C1DF60ED7CA31 /* SubscriptionToken.swift */,
 			);
-			name = State;
 			path = State;
 			sourceTree = "<group>";
 		};
@@ -1443,7 +1394,6 @@
 				AA9F031FD71AA08C9419CF28 /* InvokeMethodType.swift */,
 				FC86809A1D635DA6F64B5478 /* NativeEventChannel.swift */,
 			);
-			name = FlutterManager;
 			path = FlutterManager;
 			sourceTree = "<group>";
 		};
@@ -1458,7 +1408,6 @@
 				061814DF86A4BC35E0E3E325 /* SimpleRefreshingView.swift */,
 				F2787B0E14B8005045306D4D /* View+OnLoad.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1468,7 +1417,6 @@
 				71B8E8A020E0D61E25467883 /* CollectView.swift */,
 				9FB7346DF02EE3E1141AEA15 /* CollectViewModel.swift */,
 			);
-			name = Collect;
 			path = Collect;
 			sourceTree = "<group>";
 		};
@@ -1484,7 +1432,6 @@
 				1EE6ED4D2854D8DB7D1F54D9 /* AppDelegate+ScreenCapture.swift */,
 				7BFFFA4A37E9840A93F798A0 /* AppDelegate+SecurityConfig.swift */,
 			);
-			name = "AppDelegate+Extension";
 			path = "AppDelegate+Extension";
 			sourceTree = "<group>";
 		};
@@ -1505,7 +1452,6 @@
 				843A710743635F908005C475 /* ToolController.swift */,
 				49F3C2B5822BDB0693FF632C /* TreeCellStyleChangeController.swift */,
 			);
-			name = Controller;
 			path = Controller;
 			sourceTree = "<group>";
 		};
@@ -1514,7 +1460,6 @@
 			children = (
 				58012BA5D81E6F2495963B32 /* WebViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
@@ -1523,7 +1468,6 @@
 			children = (
 				2FBC29C690EE23F661C67E16 /* ViewModelProtocol.swift */,
 			);
-			name = "ViewModel+Plus";
 			path = "ViewModel+Plus";
 			sourceTree = "<group>";
 		};
@@ -1532,7 +1476,6 @@
 			children = (
 				7B079E10F84221C00AD2F644 /* ListViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
@@ -1544,7 +1487,6 @@
 				800F42AA4FCAA7F9E936F6C7 /* AccountManagerUsageGuide.swift */,
 				A940085C5B149FD797E1FA74 /* AccountServiceContainer.swift */,
 			);
-			name = Manager;
 			path = Manager;
 			sourceTree = "<group>";
 		};
@@ -1554,7 +1496,6 @@
 				BEE0DFB8A18B8218B31D0675 /* NSURLProtocol+WKWebVIew.h */,
 				62EBB79D2910CBCF709A5539 /* NSURLProtocol+WKWebVIew.m */,
 			);
-			name = "NSURLProtocol+WKWebVIew";
 			path = "NSURLProtocol+WKWebVIew";
 			sourceTree = "<group>";
 		};
@@ -1563,7 +1504,6 @@
 			children = (
 				7EA72BC903995AB49FF4E327 /* Api.swift */,
 			);
-			name = API;
 			path = API;
 			sourceTree = "<group>";
 		};
@@ -1574,7 +1514,6 @@
 				5A1C4E3EE87BF128A52B052E /* CoinRankListPage.swift */,
 				09BBF40809B307D4D159B545 /* LoginPage.swift */,
 			);
-			name = Page;
 			path = Page;
 			sourceTree = "<group>";
 		};
@@ -1592,7 +1531,6 @@
 				2EDDA7D33BBFAD636BAEF238 /* PublicNumberService.swift */,
 				E439800BB9779066D2908523 /* TreeService.swift */,
 			);
-			name = Service;
 			path = Service;
 			sourceTree = "<group>";
 		};
@@ -1611,7 +1549,6 @@
 				DB75F2B96F967B35C389A633 /* Search */,
 				0379593A790D1485253FA234 /* Tree */,
 			);
-			name = Features;
 			path = Features;
 			sourceTree = "<group>";
 		};
@@ -1632,7 +1569,6 @@
 				AC57BF147BF795C9488933A2 /* TabsController.swift */,
 				DA0950FB8C9C2B668DFE18B7 /* TreeController.swift */,
 			);
-			name = Controller;
 			path = Controller;
 			sourceTree = "<group>";
 		};
@@ -1642,7 +1578,6 @@
 				FFAF1A9D33A65FE705BE2736 /* RxWebViewControllerDelegateProxy.swift */,
 				43EAEBE7FF5AE50E169B5417 /* WebViewController+Rx.swift */,
 			);
-			name = RxDelegateTest;
 			path = RxDelegateTest;
 			sourceTree = "<group>";
 		};
@@ -1653,7 +1588,6 @@
 				31609CF73EEA157FBC81337E /* InfoGenericsCell.swift */,
 				E646C5027BFA5B81AD88BCEE /* InfoViewCell.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1663,7 +1597,6 @@
 				6040C680108ED7D9442A626B /* LaunchScreen.storyboard */,
 				A5DDD5D5C9E48681571B9337 /* Main.storyboard */,
 			);
-			name = Base.lproj;
 			path = Base.lproj;
 			sourceTree = "<group>";
 		};
@@ -1682,7 +1615,6 @@
 				DA1F4050C32FFE7CE012D1AF /* TabBarViewControllerChildrenRefreshProtocol.swift */,
 				FF8A315375A40EEBC60A9BC5 /* Theme.swift */,
 			);
-			name = Base;
 			path = Base;
 			sourceTree = "<group>";
 		};
@@ -1694,7 +1626,6 @@
 				C4F6F89543CEC55ABE8C03A3 /* LoadingView.swift */,
 				6D72CD1D980985BE4E08E4D4 /* UniMPManager.swift */,
 			);
-			name = UniMP;
 			path = UniMP;
 			sourceTree = "<group>";
 		};
@@ -1706,7 +1637,6 @@
 				78AC6F61CB5A3758876CAD81 /* View */,
 				F66A1DF39DED5E0F8F9742D6 /* ViewModel */,
 			);
-			name = My;
 			path = My;
 			sourceTree = "<group>";
 		};
@@ -1718,7 +1648,6 @@
 				32C9CB50CB4C3A33598A5D31 /* View */,
 				9CBA6896E9EB066A7829C363 /* ViewModel */,
 			);
-			name = Account;
 			path = Account;
 			sourceTree = "<group>";
 		};
@@ -1731,7 +1660,6 @@
 				063AB940C2B91F859E441168 /* View */,
 				999590F01F4F418E9405F21B /* ViewModel */,
 			);
-			name = WebView;
 			path = WebView;
 			sourceTree = "<group>";
 		};
@@ -1740,7 +1668,6 @@
 			children = (
 				09167BED565142CA7A4F55AC /* Sources */,
 			);
-			name = TheRouter;
 			path = TheRouter;
 			sourceTree = "<group>";
 		};
@@ -1751,7 +1678,6 @@
 				A3D43A2F25E2553B8145DEFB /* grayMode.js */,
 				C658DD77035BC2F8B06757C1 /* open.js */,
 			);
-			name = JavaScript;
 			path = JavaScript;
 			sourceTree = "<group>";
 		};
@@ -1774,7 +1700,6 @@
 				2905BABA744AC96385FC051D /* SearchResultView.swift */,
 				61F9C4A410A3FC381485E2FC /* SearchResultViewModel.swift */,
 			);
-			name = Search;
 			path = Search;
 			sourceTree = "<group>";
 		};
@@ -1783,7 +1708,6 @@
 			children = (
 				E9CF941F800E591760BF4FC9 /* AccountCookie.swift */,
 			);
-			name = Business;
 			path = Business;
 			sourceTree = "<group>";
 		};
@@ -1805,7 +1729,6 @@
 				CF3C4B2D1B69530FD5141E3A /* ScriptMessageHandlerType.swift */,
 				78FB3313188EFB3E696AE51B /* ShareType.swift */,
 			);
-			name = Enum;
 			path = Enum;
 			sourceTree = "<group>";
 		};
@@ -1815,7 +1738,6 @@
 				891081973F038520705E088D /* Assets+SwiftGen.swift */,
 				94BE49D407F57C671275BDFB /* Strings+SwiftGen.swift */,
 			);
-			name = Generated;
 			path = Generated;
 			sourceTree = "<group>";
 		};
@@ -1829,7 +1751,6 @@
 				9DD08FFD9D6EDE96450F907E /* CustomTabItem.swift */,
 				262E600D37D05AD673557BA0 /* TypeViewController.swift */,
 			);
-			name = CustomTabBarExample;
 			path = CustomTabBarExample;
 			sourceTree = "<group>";
 		};
@@ -1850,7 +1771,6 @@
 				813F15FCE82C2C5209D76A64 /* ShareSheet.swift */,
 				2DB859BBC3BEAFA69DAE186F /* WebUIController.swift */,
 			);
-			name = Components;
 			path = Components;
 			sourceTree = "<group>";
 		};
@@ -1860,7 +1780,6 @@
 				FF49AD376E9F503653F9890A /* check-shared-sources.py */,
 				CED0C77C1D801F4DB2D460BD /* swiftgen.sh */,
 			);
-			name = scripts;
 			path = scripts;
 			sourceTree = "<group>";
 		};
@@ -1869,7 +1788,6 @@
 			children = (
 				4006343855B345BAC8854167 /* TreeCell.swift */,
 			);
-			name = View;
 			path = View;
 			sourceTree = "<group>";
 		};
@@ -1879,7 +1797,6 @@
 				CA46EA4CBCF601BFD02F374E /* HomeView.swift */,
 				DA40C7C2D9AFB5715F4CCB66 /* HomeViewModel.swift */,
 			);
-			name = Home;
 			path = Home;
 			sourceTree = "<group>";
 		};
@@ -1890,7 +1807,6 @@
 				B92BA28B602AE8FB37665794 /* CategoryPageView.swift */,
 				D1F6813E7D89110590A7ADF2 /* CategoryPageViewModel.swift */,
 			);
-			name = Category;
 			path = Category;
 			sourceTree = "<group>";
 		};
@@ -1911,7 +1827,6 @@
 				8A573E6F7768B7CBCD0405A9 /* View */,
 				16653BBEF128FC4F1FAD71D7 /* ViewModel */,
 			);
-			name = SwiftUIExample;
 			path = SwiftUIExample;
 			sourceTree = "<group>";
 		};
@@ -1922,7 +1837,6 @@
 				A4A1F48F2CB9E6D740E63FE3 /* HotKeyViewModel.swift */,
 				3D3D8DD516EB045B84695184 /* SearchResultViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
@@ -1932,7 +1846,6 @@
 				B9F4CB5643F95A7658EBA412 /* SingleTabListViewModel.swift */,
 				570E2134EBBD281A0E4C53F5 /* TabsViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
@@ -1945,7 +1858,6 @@
 				63CD713CF177F7BFA3E0B451 /* Page.swift */,
 				2CE06182387E4E64132DE80B /* WebLoadInfo.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -1956,7 +1868,6 @@
 				57D1FEEE7E18031457B11D50 /* ClassBanner.swift */,
 				24D1B75D69C742B2DB10A24B /* ClassCoinRank.swift */,
 			);
-			name = Model;
 			path = Model;
 			sourceTree = "<group>";
 		};
@@ -1967,7 +1878,6 @@
 				5654F2380783812EE69779A4 /* WeakScriptMessageDelegate.swift */,
 				562DAAB02C9D2DC64A93844D /* WebViewController.swift */,
 			);
-			name = Controller;
 			path = Controller;
 			sourceTree = "<group>";
 		};
@@ -1981,7 +1891,6 @@
 				0A7D633D4DFC250FB05D2059 /* MyViewModel.swift */,
 				1A5CE109E33D9F40283F020D /* ToolViewModel.swift */,
 			);
-			name = ViewModel;
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
@@ -1996,7 +1905,6 @@
 				C18F4F8C280F667BD0E5B034 /* Info.plist */,
 				CAD6FDCB5AF7A34DEA8D213F /* SwiftUIStudyApp.swift */,
 			);
-			name = SwiftUIStudy;
 			path = SwiftUIStudy;
 			sourceTree = "<group>";
 		};
@@ -2007,7 +1915,6 @@
 				7A4CBA8531A5C8659F8A8174 /* MessageReadyStatus.swift */,
 				99C5633B2273D819E6EB2F63 /* My.swift */,
 			);
-			name = Enum;
 			path = Enum;
 			sourceTree = "<group>";
 		};
@@ -2019,7 +1926,6 @@
 				2A2D32A23C96C25733E5B798 /* HotKeyFlexBoxController.swift */,
 				C1D677F3CC636BE9EE2B571C /* SearchResultController.swift */,
 			);
-			name = Controller;
 			path = Controller;
 			sourceTree = "<group>";
 		};
@@ -2171,9 +2077,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2210,9 +2120,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftUIStudy/Pods-SwiftUIStudy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SwiftUIStudy/Pods-SwiftUIStudy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2227,9 +2141,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-RxStudy/Pods-RxStudy-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
