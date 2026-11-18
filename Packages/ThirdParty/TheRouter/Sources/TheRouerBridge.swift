@@ -8,6 +8,7 @@
 import Foundation
 
 @objcMembers
+@MainActor
 public class TheRouerBridge: NSObject {
     
     public class func canOpenUrl(_ urlString: String) -> Bool {

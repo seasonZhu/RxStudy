@@ -102,7 +102,7 @@ public extension URL {
 extension TheRouter {
     
     // MARK: - Convenience method
-    public class func generate(_ patternString: String, params: [String: Any] = [String: Any](), jumpType: LAJumpType) -> (String, [String: Any]) {
+    public nonisolated class func generate(_ patternString: String, params: [String: Any] = [String: Any](), jumpType: LAJumpType) -> (String, [String: Any]) {
         
         if let url = URL(string: patternString) {
             let orginParams = url.urlParameters ?? [String: Any]()

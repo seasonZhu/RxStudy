@@ -20,6 +20,7 @@ public let kSAppleSuffix = "com.apple"
 /// 排除cocoaPods相关库
 public let kSCocoaPodsSuffix = "org.cocoapods"
 
+@MainActor
 public class TheRouterManager: NSObject {
     
     static public let shareInstance = TheRouterManager()

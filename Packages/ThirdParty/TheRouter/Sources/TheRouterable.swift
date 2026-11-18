@@ -7,6 +7,7 @@
 
 import UIKit
 
+@MainActor
 public protocol TheRouterable {
     
     static var patternString: [String] { get }

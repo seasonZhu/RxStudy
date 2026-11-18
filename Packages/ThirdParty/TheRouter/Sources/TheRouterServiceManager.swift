@@ -8,14 +8,13 @@ import Foundation
 
 public typealias LAServiceCreator = () -> Any
 
+@MainActor
 public final class TheRouterServiceManager {
     
     public static let `default` = TheRouterServiceManager()
     
     public init() {}
     
-    /// Service 同步
-    private let serviceQueue = DispatchQueue(label: "scheme.TheRouterServiceManager.queue")
     /// Service构建者
     public var creatorsMap: [String: LAServiceCreator] = [:]
     /// service缓存
@@ -34,9 +33,7 @@ public extension TheRouterServiceManager {
     ///   - named: 服务名称
     ///   - creator: 服务构造者
     func registerService(named: String, creator: @escaping LAServiceCreator) {
-        serviceQueue.async {
-            self.creatorsMap[named] = creator
-        }
+        self.creatorsMap[named] = creator
     }
     
     /// 通过服务名称(named)注册一个服务实例 (存在缓存中)
@@ -44,9 +41,7 @@ public extension TheRouterServiceManager {
     ///   - named: 服务名称
     ///   - instance: 服务实例
     func registerService(named: String, instance: Any) {
-        serviceQueue.async {
-            self.servicesCache[named] = instance
-        }
+        self.servicesCache[named] = instance
     }
     
     /// 通过服务名称(named)注册LAServiceCreator
@@ -88,10 +83,8 @@ public extension TheRouterServiceManager {
     /// - Parameter named: 服务名称
     @discardableResult
     func unregisterService(named: String) -> Any? {
-        return serviceQueue.sync {
-            self.creatorsMap.removeValue(forKey: named)
-            return self.servicesCache.removeValue(forKey: named)
-        }
+        self.creatorsMap.removeValue(forKey: named)
+        return self.servicesCache.removeValue(forKey: named)
     }
     
     /// 通过服务接口取消注册服务
@@ -107,9 +100,7 @@ public extension TheRouterServiceManager {
     typealias BatchServiceMap = [String: LAServiceCreator]
     typealias ServiceEntry = BatchServiceMap.Element
     func registerService(_ services: BatchServiceMap) {
-        serviceQueue.async {
-            self.creatorsMap.merge(services, uniquingKeysWith: { _, v2 in v2 })
-        }
+        self.creatorsMap.merge(services, uniquingKeysWith: { _, v2 in v2 })
     }
     
     func registerService(entryLiteral entries: ServiceEntry ...) {
@@ -125,19 +116,17 @@ public extension TheRouterServiceManager {
     ///   - shouldCache: 是否需要缓存
     func createService(named: String, shouldCache: Bool = true) -> Any? {
         // 检查是否有缓存
-        if let service = serviceQueue.sync(execute: { servicesCache[named] }) {
+        if let service = servicesCache[named] {
             return service
         }
         // 检查是否有构造者
-        guard let creator = serviceQueue.sync(execute: { creatorsMap[named] }) else {
+        guard let creator = creatorsMap[named] else {
             return nil
         }
         
         let service = creator()
         if shouldCache {
-            self.serviceQueue.async {
-                self.servicesCache[named] = service
-            }
+            self.servicesCache[named] = service
         }
         return service
     }
@@ -169,16 +158,12 @@ public extension TheRouterServiceManager {
 // MARK: - Service Clean Cache
 public extension TheRouterServiceManager {
     func cleanAllServiceCache() {
-        serviceQueue.async {
-            self.servicesCache.removeAll()
-        }
+        self.servicesCache.removeAll()
     }
     
     @discardableResult
     func cleanServiceCache(named: String) -> Any? {
-        return serviceQueue.sync {
-            return self.servicesCache.removeValue(forKey: named)
-        }
+        return self.servicesCache.removeValue(forKey: named)
     }
     
     @discardableResult

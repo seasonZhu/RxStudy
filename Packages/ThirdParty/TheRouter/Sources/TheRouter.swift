@@ -21,6 +21,7 @@ public class TheRouerParamsClosureWrapper: NSObject {
     }
 }
 
+@MainActor
 public class TheRouter: TheRouterParser {
     
     // MARK: - Constants

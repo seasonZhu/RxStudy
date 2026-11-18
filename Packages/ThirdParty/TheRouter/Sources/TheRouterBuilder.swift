@@ -64,6 +64,7 @@ extension TheRouterBuilder {
     }
     
     @discardableResult
+    @MainActor
     public func buildService<TheRouterServiceProtocol>(_ protocolInstance: TheRouterServiceProtocol.Type, methodName: String) -> Self {
         let protocolName = String(describing: protocolInstance)
         buildResult.0 = "\(TheRouter.shareInstance.serviceHost)protocol=\(protocolName)&method=\(methodName)"
@@ -71,6 +72,7 @@ extension TheRouterBuilder {
     }
     
     @discardableResult
+    @MainActor
     public func buildServicePath<TheRouterServiceProtocol>(_ protocolInstance: TheRouterServiceProtocol.Type, methodName: String) -> String {
         let protocolName = String(describing: protocolInstance)
         return "\(TheRouter.shareInstance.serviceHost)protocol=\(protocolName)&method=\(methodName)"
@@ -89,12 +91,14 @@ extension TheRouterBuilder {
     }
     
     @discardableResult
+    @MainActor
     public func fetchService() -> Any? {
         let result = TheRouter.generate(buildResult.0, params: buildResult.1, jumpType: .push)
         TheRouter.shareInstance.logcat?(buildResult.0, .logNormal, "")
         return TheRouter.openURL(result)
     }
     
+    @MainActor
     public func navigation(_ handler: ComplateHandler = nil) {
         TheRouter.openURL(buildResult, complateHandler: handler)
     }
