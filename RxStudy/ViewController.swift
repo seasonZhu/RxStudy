@@ -201,10 +201,12 @@ extension ViewController {
         /// 保证第一次进入App的时候,接收网络权限后,自动网络请求
         NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
             let value = NetworkReachabilityManager.default?.isReachable == true
-            let isFirst = UserDefaults.standard.value(forKey: kIsFirst) as? Bool
-            if value && isFirst == nil {
-                self.refreshChildren()
-                UserDefaults.standard.setValue(false, forKey: kIsFirst)
+            DispatchQueue.main.async {
+                let isFirst = UserDefaults.standard.value(forKey: kIsFirst) as? Bool
+                if value && isFirst == nil {
+                    self.refreshChildren()
+                    UserDefaults.standard.setValue(false, forKey: kIsFirst)
+                }
             }
         })
     }
@@ -264,7 +266,9 @@ extension ViewController.Direction: CustomStringConvertible {
 extension Reactive where Base: ViewController {
     var selectedIndexChange: Binder<ViewController.Direction> {
         return Binder(base) { vc, direction in
-            vc.changeSelectedViewController(direction: direction)
+            MainActor.assumeIsolated {
+                vc.changeSelectedViewController(direction: direction)
+            }
         }
     }
 }

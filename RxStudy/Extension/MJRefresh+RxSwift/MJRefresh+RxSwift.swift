@@ -74,7 +74,7 @@ extension Reactive where Base: MJRefreshComponent {
                 observer.on(.completed)
                 return Disposables.create()
             }
-            observer.on(.next(component.state))
+            MainActor.assumeIsolated { observer.on(.next(component.state)) }
             let target = MJRefreshTarget(component) { (state) in
                 observer.onNext(state)
             }
@@ -82,7 +82,9 @@ extension Reactive where Base: MJRefreshComponent {
         }.take(until: deallocated)
         
         let bindingObserver = Binder<MJRefreshState>(base) { (component, state) in
-            component.state = state
+            MainActor.assumeIsolated {
+                component.state = state
+            }
         }
         return ControlProperty(values: source, valueSink: bindingObserver)
     }

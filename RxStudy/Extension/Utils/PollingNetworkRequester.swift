@@ -81,13 +81,15 @@ class PollingNetworkRequester {
     }
     
     func stop() {
-        SVProgressHUD.dismiss()
+        DispatchQueue.main.async { SVProgressHUD.dismiss() }
         disposeBag = DisposeBag()
     }
 
     private func pollingObservable() -> Observable<PollingEndReason> {
-        SVProgressHUD.setDefaultMaskType(.black)
-        SVProgressHUD.show()
+        DispatchQueue.main.async {
+            SVProgressHUD.setDefaultMaskType(.black)
+            SVProgressHUD.show()
+        }
 
         // 用 PublishSubject 作为事件出口
         let resultSubject = PublishSubject<PollingEndReason>()
@@ -142,7 +144,7 @@ class PollingNetworkRequester {
 
         return resultSubject
             .do(onDispose: {
-                SVProgressHUD.dismiss()
+                DispatchQueue.main.async { SVProgressHUD.dismiss() }
             })
     }
 }

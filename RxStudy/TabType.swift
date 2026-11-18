@@ -19,7 +19,7 @@ enum TabType: CaseIterable {
 }
 
 extension TabType {
-    var viewController: UIViewController {
+    @MainActor var viewController: UIViewController {
         switch self {
         case .home:
             return HomeController()

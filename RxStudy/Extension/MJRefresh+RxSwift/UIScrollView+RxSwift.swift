@@ -35,31 +35,33 @@ extension Reactive where Base: UIScrollView {
     var refreshAction: Binder<MJRefreshAction> {
         
         return Binder(base) { (target, action) in
+            MainActor.assumeIsolated {
             
-            switch action {
-            case .begainRefresh:
-                if let header =  target.mj_header {
-                    header.beginRefreshing()
-                }
-            case .stopRefresh:
-                if let header =  target.mj_header {
-                    header.endRefreshing()
-                }
-            case .begainLoadmore:
-                if let footer =  target.mj_footer {
-                    footer.beginRefreshing()
-                }
-            case .stopLoadmore:
-                if let footer =  target.mj_footer {
-                    footer.endRefreshing()
-                }
-            case .showNomoreData:
-                if let footer =  target.mj_footer {
-                    footer.endRefreshingWithNoMoreData()
-                }
-            case .resetNomoreData:
-                if let footer =  target.mj_footer {
-                    footer.resetNoMoreData()
+                switch action {
+                case .begainRefresh:
+                    if let header =  target.mj_header {
+                        header.beginRefreshing()
+                    }
+                case .stopRefresh:
+                    if let header =  target.mj_header {
+                        header.endRefreshing()
+                    }
+                case .begainLoadmore:
+                    if let footer =  target.mj_footer {
+                        footer.beginRefreshing()
+                    }
+                case .stopLoadmore:
+                    if let footer =  target.mj_footer {
+                        footer.endRefreshing()
+                    }
+                case .showNomoreData:
+                    if let footer =  target.mj_footer {
+                        footer.endRefreshingWithNoMoreData()
+                    }
+                case .resetNomoreData:
+                    if let footer =  target.mj_footer {
+                        footer.resetNoMoreData()
+                    }
                 }
             }
         }

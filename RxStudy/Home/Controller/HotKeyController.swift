@@ -265,7 +265,7 @@ extension Reactive where Base == HotKeyController {
     /// Binder(base)里面尾随闭包不能用self.base
     var tagLayout: Binder<[HotKey]> {
         return Binder(base) { base, hotKeys in
-            base.tagLayout(hotKeys: hotKeys)
+            MainActor.assumeIsolated { base.tagLayout(hotKeys: hotKeys) }
         }
     }
 }

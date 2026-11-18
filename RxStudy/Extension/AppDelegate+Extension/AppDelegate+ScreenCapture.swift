@@ -28,10 +28,12 @@ extension AppDelegate {
             object: nil,
             queue: .main
         ) { _ in
-            if UIScreen.main.isCaptured {
-                print("屏幕正在被捕获，可以在这里做一些隐藏内容的操作")
-            } else {
-                print("屏幕没有被捕获，可以移除那个覆盖的视图")
+            MainActor.assumeIsolated {
+                if UIScreen.main.isCaptured {
+                    print("屏幕正在被捕获，可以在这里做一些隐藏内容的操作")
+                } else {
+                    print("屏幕没有被捕获，可以移除那个覆盖的视图")
+                }
             }
         }
     }

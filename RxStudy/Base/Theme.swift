@@ -64,12 +64,12 @@ extension ThemeType: ThemeProvider {
 /// // 切换到浅色主题
 /// themeService.switch(.light)
 /// ```
-let themeService = ThemeType.service(initial: .light)
+@MainActor let themeService = ThemeType.service(initial: .light)
 
 /// 切换当前主题
 ///
 /// 在浅色主题和深色主题之间切换
-func themeTriggered() {
+@MainActor func themeTriggered() {
     switch themeService.type {
     case .light:
         themeService.switch(.dark)
@@ -96,7 +96,7 @@ extension Haptics {
     /// 执行触觉反馈
     ///
     /// 根据当前枚举值触发相应的系统触觉反馈
-    func feedback() {
+    @MainActor func feedback() {
         let generator = UINotificationFeedbackGenerator()
         switch self {
         case .success:

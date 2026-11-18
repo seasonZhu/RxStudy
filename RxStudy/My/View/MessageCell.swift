@@ -64,7 +64,9 @@ extension MessageCell {
 extension Reactive where Base == MessageCell {
     var count: Binder<Int> {
         return Binder(base) { cell, count in
-            cell.count = count
+            MainActor.assumeIsolated {
+                cell.count = count
+            }
         }
     }
 }

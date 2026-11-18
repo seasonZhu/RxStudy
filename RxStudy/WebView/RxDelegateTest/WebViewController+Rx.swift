@@ -9,6 +9,7 @@
 import RxSwift
 import RxCocoa
 
+@MainActor
 extension Reactive where Base: WebViewController {
      
     /// 代理委托

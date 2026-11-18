@@ -1,5 +1,6 @@
 import SnapKit
 
+@MainActor
 public struct ConstraintArrayDSL {
     @discardableResult
     public func prepareConstraints(_ closure: (_ make: ConstraintMaker) -> Void) -> [Constraint] {

@@ -81,13 +81,17 @@ import RxCocoa
 extension Reactive where Base: UIViewController {
     var isGrayMode: Binder<Bool> {
         Binder(base) { base, isGrayMode in
-            base.grayMode(isGrayMode: isGrayMode)
+            MainActor.assumeIsolated {
+                base.grayMode(isGrayMode: isGrayMode)
+            }
         }
     }
     
     var windowGrayMode: Binder<Bool> {
         Binder(base) { base, isGrayMode in
-            base.windowGrayMode(isGrayMode: isGrayMode)
+            MainActor.assumeIsolated {
+                base.windowGrayMode(isGrayMode: isGrayMode)
+            }
         }
     }
 }

@@ -234,6 +234,7 @@ import CombineExt
 @MainActor
 class CombineCoinRankListViewModel {
     var cancellable: AnyCancellable?
+    private var futureCancellable: AnyCancellable?
     
     func getMyCoinList(page: Int) {
         cancellable = myProvider.requestPublisher(MyService.coinRank((page)))
@@ -253,6 +254,7 @@ class CombineCoinRankListViewModel {
     }
     
     isolated deinit {
+        futureCancellable?.cancel()
         cancellable?.cancel()
     }
 }
@@ -283,14 +285,18 @@ extension CombineCoinRankListViewModel {
     func futureTest() async {
         let vm = CombineCoinRankListViewModel()
         let response = vm.requestMyCoinList(page: 1)
-        if #available(iOS 15.0, *) {
-            do {
-                let value = try await response.value
-            } catch let moyaError {
-                print(moyaError)
+        // 只让 Void 穿过异步接缝，Future 和业务模型留在订阅侧。
+        await withCheckedContinuation { continuation in
+            vm.futureCancellable = response.sink { completion in
+                if case let .failure(error) = completion {
+                    print(error)
+                    continuation.resume()
+                }
+            } receiveValue: { value in
+                print(value)
+                continuation.resume()
             }
-        } else {
-            
         }
+        withExtendedLifetime(vm) {}
     }
 }

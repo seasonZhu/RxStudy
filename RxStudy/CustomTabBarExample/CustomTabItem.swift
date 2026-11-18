@@ -30,11 +30,11 @@ extension CustomTabItem {
         }
     }
     
-    var viewController: UIViewController {
+    @MainActor var viewController: UIViewController {
         TypeViewController(item: self)
     }
     
-    var customItemView: CustomItemView {
+    @MainActor var customItemView: CustomItemView {
         CustomItemView(with: self)
     }
     

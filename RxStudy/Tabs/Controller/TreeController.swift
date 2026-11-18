@@ -214,13 +214,17 @@ extension TreeController: TabBarViewControllerChildrenRefreshProtocol {
 extension Reactive where Base == TreeController {
     var tableViewSectionAndCellConfig: Binder<[TabModel]> {
         return Binder(base) { base, tabs in
-            base.tableViewSectionAndCellConfig(tabs: tabs)
+            MainActor.assumeIsolated {
+                base.tableViewSectionAndCellConfig(tabs: tabs)
+            }
         }
     }
     
     var tableViewSectionAndFlexLayoutCell: Binder<[TabModel]> {
         return Binder(base) { base, tabs in
-            base.tableViewSectionAndFlexLayoutCell(tabs: tabs)
+            MainActor.assumeIsolated {
+                base.tableViewSectionAndFlexLayoutCell(tabs: tabs)
+            }
         }
     }
 }

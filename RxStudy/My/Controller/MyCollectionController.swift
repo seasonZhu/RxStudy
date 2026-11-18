@@ -194,7 +194,9 @@ extension MyCollectionController {
 extension Reactive where Base: UITableView {
     var isShowEdit: Binder<Bool> {
         return Binder(base) { base, isEdit in
-            base.setEditing(isEdit, animated: true)
+            MainActor.assumeIsolated {
+                base.setEditing(isEdit, animated: true)
+            }
         }
     }
 }
@@ -202,7 +204,9 @@ extension Reactive where Base: UITableView {
 extension Reactive where Base: UINavigationItem {
     var rightBarButtonItem: Binder<UIBarButtonItem> {
         return Binder(base) { base, item in
-            base.rightBarButtonItem = item
+            MainActor.assumeIsolated {
+                base.rightBarButtonItem = item
+            }
         }
     }
 }

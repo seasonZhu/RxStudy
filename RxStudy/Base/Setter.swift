@@ -73,7 +73,7 @@ import class Foundation.NSObject
 /// Extend NSObject with `setter` proxy.
 extension NSObject: SetterCompatible { }
 
-let view: UIView =
+@MainActor let view: UIView =
     UIView()
     .setter
     .backgroundColor(.white)

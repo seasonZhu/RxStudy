@@ -9,7 +9,7 @@ extension String {
 
 extension Array where Element: ConstraintView {
     
-    public var snp: ConstraintArrayDSL {
+    @MainActor public var snp: ConstraintArrayDSL {
         return ConstraintArrayDSL(array: self)
     }
 }

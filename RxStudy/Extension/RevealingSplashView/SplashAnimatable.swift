@@ -12,6 +12,7 @@ import UIKit
 /**
  *  Protocol that represents splash animatable functionality
  */
+@MainActor
 public protocol SplashAnimatable: AnyObject {
     
     /// The image view that shows the icon

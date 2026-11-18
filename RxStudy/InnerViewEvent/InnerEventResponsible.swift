@@ -11,10 +11,12 @@ import Foundation
 protocol InnerEventConvertible {}
 
 /// 响应子View的外层View去实现这个具体方法
+@MainActor
 protocol InnerEventResponsible: UIResponder {
     func innerEventHandle(event: any InnerEventConvertible)
 }
 
+@MainActor
 protocol BubbleEventProtocol {
     func bubbleEvent(_ event: any InnerEventConvertible)
 }

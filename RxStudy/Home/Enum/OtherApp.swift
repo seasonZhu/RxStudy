@@ -35,7 +35,7 @@ extension OtherApp {
         }
     }
     
-    var isCanOpen: Bool {
+    @MainActor var isCanOpen: Bool {
         guard let url = URL(string: self.scheme) else {
             return false
         }

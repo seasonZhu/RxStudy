@@ -9,9 +9,10 @@
 import RxSwift
 import RxCocoa
 
+@MainActor
 class RxWebViewControllerDelegateProxy
     : DelegateProxy<WebViewController, WebViewControllerDelegate>
-    , DelegateProxyType
+    , @MainActor DelegateProxyType
     , WebViewControllerDelegate {
     
     public weak private(set) var webViewController: WebViewController?
@@ -56,7 +57,7 @@ class RxWebViewControllerDelegateProxy
         object.delegate = delegate
     }
     
-    deinit {
+    isolated deinit {
         if let subject = _actionSuccessPublishSubject {
             subject.on(.completed)
         }

@@ -169,10 +169,12 @@ extension HomeController {
                     collectionView.isPagingEnabled = false
                     let interval: TimeInterval = 1.0/6.0
                     Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-                        let x = collectionView.contentOffset.x
-                        
-                        let contentOffset = CGPoint(x: x + 2, y: 0)
-                        collectionView.setContentOffset(contentOffset, animated: true)
+                        MainActor.assumeIsolated {
+                            let x = collectionView.contentOffset.x
+
+                            let contentOffset = CGPoint(x: x + 2, y: 0)
+                            collectionView.setContentOffset(contentOffset, animated: true)
+                        }
                     }
                     
                     pagerView.panGestureRecognizer.rx.event.subscribe(onNext: { _ in
@@ -190,7 +192,7 @@ extension HomeController {
 }
 
 // MARK: - FSPagerViewDataSource
-extension HomeController: FSPagerViewDataSource {
+extension HomeController: @MainActor FSPagerViewDataSource {
     func numberOfItems(in pagerView: FSPagerView) -> Int {
         return itmes.count
     }
@@ -208,7 +210,7 @@ extension HomeController: FSPagerViewDataSource {
 }
 
 // MARK: - FSPagerViewDelegate
-extension HomeController: FSPagerViewDelegate {
+extension HomeController: @MainActor FSPagerViewDelegate {
     func pagerView(_ pagerView: FSPagerView, didSelectItemAt index: Int) {
         pagerView.deselectItem(at: index, animated: false)
         let item = itmes[index]

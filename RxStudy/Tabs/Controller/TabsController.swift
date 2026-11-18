@@ -229,7 +229,7 @@ extension TabsController {
     }
 }
 
-extension TabsController: JXSegmentedViewDelegate {
+extension TabsController: @MainActor JXSegmentedViewDelegate {
     func segmentedView(_ segmentedView: JXSegmentedView, didSelectedItemAt index: Int) {
         if tagSelectRefreshIndexs.contains(index) {
             return

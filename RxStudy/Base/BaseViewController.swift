@@ -142,7 +142,7 @@ class BaseViewController: UIViewController {
 
 // MARK: - LifetimeTracker的使用
 #if DEBUG
-extension BaseViewController: LifetimeTrackable {
+extension BaseViewController: @MainActor LifetimeTrackable {
     class var lifetimeConfiguration: LifetimeConfiguration {
         return LifetimeConfiguration(maxCount: 1, groupName: "VC")
     }
@@ -256,10 +256,12 @@ extension Reactive where Base: BaseViewController {
     /// 显示网络错误
     var networkError: Binder<MoyaError?> {
         return Binder(base) { vc, error in
-            if let _ = error {
-                vc.showErrorImage()
-            } else {
-                vc.hiddenErrorImage()
+            MainActor.assumeIsolated {
+                if let _ = error {
+                    vc.showErrorImage()
+                } else {
+                    vc.hiddenErrorImage()
+                }
             }
         }
     }

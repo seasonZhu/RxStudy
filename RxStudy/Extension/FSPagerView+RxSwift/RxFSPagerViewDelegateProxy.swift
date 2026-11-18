@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import FSPagerView
 
-extension FSPagerView: HasDelegate {
+extension FSPagerView: @MainActor HasDelegate {
     public typealias Delegate = FSPagerViewDelegate
 }
 

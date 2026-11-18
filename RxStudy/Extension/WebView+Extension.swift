@@ -11,7 +11,7 @@ import WebKit
 extension WKWebView {
     enum RunJavaScriptError: Error {
         case runJavaScriptFailed(Error)
-        case genericConversionsFailed(Any?)
+        case genericConversionsFailed(String)
     }
     
     /// 优化evaluateJavaScript方法,以保证错误类型更加明显
@@ -25,7 +25,7 @@ extension WKWebView {
             } else if let result = any as? T {
                 resultHandler?(.success(result))
             } else {
-                resultHandler?(.failure(.genericConversionsFailed(any)))
+                resultHandler?(.failure(.genericConversionsFailed(String(describing: any))))
             }
         }
     }

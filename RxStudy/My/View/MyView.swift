@@ -84,7 +84,9 @@ class MyView: UIView {
 extension Reactive where Base: MyView {
     var myInfo: Binder<CoinRank?> {
         return Binder(base) { myView, model in
-            myView.myCoin = model
+            MainActor.assumeIsolated {
+                myView.myCoin = model
+            }
         }
     }
 }

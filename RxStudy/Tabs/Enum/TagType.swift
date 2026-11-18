@@ -43,7 +43,7 @@ extension TagType {
         }
     }
     
-    var bottomOffset: CGFloat {
+    @MainActor var bottomOffset: CGFloat {
         if self == .course {
             return 0
         } else {

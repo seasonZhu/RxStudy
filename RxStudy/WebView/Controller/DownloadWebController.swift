@@ -276,7 +276,7 @@ extension DownloadWebController {
     }
 }
 
-extension DownloadWebController: UIDocumentInteractionControllerDelegate {
+extension DownloadWebController: @MainActor UIDocumentInteractionControllerDelegate {
     // 提供保存到文件应用的选项
     private func presentSaveToFilesOption(for fileURL: URL, filename: String) {
         // 创建文档交互控制器

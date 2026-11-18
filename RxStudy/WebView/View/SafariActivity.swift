@@ -41,8 +41,11 @@ class SafariActivity: UIActivity {
     
     /// 执行分享
     override func perform() {
-        if let url = self.url, UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
+        guard let url = self.url else { return }
+        Task { @MainActor in
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
         }
     }
     

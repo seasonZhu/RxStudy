@@ -19,7 +19,7 @@ import AppKit
 infix operator <-> : DefaultPrecedence
 
 #if os(iOS)
-func nonMarkedText(_ textInput: UITextInput) -> String? {
+@MainActor func nonMarkedText(_ textInput: UITextInput) -> String? {
     let start = textInput.beginningOfDocument
     let end = textInput.endOfDocument
 
@@ -40,7 +40,7 @@ func nonMarkedText(_ textInput: UITextInput) -> String? {
     return (textInput.text(in: startRange) ?? "") + (textInput.text(in: endRange) ?? "")
 }
 
-func <-> <Base>(textInput: TextInput<Base>, relay: BehaviorRelay<String>) -> Disposable {
+@MainActor func <-> <Base>(textInput: TextInput<Base>, relay: BehaviorRelay<String>) -> Disposable {
     let bindToUIDisposable = relay.bind(to: textInput.text)
 
     let bindToRelay = textInput.text
