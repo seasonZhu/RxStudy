@@ -8,7 +8,7 @@
 import Foundation
 
 /// 热词模型
-struct HotKey: Codable, Identifiable {
+struct HotKey: Codable, Sendable, Identifiable {
     let id: Int?
     let link: String?
     let name: String?

@@ -51,6 +51,7 @@ extension ProjectAPI: TargetType {
 // MARK: - 项目 API 服务
 
 @Observable
+@MainActor
 final class ProjectAPIService {
     static let shared = ProjectAPIService()
 

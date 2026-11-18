@@ -12,6 +12,7 @@ import Moya
 // MARK: - API 服务协议
 
 /// API 服务基础协议
+@MainActor
 protocol APIService {
     associatedtype Target: TargetType
 
@@ -54,14 +55,14 @@ extension BaseModel {
 
 /// 取消处理器与 Moya 回调可能来自不同线程，所有共享状态都由锁保护。
 /// 不在持锁期间取消请求或恢复 continuation，允许 cancel 同步触发回调。
-private final class AsyncRequestState: @unchecked Sendable {
+private final class AsyncRequestState<Value: Sendable>: @unchecked Sendable {
     private enum Status { case pending, completed, cancelled }
     private let lock = NSLock()
     private var status = Status.pending
-    private var continuation: CheckedContinuation<Response, Error>?
+    private var continuation: CheckedContinuation<Value, Error>?
     private var cancellable: Cancellable?
 
-    func install(_ continuation: CheckedContinuation<Response, Error>) -> Bool {
+    func install(_ continuation: CheckedContinuation<Value, Error>) -> Bool {
         lock.lock()
         if status == .cancelled {
             lock.unlock()
@@ -82,7 +83,7 @@ private final class AsyncRequestState: @unchecked Sendable {
         if shouldCancel { cancellable.cancel() }
     }
 
-    func finish(_ result: Result<Response, Error>) {
+    func finish(_ result: Result<Value, Error>) {
         lock.lock()
         guard status == .pending else {
             lock.unlock()
@@ -117,14 +118,18 @@ private final class AsyncRequestState: @unchecked Sendable {
 
 extension MoyaProvider {
     /// 将任务取消传递给底层 Moya 请求，取消不包装为网络错误。
-    private func requestAsync(_ target: Target) async throws -> Response {
+    @MainActor
+    private func requestAsync<T: Codable & Sendable>(_ target: Target, responseType: BaseModel<T>.Type) async throws -> T {
         try _Concurrency.Task.checkCancellation()
-        let state = AsyncRequestState()
+        let state = AsyncRequestState<T>()
         return try await withTaskCancellationHandler {
             try await withCheckedThrowingContinuation { continuation in
                 guard state.install(continuation) else { return }
                 let cancellable = self.request(target) { result in
-                    state.finish(result.mapError { APIError.networkError($0) })
+                    let decoded = result.mapError { APIError.networkError($0) }.flatMap { response in
+                        Result { try response.map(responseType).getData() }
+                    }
+                    state.finish(decoded)
                 }
                 state.install(cancellable)
             }
@@ -134,16 +139,15 @@ extension MoyaProvider {
     }
 
     /// 带类型解析的 async/await 请求
-    func requestDecoded<T: Codable>(
+    @MainActor
+    func requestDecoded<T: Codable & Sendable>(
         _ target: Target,
         responseType: BaseModel<T>.Type
     ) async throws -> T {
         do {
-            let response = try await requestAsync(target)
+            let data = try await requestAsync(target, responseType: responseType)
             try _Concurrency.Task.checkCancellation()
-            let decoded = try response.map(BaseModel<T>.self)
-            try _Concurrency.Task.checkCancellation()
-            return try decoded.getData()
+            return data
         } catch {
             // 失败回调可能先于取消到达，但调用任务已经取消时仍按取消处理。
             try _Concurrency.Task.checkCancellation()

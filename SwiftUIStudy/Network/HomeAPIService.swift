@@ -65,6 +65,7 @@ extension HomeAPI: TargetType {
 // MARK: - 首页 API 服务
 
 @Observable
+@MainActor
 final class HomeAPIService {
     static let shared = HomeAPIService()
 

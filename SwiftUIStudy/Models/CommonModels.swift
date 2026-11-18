@@ -12,7 +12,7 @@ import Foundation
 
 // MARK: - 通用文章模型（用于首页、项目、公众号、体系、搜索等）
 
-struct InfoModel: Codable, Identifiable {
+struct InfoModel: Codable, Sendable, Identifiable {
     var title: String?
     var link: String?
     var originId: Int?
@@ -52,34 +52,34 @@ struct InfoModel: Codable, Identifiable {
     let zan: Int?
 }
 
-struct TagModel: Codable {
+struct TagModel: Codable, Sendable {
     let name: String?
     let url: String?
 }
 
 // MARK: - 项目相关模型
 
-struct ProjectTagModel: Codable, Identifiable, Hashable {
+struct ProjectTagModel: Codable, Sendable, Identifiable, Hashable {
     let id: Int?
     let name: String?
     let children: [ProjectChildTagModel]?
 }
 
-struct ProjectChildTagModel: Codable, Identifiable, Hashable {
+struct ProjectChildTagModel: Codable, Sendable, Identifiable, Hashable {
     let id: Int?
     let name: String?
 }
 
 // MARK: - 公众号相关模型
 
-struct PublicNumberTagModel: Codable, Identifiable, Hashable {
+struct PublicNumberTagModel: Codable, Sendable, Identifiable, Hashable {
     let id: Int?
     let name: String?
 }
 
 // MARK: - 账号相关模型
 
-struct UserInfoModel: Codable {
+struct UserInfoModel: Codable, Sendable {
     let admin: Bool?
     let chapterTops: [String]?
     let collectIds: [Int]?
@@ -96,13 +96,13 @@ struct UserInfoModel: Codable {
 
 // MARK: - 体系相关模型
 
-struct TreeTagModel: Codable, Identifiable, Hashable, Equatable {
+struct TreeTagModel: Codable, Sendable, Identifiable, Hashable, Equatable {
     let id: Int?
     let name: String?
     let children: [TreeChildTagModel]?
 }
 
-struct TreeChildTagModel: Codable, Identifiable, Hashable, Equatable {
+struct TreeChildTagModel: Codable, Sendable, Identifiable, Hashable, Equatable {
     let id: Int?
     let name: String?
 }

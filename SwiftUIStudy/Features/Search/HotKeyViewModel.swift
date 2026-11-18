@@ -26,6 +26,7 @@ class HotKeyViewModel {
 
     // MARK: - 初始化
 
+    @MainActor
     init(apiService: HomeAPIService = .shared) {
         self.apiService = apiService
     }

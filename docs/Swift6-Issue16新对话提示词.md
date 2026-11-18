@@ -1,0 +1,3 @@
+# 下一项就绪任务：Issue #16（B2）
+
+执行 [$implement](/Users/dy/.cc-switch/skills/implement/SKILL.md)，完成 seasonZhu/RxStudy Issue #16（Swift 6 迁移：修复 SwiftUI 页面状态与本地 HUD 隔离）。先读取 #16、父规格 #9、#11、#15 及 docs/Swift6严格并发诊断.md、docs/Swift6网络服务可发送性修复.md、docs/Swift6账号与全局状态修复.md。保持 codex/swift6-migration、用户未提交文件、锁定依赖、Flutter 关闭和 Swift 5 模式。只实施 B2，复用基线，依据真实诊断处理页面任务、状态、AccountAPIService.shared 与同步 TargetType.headers 的 Cookie 访问边界，以及本地 ProgressHUD 隔离与 Pod 安装边界，不升级依赖、不提前切换 Swift 6、不添加无安全依据兼容标记。先改源码针对性编译，稳定后执行 Issue 规定的两配置严格并发构建及相关、完整脚本测试；沿用 workspace、generic/platform=iOS、CODE_SIGNING_ALLOWED=NO、SWIFT_VERSION=5.9、SWIFT_STRICT_CONCURRENCY=complete。记录完整命令、设置、退出码、日志及既有日志 legacy 断言失败。附中文前后示例、选择理由、安全边界与 HUD 设备检查步骤，完成双轴审查并独立提交。设备验证由开发者执行，完成后提供下一项就绪任务提示词。

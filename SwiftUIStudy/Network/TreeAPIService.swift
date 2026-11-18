@@ -51,6 +51,7 @@ extension TreeAPI: TargetType {
 // MARK: - 体系 API 服务
 
 @Observable
+@MainActor
 final class TreeAPIService {
     static let shared = TreeAPIService()
 

@@ -41,7 +41,10 @@ struct AsyncRequestIntegrationTests {
         let task = _Concurrency.Task.detached {
             try await provider.requestDecoded(.probe, responseType: BaseModel<Payload>.self)
         }
-        precondition(CancellationProtocol.started.wait(timeout: .now() + 10) == .success)
+        let started = await _Concurrency.Task.detached {
+            CancellationProtocol.started.wait(timeout: .now() + 10) == .success
+        }.value
+        precondition(started)
         task.cancel()
         guard case .failure(let error) = await task.result, error is CancellationError else {
             preconditionFailure("真实 Moya 请求取消必须返回 CancellationError")

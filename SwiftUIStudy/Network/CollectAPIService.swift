@@ -44,6 +44,7 @@ extension CollectAPI: TargetType {
 // MARK: - 收藏 API 服务
 
 @Observable
+@MainActor
 final class CollectAPIService {
     static let shared = CollectAPIService()
 

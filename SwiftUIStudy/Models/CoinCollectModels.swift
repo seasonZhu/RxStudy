@@ -13,7 +13,7 @@ import Foundation
 typealias CoinUserInfoModel = CoinRankModel
 
 /// 积分排名模型
-struct CoinRankModel: Codable, Identifiable {
+struct CoinRankModel: Codable, Sendable, Identifiable {
     let coinCount: Int?
     let level: Int?
     let nickname: String?
@@ -47,7 +47,7 @@ struct CoinRankModel: Codable, Identifiable {
 }
 
 /// 我的积分记录模型
-struct MyHistoryCoin: Codable, Identifiable {
+struct MyHistoryCoin: Codable, Sendable, Identifiable {
     let coinCount: Int?
     let date: Int?
     let desc: String?

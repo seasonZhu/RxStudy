@@ -46,6 +46,7 @@ extension PublicNumberAPI: TargetType {
 // MARK: - 公众号 API 服务
 
 @Observable
+@MainActor
 final class PublicNumberAPIService {
     static let shared = PublicNumberAPIService()
 

@@ -18,6 +18,7 @@ protocol CategoryItem: Identifiable & Hashable {
 // MARK: - 类型安全的分类数据来源
 
 /// 分类模型、标题与请求由同一个来源绑定，调用者无需维护额外的分类枚举。
+@MainActor
 protocol CategorySource {
     associatedtype Item: CategoryItem
 

@@ -31,3 +31,5 @@ extension Page {
         return curPage == pageCount
     }
 }
+
+extension Page: Sendable where Content: Sendable {}

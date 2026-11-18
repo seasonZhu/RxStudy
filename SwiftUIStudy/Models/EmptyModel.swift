@@ -9,4 +9,4 @@
 import Foundation
 
 /// 空响应类型（用于不需要返回数据的接口，如 logout）
-struct EmptyModel: Codable {}
+struct EmptyModel: Codable, Sendable {}

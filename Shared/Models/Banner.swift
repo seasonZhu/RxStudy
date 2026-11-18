@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct Banner: Codable, Identifiable {
+public struct Banner: Codable, Sendable, Identifiable {
     public var id: Int?
 
     public var title: String?

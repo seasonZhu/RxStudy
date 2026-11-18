@@ -50,6 +50,7 @@ extension CoinAPI: TargetType {
 // MARK: - 积分 API 服务
 
 @Observable
+@MainActor
 final class CoinAPIService {
     static let shared = CoinAPIService()
 
