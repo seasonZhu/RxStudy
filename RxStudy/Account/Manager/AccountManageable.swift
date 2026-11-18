@@ -35,6 +35,7 @@ import RxCocoa
 ///     }
 /// }
 /// ```
+@MainActor
 protocol AccountManageable {
 
     // MARK: - Reactive Properties

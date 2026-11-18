@@ -12,13 +12,14 @@ import Foundation
 /// https://mp.weixin.qq.com/s/uRRDFTg8K8yGc9ef1oYaPw
 /// 这里使用的方案三
 
+@MainActor
 enum KeyConstants {
     
-    static func loadAPIKeys(callback: @escaping ((Result<Void, Error>) -> Void)) {
+    static func loadAPIKeys(callback: @escaping @MainActor @Sendable (Result<Void, Error>) -> Void) {
         
         let request = NSBundleResourceRequest(tags: ["APIKeys"])
         
-        request.beginAccessingResources { error in
+        let finish: @MainActor @Sendable (Error?) -> Void = { error in
             if let error {
                 callback(.failure(error))
                 request.endAccessingResources()
@@ -35,8 +36,12 @@ enum KeyConstants {
                 request.endAccessingResources()
             }
         }
+        request.beginAccessingResources { error in
+            DispatchQueue.main.async { finish(error) }
+        }
     }
 
+    @MainActor
     enum APIKeys {
         
         static fileprivate(set) var storage = [String: String]()

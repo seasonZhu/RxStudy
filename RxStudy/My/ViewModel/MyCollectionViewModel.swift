@@ -18,7 +18,8 @@ import RxMoya
 import CombineMoya
 #endif
 
-class MyCollectionViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class MyCollectionViewModel: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVMSetting, @MainActor PageVMBaseSetting {
 
     var pageNum: Int
 
@@ -73,6 +74,7 @@ private extension MyCollectionViewModel {
             .asObservable()
             .asSingle()
             /// 订阅
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 
                 /// 订阅事件
@@ -128,6 +130,7 @@ extension MyCollectionViewModel {
         myProvider.rx.request(MyService.unCollectArticle(collectId))
             .map(BaseModel<String>.self)
             .map { $0.isSuccess }
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 switch event {
                 case .success(let isSuccess):

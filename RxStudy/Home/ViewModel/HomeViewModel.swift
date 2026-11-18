@@ -187,7 +187,9 @@ extension HomeViewModel {
             .subscribe { event in
                 switch event {
                 case .success(let value):
-                    AccountManager.shared.isGrayModeRelay.accept(value)
+                    DispatchQueue.main.async {
+                        AccountManager.shared.isGrayModeRelay.accept(value)
+                    }
                 case .failure:
                     break
                 }

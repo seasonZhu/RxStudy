@@ -25,7 +25,9 @@ extension AppDelegate {
     private func setupLegacyNetworkMonitor() {
         NetworkReachabilityManager.default?.startListening(onUpdatePerforming: { _ in
             let value = NetworkReachabilityManager.default?.isReachable == true
-            AccountManager.shared.networkIsReachableRelay.accept(value)
+            DispatchQueue.main.async {
+                AccountManager.shared.updateNetworkReachability(value)
+            }
         })
     }
 
@@ -35,7 +37,9 @@ extension AppDelegate {
         NetworkMonitor.shared.addListener { status in
             print("isConnected=\(status.isConnected), interface=\(status.interface)")
             let value = status.isConnected
-            AccountManager.shared.networkIsReachableRelay.accept(value)
+            DispatchQueue.main.async {
+                AccountManager.shared.updateNetworkReachability(value)
+            }
         }
 
         NetworkMonitor.shared.start()
@@ -45,7 +49,9 @@ extension AppDelegate {
             .subscribe(onNext: { status in
                 print("Rx: isConnected=\(status.isConnected), interface=\(status.interface)")
                 let value = status.isConnected
-                AccountManager.shared.networkIsReachableRelay.accept(value)
+                DispatchQueue.main.async {
+                    AccountManager.shared.updateNetworkReachability(value)
+                }
             })
             .disposed(by: rx.disposeBag)
     }

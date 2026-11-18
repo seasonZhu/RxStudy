@@ -33,7 +33,7 @@ let blackList = [Api.Home.banner, Api.Home.topArticle, Api.My.unreadCount]
 let activityPlugin = NetworkActivityPlugin { (state, targetType) in
     
     /// 添加无网络拦截
-    if AccountManager.shared.networkIsReachableRelay.value == false {
+    if AccountManager.networkIsReachable == false {
         if plugins.contains(where: {
             return $0 is ResponseCachePlugin
         }) {
@@ -80,7 +80,7 @@ let homeProvider = MoyaProvider<HomeService>(plugins: plugins)
 /// 我的
 let myEndpointClosure = { (target: MyService) -> Endpoint in
     let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: target)
-    return defaultEndpoint.adding(newHTTPHeaderFields: AccountManager.shared.isLoginRelay.value ? ["cookie": AccountManager.shared.cookieHeaderValue] : .empty)
+    return defaultEndpoint.adding(newHTTPHeaderFields: AccountManager.requestHeaders ?? .empty)
 }
 
 let myProvider = MoyaProvider<MyService>(endpointClosure: myEndpointClosure, plugins: plugins)

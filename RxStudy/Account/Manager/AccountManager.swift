@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 import RxSwift
 import RxCocoa
@@ -15,8 +16,29 @@ import MBProgressHUD
 import SVProgressHUD
 
 /// 账户管理器（遵循 AccountManageable 协议，支持依赖注入）
+@MainActor
 final class AccountManager: AccountManageable {
     
+    /// 网络钩子只读取值快照，不跨隔离域暴露账号模型或 Relay。
+    private struct RequestState: Sendable {
+        var cookie: String?
+        var isReachable = true
+    }
+    nonisolated private static let requestState = OSAllocatedUnfairLock(initialState: RequestState())
+
+    nonisolated static var requestHeaders: [String: String]? {
+        requestState.withLock { $0.cookie.map { ["cookie": $0] } }
+    }
+
+    nonisolated static var networkIsReachable: Bool {
+        requestState.withLock { $0.isReachable }
+    }
+
+    func updateNetworkReachability(_ value: Bool) {
+        Self.requestState.withLock { $0.isReachable = value }
+        networkIsReachableRelay.accept(value)
+    }
+
     /// 默认是有联网的
     let networkIsReachableRelay = BehaviorRelay(value: true)
     
@@ -74,6 +96,8 @@ extension AccountManager {
         self.password = password
         
         /// 需要注意赋值顺序,将info赋值给单例后,再改变isLogin的状态才能获取正确的请求头
+        let cookie = cookieHeaderValue
+        Self.requestState.withLock { $0.cookie = cookie }
         isLoginRelay.accept(true)
         
     #if canImport(Flutter) && canImport(FlutterPluginRegistrant)
@@ -92,11 +116,14 @@ extension AccountManager {
         self.password = password
         
         /// 需要注意赋值顺序,将info赋值给单例后,再改变isLogin的状态才能获取正确的请求头
+        let cookie = cookieHeaderValue
+        Self.requestState.withLock { $0.cookie = cookie }
         isLoginRelay.accept(true)
     }
     
     /// 登出成功,清理登录信息
     func clearAccountInfo() {
+        Self.requestState.withLock { $0.cookie = nil }
         isLoginRelay.accept(false)
         accountInfo = nil
         myCoinRelay.accept(nil)
@@ -132,6 +159,7 @@ extension AccountManager {
     func login(username: String, password: String, showLoading: Bool = true) {
         accountProvider.rx.request(AccountService.login(username, password, showLoading))
             .map(BaseModel<AccountInfo>.self)
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 let message: String
                 switch event {
@@ -171,6 +199,7 @@ extension AccountManager {
             .retry(2)
             .map(BaseModel<AccountInfo>.self)
             .asObservable()
+            .observe(on: MainScheduler.instance)
             .flatMapLatest { (baseModel) -> Single<(CoinRank, Int)> in
                 if baseModel.isSuccess {
                     AccountManager.shared.saveLoginUsernameAndPassword(info: baseModel.data, username: username, password: password)
@@ -178,6 +207,7 @@ extension AccountManager {
                 return Single.zip(self.getMyCoin(), self.getMyUnreadMessageCount())
             }
             .asSingle()
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 switch event {
                 case .success((let myCoin, let count)):

@@ -18,6 +18,7 @@ import RxMoya
 import CombineMoya
 #endif
 
+@MainActor
 class WebViewModel: BaseViewModel {
     
     let collectRelay = PublishRelay<Bool>()
@@ -32,6 +33,7 @@ extension WebViewModel {
         myProvider.rx.request(MyService.collectArticle(collectId))
             .map(BaseModel<String>.self)
             .map { $0.isSuccess }
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 switch event {
                 case .success(let isSuccess):
@@ -56,6 +58,7 @@ extension WebViewModel {
         myProvider.rx.request(MyService.unCollectArticle(collectId))
             .map(BaseModel<String>.self)
             .map { $0.isSuccess }
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 switch event {
                 case .success(let isSuccess):

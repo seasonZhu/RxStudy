@@ -83,7 +83,7 @@ final class NetworkActivityManager {
 
 let activityManagerPlugin = NetworkActivityManager.plugin { targetType in
     /// 添加无网络拦截
-    if AccountManager.shared.networkIsReachableRelay.value == false {
+    if AccountManager.networkIsReachable == false {
         if plugins.contains(where: {
             return $0 is ResponseCachePlugin
         }) {

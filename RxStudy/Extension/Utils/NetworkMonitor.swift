@@ -1,11 +1,12 @@
 import Foundation
+import os
 import Network
 import Combine
 import RxSwift
 import RxRelay
 
 @available(iOS 17.4, *)
-public enum NetworkInterfaceType: String, Codable, Equatable {
+public enum NetworkInterfaceType: String, Codable, Equatable, Sendable {
     case wifi
     case cellular
     case wiredEthernet
@@ -26,7 +27,7 @@ public enum NetworkInterfaceType: String, Codable, Equatable {
 }
 
 @available(iOS 17.4, *)
-public struct NetworkStatus: Equatable {
+public struct NetworkStatus: Equatable, Sendable {
     public let isConnected: Bool
     public let interface: NetworkInterfaceType
     public let rawStatus: NWPath.Status
@@ -44,6 +45,7 @@ public struct NetworkStatus: Equatable {
 ///   - `statusObservable` (RxSwift) is an Observable stream of `NetworkStatus`
 ///   - `isConnectedPublisher` / `isConnectedObservable` convenience streams for Bool
 @available(iOS 17.4, *)
+@MainActor
 public final class NetworkMonitor {
 
     // MARK: - Public
@@ -72,18 +74,24 @@ public final class NetworkMonitor {
 
     /// Internal storage for multiple listeners (UUID -> callback)
     private var listeners: [UUID: (NetworkStatus) -> Void] = [:]
-    private let listenersQueue = DispatchQueue(label: "com.rxstudy.network.monitor.listeners", attributes: .concurrent)
 
     /// Token returned by `addListener` — call `cancel()` to remove the listener.
-    public final class ListenerToken {
-        private let cancelBlock: () -> Void
-        private var cancelled = false
-        public init(cancel: @escaping () -> Void) { self.cancelBlock = cancel }
-        public func cancel() {
-            guard !cancelled else { return }
-            cancelled = true
-            cancelBlock()
+    public final class ListenerToken: Sendable {
+        private let cancellation: OSAllocatedUnfairLock<(@Sendable () -> Void)?>
+
+        public init(cancel: @escaping @Sendable () -> Void) {
+            cancellation = OSAllocatedUnfairLock(initialState: cancel)
         }
+
+        public func cancel() {
+            let action = cancellation.withLock { value in
+                let action = value
+                value = nil
+                return action
+            }
+            action?()
+        }
+
         deinit { cancel() }
     }
 
@@ -91,22 +99,18 @@ public final class NetworkMonitor {
     @discardableResult
     public func addListener(_ listener: @escaping (NetworkStatus) -> Void) -> ListenerToken {
         let id = UUID()
-        listenersQueue.async(flags: .barrier) {
-            self.listeners[id] = listener
-        }
+        listeners[id] = listener
         // immediately deliver the current status on main
         DispatchQueue.main.async {
             self.callback = listener
         }
         return ListenerToken { [weak self] in
-            self?.removeListener(id)
+            Task { @MainActor [weak self] in self?.removeListener(id) }
         }
     }
 
     private func removeListener(_ id: UUID) {
-        listenersQueue.async(flags: .barrier) {
-            self.listeners.removeValue(forKey: id)
-        }
+        listeners.removeValue(forKey: id)
     }
 
     // MARK: - Private
@@ -134,7 +138,7 @@ public final class NetworkMonitor {
     }
 
     deinit {
-        stop()
+        monitor.cancel()
     }
 
     // MARK: - Control
@@ -155,7 +159,7 @@ public final class NetworkMonitor {
                 self.callback?(newStatus)
 
                 // snapshot and invoke multi listeners
-                let listenersSnapshot = self.listenersQueue.sync { Array(self.listeners.values) }
+                let listenersSnapshot = Array(self.listeners.values)
                 for l in listenersSnapshot {
                     l(newStatus)
                 }

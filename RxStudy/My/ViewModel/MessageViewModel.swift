@@ -18,7 +18,8 @@ import RxMoya
 import CombineMoya
 #endif
 
-class MessageViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class MessageViewModel: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVMSetting, @MainActor PageVMBaseSetting {
     /// 站内消息是从1开始的
     var pageNum: Int
     
@@ -71,6 +72,7 @@ private extension MessageViewModel {
             .asObservable()
             .asSingle()
             /// 订阅
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 
                 /// 订阅事件

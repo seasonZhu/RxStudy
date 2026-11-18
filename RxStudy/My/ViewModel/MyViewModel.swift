@@ -18,13 +18,15 @@ import RxMoya
 import CombineMoya
 #endif
 
+@MainActor
 class MyViewModel: BaseViewModel {
     
     let currentDataSource = BehaviorRelay<[My]>(value: [])
     
     let refreshSubject = PublishSubject<MJRefreshAction>()
     
-    override init() {
+    /// 使用独立签名保留主 Actor 初始化，避免重写父类的非隔离 init()。
+    init(_ initialValue: Void = ()) {
         super.init()
 
         /// 单例的isLogin通过map后,与VM的currentDataSource进行绑定
@@ -38,6 +40,7 @@ class MyViewModel: BaseViewModel {
     
     func loadData() {
         Single.zip(getMyCoin(), getMyUnreadMessageCount())
+            .observe(on: MainScheduler.instance)
             .subscribe { event in
                 self.refreshSubject.onNext(.stopRefresh)
                 switch event {

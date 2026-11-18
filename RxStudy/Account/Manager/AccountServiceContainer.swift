@@ -19,6 +19,7 @@ import NSObject_Rx
 /// // 单元测试时注入 Mock
 /// AccountServiceContainer.set(mockAccountManager)
 /// ```
+@MainActor
 final class AccountServiceContainer {
 
     // MARK: - Type Alias
