@@ -19,7 +19,8 @@ import CombineMoya
 #endif
 
 /// 进击的ViewModel
-class CoinRankViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class CoinRankViewModel: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVMSetting, @MainActor PageVMBaseSetting {
 
     var pageNum: Int
     

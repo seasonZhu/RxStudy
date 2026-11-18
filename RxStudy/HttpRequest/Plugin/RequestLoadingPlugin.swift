@@ -17,6 +17,7 @@ import MBProgressHUD
 import SVProgressHUD
          
 /// 可以认为是请求和响应的拦截器,这里做的是在请求时loading,请求完毕后结束loading,用了官方的NetworkActivityPlugin插件,这个插件就不香了
+/// 仅保留旧版单请求示例；应用实际使用 LoadingProvider，不可同时安装两套加载逻辑。
 class RequestLoadingPlugin: PluginType {
     
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
@@ -44,12 +45,13 @@ class RequestLoadingPlugin: PluginType {
     func didReceive(_ result: Result<Response, MoyaError>, target: TargetType) {
         debugLog("结束请求")
         
-        /// 关闭loading
-        DispatchQueue.main.async {
-            // UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            SVProgressHUD.stopLoading()
+        /// 与开始路径使用相同的静态筛选，失败和取消同样收尾。
+        if target.headers?["showLoading"] != "false" {
+            DispatchQueue.main.async {
+                SVProgressHUD.stopLoading()
+            }
         }
-        
+
         switch result {
         case .success(let response):
             if response.statusCode == 200 {

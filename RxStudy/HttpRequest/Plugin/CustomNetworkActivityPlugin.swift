@@ -14,13 +14,14 @@ import RxMoya
 import CombineMoya
 #endif
 
+/// 旧版成对回调示例；实际请求使用 LoadingProvider 的独立令牌收尾。
 class CustomNetworkActivityPlugin: PluginType {
     private let lock = NSRecursiveLock()
     private var requestCount = 0
-    private let beginLoading: () -> Void
-    private let endLoading: () -> Void
+    private let beginLoading: @MainActor @Sendable () -> Void
+    private let endLoading: @MainActor @Sendable () -> Void
     
-    init(begin: @escaping () -> Void, end: @escaping () -> Void) {
+    init(begin: @escaping @MainActor @Sendable () -> Void, end: @escaping @MainActor @Sendable () -> Void) {
         self.beginLoading = begin
         self.endLoading = end
     }
@@ -41,6 +42,7 @@ class CustomNetworkActivityPlugin: PluginType {
         lock.lock()
         defer { lock.unlock() }
         
+        guard requestCount > 0 else { return }
         requestCount -= 1
         if requestCount == 0 {
             DispatchQueue.main.async(execute: endLoading)

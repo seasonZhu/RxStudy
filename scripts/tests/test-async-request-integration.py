@@ -35,12 +35,21 @@ def main():
         if build.returncode:
             print(build.stdout)
             raise SystemExit(build.returncode)
+        # 仅替换无法在 macOS 命令行展示的 HUD 渲染，保留真实请求和加载实现。
+        subprocess.run(["xcrun", "swiftc", "-emit-module", "-emit-library", "-module-name", "SVProgressHUD",
+                        str(ROOT / "scripts/tests/loading-hud-spy.swift"),
+                        "-emit-module-path", str(temporary / "SVProgressHUD.swiftmodule"),
+                        "-o", str(temporary / "libSVProgressHUD.dylib")], check=True)
         compiler = ["xcrun", "swiftc", "-swift-version", "5", "-parse-as-library",
+                    "-strict-concurrency=complete", "-I", str(temporary), "-L", str(temporary),
+                    "-lSVProgressHUD", "-Xlinker", "-rpath", "-Xlinker", str(temporary),
                     "-module-cache-path", str(temporary / "SwiftCache")]
         for name in DEPENDENCIES:
             framework = str(temporary / "Products/Debug" / name)
             compiler += ["-F", framework, "-framework", name, "-Xlinker", "-rpath", "-Xlinker", framework]
-        sources = [ROOT / "Shared/Models/BaseModel.swift", ROOT / "SwiftUIStudy/Network/APIService.swift",
+        sources = [ROOT / "RxStudy/HttpRequest/Plugin/ResponseInterceptorPlugin.swift",
+                   ROOT / "RxStudy/HttpRequest/Plugin/NetworkActivityManager.swift",
+                   ROOT / "Shared/API/Api.swift", ROOT / "Shared/Models/BaseModel.swift", ROOT / "SwiftUIStudy/Network/APIService.swift",
                    ROOT / "scripts/tests/async-request-integration-tests.swift"]
         executable = temporary / "integration-tests"
         subprocess.run(compiler + list(map(str, sources)) + ["-o", str(executable)], check=True)

@@ -17,6 +17,7 @@ import RxMoya
 import CombineMoya
 #endif
 
+@MainActor
 class HotKeyViewModel: BaseViewModel {
     
     /// outputs

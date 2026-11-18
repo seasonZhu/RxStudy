@@ -18,6 +18,7 @@ import RxMoya
 import CombineMoya
 #endif
 
+@MainActor
 class ToolViewModel<T: Codable>: BaseViewModel {
     
     /// outputs

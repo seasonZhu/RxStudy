@@ -7,106 +7,80 @@
 //
 
 import Foundation
+import os
 import Moya
-#if canImport(RxMoya)
-import RxMoya
-#endif
-#if canImport(CombineMoya)
-import CombineMoya
-#endif
-
 import SVProgressHUD
 
-/// 这个的用法就是有多个请求并行请求时,最初一个请求开始的时候loading,所有网络请求结束结束loading
-final class NetworkActivityManager {
-    private static var activityCount = 0
-    
-    private static let lock = NSLock()
-    
-    private static var targetTypeInterceptor: ((_ target: TargetType) -> Bool)?
-    
-    private static var beginLoadingCallback: (() -> Void)?
-    
-    private static var stopLoadingCallback: (() -> Void)?
-    
-    private init() {}
-    
-    static func plugin(targetTypeInterceptor: ((_ target: TargetType) -> Bool)?,
-                       beginLoadingCallback: (() -> Void)?,
-                       stopLoadingCallback: (() -> Void)?) -> NetworkActivityPlugin {
-        self.targetTypeInterceptor = targetTypeInterceptor
-        self.beginLoadingCallback = beginLoadingCallback
-        self.stopLoadingCallback = stopLoadingCallback
-        return NetworkActivityPlugin(networkActivityClosure: updateActivityCount)
+/// 锁只保护请求令牌；主队列按锁内提交顺序更新 HUD，不跨域传递请求或响应。
+enum NetworkActivityManager {
+    // MARK: - 活动令牌与待展示提示
+
+    private struct State {
+        var tokens: Set<UUID> = []
+        var message: String?
     }
-    
-    static private func updateActivityCount(change: NetworkActivityChangeType, target: TargetType) {
-        lock.lock()
-        defer { lock.unlock() }
-        
-        if let targetTypeInterceptor, targetTypeInterceptor(target) {
-            switch change {
-            case .began:
-                if activityCount == 0 {
-                    // 首次开始请求，显示加载
-                    beginLoading()
-                }
-                activityCount += 1
-            case .ended:
-                activityCount = max(0, activityCount - 1)
-                if activityCount == 0 {
-                    // 所有请求结束，隐藏加载
-                    stopLoading()
-                }
+    private static let state = OSAllocatedUnfairLock(initialState: State())
+
+    // MARK: - 请求生命周期
+
+    /// 首次活动开始时提交加载显示。
+    static func begin() -> UUID {
+        let token = UUID()
+        state.withLock { active in
+            let wasEmpty = active.tokens.isEmpty
+            active.tokens.insert(token)
+            if wasEmpty {
+                DispatchQueue.main.async { SVProgressHUD.beginLoading() }
             }
-        } else {
-            
         }
+        return token
     }
-    
-    private static func beginLoading() {
-        // 主线程更新UI
-        DispatchQueue.main.async {
-            print("开始加载")
-            beginLoadingCallback?()
-        }
-    }
-    
-    private static func stopLoading() {
-        // 主线程更新UI
-        DispatchQueue.main.async {
-            print("停止加载")
-            stopLoadingCallback?()
+
+    /// 幂等结束；并行错误保留到最后一个活动结束，避免被随后关闭操作覆盖。
+    static func end(_ token: UUID?, message: String? = nil) {
+        state.withLock { active in
+            if let token {
+                guard active.tokens.remove(token) != nil else { return }
+            }
+            if let message { active.message = message }
+            guard active.tokens.isEmpty else { return }
+            let text = active.message
+            active.message = nil
+            let shouldStop = token != nil
+            guard shouldStop || text != nil else { return }
+            DispatchQueue.main.async {
+                if shouldStop { SVProgressHUD.stopLoading() }
+                if let text { SVProgressHUD.showText(text) }
+            }
         }
     }
 }
 
-let activityManagerPlugin = NetworkActivityManager.plugin { targetType in
-    /// 添加无网络拦截
-    if AccountManager.networkIsReachable == false {
-        if plugins.contains(where: {
-            return $0 is ResponseCachePlugin
-        }) {
-            return false
-        } else {
-            SVProgressHUD.showText("似乎已断开与互联网的连接")
-            return false
+/// 请求入口创建独立令牌，避免插件在发送前取消时误减其他请求的活动数。
+final class LoadingProvider<Target: TargetType>: MoyaProvider<Target> {
+    // MARK: - 请求入口
+
+    /// 为每次请求创建独立活动令牌，原样保留结果与底层取消。
+    override func request(_ target: Target, callbackQueue: DispatchQueue? = nil,
+                          progress: ProgressBlock? = nil,
+                          completion: @escaping Completion) -> Cancellable {
+        let tracksLoading = ![Api.Home.banner, Api.Home.topArticle, Api.My.unreadCount].contains(target.path)
+            && target.headers?["showLoading"] != "false"
+        let token = tracksLoading ? NetworkActivityManager.begin() : nil
+        let request = super.request(target, callbackQueue: callbackQueue, progress: progress) { result in
+            let message: String?
+            if case .failure(.statusCode(let response)) = result,
+               let text = (try? response.mapJSON() as? [String: Any])?["errorMsg"] as? String, !text.isEmpty {
+                message = text
+            } else {
+                message = nil
+            }
+            NetworkActivityManager.end(token, message: message)
+            completion(result)
         }
-        
+        return CancellableToken {
+            NetworkActivityManager.end(token)
+            request.cancel()
+        }
     }
-    
-    if blackList.contains(targetType.path) {
-        return false
-    }
-    
-    if let showLoading = targetType.headers?["showLoading"],
-       showLoading == "false" {
-        return false
-    }
-    
-    return true
-} beginLoadingCallback: {
-    SVProgressHUD.beginLoading()
-} stopLoadingCallback: {
-    SVProgressHUD.stopLoading()
 }

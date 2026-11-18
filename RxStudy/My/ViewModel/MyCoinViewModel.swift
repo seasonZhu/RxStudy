@@ -18,7 +18,8 @@ import RxMoya
 import CombineMoya
 #endif
 
-class MyCoinViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class MyCoinViewModel: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVMSetting, @MainActor PageVMBaseSetting {
 
     var pageNum: Int
     

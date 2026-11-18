@@ -18,7 +18,8 @@ import RxMoya
 import CombineMoya
 #endif
 
-class SingleTabListViewModel: BaseViewModel, VMInputs, VMOutputs, PageVM2Setting {
+@MainActor
+class SingleTabListViewModel: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVM2Setting, @MainActor PageVMBaseSetting {
 
     var pageNum: Int
         

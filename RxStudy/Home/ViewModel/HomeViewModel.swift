@@ -18,7 +18,8 @@ import RxMoya
 import CombineMoya
 #endif
 
-class HomeViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class HomeViewModel: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVMSetting, @MainActor PageVMBaseSetting {
 
     var pageNum: Int
     

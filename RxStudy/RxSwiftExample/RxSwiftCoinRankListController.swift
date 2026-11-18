@@ -102,6 +102,7 @@ extension RxSwiftCoinRankListController: UITableViewDelegate {
     }
 }
 
+@MainActor
 class RxSwiftCoinRankListViewModel {
     /// 初始化page为1
     private var page: Int = 1
@@ -230,6 +231,7 @@ extension RxSwiftCoinRankListViewModel: HasDisposeBag {}
 import Combine
 import CombineExt
 
+@MainActor
 class CombineCoinRankListViewModel {
     var cancellable: AnyCancellable?
     
@@ -250,7 +252,7 @@ class CombineCoinRankListViewModel {
 
     }
     
-    deinit {
+    isolated deinit {
         cancellable?.cancel()
     }
 }

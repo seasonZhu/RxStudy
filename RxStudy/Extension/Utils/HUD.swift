@@ -9,6 +9,7 @@
 import Foundation
 
 /// 弹窗协议,抹平MB和SV的用法
+@MainActor
 protocol HUD {
     /// 为啥不用start,因为与stop容易混淆
     static func beginLoading()

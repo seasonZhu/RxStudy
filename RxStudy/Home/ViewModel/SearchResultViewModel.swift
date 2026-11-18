@@ -18,7 +18,8 @@ import RxMoya
 import CombineMoya
 #endif
 
-class SearchResultViewModel: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class SearchResultViewModel: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVMSetting, @MainActor PageVMBaseSetting {
     /// 搜索结果的首页是从0开始的
     var pageNum: Int
     

@@ -95,7 +95,8 @@ extension ListModel: TargetType {
 }
 
 // MARK: - 通用型的ListViewModel
-class ListViewModel<M: Codable, T: PageProtocol&TargetType>: BaseViewModel, VMInputs, VMOutputs, PageVMSetting {
+@MainActor
+class ListViewModel<M: Codable, T: PageProtocol&TargetType>: BaseViewModel, @MainActor VMInputs, @MainActor VMOutputs, @MainActor PageVMSetting, @MainActor PageVMBaseSetting {
 
     var pageNum: Int
     

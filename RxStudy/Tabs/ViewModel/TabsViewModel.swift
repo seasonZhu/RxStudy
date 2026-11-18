@@ -20,6 +20,7 @@ import CombineMoya
 
 typealias TreeViewModel = TabsViewModel
 
+@MainActor
 class TabsViewModel: BaseViewModel {
     
     private let type: TagType

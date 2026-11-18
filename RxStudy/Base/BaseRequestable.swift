@@ -49,8 +49,10 @@ import CombineMoya
                                 
  
  */
+@MainActor
 protocol BaseRequestable {}
 
+@MainActor
 protocol HotKeyRequest: BaseRequestable {
     func requestHotKey() -> Single<Moya.Response>
 }
@@ -70,6 +72,7 @@ extension HotKeyRequest {
  当然这种思路,其实在前端的网络请求中,还有如Android的Retrofit中也很常见
  */
 
+@MainActor
 protocol RepositoryProtocol {
     static func requestHotKey() -> Single<Moya.Response>
     

@@ -13,7 +13,6 @@ import RxMoya
 #if canImport(CombineMoya)
 import CombineMoya
 #endif
-import SVProgressHUD
 
 // MARK: - 响应异常拦截器插件
 class ResponseInterceptorPlugin: PluginType {
@@ -23,9 +22,9 @@ class ResponseInterceptorPlugin: PluginType {
         case .success(let response):
             if let dictionary = response.dictionary,
                let message = dictionary["errorMsg"] as? String,
-               message.isNotEmpty {
+               !message.isEmpty {
                 
-                SVProgressHUD.showText(message)
+                // 提示由请求完成入口在加载收尾后统一展示。
                 
                 /// 注意,这里我自认为是statusCode导致的错误
                 return .failure(.statusCode(response))
